@@ -166,11 +166,11 @@ export namespace cloudasset_v1p4beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -196,7 +196,7 @@ export namespace cloudasset_v1p4beta1 {
     outputConfig?: Schema$IamPolicyAnalysisOutputConfig;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -243,7 +243,7 @@ export namespace cloudasset_v1p4beta1 {
     role?: string | null;
   }
   /**
-   * An access control list, derived from the above IAM policy binding, which contains a set of resources and accesses. May include one item from each set to compose an access control entry.  NOTICE that there could be multiple access control lists for one IAM policy binding. The access control lists are created based on resource and access combinations.  For example, assume we have the following cases in one IAM policy binding: - Permission P1 and P2 apply to resource R1 and R2; - Permission P3 applies to resource R2 and R3;  This will result in the following access control lists: - AccessControlList 1: [R1, R2], [P1, P2] - AccessControlList 2: [R2, R3], [P3]
+   * An access control list, derived from the above IAM policy binding, which contains a set of resources and accesses. May include one item from each set to compose an access control entry. NOTICE that there could be multiple access control lists for one IAM policy binding. The access control lists are created based on resource and access combinations. For example, assume we have the following cases in one IAM policy binding: - Permission P1 and P2 apply to resource R1 and R2; - Permission P3 applies to resource R2 and R3; This will result in the following access control lists: - AccessControlList 1: [R1, R2], [P1, P2] - AccessControlList 2: [R2, R3], [P3]
    */
   export interface Schema$GoogleCloudAssetV1p4beta1AccessControlList {
     /**
@@ -360,7 +360,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     identitySelector?: Schema$IdentitySelector;
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as &quot;organizations/123&quot;) or a folder number (such as &quot;folders/123&quot;).  To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).  To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as &quot;organizations/123&quot;) or a folder number (such as &quot;folders/123&quot;). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     parent?: string | null;
     /**
@@ -398,7 +398,7 @@ export namespace cloudasset_v1p4beta1 {
    */
   export interface Schema$IdentitySelector {
     /**
-     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding).  The examples of supported forms are: &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;.  Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;. Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      */
     identity?: string | null;
   }
@@ -415,7 +415,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -423,7 +423,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -432,19 +432,19 @@ export namespace cloudasset_v1p4beta1 {
    */
   export interface Schema$Options {
     /**
-     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed.  For example, if the request analyzes for which resources user A has permission P, and there&#39;s an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there&#39;s another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Another example, if the request analyzes for who has permission P to a GCP folder F, and there&#39;s an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there&#39;s another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Default is false.
+     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. For example, if the request analyzes for which resources user A has permission P, and there&#39;s an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there&#39;s another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there&#39;s an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there&#39;s another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
      */
     analyzeServiceAccountImpersonation?: boolean | null;
     /**
-     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding.  If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect.  Default is false.
+     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     expandGroups?: boolean | null;
     /**
-     * Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy.  For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P.  If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
+     * Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     expandResources?: boolean | null;
     /**
-     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions.  If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect.  Default is false.
+     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     expandRoles?: boolean | null;
     /**
@@ -466,7 +466,7 @@ export namespace cloudasset_v1p4beta1 {
     fullResourceName?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -474,7 +474,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -520,104 +520,25 @@ export namespace cloudasset_v1p4beta1 {
      *     'analysisQuery.accessSelector.permissions': 'placeholder-value',
      *     // Optional. The roles to appear in result.
      *     'analysisQuery.accessSelector.roles': 'placeholder-value',
-     *     // Required. The identity appear in the form of members in
-     *     // [IAM policy
-     *     // binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
-     *     //
-     *     // The examples of supported forms are:
-     *     // "user:mike@example.com",
-     *     // "group:admins@example.com",
-     *     // "domain:google.com",
-     *     // "serviceAccount:my-project-id@appspot.gserviceaccount.com".
-     *     //
-     *     // Notice that wildcard characters (such as * and ?) are not supported.
-     *     // You must give a specific identity.
+     *     // Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      *     'analysisQuery.identitySelector.identity': 'placeholder-value',
-     *     // Required. The [full resource
-     *     // name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *     // of a resource of [supported resource
-     *     // types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
+     *     // Required. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
      *     'analysisQuery.resourceSelector.fullResourceName': 'placeholder-value',
-     *     // Optional. If true, the response will include access analysis from identities to
-     *     // resources via service account impersonation. This is a very expensive
-     *     // operation, because many derived queries will be executed. We highly
-     *     // recommend you use AssetService.ExportIamPolicyAnalysis rpc instead.
-     *     //
-     *     // For example, if the request analyzes for which resources user A has
-     *     // permission P, and there's an IAM policy states user A has
-     *     // iam.serviceAccounts.getAccessToken permission to a service account SA,
-     *     // and there's another IAM policy states service account SA has permission P
-     *     // to a GCP folder F, then user A potentially has access to the GCP folder
-     *     // F. And those advanced analysis results will be included in
-     *     // AnalyzeIamPolicyResponse.service_account_impersonation_analysis.
-     *     //
-     *     // Another example, if the request analyzes for who has
-     *     // permission P to a GCP folder F, and there's an IAM policy states user A
-     *     // has iam.serviceAccounts.actAs permission to a service account SA, and
-     *     // there's another IAM policy states service account SA has permission P to
-     *     // the GCP folder F, then user A potentially has access to the GCP folder
-     *     // F. And those advanced analysis results will be included in
-     *     // AnalyzeIamPolicyResponse.service_account_impersonation_analysis.
-     *     //
-     *     // Default is false.
+     *     // Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.ExportIamPolicyAnalysis rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
      *     'options.analyzeServiceAccountImpersonation': 'placeholder-value',
-     *     // Optional. Amount of time executable has to complete.  See JSON representation of
-     *     // [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
-     *     //
-     *     // If this field is set with a value less than the RPC deadline, and the
-     *     // execution of your query hasn't finished in the specified
-     *     // execution timeout,  you will get a response with partial result.
-     *     // Otherwise, your query's execution will continue until the RPC deadline.
-     *     // If it's not finished until then, you will get a  DEADLINE_EXCEEDED error.
-     *     //
-     *     // Default is empty.
+     *     // Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.
      *     'options.executionTimeout': 'placeholder-value',
-     *     // Optional. If true, the identities section of the result will expand any
-     *     // Google groups appearing in an IAM policy binding.
-     *     //
-     *     // If identity_selector is specified, the identity in the result will
-     *     // be determined by the selector, and this flag will have no effect.
-     *     //
-     *     // Default is false.
+     *     // Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect. Default is false.
      *     'options.expandGroups': 'placeholder-value',
-     *     // Optional. If true, the resource section of the result will expand any
-     *     // resource attached to an IAM policy to include resources lower in the
-     *     // resource hierarchy.
-     *     //
-     *     // For example, if the request analyzes for which resources user A has
-     *     // permission P, and the results include an IAM policy with P on a GCP
-     *     // folder, the results will also include resources in that folder with
-     *     // permission P.
-     *     //
-     *     // If resource_selector is specified, the resource section of the result
-     *     // will be determined by the selector, and this flag will have no effect.
-     *     // Default is false.
+     *     // Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      *     'options.expandResources': 'placeholder-value',
-     *     // Optional. If true, the access section of result will expand any roles
-     *     // appearing in IAM policy bindings to include their permissions.
-     *     //
-     *     // If access_selector is specified, the access section of the result
-     *     // will be determined by the selector, and this flag will have no effect.
-     *     //
-     *     // Default is false.
+     *     // Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      *     'options.expandRoles': 'placeholder-value',
-     *     // Optional. If true, the result will output group identity edges, starting
-     *     // from the binding's group members, to any expanded identities.
-     *     // Default is false.
+     *     // Optional. If true, the result will output group identity edges, starting from the binding's group members, to any expanded identities. Default is false.
      *     'options.outputGroupEdges': 'placeholder-value',
-     *     // Optional. If true, the result will output resource edges, starting
-     *     // from the policy attached resource, to any expanded resources.
-     *     // Default is false.
+     *     // Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
      *     'options.outputResourceEdges': 'placeholder-value',
-     *     // Required. The relative name of the root asset. Only resources and IAM policies within
-     *     // the parent will be analyzed. This can only be an organization number (such
-     *     // as "organizations/123") or a folder number (such as "folders/123").
-     *     //
-     *     // To know how to get organization id, visit [here
-     *     // ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     *     //
-     *     // To know how to get folder id, visit [here
-     *     // ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     *     // Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -642,16 +563,16 @@ export namespace cloudasset_v1p4beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.analysisQuery.accessSelector.permissions Optional. The permissions to appear in result.
      * @param {string=} params.analysisQuery.accessSelector.roles Optional. The roles to appear in result.
-     * @param {string=} params.analysisQuery.identitySelector.identity Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding).  The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com".  Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     * @param {string=} params.analysisQuery.identitySelector.identity Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      * @param {string=} params.analysisQuery.resourceSelector.fullResourceName Required. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
-     * @param {boolean=} params.options.analyzeServiceAccountImpersonation Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.ExportIamPolicyAnalysis rpc instead.  For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Default is false.
-     * @param {string=} params.options.executionTimeout Optional. Amount of time executable has to complete.  See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).  If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout,  you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a  DEADLINE_EXCEEDED error.  Default is empty.
-     * @param {boolean=} params.options.expandGroups Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding.  If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect.  Default is false.
-     * @param {boolean=} params.options.expandResources Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy.  For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P.  If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
-     * @param {boolean=} params.options.expandRoles Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions.  If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect.  Default is false.
+     * @param {boolean=} params.options.analyzeServiceAccountImpersonation Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.ExportIamPolicyAnalysis rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
+     * @param {string=} params.options.executionTimeout Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.
+     * @param {boolean=} params.options.expandGroups Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect. Default is false.
+     * @param {boolean=} params.options.expandResources Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
+     * @param {boolean=} params.options.expandRoles Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      * @param {boolean=} params.options.outputGroupEdges Optional. If true, the result will output group identity edges, starting from the binding's group members, to any expanded identities. Default is false.
      * @param {boolean=} params.options.outputResourceEdges Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
-     * @param {string} params.parent Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123").  To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).  To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * @param {string} params.parent Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -769,15 +690,7 @@ export namespace cloudasset_v1p4beta1 {
      *
      *   // Do the magic
      *   const res = await cloudasset.exportIamPolicyAnalysis({
-     *     // Required. The relative name of the root asset. Only resources and IAM policies within
-     *     // the parent will be analyzed. This can only be an organization number (such
-     *     // as "organizations/123") or a folder number (such as "folders/123").
-     *     //
-     *     // To know how to get organization id, visit [here
-     *     // ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     *     //
-     *     // To know how to get folder id, visit [here
-     *     // ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     *     // Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *     parent: '[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -811,7 +724,7 @@ export namespace cloudasset_v1p4beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123").  To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).  To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * @param {string} params.parent Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      * @param {().ExportIamPolicyAnalysisRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -909,7 +822,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     'analysisQuery.accessSelector.roles'?: string[];
     /**
-     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding).  The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com".  Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      */
     'analysisQuery.identitySelector.identity'?: string;
     /**
@@ -917,23 +830,23 @@ export namespace cloudasset_v1p4beta1 {
      */
     'analysisQuery.resourceSelector.fullResourceName'?: string;
     /**
-     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.ExportIamPolicyAnalysis rpc instead.  For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis.  Default is false.
+     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.ExportIamPolicyAnalysis rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
      */
     'options.analyzeServiceAccountImpersonation'?: boolean;
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).  If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout,  you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a  DEADLINE_EXCEEDED error.  Default is empty.
+     * Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.
      */
     'options.executionTimeout'?: string;
     /**
-     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding.  If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect.  Default is false.
+     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If identity_selector is specified, the identity in the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     'options.expandGroups'?: boolean;
     /**
-     * Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy.  For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P.  If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
+     * Optional. If true, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If resource_selector is specified, the resource section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     'options.expandResources'?: boolean;
     /**
-     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions.  If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect.  Default is false.
+     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If access_selector is specified, the access section of the result will be determined by the selector, and this flag will have no effect. Default is false.
      */
     'options.expandRoles'?: boolean;
     /**
@@ -945,14 +858,14 @@ export namespace cloudasset_v1p4beta1 {
      */
     'options.outputResourceEdges'?: boolean;
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123").  To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).  To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     parent?: string;
   }
   export interface Params$Resource$V1p4beta1$Exportiampolicyanalysis
     extends StandardParameters {
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123").  To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).  To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the parent will be analyzed. This can only be an organization number (such as "organizations/123") or a folder number (such as "folders/123"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     parent?: string;
 
