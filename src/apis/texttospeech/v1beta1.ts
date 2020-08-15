@@ -214,7 +214,7 @@ export namespace texttospeech_v1beta1 {
      */
     audioContent?: string | null;
     /**
-     * A link between a position in the original request input and a corresponding time in the output audio. It&#39;s only supported via &lt;mark&gt; of SSML input.
+     * A link between a position in the original request input and a corresponding time in the output audio. It&#39;s only supported via of SSML input.
      */
     timepoints?: Schema$Timepoint[];
   }
@@ -223,7 +223,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$Timepoint {
     /**
-     * Timepoint name as received from the client within &lt;mark&gt; tag.
+     * Timepoint name as received from the client within tag.
      */
     markName?: string | null;
     /**
@@ -240,7 +240,7 @@ export namespace texttospeech_v1beta1 {
      */
     languageCodes?: string[] | null;
     /**
-     * The name of this voice.  Each distinct voice has a unique name.
+     * The name of this voice. Each distinct voice has a unique name.
      */
     name?: string | null;
     /**
@@ -257,7 +257,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$VoiceSelectionParams {
     /**
-     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput.  The TTS service will use this parameter to help choose an appropriate voice.  Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
+     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput. The TTS service will use this parameter to help choose an appropriate voice. Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
      */
     languageCode?: string | null;
     /**
@@ -464,14 +464,7 @@ export namespace texttospeech_v1beta1 {
      *
      *   // Do the magic
      *   const res = await texttospeech.voices.list({
-     *     // Optional. Recommended.
-     *     // [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
-     *     // specified, the ListVoices call will only return voices that can be used to
-     *     // synthesize this language_code. E.g. when specifying "en-NZ", you will get
-     *     // supported "en-*" voices; when specifying "no", you will get supported
-     *     // "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh"
-     *     // will also get supported "cmn-*" voices; specifying "zh-hk" will also get
-     *     // supported "yue-*" voices.
+     *     // Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
      *     languageCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
