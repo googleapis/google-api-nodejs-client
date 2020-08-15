@@ -101,7 +101,7 @@ export namespace pagespeedonline_v5 {
   /**
    * PageSpeed Insights API
    *
-   * The PageSpeed Insights API lets you analyze the performance of your website with a simple API.  It offers tailored suggestions for how you can optimize your site, and lets you easily integrate PageSpeed Insights analysis into your development tools and workflow.
+   * The PageSpeed Insights API lets you analyze the performance of your website with a simple API. It offers tailored suggestions for how you can optimize your site, and lets you easily integrate PageSpeed Insights analysis into your development tools and workflow.
    *
    * @example
    * const {google} = require('googleapis');
@@ -373,7 +373,7 @@ export namespace pagespeedonline_v5 {
      */
     runtimeError?: Schema$RuntimeError;
     /**
-     * List of all run warnings in the LHR.  Will always output to at least `[]`.
+     * List of all run warnings in the LHR. Will always output to at least `[]`.
      */
     runWarnings?: any[] | null;
     /**
@@ -402,7 +402,7 @@ export namespace pagespeedonline_v5 {
      */
     initial_url?: string | null;
     /**
-     * The map of &lt;metrics, data&gt;.
+     * The map of .
      */
     metrics?: {[key: string]: Schema$UserPageLoadMetricV5} | null;
     /**
@@ -641,15 +641,13 @@ export namespace pagespeedonline_v5 {
      *   const res = await pagespeedonline.pagespeedapi.runpagespeed({
      *     // The captcha token passed when filling out a captcha.
      *     captchaToken: 'placeholder-value',
-     *     // A Lighthouse category to run; if none are given, only Performance category
-     *     // will be run
+     *     // A Lighthouse category to run; if none are given, only Performance category will be run
      *     category: 'placeholder-value',
      *     // The locale used to localize formatted results
      *     locale: 'placeholder-value',
-     *     // The analysis strategy (desktop or mobile) to use, and desktop is the
-     *     // default
+     *     // The analysis strategy (desktop or mobile) to use, and desktop is the default
      *     strategy: 'placeholder-value',
-     *     // The URL to fetch and analyze
+     *     // Required. The URL to fetch and analyze
      *     url: 'placeholder-value',
      *     // Campaign name for analytics.
      *     utm_campaign: 'placeholder-value',
@@ -684,7 +682,7 @@ export namespace pagespeedonline_v5 {
      * @param {string=} params.category A Lighthouse category to run; if none are given, only Performance category will be run
      * @param {string=} params.locale The locale used to localize formatted results
      * @param {string=} params.strategy The analysis strategy (desktop or mobile) to use, and desktop is the default
-     * @param {string=} params.url The URL to fetch and analyze
+     * @param {string=} params.url Required. The URL to fetch and analyze
      * @param {string=} params.utm_campaign Campaign name for analytics.
      * @param {string=} params.utm_source Campaign source for analytics.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -800,7 +798,7 @@ export namespace pagespeedonline_v5 {
      */
     strategy?: string;
     /**
-     * The URL to fetch and analyze
+     * Required. The URL to fetch and analyze
      */
     url?: string;
     /**
