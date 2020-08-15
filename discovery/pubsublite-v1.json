@@ -123,14 +123,14 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent location in which to create the subscription.\nStructured like `projects/{project_number}/locations/{location}`.",
+                          "description": "Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "subscriptionId": {
-                          "description": "Required. The ID to use for the subscription, which will become the final component\nof the subscription's name.\n\nThis value is structured like: `my-sub-name`.",
+                          "description": "Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -206,18 +206,18 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of subscriptions to return. The service may return fewer\nthan this value.\nIf unset or zero, all subscriptions for the parent will be returned.",
+                          "description": "The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous `ListSubscriptions` call.\nProvide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters provided to `ListSubscriptions` must\nmatch the call that provided the page token.",
+                          "description": "A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent whose subscriptions are to be listed.\nStructured like `projects/{project_number}/locations/{location}`.",
+                          "description": "Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+$",
                           "required": true,
@@ -242,7 +242,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the subscription.\nStructured like:\nprojects/{project_number}/locations/{location}/subscriptions/{subscription_id}",
+                          "description": "The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
                           "required": true,
@@ -280,14 +280,14 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent location in which to create the topic.\nStructured like `projects/{project_number}/locations/{location}`.",
+                          "description": "Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "topicId": {
-                          "description": "Required. The ID to use for the topic, which will become the final component of\nthe topic's name.\n\nThis value is structured like: `my-topic-name`.",
+                          "description": "Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -388,18 +388,18 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of topics to return. The service may return fewer than\nthis value.\nIf unset or zero, all topics for the parent will be returned.",
+                          "description": "The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous `ListTopics` call.\nProvide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters provided to `ListTopics` must match\nthe call that provided the page token.",
+                          "description": "A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent whose topics are to be listed.\nStructured like `projects/{project_number}/locations/{location}`.",
+                          "description": "Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+$",
                           "required": true,
@@ -424,7 +424,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the topic.\nStructured like:\nprojects/{project_number}/locations/{location}/topics/{topic_id}",
+                          "description": "The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/topics/[^/]+$",
                           "required": true,
@@ -469,13 +469,13 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of subscriptions to return. The service may return fewer\nthan this value.\nIf unset or zero, all subscriptions for the given topic will be returned.",
+                              "description": "The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A page token, received from a previous `ListTopicSubscriptions` call.\nProvide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters provided to `ListTopicSubscriptions`\nmust match the call that provided the page token.",
+                              "description": "A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             }
@@ -518,18 +518,18 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "The maximum number of cursors to return. The service may return fewer than\nthis value.\nIf unset or zero, all cursors for the parent will be returned.",
+                              "description": "The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A page token, received from a previous `ListPartitionCursors` call.\nProvide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters provided to `ListPartitionCursors`\nmust match the call that provided the page token.",
+                              "description": "A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The subscription for which to retrieve cursors.\nStructured like\n`projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.",
+                              "description": "Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
                               "required": true,
@@ -555,7 +555,7 @@
       }
     }
   },
-  "revision": "20200728",
+  "revision": "20200803",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "Capacity": {
@@ -563,12 +563,12 @@
       "id": "Capacity",
       "properties": {
         "publishMibPerSec": {
-          "description": "Publish throughput capacity per partition in MiB/s.\nMust be >= 4 and <= 16.",
+          "description": "Publish throughput capacity per partition in MiB/s. Must be >= 4 and <= 16.",
           "format": "int32",
           "type": "integer"
         },
         "subscribeMibPerSec": {
-          "description": "Subscribe throughput capacity per partition in MiB/s.\nMust be >= 4 and <= 32.",
+          "description": "Subscribe throughput capacity per partition in MiB/s. Must be >= 4 and <= 32.",
           "format": "int32",
           "type": "integer"
         }
@@ -580,7 +580,7 @@
       "id": "Cursor",
       "properties": {
         "offset": {
-          "description": "The offset of a message within a topic partition. Must be greater than or\nequal 0.",
+          "description": "The offset of a message within a topic partition. Must be greater than or equal 0.",
           "format": "int64",
           "type": "string"
         }
@@ -600,8 +600,8 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The server does not wait for a published message to be successfully\nwritten to storage before delivering it to subscribers.",
-            "The server will not deliver a published message to subscribers until\nthe message has been successfully written to storage. This will result\nin higher end-to-end latency, but consistent delivery."
+            "The server does not wait for a published message to be successfully written to storage before delivering it to subscribers.",
+            "The server will not deliver a published message to subscribers until the message has been successfully written to storage. This will result in higher end-to-end latency, but consistent delivery."
           ],
           "type": "string"
         }
@@ -609,7 +609,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -619,7 +619,7 @@
       "id": "ListPartitionCursorsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page.\nIf this field is omitted, there are no subsequent pages.",
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "partitionCursors": {
@@ -637,11 +637,11 @@
       "id": "ListSubscriptionsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token that can be sent as `page_token` to retrieve the next page of\nresults. If this field is omitted, there are no more results.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.",
           "type": "string"
         },
         "subscriptions": {
-          "description": "The list of subscriptions in the requested parent. The order of the\nsubscriptions is unspecified.",
+          "description": "The list of subscriptions in the requested parent. The order of the subscriptions is unspecified.",
           "items": {
             "$ref": "Subscription"
           },
@@ -655,11 +655,11 @@
       "id": "ListTopicSubscriptionsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token that can be sent as `page_token` to retrieve the next page of\nresults. If this field is omitted, there are no more results.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.",
           "type": "string"
         },
         "subscriptions": {
-          "description": "The names of subscriptions attached to the topic. The order of the\nsubscriptions is unspecified.",
+          "description": "The names of subscriptions attached to the topic. The order of the subscriptions is unspecified.",
           "items": {
             "type": "string"
           },
@@ -673,11 +673,11 @@
       "id": "ListTopicsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token that can be sent as `page_token` to retrieve the next page of\nresults. If this field is omitted, there are no more results.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.",
           "type": "string"
         },
         "topics": {
-          "description": "The list of topic in the requested parent. The order of the topics is\nunspecified.",
+          "description": "The list of topic in the requested parent. The order of the topics is unspecified.",
           "items": {
             "$ref": "Topic"
           },
@@ -700,7 +700,7 @@
           "type": "string"
         },
         "scale": {
-          "description": "Every partition in the topic is allocated throughput equivalent to\n`scale` times the standard partition throughput (4 MiB/s). This is also\nreflected in the cost of this topic; a topic with `scale` of 2 and\ncount of 10 is charged for 20 partitions. This value must be in the\nrange [1,4].",
+          "description": "Every partition in the topic is allocated throughput equivalent to `scale` times the standard partition throughput (4 MiB/s). This is also reflected in the cost of this topic; a topic with `scale` of 2 and count of 10 is charged for 20 partitions. This value must be in the range [1,4].",
           "format": "int32",
           "type": "integer"
         }
@@ -728,12 +728,12 @@
       "id": "RetentionConfig",
       "properties": {
         "perPartitionBytes": {
-          "description": "The provisioned storage, in bytes, per partition. If the number of bytes\nstored in any of the topic's partitions grows beyond this value, older\nmessages will be dropped to make room for newer ones, regardless of the\nvalue of `period`.",
+          "description": "The provisioned storage, in bytes, per partition. If the number of bytes stored in any of the topic's partitions grows beyond this value, older messages will be dropped to make room for newer ones, regardless of the value of `period`.",
           "format": "int64",
           "type": "string"
         },
         "period": {
-          "description": "How long a published message is retained. If unset, messages will be\nretained as long as the bytes retained for each partition is below\n`per_partition_bytes`.",
+          "description": "How long a published message is retained. If unset, messages will be retained as long as the bytes retained for each partition is below `per_partition_bytes`.",
           "format": "google-duration",
           "type": "string"
         }
@@ -749,11 +749,11 @@
           "description": "The settings for this subscription's message delivery."
         },
         "name": {
-          "description": "The name of the subscription.\nStructured like:\nprojects/{project_number}/locations/{location}/subscriptions/{subscription_id}",
+          "description": "The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}",
           "type": "string"
         },
         "topic": {
-          "description": "The name of the topic this subscription is attached to.\nStructured like:\nprojects/{project_number}/locations/{location}/topics/{topic_id}",
+          "description": "The name of the topic this subscription is attached to. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}",
           "type": "string"
         }
       },
@@ -764,7 +764,7 @@
       "id": "Topic",
       "properties": {
         "name": {
-          "description": "The name of the topic.\nStructured like:\nprojects/{project_number}/locations/{location}/topics/{topic_id}",
+          "description": "The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}",
           "type": "string"
         },
         "partitionConfig": {
