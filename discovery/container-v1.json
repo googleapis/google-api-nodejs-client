@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200724",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3489,7 +3489,7 @@
       "id": "MaintenancePolicy",
       "properties": {
         "resourceVersion": {
-          "description": "A hash identifying the version of this policy, so that updates to fields of\nthe policy won't accidentally undo intermediate changes (and so that users\nof the API unaware of some fields won't accidentally remove other fields).\nMake a <code>get()</code> request to the cluster to get the current\nresource version and include it with requests to set the policy.",
+          "description": "A hash identifying the version of this policy, so that updates to fields of\nthe policy won't accidentally undo intermediate changes (and so that users\nof the API unaware of some fields won't accidentally remove other fields).\nMake a `get()` request to the cluster to get the current\nresource version and include it with requests to set the policy.",
           "type": "string"
         },
         "window": {
@@ -3708,11 +3708,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The metadata key/value pairs assigned to instances in the cluster.\n\nKeys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes\nin length. These are reflected as part of a URL in the metadata server.\nAdditionally, to avoid ambiguity, keys must not conflict with any other\nmetadata keys for the project or be one of the reserved keys:\n \"cluster-location\"\n \"cluster-name\"\n \"cluster-uid\"\n \"configure-sh\"\n \"containerd-configure-sh\"\n \"enable-os-login\"\n \"gci-ensure-gke-docker\"\n \"gci-metrics-enabled\"\n \"gci-update-strategy\"\n \"instance-template\"\n \"kube-env\"\n \"startup-script\"\n \"user-data\"\n \"disable-address-manager\"\n \"windows-startup-script-ps1\"\n \"common-psm1\"\n \"k8s-node-setup-psm1\"\n \"install-ssh-psm1\"\n \"user-profile-psm1\"\n \"serial-port-logging-enable\"\n\nValues are free-form strings, and only have meaning as interpreted by\nthe image running in the instance. The only restriction placed on them is\nthat each value's size must be less than or equal to 32 KB.\n\nThe total size of all keys and values must be less than 512 KB.",
+          "description": "The metadata key/value pairs assigned to instances in the cluster.\n\nKeys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes\nin length. These are reflected as part of a URL in the metadata server.\nAdditionally, to avoid ambiguity, keys must not conflict with any other\nmetadata keys for the project or be one of the reserved keys:\n - \"cluster-location\"\n - \"cluster-name\"\n - \"cluster-uid\"\n - \"configure-sh\"\n - \"containerd-configure-sh\"\n - \"enable-os-login\"\n - \"gci-ensure-gke-docker\"\n - \"gci-metrics-enabled\"\n - \"gci-update-strategy\"\n - \"instance-template\"\n - \"kube-env\"\n - \"startup-script\"\n - \"user-data\"\n - \"disable-address-manager\"\n - \"windows-startup-script-ps1\"\n - \"common-psm1\"\n - \"k8s-node-setup-psm1\"\n - \"install-ssh-psm1\"\n - \"user-profile-psm1\"\n - \"serial-port-logging-enable\"\n\nValues are free-form strings, and only have meaning as interpreted by\nthe image running in the instance. The only restriction placed on them is\nthat each value's size must be less than or equal to 32 KB.\n\nThe total size of all keys and values must be less than 512 KB.",
           "type": "object"
         },
         "minCpuPlatform": {
-          "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
+          "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n`minCpuPlatform: \"Intel Haswell\"` or\n`minCpuPlatform: \"Intel Sandy Bridge\"`. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
           "type": "string"
         },
         "nodeGroup": {
@@ -4138,7 +4138,7 @@
       "id": "RecurringTimeWindow",
       "properties": {
         "recurrence": {
-          "description": "An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how\nthis window reccurs. They go on for the span of time between the start and\nend time.\n\nFor example, to have something repeat every weekday, you'd use:\n  <code>FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR</code>\nTo repeat some window daily (equivalent to the DailyMaintenanceWindow):\n  <code>FREQ=DAILY</code>\nFor the first weekend of every month:\n  <code>FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU</code>\nThis specifies how frequently the window starts. Eg, if you wanted to have\na 9-5 UTC-4 window every weekday, you'd use something like:\n<code>\n  start time = 2019-01-01T09:00:00-0400\n  end time = 2019-01-01T17:00:00-0400\n  recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\n</code>\nWindows can span multiple days. Eg, to make the window encompass every\nweekend from midnight Saturday till the last minute of Sunday UTC:\n<code>\n  start time = 2019-01-05T00:00:00Z\n  end time = 2019-01-07T23:59:00Z\n  recurrence = FREQ=WEEKLY;BYDAY=SA\n</code>\nNote the start and end time's specific dates are largely arbitrary except\nto specify duration of the window and when it first starts.\nThe FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.",
+          "description": "An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how\nthis window reccurs. They go on for the span of time between the start and\nend time.\n\nFor example, to have something repeat every weekday, you'd use:\n`FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`\n\nTo repeat some window daily (equivalent to the DailyMaintenanceWindow):\n`FREQ=DAILY`\n\nFor the first weekend of every month:\n`FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`\n\nThis specifies how frequently the window starts. Eg, if you wanted to have\na 9-5 UTC-4 window every weekday, you'd use something like:\n```\nstart time = 2019-01-01T09:00:00-0400\nend time = 2019-01-01T17:00:00-0400\nrecurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\n```\n\nWindows can span multiple days. Eg, to make the window encompass every\nweekend from midnight Saturday till the last minute of Sunday UTC:\n```\nstart time = 2019-01-05T00:00:00Z\nend time = 2019-01-07T23:59:00Z\nrecurrence = FREQ=WEEKLY;BYDAY=SA\n```\n\nNote the start and end time's specific dates are largely arbitrary except\nto specify duration of the window and when it first starts.\nThe FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.",
           "type": "string"
         },
         "window": {
@@ -4404,7 +4404,7 @@
           "type": "string"
         },
         "labelFingerprint": {
-          "description": "Required. The fingerprint of the previous set of labels for this resource,\nused to detect conflicts. The fingerprint is initially generated by\nKubernetes Engine and changes after every request to modify or update\nlabels. You must always provide an up-to-date fingerprint hash when\nupdating or changing labels. Make a <code>get()</code> request to the\nresource to get the latest fingerprint.",
+          "description": "Required. The fingerprint of the previous set of labels for this resource,\nused to detect conflicts. The fingerprint is initially generated by\nKubernetes Engine and changes after every request to modify or update\nlabels. You must always provide an up-to-date fingerprint hash when\nupdating or changing labels. Make a `get()` request to the\nresource to get the latest fingerprint.",
           "type": "string"
         },
         "name": {

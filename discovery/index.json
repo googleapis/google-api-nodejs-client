@@ -49,21 +49,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "accessapproval:v1beta1",
-      "name": "accessapproval",
-      "version": "v1beta1",
-      "title": "Access Approval API",
-      "description": "An API for controlling access to data by Google personnel.",
-      "discoveryRestUrl": "https://accessapproval.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/access-approval/docs",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "accesscontextmanager:v1beta",
       "name": "accesscontextmanager",
       "version": "v1beta",
@@ -377,7 +362,7 @@
       "name": "apigee",
       "version": "v1",
       "title": "Apigee API",
-      "description": "The Apigee API lets you programmatically manage Apigee hybrid with a set of RESTful operations, including: - Create, edit, and delete API proxies - Manage users - Deploy and undeploy proxy revisions - Configure environments For information on using the APIs described in this section, see Get started using the APIs <docs.apigee.com/hybrid/latest/api-get-started>. *Note:* This product is available as a free trial for a time period of 60 days.",
+      "description": "Use the Apigee API to programmatically develop and manage APIs with a set of RESTful operations. Develop and secure API proxies, deploy and undeploy API proxy revisions, monitor APIs, configure environments, manage users, and more. Get started using the APIs <https://cloud.google.com/apigee/docs/api-platform/get-started/api-get-started>. *Note:* This product is available as a free trial for a time period of 60 days.",
       "discoveryRestUrl": "https://apigee.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1771,15 +1756,14 @@
       "id": "dns:v1",
       "name": "dns",
       "version": "v1",
-      "title": "Google Cloud DNS API",
-      "description": "Configures and serves authoritative DNS records.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v1/rest",
-      "discoveryLink": "./apis/dns/v1/rest",
+      "title": "Cloud DNS API",
+      "description": "",
+      "discoveryRestUrl": "https://dns.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/cloud-dns",
+      "documentationLink": "http://developers.google.com/cloud-dns",
       "preferred": true
     },
     {
@@ -1787,31 +1771,14 @@
       "id": "dns:v1beta2",
       "name": "dns",
       "version": "v1beta2",
-      "title": "Google Cloud DNS API",
-      "description": "Configures and serves authoritative DNS records.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v1beta2/rest",
-      "discoveryLink": "./apis/dns/v1beta2/rest",
+      "title": "Cloud DNS API",
+      "description": "",
+      "discoveryRestUrl": "https://dns.googleapis.com/$discovery/rest?version=v1beta2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/cloud-dns",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "dns:v2beta1",
-      "name": "dns",
-      "version": "v2beta1",
-      "title": "Google Cloud DNS API",
-      "description": "Configures and serves authoritative DNS records.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v2beta1/rest",
-      "discoveryLink": "./apis/dns/v2beta1/rest",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/cloud-dns",
+      "documentationLink": "http://developers.google.com/cloud-dns",
       "preferred": false
     },
     {
@@ -2172,6 +2139,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "fitness:v1",
+      "name": "fitness",
+      "version": "v1",
+      "title": "Fitness API",
+      "description": "The Fitness API for managing users' fitness tracking data.",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/fit/rest/v1/get-started",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "games:v1",
       "name": "games",
       "version": "v1",
@@ -2311,14 +2293,29 @@
       "id": "gmailpostmastertools:v1beta1",
       "name": "gmailpostmastertools",
       "version": "v1beta1",
-      "title": "Gmail Postmaster Tools API",
-      "description": "The Gmail Postmaster API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
+      "title": "Postmaster Tools API",
+      "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
       "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/gmail/postmaster",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "groupsmigration:v1",
+      "name": "groupsmigration",
+      "version": "v1",
+      "title": "Groups Migration API",
+      "description": "The Groups Migration API allows domain administrators to archive emails into Google groups.",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/google-apps/groups-migration/",
       "preferred": true
     },
     {
@@ -2820,22 +2817,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "oauth2:v2",
-      "name": "oauth2",
-      "version": "v2",
-      "title": "Google OAuth2 API",
-      "description": "Obtains end-user authorization grants for use with other Google APIs.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest",
-      "discoveryLink": "./apis/oauth2/v2/rest",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/identity/protocols/oauth2/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "osconfig:v1alpha2",
       "name": "osconfig",
       "version": "v1alpha2",
@@ -2975,14 +2956,13 @@
       "name": "playcustomapp",
       "version": "v1",
       "title": "Google Play Custom App Publishing API",
-      "description": "An API to publish custom Android apps.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/playcustomapp/v1/rest",
-      "discoveryLink": "./apis/playcustomapp/v1/rest",
+      "description": "API to create and publish custom Android apps",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/android/work/play/custom-app-api",
+      "documentationLink": "https://developers.google.com/android/work/play/custom-app-api/",
       "preferred": true
     },
     {
@@ -3819,25 +3799,6 @@
         "labs"
       ],
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "storage:v1beta2",
-      "name": "storage",
-      "version": "v1beta2",
-      "title": "Cloud Storage JSON API",
-      "description": "Lets you store and retrieve potentially-large, immutable data objects.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/storage/v1beta2/rest",
-      "discoveryLink": "./apis/storage/v1beta2/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/cloud_storage-16.png",
-        "x32": "https://www.google.com/images/icons/product/cloud_storage-32.png"
-      },
-      "documentationLink": "https://developers.google.com/storage/docs/json_api/",
-      "labels": [
-        "labs"
-      ],
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",

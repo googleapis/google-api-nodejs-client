@@ -277,6 +277,10 @@ export namespace bigqueryreservation_v1beta1 {
    */
   export interface Schema$Reservation {
     /**
+     * Output only. Creation time of the reservation.
+     */
+    creationTime?: string | null;
+    /**
      * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.
      */
     ignoreIdleSlots?: boolean | null;
@@ -288,6 +292,10 @@ export namespace bigqueryreservation_v1beta1 {
      * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
     slotCapacity?: string | null;
+    /**
+     * Output only. Last update time of the reservation.
+     */
+    updateTime?: string | null;
   }
   /**
    * The response for ReservationService.SearchAssignments.
@@ -2062,9 +2070,11 @@ export namespace bigqueryreservation_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
      *       //   "name": "my_name",
-     *       //   "slotCapacity": "my_slotCapacity"
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -2072,9 +2082,11 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
-     *   //   "slotCapacity": "my_slotCapacity"
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2343,9 +2355,11 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
-     *   //   "slotCapacity": "my_slotCapacity"
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2630,9 +2644,11 @@ export namespace bigqueryreservation_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
      *       //   "name": "my_name",
-     *       //   "slotCapacity": "my_slotCapacity"
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -2640,9 +2656,11 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
      *   //   "name": "my_name",
-     *   //   "slotCapacity": "my_slotCapacity"
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *

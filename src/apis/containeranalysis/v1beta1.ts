@@ -189,7 +189,7 @@ export namespace containeranalysis_v1beta1 {
     hint?: Schema$Hint;
   }
   /**
-   * Basis describes the base image portion (Note) of the DockerImage relationship. Linked occurrences are derived from this or an equivalent image via:   FROM &lt;Basis.resource_url&gt; Or an equivalent reference, e.g. a tag of the resource_url.
+   * Basis describes the base image portion (Note) of the DockerImage relationship. Linked occurrences are derived from this or an equivalent image via: FROM Or an equivalent reference, e.g. a tag of the resource_url.
    */
   export interface Schema$Basis {
     /**
@@ -242,11 +242,11 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -337,7 +337,7 @@ export namespace containeranalysis_v1beta1 {
      */
     keyType?: string | null;
     /**
-     * Public key of the builder which can be used to verify that the related findings are valid and unchanged. If `key_type` is empty, this defaults to PEM encoded public keys.  This field may be empty if `key_id` references an external key.  For Cloud Build based signatures, this is a PEM encoded public key. To verify the Cloud Build signature, place the contents of this field into a file (public.pem). The signature field is base64-decoded into its binary representation in signature.bin, and the provenance bytes from `BuildDetails` are base64-decoded into a binary representation in signed.bin. OpenSSL can then verify the signature: `openssl sha256 -verify public.pem -signature signature.bin signed.bin`
+     * Public key of the builder which can be used to verify that the related findings are valid and unchanged. If `key_type` is empty, this defaults to PEM encoded public keys. This field may be empty if `key_id` references an external key. For Cloud Build based signatures, this is a PEM encoded public key. To verify the Cloud Build signature, place the contents of this field into a file (public.pem). The signature field is base64-decoded into its binary representation in signature.bin, and the provenance bytes from `BuildDetails` are base64-decoded into a binary representation in signed.bin. OpenSSL can then verify the signature: `openssl sha256 -verify public.pem -signature signature.bin signed.bin`
      */
     publicKey?: string | null;
     /**
@@ -462,7 +462,7 @@ export namespace containeranalysis_v1beta1 {
     userEmail?: string | null;
   }
   /**
-   * Derived describes the derived image portion (Occurrence) of the DockerImage relationship. This image would be produced from a Dockerfile with FROM &lt;DockerImage.Basis in attached Note&gt;.
+   * Derived describes the derived image portion (Occurrence) of the DockerImage relationship. This image would be produced from a Dockerfile with FROM .
    */
   export interface Schema$Derived {
     /**
@@ -596,7 +596,7 @@ export namespace containeranalysis_v1beta1 {
     url?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -606,7 +606,7 @@ export namespace containeranalysis_v1beta1 {
     customValues?: {[key: string]: string} | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -648,7 +648,7 @@ export namespace containeranalysis_v1beta1 {
      */
     v2Blob?: string[] | null;
     /**
-     * Output only. The name of the image&#39;s v2 blobs computed via:   [bottom] := v2_blobbottom := sha256(v2_blob[N] + &quot; &quot; + v2_name[N+1]) Only the name of the final blob is kept.
+     * Output only. The name of the image&#39;s v2 blobs computed via: [bottom] := v2_blobbottom := sha256(v2_blob[N] + &quot; &quot; + v2_name[N+1]) Only the name of the final blob is kept.
      */
     v2Name?: string | null;
   }
@@ -674,7 +674,7 @@ export namespace containeranalysis_v1beta1 {
     totalCount?: string | null;
   }
   /**
-   * An attestation wrapper that uses the Grafeas `Signature` message. This attestation must define the `serialized_payload` that the `signatures` verify and any metadata necessary to interpret that plaintext.  The signatures should always be over the `serialized_payload` bytestring.
+   * An attestation wrapper that uses the Grafeas `Signature` message. This attestation must define the `serialized_payload` that the `signatures` verify and any metadata necessary to interpret that plaintext. The signatures should always be over the `serialized_payload` bytestring.
    */
   export interface Schema$GenericSignedAttestation {
     /**
@@ -686,7 +686,7 @@ export namespace containeranalysis_v1beta1 {
      */
     serializedPayload?: string | null;
     /**
-     * One or more signatures over `serialized_payload`.  Verifier implementations should consider this attestation message verified if at least one `signature` verifies `serialized_payload`.  See `Signature` in common.proto for more details on signature structure and verification.
+     * One or more signatures over `serialized_payload`. Verifier implementations should consider this attestation message verified if at least one `signature` verifies `serialized_payload`. See `Signature` in common.proto for more details on signature structure and verification.
      */
     signatures?: Schema$Signature[];
   }
@@ -725,7 +725,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -764,7 +764,7 @@ export namespace containeranalysis_v1beta1 {
      */
     provenance?: Schema$BuildProvenance;
     /**
-     * Serialized JSON representation of the provenance, used in generating the build signature in the corresponding build note. After verifying the signature, `provenance_bytes` can be unmarshalled and compared to the provenance to confirm that it is unchanged. A base64-encoded string representation of the provenance bytes is used for the signature in order to interoperate with openssl which expects this format for signature verification.  The serialized form is captured both to avoid ambiguity in how the provenance is marshalled to json as well to prevent incompatibilities with future changes.
+     * Serialized JSON representation of the provenance, used in generating the build signature in the corresponding build note. After verifying the signature, `provenance_bytes` can be unmarshalled and compared to the provenance to confirm that it is unchanged. A base64-encoded string representation of the provenance bytes is used for the signature in order to interoperate with openssl which expects this format for signature verification. The serialized form is captured both to avoid ambiguity in how the provenance is marshalled to json as well to prevent incompatibilities with future changes.
      */
     provenanceBytes?: string | null;
   }
@@ -956,11 +956,11 @@ export namespace containeranalysis_v1beta1 {
      */
     command?: string[] | null;
     /**
-     * This is a field that can be used to capture information about the environment. It is suggested for this field to contain information that details environment variables, filesystem information, and the present working directory. The recommended structure of this field is: &quot;environment&quot;: {   &quot;custom_values&quot;: {     &quot;variables&quot;: &quot;&lt;ENV&gt;&quot;,     &quot;filesystem&quot;: &quot;&lt;FS&gt;&quot;,     &quot;workdir&quot;: &quot;&lt;CWD&gt;&quot;,     &quot;&lt;ANY OTHER RELEVANT FIELDS&gt;&quot;: &quot;...&quot;   } }
+     * This is a field that can be used to capture information about the environment. It is suggested for this field to contain information that details environment variables, filesystem information, and the present working directory. The recommended structure of this field is: &quot;environment&quot;: { &quot;custom_values&quot;: { &quot;variables&quot;: &quot;&quot;, &quot;filesystem&quot;: &quot;&quot;, &quot;workdir&quot;: &quot;&quot;, &quot;&quot;: &quot;...&quot; } }
      */
     environment?: Schema$Environment;
     /**
-     * Materials are the supply chain artifacts that go into the step and are used for the operation performed. The key of the map is the path of the artifact and the structure contains the recorded hash information. An example is: &quot;materials&quot;: [   {     &quot;resource_uri&quot;: &quot;foo/bar&quot;,     &quot;hashes&quot;: {       &quot;sha256&quot;: &quot;ebebf...&quot;,       &lt;OTHER HASH ALGORITHMS&gt;: &lt;HASH VALUE&gt;     }   } ]
+     * Materials are the supply chain artifacts that go into the step and are used for the operation performed. The key of the map is the path of the artifact and the structure contains the recorded hash information. An example is: &quot;materials&quot;: [ { &quot;resource_uri&quot;: &quot;foo/bar&quot;, &quot;hashes&quot;: { &quot;sha256&quot;: &quot;ebebf...&quot;, : } } ]
      */
     materials?: Schema$GrafeasV1beta1IntotoArtifact[];
     /**
@@ -1214,7 +1214,7 @@ export namespace containeranalysis_v1beta1 {
      */
     contentType?: string | null;
     /**
-     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexidecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge &quot;LONG&quot;, &quot;SHORT&quot;, or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons.  For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \     --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...&lt;SNIP&gt;... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
+     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexidecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge &quot;LONG&quot;, &quot;SHORT&quot;, or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons. For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \ --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
      */
     pgpKeyId?: string | null;
     /**
@@ -1223,7 +1223,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1231,11 +1231,11 @@ export namespace containeranalysis_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -1283,11 +1283,11 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Resource {
     /**
-     * Deprecated, do not use. Use uri instead.  The hash of the resource content. For example, the Docker digest.
+     * Deprecated, do not use. Use uri instead. The hash of the resource content. For example, the Docker digest.
      */
     contentHash?: Schema$Hash;
     /**
-     * Deprecated, do not use. Use uri instead.  The name of the resource. For example, the name of a Docker image - &quot;Debian&quot;.
+     * Deprecated, do not use. Use uri instead. The name of the resource. For example, the name of a Docker image - &quot;Debian&quot;.
      */
     name?: string | null;
     /**
@@ -1330,11 +1330,11 @@ export namespace containeranalysis_v1beta1 {
     policy?: Schema$Policy;
   }
   /**
-   * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm).  In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances:   * The `public_key_id` is not recognized by the verifier.   * The public key that `public_key_id` refers to does not verify the     signature with respect to the payload.  The `signature` contents SHOULD NOT be &quot;attached&quot; (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any &quot;attached&quot; payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
+   * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be &quot;attached&quot; (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any &quot;attached&quot; payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
    */
   export interface Schema$Signature {
     /**
-     * The identifier for the public key that verifies this signature.   * The `public_key_id` is required.   * The `public_key_id` SHOULD be an RFC3986 conformant URI.   * When possible, the `public_key_id` SHOULD be an immutable reference,     such as a cryptographic digest.  Examples of valid `public_key_id`s:  OpenPGP V4 public key fingerprint:   * &quot;openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA&quot; See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme.  RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization):   * &quot;ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU&quot;   * &quot;nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5&quot;
+     * The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * &quot;openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA&quot; See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * &quot;ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU&quot; * &quot;nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5&quot;
      */
     publicKeyId?: string | null;
     /**
@@ -1343,7 +1343,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * This defines the format used to record keys used in the software supply chain. An in-toto link is attested using one or more keys defined in the in-toto layout. An example of this is: {   &quot;key_id&quot;: &quot;776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b0...&quot;,   &quot;key_type&quot;: &quot;rsa&quot;,   &quot;public_key_value&quot;: &quot;-----BEGIN PUBLIC KEY-----x/MIIBojANBgkqhkiG9w0B...&quot;,   &quot;key_scheme&quot;: &quot;rsassa-pss-sha256&quot; } The format for in-toto&#39;s key definition can be found in section 4.2 of the in-toto specification.
+   * This defines the format used to record keys used in the software supply chain. An in-toto link is attested using one or more keys defined in the in-toto layout. An example of this is: { &quot;key_id&quot;: &quot;776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b0...&quot;, &quot;key_type&quot;: &quot;rsa&quot;, &quot;public_key_value&quot;: &quot;-----BEGIN PUBLIC KEY-----x/MIIBojANBgkqhkiG9w0B...&quot;, &quot;key_scheme&quot;: &quot;rsassa-pss-sha256&quot; } The format for in-toto&#39;s key definition can be found in section 4.2 of the in-toto specification.
    */
   export interface Schema$SigningKey {
     /**
@@ -1380,7 +1380,7 @@ export namespace containeranalysis_v1beta1 {
      */
     context?: Schema$SourceContext;
     /**
-     * Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build.  The keys to this map are file paths used as build source and the values contain the hash values for those files.  If the build source came in a single package such as a gzipped tarfile (.tar.gz), the FileHash will be for the single path to that file.
+     * Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. The keys to this map are file paths used as build source and the values contain the hash values for those files. If the build source came in a single package such as a gzipped tarfile (.tar.gz), the FileHash will be for the single path to that file.
      */
     fileHashes?: {[key: string]: Schema$FileHashes} | null;
   }
@@ -1406,7 +1406,7 @@ export namespace containeranalysis_v1beta1 {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1414,7 +1414,7 @@ export namespace containeranalysis_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1583,8 +1583,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.batchCreate({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *     // the notes are to be created.
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1734,8 +1733,7 @@ export namespace containeranalysis_v1beta1 {
      *   const res = await containeranalysis.projects.notes.create({
      *     // Required. The ID to use for this note.
      *     noteId: 'placeholder-value',
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *     // the note is to be created.
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1909,8 +1907,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.delete({
-     *     // Required. The name of the note in the form of
-     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     name: 'projects/my-project/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -2037,8 +2034,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.get({
-     *     // Required. The name of the note in the form of
-     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     name: 'projects/my-project/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -2158,7 +2154,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.notes.getIamPolicy
-     * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2183,8 +2179,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -2329,13 +2324,11 @@ export namespace containeranalysis_v1beta1 {
      *   const res = await containeranalysis.projects.notes.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // Number of notes to return in the list. Must be positive. Max allowed page
-     *     // size is 1000. If not specified, page size defaults to 20.
+     *     // Number of notes to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to list notes for in the form of
-     *     // `projects/[PROJECT_ID]`.
+     *     // Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2474,8 +2467,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.patch({
-     *     // Required. The name of the note in the form of
-     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     name: 'projects/my-project/notes/my-note',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -2623,7 +2615,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.notes.setIamPolicy
-     * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2648,8 +2640,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -2767,7 +2758,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.notes.testIamPermissions
-     * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`).  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`). The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2792,8 +2783,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3064,8 +3054,7 @@ export namespace containeranalysis_v1beta1 {
      *   const res = await containeranalysis.projects.notes.occurrences.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // Required. The name of the note to list occurrences for in the form of
-     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     // Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *     name: 'projects/my-project/notes/my-note',
      *     // Number of occurrences to return in the list.
      *     pageSize: 'placeholder-value',
@@ -3239,8 +3228,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.batchCreate({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *     // the occurrences are to be created.
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3389,8 +3377,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.create({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
-     *     // the occurrence is to be created.
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3559,8 +3546,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.delete({
-     *     // Required. The name of the occurrence in the form of
-     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -3687,8 +3673,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.get({
-     *     // Required. The name of the occurrence in the form of
-     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -3806,7 +3791,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.occurrences.getIamPolicy
-     * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3831,8 +3816,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -3975,8 +3959,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getNotes({
-     *     // Required. The name of the occurrence in the form of
-     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -4127,8 +4110,7 @@ export namespace containeranalysis_v1beta1 {
      *     {
      *       // The filter expression.
      *       filter: 'placeholder-value',
-     *       // Required. The name of the project to get a vulnerability summary for in the form of
-     *       // `projects/[PROJECT_ID]`.
+     *       // Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
      *       parent: 'projects/my-project',
      *     }
      *   );
@@ -4272,13 +4254,11 @@ export namespace containeranalysis_v1beta1 {
      *   const res = await containeranalysis.projects.occurrences.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // Number of occurrences to return in the list. Must be positive. Max allowed
-     *     // page size is 1000. If not specified, page size defaults to 20.
+     *     // Number of occurrences to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to list occurrences for in the form of
-     *     // `projects/[PROJECT_ID]`.
+     *     // Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4419,8 +4399,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.patch({
-     *     // Required. The name of the occurrence in the form of
-     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -4564,7 +4543,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.occurrences.setIamPolicy
-     * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4589,8 +4568,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -4708,7 +4686,7 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * containeranalysis.projects.occurrences.testIamPermissions
-     * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`).  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`). The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4733,8 +4711,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5017,8 +4994,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.get({
-     *     // Required. The name of the scan configuration in the form of
-     *     // `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     *     // Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      *     name: 'projects/my-project/scanConfigs/my-scanConfig',
      *   });
      *   console.log(res.data);
@@ -5157,8 +5133,7 @@ export namespace containeranalysis_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to list scan configurations for in the form of
-     *     // `projects/[PROJECT_ID]`.
+     *     // Required. The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -5299,8 +5274,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.update({
-     *     // Required. The name of the scan configuration in the form of
-     *     // `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     *     // Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      *     name: 'projects/my-project/scanConfigs/my-scanConfig',
      *
      *     // Request body metadata

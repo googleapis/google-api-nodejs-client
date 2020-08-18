@@ -164,7 +164,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Indicates which fields in the provided 'recommendation_model' to update. If not set, will only update the catalog_item_level_config field.",
+                      "description": "Optional. Indicates which fields in the provided 'catalog' to update. If not set, will only update the catalog_item_level_config field. Currently only fields that can be updated are catalog_item_level_config.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200810",
   "rootUrl": "https://recommendationengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -912,7 +912,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1BigQuerySource",
       "properties": {
         "dataSchema": {
-          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)",
+          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. \"user_events_ga360\" using https://support.google.com/analytics/answer/3437719?hl=en",
           "type": "string"
         },
         "datasetId": {
@@ -1176,7 +1176,7 @@
           "type": "array"
         },
         "jsonSchema": {
-          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)",
+          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. \"user_events_ga360\" using https://support.google.com/analytics/answer/3437719?hl=en",
           "type": "string"
         }
       },

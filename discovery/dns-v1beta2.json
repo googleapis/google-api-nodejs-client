@@ -127,12 +127,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -168,18 +168,18 @@
           ],
           "parameters": {
             "changeId": {
-              "description": "The identifier of the requested change, from a previous\nResourceRecordSetsChangeResponse.",
+              "description": "The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -213,19 +213,19 @@
           ],
           "parameters": {
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -240,6 +240,9 @@
               "description": "Sorting criterion. The only supported value is change sequence.",
               "enum": [
                 "changeSequence"
+              ],
+              "enumDescriptions": [
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -277,12 +280,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "digestType": {
-              "description": "An optional comma-separated list of digest types to compute and display\nfor key signing keys. If omitted, the recommended digest type will be\ncomputed and displayed.",
+              "description": "An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.",
               "location": "query",
               "type": "string"
             },
@@ -293,7 +296,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -327,24 +330,24 @@
           ],
           "parameters": {
             "digestType": {
-              "description": "An optional comma-separated list of digest types to compute and display\nfor key signing keys. If omitted, the recommended digest type will be\ncomputed and displayed.",
+              "description": "An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -382,7 +385,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -433,13 +436,13 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -455,6 +458,10 @@
               "enum": [
                 "startTime",
                 "id"
+              ],
+              "enumDescriptions": [
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -485,7 +492,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -519,12 +526,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -553,12 +560,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -596,13 +603,13 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -635,12 +642,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -675,12 +682,12 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -718,7 +725,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -742,7 +749,7 @@
           ]
         },
         "delete": {
-          "description": "Delete a previously created Policy. Will fail if the policy is still being\nreferenced by a network.",
+          "description": "Delete a previously created Policy. Will fail if the policy is still being referenced by a network.",
           "flatPath": "dns/v1beta2/projects/{project}/policies/{policy}",
           "httpMethod": "DELETE",
           "id": "dns.policies.delete",
@@ -752,7 +759,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -786,7 +793,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -824,13 +831,13 @@
           ],
           "parameters": {
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -863,7 +870,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -903,7 +910,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -946,7 +953,7 @@
           ],
           "parameters": {
             "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier\nspecified by the client. Must be unique for operation resources in the\nOperations collection.",
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
               "location": "query",
               "type": "string"
             },
@@ -983,24 +990,24 @@
           ],
           "parameters": {
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed\nzone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "maxResults": {
-              "description": "Optional. Maximum number of results to be returned. If unspecified, the\nserver will decide how many results to return.",
+              "description": "Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "name": {
-              "description": "Restricts the list to return only records with this fully qualified domain\nname.",
+              "description": "Restricts the list to return only records with this fully qualified domain name.",
               "location": "query",
               "type": "string"
             },
             "pageToken": {
-              "description": "Optional. A tag returned by a previous list request that was truncated.\nUse this parameter to continue a previous list request.",
+              "description": "Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.",
               "location": "query",
               "type": "string"
             },
@@ -1011,7 +1018,7 @@
               "type": "string"
             },
             "type": {
-              "description": "Restricts the list to return only records of this type. If present, the\n\"name\" parameter must also be present.",
+              "description": "Restricts the list to return only records of this type. If present, the \"name\" parameter must also be present.",
               "location": "query",
               "type": "string"
             }
@@ -1030,11 +1037,11 @@
       }
     }
   },
-  "revision": "20200731",
+  "revision": "20200806",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
-      "description": "A Change represents a set of ResourceRecordSet additions and deletions\napplied atomically to a ManagedZone. ResourceRecordSets within a\nManagedZone are modified by creating a new Change element in the Changes\ncollection. In turn the Changes collection also records the past\nmodifications to the ResourceRecordSets in a ManagedZone. The current\nstate of the ManagedZone is the sum effect of applying all Change\nelements in the Changes collection in sequence.",
+      "description": "A Change represents a set of ResourceRecordSet additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the ResourceRecordSets in a ManagedZone. The current state of the ManagedZone is the sum effect of applying all Change elements in the Changes collection in sequence.",
       "id": "Change",
       "properties": {
         "additions": {
@@ -1064,11 +1071,11 @@
           "type": "string"
         },
         "startTime": {
-          "description": "The time that this operation was started by the server (output only). This\nis in RFC3339 text format.",
+          "description": "The time that this operation was started by the server (output only). This is in RFC3339 text format.",
           "type": "string"
         },
         "status": {
-          "description": "Status of the operation (output only). A status of \"done\" means that the\nrequest to update the authoritative servers has been sent but the\nservers might not be updated yet.",
+          "description": "Status of the operation (output only). A status of \"done\" means that the request to update the authoritative servers has been sent but the servers might not be updated yet.",
           "enum": [
             "pending",
             "done"
@@ -1083,7 +1090,7 @@
       "type": "object"
     },
     "ChangesListResponse": {
-      "description": "The response to a request to enumerate Changes to a ResourceRecordSets\ncollection.",
+      "description": "The response to a request to enumerate Changes to a ResourceRecordSets collection.",
       "id": "ChangesListResponse",
       "properties": {
         "changes": {
@@ -1102,7 +1109,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your pagination token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a \"snapshot\" of collections larger than the maximum\npage size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a \"snapshot\" of collections larger than the maximum page size.",
           "type": "string"
         }
       },
@@ -1113,7 +1120,7 @@
       "id": "DnsKey",
       "properties": {
         "algorithm": {
-          "description": "String mnemonic specifying the DNSSEC algorithm of this key. Immutable\nafter creation time.",
+          "description": "String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time.",
           "enum": [
             "rsasha1",
             "rsasha256",
@@ -1131,15 +1138,15 @@
           "type": "string"
         },
         "creationTime": {
-          "description": "The time that this resource was created in the control plane. This is in\nRFC3339 text format. Output only.",
+          "description": "The time that this resource was created in the control plane. This is in RFC3339 text format. Output only.",
           "type": "string"
         },
         "description": {
-          "description": "A mutable string of at most 1024 characters associated with this resource\nfor the user's convenience. Has no effect on the resource's function.",
+          "description": "A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the resource's function.",
           "type": "string"
         },
         "digests": {
-          "description": "Cryptographic hashes of the DNSKEY resource record associated with this\nDnsKey. These digests are needed to construct a DS record that points at\nthis DNS key. Output only.",
+          "description": "Cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Output only.",
           "items": {
             "$ref": "DnsKeyDigest"
           },
@@ -1150,7 +1157,7 @@
           "type": "string"
         },
         "isActive": {
-          "description": "Active keys will be used to sign subsequent changes to the ManagedZone.\nInactive keys will still be present as DNSKEY Resource Records for the use\nof resolvers validating existing signatures.",
+          "description": "Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.",
           "type": "boolean"
         },
         "keyLength": {
@@ -1159,7 +1166,7 @@
           "type": "integer"
         },
         "keyTag": {
-          "description": "The key tag is a non-cryptographic hash of the a DNSKEY resource record\nassociated with this DnsKey. The key tag can be used to identify a DNSKEY\nmore quickly (but it is not a unique identifier). In particular, the key\ntag is used in a parent zone's DS record to point at the DNSKEY in this\nchild ManagedZone. The key tag is a number in the range [0, 65535] and the\nalgorithm to calculate it is specified in RFC4034 Appendix B. Output only.",
+          "description": "The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B. Output only.",
           "format": "int32",
           "type": "integer"
         },
@@ -1172,7 +1179,7 @@
           "type": "string"
         },
         "type": {
-          "description": "One of \"KEY_SIGNING\" or \"ZONE_SIGNING\". Keys of type KEY_SIGNING have the\nSecure Entry Point flag set and, when active, will be used to sign only\nresource record sets of type DNSKEY. Otherwise, the Secure Entry Point\nflag will be cleared and this key will be used to sign only resource\nrecord sets of other types. Immutable after creation time.",
+          "description": "One of \"KEY_SIGNING\" or \"ZONE_SIGNING\". Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.",
           "enum": [
             "keySigning",
             "zoneSigning"
@@ -1190,7 +1197,7 @@
       "id": "DnsKeyDigest",
       "properties": {
         "digest": {
-          "description": "The base-16 encoded bytes of this digest. Suitable for use in a DS\nresource record.",
+          "description": "The base-16 encoded bytes of this digest. Suitable for use in a DS resource record.",
           "type": "string"
         },
         "type": {
@@ -1211,7 +1218,7 @@
       "type": "object"
     },
     "DnsKeySpec": {
-      "description": "Parameters for DnsKey key generation. Used for generating initial keys\nfor a new ManagedZone and as default when adding a new DnsKey.",
+      "description": "Parameters for DnsKey key generation. Used for generating initial keys for a new ManagedZone and as default when adding a new DnsKey.",
       "id": "DnsKeySpec",
       "properties": {
         "algorithm": {
@@ -1238,7 +1245,7 @@
           "type": "integer"
         },
         "keyType": {
-          "description": "Specifies whether this is a key signing key (KSK) or a zone signing key\n(ZSK). Key signing keys have the Secure Entry Point flag set and, when\nactive, will only be used to sign resource record sets of type DNSKEY.\nZone signing keys do not have the Secure Entry Point flag set and will be\nused to sign all other types of resource record sets.",
+          "description": "Specifies whether this is a key signing key (KSK) or a zone signing key (ZSK). Key signing keys have the Secure Entry Point flag set and, when active, will only be used to sign resource record sets of type DNSKEY. Zone signing keys do not have the Secure Entry Point flag set and will be used to sign all other types of resource record sets.",
           "enum": [
             "keySigning",
             "zoneSigning"
@@ -1276,22 +1283,22 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your pagination token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a \"snapshot\" of collections larger than the maximum\npage size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a \"snapshot\" of collections larger than the maximum page size.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ManagedZone": {
-      "description": "A zone is a subtree of the DNS namespace under one administrative\nresponsibility. A ManagedZone is a resource that represents a DNS zone\nhosted by the Cloud DNS service.",
+      "description": "A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.",
       "id": "ManagedZone",
       "properties": {
         "creationTime": {
-          "description": "The time that this resource was created on the server. This is in RFC3339\ntext format. Output only.",
+          "description": "The time that this resource was created on the server. This is in RFC3339 text format. Output only.",
           "type": "string"
         },
         "description": {
-          "description": "A mutable string of at most 1024 characters associated with this resource\nfor the user's convenience. Has no effect on the managed zone's function.",
+          "description": "A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the managed zone's function.",
           "type": "string"
         },
         "dnsName": {
@@ -1304,7 +1311,7 @@
         },
         "forwardingConfig": {
           "$ref": "ManagedZoneForwardingConfig",
-          "description": "The presence for this field indicates that outbound forwarding is enabled\nfor this zone.  The value of this field contains the set of destinations\nto forward to."
+          "description": "The presence for this field indicates that outbound forwarding is enabled for this zone. The value of this field contains the set of destinations to forward to."
         },
         "id": {
           "description": "Unique identifier for the resource; defined by the server (output only)",
@@ -1323,15 +1330,15 @@
           "type": "object"
         },
         "name": {
-          "description": "User assigned name for this resource. Must be unique within the project.\nThe name must be 1-63 characters long, must begin with a letter, end with\na letter or digit, and only contain lowercase letters, digits or dashes.",
+          "description": "User assigned name for this resource. Must be unique within the project. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.",
           "type": "string"
         },
         "nameServerSet": {
-          "description": "Optionally specifies the NameServerSet for this ManagedZone. A\nNameServerSet is a set of DNS name servers that all host the same\nManagedZones. Most users will leave this field unset.",
+          "description": "Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.",
           "type": "string"
         },
         "nameServers": {
-          "description": "Delegate your managed_zone to these virtual name servers; defined by the\nserver (output only)",
+          "description": "Delegate your managed_zone to these virtual name servers; defined by the server (output only)",
           "items": {
             "type": "string"
           },
@@ -1339,22 +1346,22 @@
         },
         "peeringConfig": {
           "$ref": "ManagedZonePeeringConfig",
-          "description": "The presence of this field indicates that DNS Peering is enabled for this\nzone. The value of this field contains the network to peer with."
+          "description": "The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with."
         },
         "privateVisibilityConfig": {
           "$ref": "ManagedZonePrivateVisibilityConfig",
-          "description": "For privately visible zones, the set of Virtual Private Cloud resources\nthat the zone is visible from."
+          "description": "For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from."
         },
         "reverseLookupConfig": {
           "$ref": "ManagedZoneReverseLookupConfig",
-          "description": "The presence of this field indicates that this is a managed reverse\nlookup zone and Cloud DNS will resolve reverse lookup queries using\nautomatically configured records for VPC resources. This only applies\nto networks listed under private_visibility_config."
+          "description": "The presence of this field indicates that this is a managed reverse lookup zone and Cloud DNS will resolve reverse lookup queries using automatically configured records for VPC resources. This only applies to networks listed under private_visibility_config."
         },
         "serviceDirectoryConfig": {
           "$ref": "ManagedZoneServiceDirectoryConfig",
-          "description": "This field links to the associated service directory namespace. This field\nshould not be set for public zones or forwarding zones."
+          "description": "This field links to the associated service directory namespace. This field should not be set for public zones or forwarding zones."
         },
         "visibility": {
-          "description": "The zone's visibility: public zones are exposed to the Internet, while\nprivate zones are visible only to Virtual Private Cloud resources.",
+          "description": "The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.",
           "enum": [
             "public",
             "private"
@@ -1372,7 +1379,7 @@
       "id": "ManagedZoneDnsSecConfig",
       "properties": {
         "defaultKeySpecs": {
-          "description": "Specifies parameters for generating initial DnsKeys for this\nManagedZone. Can only be changed while the state is OFF.",
+          "description": "Specifies parameters for generating initial DnsKeys for this ManagedZone. Can only be changed while the state is OFF.",
           "items": {
             "$ref": "DnsKeySpec"
           },
@@ -1383,7 +1390,7 @@
           "type": "string"
         },
         "nonExistence": {
-          "description": "Specifies the mechanism for authenticated denial-of-existence responses.\nCan only be changed while the state is OFF.",
+          "description": "Specifies the mechanism for authenticated denial-of-existence responses. Can only be changed while the state is OFF.",
           "enum": [
             "nsec",
             "nsec3"
@@ -1419,7 +1426,7 @@
           "type": "string"
         },
         "targetNameServers": {
-          "description": "List of target name servers to forward to.\nCloud DNS will select the best available name server if more than one\ntarget is given.",
+          "description": "List of target name servers to forward to. Cloud DNS will select the best available name server if more than one target is given.",
           "items": {
             "$ref": "ManagedZoneForwardingConfigNameServerTarget"
           },
@@ -1432,13 +1439,13 @@
       "id": "ManagedZoneForwardingConfigNameServerTarget",
       "properties": {
         "forwardingPath": {
-          "description": "Forwarding path for this NameServerTarget. If unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target.",
+          "description": "Forwarding path for this NameServerTarget. If unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target.",
           "enum": [
             "default",
             "private"
           ],
           "enumDescriptions": [
-            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nnon-RFC1918 addresses will forward to the target through the\nInternet",
+            "Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses forward to the target through the VPC and non-RFC1918 addresses will forward to the target through the Internet",
             "Cloud DNS will always forward to this target through the VPC."
           ],
           "type": "string"
@@ -1465,7 +1472,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your page token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a consistent snapshot of a collection larger than the\nmaximum page size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.",
           "type": "string"
         },
         "operations": {
@@ -1496,7 +1503,7 @@
       "id": "ManagedZonePeeringConfigTargetNetwork",
       "properties": {
         "deactivateTime": {
-          "description": "The time at which the zone was deactivated, in RFC 3339 date-time\nformat. An empty string indicates that the peering connection is\nactive. The producer network can deactivate a zone. The zone is\nautomatically deactivated if the producer network that the zone\ntargeted is deleted. Output only.",
+          "description": "The time at which the zone was deactivated, in RFC 3339 date-time format. An empty string indicates that the peering connection is active. The producer network can deactivate a zone. The zone is automatically deactivated if the producer network that the zone targeted is deleted. Output only.",
           "type": "string"
         },
         "kind": {
@@ -1504,7 +1511,7 @@
           "type": "string"
         },
         "networkUrl": {
-          "description": "The fully qualified URL of the VPC network to forward queries to.\nThis should be formatted like\nhttps://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
+          "description": "The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
           "type": "string"
         }
       },
@@ -1535,7 +1542,7 @@
           "type": "string"
         },
         "networkUrl": {
-          "description": "The fully qualified URL of the VPC network to bind to.\nThis should be formatted like\nhttps://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
+          "description": "The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
           "type": "string"
         }
       },
@@ -1570,7 +1577,7 @@
       "id": "ManagedZoneServiceDirectoryConfigNamespace",
       "properties": {
         "deletionTime": {
-          "description": "The time that the namespace backing this zone was deleted, empty\nstring if it still exists. This is in RFC3339 text format. Output\nonly.",
+          "description": "The time that the namespace backing this zone was deleted, empty string if it still exists. This is in RFC3339 text format. Output only.",
           "type": "string"
         },
         "kind": {
@@ -1578,7 +1585,7 @@
           "type": "string"
         },
         "namespaceUrl": {
-          "description": "The fully qualified URL of the namespace associated with the zone.\nThis should be formatted like\nhttps://servicedirectory.googleapis.com/v1/projects/{project}/locations/{location}/namespaces/{namespace}",
+          "description": "The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project}/locations/{location}/namespaces/{namespace}",
           "type": "string"
         }
       },
@@ -1603,14 +1610,14 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your page token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a consistent snapshot of a collection larger than the\nmaximum page size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Operation": {
-      "description": "An operation represents a successful mutation performed on a Cloud DNS\nresource.\nOperations provide:\n- An audit log of server resource mutations.\n- A way to recover/retry API calls in the case where the response is never\n  received by the caller. Use the caller specified client_operation_id.",
+      "description": "An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never received by the caller. Use the caller specified client_operation_id.",
       "id": "Operation",
       "properties": {
         "dnsKeyContext": {
@@ -1618,7 +1625,7 @@
           "description": "Only populated if the operation targeted a DnsKey (output only)."
         },
         "id": {
-          "description": "Unique identifier for the resource. This is the client_operation_id if\nthe client specified it when the mutation was initiated, otherwise,\nit is generated by the server. The name must be 1-63 characters long\nand match the regular expression [-a-z0-9]? (output only)",
+          "description": "Unique identifier for the resource. This is the client_operation_id if the client specified it when the mutation was initiated, otherwise, it is generated by the server. The name must be 1-63 characters long and match the regular expression [-a-z0-9]? (output only)",
           "type": "string"
         },
         "kind": {
@@ -1626,11 +1633,11 @@
           "type": "string"
         },
         "startTime": {
-          "description": "The time that this operation was started by the server. This is in RFC3339\ntext format (output only).",
+          "description": "The time that this operation was started by the server. This is in RFC3339 text format (output only).",
           "type": "string"
         },
         "status": {
-          "description": "Status of the operation. Can be one of the following: \"PENDING\" or \"DONE\"\n(output only). A status of \"DONE\" means that the\nrequest to update the authoritative servers has been sent, but the\nservers might not be updated yet.",
+          "description": "Status of the operation. Can be one of the following: \"PENDING\" or \"DONE\" (output only). A status of \"DONE\" means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.",
           "enum": [
             "pending",
             "done"
@@ -1642,11 +1649,11 @@
           "type": "string"
         },
         "type": {
-          "description": "Type of the operation. Operations include insert, update, and delete\n(output only).",
+          "description": "Type of the operation. Operations include insert, update, and delete (output only).",
           "type": "string"
         },
         "user": {
-          "description": "User who requested the operation, for example: user@example.com.\ncloud-dns-system for operations automatically done by the system.\n(output only)",
+          "description": "User who requested the operation, for example: user@example.com. cloud-dns-system for operations automatically done by the system. (output only)",
           "type": "string"
         },
         "zoneContext": {
@@ -1696,7 +1703,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your page token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a consistent snapshot of a collection larger than the\nmaximum page size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.",
           "type": "string"
         },
         "policies": {
@@ -1734,23 +1741,23 @@
       "type": "object"
     },
     "Policy": {
-      "description": "A policy is a collection of DNS rules applied to one or more Virtual Private\nCloud resources.",
+      "description": "A policy is a collection of DNS rules applied to one or more Virtual Private Cloud resources.",
       "id": "Policy",
       "properties": {
         "alternativeNameServerConfig": {
           "$ref": "PolicyAlternativeNameServerConfig",
-          "description": "Sets an alternative name server for the associated networks. When\nspecified, all DNS queries are forwarded to a name server that you\nchoose. Names such as .internal are not available when an alternative\nname server is specified."
+          "description": "Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified."
         },
         "description": {
-          "description": "A mutable string of at most 1024 characters associated with this resource\nfor the user's convenience. Has no effect on the policy's function.",
+          "description": "A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the policy's function.",
           "type": "string"
         },
         "enableInboundForwarding": {
-          "description": "Allows networks bound to this policy to receive DNS queries sent by VMs or\napplications over VPN connections. When enabled, a virtual IP address will\nbe allocated from each of the sub-networks that are bound to this policy.",
+          "description": "Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are bound to this policy.",
           "type": "boolean"
         },
         "enableLogging": {
-          "description": "Controls whether logging is enabled for the networks bound to this policy.\nDefaults to no logging if not set.",
+          "description": "Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not set.",
           "type": "boolean"
         },
         "id": {
@@ -1784,7 +1791,7 @@
           "type": "string"
         },
         "targetNameServers": {
-          "description": "Sets an alternative name server for the associated networks. When\nspecified, all DNS queries are forwarded to a name server that you\nchoose. Names such as .internal are not available when an alternative\nname server is specified.",
+          "description": "Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.",
           "items": {
             "$ref": "PolicyAlternativeNameServerConfigTargetNameServer"
           },
@@ -1797,13 +1804,13 @@
       "id": "PolicyAlternativeNameServerConfigTargetNameServer",
       "properties": {
         "forwardingPath": {
-          "description": "Forwarding path for this TargetNameServer. If unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target.",
+          "description": "Forwarding path for this TargetNameServer. If unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target.",
           "enum": [
             "default",
             "private"
           ],
           "enumDescriptions": [
-            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nnon-RFC1918 addresses will forward to the target through the\nInternet",
+            "Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses forward to the target through the VPC and non-RFC1918 addresses will forward to the target through the Internet",
             "Cloud DNS will always forward to this target through the VPC."
           ],
           "type": "string"
@@ -1827,14 +1834,14 @@
           "type": "string"
         },
         "networkUrl": {
-          "description": "The fully qualified URL of the VPC network to bind to.\nThis should be formatted like\nhttps://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
+          "description": "The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Project": {
-      "description": "A project resource. The project is a top level container for resources\nincluding Cloud DNS ManagedZones. Projects can be created only in the APIs\nconsole.",
+      "description": "A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console.",
       "id": "Project",
       "properties": {
         "id": {
@@ -1846,7 +1853,7 @@
           "type": "string"
         },
         "number": {
-          "description": "Unique numeric identifier for the resource; defined by the server (output\nonly).",
+          "description": "Unique numeric identifier for the resource; defined by the server (output only).",
           "format": "uint64",
           "type": "string"
         },
@@ -1876,12 +1883,12 @@
           "type": "integer"
         },
         "managedZonesPerNetwork": {
-          "description": "Maximum allowed number of managed zones which can be attached to a\nnetwork.",
+          "description": "Maximum allowed number of managed zones which can be attached to a network.",
           "format": "int32",
           "type": "integer"
         },
         "networksPerManagedZone": {
-          "description": "Maximum allowed number of networks to which a privately scoped zone can be\nattached.",
+          "description": "Maximum allowed number of networks to which a privately scoped zone can be attached.",
           "format": "int32",
           "type": "integer"
         },
@@ -1901,12 +1908,12 @@
           "type": "integer"
         },
         "rrsetAdditionsPerChange": {
-          "description": "Maximum allowed number of ResourceRecordSets to add per\nChangesCreateRequest.",
+          "description": "Maximum allowed number of ResourceRecordSets to add per ChangesCreateRequest.",
           "format": "int32",
           "type": "integer"
         },
         "rrsetDeletionsPerChange": {
-          "description": "Maximum allowed number of ResourceRecordSets to delete per\nChangesCreateRequest.",
+          "description": "Maximum allowed number of ResourceRecordSets to delete per ChangesCreateRequest.",
           "format": "int32",
           "type": "integer"
         },
@@ -1926,7 +1933,7 @@
           "type": "integer"
         },
         "totalRrdataSizePerChange": {
-          "description": "Maximum allowed size for total rrdata in one ChangesCreateRequest in\nbytes.",
+          "description": "Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.",
           "format": "int32",
           "type": "integer"
         },
@@ -1953,7 +1960,7 @@
           "type": "string"
         },
         "rrdatas": {
-          "description": "As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see\n<a href=\"/dns/records/json-record\">examples</a>.",
+          "description": "As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.",
           "items": {
             "type": "string"
           },
@@ -1972,7 +1979,7 @@
           "type": "integer"
         },
         "type": {
-          "description": "The identifier of a supported record type. See the list of\n<a href=\"/dns/docs/overview#supported_dns_record_types\">Supported\nDNS record types</a>.",
+          "description": "The identifier of a supported record type. See the list of Supported DNS record types.",
           "type": "string"
         }
       },
@@ -1990,7 +1997,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The presence of this field indicates that there exist more results\nfollowing your last page of results in pagination order. To fetch them,\nmake another list request using this value as your pagination token.\n\nIn this way you can retrieve the complete contents of even very large\ncollections one page at a time. However, if the contents of the collection\nchange between the first and last paginated list request, the set of all\nelements returned will be an inconsistent view of the collection. There is\nno way to retrieve a consistent snapshot of a collection larger than the\nmaximum page size.",
+          "description": "The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.",
           "type": "string"
         },
         "rrsets": {
@@ -2008,7 +2015,7 @@
       "id": "ResponseHeader",
       "properties": {
         "operationId": {
-          "description": "For mutating operation requests that completed successfully.\nThis is the client_operation_id if the client specified it,\notherwise it is generated by the server (output only).",
+          "description": "For mutating operation requests that completed successfully. This is the client_operation_id if the client specified it, otherwise it is generated by the server (output only).",
           "type": "string"
         }
       },

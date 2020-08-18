@@ -182,11 +182,11 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupId?: string | null;
     /**
-     * The group resource name. Example: &lt;code&gt;projects/my-project-123/groups/CNSgkpnppqKCUw&lt;/code&gt;
+     * The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw
      */
     name?: string | null;
     /**
-     * Error group&#39;s resolution status.  An unspecified resolution status will be interpreted as OPEN
+     * Error group&#39;s resolution status. An unspecified resolution status will be interpreted as OPEN
      */
     resolutionStatus?: string | null;
     /**
@@ -231,7 +231,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     representative?: Schema$ErrorEvent;
     /**
-     * Approximate number of occurrences over time. Timed counts returned by ListGroups are guaranteed to be:  - Inside the requested time interval - Non-overlapping, and - Ordered by ascending time.
+     * Approximate number of occurrences over time. Timed counts returned by ListGroups are guaranteed to be: - Inside the requested time interval - Non-overlapping, and - Ordered by ascending time.
      */
     timedCounts?: Schema$TimedCount[];
   }
@@ -311,7 +311,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     eventTime?: string | null;
     /**
-     * Required. The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are:  * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)` and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
+     * Required. The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are: * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)` and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      */
     message?: string | null;
     /**
@@ -328,11 +328,11 @@ export namespace clouderrorreporting_v1beta1 {
    */
   export interface Schema$ServiceContext {
     /**
-     * Type of the MonitoredResource. List of possible values: https://cloud.google.com/monitoring/api/resources  Value is set automatically for incoming errors and must not be set when reporting errors.
+     * Type of the MonitoredResource. List of possible values: https://cloud.google.com/monitoring/api/resources Value is set automatically for incoming errors and must not be set when reporting errors.
      */
     resourceType?: string | null;
     /**
-     * An identifier of the service, such as the name of the executable, job, or Google App Engine service name. This field is expected to have a low number of values that are relatively stable over time, as opposed to `version`, which can be changed whenever new code is deployed.  Contains the service name for error reports extracted from Google App Engine logs or `default` if the App Engine default service is used.
+     * An identifier of the service, such as the name of the executable, job, or Google App Engine service name. This field is expected to have a low number of values that are relatively stable over time, as opposed to `version`, which can be changed whenever new code is deployed. Contains the service name for error reports extracted from Google App Engine logs or `default` if the App Engine default service is used.
      */
     service?: string | null;
     /**
@@ -436,12 +436,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.deleteEvents({
-     *     // Required. The resource name of the Google Cloud Platform project. Written
-     *     // as `projects/{projectID}`, where `{projectID}` is the
-     *     // [Google Cloud Platform project
-     *     // ID](https://support.google.com/cloud/answer/6158840).
-     *     //
-     *     // Example: `projects/my-project-123`.
+     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      *     projectName: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -459,7 +454,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -555,7 +550,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Deleteevents
     extends StandardParameters {
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      */
     projectName?: string;
   }
@@ -599,21 +594,13 @@ export namespace clouderrorreporting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A `next_page_token` provided by a previous response.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Google Cloud Platform project. Written
-     *     // as `projects/{projectID}`, where `{projectID}` is the
-     *     // [Google Cloud Platform project
-     *     // ID](https://support.google.com/cloud/answer/6158840).
-     *     //
-     *     // Example: `projects/my-project-123`.
+     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      *     projectName: 'projects/my-project',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     *     // Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *     'serviceFilter.resourceType': 'placeholder-value',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     *     // Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *     'serviceFilter.service': 'placeholder-value',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     *     // Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *     'serviceFilter.version': 'placeholder-value',
      *     // Restricts the query to the specified time range.
      *     'timeRange.period': 'placeholder-value',
@@ -640,7 +627,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {string=} params.groupId Required. The group for which events shall be returned.
      * @param {integer=} params.pageSize Optional. The maximum number of results to return per response.
      * @param {string=} params.pageToken Optional. A `next_page_token` provided by a previous response.
-     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      * @param {string=} params.serviceFilter.resourceType Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * @param {string=} params.serviceFilter.service Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * @param {string=} params.serviceFilter.version Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
@@ -734,7 +721,7 @@ export namespace clouderrorreporting_v1beta1 {
 
     /**
      * clouderrorreporting.projects.events.report
-     * @desc Report an individual error event.  This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example:  `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
+     * @desc Report an individual error event. This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example: `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -759,12 +746,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.events.report({
-     *     // Required. The resource name of the Google Cloud Platform project. Written
-     *     // as `projects/{projectId}`, where `{projectId}` is the
-     *     // [Google Cloud Platform project
-     *     // ID](https://support.google.com/cloud/answer/6158840).
-     *     //
-     *     // Example: // `projects/my-project-123`.
+     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: // `projects/my-project-123`.
      *     projectName: 'projects/my-project',
      *
      *     // Request body metadata
@@ -793,7 +775,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: // `projects/my-project-123`.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: // `projects/my-project-123`.
      * @param {().ReportedErrorEvent} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -902,7 +884,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      */
     projectName?: string;
     /**
@@ -925,7 +907,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Events$Report
     extends StandardParameters {
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: // `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: // `projects/my-project-123`.
      */
     projectName?: string;
 
@@ -968,12 +950,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.get({
-     *     // Required. The group resource name. Written as
-     *     // `projects/{projectID}/groups/{group_name}`. Call
-     *     // [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
-     *     // to return a list of groups belonging to this project.
-     *     //
-     *     // Example: `projects/my-project-123/groups/my-group`
+     *     // Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
      *     groupName: 'projects/my-project/groups/my-group',
      *   });
      *   console.log(res.data);
@@ -996,7 +973,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupName Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project.  Example: `projects/my-project-123/groups/my-group`
+     * @param {string} params.groupName Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1108,8 +1085,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.update({
-     *     // The group resource name.
-     *     // Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     *     // The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw
      *     name: 'projects/my-project/groups/my-group',
      *
      *     // Request body metadata
@@ -1143,7 +1119,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * @param {string} params.name The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw
      * @param {().ErrorGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1230,14 +1206,14 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project.  Example: `projects/my-project-123/groups/my-group`
+     * Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
      */
     groupName?: string;
   }
   export interface Params$Resource$Projects$Groups$Update
     extends StandardParameters {
     /**
-     * The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw
      */
     name?: string;
 
@@ -1280,42 +1256,27 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groupStats.list({
-     *     // Optional. The alignment of the timed counts to be returned.
-     *     // Default is `ALIGNMENT_EQUAL_AT_END`.
+     *     // Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
      *     alignment: 'placeholder-value',
-     *     // Optional. Time where the timed counts shall be aligned if rounded
-     *     // alignment is chosen. Default is 00:00 UTC.
+     *     // Optional. Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
      *     alignmentTime: 'placeholder-value',
-     *     // Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     *     // Optional. List all ErrorGroupStats with these IDs.
      *     groupId: 'placeholder-value',
-     *     // Optional. The sort order in which the results are returned.
-     *     // Default is `COUNT_DESC`.
+     *     // Optional. The sort order in which the results are returned. Default is `COUNT_DESC`.
      *     order: 'placeholder-value',
-     *     // Optional. The maximum number of results to return per response.
-     *     // Default is 20.
+     *     // Optional. The maximum number of results to return per response. Default is 20.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A `next_page_token` provided by a previous response. To view
-     *     // additional results, pass this token along with the identical query
-     *     // parameters as the first request.
+     *     // Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Google Cloud Platform project. Written
-     *     // as `projects/{projectID}`, where `{projectID}` is the
-     *     // [Google Cloud Platform project
-     *     // ID](https://support.google.com/cloud/answer/6158840).
-     *     //
-     *     // Example: `projects/my-project-123`.
+     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      *     projectName: 'projects/my-project',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     *     // Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *     'serviceFilter.resourceType': 'placeholder-value',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     *     // Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *     'serviceFilter.service': 'placeholder-value',
-     *     // Optional. The exact value to match against
-     *     // [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     *     // Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *     'serviceFilter.version': 'placeholder-value',
-     *     // Optional. The preferred duration for a single returned `TimedCount`.
-     *     // If not set, no timed counts are returned.
+     *     // Optional. The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
      *     timedCountDuration: 'placeholder-value',
      *     // Restricts the query to the specified time range.
      *     'timeRange.period': 'placeholder-value',
@@ -1341,11 +1302,11 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.alignment Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
      * @param {string=} params.alignmentTime Optional. Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
-     * @param {string=} params.groupId Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * @param {string=} params.groupId Optional. List all ErrorGroupStats with these IDs.
      * @param {string=} params.order Optional. The sort order in which the results are returned. Default is `COUNT_DESC`.
      * @param {integer=} params.pageSize Optional. The maximum number of results to return per response. Default is 20.
      * @param {string=} params.pageToken Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
-     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      * @param {string=} params.serviceFilter.resourceType Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * @param {string=} params.serviceFilter.service Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * @param {string=} params.serviceFilter.version Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
@@ -1452,7 +1413,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     alignmentTime?: string;
     /**
-     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all ErrorGroupStats with these IDs.
      */
     groupId?: string[];
     /**
@@ -1468,7 +1429,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      */
     projectName?: string;
     /**

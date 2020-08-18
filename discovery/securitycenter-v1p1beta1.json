@@ -1056,7 +1056,7 @@
       }
     }
   },
-  "revision": "20200731",
+  "revision": "20200806",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "AssetDiscoveryConfig": {
@@ -1452,6 +1452,24 @@
           "$ref": "GoogleCloudSecuritycenterV1p1beta1SecurityMarks",
           "description": "Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.",
           "readOnly": true
+        },
+        "severity": {
+          "description": "The severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "No severity specified. The default value.",
+            "Critical severity.",
+            "High severity.",
+            "Medium severity.",
+            "Low severity."
+          ],
+          "type": "string"
         },
         "sourceProperties": {
           "additionalProperties": {

@@ -101,7 +101,7 @@ export namespace gamesManagement_v1management {
   /**
    * Google Play Game Management
    *
-   * The Google Play Game Management API allows developers to manage resources from the Google      Play Game service.
+   * The Google Play Game Management API allows developers to manage resources from the Google Play Game service.
    *
    * @example
    * const {google} = require('googleapis');
@@ -163,7 +163,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$AchievementResetResponse {
     /**
-     * The current state of the achievement.  This is the same as the initial state of the achievement. &lt;br/&gt;Possible values are: &lt;ul&gt; &lt;li&gt;&quot;`HIDDEN`&quot;- Achievement is hidden.&lt;/li&gt; &lt;li&gt;&quot;`REVEALED`&quot; - Achievement is revealed.&lt;/li&gt; &lt;li&gt;&quot;`UNLOCKED`&quot; - Achievement is unlocked.&lt;/li&gt; &lt;/ul&gt;
+     * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are: - &quot;`HIDDEN`&quot;- Achievement is hidden. - &quot;`REVEALED`&quot; - Achievement is revealed. - &quot;`UNLOCKED`&quot; - Achievement is unlocked.
      */
     currentState?: string | null;
     /**
@@ -339,7 +339,7 @@ export namespace gamesManagement_v1management {
      */
     kind?: string | null;
     /**
-     * The time spans of the updated score. &lt;br/&gt;Possible values are: &lt;ul&gt; &lt;li&gt;&quot;`ALL_TIME`&quot; - The score is an all-time score.&lt;/li&gt; &lt;li&gt;&quot;`WEEKLY`&quot; - The score is a weekly score.&lt;/li&gt; &lt;li&gt;&quot;`DAILY`&quot; - The score is a daily score.&lt;/li&gt; &lt;/ul&gt;
+     * The time spans of the updated score. Possible values are: - &quot;`ALL_TIME`&quot; - The score is an all-time score. - &quot;`WEEKLY`&quot; - The score is a weekly score. - &quot;`DAILY`&quot; - The score is a daily score.
      */
     resetScoreTimeSpans?: string[] | null;
   }
@@ -1085,9 +1085,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.applications.listHidden({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // The maximum number of player resources to return in the response, used for
-     *     // paging. For any response, the actual number of player resources returned
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -1899,8 +1897,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.players.hide({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2027,8 +2024,7 @@ export namespace gamesManagement_v1management {
      *   const res = await gamesManagement.players.unhide({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);

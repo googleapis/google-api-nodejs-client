@@ -278,11 +278,11 @@ export namespace accesscontextmanager_v1 {
     requireScreenlock?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -367,7 +367,7 @@ export namespace accesscontextmanager_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -375,7 +375,7 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -449,7 +449,7 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
     name?: string | null;
     /**
@@ -469,7 +469,7 @@ export namespace accesscontextmanager_v1 {
      */
     title?: string | null;
     /**
-     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists  for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
+     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
      */
     useExplicitDryRunSpec?: boolean | null;
   }
@@ -495,7 +495,7 @@ export namespace accesscontextmanager_v1 {
     vpcAccessibleServices?: Schema$VpcAccessibleServices;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -503,7 +503,7 @@ export namespace accesscontextmanager_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -516,7 +516,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$VpcAccessibleServices {
     /**
-     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True. You can specify a list of individual services, as well as include the &#39;RESTRICTED-SERVICES&#39; value, which automatically includes all of the services protected by the perimeter.
      */
     allowedServices?: string[] | null;
     /**
@@ -707,9 +707,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.delete({
-     *     // Required. Resource name for the access policy to delete.
-     *     //
-     *     // Format `accessPolicies/{policy_id}`
+     *     // Required. Resource name for the access policy to delete. Format `accessPolicies/{policy_id}`
      *     name: 'accessPolicies/my-accessPolicie',
      *   });
      *   console.log(res.data);
@@ -733,7 +731,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the access policy to delete.  Format `accessPolicies/{policy_id}`
+     * @param {string} params.name Required. Resource name for the access policy to delete. Format `accessPolicies/{policy_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -842,9 +840,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.get({
-     *     // Required. Resource name for the access policy to get.
-     *     //
-     *     // Format `accessPolicies/{policy_id}`
+     *     // Required. Resource name for the access policy to get. Format `accessPolicies/{policy_id}`
      *     name: 'accessPolicies/my-accessPolicie',
      *   });
      *   console.log(res.data);
@@ -867,7 +863,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the access policy to get.  Format `accessPolicies/{policy_id}`
+     * @param {string} params.name Required. Resource name for the access policy to get. Format `accessPolicies/{policy_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -978,14 +974,9 @@ export namespace accesscontextmanager_v1 {
      *   const res = await accesscontextmanager.accessPolicies.list({
      *     // Number of AccessPolicy instances to include in the list. Default 100.
      *     pageSize: 'placeholder-value',
-     *     // Next page token for the next batch of AccessPolicy instances. Defaults to
-     *     // the first page of results.
+     *     // Next page token for the next batch of AccessPolicy instances. Defaults to the first page of results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name for the container to list AccessPolicy instances
-     *     // from.
-     *     //
-     *     // Format:
-     *     // `organizations/{org_id}`
+     *     // Required. Resource name for the container to list AccessPolicy instances from. Format: `organizations/{org_id}`
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1008,7 +999,7 @@ export namespace accesscontextmanager_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Number of AccessPolicy instances to include in the list. Default 100.
      * @param {string=} params.pageToken Next page token for the next batch of AccessPolicy instances. Defaults to the first page of results.
-     * @param {string=} params.parent Required. Resource name for the container to list AccessPolicy instances from.  Format: `organizations/{org_id}`
+     * @param {string=} params.parent Required. Resource name for the container to list AccessPolicy instances from. Format: `organizations/{org_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1124,8 +1115,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.patch({
-     *     // Output only. Resource name of the `AccessPolicy`. Format:
-     *     // `accessPolicies/{policy_id}`
+     *     // Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      *     name: 'accessPolicies/my-accessPolicie',
      *     // Required. Mask to control which fields get updated. Must be non-empty.
      *     updateMask: 'placeholder-value',
@@ -1257,14 +1247,14 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy to delete.  Format `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy to delete. Format `accessPolicies/{policy_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Get
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy to get.  Format `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy to get. Format `accessPolicies/{policy_id}`
      */
     name?: string;
   }
@@ -1279,7 +1269,7 @@ export namespace accesscontextmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name for the container to list AccessPolicy instances from.  Format: `organizations/{org_id}`
+     * Required. Resource name for the container to list AccessPolicy instances from. Format: `organizations/{org_id}`
      */
     parent?: string;
   }
@@ -1333,10 +1323,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.create({
-     *     // Required. Resource name for the access policy which owns this Access
-     *     // Level.
-     *     //
-     *     // Format: `accessPolicies/{policy_id}`
+     *     // Required. Resource name for the access policy which owns this Access Level. Format: `accessPolicies/{policy_id}`
      *     parent: 'accessPolicies/my-accessPolicie',
      *
      *     // Request body metadata
@@ -1372,7 +1359,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy which owns this Access Level. Format: `accessPolicies/{policy_id}`
      * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1485,10 +1472,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.delete({
-     *     // Required. Resource name for the Access Level.
-     *     //
-     *     // Format:
-     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     // Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
      *   });
      *   console.log(res.data);
@@ -1512,7 +1496,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     * @param {string} params.name Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1621,18 +1605,9 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.get({
-     *     // Whether to return `BasicLevels` in the Cloud Common Expression
-     *     // Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where
-     *     // Access Levels
-     *     // are returned as `BasicLevels` or `CustomLevels` based on how they were
-     *     // created. If set to CEL, all Access Levels are returned as
-     *     // `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent
-     *     // `CustomLevels`.
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`.
      *     accessLevelFormat: 'placeholder-value',
-     *     // Required. Resource name for the Access Level.
-     *     //
-     *     // Format:
-     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     // Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
      *   });
      *   console.log(res.data);
@@ -1657,7 +1632,7 @@ export namespace accesscontextmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.accessLevelFormat Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`.
-     * @param {string} params.name Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     * @param {string} params.name Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1766,20 +1741,13 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.list({
-     *     // Whether to return `BasicLevels` in the Cloud Common Expression language, as
-     *     // `CustomLevels`, rather than as `BasicLevels`. Defaults to returning
-     *     // `AccessLevels` in the format they were defined.
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression language, as `CustomLevels`, rather than as `BasicLevels`. Defaults to returning `AccessLevels` in the format they were defined.
      *     accessLevelFormat: 'placeholder-value',
-     *     // Number of Access Levels to include in
-     *     // the list. Default 100.
+     *     // Number of Access Levels to include in the list. Default 100.
      *     pageSize: 'placeholder-value',
-     *     // Next page token for the next batch of Access Level instances.
-     *     // Defaults to the first page of results.
+     *     // Next page token for the next batch of Access Level instances. Defaults to the first page of results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name for the access policy to list Access Levels from.
-     *     //
-     *     // Format:
-     *     // `accessPolicies/{policy_id}`
+     *     // Required. Resource name for the access policy to list Access Levels from. Format: `accessPolicies/{policy_id}`
      *     parent: 'accessPolicies/my-accessPolicie',
      *   });
      *   console.log(res.data);
@@ -1803,7 +1771,7 @@ export namespace accesscontextmanager_v1 {
      * @param {string=} params.accessLevelFormat Whether to return `BasicLevels` in the Cloud Common Expression language, as `CustomLevels`, rather than as `BasicLevels`. Defaults to returning `AccessLevels` in the format they were defined.
      * @param {integer=} params.pageSize Number of Access Levels to include in the list. Default 100.
      * @param {string=} params.pageToken Next page token for the next batch of Access Level instances. Defaults to the first page of results.
-     * @param {string} params.parent Required. Resource name for the access policy to list Access Levels from.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy to list Access Levels from. Format: `accessPolicies/{policy_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1920,10 +1888,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.patch({
-     *     // Required. Resource name for the Access Level. The `short_name` component
-     *     // must begin with a letter and only include alphanumeric and '_'. Format:
-     *     // `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length
-     *     // of the `short_name` component is 50 characters.
+     *     // Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
      *     // Required. Mask to control which fields get updated. Must be non-empty.
      *     updateMask: 'placeholder-value',
@@ -2047,7 +2012,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.accessPolicies.accessLevels.replaceAll
-     * @desc Replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically. The longrunning operation from this RPC will have a successful status once all replacements have propagated to long-lasting storage. Replacements containing errors will result in an error response for the first error encountered.  Replacement will be cancelled on error, existing Access Levels will not be affected. Operation.response field will contain ReplaceAccessLevelsResponse. Removing Access Levels contained in existing Service Perimeters will result in error.
+     * @desc Replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically. The longrunning operation from this RPC will have a successful status once all replacements have propagated to long-lasting storage. Replacements containing errors will result in an error response for the first error encountered. Replacement will be cancelled on error, existing Access Levels will not be affected. Operation.response field will contain ReplaceAccessLevelsResponse. Removing Access Levels contained in existing Service Perimeters will result in error.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2073,10 +2038,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.replaceAll(
      *     {
-     *       // Required. Resource name for the access policy which owns these
-     *       // Access Levels.
-     *       //
-     *       // Format: `accessPolicies/{policy_id}`
+     *       // Required. Resource name for the access policy which owns these Access Levels. Format: `accessPolicies/{policy_id}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
      *       // Request body metadata
@@ -2110,7 +2072,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name for the access policy which owns these Access Levels.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy which owns these Access Levels. Format: `accessPolicies/{policy_id}`
      * @param {().ReplaceAccessLevelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2200,7 +2162,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Accesslevels$Create
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy which owns this Access Level. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
 
@@ -2212,7 +2174,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Accesslevels$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     * Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      */
     name?: string;
   }
@@ -2223,7 +2185,7 @@ export namespace accesscontextmanager_v1 {
      */
     accessLevelFormat?: string;
     /**
-     * Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     * Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      */
     name?: string;
   }
@@ -2242,7 +2204,7 @@ export namespace accesscontextmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name for the access policy to list Access Levels from.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy to list Access Levels from. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
   }
@@ -2265,7 +2227,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Accesslevels$Replaceall
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy which owns these Access Levels.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy which owns these Access Levels. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
 
@@ -2309,11 +2271,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.commit(
      *     {
-     *       // Required. Resource name for the parent Access Policy which owns all
-     *       // Service Perimeters in scope for
-     *       // the commit operation.
-     *       //
-     *       // Format: `accessPolicies/{policy_id}`
+     *       // Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation. Format: `accessPolicies/{policy_id}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
      *       // Request body metadata
@@ -2346,7 +2304,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation. Format: `accessPolicies/{policy_id}`
      * @param {().CommitServicePerimetersRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2460,10 +2418,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
      *     {
-     *       // Required. Resource name for the access policy which owns this Service
-     *       // Perimeter.
-     *       //
-     *       // Format: `accessPolicies/{policy_id}`
+     *       // Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
      *       // Request body metadata
@@ -2502,7 +2457,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id}`
      * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2616,10 +2571,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
      *     {
-     *       // Required. Resource name for the Service Perimeter.
-     *       //
-     *       // Format:
-     *       // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
+     *       // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
      *       name:
      *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *     }
@@ -2645,7 +2597,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
+     * @param {string} params.name Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2754,10 +2706,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
-     *     // Required. Resource name for the Service Perimeter.
-     *     //
-     *     // Format:
-     *     // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     *     // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
      *     name:
      *       'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *   });
@@ -2784,7 +2733,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     * @param {string} params.name Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2893,16 +2842,11 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.list({
-     *     // Number of Service Perimeters to include
-     *     // in the list. Default 100.
+     *     // Number of Service Perimeters to include in the list. Default 100.
      *     pageSize: 'placeholder-value',
-     *     // Next page token for the next batch of Service Perimeter instances.
-     *     // Defaults to the first page of results.
+     *     // Next page token for the next batch of Service Perimeter instances. Defaults to the first page of results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name for the access policy to list Service Perimeters from.
-     *     //
-     *     // Format:
-     *     // `accessPolicies/{policy_id}`
+     *     // Required. Resource name for the access policy to list Service Perimeters from. Format: `accessPolicies/{policy_id}`
      *     parent: 'accessPolicies/my-accessPolicie',
      *   });
      *   console.log(res.data);
@@ -2925,7 +2869,7 @@ export namespace accesscontextmanager_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Number of Service Perimeters to include in the list. Default 100.
      * @param {string=} params.pageToken Next page token for the next batch of Service Perimeter instances. Defaults to the first page of results.
-     * @param {string} params.parent Required. Resource name for the access policy to list Service Perimeters from.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy to list Service Perimeters from. Format: `accessPolicies/{policy_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3047,9 +2991,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
      *     {
-     *       // Required. Resource name for the ServicePerimeter.  The `short_name`
-     *       // component must begin with a letter and only include alphanumeric and '_'.
-     *       // Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     *       // Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      *       name:
      *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *       // Required. Mask to control which fields get updated. Must be non-empty.
@@ -3091,7 +3033,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     * @param {string} params.name Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
      * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3203,10 +3145,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.replaceAll(
      *     {
-     *       // Required. Resource name for the access policy which owns these
-     *       // Service Perimeters.
-     *       //
-     *       // Format: `accessPolicies/{policy_id}`
+     *       // Required. Resource name for the access policy which owns these Service Perimeters. Format: `accessPolicies/{policy_id}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
      *       // Request body metadata
@@ -3240,7 +3179,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name for the access policy which owns these Service Perimeters.  Format: `accessPolicies/{policy_id}`
+     * @param {string} params.parent Required. Resource name for the access policy which owns these Service Perimeters. Format: `accessPolicies/{policy_id}`
      * @param {().ReplaceServicePerimetersRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3329,7 +3268,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Commit
     extends StandardParameters {
     /**
-     * Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
 
@@ -3341,7 +3280,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
 
@@ -3353,14 +3292,14 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
+     * Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Get
     extends StandardParameters {
     /**
-     * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     * Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
      */
     name?: string;
   }
@@ -3375,14 +3314,14 @@ export namespace accesscontextmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name for the access policy to list Service Perimeters from.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy to list Service Perimeters from. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
     name?: string;
     /**
@@ -3398,7 +3337,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Replaceall
     extends StandardParameters {
     /**
-     * Required. Resource name for the access policy which owns these Service Perimeters.  Format: `accessPolicies/{policy_id}`
+     * Required. Resource name for the access policy which owns these Service Perimeters. Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
 
@@ -3416,7 +3355,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3677,7 +3616,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3809,7 +3748,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

@@ -691,7 +691,7 @@
           ]
         },
         "list": {
-          "description": "Lists all models in the specified dataset. Requires the READER dataset\nrole.",
+          "description": "Lists all models in the specified dataset. Requires the READER dataset role.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/models",
           "httpMethod": "GET",
           "id": "bigquery.models.list",
@@ -708,13 +708,13 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of results to return in a single response page.\nLeverage the page tokens to iterate through the entire collection.",
+              "description": "The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Page token, returned by a previous call to request the next page of\nresults",
+              "description": "Page token, returned by a previous call to request the next page of results",
               "location": "query",
               "type": "string"
             },
@@ -909,7 +909,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "If set, only the Routine fields in the field mask are returned in the\nresponse. If unset, all Routine fields are returned.",
+              "description": "If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -971,7 +971,7 @@
           ]
         },
         "list": {
-          "description": "Lists all routines in the specified dataset. Requires the READER dataset\nrole.",
+          "description": "Lists all routines in the specified dataset. Requires the READER dataset role.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines",
           "httpMethod": "GET",
           "id": "bigquery.routines.list",
@@ -988,18 +988,18 @@
               "type": "string"
             },
             "filter": {
-              "description": "If set, then only the Routines matching this filter are returned.\nThe current supported form is either \"routine_type:<RoutineType>\" or\n\"routineType:<RoutineType>\", where <RoutineType> is a RoutineType enum.\nExample: \"routineType:SCALAR_FUNCTION\".",
+              "description": "If set, then only the Routines matching this filter are returned. The current supported form is either \"routine_type:\" or \"routineType:\", where is a RoutineType enum. Example: \"routineType:SCALAR_FUNCTION\".",
               "location": "query",
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of results to return in a single response page.\nLeverage the page tokens to iterate through the entire collection.",
+              "description": "The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Page token, returned by a previous call, to request the next page of\nresults",
+              "description": "Page token, returned by a previous call, to request the next page of results",
               "location": "query",
               "type": "string"
             },
@@ -1011,7 +1011,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "If set, then only the Routine fields in the field mask, as well as\nproject_id, dataset_id and routine_id, are returned in the response.\nIf unset, then the following Routine fields are returned:\netag, project_id, dataset_id, routine_id, routine_type, creation_time,\nlast_modified_time, and language.",
+              "description": "If set, then only the Routine fields in the field mask, as well as project_id, dataset_id and routine_id, are returned in the response. If unset, then the following Routine fields are returned: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1029,7 +1029,7 @@
           ]
         },
         "update": {
-          "description": "Updates information in an existing routine. The update method replaces the\nentire Routine resource.",
+          "description": "Updates information in an existing routine. The update method replaces the entire Routine resource.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines/{routinesId}",
           "httpMethod": "PUT",
           "id": "bigquery.routines.update",
@@ -1266,7 +1266,7 @@
           ]
         },
         "getIamPolicy": {
-          "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}:getIamPolicy",
           "httpMethod": "POST",
           "id": "bigquery.tables.getIamPolicy",
@@ -1275,7 +1275,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1416,7 +1416,7 @@
           ]
         },
         "setIamPolicy": {
-          "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}:setIamPolicy",
           "httpMethod": "POST",
           "id": "bigquery.tables.setIamPolicy",
@@ -1425,7 +1425,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1445,7 +1445,7 @@
           ]
         },
         "testIamPermissions": {
-          "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}:testIamPermissions",
           "httpMethod": "POST",
           "id": "bigquery.tables.testIamPermissions",
@@ -1454,7 +1454,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1519,20 +1519,20 @@
       }
     }
   },
-  "revision": "20200719",
+  "revision": "20200805",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
-      "description": "Aggregate metrics for classification/classifier models. For multi-class\nmodels, the metrics are either macro-averaged or micro-averaged. When\nmacro-averaged, the metrics are calculated for each label and then an\nunweighted average is taken of those values. When micro-averaged, the\nmetric is calculated globally by counting the total number of correctly\npredicted rows.",
+      "description": "Aggregate metrics for classification/classifier models. For multi-class models, the metrics are either macro-averaged or micro-averaged. When macro-averaged, the metrics are calculated for each label and then an unweighted average is taken of those values. When micro-averaged, the metric is calculated globally by counting the total number of correctly predicted rows.",
       "id": "AggregateClassificationMetrics",
       "properties": {
         "accuracy": {
-          "description": "Accuracy is the fraction of predictions given the correct label. For\nmulticlass this is a micro-averaged metric.",
+          "description": "Accuracy is the fraction of predictions given the correct label. For multiclass this is a micro-averaged metric.",
           "format": "double",
           "type": "number"
         },
         "f1Score": {
-          "description": "The F1 score is an average of recall and precision. For multiclass\nthis is a macro-averaged metric.",
+          "description": "The F1 score is an average of recall and precision. For multiclass this is a macro-averaged metric.",
           "format": "double",
           "type": "number"
         },
@@ -1542,22 +1542,22 @@
           "type": "number"
         },
         "precision": {
-          "description": "Precision is the fraction of actual positive predictions that had\npositive actual labels. For multiclass this is a macro-averaged\nmetric treating each class as a binary classifier.",
+          "description": "Precision is the fraction of actual positive predictions that had positive actual labels. For multiclass this is a macro-averaged metric treating each class as a binary classifier.",
           "format": "double",
           "type": "number"
         },
         "recall": {
-          "description": "Recall is the fraction of actual positive labels that were given a\npositive prediction. For multiclass this is a macro-averaged metric.",
+          "description": "Recall is the fraction of actual positive labels that were given a positive prediction. For multiclass this is a macro-averaged metric.",
           "format": "double",
           "type": "number"
         },
         "rocAuc": {
-          "description": "Area Under a ROC Curve. For multiclass this is a macro-averaged\nmetric.",
+          "description": "Area Under a ROC Curve. For multiclass this is a macro-averaged metric.",
           "format": "double",
           "type": "number"
         },
         "threshold": {
-          "description": "Threshold at which the metrics are computed. For binary\nclassification models this is the positive class threshold.\nFor multi-class classfication models this is the confidence\nthreshold.",
+          "description": "Threshold at which the metrics are computed. For binary classification models this is the positive class threshold. For multi-class classfication models this is the confidence threshold.",
           "format": "double",
           "type": "number"
         }
@@ -1577,8 +1577,8 @@
           ],
           "enumDescriptions": [
             "",
-            "The argument is a variable with fully specified type, which can be a\nstruct or an array, but not a table.",
-            "The argument is any type, including struct or array, but not a table.\nTo be added: FIXED_TABLE, ANY_TABLE"
+            "The argument is a variable with fully specified type, which can be a struct or an array, but not a table.",
+            "The argument is any type, including struct or array, but not a table. To be added: FIXED_TABLE, ANY_TABLE"
           ],
           "type": "string"
         },
@@ -1587,7 +1587,7 @@
           "description": "Required unless argument_kind = ANY_TYPE."
         },
         "mode": {
-          "description": "Optional. Specifies whether the argument is input or output.\nCan be set for procedures only.",
+          "description": "Optional. Specifies whether the argument is input or output. Can be set for procedures only.",
           "enum": [
             "MODE_UNSPECIFIED",
             "IN",
@@ -1671,14 +1671,14 @@
           "type": "array"
         },
         "arimaSingleModelForecastingMetrics": {
-          "description": "Repeated as there can be many metric sets (one for each model) in\nauto-arima and the large-scale case.",
+          "description": "Repeated as there can be many metric sets (one for each model) in auto-arima and the large-scale case.",
           "items": {
             "$ref": "ArimaSingleModelForecastingMetrics"
           },
           "type": "array"
         },
         "hasDrift": {
-          "description": "Whether Arima model fitted with drift or not. It is always false when d\nis not 1.",
+          "description": "Whether Arima model fitted with drift or not. It is always false when d is not 1.",
           "items": {
             "type": "boolean"
           },
@@ -1692,7 +1692,7 @@
           "type": "array"
         },
         "seasonalPeriods": {
-          "description": "Seasonal periods. Repeated because multiple periods are supported for one\ntime series.",
+          "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
           "enumDescriptions": [
             "",
             "No seasonality",
@@ -1711,6 +1711,15 @@
               "MONTHLY",
               "QUARTERLY",
               "YEARLY"
+            ],
+            "enumDescriptions": [
+              "",
+              "No seasonality",
+              "Daily period, 24 hours.",
+              "Weekly period, 7 days.",
+              "Monthly period, 30 days or irregular.",
+              "Quarterly period, 90 days or irregular.",
+              "Yearly period, 365 days or irregular."
             ],
             "type": "string"
           },
@@ -1739,7 +1748,7 @@
           "description": "Arima fitting metrics."
         },
         "hasDrift": {
-          "description": "Whether Arima model fitted with drift or not. It is always false\nwhen d is not 1.",
+          "description": "Whether Arima model fitted with drift or not. It is always false when d is not 1.",
           "type": "boolean"
         },
         "nonSeasonalOrder": {
@@ -1747,7 +1756,7 @@
           "description": "Non-seasonal order."
         },
         "seasonalPeriods": {
-          "description": "Seasonal periods. Repeated because multiple periods are supported\nfor one time series.",
+          "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
           "enumDescriptions": [
             "",
             "No seasonality",
@@ -1766,6 +1775,15 @@
               "MONTHLY",
               "QUARTERLY",
               "YEARLY"
+            ],
+            "enumDescriptions": [
+              "",
+              "No seasonality",
+              "Daily period, 24 hours.",
+              "Weekly period, 7 days.",
+              "Monthly period, 30 days or irregular.",
+              "Quarterly period, 90 days or irregular.",
+              "Yearly period, 365 days or irregular."
             ],
             "type": "string"
           },
@@ -1801,18 +1819,18 @@
       "type": "object"
     },
     "ArimaResult": {
-      "description": "(Auto-)arima fitting result. Wrap everything in ArimaResult for easier\nrefactoring if we want to use model-specific iteration results.",
+      "description": "(Auto-)arima fitting result. Wrap everything in ArimaResult for easier refactoring if we want to use model-specific iteration results.",
       "id": "ArimaResult",
       "properties": {
         "arimaModelInfo": {
-          "description": "This message is repeated because there are multiple arima models\nfitted in auto-arima. For non-auto-arima model, its size is one.",
+          "description": "This message is repeated because there are multiple arima models fitted in auto-arima. For non-auto-arima model, its size is one.",
           "items": {
             "$ref": "ArimaModelInfo"
           },
           "type": "array"
         },
         "seasonalPeriods": {
-          "description": "Seasonal periods. Repeated because multiple periods are supported for\none time series.",
+          "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
           "enumDescriptions": [
             "",
             "No seasonality",
@@ -1831,6 +1849,15 @@
               "MONTHLY",
               "QUARTERLY",
               "YEARLY"
+            ],
+            "enumDescriptions": [
+              "",
+              "No seasonality",
+              "Daily period, 24 hours.",
+              "Weekly period, 7 days.",
+              "Monthly period, 30 days or irregular.",
+              "Quarterly period, 90 days or irregular.",
+              "Yearly period, 365 days or irregular."
             ],
             "type": "string"
           },
@@ -1848,7 +1875,7 @@
           "description": "Arima fitting metrics."
         },
         "hasDrift": {
-          "description": "Is arima model fitted with drift or not. It is always false when d\nis not 1.",
+          "description": "Is arima model fitted with drift or not. It is always false when d is not 1.",
           "type": "boolean"
         },
         "nonSeasonalOrder": {
@@ -1856,7 +1883,7 @@
           "description": "Non-seasonal order."
         },
         "seasonalPeriods": {
-          "description": "Seasonal periods. Repeated because multiple periods are supported\nfor one time series.",
+          "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
           "enumDescriptions": [
             "",
             "No seasonality",
@@ -1876,6 +1903,15 @@
               "QUARTERLY",
               "YEARLY"
             ],
+            "enumDescriptions": [
+              "",
+              "No seasonality",
+              "Daily period, 24 hours.",
+              "Weekly period, 7 days.",
+              "Monthly period, 30 days or irregular.",
+              "Quarterly period, 90 days or irregular.",
+              "Yearly period, 365 days or irregular."
+            ],
             "type": "string"
           },
           "type": "array"
@@ -1888,7 +1924,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1899,18 +1935,18 @@
           "type": "array"
         },
         "service": {
-          "description": "Specifies a service that will be enabled for audit logging.\nFor example, `storage.googleapis.com`, `cloudsql.googleapis.com`.\n`allServices` is a special value that covers all services.",
+          "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
-          "description": "Specifies the identities that do not cause logging for this type of\npermission.\nFollows the same format of Binding.members.",
+          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.",
           "items": {
             "type": "string"
           },
@@ -2087,12 +2123,12 @@
           "type": "number"
         },
         "precision": {
-          "description": "The fraction of actual positive predictions that had positive actual\nlabels.",
+          "description": "The fraction of actual positive predictions that had positive actual labels.",
           "format": "double",
           "type": "number"
         },
         "recall": {
-          "description": "The fraction of actual positive labels that were given a positive\nprediction.",
+          "description": "The fraction of actual positive labels that were given a positive prediction.",
           "format": "double",
           "type": "number"
         },
@@ -2115,17 +2151,17 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
+          "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to `members`.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
         }
       },
@@ -2228,7 +2264,7 @@
       "id": "CategoricalValue",
       "properties": {
         "categoryCounts": {
-          "description": "Counts of all categories for the categorical feature. If there are\nmore than ten categories, we return top ten (by count) and return\none more CategoryCount with category \"_OTHER_\" and count as\naggregate counts of remaining categories.",
+          "description": "Counts of all categories for the categorical feature. If there are more than ten categories, we return top ten (by count) and return one more CategoryCount with category \"_OTHER_\" and count as aggregate counts of remaining categories.",
           "items": {
             "$ref": "CategoryCount"
           },
@@ -2246,7 +2282,7 @@
           "type": "string"
         },
         "count": {
-          "description": "The count of training samples matching the category within the\ncluster.",
+          "description": "The count of training samples matching the category within the cluster.",
           "format": "int64",
           "type": "string"
         }
@@ -2287,7 +2323,7 @@
           "type": "string"
         },
         "clusterRadius": {
-          "description": "Cluster radius, the average distance from centroid\nto each point assigned to the cluster.",
+          "description": "Cluster radius, the average distance from centroid to each point assigned to the cluster.",
           "format": "double",
           "type": "number"
         },
@@ -2341,7 +2377,7 @@
       "id": "ConfusionMatrix",
       "properties": {
         "confidenceThreshold": {
-          "description": "Confidence threshold used when computing the entries of the\nconfusion matrix.",
+          "description": "Confidence threshold used when computing the entries of the confusion matrix.",
           "format": "double",
           "type": "number"
         },
@@ -2403,7 +2439,7 @@
       "type": "object"
     },
     "DataSplitResult": {
-      "description": "Data split result. This contains references to the training and evaluation\ndata tables that were used to train the model.",
+      "description": "Data split result. This contains references to the training and evaluation data tables that were used to train the model.",
       "id": "DataSplitResult",
       "properties": {
         "evaluationTable": {
@@ -2644,7 +2680,7 @@
           "type": "string"
         },
         "predictedLabel": {
-          "description": "The predicted label. For confidence_threshold > 0, we will\nalso add an entry indicating the number of items under the\nconfidence threshold.",
+          "description": "The predicted label. For confidence_threshold > 0, we will also add an entry indicating the number of items under the confidence threshold.",
           "type": "string"
         }
       },
@@ -2673,7 +2709,7 @@
       "type": "object"
     },
     "EvaluationMetrics": {
-      "description": "Evaluation metrics of a model. These are either computed on all training\ndata or just the eval data based on whether eval data was used during\ntraining. These are not present for imported models.",
+      "description": "Evaluation metrics of a model. These are either computed on all training data or just the eval data based on whether eval data was used during training. These are not present for imported models.",
       "id": "EvaluationMetrics",
       "properties": {
         "arimaForecastingMetrics": {
@@ -2698,7 +2734,7 @@
         },
         "regressionMetrics": {
           "$ref": "RegressionMetrics",
-          "description": "Populated for regression models and explicit feedback type matrix\nfactorization models."
+          "description": "Populated for regression models and explicit feedback type matrix factorization models."
         }
       },
       "type": "object"
@@ -2880,23 +2916,23 @@
       "type": "object"
     },
     "Expr": {
-      "description": "Represents a textual expression in the Common Expression Language (CEL)\nsyntax. CEL is a C-like expression language. The syntax and semantics of CEL\nare documented at https://github.com/google/cel-spec.\n\nExample (Comparison):\n\n    title: \"Summary size limit\"\n    description: \"Determines if a summary is less than 100 chars\"\n    expression: \"document.summary.size() < 100\"\n\nExample (Equality):\n\n    title: \"Requestor is owner\"\n    description: \"Determines if requestor is the document owner\"\n    expression: \"document.owner == request.auth.claims.email\"\n\nExample (Logic):\n\n    title: \"Public documents\"\n    description: \"Determine whether the document should be publicly visible\"\n    expression: \"document.type != 'private' && document.type != 'internal'\"\n\nExample (Data Manipulation):\n\n    title: \"Notification string\"\n    description: \"Create a notification string with a timestamp.\"\n    expression: \"'New message received at ' + string(document.create_time)\"\n\nThe exact variables and functions that may be referenced within an expression\nare determined by the service that evaluates it. See the service\ndocumentation for additional information.",
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
       "properties": {
         "description": {
-          "description": "Optional. Description of the expression. This is a longer text which\ndescribes the expression, e.g. when hovered over it in a UI.",
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
           "type": "string"
         },
         "expression": {
-          "description": "Textual representation of an expression in Common Expression Language\nsyntax.",
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
           "type": "string"
         },
         "location": {
-          "description": "Optional. String indicating the location of the expression for error\nreporting, e.g. a file name and a position in the file.",
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
           "type": "string"
         },
         "title": {
-          "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
         }
       },
@@ -2973,7 +3009,7 @@
           "type": "string"
         },
         "numericalValue": {
-          "description": "The numerical feature value. This is the centroid value for this\nfeature.",
+          "description": "The numerical feature value. This is the centroid value for this feature.",
           "format": "double",
           "type": "number"
         }
@@ -2986,7 +3022,7 @@
       "properties": {
         "options": {
           "$ref": "GetPolicyOptions",
-          "description": "OPTIONAL: A `GetPolicyOptions` object for specifying options to\n`GetIamPolicy`."
+          "description": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
         }
       },
       "type": "object"
@@ -2996,7 +3032,7 @@
       "id": "GetPolicyOptions",
       "properties": {
         "requestedPolicyVersion": {
-          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -4006,7 +4042,7 @@
       "id": "ListModelsResponse",
       "properties": {
         "models": {
-          "description": "Models in the requested dataset. Only the following fields are populated:\nmodel_reference, model_type, creation_time, last_modified_time and\nlabels.",
+          "description": "Models in the requested dataset. Only the following fields are populated: model_reference, model_type, creation_time, last_modified_time and labels.",
           "items": {
             "$ref": "Model"
           },
@@ -4027,7 +4063,7 @@
           "type": "string"
         },
         "routines": {
-          "description": "Routines in the requested dataset. Unless read_mask is set in the request,\nonly the following fields are populated:\netag, project_id, dataset_id, routine_id, routine_type, creation_time,\nlast_modified_time, and language.",
+          "description": "Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.",
           "items": {
             "$ref": "Routine"
           },
@@ -4037,11 +4073,11 @@
       "type": "object"
     },
     "LocationMetadata": {
-      "description": "BigQuery-specific metadata about a location. This will be set on\ngoogle.cloud.location.Location.metadata in Cloud Location API\nresponses.",
+      "description": "BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.",
       "id": "LocationMetadata",
       "properties": {
         "legacyLocationId": {
-          "description": "The legacy BigQuery location ID, e.g. “EU” for the “europe” location.\nThis is for any API consumers that need the legacy “US” and “EU” locations.",
+          "description": "The legacy BigQuery location ID, e.g. “EU” for the “europe” location. This is for any API consumers that need the legacy “US” and “EU” locations.",
           "type": "string"
         }
       },
@@ -4077,6 +4113,7 @@
         "creationTime": {
           "description": "Output only. The time when this model was created, in millisecs since the epoch.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -4085,14 +4122,15 @@
         },
         "encryptionConfiguration": {
           "$ref": "EncryptionConfiguration",
-          "description": "Custom encryption configuration (e.g., Cloud KMS keys). This shows the\nencryption configuration of the model data while stored in BigQuery\nstorage. This field can be used with PatchModel to update encryption key\nfor an already encrypted model."
+          "description": "Custom encryption configuration (e.g., Cloud KMS keys). This shows the encryption configuration of the model data while stored in BigQuery storage. This field can be used with PatchModel to update encryption key for an already encrypted model."
         },
         "etag": {
           "description": "Output only. A hash of this resource.",
+          "readOnly": true,
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The time when this model expires, in milliseconds since the epoch.\nIf not present, the model will persist indefinitely. Expired models\nwill be deleted and their storage reclaimed.  The defaultTableExpirationMs\nproperty of the encapsulating dataset can be used to set a default\nexpirationTime on newly created models.",
+          "description": "Optional. The time when this model expires, in milliseconds since the epoch. If not present, the model will persist indefinitely. Expired models will be deleted and their storage reclaimed. The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created models.",
           "format": "int64",
           "type": "string"
         },
@@ -4101,6 +4139,7 @@
           "items": {
             "$ref": "StandardSqlField"
           },
+          "readOnly": true,
           "type": "array"
         },
         "friendlyName": {
@@ -4108,26 +4147,29 @@
           "type": "string"
         },
         "labelColumns": {
-          "description": "Output only. Label columns that were used to train this model.\nThe output of the model will have a \"predicted_\" prefix to these columns.",
+          "description": "Output only. Label columns that were used to train this model. The output of the model will have a \"predicted_\" prefix to these columns.",
           "items": {
             "$ref": "StandardSqlField"
           },
+          "readOnly": true,
           "type": "array"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this model. You can use these to organize\nand group your models. Label keys and values can be no longer\nthan 63 characters, can only contain lowercase letters, numeric\ncharacters, underscores and dashes. International characters are allowed.\nLabel values are optional. Label keys must start with a letter and each\nlabel in the list must have a different key.",
+          "description": "The labels associated with this model. You can use these to organize and group your models. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.",
           "type": "object"
         },
         "lastModifiedTime": {
           "description": "Output only. The time when this model was last modified, in millisecs since the epoch.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "location": {
-          "description": "Output only. The geographic location where the model resides. This value\nis inherited from the dataset.",
+          "description": "Output only. The geographic location where the model resides. This value is inherited from the dataset.",
+          "readOnly": true,
           "type": "string"
         },
         "modelReference": {
@@ -4166,6 +4208,7 @@
             "[Beta] AutoML Tables regression model.",
             "[Beta] AutoML Tables classification model."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "trainingRuns": {
@@ -4173,6 +4216,7 @@
           "items": {
             "$ref": "TrainingRun"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -4246,7 +4290,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -4257,19 +4301,19 @@
           "type": "array"
         },
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a\n`condition` that determines how and when the `bindings` are applied. Each\nof the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
           "items": {
             "$ref": "Binding"
           },
           "type": "array"
         },
         "etag": {
-          "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a policy from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform policy updates in order to avoid race\nconditions: An `etag` is returned in the response to `getIamPolicy`, and\nsystems are expected to put that etag in the request to `setIamPolicy` to\nensure that their change will be applied to the same version of the policy.\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
           "format": "byte",
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -4631,26 +4675,26 @@
       "type": "object"
     },
     "RankingMetrics": {
-      "description": "Evaluation metrics used by weighted-ALS models specified by\nfeedback_type=implicit.",
+      "description": "Evaluation metrics used by weighted-ALS models specified by feedback_type=implicit.",
       "id": "RankingMetrics",
       "properties": {
         "averageRank": {
-          "description": "Determines the goodness of a ranking by computing the percentile rank\nfrom the predicted confidence and dividing it by the original rank.",
+          "description": "Determines the goodness of a ranking by computing the percentile rank from the predicted confidence and dividing it by the original rank.",
           "format": "double",
           "type": "number"
         },
         "meanAveragePrecision": {
-          "description": "Calculates a precision per user for all the items by ranking them and\nthen averages all the precisions across all the users.",
+          "description": "Calculates a precision per user for all the items by ranking them and then averages all the precisions across all the users.",
           "format": "double",
           "type": "number"
         },
         "meanSquaredError": {
-          "description": "Similar to the mean squared error computed in regression and explicit\nrecommendation models except instead of computing the rating directly,\nthe output from evaluate is computed against a preference which is 1 or 0\ndepending on if the rating exists or not.",
+          "description": "Similar to the mean squared error computed in regression and explicit recommendation models except instead of computing the rating directly, the output from evaluate is computed against a preference which is 1 or 0 depending on if the rating exists or not.",
           "format": "double",
           "type": "number"
         },
         "normalizedDiscountedCumulativeGain": {
-          "description": "A metric to determine the goodness of a ranking calculated from the\npredicted confidence by comparing it to an ideal rank measured by the\noriginal ratings.",
+          "description": "A metric to determine the goodness of a ranking calculated from the predicted confidence by comparing it to an ideal rank measured by the original ratings.",
           "format": "double",
           "type": "number"
         }
@@ -4658,7 +4702,7 @@
       "type": "object"
     },
     "RegressionMetrics": {
-      "description": "Evaluation metrics for regression and explicit feedback type matrix\nfactorization models.",
+      "description": "Evaluation metrics for regression and explicit feedback type matrix factorization models.",
       "id": "RegressionMetrics",
       "properties": {
         "meanAbsoluteError": {
@@ -4701,12 +4745,13 @@
           "type": "array"
         },
         "creationTime": {
-          "description": "Output only. The time when this routine was created, in milliseconds since\nthe epoch.",
+          "description": "Output only. The time when this routine was created, in milliseconds since the epoch.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "definitionBody": {
-          "description": "Required. The body of the routine.\n\nFor functions, this is the expression in the AS clause.\n\nIf language=SQL, it is the substring inside (but excluding) the\nparentheses. For example, for the function created with the following\nstatement:\n\n`CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))`\n\nThe definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with\nlinebreak).\n\nIf language=JAVASCRIPT, it is the evaluated string in the AS clause.\nFor example, for the function created with the following statement:\n\n`CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'`\n\nThe definition_body is\n\n`return \"\\n\";\\n`\n\nNote that both \\n are replaced with linebreaks.",
+          "description": "Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))` The definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'` The definition_body is `return \"\\n\";\\n` Note that both \\n are replaced with linebreaks.",
           "type": "string"
         },
         "description": {
@@ -4722,17 +4767,18 @@
           ],
           "enumDescriptions": [
             "The determinism of the UDF is unspecified.",
-            "The UDF is deterministic, meaning that 2 function calls with the same\ninputs always produce the same result, even across 2 query runs.",
+            "The UDF is deterministic, meaning that 2 function calls with the same inputs always produce the same result, even across 2 query runs.",
             "The UDF is not deterministic."
           ],
           "type": "string"
         },
         "etag": {
           "description": "Output only. A hash of this resource.",
+          "readOnly": true,
           "type": "string"
         },
         "importedLibraries": {
-          "description": "Optional. If language = \"JAVASCRIPT\", this field stores the path of the\nimported JAVASCRIPT libraries.",
+          "description": "Optional. If language = \"JAVASCRIPT\", this field stores the path of the imported JAVASCRIPT libraries.",
           "items": {
             "type": "string"
           },
@@ -4753,13 +4799,14 @@
           "type": "string"
         },
         "lastModifiedTime": {
-          "description": "Output only. The time when this routine was last modified, in milliseconds\nsince the epoch.",
+          "description": "Output only. The time when this routine was last modified, in milliseconds since the epoch.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "returnType": {
           "$ref": "StandardSqlDataType",
-          "description": "Optional if language = \"SQL\"; required otherwise.\n\nIf absent, the return type is inferred from definition_body at query time\nin each query that references this routine. If present, then the evaluated\nresult will be cast to the specified returned type at query time.\n\nFor example, for the functions created with the following statements:\n\n* `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);`\n\n* `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));`\n\n* `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));`\n\nThe return_type is `{type_kind: \"FLOAT64\"}` for `Add` and `Decrement`, and\nis absent for `Increment` (inferred as FLOAT64 at query time).\n\nSuppose the function `Add` is replaced by\n  `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);`\n\nThen the inferred return type of `Increment` is automatically changed to\nINT64 at query time, while the return type of `Decrement` remains FLOAT64."
+          "description": "Optional if language = \"SQL\"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: \"FLOAT64\"}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64."
         },
         "routineReference": {
           "$ref": "RoutineReference",
@@ -4907,10 +4954,10 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of\nthe policy is limited to a few 10s of KB. An empty policy is a\nvalid policy but certain Cloud Platform services (such as Projects)\nmight reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
         },
         "updateMask": {
-          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only\nthe fields in the mask will be modified. If no mask is provided, the\nfollowing default mask is used:\n\n`paths: \"bindings, etag\"`",
+          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -4933,7 +4980,7 @@
       "type": "object"
     },
     "StandardSqlDataType": {
-      "description": "The type of a variable, e.g., a function argument.\nExamples:\nINT64: {type_kind=\"INT64\"}\nARRAY<STRING>: {type_kind=\"ARRAY\", array_element_type=\"STRING\"}\nSTRUCT<x STRING, y ARRAY<DATE>>:\n  {type_kind=\"STRUCT\",\n   struct_type={fields=[\n     {name=\"x\", type={type_kind=\"STRING\"}},\n     {name=\"y\", type={type_kind=\"ARRAY\", array_element_type=\"DATE\"}}\n   ]}}",
+      "description": "The type of a variable, e.g., a function argument. Examples: INT64: {type_kind=\"INT64\"} ARRAY: {type_kind=\"ARRAY\", array_element_type=\"STRING\"} STRUCT>: {type_kind=\"STRUCT\", struct_type={fields=[ {name=\"x\", type={type_kind=\"STRING\"}}, {name=\"y\", type={type_kind=\"ARRAY\", array_element_type=\"DATE\"}} ]}}",
       "id": "StandardSqlDataType",
       "properties": {
         "arrayElementType": {
@@ -4945,7 +4992,7 @@
           "description": "The fields of this struct, in order, if type_kind = \"STRUCT\"."
         },
         "typeKind": {
-          "description": "Required. The top level type of this field.\nCan be any standard SQL data type (e.g., \"INT64\", \"DATE\", \"ARRAY\").",
+          "description": "Required. The top level type of this field. Can be any standard SQL data type (e.g., \"INT64\", \"DATE\", \"ARRAY\").",
           "enum": [
             "TYPE_KIND_UNSPECIFIED",
             "INT64",
@@ -4970,7 +5017,7 @@
             "Encoded as a number, or string \"NaN\", \"Infinity\" or \"-Infinity\".",
             "Encoded as a string value.",
             "Encoded as a base64 string per RFC 4648, section 4.",
-            "Encoded as an RFC 3339 timestamp with mandatory \"Z\" time zone string:\n1985-04-12T23:20:50.52Z",
+            "Encoded as an RFC 3339 timestamp with mandatory \"Z\" time zone string: 1985-04-12T23:20:50.52Z",
             "Encoded as RFC 3339 full-date format string: 1985-04-12",
             "Encoded as RFC 3339 partial-time format string: 23:20:50.52",
             "Encoded as RFC 3339 full-date \"T\" partial-time: 1985-04-12T23:20:50.52",
@@ -4978,7 +5025,7 @@
             "Encoded as a decimal string.",
             "Encoded as a decimal string.",
             "Encoded as a list with types matching Type.array_type.",
-            "Encoded as a list with fields of type Type.struct_type[i]. List is used\nbecause a JSON object cannot have duplicate field names."
+            "Encoded as a list with fields of type Type.struct_type[i]. List is used because a JSON object cannot have duplicate field names."
           ],
           "type": "string"
         }
@@ -4995,7 +5042,7 @@
         },
         "type": {
           "$ref": "StandardSqlDataType",
-          "description": "Optional. The type of this parameter. Absent if not explicitly\nspecified (e.g., CREATE FUNCTION statement can omit the return type;\nin this case the output parameter does not have this \"type\" field)."
+          "description": "Optional. The type of this parameter. Absent if not explicitly specified (e.g., CREATE FUNCTION statement can omit the return type; in this case the output parameter does not have this \"type\" field)."
         }
       },
       "type": "object"
@@ -5490,7 +5537,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with\nwildcards (such as '*' or 'storage.*') are not allowed. For more\ninformation see\n[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -5504,7 +5551,7 @@
       "id": "TestIamPermissionsResponse",
       "properties": {
         "permissions": {
-          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is\nallowed.",
+          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
           },
@@ -5542,6 +5589,11 @@
           "description": "Whether to enable auto ARIMA or not.",
           "type": "boolean"
         },
+        "autoArimaMaxOrder": {
+          "description": "The max value of non-seasonal p and q.",
+          "format": "int64",
+          "type": "string"
+        },
         "batchSize": {
           "description": "Batch size for dnn models.",
           "format": "int64",
@@ -5572,11 +5624,11 @@
           "type": "string"
         },
         "dataSplitColumn": {
-          "description": "The column to split data with. This column won't be used as a\nfeature.\n1. When data_split_method is CUSTOM, the corresponding column should\nbe boolean. The rows with true value tag are eval data, and the false\nare training data.\n2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION\nrows (from smallest to largest) in the corresponding column are used\nas training data, and the rest are eval data. It respects the order\nin Orderable data types:\nhttps://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties",
+          "description": "The column to split data with. This column won't be used as a feature. 1. When data_split_method is CUSTOM, the corresponding column should be boolean. The rows with true value tag are eval data, and the false are training data. 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the corresponding column are used as training data, and the rest are eval data. It respects the order in Orderable data types: https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties",
           "type": "string"
         },
         "dataSplitEvalFraction": {
-          "description": "The fraction of evaluation data over the whole input data. The rest\nof data will be used as training data. The format should be double.\nAccurate to two decimal places.\nDefault value is 0.2.",
+          "description": "The fraction of evaluation data over the whole input data. The rest of data will be used as training data. The format should be double. Accurate to two decimal places. Default value is 0.2.",
           "format": "double",
           "type": "number"
         },
@@ -5596,7 +5648,7 @@
             "Splits data with the user provided tags.",
             "Splits data sequentially.",
             "Data split will be skipped.",
-            "Splits data automatically: Uses NO_SPLIT if the data size is small.\nOtherwise uses RANDOM."
+            "Splits data automatically: Uses NO_SPLIT if the data size is small. Otherwise uses RANDOM."
           ],
           "type": "string"
         },
@@ -5620,11 +5672,11 @@
           "type": "number"
         },
         "earlyStop": {
-          "description": "Whether to stop early when the loss doesn't improve significantly\nany more (compared to min_relative_progress). Used only for iterative\ntraining algorithms.",
+          "description": "Whether to stop early when the loss doesn't improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.",
           "type": "boolean"
         },
         "feedbackType": {
-          "description": "Feedback type that specifies which algorithm to run for matrix\nfactorization.",
+          "description": "Feedback type that specifies which algorithm to run for matrix factorization.",
           "enum": [
             "FEEDBACK_TYPE_UNSPECIFIED",
             "IMPLICIT",
@@ -5646,7 +5698,7 @@
           "type": "array"
         },
         "holidayRegion": {
-          "description": "The geographical region based on which the holidays are considered in\ntime series modeling. If a valid value is specified, then holiday\neffects modeling is enabled.",
+          "description": "The geographical region based on which the holidays are considered in time series modeling. If a valid value is specified, then holiday effects modeling is enabled.",
           "enum": [
             "HOLIDAY_REGION_UNSPECIFIED",
             "GLOBAL",
@@ -5722,7 +5774,7 @@
             "Holiday region unspecified.",
             "Global.",
             "North America.",
-            "Japan and Asia Pacific: Korea, Greater China, India, Australia, and New\nZealand.",
+            "Japan and Asia Pacific: Korea, Greater China, India, Australia, and New Zealand.",
             "Europe, the Middle East and Africa.",
             "Latin America and the Caribbean.",
             "United Arab Emirates",
@@ -5801,7 +5853,7 @@
           "type": "boolean"
         },
         "initialLearnRate": {
-          "description": "Specifies the initial learning rate for the line search learn rate\nstrategy.",
+          "description": "Specifies the initial learning rate for the line search learn rate strategy.",
           "format": "double",
           "type": "number"
         },
@@ -5817,7 +5869,7 @@
           "type": "string"
         },
         "kmeansInitializationColumn": {
-          "description": "The column used to provide the initial centroids for kmeans algorithm\nwhen kmeans_initialization_method is CUSTOM.",
+          "description": "The column used to provide the initial centroids for kmeans algorithm when kmeans_initialization_method is CUSTOM.",
           "type": "string"
         },
         "kmeansInitializationMethod": {
@@ -5831,7 +5883,7 @@
           "enumDescriptions": [
             "",
             "Initializes the centroids randomly.",
-            "Initializes the centroids using data specified in\nkmeans_initialization_column.",
+            "Initializes the centroids using data specified in kmeans_initialization_column.",
             "Initializes with kmeans++."
           ],
           "type": "string"
@@ -5851,7 +5903,7 @@
             "format": "double",
             "type": "number"
           },
-          "description": "Weights associated with each label class, for rebalancing the\ntraining data. Only applicable for classification models.",
+          "description": "Weights associated with each label class, for rebalancing the training data. Only applicable for classification models.",
           "type": "object"
         },
         "learnRate": {
@@ -5888,7 +5940,7 @@
           "type": "string"
         },
         "maxIterations": {
-          "description": "The maximum number of iterations in training. Used only for iterative\ntraining algorithms.",
+          "description": "The maximum number of iterations in training. Used only for iterative training algorithms.",
           "format": "int64",
           "type": "string"
         },
@@ -5898,7 +5950,7 @@
           "type": "string"
         },
         "minRelativeProgress": {
-          "description": "When early_stop is true, stops training when accuracy improvement is\nless than 'min_relative_progress'. Used only for iterative training\nalgorithms.",
+          "description": "When early_stop is true, stops training when accuracy improvement is less than 'min_relative_progress'. Used only for iterative training algorithms.",
           "format": "double",
           "type": "number"
         },
@@ -5908,12 +5960,12 @@
           "type": "number"
         },
         "modelUri": {
-          "description": "[Beta] Google Cloud Storage URI from which the model was imported. Only\napplicable for imported models.",
+          "description": "[Beta] Google Cloud Storage URI from which the model was imported. Only applicable for imported models.",
           "type": "string"
         },
         "nonSeasonalOrder": {
           "$ref": "ArimaOrder",
-          "description": "A specification of the non-seasonal part of the ARIMA model: the three\ncomponents (p, d, q) are the AR order, the degree of differencing, and\nthe MA order."
+          "description": "A specification of the non-seasonal part of the ARIMA model: the three components (p, d, q) are the AR order, the degree of differencing, and the MA order."
         },
         "numClusters": {
           "description": "Number of clusters for clustering models.",
@@ -5940,11 +5992,11 @@
           "type": "string"
         },
         "preserveInputStructs": {
-          "description": "Whether to preserve the input structs in output feature names.\nSuppose there is a struct A with field b.\nWhen false (default), the output feature name is A_b.\nWhen true, the output feature name is A.b.",
+          "description": "Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.",
           "type": "boolean"
         },
         "subsample": {
-          "description": "Subsample fraction of the training data to grow tree to prevent\noverfitting for boosted tree models.",
+          "description": "Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.",
           "format": "double",
           "type": "number"
         },
@@ -5953,7 +6005,7 @@
           "type": "string"
         },
         "timeSeriesIdColumn": {
-          "description": "The id column that will be used to indicate different time series to\nforecast in parallel.",
+          "description": "The id column that will be used to indicate different time series to forecast in parallel.",
           "type": "string"
         },
         "timeSeriesTimestampColumn": {
@@ -5965,7 +6017,7 @@
           "type": "string"
         },
         "walsAlpha": {
-          "description": "Hyperparameter for matrix factoration when implicit feedback type is\nspecified.",
+          "description": "Hyperparameter for matrix factoration when implicit feedback type is specified.",
           "format": "double",
           "type": "number"
         },
@@ -5982,11 +6034,11 @@
       "properties": {
         "dataSplitResult": {
           "$ref": "DataSplitResult",
-          "description": "Data split result of the training run. Only set when the input data is\nactually split."
+          "description": "Data split result of the training run. Only set when the input data is actually split."
         },
         "evaluationMetrics": {
           "$ref": "EvaluationMetrics",
-          "description": "The evaluation metrics over training/eval data that were computed at the\nend of training."
+          "description": "The evaluation metrics over training/eval data that were computed at the end of training."
         },
         "results": {
           "description": "Output of each iteration run, results.size() <= max_iterations.",
@@ -6002,7 +6054,7 @@
         },
         "trainingOptions": {
           "$ref": "TrainingOptions",
-          "description": "Options that were used for this training run, includes\nuser specified and default options that were used."
+          "description": "Options that were used for this training run, includes user specified and default options that were used."
         }
       },
       "type": "object"

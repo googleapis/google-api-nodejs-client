@@ -3341,7 +3341,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipmentScheduledDeliveryDetails {
     /**
-     * The phone number of the carrier fulfilling the delivery.
+     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., &quot;+41 44 668 1800&quot;).
      */
     carrierPhoneNumber?: string | null;
     /**

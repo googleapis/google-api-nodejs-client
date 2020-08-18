@@ -181,7 +181,7 @@ export namespace datastore_v1beta3 {
      */
     mode?: string | null;
     /**
-     * The mutations to perform.  When mode is `TRANSACTIONAL`, mutations affecting a single entity are applied in order. The following sequences of mutations affecting a single entity are not permitted in a single `Commit` request:  - `insert` followed by `insert` - `update` followed by `insert` - `upsert` followed by `insert` - `delete` followed by `update`  When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single entity.
+     * The mutations to perform. When mode is `TRANSACTIONAL`, mutations affecting a single entity are applied in order. The following sequences of mutations affecting a single entity are not permitted in a single `Commit` request: - `insert` followed by `insert` - `update` followed by `insert` - `upsert` followed by `insert` - `delete` followed by `update` When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single entity.
      */
     mutations?: Schema$Mutation[];
     /**
@@ -216,11 +216,11 @@ export namespace datastore_v1beta3 {
     op?: string | null;
   }
   /**
-   * A Datastore data object.  An entity is limited to 1 megabyte when stored. That _roughly_ corresponds to a limit of 1 megabyte for the serialized form of this message.
+   * A Datastore data object. An entity is limited to 1 megabyte when stored. That _roughly_ corresponds to a limit of 1 megabyte for the serialized form of this message.
    */
   export interface Schema$Entity {
     /**
-     * The entity&#39;s key.  An entity must have a key, unless otherwise documented (for example, an entity in `Value.entity_value` may have no key). An entity&#39;s kind is its key path&#39;s last element&#39;s kind, or null if it has no key.
+     * The entity&#39;s key. An entity must have a key, unless otherwise documented (for example, an entity in `Value.entity_value` may have no key). An entity&#39;s kind is its key path&#39;s last element&#39;s kind, or null if it has no key.
      */
     key?: Schema$Key;
     /**
@@ -241,7 +241,7 @@ export namespace datastore_v1beta3 {
      */
     entity?: Schema$Entity;
     /**
-     * The version of the entity, a strictly positive number that monotonically increases with changes to the entity.  This field is set for `FULL` entity results.  For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
+     * The version of the entity, a strictly positive number that monotonically increases with changes to the entity. This field is set for `FULL` entity results. For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
      */
     version?: string | null;
   }
@@ -284,7 +284,7 @@ export namespace datastore_v1beta3 {
     state?: string | null;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;] Kinds Foo and Bar in both the default and Baz namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;] The entire Baz namespace: kinds=[], namespace_ids=[&#39;Baz&#39;]
    */
   export interface Schema$GoogleDatastoreAdminV1beta1EntityFilter {
     /**
@@ -292,7 +292,7 @@ export namespace datastore_v1beta3 {
      */
     kinds?: string[] | null;
     /**
-     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[] | null;
   }
@@ -394,7 +394,7 @@ export namespace datastore_v1beta3 {
     state?: string | null;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;] Kinds Foo and Bar in both the default and Baz namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;] The entire Baz namespace: kinds=[], namespace_ids=[&#39;Baz&#39;]
    */
   export interface Schema$GoogleDatastoreAdminV1EntityFilter {
     /**
@@ -402,7 +402,7 @@ export namespace datastore_v1beta3 {
      */
     kinds?: string[] | null;
     /**
-     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[] | null;
   }
@@ -504,11 +504,11 @@ export namespace datastore_v1beta3 {
      */
     allowLiterals?: boolean | null;
     /**
-     * For each non-reserved named binding site in the query string, there must be a named parameter with that name, but not necessarily the inverse.  Key must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not be `&quot;&quot;`.
+     * For each non-reserved named binding site in the query string, there must be a named parameter with that name, but not necessarily the inverse. Key must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not be `&quot;&quot;`.
      */
     namedBindings?: {[key: string]: Schema$GqlQueryParameter} | null;
     /**
-     * Numbered binding site @1 references the first numbered parameter, effectively using 1-based indexing, rather than the usual 0.  For each binding site numbered i in `query_string`, there must be an i-th numbered parameter. The inverse must also be true.
+     * Numbered binding site @1 references the first numbered parameter, effectively using 1-based indexing, rather than the usual 0. For each binding site numbered i in `query_string`, there must be an i-th numbered parameter. The inverse must also be true.
      */
     positionalBindings?: Schema$GqlQueryParameter[];
     /**
@@ -538,7 +538,7 @@ export namespace datastore_v1beta3 {
      */
     partitionId?: Schema$PartitionId;
     /**
-     * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element&#39;s _ancestors_.  An entity path is always fully complete: *all* of the entity&#39;s ancestors are required to be in the path along with the entity identifier itself. The only exception is that in some documented cases, the identifier in the last path element (for the entity) itself may be omitted. For example, the last path element of the key of `Mutation.insert` may have no identifier.  A path can never be empty, and a path can have at most 100 elements.
+     * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element&#39;s _ancestors_. An entity path is always fully complete: *all* of the entity&#39;s ancestors are required to be in the path along with the entity identifier itself. The only exception is that in some documented cases, the identifier in the last path element (for the entity) itself may be omitted. For example, the last path element of the key of `Mutation.insert` may have no identifier. A path can never be empty, and a path can have at most 100 elements.
      */
     path?: Schema$PathElement[];
   }
@@ -552,7 +552,7 @@ export namespace datastore_v1beta3 {
     name?: string | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -637,7 +637,7 @@ export namespace datastore_v1beta3 {
     version?: string | null;
   }
   /**
-   * A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.  A partition ID contains several dimensions: project ID and namespace ID.  Partition dimensions:  - May be `&quot;&quot;`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\d\.\-_]{1,100}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts.  Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.
+   * A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty. A partition ID contains several dimensions: project ID and namespace ID. Partition dimensions: - May be `&quot;&quot;`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\d\.\-_]{1,100}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts. Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.
    */
   export interface Schema$PartitionId {
     /**
@@ -650,7 +650,7 @@ export namespace datastore_v1beta3 {
     projectId?: string | null;
   }
   /**
-   * A (kind, ID/name) pair used to construct a key path.  If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
+   * A (kind, ID/name) pair used to construct a key path. If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
    */
   export interface Schema$PathElement {
     /**
@@ -784,7 +784,7 @@ export namespace datastore_v1beta3 {
      */
     skippedResults?: number | null;
     /**
-     * The version number of the snapshot this batch was returned from. This applies to the range of results from the query&#39;s `start_cursor` (or the beginning of the query if no cursor was given) to this batch&#39;s `end_cursor` (not the query&#39;s `end_cursor`).  In a single transaction, subsequent query result batches for the same query can have a greater snapshot version number. Each batch&#39;s snapshot version is valid for all preceding batches. The value will be zero for eventually consistent queries.
+     * The version number of the snapshot this batch was returned from. This applies to the range of results from the query&#39;s `start_cursor` (or the beginning of the query if no cursor was given) to this batch&#39;s `end_cursor` (not the query&#39;s `end_cursor`). In a single transaction, subsequent query result batches for the same query can have a greater snapshot version number. Each batch&#39;s snapshot version is valid for all preceding batches. The value will be zero for eventually consistent queries.
      */
     snapshotVersion?: string | null;
   }
@@ -879,7 +879,7 @@ export namespace datastore_v1beta3 {
     query?: Schema$Query;
   }
   /**
-   * Options for beginning a new transaction.  Transactions can be created explicitly with calls to Datastore.BeginTransaction or implicitly by setting ReadOptions.new_transaction in read requests.
+   * Options for beginning a new transaction. Transactions can be created explicitly with calls to Datastore.BeginTransaction or implicitly by setting ReadOptions.new_transaction in read requests.
    */
   export interface Schema$TransactionOptions {
     /**
@@ -912,7 +912,7 @@ export namespace datastore_v1beta3 {
      */
     doubleValue?: number | null;
     /**
-     * An entity value.  - May have no key. - May have a key with an incomplete key path. - May have a reserved/read-only key.
+     * An entity value. - May have no key. - May have a key with an incomplete key path. - May have a reserved/read-only key.
      */
     entityValue?: Schema$Entity;
     /**

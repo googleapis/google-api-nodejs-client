@@ -2,7 +2,7 @@
 
 # fitness
 
-> 
+> The Fitness API for managing users&#39; fitness tracking data.
 
 ## Installation
 

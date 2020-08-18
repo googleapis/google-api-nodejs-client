@@ -450,7 +450,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200812",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -553,6 +553,7 @@
         "createTime": {
           "description": "Output only. Timestamp when the Folder was created. Assigned by the server.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -571,10 +572,12 @@
             "The normal and active state.",
             "The folder has been marked for deletion by the user."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "name": {
           "description": "Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
+          "readOnly": true,
           "type": "string"
         },
         "parent": {

@@ -141,11 +141,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -158,24 +158,24 @@ export namespace pubsub_v1 {
    */
   export interface Schema$CreateSnapshotRequest {
     /**
-     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
+     * See Creating and managing labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain:  (a) The existing backlog on the subscription. More precisely, this is      defined as the messages in the subscription&#39;s backlog that are      unacknowledged upon the successful completion of the      `CreateSnapshot` request; as well as:  (b) Any messages published to the subscription&#39;s topic following the      successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription&#39;s backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription&#39;s topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string | null;
   }
   /**
-   * Dead lettering is done on a best effort basis. The same message might be dead lettered multiple times.  If validation on any of the fields fails at subscription creation/updation, the create/update subscription request will fail.
+   * Dead lettering is done on a best effort basis. The same message might be dead lettered multiple times. If validation on any of the fields fails at subscription creation/updation, the create/update subscription request will fail.
    */
   export interface Schema$DeadLetterPolicy {
     /**
-     * The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service account associated with the enclosing subscription&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic.  The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
+     * The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service account associated with the enclosing subscription&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
      */
     deadLetterTopic?: string | null;
     /**
-     * The maximum number of delivery attempts for any message. The value must be between 5 and 100.  The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message).  A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines.  This field will be honored on a best effort basis.  If this parameter is 0, a default value of 5 is used.
+     * The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
   }
@@ -184,7 +184,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$DetachSubscriptionResponse {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -197,7 +197,7 @@ export namespace pubsub_v1 {
     ttl?: string | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -309,7 +309,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyPushConfigRequest {
     /**
-     * Required. The push configuration for future deliveries.  An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` or `StreamingPull` is not called.
+     * Required. The push configuration for future deliveries. An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` or `StreamingPull` is not called.
      */
     pushConfig?: Schema$PushConfig;
   }
@@ -327,7 +327,7 @@ export namespace pubsub_v1 {
     serviceAccountEmail?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -335,11 +335,11 @@ export namespace pubsub_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -413,7 +413,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PushConfig {
     /**
-     * Endpoint configuration attributes that can be used to control different aspects of the message delivery.  The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata).  If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute.  The only supported values for the `x-goog-version` attribute are:  * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.  For example: &lt;pre&gt;&lt;code&gt;attributes { &quot;x-goog-version&quot;: &quot;v1&quot; } &lt;/code&gt;&lt;/pre&gt;
+     * Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: attributes { &quot;x-goog-version&quot;: &quot;v1&quot; }
      */
     attributes?: {[key: string]: string} | null;
     /**
@@ -434,7 +434,7 @@ export namespace pubsub_v1 {
      */
     ackId?: string | null;
     /**
-     * The approximate number of times that Cloud Pub/Sub has attempted to deliver the associated message to a subscriber.  More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message.  A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library.  Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate.  If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * The approximate number of times that Cloud Pub/Sub has attempted to deliver the associated message to a subscriber. More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message. A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library. Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate. If a DeadLetterPolicy is not set on the subscription, this will be 0.
      */
     deliveryAttempt?: number | null;
     /**
@@ -443,7 +443,7 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
-   * A policy that specifies how Cloud Pub/Sub retries message delivery.  Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff.  RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.  Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   * A policy that specifies how Cloud Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
    */
   export interface Schema$RetryPolicy {
     /**
@@ -507,11 +507,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be &lt;i&gt;outstanding&lt;/i&gt;. During that time period, the message will not be redelivered (on a best-effort basis).  For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used.  For push delivery, this value is also used to set the request timeout for the call to the push endpoint.  If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
+     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be *outstanding*. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number | null;
     /**
-     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled.  The Cloud Pub/Sub service account associated with this subscriptions&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
+     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
     /**
@@ -531,7 +531,7 @@ export namespace pubsub_v1 {
      */
     filter?: string | null;
     /**
-     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
+     * See Creating and managing labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -551,7 +551,7 @@ export namespace pubsub_v1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * A policy that specifies how Pub/Sub retries message delivery for this subscription.  If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     * A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
@@ -582,7 +582,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.  The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x.
      */
     kmsKeyName?: string | null;
     /**
@@ -687,12 +687,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
-     *     // Required. User-provided name for this snapshot. If the name is not provided in the
-     *     // request, the server will assign a random name for this snapshot on the same
-     *     // project as the subscription. Note that for REST API requests, you must
-     *     // specify a name.  See the <a
-     *     // href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     *     // name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
      *     name: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -724,7 +719,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * @param {string} params.name Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
      * @param {().CreateSnapshotRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -836,8 +831,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
-     *     // Required. The name of the snapshot to delete.
-     *     // Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -938,7 +932,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.get
-     * @desc Gets the configuration details of a snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @desc Gets the configuration details of a snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -966,8 +960,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
-     *     // Required. The name of the snapshot to get.
-     *     // Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -1101,21 +1094,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -1137,7 +1118,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1254,12 +1235,9 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.snapshots.list({
      *     // Maximum number of snapshots to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListSnapshotsResponse`; indicates that this
-     *     // is a continuation of a prior `ListSnapshots` call, and that the system
-     *     // should return the next page of data.
+     *     // The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list snapshots.
-     *     // Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1373,7 +1351,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.patch
-     * @desc Updates an existing snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @desc Updates an existing snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1517,7 +1495,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1545,8 +1523,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -1663,7 +1640,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1691,8 +1668,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -1816,7 +1792,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Create
     extends StandardParameters {
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
 
@@ -1842,7 +1818,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -1910,7 +1886,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.acknowledge
-     * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription.  Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
+     * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1938,8 +1914,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.acknowledge({
-     *     // Required. The subscription whose message is being acknowledged.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -2052,7 +2027,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.create
-     * @desc Creates a subscription to a given topic. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
+     * @desc Creates a subscription to a given topic. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2080,12 +2055,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.create({
-     *     // Required. The name of the subscription. It must have the format
-     *     // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-     *     // start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *     // in length, and it must not start with `"goog"`.
+     *     // Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -2249,8 +2219,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
-     *     // Required. The subscription to delete.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2382,8 +2351,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.detach({
-     *     // Required. The subscription to detach.
-     *     // Format is `projects/{project}/subscriptions/{subscription}`.
+     *     // Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2522,8 +2490,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
-     *     // Required. The name of the subscription to get.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2669,21 +2636,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2705,7 +2660,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2822,12 +2777,9 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.subscriptions.list({
      *     // Maximum number of subscriptions to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListSubscriptionsResponse`; indicates that
-     *     // this is a continuation of a prior `ListSubscriptions` call, and that the
-     *     // system should return the next page of data.
+     *     // The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list subscriptions.
-     *     // Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2971,8 +2923,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyAckDeadline({
-     *     // Required. The name of the subscription.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3086,7 +3037,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.modifyPushConfig
-     * @desc Modifies the `PushConfig` for a specified subscription.  This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
+     * @desc Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3114,8 +3065,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyPushConfig({
-     *     // Required. The name of the subscription.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3256,12 +3206,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.patch({
-     *     // Required. The name of the subscription. It must have the format
-     *     // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-     *     // start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *     // in length, and it must not start with `"goog"`.
+     *     // Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3414,8 +3359,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.pull({
-     *     // Required. The subscription from which messages should be pulled.
-     *     // Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3673,7 +3617,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3701,8 +3645,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3819,7 +3762,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3847,8 +3790,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -4017,7 +3959,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -4167,12 +4109,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.create({
-     *     // Required. The name of the topic. It must have the format
-     *     // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *     // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *     // signs (`%`). It must be between 3 and 255 characters in length, and it
-     *     // must not start with `"goog"`.
+     *     // Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -4318,8 +4255,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
-     *     // Required. Name of the topic to delete.
-     *     // Format is `projects/{project}/topics/{topic}`.
+     *     // Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -4448,8 +4384,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
-     *     // Required. The name of the topic to get.
-     *     // Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -4583,21 +4518,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -4619,7 +4542,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4736,12 +4659,9 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.topics.list({
      *     // Maximum number of topics to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicsResponse`; indicates that this is
-     *     // a continuation of a prior `ListTopics` call, and that the system should
-     *     // return the next page of data.
+     *     // The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list topics.
-     *     // Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4881,12 +4801,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.patch({
-     *     // Required. The name of the topic. It must have the format
-     *     // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *     // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *     // signs (`%`). It must be between 3 and 255 characters in length, and it
-     *     // must not start with `"goog"`.
+     *     // Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -5030,8 +4945,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
-     *     // Required. The messages in the request will be published on this topic.
-     *     // Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -5146,7 +5060,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5174,8 +5088,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -5292,7 +5205,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5320,8 +5233,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -5471,7 +5383,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -5581,12 +5493,9 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.topics.snapshots.list({
      *     // Maximum number of snapshot names to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicSnapshotsResponse`; indicates
-     *     // that this is a continuation of a prior `ListTopicSnapshots` call, and
-     *     // that the system should return the next page of data.
+     *     // The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the topic that snapshots are attached to.
-     *     // Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -5755,12 +5664,9 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.topics.subscriptions.list({
      *     // Maximum number of subscription names to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicSubscriptionsResponse`; indicates
-     *     // that this is a continuation of a prior `ListTopicSubscriptions` call, and
-     *     // that the system should return the next page of data.
+     *     // The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the topic that subscriptions are attached to.
-     *     // Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);

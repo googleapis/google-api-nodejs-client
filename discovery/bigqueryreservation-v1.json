@@ -845,7 +845,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200808",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1157,6 +1157,12 @@
       "description": "A reservation is a mechanism used to guarantee slots to users.",
       "id": "Reservation",
       "properties": {
+        "creationTime": {
+          "description": "Output only. Creation time of the reservation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "ignoreIdleSlots": {
           "description": "If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.",
           "type": "boolean"
@@ -1168,6 +1174,12 @@
         "slotCapacity": {
           "description": "Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If the new reservation's slot capacity exceed the parent's slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent's slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.",
           "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time of the reservation.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

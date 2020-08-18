@@ -128,7 +128,7 @@ export namespace oslogin_v1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -219,7 +219,7 @@ export namespace oslogin_v1 {
      */
     fingerprint?: string | null;
     /**
-     * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
+     * Public key text in SSH format, defined by RFC4253 section 6.6.
      */
     key?: string | null;
     /**
@@ -605,9 +605,7 @@ export namespace oslogin_v1 {
      *
      *   // Do the magic
      *   const res = await oslogin.users.projects.delete({
-     *     // Required. A reference to the POSIX account to update. POSIX accounts are identified
-     *     // by the project ID they are associated with. A reference to the POSIX
-     *     // account is in format `users/{user}/projects/{project}`.
+     *     // Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      *     name: 'users/my-user/projects/my-project',
      *   });
      *   console.log(res.data);
@@ -751,9 +749,7 @@ export namespace oslogin_v1 {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.delete({
-     *     // Required. The fingerprint of the public key to update. Public keys are identified by
-     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *   });
      *   console.log(res.data);
@@ -882,9 +878,7 @@ export namespace oslogin_v1 {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.get({
-     *     // Required. The fingerprint of the public key to retrieve. Public keys are identified
-     *     // by their SHA-256 fingerprint. The fingerprint of the public key is in
-     *     // format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *   });
      *   console.log(res.data);
@@ -1018,9 +1012,7 @@ export namespace oslogin_v1 {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.patch({
-     *     // Required. The fingerprint of the public key to update. Public keys are identified by
-     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *     // Mask to control which fields get updated. Updates all if not present.
      *     updateMask: 'placeholder-value',

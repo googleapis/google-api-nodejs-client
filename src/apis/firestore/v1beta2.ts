@@ -128,7 +128,7 @@ export namespace firestore_v1beta2 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -187,7 +187,7 @@ export namespace firestore_v1beta2 {
     outputUriPrefix?: string | null;
   }
   /**
-   * Represents a single field in the database.  Fields are grouped by their &quot;Collection Group&quot;, which represent all collections in the database with the same id.
+   * Represents a single field in the database. Fields are grouped by their &quot;Collection Group&quot;, which represent all collections in the database with the same id.
    */
   export interface Schema$GoogleFirestoreAdminV1beta2Field {
     /**
@@ -195,7 +195,7 @@ export namespace firestore_v1beta2 {
      */
     indexConfig?: Schema$GoogleFirestoreAdminV1beta2IndexConfig;
     /**
-     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field&#39;s resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field&#39;s resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
   }
@@ -283,7 +283,7 @@ export namespace firestore_v1beta2 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta2Index {
     /**
-     * The fields supported by this index.  For composite indexes, this is always 2 or more fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified).  For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
+     * The fields supported by this index. For composite indexes, this is always 2 or more fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
      */
     fields?: Schema$GoogleFirestoreAdminV1beta2IndexField[];
     /**
@@ -291,7 +291,7 @@ export namespace firestore_v1beta2 {
      */
     name?: string | null;
     /**
-     * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id.  Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index.
+     * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index.
      */
     queryScope?: string | null;
     /**
@@ -431,7 +431,7 @@ export namespace firestore_v1beta2 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -439,12 +439,12 @@ export namespace firestore_v1beta2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -452,7 +452,7 @@ export namespace firestore_v1beta2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -510,8 +510,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
-     *     // Database to export. Should be of the form:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -666,8 +665,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
-     *     // Database to import into. Should be of the form:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -869,8 +867,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.get({
-     *     // A name of the form
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
+     *     // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
      *   });
@@ -984,7 +981,7 @@ export namespace firestore_v1beta2 {
 
     /**
      * firestore.projects.databases.collectionGroups.fields.list
-     * @desc Lists the field configuration and metadata for this database.  Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
+     * @desc Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1012,20 +1009,13 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.list({
-     *     // The filter to apply to list results. Currently,
-     *     // FirestoreAdmin.ListFields only supports listing fields
-     *     // that have been explicitly overridden. To issue this query, call
-     *     // FirestoreAdmin.ListFields with the filter set to
-     *     // `indexConfig.usesAncestorConfig:false`.
+     *     // The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
      *     filter: 'placeholder-value',
      *     // The number of results to return.
      *     pageSize: 'placeholder-value',
-     *     // A page token, returned from a previous call to
-     *     // FirestoreAdmin.ListFields, that may be used to get the next
-     *     // page of results.
+     *     // A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results.
      *     pageToken: 'placeholder-value',
-     *     // A parent name of the form
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *     // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     parent:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *   });
@@ -1159,7 +1149,7 @@ export namespace firestore_v1beta2 {
 
     /**
      * firestore.projects.databases.collectionGroups.fields.patch
-     * @desc Updates a field configuration. Currently, field updates apply only to single field index configuration. However, calls to FirestoreAdmin.UpdateField should provide a field mask to avoid changing any configuration that the caller isn't aware of. The field mask should be specified as: `{ paths: "index_config" }`.  This call returns a google.longrunning.Operation which may be used to track the status of the field update. The metadata for the operation will be the type FieldOperationMetadata.  To configure the default field settings for the database, use the special `Field` with resource name: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`.
+     * @desc Updates a field configuration. Currently, field updates apply only to single field index configuration. However, calls to FirestoreAdmin.UpdateField should provide a field mask to avoid changing any configuration that the caller isn't aware of. The field mask should be specified as: `{ paths: "index_config" }`. This call returns a google.longrunning.Operation which may be used to track the status of the field update. The metadata for the operation will be the type FieldOperationMetadata. To configure the default field settings for the database, use the special `Field` with resource name: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1187,36 +1177,10 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.patch({
-     *     // A field name of the form
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     *     //
-     *     // A field path may be a simple field name, e.g. `address` or a path to fields
-     *     // within map_value , e.g. `address.city`,
-     *     // or a special field path. The only valid special field is `*`, which
-     *     // represents any field.
-     *     //
-     *     // Field paths may be quoted using ` (backtick). The only character that needs
-     *     // to be escaped within a quoted field path is the backtick character itself,
-     *     // escaped using a backslash. Special characters in field paths that
-     *     // must be quoted include: `*`, `.`,
-     *     // ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.
-     *     //
-     *     // Examples:
-     *     // (Note: Comments here are written in markdown syntax, so there is an
-     *     //  additional layer of backticks to represent a code block)
-     *     // `\`address.city\`` represents a field named `address.city`, not the map key
-     *     // `city` in the field `address`.
-     *     // `\`*\`` represents a field named `*`, not any field.
-     *     //
-     *     // A special `Field` contains the default indexing settings for all fields.
-     *     // This field's resource name is:
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`
-     *     // Indexes defined on this `Field` will be applied to all fields which do not
-     *     // have their own `Field` index configuration.
+     *     // A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
-     *     // A mask, relative to the field. If specified, only configuration specified
-     *     // by this field_mask will be updated in the field.
+     *     // A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1249,7 +1213,7 @@ export namespace firestore_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * @param {string} params.name A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      * @param {string=} params.updateMask A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
      * @param {().GoogleFirestoreAdminV1beta2Field} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1369,7 +1333,7 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
     extends StandardParameters {
     /**
-     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string;
     /**
@@ -1420,8 +1384,7 @@ export namespace firestore_v1beta2 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.create(
      *     {
-     *       // A parent name of the form
-     *       // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *       // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *       parent:
      *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *
@@ -1581,8 +1544,7 @@ export namespace firestore_v1beta2 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.delete(
      *     {
-     *       // A name of the form
-     *       // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     *       // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *       name:
      *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
      *     }
@@ -1713,8 +1675,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.get({
-     *     // A name of the form
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     *     // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
      *   });
@@ -1862,12 +1823,9 @@ export namespace firestore_v1beta2 {
      *     filter: 'placeholder-value',
      *     // The number of results to return.
      *     pageSize: 'placeholder-value',
-     *     // A page token, returned from a previous call to
-     *     // FirestoreAdmin.ListIndexes, that may be used to get the next
-     *     // page of results.
+     *     // A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results.
      *     pageToken: 'placeholder-value',
-     *     // A parent name of the form
-     *     // `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *     // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     parent:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *   });

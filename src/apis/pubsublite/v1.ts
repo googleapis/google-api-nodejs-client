@@ -161,7 +161,7 @@ export namespace pubsublite_v1 {
     deliveryRequirement?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -367,13 +367,9 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.create({
-     *     // Required. The parent location in which to create the subscription.
-     *     // Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The ID to use for the subscription, which will become the final component
-     *     // of the subscription's name.
-     *     //
-     *     // This value is structured like: `my-sub-name`.
+     *     // Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      *     subscriptionId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -406,7 +402,7 @@ export namespace pubsublite_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {string=} params.subscriptionId Required. The ID to use for the subscription, which will become the final component of the subscription's name.  This value is structured like: `my-sub-name`.
+     * @param {string=} params.subscriptionId Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -776,18 +772,11 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.list({
-     *     // The maximum number of subscriptions to return. The service may return fewer
-     *     // than this value.
-     *     // If unset or zero, all subscriptions for the parent will be returned.
+     *     // The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListSubscriptions` call.
-     *     // Provide this to retrieve the subsequent page.
-     *     //
-     *     // When paginating, all other parameters provided to `ListSubscriptions` must
-     *     // match the call that provided the page token.
+     *     // A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent whose subscriptions are to be listed.
-     *     // Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -809,7 +798,7 @@ export namespace pubsublite_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     * @param {string=} params.pageToken A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
      * @param {string} params.parent Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -928,9 +917,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.patch({
-     *     // The name of the subscription.
-     *     // Structured like:
-     *     // projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
+     *     // The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
      *     name:
      *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *     // Required. A mask specifying the subscription fields to change.
@@ -1056,7 +1043,7 @@ export namespace pubsublite_v1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the subscription, which will become the final component of the subscription's name.  This value is structured like: `my-sub-name`.
+     * Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      */
     subscriptionId?: string;
 
@@ -1086,7 +1073,7 @@ export namespace pubsublite_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     * A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -1148,13 +1135,9 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.topics.create({
-     *     // Required. The parent location in which to create the topic.
-     *     // Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The ID to use for the topic, which will become the final component of
-     *     // the topic's name.
-     *     //
-     *     // This value is structured like: `my-topic-name`.
+     *     // Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.
      *     topicId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1187,7 +1170,7 @@ export namespace pubsublite_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {string=} params.topicId Required. The ID to use for the topic, which will become the final component of the topic's name.  This value is structured like: `my-topic-name`.
+     * @param {string=} params.topicId Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.
      * @param {().Topic} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1686,18 +1669,11 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.topics.list({
-     *     // The maximum number of topics to return. The service may return fewer than
-     *     // this value.
-     *     // If unset or zero, all topics for the parent will be returned.
+     *     // The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListTopics` call.
-     *     // Provide this to retrieve the subsequent page.
-     *     //
-     *     // When paginating, all other parameters provided to `ListTopics` must match
-     *     // the call that provided the page token.
+     *     // A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent whose topics are to be listed.
-     *     // Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1719,7 +1695,7 @@ export namespace pubsublite_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
+     * @param {string=} params.pageToken A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
      * @param {string} params.parent Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1834,9 +1810,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.topics.patch({
-     *     // The name of the topic.
-     *     // Structured like:
-     *     // projects/{project_number}/locations/{location}/topics/{topic_id}
+     *     // The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
      *     name: 'projects/my-project/locations/my-location/topics/my-topic',
      *     // Required. A mask specifying the topic fields to change.
      *     updateMask: 'placeholder-value',
@@ -1961,7 +1935,7 @@ export namespace pubsublite_v1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the topic, which will become the final component of the topic's name.  This value is structured like: `my-topic-name`.
+     * Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.
      */
     topicId?: string;
 
@@ -1998,7 +1972,7 @@ export namespace pubsublite_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
+     * A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -2059,15 +2033,9 @@ export namespace pubsublite_v1 {
      *     {
      *       // Required. The name of the topic whose subscriptions to list.
      *       name: 'projects/my-project/locations/my-location/topics/my-topic',
-     *       // The maximum number of subscriptions to return. The service may return fewer
-     *       // than this value.
-     *       // If unset or zero, all subscriptions for the given topic will be returned.
+     *       // The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.
      *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListTopicSubscriptions` call.
-     *       // Provide this to retrieve the subsequent page.
-     *       //
-     *       // When paginating, all other parameters provided to `ListTopicSubscriptions`
-     *       // must match the call that provided the page token.
+     *       // A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -2091,7 +2059,7 @@ export namespace pubsublite_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the topic whose subscriptions to list.
      * @param {integer=} params.pageSize The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
+     * @param {string=} params.pageToken A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2196,7 +2164,7 @@ export namespace pubsublite_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
+     * A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -2275,19 +2243,11 @@ export namespace pubsublite_v1 {
      *   // Do the magic
      *   const res = await pubsublite.cursor.projects.locations.subscriptions.cursors.list(
      *     {
-     *       // The maximum number of cursors to return. The service may return fewer than
-     *       // this value.
-     *       // If unset or zero, all cursors for the parent will be returned.
+     *       // The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.
      *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListPartitionCursors` call.
-     *       // Provide this to retrieve the subsequent page.
-     *       //
-     *       // When paginating, all other parameters provided to `ListPartitionCursors`
-     *       // must match the call that provided the page token.
+     *       // A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The subscription for which to retrieve cursors.
-     *       // Structured like
-     *       // `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
+     *       // Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *     }
@@ -2311,7 +2271,7 @@ export namespace pubsublite_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
+     * @param {string=} params.pageToken A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
      * @param {string} params.parent Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2413,7 +2373,7 @@ export namespace pubsublite_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
+     * A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
      */
     pageToken?: string;
     /**

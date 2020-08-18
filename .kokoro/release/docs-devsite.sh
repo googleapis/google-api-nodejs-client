@@ -36,6 +36,11 @@ NAME=$(cat .repo-metadata.json | json name)
 
 mkdir ./_devsite
 cp ./yaml/$NAME/* ./_devsite
+
+# Delete SharePoint item, see https://github.com/microsoft/rushstack/issues/1229
+sed -i -e '1,3d' ./yaml/toc.yml
+sed -i -e 's/^    //' ./yaml/toc.yml
+
 cp ./yaml/toc.yml ./_devsite/toc.yml
 
 # create docs.metadata, based on package.json and .repo-metadata.json.

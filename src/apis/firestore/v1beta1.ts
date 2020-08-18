@@ -145,7 +145,7 @@ export namespace firestore_v1beta1 {
      */
     documents?: string[] | null;
     /**
-     * The fields to return. If not set, returns all fields.  If a document has a field that is not present in this mask, that field will not be returned in the response.
+     * The fields to return. If not set, returns all fields. If a document has a field that is not present in this mask, that field will not be returned in the response.
      */
     mask?: Schema$DocumentMask;
     /**
@@ -191,7 +191,7 @@ export namespace firestore_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The writes to apply.  Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.
+     * The writes to apply. Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.
      */
     writes?: Schema$Write[];
   }
@@ -200,11 +200,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$BatchWriteResponse {
     /**
-     * The status of applying the writes.  This i-th write status corresponds to the i-th write in the request.
+     * The status of applying the writes. This i-th write status corresponds to the i-th write in the request.
      */
     status?: Schema$Status[];
     /**
-     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
+     * The result of applying the writes. This i-th write result corresponds to the i-th write in the request.
      */
     writeResults?: Schema$WriteResult[];
   }
@@ -248,7 +248,7 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string | null;
     /**
-     * The writes to apply.  Always executed atomically and in order.
+     * The writes to apply. Always executed atomically and in order.
      */
     writes?: Schema$Write[];
   }
@@ -261,7 +261,7 @@ export namespace firestore_v1beta1 {
      */
     commitTime?: string | null;
     /**
-     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
+     * The result of applying the writes. This i-th write result corresponds to the i-th write in the request.
      */
     writeResults?: Schema$WriteResult[];
   }
@@ -287,20 +287,20 @@ export namespace firestore_v1beta1 {
      */
     before?: boolean | null;
     /**
-     * The values that represent a position, in the order they appear in the order by clause of a query.  Can contain fewer values than specified in the order by clause.
+     * The values that represent a position, in the order they appear in the order by clause of a query. Can contain fewer values than specified in the order by clause.
      */
     values?: Schema$Value[];
   }
   /**
-   * A Firestore document.  Must not exceed 1 MiB - 4 bytes.
+   * A Firestore document. Must not exceed 1 MiB - 4 bytes.
    */
   export interface Schema$Document {
     /**
-     * Output only. The time at which the document was created.  This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
+     * Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
     createTime?: string | null;
     /**
-     * The document&#39;s fields.  The map keys represent field names.  A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`.  Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.  Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by the simple or quoted field names of the containing fields, delimited by `.`. For example, the structured field `&quot;foo&quot; : { map_value: { &quot;x&amp;y&quot; : { string_value: &quot;hello&quot; }}}` would be represented by the field path `foo.x&amp;y`.  Within a field path, a quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and `` `bak\`tik` `` represents `` bak`tik ``.
+     * The document&#39;s fields. The map keys represent field names. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by the simple or quoted field names of the containing fields, delimited by `.`. For example, the structured field `&quot;foo&quot; : { map_value: { &quot;x&amp;y&quot; : { string_value: &quot;hello&quot; }}}` would be represented by the field path `foo.x&amp;y`. Within a field path, a quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and `` `bak\`tik` `` represents `` bak`tik ``.
      */
     fields?: {[key: string]: Schema$Value} | null;
     /**
@@ -308,16 +308,16 @@ export namespace firestore_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. The time at which the document was last changed.  This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query.
+     * Output only. The time at which the document was last changed. This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query.
      */
     updateTime?: string | null;
   }
   /**
-   * A Document has changed.  May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document.  Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
+   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
    */
   export interface Schema$DocumentChange {
     /**
-     * The new state of the Document.  If `mask` is set, contains only fields that were updated or added.
+     * The new state of the Document. If `mask` is set, contains only fields that were updated or added.
      */
     document?: Schema$Document;
     /**
@@ -330,7 +330,7 @@ export namespace firestore_v1beta1 {
     targetIds?: number[] | null;
   }
   /**
-   * A Document has been deleted.  May be the result of multiple writes, including updates, the last of which deleted the Document.  Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected.
+   * A Document has been deleted. May be the result of multiple writes, including updates, the last of which deleted the Document. Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected.
    */
   export interface Schema$DocumentDelete {
     /**
@@ -338,7 +338,7 @@ export namespace firestore_v1beta1 {
      */
     document?: string | null;
     /**
-     * The read timestamp at which the delete was observed.  Greater or equal to the `commit_time` of the delete.
+     * The read timestamp at which the delete was observed. Greater or equal to the `commit_time` of the delete.
      */
     readTime?: string | null;
     /**
@@ -356,7 +356,7 @@ export namespace firestore_v1beta1 {
     fieldPaths?: string[] | null;
   }
   /**
-   * A Document has been removed from the view of the targets.  Sent if the document is no longer relevant to a target and is out of view. Can be sent instead of a DocumentDelete or a DocumentChange if the server can not send the new value of the document.  Multiple DocumentRemove messages may be returned for the same logical write or delete, if multiple targets are affected.
+   * A Document has been removed from the view of the targets. Sent if the document is no longer relevant to a target and is out of view. Can be sent instead of a DocumentDelete or a DocumentChange if the server can not send the new value of the document. Multiple DocumentRemove messages may be returned for the same logical write or delete, if multiple targets are affected.
    */
   export interface Schema$DocumentRemove {
     /**
@@ -364,7 +364,7 @@ export namespace firestore_v1beta1 {
      */
     document?: string | null;
     /**
-     * The read timestamp at which the remove was observed.  Greater or equal to the `commit_time` of the change/delete/remove.
+     * The read timestamp at which the remove was observed. Greater or equal to the `commit_time` of the change/delete/remove.
      */
     readTime?: string | null;
     /**
@@ -395,7 +395,7 @@ export namespace firestore_v1beta1 {
     fieldTransforms?: Schema$FieldTransform[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -403,7 +403,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$ExistenceFilter {
     /**
-     * The total count of documents that match target_id.  If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
+     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
      */
     count?: number | null;
     /**
@@ -439,7 +439,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$FieldTransform {
     /**
-     * Append the given elements in order if they are not already present in the current field value. If the field is not an array, or if the field does not yet exist, it is first set to the empty array.  Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when checking if a value is missing. NaN is equal to NaN, and Null is equal to Null. If the input contains multiple equivalent values, only the first will be considered.  The corresponding transform_result will be the null value.
+     * Append the given elements in order if they are not already present in the current field value. If the field is not an array, or if the field does not yet exist, it is first set to the empty array. Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when checking if a value is missing. NaN is equal to NaN, and Null is equal to Null. If the input contains multiple equivalent values, only the first will be considered. The corresponding transform_result will be the null value.
      */
     appendMissingElements?: Schema$ArrayValue;
     /**
@@ -447,19 +447,19 @@ export namespace firestore_v1beta1 {
      */
     fieldPath?: string | null;
     /**
-     * Adds the given value to the field&#39;s current value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer.
+     * Adds the given value to the field&#39;s current value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer.
      */
     increment?: Schema$Value;
     /**
-     * Sets the field to the maximum of its current value and the given value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If a maximum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the larger operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and zero input value is always the stored value. The maximum of any numeric value x and NaN is NaN.
+     * Sets the field to the maximum of its current value and the given value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If a maximum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the larger operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and zero input value is always the stored value. The maximum of any numeric value x and NaN is NaN.
      */
     maximum?: Schema$Value;
     /**
-     * Sets the field to the minimum of its current value and the given value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the input value. If a minimum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN.
+     * Sets the field to the minimum of its current value and the given value. This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the input value. If a minimum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN.
      */
     minimum?: Schema$Value;
     /**
-     * Remove all of the given elements from the array in the field. If the field is not an array, or if the field does not yet exist, it is set to the empty array.  Equivalent numbers of the different types (e.g. 3L and 3.0) are considered equal when deciding whether an element should be removed. NaN is equal to NaN, and Null is equal to Null. This will remove all equivalent values if there are duplicates.  The corresponding transform_result will be the null value.
+     * Remove all of the given elements from the array in the field. If the field is not an array, or if the field does not yet exist, it is set to the empty array. Equivalent numbers of the different types (e.g. 3L and 3.0) are considered equal when deciding whether an element should be removed. NaN is equal to NaN, and Null is equal to Null. This will remove all equivalent values if there are duplicates. The corresponding transform_result will be the null value.
      */
     removeAllFromArray?: Schema$ArrayValue;
     /**
@@ -691,7 +691,7 @@ export namespace firestore_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -699,12 +699,12 @@ export namespace firestore_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -789,7 +789,7 @@ export namespace firestore_v1beta1 {
      */
     documentRemove?: Schema$DocumentRemove;
     /**
-     * A filter to apply to the set of documents previously returned for the given target.  Returned when documents may have been removed from the given target, but the exact documents are unknown.
+     * A filter to apply to the set of documents previously returned for the given target. Returned when documents may have been removed from the given target, but the exact documents are unknown.
      */
     filter?: Schema$ExistenceFilter;
     /**
@@ -802,7 +802,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$MapValue {
     /**
-     * The map&#39;s fields.  The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
+     * The map&#39;s fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
     fields?: {[key: string]: Schema$Value} | null;
   }
@@ -824,19 +824,19 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$PartitionQueryRequest {
     /**
-     * The maximum number of partitions to return in this call, subject to `partition_count`.  For example, if `partition_count` = 10 and `page_size` = 8, the first call to PartitionQuery will return up to 8 partitions and a `next_page_token` if more results exist. A second call to PartitionQuery will return up to 2 partitions, to complete the total of 10 specified in `partition_count`.
+     * The maximum number of partitions to return in this call, subject to `partition_count`. For example, if `partition_count` = 10 and `page_size` = 8, the first call to PartitionQuery will return up to 8 partitions and a `next_page_token` if more results exist. A second call to PartitionQuery will return up to 2 partitions, to complete the total of 10 specified in `partition_count`.
      */
     pageSize?: number | null;
     /**
-     * The `next_page_token` value returned from a previous call to PartitionQuery that may be used to get an additional set of results. There are no ordering guarantees between sets of results. Thus, using multiple sets of results will require merging the different result sets.  For example, two subsequent calls using a page_token may return:   * cursor B, cursor M, cursor Q  * cursor A, cursor U, cursor W  To obtain a complete result set ordered with respect to the results of the query supplied to PartitionQuery, the results sets should be merged: cursor A, cursor B, cursor M, cursor Q, cursor U, cursor W
+     * The `next_page_token` value returned from a previous call to PartitionQuery that may be used to get an additional set of results. There are no ordering guarantees between sets of results. Thus, using multiple sets of results will require merging the different result sets. For example, two subsequent calls using a page_token may return: * cursor B, cursor M, cursor Q * cursor A, cursor U, cursor W To obtain a complete result set ordered with respect to the results of the query supplied to PartitionQuery, the results sets should be merged: cursor A, cursor B, cursor M, cursor Q, cursor U, cursor W
      */
     pageToken?: string | null;
     /**
-     * The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be strictly positive. The actual number of partitions returned may be fewer.  For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.
+     * The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.
      */
     partitionCount?: string | null;
     /**
-     * A structured query. Filters, order bys, limits, offsets, and start/end cursors are not supported.
+     * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
     structuredQuery?: Schema$StructuredQuery;
   }
@@ -849,7 +849,7 @@ export namespace firestore_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery.  For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query:   * query, end_at A  * query, start_at A, end_at B  * query, start_at B
+     * Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned.
      */
     partitions?: Schema$Cursor[];
   }
@@ -871,7 +871,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Projection {
     /**
-     * The fields to return.  If empty, all fields are returned. To only return the name of the document, use `[&#39;__name__&#39;]`.
+     * The fields to return. If empty, all fields are returned. To only return the name of the document, use `[&#39;__name__&#39;]`.
      */
     fields?: Schema$FieldReference[];
   }
@@ -945,7 +945,7 @@ export namespace firestore_v1beta1 {
      */
     document?: Schema$Document;
     /**
-     * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one.  If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
+     * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
     /**
@@ -958,7 +958,7 @@ export namespace firestore_v1beta1 {
     transaction?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -966,7 +966,7 @@ export namespace firestore_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -987,15 +987,15 @@ export namespace firestore_v1beta1 {
      */
     from?: Schema$CollectionSelector[];
     /**
-     * The maximum number of results to return.  Applies after all other constraints. Must be &gt;= 0 if specified.
+     * The maximum number of results to return. Applies after all other constraints. Must be &gt;= 0 if specified.
      */
     limit?: number | null;
     /**
-     * The number of results to skip.  Applies before limit, but after all other constraints. Must be &gt;= 0 if specified.
+     * The number of results to skip. Applies before limit, but after all other constraints. Must be &gt;= 0 if specified.
      */
     offset?: number | null;
     /**
-     * The order to apply to the query results.  Firestore guarantees a stable ordering through the following rules:   * Any field required to appear in `order_by`, that is not already    specified in `order_by`, is appended to the order in field name order    by default.  * If an order on `__name__` is not specified, it is appended by default.  Fields are appended with the same sort direction as the last order specified, or &#39;ASCENDING&#39; if no order was specified. For example:   * `SELECT * FROM Foo ORDER BY A` becomes    `SELECT * FROM Foo ORDER BY A, __name__`  * `SELECT * FROM Foo ORDER BY A DESC` becomes    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`  * `SELECT * FROM Foo WHERE A &gt; 1` becomes    `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
+     * The order to apply to the query results. Firestore guarantees a stable ordering through the following rules: * Any field required to appear in `order_by`, that is not already specified in `order_by`, is appended to the order in field name order by default. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or &#39;ASCENDING&#39; if no order was specified. For example: * `SELECT * FROM Foo ORDER BY A` becomes `SELECT * FROM Foo ORDER BY A, __name__` * `SELECT * FROM Foo ORDER BY A DESC` becomes `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC` * `SELECT * FROM Foo WHERE A &gt; 1` becomes `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
      */
     orderBy?: Schema$Order[];
     /**
@@ -1028,11 +1028,11 @@ export namespace firestore_v1beta1 {
      */
     query?: Schema$QueryTarget;
     /**
-     * Start listening after a specific `read_time`.  The client must know the state of matching documents at this time.
+     * Start listening after a specific `read_time`. The client must know the state of matching documents at this time.
      */
     readTime?: string | null;
     /**
-     * A resume token from a prior TargetChange for an identical target.  Using a resume token with a different target is unsupported and may fail.
+     * A resume token from a prior TargetChange for an identical target. Using a resume token with a different target is unsupported and may fail.
      */
     resumeToken?: string | null;
     /**
@@ -1049,11 +1049,11 @@ export namespace firestore_v1beta1 {
      */
     cause?: Schema$Status;
     /**
-     * The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot).  The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not).  For a given stream, `read_time` is guaranteed to be monotonically increasing.
+     * The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot). The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not). For a given stream, `read_time` is guaranteed to be monotonically increasing.
      */
     readTime?: string | null;
     /**
-     * A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty.  Not set on every target change.
+     * A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty. Not set on every target change.
      */
     resumeToken?: string | null;
     /**
@@ -1061,7 +1061,7 @@ export namespace firestore_v1beta1 {
      */
     targetChangeType?: string | null;
     /**
-     * The target IDs of targets that have changed.  If empty, the change applies to all targets.  The order of the target IDs is not defined.
+     * The target IDs of targets that have changed. If empty, the change applies to all targets. The order of the target IDs is not defined.
      */
     targetIds?: number[] | null;
   }
@@ -1096,7 +1096,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Value {
     /**
-     * An array value.  Cannot directly contain another array value, though can contain an map which contains another array.
+     * An array value. Cannot directly contain another array value, though can contain an map which contains another array.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -1104,7 +1104,7 @@ export namespace firestore_v1beta1 {
      */
     booleanValue?: boolean | null;
     /**
-     * A bytes value.  Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
+     * A bytes value. Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
      */
     bytesValue?: string | null;
     /**
@@ -1132,11 +1132,11 @@ export namespace firestore_v1beta1 {
      */
     referenceValue?: string | null;
     /**
-     * A string value.  The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
+     * A string value. The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
      */
     stringValue?: string | null;
     /**
-     * A timestamp value.  Precise only to microseconds. When stored, any additional precision is rounded down.
+     * A timestamp value. Precise only to microseconds. When stored, any additional precision is rounded down.
      */
     timestampValue?: string | null;
   }
@@ -1145,7 +1145,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Write {
     /**
-     * An optional precondition on the document.  The write will fail if this is set and not met by the target document.
+     * An optional precondition on the document. The write will fail if this is set and not met by the target document.
      */
     currentDocument?: Schema$Precondition;
     /**
@@ -1161,16 +1161,16 @@ export namespace firestore_v1beta1 {
      */
     update?: Schema$Document;
     /**
-     * The fields to update in this write.  This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name.
+     * The fields to update in this write. This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name.
      */
     updateMask?: Schema$DocumentMask;
     /**
-     * The transforms to perform after update.  This field can be set only when the operation is `update`. If present, this write is equivalent to performing `update` and `transform` to the same document atomically and in order.
+     * The transforms to perform after update. This field can be set only when the operation is `update`. If present, this write is equivalent to performing `update` and `transform` to the same document atomically and in order.
      */
     updateTransforms?: Schema$FieldTransform[];
   }
   /**
-   * The request for Firestore.Write.  The first request creates a stream, or resumes an existing one from a token.  When creating a new stream, the server replies with a response containing only an ID and a token, to use in the next request.  When resuming a stream, the server first streams any responses later than the given token, then a response containing only an up-to-date token, to use in the next request.
+   * The request for Firestore.Write. The first request creates a stream, or resumes an existing one from a token. When creating a new stream, the server replies with a response containing only an ID and a token, to use in the next request. When resuming a stream, the server first streams any responses later than the given token, then a response containing only an up-to-date token, to use in the next request.
    */
   export interface Schema$WriteRequest {
     /**
@@ -1182,11 +1182,11 @@ export namespace firestore_v1beta1 {
      */
     streamId?: string | null;
     /**
-     * A stream token that was previously sent by the server.  The client should set this field to the token from the most recent WriteResponse it has received. This acknowledges that the client has received responses up to this token. After sending this token, earlier tokens may not be used anymore.  The server may close the stream if there are too many unacknowledged responses.  Leave this field unset when creating a new stream. To resume a stream at a specific point, set this field and the `stream_id` field.  Leave this field unset when creating a new stream.
+     * A stream token that was previously sent by the server. The client should set this field to the token from the most recent WriteResponse it has received. This acknowledges that the client has received responses up to this token. After sending this token, earlier tokens may not be used anymore. The server may close the stream if there are too many unacknowledged responses. Leave this field unset when creating a new stream. To resume a stream at a specific point, set this field and the `stream_id` field. Leave this field unset when creating a new stream.
      */
     streamToken?: string | null;
     /**
-     * The writes to apply.  Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests.
+     * The writes to apply. Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests.
      */
     writes?: Schema$Write[];
   }
@@ -1203,11 +1203,11 @@ export namespace firestore_v1beta1 {
      */
     streamId?: string | null;
     /**
-     * A token that represents the position of this response in the stream. This can be used by a client to resume the stream at this point.  This field is always set.
+     * A token that represents the position of this response in the stream. This can be used by a client to resume the stream at this point. This field is always set.
      */
     streamToken?: string | null;
     /**
-     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
+     * The result of applying the writes. This i-th write result corresponds to the i-th write in the request.
      */
     writeResults?: Schema$WriteResult[];
   }
@@ -1220,7 +1220,7 @@ export namespace firestore_v1beta1 {
      */
     transformResults?: Schema$Value[];
     /**
-     * The last update time of the document after applying the write. Not set after a `delete`.  If the write did not actually change the document, this will be the previous update_time.
+     * The last update time of the document after applying the write. Not set after a `delete`. If the write did not actually change the document, this will be the previous update_time.
      */
     updateTime?: string | null;
   }
@@ -1274,8 +1274,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
-     *     // Database to export. Should be of the form:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -1430,8 +1429,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
-     *     // Database to import into. Should be of the form:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -1590,7 +1588,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.documents.batchGet
-     * @desc Gets multiple documents.  Documents returned by this method are not guaranteed to be returned in the same order that they were requested.
+     * @desc Gets multiple documents. Documents returned by this method are not guaranteed to be returned in the same order that they were requested.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1618,8 +1616,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.batchGet({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -1748,7 +1745,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.documents.batchWrite
-     * @desc Applies a batch of write operations.  The BatchWrite method does not apply the write operations atomically and can apply them out of order. Method does not allow more than one write per document. Each write succeeds or fails independently. See the BatchWriteResponse for the success status of each write.  If you require an atomically applied set of writes, use Commit instead.
+     * @desc Applies a batch of write operations. The BatchWrite method does not apply the write operations atomically and can apply them out of order. Method does not allow more than one write per document. Each write succeeds or fails independently. See the BatchWriteResponse for the success status of each write. If you require an atomically applied set of writes, use Commit instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1776,8 +1773,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.batchWrite({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -1924,8 +1920,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.beginTransaction({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -2074,8 +2069,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.commit({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -2222,16 +2216,11 @@ export namespace firestore_v1beta1 {
      *   const res = await firestore.projects.databases.documents.createDocument({
      *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *     collectionId: 'placeholder-value',
-     *     // The client-assigned document ID to use for this document.
-     *     //
-     *     // Optional. If not specified, an ID will be assigned by the service.
+     *     // The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service.
      *     documentId: 'placeholder-value',
-     *     // The list of field paths in the mask. See Document.fields for a field
-     *     // path syntax reference.
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // Required. The parent resource. For example:
-     *     // `projects/{project_id}/databases/{database_id}/documents` or
-     *     // `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     *     // Required. The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *     parent: 'projects/my-project/databases/my-database/documents/.*',
      *
      *     // Request body metadata
@@ -2266,7 +2255,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
-     * @param {string=} params.documentId The client-assigned document ID to use for this document.  Optional. If not specified, an ID will be assigned by the service.
+     * @param {string=} params.documentId The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service.
      * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
      * @param {string} params.parent Required. The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      * @param {().Document} params.requestBody Request body data
@@ -2383,14 +2372,11 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.delete({
-     *     // When set to `true`, the target document must exist.
-     *     // When set to `false`, the target document must not exist.
+     *     // When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      *     'currentDocument.exists': 'placeholder-value',
-     *     // When set, the target document must exist and have been last updated at
-     *     // that time.
+     *     // When set, the target document must exist and have been last updated at that time.
      *     'currentDocument.updateTime': 'placeholder-value',
-     *     // Required. The resource name of the Document to delete. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     // Required. The resource name of the Document to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
      *   });
      *   console.log(res.data);
@@ -2521,14 +2507,11 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.get({
-     *     // The list of field paths in the mask. See Document.fields for a field
-     *     // path syntax reference.
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // Required. The resource name of the Document to get. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     // Required. The resource name of the Document to get. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Reads the version of the document at the given time.
-     *     // This may not be older than 270 seconds.
+     *     // Reads the version of the document at the given time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
      *     // Reads the document in a transaction.
      *     transaction: 'placeholder-value',
@@ -2667,11 +2650,9 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.list({
-     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     *     // or `messages`.
+     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
      *     collectionId: 'placeholder-value',
-     *     // The list of field paths in the mask. See Document.fields for a field
-     *     // path syntax reference.
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
      *     // The order to sort results by. For example: `priority desc, name`.
      *     orderBy: 'placeholder-value',
@@ -2679,24 +2660,12 @@ export namespace firestore_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents` or
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *     // For example:
-     *     // `projects/my-project/databases/my-database/documents` or
-     *     // `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     // Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Reads documents as they were at the given time.
-     *     // This may not be older than 270 seconds.
+     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
-     *     // If the list should show missing documents. A missing document is a
-     *     // document that does not exist but has sub-documents. These documents will
-     *     // be returned with a key but will not have fields, Document.create_time,
-     *     // or Document.update_time set.
-     *     //
-     *     // Requests with `show_missing` may not specify `where` or
-     *     // `order_by`.
+     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
      *     // Reads documents in a transaction.
      *     transaction: 'placeholder-value',
@@ -2726,7 +2695,7 @@ export namespace firestore_v1beta1 {
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
      * @param {string} params.parent Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param {string=} params.readTime Reads documents as they were at the given time. This may not be older than 270 seconds.
-     * @param {boolean=} params.showMissing If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set.  Requests with `show_missing` may not specify `where` or `order_by`.
+     * @param {boolean=} params.showMissing If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
      * @param {string=} params.transaction Reads documents in a transaction.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2846,10 +2815,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listCollectionIds({
-     *     // Required. The parent document. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *     // For example:
-     *     // `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     // Required. The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
      *
@@ -3002,8 +2968,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listen({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -3152,10 +3117,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.partitionQuery({
-     *     // Required. The parent resource name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents`.
-     *     // Document resource names are not supported; only database resource names
-     *     // can be specified.
+     *     // Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents`. Document resource names are not supported; only database resource names can be specified.
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
      *
@@ -3310,20 +3272,15 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.patch({
-     *     // When set to `true`, the target document must exist.
-     *     // When set to `false`, the target document must not exist.
+     *     // When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      *     'currentDocument.exists': 'placeholder-value',
-     *     // When set, the target document must exist and have been last updated at
-     *     // that time.
+     *     // When set, the target document must exist and have been last updated at that time.
      *     'currentDocument.updateTime': 'placeholder-value',
-     *     // The list of field paths in the mask. See Document.fields for a field
-     *     // path syntax reference.
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // The resource name of the document, for example
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     // The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // The list of field paths in the mask. See Document.fields for a field
-     *     // path syntax reference.
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'updateMask.fieldPaths': 'placeholder-value',
      *
      *     // Request body metadata
@@ -3473,8 +3430,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.rollback({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -3615,12 +3571,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.runQuery({
-     *     // Required. The parent resource name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}/documents` or
-     *     // `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *     // For example:
-     *     // `projects/my-project/databases/my-database/documents` or
-     *     // `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     // Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
      *
@@ -3770,9 +3721,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.write({
-     *     // Required. The database name. In the format:
-     *     // `projects/{project_id}/databases/{database_id}`.
-     *     // This is only required in the first message.
+     *     // Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.
      *     database: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -3947,7 +3896,7 @@ export namespace firestore_v1beta1 {
      */
     collectionId?: string;
     /**
-     * The client-assigned document ID to use for this document.  Optional. If not specified, an ID will be assigned by the service.
+     * The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service.
      */
     documentId?: string;
     /**
@@ -4029,7 +3978,7 @@ export namespace firestore_v1beta1 {
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set.  Requests with `show_missing` may not specify `where` or `order_by`.
+     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
@@ -4146,7 +4095,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.indexes.create
-     * @desc Creates the specified index. A newly created index's initial state is `CREATING`. On completion of the returned google.longrunning.Operation, the state will be `READY`. If the index already exists, the call will return an `ALREADY_EXISTS` status.  During creation, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, removing the index with delete, then re-creating the index with create.  Indexes with a single field cannot be created.
+     * @desc Creates the specified index. A newly created index's initial state is `CREATING`. On completion of the returned google.longrunning.Operation, the state will be `READY`. If the index already exists, the call will return an `ALREADY_EXISTS` status. During creation, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, removing the index with delete, then re-creating the index with create. Indexes with a single field cannot be created.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4174,8 +4123,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.create({
-     *     // The name of the database this index will apply to. For example:
-     *     // `projects/{project_id}/databases/{database_id}`
+     *     // The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`
      *     parent: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -4332,8 +4280,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.delete({
-     *     // The index name. For example:
-     *     // `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     *     // The index name. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      *     name: 'projects/my-project/databases/my-database/indexes/my-indexe',
      *   });
      *   console.log(res.data);
@@ -4462,8 +4409,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.get({
-     *     // The name of the index. For example:
-     *     // `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     *     // The name of the index. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      *     name: 'projects/my-project/databases/my-database/indexes/my-indexe',
      *   });
      *   console.log(res.data);
@@ -4611,8 +4557,7 @@ export namespace firestore_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard List page token.
      *     pageToken: 'placeholder-value',
-     *     // The database name. For example:
-     *     // `projects/{project_id}/databases/{database_id}`
+     *     // The database name. For example: `projects/{project_id}/databases/{database_id}`
      *     parent: 'projects/my-project/databases/my-database',
      *   });
      *   console.log(res.data);

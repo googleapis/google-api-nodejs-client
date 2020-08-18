@@ -12,7 +12,7 @@
   "baseUrl": "https://servicedirectory.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Service Directory",
-  "description": "Service Directory is a platform for discovering, publishing, and connecting services.\n",
+  "description": "Service Directory is a platform for discovering, publishing, and connecting services. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/service-directory",
   "fullyEncodeReservedExpansion": true,
@@ -189,12 +189,12 @@
                   ],
                   "parameters": {
                     "namespaceId": {
-                      "description": "Required. The Resource ID must be 1-63 characters long, and comply with\n<a href=\"https://www.ietf.org/rfc/rfc1035.txt\" target=\"_blank\">RFC1035</a>.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
+                      "description": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the project and location the namespace\nwill be created in.",
+                      "description": "Required. The resource name of the project and location the namespace will be created in.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -213,7 +213,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a namespace. This also deletes all services and endpoints in\nthe namespace.",
+                  "description": "Deletes a namespace. This also deletes all services and endpoints in the namespace.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
                   "httpMethod": "DELETE",
                   "id": "servicedirectory.projects.locations.namespaces.delete",
@@ -272,7 +272,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                       "required": true,
@@ -300,12 +300,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filter to list result by.\n\nGeneral filter string syntax:\n<field> <operator> <value> (<logical connector>)\n<field> can be \"name\", or \"labels.<key>\" for map field.\n<operator> can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and\nis roughly the same as \"=\".\n<value> must be the same data type as field.\n<logical connector> can be \"AND, OR, NOT\".\n\nExamples of valid filters:\n* \"labels.owner\" returns Namespaces that have a label with the key \"owner\"\n  this is the same as \"labels:owner\".\n* \"labels.protocol=gRPC\" returns Namespaces that have key/value\n  \"protocol=gRPC\".\n* \"name>projects/my-project/locations/us-east/namespaces/namespace-c\"\n  returns Namespaces that have name that is alphabetically later than the\n  string, so \"namespace-e\" will be returned but \"namespace-a\" will not be.\n* \"labels.owner!=sd AND labels.foo=bar\" returns Namespaces that have\n  \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar.\n* \"doesnotexist.foo=bar\" returns an empty list. Note that Namespace doesn't\n  have a field called \"doesnotexist\". Since the filter does not match any\n  Namespaces, it returns no results.",
+                      "description": "Optional. The filter to list result by. General filter string syntax: () can be \"name\", or \"labels.\" for map field. can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and is roughly the same as \"=\". must be the same data type as field. can be \"AND, OR, NOT\". Examples of valid filters: * \"labels.owner\" returns Namespaces that have a label with the key \"owner\" this is the same as \"labels:owner\". * \"labels.protocol=gRPC\" returns Namespaces that have key/value \"protocol=gRPC\". * \"name>projects/my-project/locations/us-east/namespaces/namespace-c\" returns Namespaces that have name that is alphabetically later than the string, so \"namespace-e\" will be returned but \"namespace-a\" will not be. * \"labels.owner!=sd AND labels.foo=bar\" returns Namespaces that have \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar. * \"doesnotexist.foo=bar\" returns an empty list. Note that Namespace doesn't have a field called \"doesnotexist\". Since the filter does not match any Namespaces, it returns no results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. The order to list result by.\n\nGeneral order by string syntax:\n<field> (<asc|desc>) (,)\n<field> allows values {\"name\"}\n<asc/desc> ascending or descending order by <field>. If this is left\nblank, \"asc\" is used.\nNote that an empty order_by string result in default order, which is order\nby name in ascending order.",
+                      "description": "Optional. The order to list result by. General order by string syntax: () (,) allows values {\"name\"} ascending or descending order by . If this is left blank, \"asc\" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.",
                       "location": "query",
                       "type": "string"
                     },
@@ -321,7 +321,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the project and location whose namespaces we'd like to\nlist.",
+                      "description": "Required. The resource name of the project and location whose namespaces we'd like to list.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -346,7 +346,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The resource name for the namespace in the format\n'projects/*/locations/*/namespaces/*'.",
+                      "description": "Immutable. The resource name for the namespace in the format 'projects/*/locations/*/namespaces/*'.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                       "required": true,
@@ -380,7 +380,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                       "required": true,
@@ -408,7 +408,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                       "required": true,
@@ -447,7 +447,7 @@
                           "type": "string"
                         },
                         "serviceId": {
-                          "description": "Required. The Resource ID must be 1-63 characters long, and comply with\n<a href=\"https://www.ietf.org/rfc/rfc1035.txt\" target=\"_blank\">RFC1035</a>.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
+                          "description": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
                           "location": "query",
                           "type": "string"
                         }
@@ -464,7 +464,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a service. This also deletes all endpoints associated with\nthe service.",
+                      "description": "Deletes a service. This also deletes all endpoints associated with the service.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/services/{servicesId}",
                       "httpMethod": "DELETE",
                       "id": "servicedirectory.projects.locations.namespaces.services.delete",
@@ -523,7 +523,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                           "required": true,
@@ -551,7 +551,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. The filter to list result by.\n\nGeneral filter string syntax:\n<field> <operator> <value> (<logical connector>)\n<field> can be \"name\", or \"metadata.<key>\" for map field.\n<operator> can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and\nis roughly the same as \"=\".\n<value> must be the same data type as field.\n<logical connector> can be \"AND, OR, NOT\".\n\nExamples of valid filters:\n* \"metadata.owner\" returns Services that have a label with the key \"owner\"\n  this is the same as \"metadata:owner\".\n* \"metadata.protocol=gRPC\" returns Services that have key/value\n  \"protocol=gRPC\".\n* \"name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c\"\n  returns Services that have name that is alphabetically later than the\n  string, so \"service-e\" will be returned but \"service-a\" will not be.\n* \"metadata.owner!=sd AND metadata.foo=bar\" returns Services that have\n  \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar.\n* \"doesnotexist.foo=bar\" returns an empty list. Note that Service doesn't\n  have a field called \"doesnotexist\". Since the filter does not match any\n  Services, it returns no results.",
+                          "description": "Optional. The filter to list result by. General filter string syntax: () can be \"name\", or \"metadata.\" for map field. can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and is roughly the same as \"=\". must be the same data type as field. can be \"AND, OR, NOT\". Examples of valid filters: * \"metadata.owner\" returns Services that have a label with the key \"owner\" this is the same as \"metadata:owner\". * \"metadata.protocol=gRPC\" returns Services that have key/value \"protocol=gRPC\". * \"name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c\" returns Services that have name that is alphabetically later than the string, so \"service-e\" will be returned but \"service-a\" will not be. * \"metadata.owner!=sd AND metadata.foo=bar\" returns Services that have \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar. * \"doesnotexist.foo=bar\" returns an empty list. Note that Service doesn't have a field called \"doesnotexist\". Since the filter does not match any Services, it returns no results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -567,12 +567,12 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. The next_page_token value returned from a previous List request,\nif any.",
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the namespace whose services we'd\nlike to list.",
+                          "description": "Required. The resource name of the namespace whose services we'd like to list.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                           "required": true,
@@ -597,7 +597,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The resource name for the service in the format\n'projects/*/locations/*/namespaces/*/services/*'.",
+                          "description": "Immutable. The resource name for the service in the format 'projects/*/locations/*/namespaces/*/services/*'.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                           "required": true,
@@ -622,7 +622,7 @@
                       ]
                     },
                     "resolve": {
-                      "description": "Returns a service and its\nassociated endpoints.\nResolving a service is not considered an active developer method.",
+                      "description": "Returns a service and its associated endpoints. Resolving a service is not considered an active developer method.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/services/{servicesId}:resolve",
                       "httpMethod": "POST",
                       "id": "servicedirectory.projects.locations.namespaces.services.resolve",
@@ -659,7 +659,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                           "required": true,
@@ -687,7 +687,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                           "required": true,
@@ -719,7 +719,7 @@
                           ],
                           "parameters": {
                             "endpointId": {
-                              "description": "Required. The Resource ID must be 1-63 characters long, and comply with\n<a href=\"https://www.ietf.org/rfc/rfc1035.txt\" target=\"_blank\">RFC1035</a>.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
+                              "description": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
                               "location": "query",
                               "type": "string"
                             },
@@ -802,7 +802,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. The filter to list result by.\n\nGeneral filter string syntax:\n<field> <operator> <value> (<logical connector>)\n<field> can be \"name\", \"address\", \"port\" or \"metadata.<key>\" for map field.\n<operator> can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and\nis roughly the same as \"=\".\n<value> must be the same data type as field.\n<logical connector> can be \"AND, OR, NOT\".\n\nExamples of valid filters:\n* \"metadata.owner\" returns Endpoints that have a label with the key \"owner\"\n  this is the same as \"metadata:owner\".\n* \"metadata.protocol=gRPC\" returns Endpoints that have key/value\n  \"protocol=gRPC\".\n* \"address=192.108.1.105\" returns Endpoints that have this address.\n* \"port>8080\" returns Endpoints that have port number larger than 8080.\n* \"name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c\"\n  returns Endpoints that have name that is alphabetically later than the\n  string, so \"endpoint-e\" will be returned but \"endpoint-a\" will not be.\n* \"metadata.owner!=sd AND metadata.foo=bar\" returns Endpoints that have\n  \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar.\n* \"doesnotexist.foo=bar\" returns an empty list. Note that Endpoint doesn't\n  have a field called \"doesnotexist\". Since the filter does not match any\n  Endpoints, it returns no results.",
+                              "description": "Optional. The filter to list result by. General filter string syntax: () can be \"name\", \"address\", \"port\" or \"metadata.\" for map field. can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS, and is roughly the same as \"=\". must be the same data type as field. can be \"AND, OR, NOT\". Examples of valid filters: * \"metadata.owner\" returns Endpoints that have a label with the key \"owner\" this is the same as \"metadata:owner\". * \"metadata.protocol=gRPC\" returns Endpoints that have key/value \"protocol=gRPC\". * \"address=192.108.1.105\" returns Endpoints that have this address. * \"port>8080\" returns Endpoints that have port number larger than 8080. * \"name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c\" returns Endpoints that have name that is alphabetically later than the string, so \"endpoint-e\" will be returned but \"endpoint-a\" will not be. * \"metadata.owner!=sd AND metadata.foo=bar\" returns Endpoints that have \"owner\" in label key but value is not \"sd\" AND have key/value foo=bar. * \"doesnotexist.foo=bar\" returns an empty list. Note that Endpoint doesn't have a field called \"doesnotexist\". Since the filter does not match any Endpoints, it returns no results.",
                               "location": "query",
                               "type": "string"
                             },
@@ -818,12 +818,12 @@
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "Optional. The next_page_token value returned from a previous List request,\nif any.",
+                              "description": "Optional. The next_page_token value returned from a previous List request, if any.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the service whose endpoints we'd like to\nlist.",
+                              "description": "Required. The resource name of the service whose endpoints we'd like to list.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                               "required": true,
@@ -848,7 +848,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. The resource name for the endpoint in the format\n'projects/*/locations/*/namespaces/*/services/*/endpoints/*'.",
+                              "description": "Immutable. The resource name for the endpoint in the format 'projects/*/locations/*/namespaces/*/services/*/endpoints/*'.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+/endpoints/[^/]+$",
                               "required": true,
@@ -883,7 +883,7 @@
       }
     }
   },
-  "revision": "20200429",
+  "revision": "20200803",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -892,45 +892,45 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
+          "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to `members`.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
     },
     "Endpoint": {
-      "description": "An individual endpoint that provides a\nservice. The service must\nalready exist to create an endpoint.",
+      "description": "An individual endpoint that provides a service. The service must already exist to create an endpoint.",
       "id": "Endpoint",
       "properties": {
         "address": {
-          "description": "Optional. An IPv4 or IPv6 address. Service Directory will reject bad\naddresses like:\n  \"8.8.8\"\n  \"8.8.8.8:53\"\n  \"test:bad:address\"\n  \"[::1]\"\n  \"[::1]:8080\"\nLimited to 45 characters.",
+          "description": "Optional. An IPv4 or IPv6 address. Service Directory will reject bad addresses like: \"8.8.8\" \"8.8.8.8:53\" \"test:bad:address\" \"[::1]\" \"[::1]:8080\" Limited to 45 characters.",
           "type": "string"
         },
         "metadata": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Metadata for the endpoint. This data can be consumed by service\nclients.  The entire metadata dictionary may contain up to 512 characters,\nspread accoss all key-value pairs. Metadata that goes beyond any these\nlimits will be rejected.",
+          "description": "Optional. Metadata for the endpoint. This data can be consumed by service clients. The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond any these limits will be rejected.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The resource name for the endpoint in the format\n'projects/*/locations/*/namespaces/*/services/*/endpoints/*'.",
+          "description": "Immutable. The resource name for the endpoint in the format 'projects/*/locations/*/namespaces/*/services/*/endpoints/*'.",
           "type": "string"
         },
         "port": {
@@ -942,23 +942,23 @@
       "type": "object"
     },
     "Expr": {
-      "description": "Represents a textual expression in the Common Expression Language (CEL)\nsyntax. CEL is a C-like expression language. The syntax and semantics of CEL\nare documented at https://github.com/google/cel-spec.\n\nExample (Comparison):\n\n    title: \"Summary size limit\"\n    description: \"Determines if a summary is less than 100 chars\"\n    expression: \"document.summary.size() < 100\"\n\nExample (Equality):\n\n    title: \"Requestor is owner\"\n    description: \"Determines if requestor is the document owner\"\n    expression: \"document.owner == request.auth.claims.email\"\n\nExample (Logic):\n\n    title: \"Public documents\"\n    description: \"Determine whether the document should be publicly visible\"\n    expression: \"document.type != 'private' && document.type != 'internal'\"\n\nExample (Data Manipulation):\n\n    title: \"Notification string\"\n    description: \"Create a notification string with a timestamp.\"\n    expression: \"'New message received at ' + string(document.create_time)\"\n\nThe exact variables and functions that may be referenced within an expression\nare determined by the service that evaluates it. See the service\ndocumentation for additional information.",
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
       "properties": {
         "description": {
-          "description": "Optional. Description of the expression. This is a longer text which\ndescribes the expression, e.g. when hovered over it in a UI.",
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
           "type": "string"
         },
         "expression": {
-          "description": "Textual representation of an expression in Common Expression Language\nsyntax.",
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
           "type": "string"
         },
         "location": {
-          "description": "Optional. String indicating the location of the expression for error\nreporting, e.g. a file name and a position in the file.",
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
           "type": "string"
         },
         "title": {
-          "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
         }
       },
@@ -970,7 +970,7 @@
       "properties": {
         "options": {
           "$ref": "GetPolicyOptions",
-          "description": "OPTIONAL: A `GetPolicyOptions` object for specifying options to\n`GetIamPolicy`."
+          "description": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
         }
       },
       "type": "object"
@@ -980,7 +980,7 @@
       "id": "GetPolicyOptions",
       "properties": {
         "requestedPolicyVersion": {
-          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -999,7 +999,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
@@ -1035,7 +1035,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
@@ -1046,7 +1046,7 @@
       "id": "ListServicesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "services": {
@@ -1064,14 +1064,14 @@
       "id": "Location",
       "properties": {
         "displayName": {
-          "description": "The friendly name for this location, typically a nearby city name.\nFor example, \"Tokyo\".",
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Cross-service attributes for the location. For example\n\n    {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
           "type": "object"
         },
         "locationId": {
@@ -1083,52 +1083,52 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata. For example the available capacity at the given\nlocation.",
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
           "type": "object"
         },
         "name": {
-          "description": "Resource name for the location, which may vary between implementations.\nFor example: `\"projects/example-project/locations/us-east1\"`",
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Namespace": {
-      "description": "A container for services.\nNamespaces allow administrators to group services together and define\npermissions for a collection of services.",
+      "description": "A container for services. Namespaces allow administrators to group services together and define permissions for a collection of services.",
       "id": "Namespace",
       "properties": {
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Resource labels associated with this Namespace.\nNo more than 64 user labels can be associated with a given resource.  Label\nkeys and values can be no longer than 63 characters.",
+          "description": "Optional. Resource labels associated with this Namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The resource name for the namespace in the format\n'projects/*/locations/*/namespaces/*'.",
+          "description": "Immutable. The resource name for the namespace in the format 'projects/*/locations/*/namespaces/*'.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a\n`condition` that determines how and when the `bindings` are applied. Each\nof the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
           "items": {
             "$ref": "Binding"
           },
           "type": "array"
         },
         "etag": {
-          "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a policy from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform policy updates in order to avoid race\nconditions: An `etag` is returned in the response to `getIamPolicy`, and\nsystems are expected to put that etag in the request to `setIamPolicy` to\nensure that their change will be applied to the same version of the policy.\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
           "format": "byte",
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -1136,15 +1136,15 @@
       "type": "object"
     },
     "ResolveServiceRequest": {
-      "description": "The request message for LookupService.ResolveService.\nLooks up a service by its name, returns the service and its endpoints.",
+      "description": "The request message for LookupService.ResolveService. Looks up a service by its name, returns the service and its endpoints.",
       "id": "ResolveServiceRequest",
       "properties": {
         "endpointFilter": {
-          "description": "Optional. The filter applied to the endpoints of the resolved service.\n\nGeneral filter string syntax:\n<field> <operator> <value> (<logical connector>)\n<field> can be \"name\" or \"metadata.<key>\" for map field.\n<operator> can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS and is\nroughly the same as \"=\".\n<value> must be the same data type as the field.\n<logical connector> can be \"AND, OR, NOT\".\n\nExamples of valid filters:\n* \"metadata.owner\" returns Endpoints that have a label with the\n  key \"owner\", this is the same as \"metadata:owner\"\n* \"metadata.protocol=gRPC\" returns Endpoints that have key/value\n  \"protocol=gRPC\"\n* \"metadata.owner!=sd AND metadata.foo=bar\" returns\n  Endpoints that have \"owner\" field in metadata with a value that is not\n  \"sd\" AND have the key/value foo=bar.",
+          "description": "Optional. The filter applied to the endpoints of the resolved service. General filter string syntax: () can be \"name\" or \"metadata.\" for map field. can be \"<, >, <=, >=, !=, =, :\". Of which \":\" means HAS and is roughly the same as \"=\". must be the same data type as the field. can be \"AND, OR, NOT\". Examples of valid filters: * \"metadata.owner\" returns Endpoints that have a label with the key \"owner\", this is the same as \"metadata:owner\" * \"metadata.protocol=gRPC\" returns Endpoints that have key/value \"protocol=gRPC\" * \"metadata.owner!=sd AND metadata.foo=bar\" returns Endpoints that have \"owner\" field in metadata with a value that is not \"sd\" AND have the key/value foo=bar.",
           "type": "string"
         },
         "maxEndpoints": {
-          "description": "Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100.\nIf a value less than one is specified, the Default is used.\nIf a value greater than the Maximum is specified, the Maximum is used.",
+          "description": "Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100. If a value less than one is specified, the Default is used. If a value greater than the Maximum is specified, the Maximum is used.",
           "format": "int32",
           "type": "integer"
         }
@@ -1162,25 +1162,26 @@
       "type": "object"
     },
     "Service": {
-      "description": "An individual service. A service contains a name and optional metadata.\nA service must exist before\nendpoints can be\nadded to it.",
+      "description": "An individual service. A service contains a name and optional metadata. A service must exist before endpoints can be added to it.",
       "id": "Service",
       "properties": {
         "endpoints": {
-          "description": "Output only. Endpoints associated with this service. Returned on LookupService.Resolve.\nControl plane clients should use RegistrationService.ListEndpoints.",
+          "description": "Output only. Endpoints associated with this service. Returned on LookupService.Resolve. Control plane clients should use RegistrationService.ListEndpoints.",
           "items": {
             "$ref": "Endpoint"
           },
+          "readOnly": true,
           "type": "array"
         },
         "metadata": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Metadata for the service. This data can be consumed by service\nclients.  The entire metadata dictionary may contain up to 2000 characters,\nspread across all key-value pairs. Metadata that goes beyond any these\nlimits will be rejected.",
+          "description": "Optional. Metadata for the service. This data can be consumed by service clients. The entire metadata dictionary may contain up to 2000 characters, spread across all key-value pairs. Metadata that goes beyond any these limits will be rejected.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The resource name for the service in the format\n'projects/*/locations/*/namespaces/*/services/*'.",
+          "description": "Immutable. The resource name for the service in the format 'projects/*/locations/*/namespaces/*/services/*'.",
           "type": "string"
         }
       },
@@ -1192,7 +1193,7 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of\nthe policy is limited to a few 10s of KB. An empty policy is a\nvalid policy but certain Cloud Platform services (such as Projects)\nmight reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
         }
       },
       "type": "object"
@@ -1202,7 +1203,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with\nwildcards (such as '*' or 'storage.*') are not allowed. For more\ninformation see\n[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -1216,7 +1217,7 @@
       "id": "TestIamPermissionsResponse",
       "properties": {
         "permissions": {
-          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is\nallowed.",
+          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
           },

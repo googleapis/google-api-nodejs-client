@@ -1391,7 +1391,7 @@
       }
     }
   },
-  "revision": "20200731",
+  "revision": "20200811",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1629,6 +1629,17 @@
         },
         "regex": {
           "description": "The user-supplied RE2 regular expression to match against the request URL path.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "I18nConfig": {
+      "description": "If provided, i18n rewrites are enabled.",
+      "id": "I18nConfig",
+      "properties": {
+        "root": {
+          "description": "Required. The user-supplied path where country and language specific content will be looked for within the public directory.",
           "type": "string"
         }
       },
@@ -1910,6 +1921,10 @@
             "$ref": "Header"
           },
           "type": "array"
+        },
+        "i18n": {
+          "$ref": "I18nConfig",
+          "description": "Optional. Defines i18n rewrite behavior."
         },
         "redirects": {
           "description": "An array of objects (called redirect rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.",

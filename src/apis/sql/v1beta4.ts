@@ -148,11 +148,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$AclEntry {
     /**
-     * The time when this access control entry expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time when this access control entry expires in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     expirationTime?: string | null;
     /**
-     * This is always &lt;b&gt;sql#aclEntry&lt;/b&gt;.
+     * This is always *sql#aclEntry*.
      */
     kind?: string | null;
     /**
@@ -190,7 +190,7 @@ export namespace sql_v1beta4 {
      */
     enabled?: boolean | null;
     /**
-     * This is always &lt;b&gt;sql#backupConfiguration&lt;/b&gt;.
+     * This is always *sql#backupConfiguration*.
      */
     kind?: string | null;
     /**
@@ -206,7 +206,7 @@ export namespace sql_v1beta4 {
      */
     replicationLogArchivingEnabled?: boolean | null;
     /**
-     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - &lt;b&gt;HH:MM&lt;/b&gt;.
+     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - *HH:MM*.
      */
     startTime?: string | null;
   }
@@ -231,11 +231,11 @@ export namespace sql_v1beta4 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * The time the backup operation completed in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time the backup operation completed in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     endTime?: string | null;
     /**
-     * The time the run was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time the run was enqueued in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     enqueuedTime?: string | null;
     /**
@@ -251,7 +251,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;b&gt;sql#backupRun&lt;/b&gt;.
+     * This is always *sql#backupRun*.
      */
     kind?: string | null;
     /**
@@ -263,7 +263,7 @@ export namespace sql_v1beta4 {
      */
     selfLink?: string | null;
     /**
-     * The time the backup operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time the backup operation actually started in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     startTime?: string | null;
     /**
@@ -275,7 +275,7 @@ export namespace sql_v1beta4 {
      */
     type?: string | null;
     /**
-     * The start time of the backup window during which this the backup was attempted in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The start time of the backup window during which this the backup was attempted in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     windowStartTime?: string | null;
   }
@@ -288,7 +288,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$BackupRun[];
     /**
-     * This is always &lt;b&gt;sql#backupRunsList&lt;/b&gt;.
+     * This is always *sql#backupRunsList*.
      */
     kind?: string | null;
     /**
@@ -309,7 +309,7 @@ export namespace sql_v1beta4 {
      */
     binLogPosition?: string | null;
     /**
-     * This is always &lt;b&gt;sql#binLogCoordinates&lt;/b&gt;.
+     * This is always *sql#binLogCoordinates*.
      */
     kind?: string | null;
   }
@@ -326,7 +326,7 @@ export namespace sql_v1beta4 {
      */
     destinationInstanceName?: string | null;
     /**
-     * This is always &lt;b&gt;sql#cloneContext&lt;/b&gt;.
+     * This is always *sql#cloneContext*.
      */
     kind?: string | null;
     /**
@@ -359,7 +359,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;b&gt;sql#database&lt;/b&gt;.
+     * This is always *sql#database*.
      */
     kind?: string | null;
     /**
@@ -381,11 +381,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DatabaseFlags {
     /**
-     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags are specified with underscores, not hyphens. For more information, see &lt;a href=&quot;/sql/docs/mysql/flags&quot;&gt;Configuring Database Flags&lt;/a&gt; in the Cloud SQL documentation.
+     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags are specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.
      */
     name?: string | null;
     /**
-     * The value of the flag. Booleans are set to &lt;b&gt;on&lt;/b&gt; for true and &lt;b&gt;off&lt;/b&gt; for false. This field must be omitted if the flag doesn&#39;t take a value.
+     * The value of the flag. Booleans are set to *on* for true and *off* for false. This field must be omitted if the flag doesn&#39;t take a value.
      */
     value?: string | null;
   }
@@ -394,7 +394,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * &lt;br&gt;&lt;b&gt;SECOND_GEN&lt;/b&gt;: Cloud SQL database instance. &lt;br&gt;&lt;b&gt;EXTERNAL&lt;/b&gt;: A database server that is not managed by Google. &lt;br&gt;This property is read-only; use the &lt;b&gt;tier&lt;/b&gt; property in the &lt;b&gt;settings&lt;/b&gt; object to determine the database type.
+     *  *SECOND_GEN*: Cloud SQL database instance. *EXTERNAL*: A database server that is not managed by Google. This property is read-only; use the *tier* property in the *settings* object to determine the database type.
      */
     backendType?: string | null;
     /**
@@ -402,11 +402,11 @@ export namespace sql_v1beta4 {
      */
     connectionName?: string | null;
     /**
-     * The current disk usage of the instance in bytes. This property has been deprecated. Use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see &lt;a href=&quot;https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ&quot;&gt;this announcement&lt;/a&gt; for details.
+     * The current disk usage of the instance in bytes. This property has been deprecated. Use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string | null;
     /**
-     * The database engine type and version. The &lt;b&gt;databaseVersion&lt;/b&gt; field cannot be changed after instance creation. &lt;br&gt;MySQL instances: &lt;b&gt;MYSQL_5_7&lt;/b&gt; (default), or &lt;b&gt;MYSQL_5_6&lt;/b&gt;. &lt;br&gt;PostgreSQL instances: &lt;b&gt;POSTGRES_9_6&lt;/b&gt; (default), or &lt;b&gt;POSTGRES_10&lt;/b&gt;, or &lt;b&gt;POSTGRES_11 Beta&lt;/b&gt;, or &lt;b&gt;POSTGRES_12&lt;/b&gt;. &lt;br&gt;SQL Server instances: &lt;b&gt;SQLSERVER_2017_STANDARD&lt;/b&gt; (default), &lt;b&gt;SQLSERVER_2017_ENTERPRISE&lt;/b&gt;, &lt;b&gt;SQLSERVER_2017_EXPRESS&lt;/b&gt;, or &lt;b&gt;SQLSERVER_2017_WEB&lt;/b&gt;.
+     * The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11* or *POSTGRES_12* (default). SQL Server instances: *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.
      */
     databaseVersion?: string | null;
     /**
@@ -418,7 +418,7 @@ export namespace sql_v1beta4 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * This field is deprecated and will be removed from a future version of the API. Use the &lt;b&gt;settings.settingsVersion&lt;/b&gt; field instead.
+     * This field is deprecated and will be removed from a future version of the API. Use the *settings.settingsVersion* field instead.
      */
     etag?: string | null;
     /**
@@ -430,7 +430,7 @@ export namespace sql_v1beta4 {
      */
     gceZone?: string | null;
     /**
-     * The instance type. This can be one of the following. &lt;br&gt;&lt;b&gt;CLOUD_SQL_INSTANCE&lt;/b&gt;: A Cloud SQL instance that is not replicating from a master. &lt;br&gt;&lt;b&gt;ON_PREMISES_INSTANCE&lt;/b&gt;: An instance running on the customer&#39;s premises. &lt;br&gt;&lt;b&gt;READ_REPLICA_INSTANCE&lt;/b&gt;: A Cloud SQL instance configured as a read-replica.
+     * The instance type. This can be one of the following. *CLOUD_SQL_INSTANCE*: A Cloud SQL instance that is not replicating from a master. *ON_PREMISES_INSTANCE*: An instance running on the customer&#39;s premises. *READ_REPLICA_INSTANCE*: A Cloud SQL instance configured as a read-replica.
      */
     instanceType?: string | null;
     /**
@@ -442,7 +442,7 @@ export namespace sql_v1beta4 {
      */
     ipv6Address?: string | null;
     /**
-     * This is always &lt;b&gt;sql#instance&lt;/b&gt;.
+     * This is always *sql#instance*.
      */
     kind?: string | null;
     /**
@@ -466,7 +466,7 @@ export namespace sql_v1beta4 {
      */
     project?: string | null;
     /**
-     * The geographical region. Can be &lt;br&gt;&lt;b&gt;us-central&lt;/b&gt; (&lt;b&gt;FIRST_GEN&lt;/b&gt; instances only) &lt;br&gt;&lt;b&gt;us-central1&lt;/b&gt; (&lt;b&gt;SECOND_GEN&lt;/b&gt; instances only) &lt;br&gt;&lt;b&gt;asia-east1&lt;/b&gt; or &lt;b&gt;europe-west1&lt;/b&gt;. &lt;br&gt;Defaults to &lt;b&gt;us-central&lt;/b&gt; or &lt;b&gt;us-central1&lt;/b&gt; depending on the instance type. The region cannot be changed after instance creation.
+     * The geographical region. Can be *us-central* (*FIRST_GEN* instances only) *us-central1* (*SECOND_GEN* instances only) *asia-east1* or *europe-west1*. Defaults to *us-central* or *us-central1* depending on the instance type. The region cannot be changed after instance creation.
      */
     region?: string | null;
     /**
@@ -502,7 +502,7 @@ export namespace sql_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. &lt;br&gt;&lt;b&gt;RUNNABLE&lt;/b&gt;: The instance is running, or is ready to run when accessed. &lt;br&gt;&lt;b&gt;SUSPENDED&lt;/b&gt;: The instance is not available, for example due to problems with billing. &lt;br&gt;&lt;b&gt;PENDING_CREATE&lt;/b&gt;: The instance is being created. &lt;br&gt;&lt;b&gt;MAINTENANCE&lt;/b&gt;: The instance is down for maintenance. &lt;br&gt;&lt;b&gt;FAILED&lt;/b&gt;: The instance creation failed. &lt;br&gt;&lt;b&gt;UNKNOWN_STATE&lt;/b&gt;: The state of the instance is unknown.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. *RUNNABLE*: The instance is running, or is ready to run when accessed. *SUSPENDED*: The instance is not available, for example due to problems with billing. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed. *UNKNOWN_STATE*: The state of the instance is unknown.
      */
     state?: string | null;
     /**
@@ -519,7 +519,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Database[];
     /**
-     * This is always &lt;b&gt;sql#databasesList&lt;/b&gt;.
+     * This is always *sql#databasesList*.
      */
     kind?: string | null;
   }
@@ -528,11 +528,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DemoteMasterConfiguration {
     /**
-     * This is always &lt;b&gt;sql#demoteMasterConfiguration&lt;/b&gt;.
+     * This is always *sql#demoteMasterConfiguration*.
      */
     kind?: string | null;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;b&gt;master.info&lt;/b&gt; in the data directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named *master.info* in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$DemoteMasterMySqlReplicaConfiguration;
   }
@@ -541,7 +541,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DemoteMasterContext {
     /**
-     * This is always &lt;b&gt;sql#demoteMasterContext&lt;/b&gt;.
+     * This is always *sql#demoteMasterContext*.
      */
     kind?: string | null;
     /**
@@ -553,7 +553,7 @@ export namespace sql_v1beta4 {
      */
     replicaConfiguration?: Schema$DemoteMasterConfiguration;
     /**
-     * Verify GTID consistency for demote operation. Default value: &lt;b&gt;True&lt;/b&gt;. Second Generation instances only.  Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
+     * Verify GTID consistency for demote operation. Default value: *True*. Second Generation instances only. Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
      */
     verifyGtidConsistency?: boolean | null;
   }
@@ -574,7 +574,7 @@ export namespace sql_v1beta4 {
      */
     clientKey?: string | null;
     /**
-     * This is always &lt;b&gt;sql#demoteMasterMysqlReplicaConfiguration&lt;/b&gt;.
+     * This is always *sql#demoteMasterMysqlReplicaConfiguration*.
      */
     kind?: string | null;
     /**
@@ -591,7 +591,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DiskEncryptionConfiguration {
     /**
-     * This is always &lt;b&gt;sql#diskEncryptionConfiguration&lt;/b&gt;.
+     * This is always *sql#diskEncryptionConfiguration*.
      */
     kind?: string | null;
     /**
@@ -604,7 +604,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DiskEncryptionStatus {
     /**
-     * This is always &lt;b&gt;sql#diskEncryptionStatus&lt;/b&gt;.
+     * This is always *sql#diskEncryptionStatus*.
      */
     kind?: string | null;
     /**
@@ -621,17 +621,21 @@ export namespace sql_v1beta4 {
      */
     csvExportOptions?: {selectQuery?: string} | null;
     /**
-     * Databases to be exported. &lt;br /&gt; &lt;b&gt;MySQL instances:&lt;/b&gt; If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt; and no database is specified, all databases are exported, except for the &lt;b&gt;mysql&lt;/b&gt; system database. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, you can specify one database, either by using this property or by using the &lt;b&gt;csvExportOptions.selectQuery&lt;/b&gt; property, which takes precedence over this property. &lt;br /&gt; &lt;b&gt;PostgreSQL instances:&lt;/b&gt; You must specify one database to be exported. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, this database must match the one specified in the &lt;b&gt;csvExportOptions.selectQuery&lt;/b&gt; property.
+     * Databases to be exported. *MySQL instances:* If *fileType* is *SQL* and no database is specified, all databases are exported, except for the *mysql* system database. If *fileType* is *CSV*, you can specify one database, either by using this property or by using the *csvExportOptions.selectQuery* property, which takes precedence over this property. *PostgreSQL instances:* You must specify one database to be exported. If *fileType* is *CSV*, this database must match the one specified in the *csvExportOptions.selectQuery* property.
      */
     databases?: string[] | null;
     /**
-     * The file type for the specified uri. &lt;br&gt;&lt;b&gt;SQL&lt;/b&gt;: The file contains SQL statements. &lt;br&gt;&lt;b&gt;CSV&lt;/b&gt;: The file contains CSV data.
+     * The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data.
      */
     fileType?: string | null;
     /**
-     * This is always &lt;b&gt;sql#exportContext&lt;/b&gt;.
+     * This is always *sql#exportContext*.
      */
     kind?: string | null;
+    /**
+     * Option for export offload.
+     */
+    offload?: boolean | null;
     /**
      * Options for exporting data as SQL statements.
      */
@@ -641,7 +645,7 @@ export namespace sql_v1beta4 {
       tables?: string[];
     } | null;
     /**
-     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;b&gt;gs: //bucketName/fileName&lt;/b&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;b&gt;fileType&lt;/b&gt; is // &lt;b&gt;SQL&lt;/b&gt; and the filename ends with .gz, the contents are // compressed.
+     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.
      */
     uri?: string | null;
   }
@@ -650,7 +654,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$FailoverContext {
     /**
-     * This is always &lt;b&gt;sql#failoverContext&lt;/b&gt;.
+     * This is always *sql#failoverContext*.
      */
     kind?: string | null;
     /**
@@ -667,11 +671,11 @@ export namespace sql_v1beta4 {
      */
     allowedIntValues?: string[] | null;
     /**
-     * For &lt;b&gt;STRING&lt;/b&gt; flags, a list of strings that the value can be set to.
+     * For *STRING* flags, a list of strings that the value can be set to.
      */
     allowedStringValues?: string[] | null;
     /**
-     * The database version this flag applies to. Can be &lt;b&gt;MYSQL_5_5&lt;/b&gt;, &lt;b&gt;MYSQL_5_6&lt;/b&gt;, or &lt;b&gt;MYSQL_5_7&lt;/b&gt;. &lt;b&gt;MYSQL_5_7&lt;/b&gt; is applicable only to Second Generation instances.
+     * The database version this flag applies to. Can be *MYSQL_5_5*, *MYSQL_5_6*, or *MYSQL_5_7*. *MYSQL_5_7* is applicable only to Second Generation instances.
      */
     appliesTo?: string[] | null;
     /**
@@ -679,19 +683,19 @@ export namespace sql_v1beta4 {
      */
     inBeta?: boolean | null;
     /**
-     * This is always &lt;b&gt;sql#flag&lt;/b&gt;.
+     * This is always *sql#flag*.
      */
     kind?: string | null;
     /**
-     * For &lt;b&gt;INTEGER&lt;/b&gt; flags, the maximum allowed value.
+     * For *INTEGER* flags, the maximum allowed value.
      */
     maxValue?: string | null;
     /**
-     * For &lt;b&gt;INTEGER&lt;/b&gt; flags, the minimum allowed value.
+     * For *INTEGER* flags, the minimum allowed value.
      */
     minValue?: string | null;
     /**
-     * This is the name of the flag. Flag names always use underscores, not hyphens, for example: &lt;b&gt;max_allowed_packet&lt;/b&gt;
+     * This is the name of the flag. Flag names always use underscores, not hyphens, for example: *max_allowed_packet*
      */
     name?: string | null;
     /**
@@ -699,7 +703,7 @@ export namespace sql_v1beta4 {
      */
     requiresRestart?: boolean | null;
     /**
-     * The type of the flag. Flags are typed to being &lt;b&gt;BOOLEAN&lt;/b&gt;, &lt;b&gt;STRING&lt;/b&gt;, &lt;b&gt;INTEGER&lt;/b&gt; or &lt;b&gt;NONE&lt;/b&gt;. &lt;b&gt;NONE&lt;/b&gt; is used for flags which do not take a value, such as &lt;b&gt;skip_grant_tables&lt;/b&gt;.
+     * The type of the flag. Flags are typed to being *BOOLEAN*, *STRING*, *INTEGER* or *NONE*. *NONE* is used for flags which do not take a value, such as *skip_grant_tables*.
      */
     type?: string | null;
   }
@@ -712,7 +716,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Flag[];
     /**
-     * This is always &lt;b&gt;sql#flagsList&lt;/b&gt;.
+     * This is always *sql#flagsList*.
      */
     kind?: string | null;
   }
@@ -735,11 +739,11 @@ export namespace sql_v1beta4 {
      */
     csvImportOptions?: {columns?: string[]; table?: string} | null;
     /**
-     * The target database for the import. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt;, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, one database must be specified.
+     * The target database for the import. If *fileType* is *SQL*, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If *fileType* is *CSV*, one database must be specified.
      */
     database?: string | null;
     /**
-     * The file type for the specified uri. &lt;br&gt;&lt;b&gt;SQL&lt;/b&gt;: The file contains SQL statements. &lt;br&gt;&lt;b&gt;CSV&lt;/b&gt;: The file contains CSV data.
+     * The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data.
      */
     fileType?: string | null;
     /**
@@ -747,11 +751,11 @@ export namespace sql_v1beta4 {
      */
     importUser?: string | null;
     /**
-     * This is always &lt;b&gt;sql#importContext&lt;/b&gt;.
+     * This is always *sql#importContext*.
      */
     kind?: string | null;
     /**
-     * Path to the import file in Cloud Storage, in the form &lt;b&gt;gs: //bucketName/fileName&lt;/b&gt;. Compressed gzip files (.gz) are supported // when &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt;. The instance must have // write permissions to the bucket and read access to the file.
+     * Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.
      */
     uri?: string | null;
   }
@@ -809,7 +813,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$DatabaseInstance[];
     /**
-     * This is always &lt;b&gt;sql#instancesList&lt;/b&gt;.
+     * This is always *sql#instancesList*.
      */
     kind?: string | null;
     /**
@@ -831,7 +835,7 @@ export namespace sql_v1beta4 {
      */
     certs?: Schema$SslCert[];
     /**
-     * This is always &lt;b&gt;sql#instancesListServerCas&lt;/b&gt;.
+     * This is always *sql#instancesListServerCas*.
      */
     kind?: string | null;
   }
@@ -867,7 +871,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (for example: &lt;b&gt;192.168.100.0/24&lt;/b&gt;).
+     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (for example: *192.168.100.0/24*).
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
@@ -875,7 +879,7 @@ export namespace sql_v1beta4 {
      */
     ipv4Enabled?: boolean | null;
     /**
-     * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, &lt;b&gt;/projects/myProject/global/networks/default&lt;/b&gt;. This setting can be updated, but it cannot be removed after it is set.
+     * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, x/projects/myProject/global/networks/default*. This setting can be updated, but it cannot be removed after it is set.
      */
     privateNetwork?: string | null;
     /**
@@ -892,11 +896,11 @@ export namespace sql_v1beta4 {
      */
     ipAddress?: string | null;
     /**
-     * The due time for this IP to be retired in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;. This field is only available when the IP is scheduled to be retired.
+     * The due time for this IP to be retired in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*. This field is only available when the IP is scheduled to be retired.
      */
     timeToRetire?: string | null;
     /**
-     * The type of this IP address. A &lt;b&gt;PRIMARY&lt;/b&gt; address is a public address that can accept incoming connections. A &lt;b&gt;PRIVATE&lt;/b&gt; address is a private address that can accept incoming connections. An &lt;b&gt;OUTGOING&lt;/b&gt; address is the source address of connections originating from the instance, if supported.
+     * The type of this IP address. A *PRIMARY* address is a public address that can accept incoming connections. A *PRIVATE* address is a private address that can accept incoming connections. An *OUTGOING* address is the source address of connections originating from the instance, if supported.
      */
     type?: string | null;
   }
@@ -909,7 +913,7 @@ export namespace sql_v1beta4 {
      */
     followGaeApplication?: string | null;
     /**
-     * This is always &lt;b&gt;sql#locationPreference&lt;/b&gt;.
+     * This is always *sql#locationPreference*.
      */
     kind?: string | null;
     /**
@@ -930,11 +934,11 @@ export namespace sql_v1beta4 {
      */
     hour?: number | null;
     /**
-     * This is always &lt;b&gt;sql#maintenanceWindow&lt;/b&gt;.
+     * This is always *sql#maintenanceWindow*.
      */
     kind?: string | null;
     /**
-     * Maintenance timing setting: &lt;b&gt;canary&lt;/b&gt; (Earlier) or &lt;b&gt;stable&lt;/b&gt; (Later). &lt;br /&gt;&lt;a href=&quot;/sql/docs/db_path/instance-settings#maintenance-timing-2ndgen&quot;&gt; Learn more&lt;/a&gt;.
+     * Maintenance timing setting: *canary* (Earlier) or *stable* (Later). Learn more.
      */
     updateTrack?: string | null;
   }
@@ -963,7 +967,7 @@ export namespace sql_v1beta4 {
      */
     dumpFilePath?: string | null;
     /**
-     * This is always &lt;b&gt;sql#mysqlReplicaConfiguration&lt;/b&gt;.
+     * This is always *sql#mysqlReplicaConfiguration*.
      */
     kind?: string | null;
     /**
@@ -1012,7 +1016,7 @@ export namespace sql_v1beta4 {
      */
     hostPort?: string | null;
     /**
-     * This is always &lt;b&gt;sql#onPremisesConfiguration&lt;/b&gt;.
+     * This is always *sql#onPremisesConfiguration*.
      */
     kind?: string | null;
     /**
@@ -1025,11 +1029,11 @@ export namespace sql_v1beta4 {
     username?: string | null;
   }
   /**
-   * An Operation resource.&amp;nbsp;For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
+   * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
    */
   export interface Schema$Operation {
     /**
-     * The time this operation finished in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time this operation finished in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     endTime?: string | null;
     /**
@@ -1045,11 +1049,11 @@ export namespace sql_v1beta4 {
      */
     importContext?: Schema$ImportContext;
     /**
-     * The time this operation was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time this operation was enqueued in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     insertTime?: string | null;
     /**
-     * This is always &lt;b&gt;sql#operation&lt;/b&gt;.
+     * This is always *sql#operation*.
      */
     kind?: string | null;
     /**
@@ -1057,7 +1061,7 @@ export namespace sql_v1beta4 {
      */
     name?: string | null;
     /**
-     * The type of the operation. Valid values are: &lt;br&gt;&lt;b&gt;CREATE&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE&lt;/b&gt; &lt;br&gt;&lt;b&gt;UPDATE&lt;/b&gt; &lt;br&gt;&lt;b&gt;RESTART&lt;/b&gt; &lt;br&gt;&lt;b&gt;IMPORT&lt;/b&gt; &lt;br&gt;&lt;b&gt;EXPORT&lt;/b&gt; &lt;br&gt;&lt;b&gt;BACKUP_VOLUME&lt;/b&gt; &lt;br&gt;&lt;b&gt;RESTORE_VOLUME&lt;/b&gt; &lt;br&gt;&lt;b&gt;CREATE_USER&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE_USER&lt;/b&gt; &lt;br&gt;&lt;b&gt;CREATE_DATABASE&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE_DATABASE&lt;/b&gt;
+     * The type of the operation. Valid values are: *CREATE* *DELETE* *UPDATE* *RESTART* *IMPORT* *EXPORT* *BACKUP_VOLUME* *RESTORE_VOLUME* *CREATE_USER* *DELETE_USER* *CREATE_DATABASE* *DELETE_DATABASE*
      */
     operationType?: string | null;
     /**
@@ -1065,11 +1069,11 @@ export namespace sql_v1beta4 {
      */
     selfLink?: string | null;
     /**
-     * The time this operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time this operation actually started in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     startTime?: string | null;
     /**
-     * The status of an operation. Valid values are: &lt;br&gt;&lt;b&gt;PENDING&lt;/b&gt; &lt;br&gt;&lt;b&gt;RUNNING&lt;/b&gt; &lt;br&gt;&lt;b&gt;DONE&lt;/b&gt; &lt;br&gt;&lt;b&gt;SQL_OPERATION_STATUS_UNSPECIFIED&lt;/b&gt;
+     * The status of an operation. Valid values are: *PENDING* *RUNNING* *DONE* *SQL_OPERATION_STATUS_UNSPECIFIED*
      */
     status?: string | null;
     /**
@@ -1095,7 +1099,7 @@ export namespace sql_v1beta4 {
      */
     code?: string | null;
     /**
-     * This is always &lt;b&gt;sql#operationError&lt;/b&gt;.
+     * This is always *sql#operationError*.
      */
     kind?: string | null;
     /**
@@ -1112,7 +1116,7 @@ export namespace sql_v1beta4 {
      */
     errors?: Schema$OperationError[];
     /**
-     * This is always &lt;b&gt;sql#operationErrors&lt;/b&gt;.
+     * This is always *sql#operationErrors*.
      */
     kind?: string | null;
   }
@@ -1125,7 +1129,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Operation[];
     /**
-     * This is always &lt;b&gt;sql#operationsList&lt;/b&gt;.
+     * This is always *sql#operationsList*.
      */
     kind?: string | null;
     /**
@@ -1138,15 +1142,15 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$ReplicaConfiguration {
     /**
-     * Specifies if the replica is the failover target. If the field is set to &lt;b&gt;true&lt;/b&gt; the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance.  &lt;p&gt;Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
+     * Specifies if the replica is the failover target. If the field is set to *true* the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
      */
     failoverTarget?: boolean | null;
     /**
-     * This is always &lt;b&gt;sql#replicaConfiguration&lt;/b&gt;.
+     * This is always *sql#replicaConfiguration*.
      */
     kind?: string | null;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;b&gt;master.info&lt;/b&gt; in the data directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named *master.info* in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
@@ -1156,7 +1160,7 @@ export namespace sql_v1beta4 {
      */
     rescheduleType?: string | null;
     /**
-     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     scheduleTime?: string | null;
   }
@@ -1173,7 +1177,7 @@ export namespace sql_v1beta4 {
      */
     instanceId?: string | null;
     /**
-     * This is always &lt;b&gt;sql#restoreBackupContext&lt;/b&gt;.
+     * This is always *sql#restoreBackupContext*.
      */
     kind?: string | null;
     /**
@@ -1186,7 +1190,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$RotateServerCaContext {
     /**
-     * This is always &lt;b&gt;sql#rotateServerCaContext&lt;/b&gt;.
+     * This is always *sql#rotateServerCaContext*.
      */
     kind?: string | null;
     /**
@@ -1199,7 +1203,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$Settings {
     /**
-     * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values:   &lt;br&gt;&lt;b&gt;ALWAYS&lt;/b&gt;: The instance is on, and remains so even in the absence of connection requests.   &lt;br&gt;&lt;b&gt;NEVER&lt;/b&gt;: The instance is off; it is not activated, even if a   connection request arrives.
+     * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: *ALWAYS*: The instance is on, and remains so even in the absence of connection requests. *NEVER*: The instance is off; it is not activated, even if a connection request arrives.
      */
     activationPolicy?: string | null;
     /**
@@ -1207,7 +1211,7 @@ export namespace sql_v1beta4 {
      */
     authorizedGaeApplications?: string[] | null;
     /**
-     * Availability type. Potential values:   &lt;br&gt;&lt;b&gt;ZONAL&lt;/b&gt;: The instance serves data from only one zone. Outages in that zone affect data accessibility.   &lt;br&gt;&lt;b&gt;REGIONAL&lt;/b&gt;: The instance can serve data from more than one zone   in a region (it is highly available). &lt;br&gt;For more information, see &lt;a href=&quot;/sql/docs/postgres/high-availability&quot;&gt; Overview of the High Availability Configuration&lt;/a&gt;.
+     * Availability type. Potential values: *ZONAL*: The instance serves data from only one zone. Outages in that zone affect data accessibility. *REGIONAL*: The instance can serve data from more than one zone in a region (it is highly available). For more information, see Overview of the High Availability Configuration.
      */
     availabilityType?: string | null;
     /**
@@ -1243,7 +1247,7 @@ export namespace sql_v1beta4 {
      */
     ipConfiguration?: Schema$IpConfiguration;
     /**
-     * This is always &lt;b&gt;sql#settings&lt;/b&gt;.
+     * This is always *sql#settings*.
      */
     kind?: string | null;
     /**
@@ -1255,11 +1259,11 @@ export namespace sql_v1beta4 {
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * The pricing plan for this instance. This can be either &lt;b&gt;PER_USE&lt;/b&gt; or &lt;b&gt;PACKAGE&lt;/b&gt;. Only &lt;b&gt;PER_USE&lt;/b&gt; is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either *PER_USE* or *PACKAGE*. Only *PER_USE* is supported for Second Generation instances.
      */
     pricingPlan?: string | null;
     /**
-     * The type of replication this instance uses. This can be either &lt;b&gt;ASYNCHRONOUS&lt;/b&gt; or &lt;b&gt;SYNCHRONOUS&lt;/b&gt;. (Deprecated_ This property was only applicable to First Generation instances.
+     * The type of replication this instance uses. This can be either *ASYNCHRONOUS* or *SYNCHRONOUS*. (Deprecated_ This property was only applicable to First Generation instances.
      */
     replicationType?: string | null;
     /**
@@ -1275,7 +1279,7 @@ export namespace sql_v1beta4 {
      */
     storageAutoResizeLimit?: string | null;
     /**
-     * The tier (or machine type) for this instance, for example &lt;b&gt;db-n1-standard-1&lt;/b&gt; (MySQL instances) or &lt;b&gt;db-custom-1-3840&lt;/b&gt; (PostgreSQL instances).
+     * The tier (or machine type) for this instance, for example *db-n1-standard-1* (MySQL instances) or *db-custom-1-3840* (PostgreSQL instances).
      */
     tier?: string | null;
     /**
@@ -1292,7 +1296,7 @@ export namespace sql_v1beta4 {
      */
     detail?: string | null;
     /**
-     * This is always &lt;b&gt;sql#migrationSettingError&lt;/b&gt;.
+     * This is always *sql#migrationSettingError*.
      */
     kind?: string | null;
     /**
@@ -1318,7 +1322,7 @@ export namespace sql_v1beta4 {
      */
     errors?: Schema$SqlExternalSyncSettingError[];
     /**
-     * This is always &lt;b&gt;sql#migrationSettingErrorList&lt;/b&gt;.
+     * This is always *sql#migrationSettingErrorList*.
      */
     kind?: string | null;
   }
@@ -1375,15 +1379,15 @@ export namespace sql_v1beta4 {
      */
     certSerialNumber?: string | null;
     /**
-     * User supplied name.  Constrained to [a-zA-Z.-_ ]+.
+     * User supplied name. Constrained to [a-zA-Z.-_ ]+.
      */
     commonName?: string | null;
     /**
-     * The time when the certificate was created in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;
+     * The time when the certificate was created in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*
      */
     createTime?: string | null;
     /**
-     * The time when the certificate expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
+     * The time when the certificate expires in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
     expirationTime?: string | null;
     /**
@@ -1391,7 +1395,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;b&gt;sql#sslCert&lt;/b&gt;.
+     * This is always *sql#sslCert*.
      */
     kind?: string | null;
     /**
@@ -1412,7 +1416,7 @@ export namespace sql_v1beta4 {
      */
     certInfo?: Schema$SslCert;
     /**
-     * The private key for the client cert, in pem format.  Keep private in order to protect your security.
+     * The private key for the client cert, in pem format. Keep private in order to protect your security.
      */
     certPrivateKey?: string | null;
   }
@@ -1430,7 +1434,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$SslCertsInsertRequest {
     /**
-     * User supplied name.  Must be a distinct name from the other certificates for this instance.
+     * User supplied name. Must be a distinct name from the other certificates for this instance.
      */
     commonName?: string | null;
   }
@@ -1443,7 +1447,7 @@ export namespace sql_v1beta4 {
      */
     clientCert?: Schema$SslCertDetail;
     /**
-     * This is always &lt;b&gt;sql#sslCertsInsert&lt;/b&gt;.
+     * This is always *sql#sslCertsInsert*.
      */
     kind?: string | null;
     /**
@@ -1451,7 +1455,7 @@ export namespace sql_v1beta4 {
      */
     operation?: Schema$Operation;
     /**
-     * The server Certificate Authority&#39;s certificate.  If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
+     * The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
      */
     serverCaCert?: Schema$SslCert;
   }
@@ -1464,7 +1468,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$SslCert[];
     /**
-     * This is always &lt;b&gt;sql#sslCertsList&lt;/b&gt;.
+     * This is always *sql#sslCertsList*.
      */
     kind?: string | null;
   }
@@ -1477,7 +1481,7 @@ export namespace sql_v1beta4 {
      */
     DiskQuota?: string | null;
     /**
-     * This is always &lt;b&gt;sql#tier&lt;/b&gt;.
+     * This is always *sql#tier*.
      */
     kind?: string | null;
     /**
@@ -1489,7 +1493,7 @@ export namespace sql_v1beta4 {
      */
     region?: string[] | null;
     /**
-     * An identifier for the machine type, for example, db-n1-standard-1. For related information, see &lt;a href=&quot;/sql/pricing&quot;&gt;Pricing&lt;/a&gt;.
+     * An identifier for the machine type, for example, db-n1-standard-1. For related information, see Pricing.
      */
     tier?: string | null;
   }
@@ -1502,7 +1506,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Tier[];
     /**
-     * This is always &lt;b&gt;sql#tiersList&lt;/b&gt;.
+     * This is always *sql#tiersList*.
      */
     kind?: string | null;
   }
@@ -1511,11 +1515,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$TruncateLogContext {
     /**
-     * This is always &lt;b&gt;sql#truncateLogContext&lt;/b&gt;.
+     * This is always *sql#truncateLogContext*.
      */
     kind?: string | null;
     /**
-     * The type of log to truncate. Valid values are &lt;b&gt;MYSQL_GENERAL_TABLE&lt;/b&gt; and &lt;b&gt;MYSQL_SLOW_TABLE&lt;/b&gt;.
+     * The type of log to truncate. Valid values are *MYSQL_GENERAL_TABLE* and *MYSQL_SLOW_TABLE*.
      */
     logType?: string | null;
   }
@@ -1528,19 +1532,19 @@ export namespace sql_v1beta4 {
      */
     etag?: string | null;
     /**
-     * The host name from which the user can connect. For &lt;b&gt;insert&lt;/b&gt; operations, host defaults to an empty string. For &lt;b&gt;update&lt;/b&gt; operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
+     * The host name from which the user can connect. For *insert* operations, host defaults to an empty string. For *update* operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
      */
     host?: string | null;
     /**
-     * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified on the URL.
+     * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for *update* since it is already specified on the URL.
      */
     instance?: string | null;
     /**
-     * This is always &lt;b&gt;sql#user&lt;/b&gt;.
+     * This is always *sql#user*.
      */
     kind?: string | null;
     /**
-     * The name of the user in the Cloud SQL instance. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified in the URL.
+     * The name of the user in the Cloud SQL instance. Can be omitted for *update* since it is already specified in the URL.
      */
     name?: string | null;
     /**
@@ -1548,10 +1552,14 @@ export namespace sql_v1beta4 {
      */
     password?: string | null;
     /**
-     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified on the URL.
+     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for *update* since it is already specified on the URL.
      */
     project?: string | null;
     sqlserverUserDetails?: Schema$SqlServerUserDetails;
+    /**
+     * The user type. It determines the method to authenticate the user during login. The default is the database&#39;s built-in user type.
+     */
+    type?: string | null;
   }
   /**
    * User list response.
@@ -1562,7 +1570,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$User[];
     /**
-     * This is always &lt;b&gt;sql#usersList&lt;/b&gt;.
+     * This is always *sql#usersList*.
      */
     kind?: string | null;
     /**
@@ -1607,9 +1615,7 @@ export namespace sql_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.backupRuns.delete({
-     *     // The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
-     *     // href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
-     *     // method.
+     *     // The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      *     id: 'placeholder-value',
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
@@ -1647,7 +1653,7 @@ export namespace sql_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the <a href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a> method.
+     * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2096,8 +2102,7 @@ export namespace sql_v1beta4 {
      *     instance: 'placeholder-value',
      *     // Maximum number of backup runs per response.
      *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of
-     *     // results to view.
+     *     // A previously-returned page token representing part of the larger set of results to view.
      *     pageToken: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
@@ -2216,7 +2221,7 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Backupruns$Delete
     extends StandardParameters {
     /**
-     * The ID of the Backup Run to delete. To find a Backup Run ID, use the <a href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a> method.
+     * The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      */
     id?: string;
     /**
@@ -3361,8 +3366,7 @@ export namespace sql_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.flags.list({
-     *     // Database type and version you want to retrieve flags for. By default, this
-     *     // method returns flags for all database types and versions.
+     *     // Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
      *     databaseVersion: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3661,8 +3665,7 @@ export namespace sql_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.instances.clone({
-     *     // The ID of the Cloud SQL instance to be cloned (source). This does not
-     *     // include the project ID.
+     *     // The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      *     instance: 'placeholder-value',
      *     // Project ID of the source as well as the clone Cloud SQL instance.
      *     project: 'placeholder-value',
@@ -4581,7 +4584,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.import
-     * @desc Imports data into a Cloud SQL instance from a SQL dump  or CSV file in Cloud Storage.
+     * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in Cloud Storage.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4765,8 +4768,7 @@ export namespace sql_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.instances.insert({
-     *     // Project ID of the project to which the newly created Cloud SQL instances
-     *     // should belong.
+     *     // Project ID of the project to which the newly created Cloud SQL instances should belong.
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4949,20 +4951,11 @@ export namespace sql_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.instances.list({
-     *     // A filter expression that filters resources listed in the response.
-     *     // The expression is in the form of field:value. For example,
-     *     // 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per
-     *     // their JSON representation, such as 'settings.userLabels.auto_start:true'.
-     *     //
-     *     // Multiple filter queries are space-separated. For example.
-     *     // 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each
-     *     // expression is an AND expression. However, you can include AND and OR
-     *     // expressions explicitly.
+     *     // A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      *     filter: 'placeholder-value',
      *     // The maximum number of results to return per response.
      *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of
-     *     // results to view.
+     *     // A previously-returned page token representing part of the larger set of results to view.
      *     pageToken: 'placeholder-value',
      *     // Project ID of the project for which to list Cloud SQL instances.
      *     project: 'placeholder-value',
@@ -4987,7 +4980,7 @@ export namespace sql_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
@@ -6954,7 +6947,7 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
+     * A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      */
     filter?: string;
     /**
@@ -7304,8 +7297,7 @@ export namespace sql_v1beta4 {
      *     instance: 'placeholder-value',
      *     // Maximum number of operations per response.
      *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of
-     *     // results to view.
+     *     // A previously-returned page token representing part of the larger set of results to view.
      *     pageToken: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
@@ -8314,7 +8306,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.sslCerts.get
-     * @desc Retrieves a particular SSL certificate.  Does not include the private key (required for usage).  The private key must be saved from the response to initial creation.
+     * @desc Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8461,7 +8453,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.sslCerts.insert
-     * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority.  The new certificate will not be usable until the instance is restarted.
+     * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8833,7 +8825,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.tiers.list
-     * @desc Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see <a href="/sql/pricing">Pricing</a>.
+     * @desc Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see Pricing.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9184,7 +9176,8 @@ export namespace sql_v1beta4 {
      *       //   "name": "my_name",
      *       //   "password": "my_password",
      *       //   "project": "my_project",
-     *       //   "sqlserverUserDetails": {}
+     *       //   "sqlserverUserDetails": {},
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -9495,7 +9488,8 @@ export namespace sql_v1beta4 {
      *       //   "name": "my_name",
      *       //   "password": "my_password",
      *       //   "project": "my_project",
-     *       //   "sqlserverUserDetails": {}
+     *       //   "sqlserverUserDetails": {},
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });

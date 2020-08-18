@@ -132,7 +132,7 @@ export namespace file_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -178,7 +178,7 @@ export namespace file_v1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
     name?: string | null;
     /**
@@ -292,7 +292,7 @@ export namespace file_v1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
-     * Exclusion duration. No restrictions on the possible values.  When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
      */
     duration?: string | null;
     /**
@@ -317,7 +317,7 @@ export namespace file_v1 {
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -325,7 +325,7 @@ export namespace file_v1 {
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
     /**
-     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration.  Field is mandatory and must not be empty.
+     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
     tier?: string | null;
   }
@@ -379,7 +379,7 @@ export namespace file_v1 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * A list of instances in the project for the specified location.  If the {location} value in the request is &quot;-&quot;, the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the &quot;unreachable&quot; field will be populated with a list of unreachable locations.
+     * A list of instances in the project for the specified location. If the {location} value in the request is &quot;-&quot;, the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the &quot;unreachable&quot; field will be populated with a list of unreachable locations.
      */
     instances?: Schema$Instance[];
     /**
@@ -426,7 +426,7 @@ export namespace file_v1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -476,7 +476,7 @@ export namespace file_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -484,7 +484,7 @@ export namespace file_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -522,7 +522,7 @@ export namespace file_v1 {
     verb?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -530,7 +530,7 @@ export namespace file_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -721,8 +721,7 @@ export namespace file_v1 {
      *   const res = await file.projects.locations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
-     *     // If true, the returned list will include locations which are not yet
-     *     // revealed.
+     *     // If true, the returned list will include locations which are not yet revealed.
      *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -907,12 +906,9 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.create({
-     *     // Required. The name of the instance to create.
-     *     // The name must be unique for the specified project and location.
+     *     // Required. The name of the instance to create. The name must be unique for the specified project and location.
      *     instanceId: 'placeholder-value',
-     *     // Required. The instance's project and location, in the format
-     *     // projects/{project_id}/locations/{location}. In Cloud Filestore,
-     *     // locations map to GCP zones, for example **us-west1-b**.
+     *     // Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1066,8 +1062,7 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.delete({
-     *     // Required. The instance resource name, in the format
-     *     // projects/{project_id}/locations/{location}/instances/{instance_id}
+     *     // Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1199,8 +1194,7 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.get({
-     *     // Required. The instance resource name, in the format
-     *     // projects/{project_id}/locations/{location}/instances/{instance_id}.
+     *     // Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1343,14 +1337,9 @@ export namespace file_v1 {
      *     orderBy: 'placeholder-value',
      *     // The maximum number of items to return.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value to use if there are additional
-     *     // results to retrieve for this list request.
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve instance information,
-     *     // in the format projects/{project_id}/locations/{location}. In Cloud
-     *     // Filestore, locations map to GCP zones, for example **us-west1-b**. To
-     *     // retrieve instance information for all locations, use "-" for the {location}
-     *     // value.
+     *     // Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1492,16 +1481,9 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.patch({
-     *     // Output only. The resource name of the instance, in the format
-     *     // projects/{project}/locations/{location}/instances/{instance}.
+     *     // Output only. The resource name of the instance, in the format projects/{project}/locations/{location}/instances/{instance}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *     // Mask of fields to update.  At least one path must be supplied in this
-     *     // field.  The elements of the repeated paths field may only include these
-     *     // fields:
-     *     //
-     *     // * "description"
-     *     // * "file_shares"
-     *     // * "labels"
+     *     // Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1543,7 +1525,7 @@ export namespace file_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project}/locations/{location}/instances/{instance}.
-     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
+     * @param {string=} params.updateMask Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1686,7 +1668,7 @@ export namespace file_v1 {
      */
     name?: string;
     /**
-     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
+     * Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
      */
     updateMask?: string;
 
@@ -1704,7 +1686,7 @@ export namespace file_v1 {
 
     /**
      * file.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1963,7 +1945,7 @@ export namespace file_v1 {
 
     /**
      * file.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2095,7 +2077,7 @@ export namespace file_v1 {
 
     /**
      * file.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

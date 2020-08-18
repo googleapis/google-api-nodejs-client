@@ -282,6 +282,15 @@ export namespace firebasehosting_v1beta1 {
     regex?: string | null;
   }
   /**
+   * If provided, i18n rewrites are enabled.
+   */
+  export interface Schema$I18nConfig {
+    /**
+     * Required. The user-supplied path where country and language specific content will be looked for within the public directory.
+     */
+    root?: string | null;
+  }
+  /**
    * The response to listing Domains.
    */
   export interface Schema$ListDomainsResponse {
@@ -476,6 +485,10 @@ export namespace firebasehosting_v1beta1 {
      * An array of objects, where each object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
      */
     headers?: Schema$Header[];
+    /**
+     * Optional. Defines i18n rewrite behavior.
+     */
+    i18n?: Schema$I18nConfig;
     /**
      * An array of objects (called redirect rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
      */

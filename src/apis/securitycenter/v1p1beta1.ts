@@ -371,6 +371,10 @@ export namespace securitycenter_v1p1beta1 {
      */
     securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
     /**
+     * The severity of the finding.
+     */
+    severity?: string | null;
+    /**
      * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
      */
     sourceProperties?: {[key: string]: any} | null;
@@ -4556,6 +4560,7 @@ export namespace securitycenter_v1p1beta1 {
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
+     *       //   "severity": "my_severity",
      *       //   "sourceProperties": {},
      *       //   "state": "my_state"
      *       // }
@@ -4573,6 +4578,7 @@ export namespace securitycenter_v1p1beta1 {
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
      *   //   "sourceProperties": {},
      *   //   "state": "my_state"
      *   // }
@@ -5050,6 +5056,7 @@ export namespace securitycenter_v1p1beta1 {
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
+     *       //   "severity": "my_severity",
      *       //   "sourceProperties": {},
      *       //   "state": "my_state"
      *       // }
@@ -5067,6 +5074,7 @@ export namespace securitycenter_v1p1beta1 {
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
      *   //   "sourceProperties": {},
      *   //   "state": "my_state"
      *   // }
@@ -5233,6 +5241,7 @@ export namespace securitycenter_v1p1beta1 {
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
      *   //   "sourceProperties": {},
      *   //   "state": "my_state"
      *   // }

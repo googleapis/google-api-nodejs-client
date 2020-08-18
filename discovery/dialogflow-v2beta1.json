@@ -4486,9 +4486,20 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200810",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
+    "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata": {
+      "description": "Metadata associated with the long running operation for Versions.CreateVersion.",
+      "id": "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata",
+      "properties": {
+        "version": {
+          "description": "Name of the created version. Format: `projects//locations//agents//flows//versions/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ExportAgentResponse": {
       "description": "The response message for Agents.ExportAgent.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportAgentResponse",
@@ -4692,7 +4703,8 @@
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment",
       "properties": {
         "allowPlaybackInterruption": {
-          "description": "Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.",
+          "description": "Output only. Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.",
+          "readOnly": true,
           "type": "boolean"
         },
         "audio": {
@@ -4727,7 +4739,8 @@
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio",
       "properties": {
         "allowPlaybackInterruption": {
-          "description": "Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.",
+          "description": "Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.",
+          "readOnly": true,
           "type": "boolean"
         },
         "audioUri": {
@@ -4742,7 +4755,8 @@
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
       "properties": {
         "allowPlaybackInterruption": {
-          "description": "Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.",
+          "description": "Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.",
+          "readOnly": true,
           "type": "boolean"
         },
         "text": {
@@ -9285,6 +9299,17 @@
         },
         "source": {
           "description": "Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata": {
+      "description": "Metadata associated with the long running operation for Versions.CreateVersion.",
+      "id": "GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata",
+      "properties": {
+        "version": {
+          "description": "Name of the created version. Format: `projects//locations//agents//flows//versions/`.",
           "type": "string"
         }
       },

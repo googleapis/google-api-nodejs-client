@@ -15,7 +15,7 @@
   "baseUrl": "https://games.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Games",
-  "description": "The Google Play games service allows developers to enhance games with social leaderboards,\n    achievements, game state, sign-in with Google, and more.",
+  "description": "The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/games/",
   "icons": {
@@ -122,7 +122,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of achievement resources to return in the response, used\nfor paging. For any response, the actual number of achievement resources\nreturned may be less than the specified `maxResults`.",
+              "description": "The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -146,7 +146,7 @@
     "achievements": {
       "methods": {
         "increment": {
-          "description": "Increments the steps of the achievement with the given ID for the currently\nauthenticated player.",
+          "description": "Increments the steps of the achievement with the given ID for the currently authenticated player.",
           "flatPath": "games/v1/achievements/{achievementId}/increment",
           "httpMethod": "POST",
           "id": "games.achievements.increment",
@@ -162,7 +162,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "A randomly generated numeric ID for each request specified by the caller.\nThis number is used at the server to ensure that the request is handled\ncorrectly across retries.",
+              "description": "A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -184,7 +184,7 @@
           ]
         },
         "list": {
-          "description": "Lists the progress for all your application's achievements for the\ncurrently authenticated player.",
+          "description": "Lists the progress for all your application's achievements for the currently authenticated player.",
           "flatPath": "games/v1/players/{playerId}/achievements",
           "httpMethod": "GET",
           "id": "games.achievements.list",
@@ -198,7 +198,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of achievement resources to return in the response, used\nfor paging. For any response, the actual number of achievement resources\nreturned may be less than the specified `maxResults`.",
+              "description": "The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -209,18 +209,24 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "state": {
-              "description": "Tells the server to return only achievements with the specified state.  If\nthis parameter isn't specified, all achievements are returned.",
+              "description": "Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.",
               "enum": [
                 "ALL",
                 "HIDDEN",
                 "REVEALED",
                 "UNLOCKED"
+              ],
+              "enumDescriptions": [
+                "List all achievements. This is the default.",
+                "List only hidden achievements.",
+                "List only revealed achievements.",
+                "List only unlocked achievements."
               ],
               "location": "query",
               "type": "string"
@@ -235,7 +241,7 @@
           ]
         },
         "reveal": {
-          "description": "Sets the state of the achievement with the given ID to\n`REVEALED` for the currently authenticated player.",
+          "description": "Sets the state of the achievement with the given ID to `REVEALED` for the currently authenticated player.",
           "flatPath": "games/v1/achievements/{achievementId}/reveal",
           "httpMethod": "POST",
           "id": "games.achievements.reveal",
@@ -259,7 +265,7 @@
           ]
         },
         "setStepsAtLeast": {
-          "description": "Sets the steps for the currently authenticated player towards unlocking an\nachievement. If the steps parameter is less than the current number of\nsteps that the player already gained for the achievement, the achievement\nis not modified.",
+          "description": "Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.",
           "flatPath": "games/v1/achievements/{achievementId}/setStepsAtLeast",
           "httpMethod": "POST",
           "id": "games.achievements.setStepsAtLeast",
@@ -337,7 +343,7 @@
     "applications": {
       "methods": {
         "get": {
-          "description": "Retrieves the metadata of the application with the given ID. If the\nrequested application is not available for the specified\n`platformType`, the returned response will not include any\ninstance data.",
+          "description": "Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified `platformType`, the returned response will not include any instance data.",
           "flatPath": "games/v1/applications/{applicationId}",
           "httpMethod": "GET",
           "id": "games.applications.get",
@@ -364,6 +370,12 @@
                 "IOS",
                 "WEB_APP"
               ],
+              "enumDescriptions": [
+                "Default value, don't use.",
+                "Retrieve applications that can be played on Android.",
+                "Retrieve applications that can be played on iOS.",
+                "Retrieve applications that can be played on desktop web."
+              ],
               "location": "query",
               "type": "string"
             }
@@ -377,7 +389,7 @@
           ]
         },
         "played": {
-          "description": "Indicate that the currently authenticated user is playing your\napplication.",
+          "description": "Indicate that the currently authenticated user is playing your application.",
           "flatPath": "games/v1/applications/played",
           "httpMethod": "POST",
           "id": "games.applications.played",
@@ -389,7 +401,7 @@
           ]
         },
         "verify": {
-          "description": "Verifies the auth token provided with this request is for the application\nwith the specified ID, and returns the ID of the player it was granted for.",
+          "description": "Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.",
           "flatPath": "games/v1/applications/{applicationId}/verify",
           "httpMethod": "GET",
           "id": "games.applications.verify",
@@ -417,7 +429,7 @@
     "events": {
       "methods": {
         "listByPlayer": {
-          "description": "Returns a list showing the current progress on events in this application\nfor the currently authenticated user.",
+          "description": "Returns a list showing the current progress on events in this application for the currently authenticated user.",
           "flatPath": "games/v1/events",
           "httpMethod": "GET",
           "id": "games.events.listByPlayer",
@@ -429,7 +441,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of events to return in the response, used for paging.\nFor any response, the actual number of events to return may be less than\nthe specified maxResults.",
+              "description": "The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -461,7 +473,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of event definitions to return in the response, used for\npaging.  For any response, the actual number of event definitions to return\nmay be less than the specified `maxResults`.",
+              "description": "The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -481,7 +493,7 @@
           ]
         },
         "record": {
-          "description": "Records a batch of changes to the number of times events have occurred for\nthe currently authenticated user of this application.",
+          "description": "Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.",
           "flatPath": "games/v1/events",
           "httpMethod": "POST",
           "id": "games.events.record",
@@ -550,7 +562,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of leaderboards to return in the response.  For any\nresponse, the actual number of leaderboards returned may be less than the\nspecified `maxResults`.",
+              "description": "The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -589,7 +601,7 @@
           ]
         },
         "listCategoriesByPlayer": {
-          "description": "List play data aggregated per category for the player corresponding to\n`playerId`.",
+          "description": "List play data aggregated per category for the player corresponding to `playerId`.",
           "flatPath": "games/v1/players/{playerId}/categories/{collection}",
           "httpMethod": "GET",
           "id": "games.metagame.listCategoriesByPlayer",
@@ -604,6 +616,10 @@
                 "COLLECTION_UNSPECIFIED",
                 "ALL"
               ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "Retrieve data for all categories. This is the default."
+              ],
               "location": "path",
               "required": true,
               "type": "string"
@@ -614,7 +630,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of category resources to return in the response, used\nfor paging. For any response, the actual number of category resources\nreturned may be less than the specified `maxResults`.",
+              "description": "The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -625,7 +641,7 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -644,7 +660,7 @@
     "players": {
       "methods": {
         "get": {
-          "description": "Retrieves the Player resource with the given ID.  To retrieve the player\nfor the currently authenticated user, set `playerId` to `me`.",
+          "description": "Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`.",
           "flatPath": "games/v1/players/{playerId}",
           "httpMethod": "GET",
           "id": "games.players.get",
@@ -658,7 +674,7 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -688,6 +704,11 @@
                 "VISIBLE",
                 "FRIENDS_ALL"
               ],
+              "enumDescriptions": [
+                "Retrieve a list of players that are also playing this game in reverse chronological order.",
+                "Retrieve a list of players in the user's social graph that are visible to this game.",
+                "Retrieve a list of players who are friends of the user in alphabetical order."
+              ],
               "location": "path",
               "required": true,
               "type": "string"
@@ -698,7 +719,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of player resources to return in the response, used for\npaging. For any response, the actual number of player resources returned\nmay be less than the specified `maxResults`.",
+              "description": "The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -731,7 +752,7 @@
           ],
           "parameters": {
             "clientRevision": {
-              "description": "The revision of the client SDK used by your application. Format:\n`[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are:\n* `ANDROID` - Client is running the Android SDK.\n* `IOS` - Client is running the iOS SDK.\n* `WEB_APP` - Client is running as a Web App.",
+              "description": "The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.",
               "location": "query",
               "required": true,
               "type": "string"
@@ -750,7 +771,7 @@
     "scores": {
       "methods": {
         "get": {
-          "description": "Get high scores, and optionally ranks, in leaderboards for the currently\nauthenticated player.  For a specific time span, `leaderboardId`\ncan be set to `ALL` to retrieve data for all leaderboards in a\ngiven time span.  `NOTE: You cannot ask for 'ALL' leaderboards and\n'ALL' timeSpans in the same request; only one parameter may be set to\n'ALL'.",
+          "description": "Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.",
           "flatPath": "games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}",
           "httpMethod": "GET",
           "id": "games.scores.get",
@@ -761,12 +782,20 @@
           ],
           "parameters": {
             "includeRankType": {
-              "description": "The types of ranks to return. If the parameter is omitted, no ranks will be\nreturned.",
+              "description": "The types of ranks to return. If the parameter is omitted, no ranks will be returned.",
               "enum": [
                 "INCLUDE_RANK_TYPE_UNSPECIFIED",
                 "ALL",
                 "PUBLIC",
-                "SOCIAL"
+                "SOCIAL",
+                "FRIENDS"
+              ],
+              "enumDescriptions": [
+                "Default value. Should be unused.",
+                "Retrieve all supported ranks. In HTTP, this parameter value can also be specified as `ALL`.",
+                "Retrieve public ranks, if the player is sharing their gameplay activity publicly.",
+                "(Obsolete) Retrieve the social rank.",
+                "Retrieve the rank on the friends collection."
               ],
               "location": "query",
               "type": "string"
@@ -777,13 +806,13 @@
               "type": "string"
             },
             "leaderboardId": {
-              "description": "The ID of the leaderboard.  Can be set to 'ALL' to retrieve data for all\nleaderboards for this application.",
+              "description": "The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of leaderboard scores to return in the response.  For\nany response, the actual number of leaderboard scores returned may be less\nthan the specified `maxResults`.",
+              "description": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -794,7 +823,7 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the\nauthenticated player's ID.",
+              "description": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -807,6 +836,13 @@
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "Get the high scores for all time spans. If this is used, maxResults values will be ignored.",
+                "Get the all time high score.",
+                "List the top scores for the current day.",
+                "List the top scores for the current week."
               ],
               "location": "path",
               "required": true,
@@ -840,6 +876,12 @@
                 "SOCIAL",
                 "FRIENDS"
               ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "List all scores in the public leaderboard.",
+                "(Obsolete) Legacy G+ social scores.",
+                "List only scores of friends."
+              ],
               "location": "path",
               "required": true,
               "type": "string"
@@ -856,7 +898,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of leaderboard scores to return in the response.  For\nany response, the actual number of leaderboard scores returned may be less\nthan the specified `maxResults`.",
+              "description": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -873,6 +915,12 @@
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "The score is an all-time score.",
+                "The score is a weekly score.",
+                "The score is a daily score."
               ],
               "location": "query",
               "required": true,
@@ -906,6 +954,12 @@
                 "SOCIAL",
                 "FRIENDS"
               ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "List all scores in the public leaderboard.",
+                "(Obsolete) Legacy G+ social scores.",
+                "List only scores of friends."
+              ],
               "location": "path",
               "required": true,
               "type": "string"
@@ -922,7 +976,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of leaderboard scores to return in the response.  For\nany response, the actual number of leaderboard scores returned may be less\nthan the specified `maxResults`.",
+              "description": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -933,13 +987,13 @@
               "type": "string"
             },
             "resultsAbove": {
-              "description": "The preferred number of scores to return above the player's score. More\nscores may be returned if the player is at the bottom of the leaderboard;\nfewer may be returned if the player is at the top. Must be less than or\nequal to maxResults.",
+              "description": "The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "returnTopIfAbsent": {
-              "description": "True if the top scores should be returned when the player is not in the\nleaderboard. Defaults to true.",
+              "description": "True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.",
               "location": "query",
               "type": "boolean"
             },
@@ -950,6 +1004,12 @@
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "The score is an all-time score.",
+                "The score is a weekly score.",
+                "The score is a daily score."
               ],
               "location": "query",
               "required": true,
@@ -986,14 +1046,14 @@
               "type": "string"
             },
             "score": {
-              "description": "The score you're submitting. The submitted score is ignored if it is worse\nthan a previously submitted score, where worse depends on the leaderboard\nsort order. The meaning of the score value depends on the leaderboard\nformat type. For fixed-point, the score represents the raw value.  For\ntime, the score represents elapsed time in milliseconds.  For currency, the\nscore represents a value in micro units.",
+              "description": "The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.",
               "format": "int64",
               "location": "query",
               "required": true,
               "type": "string"
             },
             "scoreTag": {
-              "description": "Additional information about the score you're submitting.  Values must\ncontain no more than 64 URI-safe characters as defined by section 2.3 of\nRFC 3986.",
+              "description": "Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
               "location": "query",
               "pattern": "[a-zA-Z0-9-._~]{0,64}",
               "type": "string"
@@ -1066,7 +1126,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a list of snapshots created by your application for the player\ncorresponding to the player ID.",
+          "description": "Retrieves a list of snapshots created by your application for the player corresponding to the player ID.",
           "flatPath": "games/v1/players/{playerId}/snapshots",
           "httpMethod": "GET",
           "id": "games.snapshots.list",
@@ -1080,7 +1140,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of snapshot resources to return in the response, used\nfor paging. For any response, the actual number of snapshot resources\nreturned may be less than the specified `maxResults`.",
+              "description": "The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -1091,7 +1151,7 @@
               "type": "string"
             },
             "playerId": {
-              "description": "A player ID. A value of `me` may be used in place of the authenticated\nplayer's ID.",
+              "description": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1111,7 +1171,7 @@
     "stats": {
       "methods": {
         "get": {
-          "description": "Returns engagement and spend statistics in this application for the\ncurrently authenticated user.",
+          "description": "Returns engagement and spend statistics in this application for the currently authenticated user.",
           "flatPath": "games/v1/stats",
           "httpMethod": "GET",
           "id": "games.stats.get",
@@ -1128,7 +1188,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200811",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1183,15 +1243,15 @@
           "type": "string"
         },
         "isRevealedIconUrlDefault": {
-          "description": "Indicates whether the revealed icon image being returned is a default\nimage, or is provided by the game.",
+          "description": "Indicates whether the revealed icon image being returned is a default image, or is provided by the game.",
           "type": "boolean"
         },
         "isUnlockedIconUrlDefault": {
-          "description": "Indicates whether the unlocked icon image being returned is a default\nimage, or is game-provided.",
+          "description": "Indicates whether the unlocked icon image being returned is a default image, or is game-provided.",
           "type": "boolean"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementDefinition`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementDefinition`.",
           "type": "string"
         },
         "name": {
@@ -1226,7 +1286,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementDefinitionsListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementDefinitionsListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -1246,11 +1306,11 @@
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementIncrementResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementIncrementResponse`.",
           "type": "string"
         },
         "newlyUnlocked": {
-          "description": "Whether the current steps for the achievement has reached the number of\nsteps required to unlock.",
+          "description": "Whether the current steps for the achievement has reached the number of steps required to unlock.",
           "type": "boolean"
         }
       },
@@ -1261,7 +1321,7 @@
       "id": "AchievementRevealResponse",
       "properties": {
         "currentState": {
-          "description": "The current state of the achievement for which a reveal was attempted. This\nmight be `UNLOCKED` if the achievement was already unlocked.",
+          "description": "The current state of the achievement for which a reveal was attempted. This might be `UNLOCKED` if the achievement was already unlocked.",
           "enum": [
             "REVEAL_ACHIEVEMENT_STATE_UNSPECIFIED",
             "REVEALED",
@@ -1275,7 +1335,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementRevealResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementRevealResponse`.",
           "type": "string"
         }
       },
@@ -1291,11 +1351,11 @@
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementSetStepsAtLeastResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementSetStepsAtLeastResponse`.",
           "type": "string"
         },
         "newlyUnlocked": {
-          "description": "Whether the current steps for the achievement has reached the number of\nsteps required to unlock.",
+          "description": "Whether the current steps for the achievement has reached the number of steps required to unlock.",
           "type": "boolean"
         }
       },
@@ -1306,11 +1366,11 @@
       "id": "AchievementUnlockResponse",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementUnlockResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUnlockResponse`.",
           "type": "string"
         },
         "newlyUnlocked": {
-          "description": "Whether this achievement was newly unlocked (that is, whether the unlock\nrequest for the achievement was the first for the player).",
+          "description": "Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).",
           "type": "boolean"
         }
       },
@@ -1321,7 +1381,7 @@
       "id": "AchievementUpdateMultipleRequest",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementUpdateMultipleRequest`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateMultipleRequest`.",
           "type": "string"
         },
         "updates": {
@@ -1339,7 +1399,7 @@
       "id": "AchievementUpdateMultipleResponse",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementUpdateMultipleResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateMultipleResponse`.",
           "type": "string"
         },
         "updatedAchievements": {
@@ -1362,15 +1422,15 @@
         },
         "incrementPayload": {
           "$ref": "GamesAchievementIncrement",
-          "description": "The payload if an update of type `INCREMENT` was requested for\nthe achievement."
+          "description": "The payload if an update of type `INCREMENT` was requested for the achievement."
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementUpdateRequest`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateRequest`.",
           "type": "string"
         },
         "setStepsAtLeastPayload": {
           "$ref": "GamesAchievementSetStepsAtLeast",
-          "description": "The payload if an update of type `SET_STEPS_AT_LEAST` was\nrequested for the achievement."
+          "description": "The payload if an update of type `SET_STEPS_AT_LEAST` was requested for the achievement."
         },
         "updateType": {
           "description": "The type of update being applied.",
@@ -1423,11 +1483,11 @@
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#achievementUpdateResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateResponse`.",
           "type": "string"
         },
         "newlyUnlocked": {
-          "description": "Whether this achievement was newly unlocked (that is, whether the unlock\nrequest for the achievement was the first for the player).",
+          "description": "Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).",
           "type": "boolean"
         },
         "updateOccurred": {
@@ -1476,6 +1536,10 @@
               "APPLICATION_FEATURE_UNSPECIFIED",
               "SNAPSHOTS"
             ],
+            "enumDescriptions": [
+              "Safe default, don't use.",
+              "Saved Games (snapshots)."
+            ],
             "type": "string"
           },
           "type": "array"
@@ -1492,7 +1556,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#application`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#application`.",
           "type": "string"
         },
         "lastUpdatedTimestamp": {
@@ -1510,7 +1574,7 @@
           "type": "string"
         },
         "themeColor": {
-          "description": "A hint to the client UI for what color to use as an app-themed color. The\ncolor is given as an RGB triplet (e.g. \"E0E0E0\").",
+          "description": "A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. \"E0E0E0\").",
           "type": "string"
         }
       },
@@ -1521,7 +1585,7 @@
       "id": "ApplicationCategory",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#applicationCategory`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#applicationCategory`.",
           "type": "string"
         },
         "primary": {
@@ -1540,11 +1604,11 @@
       "id": "ApplicationVerifyResponse",
       "properties": {
         "alternate_player_id": {
-          "description": "An alternate ID that was once used for the player that was issued the auth\ntoken used in this request. (This field is not normally populated.)",
+          "description": "An alternate ID that was once used for the player that was issued the auth token used in this request. (This field is not normally populated.)",
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#applicationVerifyResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#applicationVerifyResponse`.",
           "type": "string"
         },
         "player_id": {
@@ -1568,7 +1632,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#category`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#category`.",
           "type": "string"
         }
       },
@@ -1586,7 +1650,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#categoryListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#categoryListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -1613,17 +1677,17 @@
           ],
           "enumDescriptions": [
             "Default value. Should not be used.",
-            "A batch request was issued with more events than are allowed in\na single batch.",
+            "A batch request was issued with more events than are allowed in a single batch.",
             "A batch was sent with data too far in the past to record.",
             "A batch was sent with a time range that was too short.",
             "A batch was sent with a time range that was too long.",
             "An attempt was made to record a batch of data which was already seen.",
-            "An attempt was made to record data faster than the server\nwill apply updates."
+            "An attempt was made to record data faster than the server will apply updates."
           ],
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventBatchRecordFailure`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventBatchRecordFailure`.",
           "type": "string"
         },
         "range": {
@@ -1642,7 +1706,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventChild`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventChild`.",
           "type": "string"
         }
       },
@@ -1676,11 +1740,11 @@
           "type": "string"
         },
         "isDefaultImageUrl": {
-          "description": "Indicates whether the icon image being returned is a default image, or is\ngame-provided.",
+          "description": "Indicates whether the icon image being returned is a default image, or is game-provided.",
           "type": "boolean"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventDefinition`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventDefinition`.",
           "type": "string"
         },
         "visibility": {
@@ -1693,7 +1757,7 @@
           "enumDescriptions": [
             "Default value. Should not be used.",
             "This event should be visible to all users.",
-            "This event should only be shown to users that have recorded this event\nat least once."
+            "This event should only be shown to users that have recorded this event at least once."
           ],
           "type": "string"
         }
@@ -1712,7 +1776,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventDefinitionListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventDefinitionListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -1727,16 +1791,16 @@
       "id": "EventPeriodRange",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventPeriodRange`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventPeriodRange`.",
           "type": "string"
         },
         "periodEndMillis": {
-          "description": "The time when this update period ends, in millis, since 1970 UTC (Unix\nEpoch).",
+          "description": "The time when this update period ends, in millis, since 1970 UTC (Unix Epoch).",
           "format": "int64",
           "type": "string"
         },
         "periodStartMillis": {
-          "description": "The time when this update period begins, in millis, since 1970 UTC (Unix\nEpoch).",
+          "description": "The time when this update period begins, in millis, since 1970 UTC (Unix Epoch).",
           "format": "int64",
           "type": "string"
         }
@@ -1748,7 +1812,7 @@
       "id": "EventPeriodUpdate",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventPeriodUpdate`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventPeriodUpdate`.",
           "type": "string"
         },
         "timePeriod": {
@@ -1788,7 +1852,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventRecordFailure`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventRecordFailure`.",
           "type": "string"
         }
       },
@@ -1799,12 +1863,12 @@
       "id": "EventRecordRequest",
       "properties": {
         "currentTimeMillis": {
-          "description": "The current time when this update was sent, in milliseconds, since 1970 UTC\n(Unix Epoch).",
+          "description": "The current time when this update was sent, in milliseconds, since 1970 UTC (Unix Epoch).",
           "format": "int64",
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventRecordRequest`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventRecordRequest`.",
           "type": "string"
         },
         "requestId": {
@@ -1831,7 +1895,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventUpdateRequest`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventUpdateRequest`.",
           "type": "string"
         },
         "updateCount": {
@@ -1861,7 +1925,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#eventUpdateResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventUpdateResponse`.",
           "type": "string"
         },
         "playerEvents": {
@@ -1875,11 +1939,11 @@
       "type": "object"
     },
     "GamesAchievementIncrement": {
-      "description": "The payload to request to increment an\nachievement.",
+      "description": "The payload to request to increment an achievement.",
       "id": "GamesAchievementIncrement",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#GamesAchievementIncrement`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#GamesAchievementIncrement`.",
           "type": "string"
         },
         "requestId": {
@@ -1896,11 +1960,11 @@
       "type": "object"
     },
     "GamesAchievementSetStepsAtLeast": {
-      "description": "The payload to request to increment an\nachievement.",
+      "description": "The payload to request to increment an achievement.",
       "id": "GamesAchievementSetStepsAtLeast",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#GamesAchievementSetStepsAtLeast`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#GamesAchievementSetStepsAtLeast`.",
           "type": "string"
         },
         "steps": {
@@ -1921,7 +1985,7 @@
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#imageAsset`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#imageAsset`.",
           "type": "string"
         },
         "name": {
@@ -1957,7 +2021,7 @@
           "description": "Platform dependent details for iOS."
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#instance`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instance`.",
           "type": "string"
         },
         "name": {
@@ -2004,7 +2068,7 @@
           "type": "boolean"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#instanceAndroidDetails`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceAndroidDetails`.",
           "type": "string"
         },
         "packageName": {
@@ -2031,15 +2095,15 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#instanceIosDetails`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceIosDetails`.",
           "type": "string"
         },
         "preferredForIpad": {
-          "description": "Indicates that this instance is the default for new installations on iPad\ndevices.",
+          "description": "Indicates that this instance is the default for new installations on iPad devices.",
           "type": "boolean"
         },
         "preferredForIphone": {
-          "description": "Indicates that this instance is the default for new installations on iPhone\ndevices.",
+          "description": "Indicates that this instance is the default for new installations on iPhone devices.",
           "type": "boolean"
         },
         "supportIpad": {
@@ -2058,7 +2122,7 @@
       "id": "InstanceWebDetails",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#instanceWebDetails`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceWebDetails`.",
           "type": "string"
         },
         "launchUrl": {
@@ -2085,11 +2149,11 @@
           "type": "string"
         },
         "isIconUrlDefault": {
-          "description": "Indicates whether the icon image being returned is a default image, or is\ngame-provided.",
+          "description": "Indicates whether the icon image being returned is a default image, or is game-provided.",
           "type": "boolean"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#leaderboard`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboard`.",
           "type": "string"
         },
         "name": {
@@ -2126,7 +2190,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#leaderboardEntry`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardEntry`.",
           "type": "string"
         },
         "player": {
@@ -2139,7 +2203,7 @@
           "type": "string"
         },
         "scoreTag": {
-          "description": "Additional information about the score.  Values must contain no more than\n64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+          "description": "Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         },
         "scoreValue": {
@@ -2164,7 +2228,7 @@
           "type": "string"
         },
         "writeTimestampMillis": {
-          "description": "The timestamp at which this score was recorded, in milliseconds since the\nepoch in UTC.",
+          "description": "The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.",
           "format": "int64",
           "type": "string"
         }
@@ -2183,7 +2247,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#leaderboardListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2206,7 +2270,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#leaderboardScoreRank`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardScoreRank`.",
           "type": "string"
         },
         "numScores": {
@@ -2234,7 +2298,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#leaderboardScores`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardScores`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2248,7 +2312,7 @@
         },
         "playerScore": {
           "$ref": "LeaderboardEntry",
-          "description": "The score of the requesting player on the leaderboard. The player's score\nmay appear both here and in the list of scores above. If you are viewing a\npublic leaderboard and the player is not sharing their gameplay information\npublicly, the `scoreRank`and `formattedScoreRank`\nvalues will not be present."
+          "description": "The score of the requesting player on the leaderboard. The player's score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the `scoreRank`and `formattedScoreRank` values will not be present."
         },
         "prevPageToken": {
           "description": "The pagination token for the previous page of results.",
@@ -2262,12 +2326,12 @@
       "id": "MetagameConfig",
       "properties": {
         "currentVersion": {
-          "description": "Current version of the metagame configuration data. When this data is\nupdated, the version number will be increased by one.",
+          "description": "Current version of the metagame configuration data. When this data is updated, the version number will be increased by one.",
           "format": "int32",
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#metagameConfig`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#metagameConfig`.",
           "type": "string"
         },
         "playerLevels": {
@@ -2305,7 +2369,7 @@
           "description": "An object to represent Play Game experience information for the player."
         },
         "friendStatus": {
-          "description": "The friend status of the given player, relative to the requester. This is\nunset if the player is not sharing their friends list with the game.",
+          "description": "The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.",
           "enum": [
             "FRIEND_STATUS_UNSPECIFIED",
             "NO_RELATIONSHIP",
@@ -2319,25 +2383,25 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#player`",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#player`",
           "type": "string"
         },
         "name": {
           "description": "A representation of the individual components of the name.",
           "properties": {
             "familyName": {
-              "description": "The family name of this player. In some places, this is known as the last\nname.",
+              "description": "The family name of this player. In some places, this is known as the last name.",
               "type": "string"
             },
             "givenName": {
-              "description": "The given name of this player. In some places, this is known as the first\nname.",
+              "description": "The given name of this player. In some places, this is known as the first name.",
               "type": "string"
             }
           },
           "type": "object"
         },
         "originalPlayerId": {
-          "description": "The player ID that was used for this player the first time they signed into\nthe game in question. This is only populated for calls to player.get for\nthe requesting player, only if the player ID has subsequently changed, and\nonly to clients that support remapping player IDs.",
+          "description": "The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.",
           "type": "string"
         },
         "playerId": {
@@ -2346,7 +2410,7 @@
         },
         "profileSettings": {
           "$ref": "ProfileSettings",
-          "description": "The player's profile settings. Controls whether or not the player's profile\nis visible to other players."
+          "description": "The player's profile settings. Controls whether or not the player's profile is visible to other players."
         },
         "title": {
           "description": "The player's title rewarded for their game activities.",
@@ -2381,7 +2445,7 @@
           "type": "integer"
         },
         "experiencePoints": {
-          "description": "Experience points earned for the achievement. This field is absent for\nachievements that have not yet been unlocked and 0 for achievements that\nhave been unlocked by testers but that are unpublished.",
+          "description": "Experience points earned for the achievement. This field is absent for achievements that have not yet been unlocked and 0 for achievements that have been unlocked by testers but that are unpublished.",
           "format": "int64",
           "type": "string"
         },
@@ -2394,7 +2458,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerAchievement`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerAchievement`.",
           "type": "string"
         },
         "lastUpdatedTimestamp": {
@@ -2417,7 +2481,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerAchievementListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerAchievementListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2436,11 +2500,11 @@
           "type": "string"
         },
         "formattedNumEvents": {
-          "description": "The current number of times this event has occurred, as a string. The\nformatting of this string depends on the configuration of your event in the\nPlay Games Developer Console.",
+          "description": "The current number of times this event has occurred, as a string. The formatting of this string depends on the configuration of your event in the Play Games Developer Console.",
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerEvent`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerEvent`.",
           "type": "string"
         },
         "numEvents": {
@@ -2467,7 +2531,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerEventListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerEventListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2491,17 +2555,17 @@
           "description": "The current level of the player."
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerExperienceInfo`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerExperienceInfo`.",
           "type": "string"
         },
         "lastLevelUpTimestampMillis": {
-          "description": "The timestamp when the player was leveled up, in millis since Unix epoch\nUTC.",
+          "description": "The timestamp when the player was leveled up, in millis since Unix epoch UTC.",
           "format": "int64",
           "type": "string"
         },
         "nextLevel": {
           "$ref": "PlayerLevel",
-          "description": "The next level of the player. If the current level is the maximum level,\nthis should be same as the current level."
+          "description": "The next level of the player. If the current level is the maximum level, this should be same as the current level."
         }
       },
       "type": "object"
@@ -2510,8 +2574,12 @@
       "description": "A player leaderboard score object.",
       "id": "PlayerLeaderboardScore",
       "properties": {
+        "friendsRank": {
+          "$ref": "LeaderboardScoreRank",
+          "description": "The rank of the score in the friends collection for this leaderboard."
+        },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerLeaderboardScore`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLeaderboardScore`.",
           "type": "string"
         },
         "leaderboard_id": {
@@ -2520,14 +2588,14 @@
         },
         "publicRank": {
           "$ref": "LeaderboardScoreRank",
-          "description": "The public rank of the score in this leaderboard. This object will not be\npresent if the user is not sharing their scores publicly."
+          "description": "The public rank of the score in this leaderboard. This object will not be present if the user is not sharing their scores publicly."
         },
         "scoreString": {
           "description": "The formatted value of this score.",
           "type": "string"
         },
         "scoreTag": {
-          "description": "Additional information about the score.  Values must contain no more than\n64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+          "description": "Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         },
         "scoreValue": {
@@ -2556,7 +2624,7 @@
           "type": "string"
         },
         "writeTimestamp": {
-          "description": "The timestamp at which this score was recorded, in milliseconds since the\nepoch in UTC.",
+          "description": "The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.",
           "format": "int64",
           "type": "string"
         }
@@ -2575,7 +2643,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerLeaderboardScoreListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLeaderboardScoreListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2594,7 +2662,7 @@
       "id": "PlayerLevel",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerLevel`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLevel`.",
           "type": "string"
         },
         "level": {
@@ -2627,7 +2695,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2646,7 +2714,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerScore`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScore`.",
           "type": "string"
         },
         "score": {
@@ -2655,7 +2723,7 @@
           "type": "string"
         },
         "scoreTag": {
-          "description": "Additional information about this score.  Values will contain no more than\n64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+          "description": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         },
         "timeSpan": {
@@ -2682,7 +2750,7 @@
       "id": "PlayerScoreListResponse",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerScoreListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreListResponse`.",
           "type": "string"
         },
         "submittedScores": {
@@ -2700,7 +2768,7 @@
       "id": "PlayerScoreResponse",
       "properties": {
         "beatenScoreTimeSpans": {
-          "description": "The time spans where the submitted score is better than the existing score\nfor that time span.",
+          "description": "The time spans where the submitted score is better than the existing score for that time span.",
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The score is an all-time score.",
@@ -2714,6 +2782,12 @@
               "WEEKLY",
               "DAILY"
             ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "The score is an all-time score.",
+              "The score is a weekly score.",
+              "The score is a daily score."
+            ],
             "type": "string"
           },
           "type": "array"
@@ -2723,7 +2797,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerScoreResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreResponse`.",
           "type": "string"
         },
         "leaderboardId": {
@@ -2731,11 +2805,11 @@
           "type": "string"
         },
         "scoreTag": {
-          "description": "Additional information about this score.  Values will contain no more than\n64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+          "description": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         },
         "unbeatenScores": {
-          "description": "The scores in time spans that have not been beaten.  As an example, the\nsubmitted score may be better than the\nplayer's `DAILY` score, but not better than the player's scores\nfor the `WEEKLY` or `ALL_TIME` time spans.",
+          "description": "The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player's `DAILY` score, but not better than the player's scores for the `WEEKLY` or `ALL_TIME` time spans.",
           "items": {
             "$ref": "PlayerScore"
           },
@@ -2749,7 +2823,7 @@
       "id": "PlayerScoreSubmissionList",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#playerScoreSubmissionList`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreSubmissionList`.",
           "type": "string"
         },
         "scores": {
@@ -2776,13 +2850,13 @@
           "enumDescriptions": [
             "Unused.",
             "The friends list is currently visible to the game.",
-            "The developer does not have access to the friends list, but can call the\nAndroid API to show a consent dialog.",
-            "The friends list is currently unavailable for this user, and it is not\npossible to request access at this time, either because the user has\npermanently declined or the friends feature is not available to them. In\nthis state, any attempts to request access to the friends list will be\nunsuccessful."
+            "The developer does not have access to the friends list, but can call the Android API to show a consent dialog.",
+            "The friends list is currently unavailable for this user, and it is not possible to request access at this time, either because the user has permanently declined or the friends feature is not available to them. In this state, any attempts to request access to the friends list will be unsuccessful."
           ],
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#profileSettings`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#profileSettings`.",
           "type": "string"
         },
         "profileVisible": {
@@ -2797,11 +2871,11 @@
       "id": "RevisionCheckResponse",
       "properties": {
         "apiVersion": {
-          "description": "The version of the API this client revision should use when calling API\nmethods.",
+          "description": "The version of the API this client revision should use when calling API methods.",
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#revisionCheckResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#revisionCheckResponse`.",
           "type": "string"
         },
         "revisionStatus": {
@@ -2815,7 +2889,7 @@
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The revision being used is current.",
-            "There is currently a newer version available, but the revision being used\nstill works.",
+            "There is currently a newer version available, but the revision being used still works.",
             "The revision being used is not supported in any released version."
           ],
           "type": "string"
@@ -2828,7 +2902,7 @@
       "id": "ScoreSubmission",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#scoreSubmission`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#scoreSubmission`.",
           "type": "string"
         },
         "leaderboardId": {
@@ -2841,11 +2915,11 @@
           "type": "string"
         },
         "scoreTag": {
-          "description": "Additional information about this score.  Values will contain no more than\n64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+          "description": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         },
         "signature": {
-          "description": "Signature Values will contain URI-safe characters as defined by section 2.3\nof RFC 3986.",
+          "description": "Signature Values will contain URI-safe characters as defined by section 2.3 of RFC 3986.",
           "type": "string"
         }
       },
@@ -2864,7 +2938,7 @@
           "type": "string"
         },
         "driveId": {
-          "description": "The ID of the file underlying this snapshot in the Drive API.  Only present\nif the snapshot is a view on a Drive file and the file is owned by the\ncaller.",
+          "description": "The ID of the file underlying this snapshot in the Drive API. Only present if the snapshot is a view on a Drive file and the file is owned by the caller.",
           "type": "string"
         },
         "durationMillis": {
@@ -2877,16 +2951,16 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#snapshot`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshot`.",
           "type": "string"
         },
         "lastModifiedMillis": {
-          "description": "The timestamp (in millis since Unix epoch) of the last modification to this\nsnapshot.",
+          "description": "The timestamp (in millis since Unix epoch) of the last modification to this snapshot.",
           "format": "int64",
           "type": "string"
         },
         "progressValue": {
-          "description": "The progress value (64-bit integer set by developer) associated with this\nsnapshot.",
+          "description": "The progress value (64-bit integer set by developer) associated with this snapshot.",
           "format": "int64",
           "type": "string"
         },
@@ -2923,7 +2997,7 @@
           "type": "integer"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#snapshotImage`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshotImage`.",
           "type": "string"
         },
         "mime_type": {
@@ -2931,7 +3005,7 @@
           "type": "string"
         },
         "url": {
-          "description": "The URL of the image. This URL may be invalidated at any time and should\nnot be cached.",
+          "description": "The URL of the image. This URL may be invalidated at any time and should not be cached.",
           "type": "string"
         },
         "width": {
@@ -2954,11 +3028,11 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#snapshotListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshotListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
-          "description": "Token corresponding to the next page of results. If there are no more\nresults, the token is omitted.",
+          "description": "Token corresponding to the next page of results. If there are no more results, the token is omitted.",
           "type": "string"
         }
       },
@@ -2969,56 +3043,56 @@
       "id": "StatsResponse",
       "properties": {
         "avg_session_length_minutes": {
-          "description": "Average session length in minutes of the player. E.g., 1, 30, 60, ... . Not\npopulated if there is not enough information.",
+          "description": "Average session length in minutes of the player. E.g., 1, 30, 60, ... . Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "churn_probability": {
-          "description": "The probability of the player not returning to play the game in the next\nday. E.g., 0, 0.1, 0.5, ..., 1.0. Not populated if there is not enough\ninformation.",
+          "description": "The probability of the player not returning to play the game in the next day. E.g., 0, 0.1, 0.5, ..., 1.0. Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "days_since_last_played": {
-          "description": "Number of days since the player last played this game. E.g., 0, 1, 5, 10,\n... . Not populated if there is not enough information.",
+          "description": "Number of days since the player last played this game. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information.",
           "format": "int32",
           "type": "integer"
         },
         "high_spender_probability": {
-          "description": "The probability of the player going to spend beyond a threshold amount of\nmoney. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough\ninformation.",
+          "description": "The probability of the player going to spend beyond a threshold amount of money. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `games#statsResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#statsResponse`.",
           "type": "string"
         },
         "num_purchases": {
-          "description": "Number of in-app purchases made by the player in this game. E.g., 0, 1, 5,\n10, ... . Not populated if there is not enough information.",
+          "description": "Number of in-app purchases made by the player in this game. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information.",
           "format": "int32",
           "type": "integer"
         },
         "num_sessions": {
-          "description": "The approximate number of sessions of the player within the last 28 days,\nwhere a session begins when the player is connected to Play Games Services\nand ends when they are disconnected. E.g., 0, 1, 5, 10, ... . Not populated\nif there is not enough information.",
+          "description": "The approximate number of sessions of the player within the last 28 days, where a session begins when the player is connected to Play Games Services and ends when they are disconnected. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information.",
           "format": "int32",
           "type": "integer"
         },
         "num_sessions_percentile": {
-          "description": "The approximation of the sessions percentile of the player within the last\n30 days, where a session begins when the player is connected to Play Games\nServices and ends when they are disconnected. E.g., 0, 0.25, 0.5, 0.75. Not\npopulated if there is not enough information.",
+          "description": "The approximation of the sessions percentile of the player within the last 30 days, where a session begins when the player is connected to Play Games Services and ends when they are disconnected. E.g., 0, 0.25, 0.5, 0.75. Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "spend_percentile": {
-          "description": "The approximate spend percentile of the player in this game. E.g., 0, 0.25,\n0.5, 0.75. Not populated if there is not enough information.",
+          "description": "The approximate spend percentile of the player in this game. E.g., 0, 0.25, 0.5, 0.75. Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "spend_probability": {
-          "description": "The probability of the player going to spend the game in the next seven\ndays. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough\ninformation.",
+          "description": "The probability of the player going to spend the game in the next seven days. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         },
         "total_spend_next_28_days": {
-          "description": "The predicted amount of money that the player going to spend in the next 28\ndays. E.g., 1, 30, 60, ... . Not populated if there is not enough\ninformation.",
+          "description": "The predicted amount of money that the player going to spend in the next 28 days. E.g., 1, 30, 60, ... . Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
         }

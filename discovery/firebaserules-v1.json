@@ -18,7 +18,7 @@
   "baseUrl": "https://firebaserules.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebase Rules",
-  "description": "Creates and manages rules that determine when a Firebase Rules-enabled service should permit a request.\n",
+  "description": "Creates and manages rules that determine when a Firebase Rules-enabled service should permit a request. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/storage/security",
   "fullyEncodeReservedExpansion": true,
@@ -114,7 +114,7 @@
     "projects": {
       "methods": {
         "test": {
-          "description": "Test `Source` for syntactic and semantic correctness. Issues present, if\nany, will be returned to the caller with a description, severity, and\nsource location.\n\nThe test method may be executed with `Source` or a `Ruleset` name.\nPassing `Source` is useful for unit testing new rules. Passing a `Ruleset`\nname is useful for regression testing an existing rule.\n\nThe following is an example of `Source` that permits users to upload images\nto a bucket bearing their user id and matching the correct metadata:\n\n_*Example*_\n\n    // Users are allowed to subscribe and unsubscribe to the blog.\n    service firebase.storage {\n      match /users/{userId}/images/{imageName} {\n          allow write: if userId == request.auth.uid\n              && (imageName.matches('*.png$')\n              || imageName.matches('*.jpg$'))\n              && resource.mimeType.matches('^image/')\n      }\n    }",
+          "description": "Test `Source` for syntactic and semantic correctness. Issues present, if any, will be returned to the caller with a description, severity, and source location. The test method may be executed with `Source` or a `Ruleset` name. Passing `Source` is useful for unit testing new rules. Passing a `Ruleset` name is useful for regression testing an existing rule. The following is an example of `Source` that permits users to upload images to a bucket bearing their user id and matching the correct metadata: _*Example*_ // Users are allowed to subscribe and unsubscribe to the blog. service firebase.storage { match /users/{userId}/images/{imageName} { allow write: if userId == request.auth.uid && (imageName.matches('*.png$') || imageName.matches('*.jpg$')) && resource.mimeType.matches('^image/') } }",
           "flatPath": "v1/projects/{projectsId}:test",
           "httpMethod": "POST",
           "id": "firebaserules.projects.test",
@@ -123,7 +123,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Tests may either provide `source` or a `Ruleset` resource name.\n\nFor tests against `source`, the resource name must refer to the project:\nFormat: `projects/{project_id}`\n\nFor tests against a `Ruleset`, this must be the `Ruleset` resource name:\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`",
+              "description": "Tests may either provide `source` or a `Ruleset` resource name. For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}` For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`",
               "location": "path",
               "pattern": "^projects/.*$",
               "required": true,
@@ -148,7 +148,7 @@
         "releases": {
           "methods": {
             "create": {
-              "description": "Create a `Release`.\n\nRelease names should reflect the developer's deployment practices. For\nexample, the release name may include the environment name, application\nname, application version, or any other name meaningful to the developer.\nOnce a `Release` refers to a `Ruleset`, the rules can be enforced by\nFirebase Rules-enabled services.\n\nMore than one `Release` may be 'live' concurrently. Consider the following\nthree `Release` names for `projects/foo` and the `Ruleset` to which they\nrefer.\n\nRelease Name                    | Ruleset Name\n--------------------------------|-------------\nprojects/foo/releases/prod      | projects/foo/rulesets/uuid123\nprojects/foo/releases/prod/beta | projects/foo/rulesets/uuid123\nprojects/foo/releases/prod/v23  | projects/foo/rulesets/uuid456\n\nThe table reflects the `Ruleset` rollout in progress. The `prod` and\n`prod/beta` releases refer to the same `Ruleset`. However, `prod/v23`\nrefers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be\nupdated using the UpdateRelease method.",
+              "description": "Create a `Release`. Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services. More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer. Release Name | Ruleset Name --------------------------------|------------- projects/foo/releases/prod | projects/foo/rulesets/uuid123 projects/foo/releases/prod/beta | projects/foo/rulesets/uuid123 projects/foo/releases/prod/v23 | projects/foo/rulesets/uuid456 The table reflects the `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method.",
               "flatPath": "v1/projects/{projectsId}/releases",
               "httpMethod": "POST",
               "id": "firebaserules.projects.releases.create",
@@ -157,7 +157,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the project which owns this `Release`.\n\nFormat: `projects/{project_id}`",
+                  "description": "Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -186,7 +186,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the `Release` to delete.\n\nFormat: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Resource name for the `Release` to delete. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -212,7 +212,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name of the `Release`.\n\nFormat: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -239,17 +239,22 @@
               ],
               "parameters": {
                 "executableVersion": {
-                  "description": "The requested runtime executable version.\nDefaults to FIREBASE_RULES_EXECUTABLE_V1.",
+                  "description": "The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.",
                   "enum": [
                     "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED",
                     "FIREBASE_RULES_EXECUTABLE_V1",
                     "FIREBASE_RULES_EXECUTABLE_V2"
                   ],
+                  "enumDescriptions": [
+                    "Executable format unspecified. Defaults to FIREBASE_RULES_EXECUTABLE_V1",
+                    "Firebase Rules syntax 'rules2' executable versions: Custom AST for use with Java clients.",
+                    "CEL-based executable for use with C++ clients."
+                  ],
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name of the `Release`.\n\nFormat: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -267,7 +272,7 @@
               ]
             },
             "list": {
-              "description": "List the `Release` values for a project. This list may optionally be\nfiltered by `Release` name, `Ruleset` name, `TestSuite` name, or any\ncombination thereof.",
+              "description": "List the `Release` values for a project. This list may optionally be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any combination thereof.",
               "flatPath": "v1/projects/{projectsId}/releases",
               "httpMethod": "GET",
               "id": "firebaserules.projects.releases.list",
@@ -276,19 +281,19 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "`Release` filter. The list method supports filters with restrictions on the\n`Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`.\n\nExample 1: A filter of 'name=prod*' might return `Release`s with names\nwithin 'projects/foo' prefixed with 'prod':\n\nName                          | Ruleset Name\n------------------------------|-------------\nprojects/foo/releases/prod    | projects/foo/rulesets/uuid1234\nprojects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234\nprojects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888\n\nExample 2: A filter of `name=prod* ruleset_name=uuid1234` would return only\n`Release` instances for 'projects/foo' with names prefixed with 'prod'\nreferring to the same `Ruleset` name of 'uuid1234':\n\nName                          | Ruleset Name\n------------------------------|-------------\nprojects/foo/releases/prod    | projects/foo/rulesets/1234\nprojects/foo/releases/prod/v1 | projects/foo/rulesets/1234\n\nIn the examples, the filter parameters refer to the search filters are\nrelative to the project. Fully qualified prefixed may also be used. e.g.\n`test_suite_name=projects/foo/testsuites/uuid1`",
+                  "description": "`Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name | Ruleset Name ------------------------------|------------- projects/foo/releases/prod | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name | Ruleset Name ------------------------------|------------- projects/foo/releases/prod | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name for the project.\n\nFormat: `projects/{project_id}`",
+                  "description": "Resource name for the project. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Page size to load. Maximum of 100. Defaults to 10.\nNote: `page_size` is just a hint and the service may choose to load fewer\nthan `page_size` results due to the size of the output. To traverse all of\nthe releases, the caller should iterate until the `page_token` on the\nresponse is empty.",
+                  "description": "Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -310,7 +315,7 @@
               ]
             },
             "patch": {
-              "description": "Update a `Release` via PATCH.\n\nOnly updates to the `ruleset_name` and `test_suite_name` fields will be\nhonored. `Release` rename is not supported. To create a `Release` use the\nCreateRelease method.",
+              "description": "Update a `Release` via PATCH. Only updates to the `ruleset_name` and `test_suite_name` fields will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.",
               "flatPath": "v1/projects/{projectsId}/releases/{releasesId}",
               "httpMethod": "PATCH",
               "id": "firebaserules.projects.releases.patch",
@@ -319,7 +324,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the project which owns this `Release`.\n\nFormat: `projects/{project_id}`",
+                  "description": "Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -343,7 +348,7 @@
         "rulesets": {
           "methods": {
             "create": {
-              "description": "Create a `Ruleset` from `Source`.\n\nThe `Ruleset` is given a unique generated name which is returned to the\ncaller. `Source` containing syntactic or semantics errors will result in an\nerror response indicating the first error encountered. For a detailed view\nof `Source` issues, use TestRuleset.",
+              "description": "Create a `Ruleset` from `Source`. The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset.",
               "flatPath": "v1/projects/{projectsId}/rulesets",
               "httpMethod": "POST",
               "id": "firebaserules.projects.rulesets.create",
@@ -352,7 +357,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for Project which owns this `Ruleset`.\n\nFormat: `projects/{project_id}`",
+                  "description": "Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -372,7 +377,7 @@
               ]
             },
             "delete": {
-              "description": "Delete a `Ruleset` by resource name.\n\nIf the `Ruleset` is referenced by a `Release` the operation will fail.",
+              "description": "Delete a `Ruleset` by resource name. If the `Ruleset` is referenced by a `Release` the operation will fail.",
               "flatPath": "v1/projects/{projectsId}/rulesets/{rulesetsId}",
               "httpMethod": "DELETE",
               "id": "firebaserules.projects.rulesets.delete",
@@ -381,7 +386,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the ruleset to delete.\n\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`",
+                  "description": "Resource name for the ruleset to delete. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/rulesets/[^/]+$",
                   "required": true,
@@ -407,7 +412,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the ruleset to get.\n\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`",
+                  "description": "Resource name for the ruleset to get. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/rulesets/[^/]+$",
                   "required": true,
@@ -425,7 +430,7 @@
               ]
             },
             "list": {
-              "description": "List `Ruleset` metadata only and optionally filter the results by `Ruleset`\nname.\n\nThe full `Source` contents of a `Ruleset` may be retrieved with\nGetRuleset.",
+              "description": "List `Ruleset` metadata only and optionally filter the results by `Ruleset` name. The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.",
               "flatPath": "v1/projects/{projectsId}/rulesets",
               "httpMethod": "GET",
               "id": "firebaserules.projects.rulesets.list",
@@ -434,19 +439,19 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "`Ruleset` filter. The list method supports filters with restrictions on\n`Ruleset.name`.\n\nFilters on `Ruleset.create_time` should use the `date` function which\nparses strings that conform to the RFC 3339 date/time specifications.\n\nExample: `create_time > date(\"2017-01-01T00:00:00Z\") AND name=UUID-*`",
+                  "description": "`Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time > date(\"2017-01-01T00:00:00Z\") AND name=UUID-*`",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name for the project.\n\nFormat: `projects/{project_id}`",
+                  "description": "Resource name for the project. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Page size to load. Maximum of 100. Defaults to 10.\nNote: `page_size` is just a hint and the service may choose to load less\nthan `page_size` due to the size of the output. To traverse all of the\nreleases, caller should iterate until the `page_token` is empty.",
+                  "description": "Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -472,7 +477,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200807",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {
@@ -491,13 +496,13 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
     },
     "ExpressionReport": {
-      "description": "Describes where in a file an expression is found and what it was\nevaluated to over the course of its use.",
+      "description": "Describes where in a file an expression is found and what it was evaluated to over the course of its use.",
       "id": "ExpressionReport",
       "properties": {
         "children": {
@@ -542,7 +547,7 @@
       "type": "object"
     },
     "FunctionCall": {
-      "description": "Represents a service-defined function call that was invoked during test\nexecution.",
+      "description": "Represents a service-defined function call that was invoked during test execution.",
       "id": "FunctionCall",
       "properties": {
         "args": {
@@ -560,18 +565,18 @@
       "type": "object"
     },
     "FunctionMock": {
-      "description": "Mock function definition.\n\nMocks must refer to a function declared by the target service. The type of\nthe function args and result will be inferred at test time. If either the\narg or result values are not compatible with function type declaration, the\nrequest will be considered invalid.\n\nMore than one `FunctionMock` may be provided for a given function name so\nlong as the `Arg` matchers are distinct. There may be only one function\nfor a given overload where all `Arg` values are `Arg.any_value`.",
+      "description": "Mock function definition. Mocks must refer to a function declared by the target service. The type of the function args and result will be inferred at test time. If either the arg or result values are not compatible with function type declaration, the request will be considered invalid. More than one `FunctionMock` may be provided for a given function name so long as the `Arg` matchers are distinct. There may be only one function for a given overload where all `Arg` values are `Arg.any_value`.",
       "id": "FunctionMock",
       "properties": {
         "args": {
-          "description": "The list of `Arg` values to match. The order in which the arguments are\nprovided is the order in which they must appear in the function\ninvocation.",
+          "description": "The list of `Arg` values to match. The order in which the arguments are provided is the order in which they must appear in the function invocation.",
           "items": {
             "$ref": "Arg"
           },
           "type": "array"
         },
         "function": {
-          "description": "The name of the function.\n\nThe function name must match one provided by a service declaration.",
+          "description": "The name of the function. The function name must match one provided by a service declaration.",
           "type": "string"
         },
         "result": {
@@ -598,8 +603,8 @@
             "FIREBASE_RULES_EXECUTABLE_V2"
           ],
           "enumDescriptions": [
-            "Executable format unspecified.\nDefaults to FIREBASE_RULES_EXECUTABLE_V1",
-            "Firebase Rules syntax 'rules2' executable versions:\nCustom AST for use with Java clients.",
+            "Executable format unspecified. Defaults to FIREBASE_RULES_EXECUTABLE_V1",
+            "Firebase Rules syntax 'rules2' executable versions: Custom AST for use with Java clients.",
             "CEL-based executable for use with C++ clients."
           ],
           "type": "string"
@@ -623,7 +628,7 @@
           "type": "string"
         },
         "syncTime": {
-          "description": "Optional, indicates the freshness of the result. The response is\nguaranteed to be the latest within an interval up to the\nsync_time (inclusive).",
+          "description": "Optional, indicates the freshness of the result. The response is guaranteed to be the latest within an interval up to the sync_time (inclusive).",
           "format": "google-datetime",
           "type": "string"
         },
@@ -653,7 +658,7 @@
           ],
           "enumDescriptions": [
             "An unspecified severity.",
-            "Deprecation issue for statements and method that may no longer be\nsupported or maintained.",
+            "Deprecation issue for statements and method that may no longer be supported or maintained.",
             "Warnings such as: unused variables.",
             "Errors such as: unmatched curly braces or variable redefinition."
           ],
@@ -671,7 +676,7 @@
       "id": "ListReleasesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "The pagination token to retrieve the next page of results. If the value is\nempty, no further results remain.",
+          "description": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain.",
           "type": "string"
         },
         "releases": {
@@ -689,7 +694,7 @@
       "id": "ListRulesetsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "The pagination token to retrieve the next page of results. If the value is\nempty, no further results remain.",
+          "description": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain.",
           "type": "string"
         },
         "rulesets": {
@@ -707,7 +712,7 @@
       "id": "Metadata",
       "properties": {
         "services": {
-          "description": "Services that this ruleset has declarations for (e.g.,\n\"cloud.firestore\"). There may be 0+ of these.",
+          "description": "Services that this ruleset has declarations for (e.g., \"cloud.firestore\"). There may be 0+ of these.",
           "items": {
             "type": "string"
           },
@@ -717,24 +722,24 @@
       "type": "object"
     },
     "Release": {
-      "description": "`Release` is a named reference to a `Ruleset`. Once a `Release` refers to a\n`Ruleset`, rules-enabled services will be able to enforce the `Ruleset`.",
+      "description": "`Release` is a named reference to a `Ruleset`. Once a `Release` refers to a `Ruleset`, rules-enabled services will be able to enforce the `Ruleset`.",
       "id": "Release",
       "properties": {
         "createTime": {
-          "description": "Time the release was created.\nOutput only.",
+          "description": "Time the release was created. Output only.",
           "format": "google-datetime",
           "type": "string"
         },
         "name": {
-          "description": "Resource name for the `Release`.\n\n`Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2`\nwhich affords developers a great deal of flexibility in mapping the name\nto the style that best fits their existing development practices. For\nexample, a name could refer to an environment, an app, a version, or some\ncombination of three.\n\nIn the table below, for the project name `projects/foo`, the following\nrelative release paths show how flat and structured names might be chosen\nto match a desired development / deployment strategy.\n\nUse Case     | Flat Name           | Structured Name\n-------------|---------------------|----------------\nEnvironments | releases/qa         | releases/qa\nApps         | releases/app1_qa    | releases/app1/qa\nVersions     | releases/app1_v2_qa | releases/app1/v2/qa\n\nThe delimiter between the release name path elements can be almost anything\nand it should work equally well with the release name list filter, but in\nmany ways the structured paths provide a clearer picture of the\nrelationship between `Release` instances.\n\nFormat: `projects/{project_id}/releases/{release_id}`",
+          "description": "Resource name for the `Release`. `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great deal of flexibility in mapping the name to the style that best fits their existing development practices. For example, a name could refer to an environment, an app, a version, or some combination of three. In the table below, for the project name `projects/foo`, the following relative release paths show how flat and structured names might be chosen to match a desired development / deployment strategy. Use Case | Flat Name | Structured Name -------------|---------------------|---------------- Environments | releases/qa | releases/qa Apps | releases/app1_qa | releases/app1/qa Versions | releases/app1_v2_qa | releases/app1/v2/qa The delimiter between the release name path elements can be almost anything and it should work equally well with the release name list filter, but in many ways the structured paths provide a clearer picture of the relationship between `Release` instances. Format: `projects/{project_id}/releases/{release_id}`",
           "type": "string"
         },
         "rulesetName": {
-          "description": "Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must\nexist the `Release` to be created.",
+          "description": "Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.",
           "type": "string"
         },
         "updateTime": {
-          "description": "Time the release was updated.\nOutput only.",
+          "description": "Time the release was updated. Output only.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -750,27 +755,27 @@
           "description": "The result is undefined, meaning the result could not be computed."
         },
         "value": {
-          "description": "The result is an actual value. The type of the value must match that\nof the type declared by the service.",
+          "description": "The result is an actual value. The type of the value must match that of the type declared by the service.",
           "type": "any"
         }
       },
       "type": "object"
     },
     "Ruleset": {
-      "description": "`Ruleset` is an immutable copy of `Source` with a globally unique identifier\nand a creation time.",
+      "description": "`Ruleset` is an immutable copy of `Source` with a globally unique identifier and a creation time.",
       "id": "Ruleset",
       "properties": {
         "createTime": {
-          "description": "Time the `Ruleset` was created.\nOutput only.",
+          "description": "Time the `Ruleset` was created. Output only.",
           "format": "google-datetime",
           "type": "string"
         },
         "metadata": {
           "$ref": "Metadata",
-          "description": "The metadata for this ruleset.\nOutput only."
+          "description": "The metadata for this ruleset. Output only."
         },
         "name": {
-          "description": "Name of the `Ruleset`. The ruleset_id is auto generated by the service.\nFormat: `projects/{project_id}/rulesets/{ruleset_id}`\nOutput only.",
+          "description": "Name of the `Ruleset`. The ruleset_id is auto generated by the service. Format: `projects/{project_id}/rulesets/{ruleset_id}` Output only.",
           "type": "string"
         },
         "source": {
@@ -795,7 +800,7 @@
       "type": "object"
     },
     "SourcePosition": {
-      "description": "Position in the `Source` content including its line, column number, and an\nindex of the `File` in the `Source` message. Used for debug purposes.",
+      "description": "Position in the `Source` content including its line, column number, and an index of the `File` in the `Source` message. Used for debug purposes.",
       "id": "SourcePosition",
       "properties": {
         "column": {
@@ -826,7 +831,7 @@
       "type": "object"
     },
     "TestCase": {
-      "description": "`TestCase` messages provide the request context and an expectation as to\nwhether the given context will be allowed or denied. Test cases may specify\nthe `request`, `resource`, and `function_mocks` to mock a function call to\na service-provided function.\n\nThe `request` object represents context present at request-time.\n\nThe `resource` is the value of the target resource as it appears in\npersistent storage before the request is executed.",
+      "description": "`TestCase` messages provide the request context and an expectation as to whether the given context will be allowed or denied. Test cases may specify the `request`, `resource`, and `function_mocks` to mock a function call to a service-provided function. The `request` object represents context present at request-time. The `resource` is the value of the target resource as it appears in persistent storage before the request is executed.",
       "id": "TestCase",
       "properties": {
         "expectation": {
@@ -860,7 +865,7 @@
           "type": "string"
         },
         "functionMocks": {
-          "description": "Optional function mocks for service-defined functions. If not set, any\nservice defined function is expected to return an error, which may or may\nnot influence the test outcome.",
+          "description": "Optional function mocks for service-defined functions. If not set, any service defined function is expected to return an error, which may or may not influence the test outcome.",
           "items": {
             "$ref": "FunctionMock"
           },
@@ -875,28 +880,28 @@
           ],
           "enumDescriptions": [
             "No encoding has been specified. Defaults to \"URL_ENCODED\" behavior.",
-            "Treats path segments as URL encoded but with non-encoded separators\n(\"/\"). This is the default behavior.",
+            "Treats path segments as URL encoded but with non-encoded separators (\"/\"). This is the default behavior.",
             "Treats total path as non-URL encoded e.g. raw."
           ],
           "type": "string"
         },
         "request": {
-          "description": "Request context.\n\nThe exact format of the request context is service-dependent. See the\nappropriate service documentation for information about the supported\nfields and types on the request. Minimally, all services support the\nfollowing fields and types:\n\nRequest field  | Type\n---------------|-----------------\nauth.uid       | `string`\nauth.token     | `map<string, string>`\nheaders        | `map<string, string>`\nmethod         | `string`\nparams         | `map<string, string>`\npath           | `string`\ntime           | `google.protobuf.Timestamp`\n\nIf the request value is not well-formed for the service, the request will\nbe rejected as an invalid argument.",
+          "description": "Request context. The exact format of the request context is service-dependent. See the appropriate service documentation for information about the supported fields and types on the request. Minimally, all services support the following fields and types: Request field | Type ---------------|----------------- auth.uid | `string` auth.token | `map` headers | `map` method | `string` params | `map` path | `string` time | `google.protobuf.Timestamp` If the request value is not well-formed for the service, the request will be rejected as an invalid argument.",
           "type": "any"
         },
         "resource": {
-          "description": "Optional resource value as it appears in persistent storage before the\nrequest is fulfilled.\n\nThe resource type depends on the `request.path` value.",
+          "description": "Optional resource value as it appears in persistent storage before the request is fulfilled. The resource type depends on the `request.path` value.",
           "type": "any"
         }
       },
       "type": "object"
     },
     "TestResult": {
-      "description": "Test result message containing the state of the test as well as a\ndescription and source position for test failures.",
+      "description": "Test result message containing the state of the test as well as a description and source position for test failures.",
       "id": "TestResult",
       "properties": {
         "debugMessages": {
-          "description": "Debug messages related to test execution issues encountered during\nevaluation.\n\nDebug messages may be related to too many or too few invocations of\nfunction mocks or to runtime errors that occur during evaluation.\n\nFor example: ```Unable to read variable [name: \"resource\"]```",
+          "description": "Debug messages related to test execution issues encountered during evaluation. Debug messages may be related to too many or too few invocations of function mocks or to runtime errors that occur during evaluation. For example: ```Unable to read variable [name: \"resource\"]```",
           "items": {
             "type": "string"
           },
@@ -904,17 +909,17 @@
         },
         "errorPosition": {
           "$ref": "SourcePosition",
-          "description": "Position in the `Source` or `Ruleset` where the principle runtime error\noccurs.\n\nEvaluation of an expression may result in an error. Rules are deny by\ndefault, so a `DENY` expectation when an error is generated is valid.\nWhen there is a `DENY` with an error, the `SourcePosition` is returned.\n\nE.g. `error_position { line: 19 column: 37 }`"
+          "description": "Position in the `Source` or `Ruleset` where the principle runtime error occurs. Evaluation of an expression may result in an error. Rules are deny by default, so a `DENY` expectation when an error is generated is valid. When there is a `DENY` with an error, the `SourcePosition` is returned. E.g. `error_position { line: 19 column: 37 }`"
         },
         "expressionReports": {
-          "description": "The mapping from expression in the ruleset AST to the values they were\nevaluated to. Partially-nested to mirror AST structure. Note that this\nfield is actually tracking expressions and not permission statements in\ncontrast to the \"visited_expressions\" field above. Literal expressions\nare omitted.",
+          "description": "The mapping from expression in the ruleset AST to the values they were evaluated to. Partially-nested to mirror AST structure. Note that this field is actually tracking expressions and not permission statements in contrast to the \"visited_expressions\" field above. Literal expressions are omitted.",
           "items": {
             "$ref": "ExpressionReport"
           },
           "type": "array"
         },
         "functionCalls": {
-          "description": "The set of function calls made to service-defined methods.\n\nFunction calls are included in the order in which they are encountered\nduring evaluation, are provided for both mocked and unmocked functions,\nand included on the response regardless of the test `state`.",
+          "description": "The set of function calls made to service-defined methods. Function calls are included in the order in which they are encountered during evaluation, are provided for both mocked and unmocked functions, and included on the response regardless of the test `state`.",
           "items": {
             "$ref": "FunctionCall"
           },
@@ -935,7 +940,7 @@
           "type": "string"
         },
         "visitedExpressions": {
-          "description": "The set of visited permission expressions for a given test. This returns\nthe positions and evaluation results of all visited permission\nexpressions which were relevant to the test case, e.g.\n```\nmatch /path {\n  allow read if: <expr>\n}\n```\nFor a detailed report of the intermediate evaluation states, see the\n`expression_reports` field",
+          "description": "The set of visited permission expressions for a given test. This returns the positions and evaluation results of all visited permission expressions which were relevant to the test case, e.g. ``` match /path { allow read if: } ``` For a detailed report of the intermediate evaluation states, see the `expression_reports` field",
           "items": {
             "$ref": "VisitedExpression"
           },
@@ -950,7 +955,7 @@
       "properties": {
         "source": {
           "$ref": "Source",
-          "description": "Optional `Source` to be checked for correctness.\n\nThis field must not be set when the resource name refers to a `Ruleset`."
+          "description": "Optional `Source` to be checked for correctness. This field must not be set when the resource name refers to a `Ruleset`."
         },
         "testSuite": {
           "$ref": "TestSuite",
@@ -964,14 +969,14 @@
       "id": "TestRulesetResponse",
       "properties": {
         "issues": {
-          "description": "Syntactic and semantic `Source` issues of varying severity. Issues of\n`ERROR` severity will prevent tests from executing.",
+          "description": "Syntactic and semantic `Source` issues of varying severity. Issues of `ERROR` severity will prevent tests from executing.",
           "items": {
             "$ref": "Issue"
           },
           "type": "array"
         },
         "testResults": {
-          "description": "The set of test results given the test cases in the `TestSuite`.\nThe results will appear in the same order as the test cases appear in the\n`TestSuite`.",
+          "description": "The set of test results given the test cases in the `TestSuite`. The results will appear in the same order as the test cases appear in the `TestSuite`.",
           "items": {
             "$ref": "TestResult"
           },
@@ -981,7 +986,7 @@
       "type": "object"
     },
     "TestSuite": {
-      "description": "`TestSuite` is a collection of `TestCase` instances that validate the logical\ncorrectness of a `Ruleset`. The `TestSuite` may be referenced in-line within\na `TestRuleset` invocation or as part of a `Release` object as a pre-release\ncheck.",
+      "description": "`TestSuite` is a collection of `TestCase` instances that validate the logical correctness of a `Ruleset`. The `TestSuite` may be referenced in-line within a `TestRuleset` invocation or as part of a `Release` object as a pre-release check.",
       "id": "TestSuite",
       "properties": {
         "testCases": {
@@ -1011,7 +1016,7 @@
       "type": "object"
     },
     "ValueCount": {
-      "description": "Tuple for how many times an Expression was evaluated to a particular\nExpressionValue.",
+      "description": "Tuple for how many times an Expression was evaluated to a particular ExpressionValue.",
       "id": "ValueCount",
       "properties": {
         "count": {

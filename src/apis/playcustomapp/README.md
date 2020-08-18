@@ -2,7 +2,7 @@
 
 # playcustomapp
 
-> An API to publish custom Android apps.
+> API to create and publish custom Android apps
 
 ## Installation
 

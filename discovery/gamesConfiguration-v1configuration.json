@@ -194,7 +194,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of resource configurations to return in the response,\nused for paging. For any response, the actual number of resources returned\nmay be less than the specified `maxResults`.",
+              "description": "The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -272,6 +272,11 @@
                 "IMAGE_TYPE_UNSPECIFIED",
                 "ACHIEVEMENT_ICON",
                 "LEADERBOARD_ICON"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "The icon image for an achievement resource.",
+                "The icon image for a leaderboard resource."
               ],
               "location": "path",
               "required": true,
@@ -385,7 +390,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of resource configurations to return in the response,\nused for paging. For any response, the actual number of resources returned\nmay be less than the specified `maxResults`.",
+              "description": "The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -434,7 +439,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200811",
   "rootUrl": "https://gamesconfiguration.googleapis.com/",
   "schemas": {
     "AchievementConfiguration": {
@@ -478,7 +483,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#achievementConfiguration`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfiguration`.",
           "type": "string"
         },
         "published": {
@@ -486,7 +491,7 @@
           "description": "The read-only published data of the achievement."
         },
         "stepsToUnlock": {
-          "description": "Steps to unlock.  Only applicable to incremental achievements.",
+          "description": "Steps to unlock. Only applicable to incremental achievements.",
           "format": "int32",
           "type": "integer"
         },
@@ -510,7 +515,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#achievementConfigurationDetail`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfigurationDetail`.",
           "type": "string"
         },
         "name": {
@@ -542,7 +547,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#achievementConfigurationListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfigurationListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -558,27 +563,27 @@
       "properties": {
         "few": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language requires special treatment of \"small\" numbers (as with 2,\n3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in\nPolish)."
+          "description": "When the language requires special treatment of \"small\" numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish)."
         },
         "many": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language requires special treatment of \"large\" numbers (as with\nnumbers ending 11-99 in Maltese)."
+          "description": "When the language requires special treatment of \"large\" numbers (as with numbers ending 11-99 in Maltese)."
         },
         "one": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language requires special treatment of numbers like one (as with\nthe number 1 in English and most other languages; in Russian, any number\nending in 1 but not ending in 11 is in this class)."
+          "description": "When the language requires special treatment of numbers like one (as with the number 1 in English and most other languages; in Russian, any number ending in 1 but not ending in 11 is in this class)."
         },
         "other": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language does not require special treatment of the given quantity\n(as with all numbers in Chinese, or 42 in English)."
+          "description": "When the language does not require special treatment of the given quantity (as with all numbers in Chinese, or 42 in English)."
         },
         "two": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language requires special treatment of numbers like two (as with 2\nin Welsh, or 102 in Slovenian)."
+          "description": "When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian)."
         },
         "zero": {
           "$ref": "LocalizedStringBundle",
-          "description": "When the language requires special treatment of the number 0 (as in\nArabic)."
+          "description": "When the language requires special treatment of the number 0 (as in Arabic)."
         }
       },
       "type": "object"
@@ -606,7 +611,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Numbers are formatted to have no digits or fixed number of digits after\nthe decimal point according to locale. An optional custom unit can be\nadded.",
+            "Numbers are formatted to have no digits or fixed number of digits after the decimal point according to locale. An optional custom unit can be added.",
             "Numbers are formatted to hours, minutes and seconds.",
             "Numbers are formatted to currency according to locale."
           ],
@@ -614,7 +619,7 @@
         },
         "suffix": {
           "$ref": "GamesNumberAffixConfiguration",
-          "description": "An optional suffix for the NUMERIC format type.  These strings follow the\nsame <a\nhref=\"http://developer.android.com/guide/topics/resources/string-resource.html#Plurals\">\nplural rules</a> as all Android string resources."
+          "description": "An optional suffix for the NUMERIC format type. These strings follow the same plural rules as all Android string resources."
         }
       },
       "type": "object"
@@ -638,7 +643,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#imageConfiguration`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#imageConfiguration`.",
           "type": "string"
         },
         "resourceId": {
@@ -665,7 +670,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#leaderboardConfiguration`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfiguration`.",
           "type": "string"
         },
         "published": {
@@ -711,7 +716,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#leaderboardConfigurationDetail`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfigurationDetail`.",
           "type": "string"
         },
         "name": {
@@ -742,7 +747,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring\n`gamesConfiguration#leaderboardConfigurationListResponse`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfigurationListResponse`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -757,7 +762,7 @@
       "id": "LocalizedString",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#localizedString`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#localizedString`.",
           "type": "string"
         },
         "locale": {
@@ -776,7 +781,7 @@
       "id": "LocalizedStringBundle",
       "properties": {
         "kind": {
-          "description": "Uniquely identifies the type of this resource. Value is always the fixed\nstring `gamesConfiguration#localizedStringBundle`.",
+          "description": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#localizedStringBundle`.",
           "type": "string"
         },
         "translations": {

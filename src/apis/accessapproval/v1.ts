@@ -140,11 +140,11 @@ export namespace accessapproval_v1 {
      */
     enrolledAncestor?: boolean | null;
     /**
-     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis.  If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded.
+     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis. If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded.
      */
     enrolledServices?: Schema$EnrolledService[];
     /**
-     * The resource name of the settings. Format is one of: &lt;ol&gt;   &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt; &lt;ol&gt;
+     * The resource name of the settings. Format is one of: 1. &quot;projects/{project_id}/accessApprovalSettings&quot; 2. &quot;folders/{folder_id}/accessApprovalSettings&quot; 3. &quot;organizations/{organization_id}/accessApprovalSettings&quot;
      */
     name?: string | null;
     /**
@@ -157,11 +157,11 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$AccessLocations {
     /**
-     * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
+     * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: 1. ASI: Asia 2. EUR: Europe 3. OCE: Oceania 4. AFR: Africa 5. NAM: North America 6. SAM: South America 7. ANT: Antarctica 8. ANY: Any location
      */
     principalOfficeCountry?: string | null;
     /**
-     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
+     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: 1. ASI: Asia 2. EUR: Europe 3. OCE: Oceania 4. AFR: Africa 5. NAM: North America 6. SAM: South America 7. ANT: Antarctica 8. ANY: Any location
      */
     principalPhysicalLocationCountry?: string | null;
   }
@@ -256,7 +256,7 @@ export namespace accessapproval_v1 {
     implicit?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -264,7 +264,7 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$EnrolledService {
     /**
-     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): &lt;ol&gt;   &lt;li&gt;all&lt;/li&gt;   &lt;li&gt;appengine.googleapis.com&lt;/li&gt;   &lt;li&gt;bigquery.googleapis.com&lt;/li&gt;   &lt;li&gt;bigtable.googleapis.com&lt;/li&gt;   &lt;li&gt;cloudkms.googleapis.com&lt;/li&gt;   &lt;li&gt;compute.googleapis.com&lt;/li&gt;   &lt;li&gt;dataflow.googleapis.com&lt;/li&gt;   &lt;li&gt;iam.googleapis.com&lt;/li&gt;   &lt;li&gt;pubsub.googleapis.com&lt;/li&gt;   &lt;li&gt;storage.googleapis.com&lt;/li&gt; &lt;ol&gt;
+     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): 1. all 2. appengine.googleapis.com 3. bigquery.googleapis.com 4. bigtable.googleapis.com 5. cloudkms.googleapis.com 6. compute.googleapis.com 7. dataflow.googleapis.com 8. iam.googleapis.com 9. pubsub.googleapis.com 10. storage.googleapis.com
      */
     cloudProduct?: string | null;
     /**
@@ -600,23 +600,9 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of:
-     *     // <ol>
-     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
-     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
-     *     // <ol>
+     *     // The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      *     name: 'folders/my-folder/accessApprovalSettings',
-     *     // The update mask applies to the settings. Only the top level fields of
-     *     // AccessApprovalSettings (notification_emails & enrolled_services) are
-     *     // supported. For each field, if it is included, the currently stored value
-     *     // will be entirely overwritten with the value of the field passed in this
-     *     // request.
-     *     //
-     *     // For the `FieldMask` definition, see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     // If this field is left unset, only the notification_emails field will be
-     *     // updated.
+     *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -650,8 +636,8 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {string} params.name The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
+     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -759,11 +745,11 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      */
     name?: string;
     /**
-     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -781,7 +767,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.folders.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -930,7 +916,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.folders.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1239,23 +1225,13 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.list({
-     *     // A filter on the type of approval requests to retrieve. Must be one of the
-     *     // following values:
-     *     // <ol>
-     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
-     *     //   <li>ALL: All requests.</li>
-     *     //   <li>PENDING: Only pending requests.</li>
-     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
-     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
-     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
-     *     // </ol>
+     *     // A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      *     filter: 'placeholder-value',
      *     // Requested page size.
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project_id}",
-     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     // The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1276,7 +1252,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -1408,7 +1384,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      */
     filter?: string;
     /**
@@ -1730,23 +1706,9 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of:
-     *     // <ol>
-     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
-     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
-     *     // <ol>
+     *     // The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      *     name: 'organizations/my-organization/accessApprovalSettings',
-     *     // The update mask applies to the settings. Only the top level fields of
-     *     // AccessApprovalSettings (notification_emails & enrolled_services) are
-     *     // supported. For each field, if it is included, the currently stored value
-     *     // will be entirely overwritten with the value of the field passed in this
-     *     // request.
-     *     //
-     *     // For the `FieldMask` definition, see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     // If this field is left unset, only the notification_emails field will be
-     *     // updated.
+     *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1780,8 +1742,8 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {string} params.name The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
+     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1889,11 +1851,11 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      */
     name?: string;
     /**
-     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -1911,7 +1873,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.organizations.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2060,7 +2022,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.organizations.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2369,23 +2331,13 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.list({
-     *     // A filter on the type of approval requests to retrieve. Must be one of the
-     *     // following values:
-     *     // <ol>
-     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
-     *     //   <li>ALL: All requests.</li>
-     *     //   <li>PENDING: Only pending requests.</li>
-     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
-     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
-     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
-     *     // </ol>
+     *     // A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      *     filter: 'placeholder-value',
      *     // Requested page size.
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project_id}",
-     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     // The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -2406,7 +2358,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -2538,7 +2490,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      */
     filter?: string;
     /**
@@ -2860,23 +2812,9 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of:
-     *     // <ol>
-     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
-     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
-     *     // <ol>
+     *     // The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      *     name: 'projects/my-project/accessApprovalSettings',
-     *     // The update mask applies to the settings. Only the top level fields of
-     *     // AccessApprovalSettings (notification_emails & enrolled_services) are
-     *     // supported. For each field, if it is included, the currently stored value
-     *     // will be entirely overwritten with the value of the field passed in this
-     *     // request.
-     *     //
-     *     // For the `FieldMask` definition, see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     // If this field is left unset, only the notification_emails field will be
-     *     // updated.
+     *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2910,8 +2848,8 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {string} params.name The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
+     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3019,11 +2957,11 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: 1. "projects/{project_id}/accessApprovalSettings" 2. "folders/{folder_id}/accessApprovalSettings" 3. "organizations/{organization_id}/accessApprovalSettings"
      */
     name?: string;
     /**
-     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request.  For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -3041,7 +2979,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.projects.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3190,7 +3128,7 @@ export namespace accessapproval_v1 {
 
     /**
      * accessapproval.projects.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3499,23 +3437,13 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.list({
-     *     // A filter on the type of approval requests to retrieve. Must be one of the
-     *     // following values:
-     *     // <ol>
-     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
-     *     //   <li>ALL: All requests.</li>
-     *     //   <li>PENDING: Only pending requests.</li>
-     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
-     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
-     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
-     *     // </ol>
+     *     // A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      *     filter: 'placeholder-value',
      *     // Requested page size.
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project_id}",
-     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     // The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3536,7 +3464,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -3668,7 +3596,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests.
      */
     filter?: string;
     /**

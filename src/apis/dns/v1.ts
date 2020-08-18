@@ -185,7 +185,7 @@ export namespace dns_v1 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -259,7 +259,7 @@ export namespace dns_v1 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -302,7 +302,7 @@ export namespace dns_v1 {
      */
     dnssecConfig?: Schema$ManagedZoneDnsSecConfig;
     /**
-     * The presence for this field indicates that outbound forwarding is enabled for this zone.  The value of this field contains the set of destinations to forward to.
+     * The presence for this field indicates that outbound forwarding is enabled for this zone. The value of this field contains the set of destinations to forward to.
      */
     forwardingConfig?: Schema$ManagedZoneForwardingConfig;
     /**
@@ -380,7 +380,7 @@ export namespace dns_v1 {
     header?: Schema$ResponseHeader;
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -434,12 +434,12 @@ export namespace dns_v1 {
      */
     managedZones?: Schema$ManagedZone[];
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
   /**
-   * An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never   received by the caller. Use the caller specified client_operation_id.
+   * An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never received by the caller. Use the caller specified client_operation_id.
    */
   export interface Schema$Operation {
     /**
@@ -499,7 +499,7 @@ export namespace dns_v1 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -664,7 +664,7 @@ export namespace dns_v1 {
      */
     name?: string | null;
     /**
-     * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see &lt;a href=&quot;/dns/records/json-record&quot;&gt;examples&lt;/a&gt;.
+     * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
     rrdatas?: string[] | null;
     /**
@@ -676,7 +676,7 @@ export namespace dns_v1 {
      */
     ttl?: number | null;
     /**
-     * The identifier of a supported record type. See the list of &lt;a href=&quot;/dns/docs/overview#supported_dns_record_types&quot;&gt;Supported DNS record types&lt;/a&gt;.
+     * The identifier of a supported record type. See the list of Supported DNS record types.
      */
     type?: string | null;
   }
@@ -687,7 +687,7 @@ export namespace dns_v1 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -741,12 +741,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.changes.create({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -906,15 +903,11 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.changes.get({
-     *     // The identifier of the requested change, from a previous
-     *     // ResourceRecordSetsChangeResponse.
+     *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
      *     changeId: 'placeholder-value',
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1060,14 +1053,11 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.changes.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1290,18 +1280,13 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.dnsKeys.get({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // An optional comma-separated list of digest types to compute and display
-     *     // for key signing keys. If omitted, the recommended digest type will be
-     *     // computed and displayed.
+     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      *     digestType: 'placeholder-value',
      *     // The identifier of the requested DnsKey.
      *     dnsKeyId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1452,18 +1437,13 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.dnsKeys.list({
-     *     // An optional comma-separated list of digest types to compute and display
-     *     // for key signing keys. If omitted, the recommended digest type will be
-     *     // computed and displayed.
+     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      *     digestType: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1662,9 +1642,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZoneOperations.get({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the managed zone addressed by this request.
      *     managedZone: 'placeholder-value',
@@ -1818,11 +1796,9 @@ export namespace dns_v1 {
      *   const res = await dns.managedZoneOperations.list({
      *     // Identifies the managed zone addressed by this request.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2026,9 +2002,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZones.create({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2202,12 +2176,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZones.delete({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2339,12 +2310,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZones.get({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2498,11 +2466,9 @@ export namespace dns_v1 {
      *   const res = await dns.managedZones.list({
      *     // Restricts the list to return only zones with this domain name.
      *     dnsName: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2649,12 +2615,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZones.patch({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2821,12 +2784,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.managedZones.update({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -3105,9 +3065,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.create({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -3266,9 +3224,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.delete({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // User given friendly name of the policy addressed by this request.
      *     policy: 'placeholder-value',
@@ -3401,9 +3357,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.get({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // User given friendly name of the policy addressed by this request.
      *     policy: 'placeholder-value',
@@ -3550,11 +3504,9 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.list({
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -3699,9 +3651,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.patch({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // User given friendly name of the policy addressed by this request.
      *     policy: 'placeholder-value',
@@ -3861,9 +3811,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.policies.update({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // User given friendly name of the policy addressed by this request.
      *     policy: 'placeholder-value',
@@ -4128,9 +4076,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.projects.get({
-     *     // For mutating operation requests only. An optional identifier
-     *     // specified by the client. Must be unique for operation resources in the
-     *     // Operations collection.
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -4289,22 +4235,17 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.resourceRecordSets.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed
-     *     // zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the
-     *     // server will decide how many results to return.
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Restricts the list to return only records with this fully qualified domain
-     *     // name.
+     *     // Restricts the list to return only records with this fully qualified domain name.
      *     name: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated.
-     *     // Use this parameter to continue a previous list request.
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
-     *     // Restricts the list to return only records of this type. If present, the
-     *     // "name" parameter must also be present.
+     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);

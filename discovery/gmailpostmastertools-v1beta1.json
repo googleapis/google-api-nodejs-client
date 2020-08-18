@@ -12,7 +12,7 @@
   "baseUrl": "https://gmailpostmastertools.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Postmaster Tools",
-  "description": "The Gmail Postmaster API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
+  "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/gmail/postmaster",
   "fullyEncodeReservedExpansion": true,
@@ -265,7 +265,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200813",
   "rootUrl": "https://gmailpostmastertools.googleapis.com/",
   "schemas": {
     "DeliveryError": {
@@ -527,7 +527,7 @@
     }
   },
   "servicePath": "",
-  "title": "Gmail Postmaster Tools API",
+  "title": "Postmaster Tools API",
   "version": "v1beta1",
   "version_module": true
 }

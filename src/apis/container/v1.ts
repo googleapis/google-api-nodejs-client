@@ -984,7 +984,7 @@ export namespace container_v1 {
    */
   export interface Schema$MaintenancePolicy {
     /**
-     * A hash identifying the version of this policy, so that updates to fields of the policy won&#39;t accidentally undo intermediate changes (and so that users of the API unaware of some fields won&#39;t accidentally remove other fields). Make a &lt;code&gt;get()&lt;/code&gt; request to the cluster to get the current resource version and include it with requests to set the policy.
+     * A hash identifying the version of this policy, so that updates to fields of the policy won&#39;t accidentally undo intermediate changes (and so that users of the API unaware of some fields won&#39;t accidentally remove other fields). Make a `get()` request to the cluster to get the current resource version and include it with requests to set the policy.
      */
     resourceVersion?: string | null;
     /**
@@ -1157,11 +1157,11 @@ export namespace container_v1 {
      */
     machineType?: string | null;
     /**
-     * The metadata key/value pairs assigned to instances in the cluster.  Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys:  &quot;cluster-location&quot;  &quot;cluster-name&quot;  &quot;cluster-uid&quot;  &quot;configure-sh&quot;  &quot;containerd-configure-sh&quot;  &quot;enable-os-login&quot;  &quot;gci-ensure-gke-docker&quot;  &quot;gci-metrics-enabled&quot;  &quot;gci-update-strategy&quot;  &quot;instance-template&quot;  &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;  &quot;disable-address-manager&quot;  &quot;windows-startup-script-ps1&quot;  &quot;common-psm1&quot;  &quot;k8s-node-setup-psm1&quot;  &quot;install-ssh-psm1&quot;  &quot;user-profile-psm1&quot;  &quot;serial-port-logging-enable&quot;  Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB.  The total size of all keys and values must be less than 512 KB.
+     * The metadata key/value pairs assigned to instances in the cluster.  Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys:  - &quot;cluster-location&quot;  - &quot;cluster-name&quot;  - &quot;cluster-uid&quot;  - &quot;configure-sh&quot;  - &quot;containerd-configure-sh&quot;  - &quot;enable-os-login&quot;  - &quot;gci-ensure-gke-docker&quot;  - &quot;gci-metrics-enabled&quot;  - &quot;gci-update-strategy&quot;  - &quot;instance-template&quot;  - &quot;kube-env&quot;  - &quot;startup-script&quot;  - &quot;user-data&quot;  - &quot;disable-address-manager&quot;  - &quot;windows-startup-script-ps1&quot;  - &quot;common-psm1&quot;  - &quot;k8s-node-setup-psm1&quot;  - &quot;install-ssh-psm1&quot;  - &quot;user-profile-psm1&quot;  - &quot;serial-port-logging-enable&quot;  Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB.  The total size of all keys and values must be less than 512 KB.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      */
     minCpuPlatform?: string | null;
     /**
@@ -1441,7 +1441,7 @@ export namespace container_v1 {
    */
   export interface Schema$RecurringTimeWindow {
     /**
-     * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time.  For example, to have something repeat every weekday, you&#39;d use:   &lt;code&gt;FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR&lt;/code&gt; To repeat some window daily (equivalent to the DailyMaintenanceWindow):   &lt;code&gt;FREQ=DAILY&lt;/code&gt; For the first weekend of every month:   &lt;code&gt;FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU&lt;/code&gt; This specifies how frequently the window starts. Eg, if you wanted to have a 9-5 UTC-4 window every weekday, you&#39;d use something like: &lt;code&gt;   start time = 2019-01-01T09:00:00-0400   end time = 2019-01-01T17:00:00-0400   recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR &lt;/code&gt; Windows can span multiple days. Eg, to make the window encompass every weekend from midnight Saturday till the last minute of Sunday UTC: &lt;code&gt;   start time = 2019-01-05T00:00:00Z   end time = 2019-01-07T23:59:00Z   recurrence = FREQ=WEEKLY;BYDAY=SA &lt;/code&gt; Note the start and end time&#39;s specific dates are largely arbitrary except to specify duration of the window and when it first starts. The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
+     * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time.  For example, to have something repeat every weekday, you&#39;d use: `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`  To repeat some window daily (equivalent to the DailyMaintenanceWindow): `FREQ=DAILY`  For the first weekend of every month: `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`  This specifies how frequently the window starts. Eg, if you wanted to have a 9-5 UTC-4 window every weekday, you&#39;d use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ```  Windows can span multiple days. Eg, to make the window encompass every weekend from midnight Saturday till the last minute of Sunday UTC: ``` start time = 2019-01-05T00:00:00Z end time = 2019-01-07T23:59:00Z recurrence = FREQ=WEEKLY;BYDAY=SA ```  Note the start and end time&#39;s specific dates are largely arbitrary except to specify duration of the window and when it first starts. The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
      */
     recurrence?: string | null;
     /**
@@ -1623,7 +1623,7 @@ export namespace container_v1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Kubernetes Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a &lt;code&gt;get()&lt;/code&gt; request to the resource to get the latest fingerprint.
+     * Required. The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Kubernetes Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a `get()` request to the resource to get the latest fingerprint.
      */
     labelFingerprint?: string | null;
     /**

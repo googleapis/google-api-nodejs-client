@@ -128,7 +128,7 @@ export namespace slides_v1 {
   }
 
   /**
-   * AffineTransform uses a 3x3 matrix with an implied last row of [ 0 0 1 ] to transform source coordinates (x,y) into destination coordinates (x&#39;, y&#39;) according to:        x&#39;  x  =   shear_y  scale_y  translate_y         1  [ 1 ]  After transformation,       x&#39; = scale_x * x + shear_x * y + translate_x;      y&#39; = scale_y * y + shear_y * x + translate_y;  This message is therefore composed of these six matrix elements.
+   * AffineTransform uses a 3x3 matrix with an implied last row of [ 0 0 1 ] to transform source coordinates (x,y) into destination coordinates (x&#39;, y&#39;) according to: x&#39; x = shear_y scale_y translate_y 1 [ 1 ] After transformation, x&#39; = scale_x * x + shear_x * y + translate_x; y&#39; = scale_y * y + shear_y * x + translate_y; This message is therefore composed of these six matrix elements.
    */
   export interface Schema$AffineTransform {
     /**
@@ -199,7 +199,7 @@ export namespace slides_v1 {
      */
     presentationId?: string | null;
     /**
-     * The reply of the updates.  This maps 1:1 with the updates, although replies to some requests may be empty.
+     * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
     /**
@@ -259,15 +259,15 @@ export namespace slides_v1 {
    */
   export interface Schema$CreateImageRequest {
     /**
-     * The element properties for the image.  When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.  The PageElementProperties.size property is optional. If you don&#39;t specify the size, the default size of the image is used.  The PageElementProperties.transform property is optional. If you don&#39;t specify a transform, the image will be placed at the top left corner of the page.
+     * The element properties for the image. When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation. The PageElementProperties.size property is optional. If you don&#39;t specify the size, the default size of the image is used. The PageElementProperties.transform property is optional. If you don&#39;t specify a transform, the image will be placed at the top left corner of the page.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
     /**
-     * The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
      */
     url?: string | null;
   }
@@ -285,7 +285,7 @@ export namespace slides_v1 {
    */
   export interface Schema$CreateLineRequest {
     /**
-     * The category of the line to be created.  The exact line type created is determined based on the category and how it&#39;s routed to connect to other page elements.  If you specify both a `category` and a `line_category`, the `category` takes precedence.  If you do not specify a value for `category`, but specify a value for `line_category`, then the specified `line_category` value is used.  If you do not specify either, then STRAIGHT is used.
+     * The category of the line to be created. The exact line type created is determined based on the category and how it&#39;s routed to connect to other page elements. If you specify both a `category` and a `line_category`, the `category` takes precedence. If you do not specify a value for `category`, but specify a value for `line_category`, then the specified `line_category` value is used. If you do not specify either, then STRAIGHT is used.
      */
     category?: string | null;
     /**
@@ -293,11 +293,11 @@ export namespace slides_v1 {
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * The category of the line to be created.  &lt;b&gt;Deprecated&lt;/b&gt;: use `category` instead.  The exact line type created is determined based on the category and how it&#39;s routed to connect to other page elements.  If you specify both a `category` and a `line_category`, the `category` takes precedence.
+     * The category of the line to be created. *Deprecated*: use `category` instead. The exact line type created is determined based on the category and how it&#39;s routed to connect to other page elements. If you specify both a `category` and a `line_category`, the `category` takes precedence.
      */
     lineCategory?: string | null;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
   }
@@ -311,7 +311,7 @@ export namespace slides_v1 {
     objectId?: string | null;
   }
   /**
-   * Creates bullets for all of the paragraphs that overlap with the given text index range.  The nesting level of each paragraph will be determined by counting leading tabs in front of each paragraph. To avoid excess space between the bullet and the corresponding paragraph, these leading tabs are removed by this request. This may change the indices of parts of the text.  If the paragraph immediately before paragraphs being updated is in a list with a matching preset, the paragraphs being updated are added to that preceding list.
+   * Creates bullets for all of the paragraphs that overlap with the given text index range. The nesting level of each paragraph will be determined by counting leading tabs in front of each paragraph. To avoid excess space between the bullet and the corresponding paragraph, these leading tabs are removed by this request. This may change the indices of parts of the text. If the paragraph immediately before paragraphs being updated is in a list with a matching preset, the paragraphs being updated are added to that preceding list.
    */
   export interface Schema$CreateParagraphBulletsRequest {
     /**
@@ -340,7 +340,7 @@ export namespace slides_v1 {
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If empty, a unique identifier will be generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If empty, a unique identifier will be generated.
      */
     objectId?: string | null;
     /**
@@ -358,7 +358,7 @@ export namespace slides_v1 {
     objectId?: string | null;
   }
   /**
-   * Creates an embedded Google Sheets chart.  NOTE: Chart creation requires at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, drive.file, or drive OAuth scopes.
+   * Creates an embedded Google Sheets chart. NOTE: Chart creation requires at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, drive.file, or drive OAuth scopes.
    */
   export interface Schema$CreateSheetsChartRequest {
     /**
@@ -366,7 +366,7 @@ export namespace slides_v1 {
      */
     chartId?: number | null;
     /**
-     * The element properties for the chart.  When the aspect ratio of the provided size does not match the chart aspect ratio, the chart is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.
+     * The element properties for the chart. When the aspect ratio of the provided size does not match the chart aspect ratio, the chart is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
@@ -374,7 +374,7 @@ export namespace slides_v1 {
      */
     linkingMode?: string | null;
     /**
-     * A user-supplied object ID.  If specified, the ID must be unique among all pages and page elements in the presentation. The ID should start with a word character [a-zA-Z0-9_] and then followed by any number of the following characters [a-zA-Z0-9_-:]. The length of the ID should not be less than 5 or greater than 50. If empty, a unique identifier will be generated.
+     * A user-supplied object ID. If specified, the ID must be unique among all pages and page elements in the presentation. The ID should start with a word character [a-zA-Z0-9_] and then followed by any number of the following characters [a-zA-Z0-9_-:]. The length of the ID should not be less than 5 or greater than 50. If empty, a unique identifier will be generated.
      */
     objectId?: string | null;
     /**
@@ -396,11 +396,11 @@ export namespace slides_v1 {
    */
   export interface Schema$CreateSlideRequest {
     /**
-     * The optional zero-based index indicating where to insert the slides.  If you don&#39;t specify an index, the new slide is created at the end.
+     * The optional zero-based index indicating where to insert the slides. If you don&#39;t specify an index, the new slide is created at the end.
      */
     insertionIndex?: number | null;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
     /**
@@ -408,7 +408,7 @@ export namespace slides_v1 {
      */
     placeholderIdMappings?: Schema$LayoutPlaceholderIdMapping[];
     /**
-     * Layout reference of the slide to be inserted, based on the *current master*, which is one of the following:  - The master of the previous slide index. - The master of the first slide, if the insertion_index is zero. - The first master in the presentation, if there are no slides.  If the LayoutReference is not found in the current master, a 400 bad request error is returned.  If you don&#39;t specify a layout reference, then the new slide will use the predefined layout `BLANK`.
+     * Layout reference of the slide to be inserted, based on the *current master*, which is one of the following: - The master of the previous slide index. - The master of the first slide, if the insertion_index is zero. - The first master in the presentation, if there are no slides. If the LayoutReference is not found in the current master, a 400 bad request error is returned. If you don&#39;t specify a layout reference, then the new slide will use the predefined layout `BLANK`.
      */
     slideLayoutReference?: Schema$LayoutReference;
   }
@@ -430,11 +430,11 @@ export namespace slides_v1 {
      */
     columns?: number | null;
     /**
-     * The element properties for the table.  The table will be created at the provided size, subject to a minimum size. If no size is provided, the table will be automatically sized.  Table transforms must have a scale of 1 and no shear components. If no transform is provided, the table will be centered on the page.
+     * The element properties for the table. The table will be created at the provided size, subject to a minimum size. If no size is provided, the table will be automatically sized. Table transforms must have a scale of 1 and no shear components. If no transform is provided, the table will be centered on the page.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
     /**
@@ -452,19 +452,19 @@ export namespace slides_v1 {
     objectId?: string | null;
   }
   /**
-   * Creates a video.  NOTE: Creating a video from Google Drive requires that the requesting app have at least one of the drive, drive.readonly, or drive.file OAuth scopes.
+   * Creates a video. NOTE: Creating a video from Google Drive requires that the requesting app have at least one of the drive, drive.readonly, or drive.file OAuth scopes.
    */
   export interface Schema$CreateVideoRequest {
     /**
-     * The element properties for the video.  The PageElementProperties.size property is optional. If you don&#39;t specify a size, a default size is chosen by the server.  The PageElementProperties.transform property is optional. The transform must not have shear components. If you don&#39;t specify a transform, the video will be placed at the top left corner of the page.
+     * The element properties for the video. The PageElementProperties.size property is optional. If you don&#39;t specify a size, a default size is chosen by the server. The PageElementProperties.transform property is optional. The transform must not have shear components. If you don&#39;t specify a transform, the video will be placed at the top left corner of the page.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * The video source&#39;s unique identifier for this video.  e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.
+     * The video source&#39;s unique identifier for this video. e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.
      */
     id?: string | null;
     /**
-     * A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
     /**
@@ -482,7 +482,7 @@ export namespace slides_v1 {
     objectId?: string | null;
   }
   /**
-   * The crop properties of an object enclosed in a container. For example, an Image.  The crop properties is represented by the offsets of four edges which define a crop rectangle. The offsets are measured in percentage from the corresponding edges of the object&#39;s original bounding rectangle towards inside, relative to the object&#39;s original dimensions.  - If the offset is in the interval (0, 1), the corresponding edge of crop rectangle is positioned inside of the object&#39;s original bounding rectangle. - If the offset is negative or greater than 1, the corresponding edge of crop rectangle is positioned outside of the object&#39;s original bounding rectangle. - If the left edge of the crop rectangle is on the right side of its right edge, the object will be flipped horizontally. - If the top edge of the crop rectangle is below its bottom edge, the object will be flipped vertically. - If all offsets and rotation angle is 0, the object is not cropped.  After cropping, the content in the crop rectangle will be stretched to fit its container.
+   * The crop properties of an object enclosed in a container. For example, an Image. The crop properties is represented by the offsets of four edges which define a crop rectangle. The offsets are measured in percentage from the corresponding edges of the object&#39;s original bounding rectangle towards inside, relative to the object&#39;s original dimensions. - If the offset is in the interval (0, 1), the corresponding edge of crop rectangle is positioned inside of the object&#39;s original bounding rectangle. - If the offset is negative or greater than 1, the corresponding edge of crop rectangle is positioned outside of the object&#39;s original bounding rectangle. - If the left edge of the crop rectangle is on the right side of its right edge, the object will be flipped horizontally. - If the top edge of the crop rectangle is below its bottom edge, the object will be flipped vertically. - If all offsets and rotation angle is 0, the object is not cropped. After cropping, the content in the crop rectangle will be stretched to fit its container.
    */
   export interface Schema$CropProperties {
     /**
@@ -511,12 +511,12 @@ export namespace slides_v1 {
    */
   export interface Schema$DeleteObjectRequest {
     /**
-     * The object ID of the page or page element to delete.  If after a delete operation a group contains only 1 or no page elements, the group is also deleted.  If a placeholder is deleted on a layout, any empty inheriting shapes are also deleted.
+     * The object ID of the page or page element to delete. If after a delete operation a group contains only 1 or no page elements, the group is also deleted. If a placeholder is deleted on a layout, any empty inheriting shapes are also deleted.
      */
     objectId?: string | null;
   }
   /**
-   * Deletes bullets from all of the paragraphs that overlap with the given text index range.  The nesting level of each paragraph will be visually preserved by adding indent to the start of the corresponding paragraph.
+   * Deletes bullets from all of the paragraphs that overlap with the given text index range. The nesting level of each paragraph will be visually preserved by adding indent to the start of the corresponding paragraph.
    */
   export interface Schema$DeleteParagraphBulletsRequest {
     /**
@@ -537,7 +537,7 @@ export namespace slides_v1 {
    */
   export interface Schema$DeleteTableColumnRequest {
     /**
-     * The reference table cell location from which a column will be deleted.  The column this cell spans will be deleted. If this is a merged cell, multiple columns will be deleted. If no columns remain in the table after this deletion, the whole table is deleted.
+     * The reference table cell location from which a column will be deleted. The column this cell spans will be deleted. If this is a merged cell, multiple columns will be deleted. If no columns remain in the table after this deletion, the whole table is deleted.
      */
     cellLocation?: Schema$TableCellLocation;
     /**
@@ -550,7 +550,7 @@ export namespace slides_v1 {
    */
   export interface Schema$DeleteTableRowRequest {
     /**
-     * The reference table cell location from which a row will be deleted.  The row this cell spans will be deleted. If this is a merged cell, multiple rows will be deleted. If no rows remain in the table after this deletion, the whole table is deleted.
+     * The reference table cell location from which a row will be deleted. The row this cell spans will be deleted. If this is a merged cell, multiple rows will be deleted. If no rows remain in the table after this deletion, the whole table is deleted.
      */
     cellLocation?: Schema$TableCellLocation;
     /**
@@ -571,7 +571,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The range of text to delete, based on TextElement indexes.  There is always an implicit newline character at the end of a shape&#39;s or table cell&#39;s text that cannot be deleted. `Range.Type.ALL` will use the correct bounds, but care must be taken when specifying explicit bounds for range types `FROM_START_INDEX` and `FIXED_RANGE`. For example, if the text is &quot;ABC&quot;, followed by an implicit newline, then the maximum value is 2 for `text_range.start_index` and 3 for `text_range.end_index`.  Deleting text that crosses a paragraph boundary may result in changes to paragraph styles and lists as the two paragraphs are merged.  Ranges that include only one code unit of a surrogate pair are expanded to include both code units.
+     * The range of text to delete, based on TextElement indexes. There is always an implicit newline character at the end of a shape&#39;s or table cell&#39;s text that cannot be deleted. `Range.Type.ALL` will use the correct bounds, but care must be taken when specifying explicit bounds for range types `FROM_START_INDEX` and `FIXED_RANGE`. For example, if the text is &quot;ABC&quot;, followed by an implicit newline, then the maximum value is 2 for `text_range.start_index` and 3 for `text_range.end_index`. Deleting text that crosses a paragraph boundary may result in changes to paragraph styles and lists as the two paragraphs are merged. Ranges that include only one code unit of a surrogate pair are expanded to include both code units.
      */
     textRange?: Schema$Range;
   }
@@ -589,7 +589,7 @@ export namespace slides_v1 {
     unit?: string | null;
   }
   /**
-   * Duplicates a slide or page element.  When duplicating a slide, the duplicate slide will be created immediately following the specified slide. When duplicating a page element, the duplicate will be placed on the same page at the same position as the original.
+   * Duplicates a slide or page element. When duplicating a slide, the duplicate slide will be created immediately following the specified slide. When duplicating a page element, the duplicate will be placed on the same page at the same position as the original.
    */
   export interface Schema$DuplicateObjectRequest {
     /**
@@ -597,7 +597,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The object being duplicated may contain other objects, for example when duplicating a slide or a group page element. This map defines how the IDs of duplicated objects are generated: the keys are the IDs of the original objects and its values are the IDs that will be assigned to the corresponding duplicate object. The ID of the source object&#39;s duplicate may be specified in this map as well, using the same value of the `object_id` field as a key and the newly desired ID as the value.  All keys must correspond to existing IDs in the presentation. All values must be unique in the presentation and must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the new ID must not be less than 5 or greater than 50.  If any IDs of source objects are omitted from the map, a new random ID will be assigned. If the map is empty or unset, all duplicate objects will receive a new random ID.
+     * The object being duplicated may contain other objects, for example when duplicating a slide or a group page element. This map defines how the IDs of duplicated objects are generated: the keys are the IDs of the original objects and its values are the IDs that will be assigned to the corresponding duplicate object. The ID of the source object&#39;s duplicate may be specified in this map as well, using the same value of the `object_id` field as a key and the newly desired ID as the value. All keys must correspond to existing IDs in the presentation. All values must be unique in the presentation and must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the new ID must not be less than 5 or greater than 50. If any IDs of source objects are omitted from the map, a new random ID will be assigned. If the map is empty or unset, all duplicate objects will receive a new random ID.
      */
     objectIds?: {[key: string]: string} | null;
   }
@@ -624,11 +624,11 @@ export namespace slides_v1 {
    */
   export interface Schema$GroupObjectsRequest {
     /**
-     * The object IDs of the objects to group.  Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholder shapes cannot be grouped.
+     * The object IDs of the objects to group. Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholder shapes cannot be grouped.
      */
     childrenObjectIds?: string[] | null;
     /**
-     * A user-supplied object ID for the group to be created.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID for the group to be created. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     groupObjectId?: string | null;
   }
@@ -696,15 +696,15 @@ export namespace slides_v1 {
     transparency?: number | null;
   }
   /**
-   * Inserts columns into a table.  Other columns in the table will be resized to fit the new column.
+   * Inserts columns into a table. Other columns in the table will be resized to fit the new column.
    */
   export interface Schema$InsertTableColumnsRequest {
     /**
-     * The reference table cell location from which columns will be inserted.  A new column will be inserted to the left (or right) of the column where the reference cell is. If the reference cell is a merged cell, a new column will be inserted to the left (or right) of the merged cell.
+     * The reference table cell location from which columns will be inserted. A new column will be inserted to the left (or right) of the column where the reference cell is. If the reference cell is a merged cell, a new column will be inserted to the left (or right) of the merged cell.
      */
     cellLocation?: Schema$TableCellLocation;
     /**
-     * Whether to insert new columns to the right of the reference cell location.  - `True`: insert to the right. - `False`: insert to the left.
+     * Whether to insert new columns to the right of the reference cell location. - `True`: insert to the right. - `False`: insert to the left.
      */
     insertRight?: boolean | null;
     /**
@@ -721,11 +721,11 @@ export namespace slides_v1 {
    */
   export interface Schema$InsertTableRowsRequest {
     /**
-     * The reference table cell location from which rows will be inserted.  A new row will be inserted above (or below) the row where the reference cell is. If the reference cell is a merged cell, a new row will be inserted above (or below) the merged cell.
+     * The reference table cell location from which rows will be inserted. A new row will be inserted above (or below) the row where the reference cell is. If the reference cell is a merged cell, a new row will be inserted above (or below) the merged cell.
      */
     cellLocation?: Schema$TableCellLocation;
     /**
-     * Whether to insert new rows below the reference cell location.  - `True`: insert below the cell. - `False`: insert above the cell.
+     * Whether to insert new rows below the reference cell location. - `True`: insert below the cell. - `False`: insert above the cell.
      */
     insertBelow?: boolean | null;
     /**
@@ -746,7 +746,7 @@ export namespace slides_v1 {
      */
     cellLocation?: Schema$TableCellLocation;
     /**
-     * The index where the text will be inserted, in Unicode code units, based on TextElement indexes.  The index is zero-based and is computed from the start of the string. The index may be adjusted to prevent insertions inside Unicode grapheme clusters. In these cases, the text will be inserted immediately after the grapheme cluster.
+     * The index where the text will be inserted, in Unicode code units, based on TextElement indexes. The index is zero-based and is computed from the start of the string. The index may be adjusted to prevent insertions inside Unicode grapheme clusters. In these cases, the text will be inserted immediately after the grapheme cluster.
      */
     insertionIndex?: number | null;
     /**
@@ -754,7 +754,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The text to be inserted.  Inserting a newline character will implicitly create a new ParagraphMarker at that index. The paragraph style of the new paragraph will be copied from the paragraph at the current insertion index, including lists and bullets.  Text styles for inserted text will be determined automatically, generally preserving the styling of neighboring text. In most cases, the text will be added to the TextRun that exists at the insertion index.  Some control characters (U+0000-U+0008, U+000C-U+001F) and characters from the Unicode Basic Multilingual Plane Private Use Area (U+E000-U+F8FF) will be stripped out of the inserted text.
+     * The text to be inserted. Inserting a newline character will implicitly create a new ParagraphMarker at that index. The paragraph style of the new paragraph will be copied from the paragraph at the current insertion index, including lists and bullets. Text styles for inserted text will be determined automatically, generally preserving the styling of neighboring text. In most cases, the text will be added to the TextRun that exists at the insertion index. Some control characters (U+0000-U+0008, U+000C-U+001F) and characters from the Unicode Basic Multilingual Plane Private Use Area (U+E000-U+F8FF) will be stripped out of the inserted text.
      */
     text?: string | null;
   }
@@ -771,7 +771,7 @@ export namespace slides_v1 {
      */
     layoutPlaceholderObjectId?: string | null;
     /**
-     * A user-supplied object ID for the placeholder identified above that to be created onto a slide.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
+     * A user-supplied object ID for the placeholder identified above that to be created onto a slide. If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50. If you don&#39;t specify an ID, a unique one is generated.
      */
     objectId?: string | null;
   }
@@ -793,7 +793,7 @@ export namespace slides_v1 {
     name?: string | null;
   }
   /**
-   * Slide layout reference. This may reference either:  - A predefined layout - One of the layouts in the presentation.
+   * Slide layout reference. This may reference either: - A predefined layout - One of the layouts in the presentation.
    */
   export interface Schema$LayoutReference {
     /**
@@ -810,7 +810,7 @@ export namespace slides_v1 {
    */
   export interface Schema$Line {
     /**
-     * The category of the line.  It matches the `category` specified in CreateLineRequest, and can be updated with UpdateLineCategoryRequest.
+     * The category of the line. It matches the `category` specified in CreateLineRequest, and can be updated with UpdateLineCategoryRequest.
      */
     lineCategory?: string | null;
     /**
@@ -827,11 +827,11 @@ export namespace slides_v1 {
    */
   export interface Schema$LineConnection {
     /**
-     * The object ID of the connected page element.  Some page elements, such as groups, tables, and lines do not have connection sites and therefore cannot be connected to a connector line.
+     * The object ID of the connected page element. Some page elements, such as groups, tables, and lines do not have connection sites and therefore cannot be connected to a connector line.
      */
     connectedObjectId?: string | null;
     /**
-     * The index of the connection site on the connected page element.  In most cases, it corresponds to the predefined connection site index from the ECMA-376 standard. More information on those connection sites can be found in the description of the &quot;cnx&quot; attribute in section 20.1.9.9 and Annex H. &quot;Predefined DrawingML Shape and Text Geometries&quot; of &quot;Office Open XML File Formats-Fundamentals and Markup Language Reference&quot;, part 1 of [ECMA-376 5th edition] (http://www.ecma-international.org/publications/standards/Ecma-376.htm).  The position of each connection site can also be viewed from Slides editor.
+     * The index of the connection site on the connected page element. In most cases, it corresponds to the predefined connection site index from the ECMA-376 standard. More information on those connection sites can be found in the description of the &quot;cnx&quot; attribute in section 20.1.9.9 and Annex H. &quot;Predefined DrawingML Shape and Text Geometries&quot; of &quot;Office Open XML File Formats-Fundamentals and Markup Language Reference&quot;, part 1 of [ECMA-376 5th edition] (http://www.ecma-international.org/publications/standards/Ecma-376.htm). The position of each connection site can also be viewed from Slides editor.
      */
     connectionSiteIndex?: number | null;
   }
@@ -845,7 +845,7 @@ export namespace slides_v1 {
     solidFill?: Schema$SolidFill;
   }
   /**
-   * The properties of the Line.  When unset, these fields default to values that match the appearance of new lines created in the Slides editor.
+   * The properties of the Line. When unset, these fields default to values that match the appearance of new lines created in the Slides editor.
    */
   export interface Schema$LineProperties {
     /**
@@ -857,7 +857,7 @@ export namespace slides_v1 {
      */
     endArrow?: string | null;
     /**
-     * The connection at the end of the line. If unset, there is no connection.  Only lines with a Type indicating it is a &quot;connector&quot; can have an `end_connection`.
+     * The connection at the end of the line. If unset, there is no connection. Only lines with a Type indicating it is a &quot;connector&quot; can have an `end_connection`.
      */
     endConnection?: Schema$LineConnection;
     /**
@@ -873,7 +873,7 @@ export namespace slides_v1 {
      */
     startArrow?: string | null;
     /**
-     * The connection at the beginning of the line. If unset, there is no connection.  Only lines with a Type indicating it is a &quot;connector&quot; can have a `start_connection`.
+     * The connection at the beginning of the line. If unset, there is no connection. Only lines with a Type indicating it is a &quot;connector&quot; can have a `start_connection`.
      */
     startConnection?: Schema$LineConnection;
     /**
@@ -933,7 +933,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The table range specifying which cells of the table to merge.  Any text in the cells being merged will be concatenated and stored in the upper-left (&quot;head&quot;) cell of the range. If the range is non-rectangular (which can occur in some cases where the range covers cells that are already merged), a 400 bad request error is returned.
+     * The table range specifying which cells of the table to merge. Any text in the cells being merged will be concatenated and stored in the upper-left (&quot;head&quot;) cell of the range. If the range is non-rectangular (which can occur in some cases where the range covers cells that are already merged), a 400 bad request error is returned.
      */
     tableRange?: Schema$TableRange;
   }
@@ -978,7 +978,7 @@ export namespace slides_v1 {
     opaqueColor?: Schema$OpaqueColor;
   }
   /**
-   * The outline of a PageElement.  If these fields are unset, they may be inherited from a parent placeholder if it exists. If there is no parent, the fields will default to the value used for new page elements created in the Slides editor, which may depend on the page element kind.
+   * The outline of a PageElement. If these fields are unset, they may be inherited from a parent placeholder if it exists. If there is no parent, the fields will default to the value used for new page elements created in the Slides editor, which may depend on the page element kind.
    */
   export interface Schema$Outline {
     /**
@@ -990,7 +990,7 @@ export namespace slides_v1 {
      */
     outlineFill?: Schema$OutlineFill;
     /**
-     * The outline property state.  Updating the outline on a page element will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no outline on a page element, set this field to `NOT_RENDERED`. In this case, any other outline fields set in the same request will be ignored.
+     * The outline property state. Updating the outline on a page element will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no outline on a page element, set this field to `NOT_RENDERED`. In this case, any other outline fields set in the same request will be ignored.
      */
     propertyState?: string | null;
     /**
@@ -1040,7 +1040,7 @@ export namespace slides_v1 {
      */
     pageType?: string | null;
     /**
-     * The revision ID of the presentation containing this page. Can be used in update requests to assert that the presentation revision hasn&#39;t changed since the last read operation. Only populated if the user has edit access to the presentation.  The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the presentation has not changed. Conversely, a changed ID (for the same presentation and user) usually means the presentation has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
+     * The revision ID of the presentation containing this page. Can be used in update requests to assert that the presentation revision hasn&#39;t changed since the last read operation. Only populated if the user has edit access to the presentation. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the presentation has not changed. Conversely, a changed ID (for the same presentation and user) usually means the presentation has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
      */
     revisionId?: string | null;
     /**
@@ -1053,7 +1053,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageBackgroundFill {
     /**
-     * The background fill property state.  Updating the fill on a page will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a page, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
+     * The background fill property state. Updating the fill on a page will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a page, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
      */
     propertyState?: string | null;
     /**
@@ -1070,7 +1070,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageElement {
     /**
-     * The description of the page element. Combined with title to display alt text.  The field is not supported for Group elements.
+     * The description of the page element. Combined with title to display alt text. The field is not supported for Group elements.
      */
     description?: string | null;
     /**
@@ -1106,11 +1106,11 @@ export namespace slides_v1 {
      */
     table?: Schema$Table;
     /**
-     * The title of the page element. Combined with description to display alt text.  The field is not supported for Group elements.
+     * The title of the page element. Combined with description to display alt text. The field is not supported for Group elements.
      */
     title?: string | null;
     /**
-     * The transform of the page element.  The visual appearance of the page element is determined by its absolute transform. To compute the absolute transform, preconcatenate a page element&#39;s transform with the transforms of all of its parent groups. If the page element is not in a group, its absolute transform is the same as the value in this field.  The initial transform for the newly created Group is always the identity transform.
+     * The transform of the page element. The visual appearance of the page element is determined by its absolute transform. To compute the absolute transform, preconcatenate a page element&#39;s transform with the transforms of all of its parent groups. If the page element is not in a group, its absolute transform is the same as the value in this field. The initial transform for the newly created Group is always the identity transform.
      */
     transform?: Schema$AffineTransform;
     /**
@@ -1123,7 +1123,7 @@ export namespace slides_v1 {
     wordArt?: Schema$WordArt;
   }
   /**
-   * Common properties for a page element.  Note: When you initially create a PageElement, the API may modify the values of both `size` and `transform`, but the visual size will be unchanged.
+   * Common properties for a page element. Note: When you initially create a PageElement, the API may modify the values of both `size` and `transform`, but the visual size will be unchanged.
    */
   export interface Schema$PageElementProperties {
     /**
@@ -1140,11 +1140,11 @@ export namespace slides_v1 {
     transform?: Schema$AffineTransform;
   }
   /**
-   * The properties of the Page.  The page will inherit properties from the parent page. Depending on the page type the hierarchy is defined in either SlideProperties or LayoutProperties.
+   * The properties of the Page. The page will inherit properties from the parent page. Depending on the page type the hierarchy is defined in either SlideProperties or LayoutProperties.
    */
   export interface Schema$PageProperties {
     /**
-     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme, matching the defaults in the Slides editor.  Only the concrete colors of the first 12 ThemeColorTypes are editable. In addition, only the color scheme on `Master` pages can be updated. To update the field, a color scheme containing mappings from all the first 12 ThemeColorTypes to their concrete colors must be provided. Colors for the remaining ThemeColorTypes will be ignored.
+     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme, matching the defaults in the Slides editor. Only the concrete colors of the first 12 ThemeColorTypes are editable. In addition, only the color scheme on `Master` pages can be updated. To update the field, a color scheme containing mappings from all the first 12 ThemeColorTypes to their concrete colors must be provided. Colors for the remaining ThemeColorTypes will be ignored.
      */
     colorScheme?: Schema$ColorScheme;
     /**
@@ -1166,7 +1166,7 @@ export namespace slides_v1 {
     style?: Schema$ParagraphStyle;
   }
   /**
-   * Styles that apply to a whole paragraph.  If this text is contained in a shape with a parent placeholder, then these paragraph styles may be inherited from the parent. Which paragraph styles are inherited depend on the nesting level of lists:  * A paragraph not in a list will inherit its paragraph style from the   paragraph at the 0 nesting level of the list inside the parent placeholder. * A paragraph in a list will inherit its paragraph style from the paragraph   at its corresponding nesting level of the list inside the parent   placeholder.  Inherited paragraph styles are represented as unset fields in this message.
+   * Styles that apply to a whole paragraph. If this text is contained in a shape with a parent placeholder, then these paragraph styles may be inherited from the parent. Which paragraph styles are inherited depend on the nesting level of lists: * A paragraph not in a list will inherit its paragraph style from the paragraph at the 0 nesting level of the list inside the parent placeholder. * A paragraph in a list will inherit its paragraph style from the paragraph at its corresponding nesting level of the list inside the parent placeholder. Inherited paragraph styles are represented as unset fields in this message.
    */
   export interface Schema$ParagraphStyle {
     /**
@@ -1236,11 +1236,11 @@ export namespace slides_v1 {
      */
     locale?: string | null;
     /**
-     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes:  - Placeholder shapes on a master contain the default text styles and shape   properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by   its layouts. - Any other shapes on the master slide appear on all slides using that   master, regardless of their layout.
+     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes: - Placeholder shapes on a master contain the default text styles and shape properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by its layouts. - Any other shapes on the master slide appear on all slides using that master, regardless of their layout.
      */
     masters?: Schema$Page[];
     /**
-     * The notes master in the presentation. It serves three purposes:  - Placeholder shapes on a notes master contain the default text styles and   shape properties of all placeholder shapes on notes pages. Specifically,   a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a   `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties   inherited by all notes pages. - Any other shapes on the notes master appears on all notes pages.  The notes master is read-only.
+     * The notes master in the presentation. It serves three purposes: - Placeholder shapes on a notes master contain the default text styles and shape properties of all placeholder shapes on notes pages. Specifically, a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties inherited by all notes pages. - Any other shapes on the notes master appears on all notes pages. The notes master is read-only.
      */
     notesMaster?: Schema$Page;
     /**
@@ -1252,7 +1252,7 @@ export namespace slides_v1 {
      */
     presentationId?: string | null;
     /**
-     * The revision ID of the presentation. Can be used in update requests to assert that the presentation revision hasn&#39;t changed since the last read operation. Only populated if the user has edit access to the presentation.  The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the presentation has not changed. Conversely, a changed ID (for the same presentation and user) usually means the presentation has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
+     * The revision ID of the presentation. Can be used in update requests to assert that the presentation revision hasn&#39;t changed since the last read operation. Only populated if the user has edit access to the presentation. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the presentation has not changed. Conversely, a changed ID (for the same presentation and user) usually means the presentation has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
      */
     revisionId?: string | null;
     /**
@@ -1286,16 +1286,16 @@ export namespace slides_v1 {
    */
   export interface Schema$Recolor {
     /**
-     * The name of the recolor effect.  The name is determined from the `recolor_stops` by matching the gradient against the colors in the page&#39;s current color scheme. This property is read-only.
+     * The name of the recolor effect. The name is determined from the `recolor_stops` by matching the gradient against the colors in the page&#39;s current color scheme. This property is read-only.
      */
     name?: string | null;
     /**
-     * The recolor effect is represented by a gradient, which is a list of color stops.  The colors in the gradient will replace the corresponding colors at the same position in the color palette and apply to the image. This property is read-only.
+     * The recolor effect is represented by a gradient, which is a list of color stops. The colors in the gradient will replace the corresponding colors at the same position in the color palette and apply to the image. This property is read-only.
      */
     recolorStops?: Schema$ColorStop[];
   }
   /**
-   * Refreshes an embedded Google Sheets chart by replacing it with the latest version of the chart from Google Sheets.  NOTE: Refreshing charts requires  at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or drive OAuth scopes.
+   * Refreshes an embedded Google Sheets chart by replacing it with the latest version of the chart from Google Sheets. NOTE: Refreshing charts requires at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or drive OAuth scopes.
    */
   export interface Schema$RefreshSheetsChartRequest {
     /**
@@ -1304,7 +1304,7 @@ export namespace slides_v1 {
     objectId?: string | null;
   }
   /**
-   * Replaces all shapes that match the given criteria with the provided image.  The images replacing the shapes are rectangular after being inserted into the presentation and do not take on the forms of the shapes.
+   * Replaces all shapes that match the given criteria with the provided image. The images replacing the shapes are rectangular after being inserted into the presentation and do not take on the forms of the shapes.
    */
   export interface Schema$ReplaceAllShapesWithImageRequest {
     /**
@@ -1312,19 +1312,19 @@ export namespace slides_v1 {
      */
     containsText?: Schema$SubstringMatchCriteria;
     /**
-     * The image replace method.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.  If you do not specify a value for `image_replace_method`, but specify a value for `replace_method`, then the specified `replace_method` value is used.  If you do not specify either, then CENTER_INSIDE is used.
+     * The image replace method. If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence. If you do not specify a value for `image_replace_method`, but specify a value for `replace_method`, then the specified `replace_method` value is used. If you do not specify either, then CENTER_INSIDE is used.
      */
     imageReplaceMethod?: string | null;
     /**
-     * The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
      */
     imageUrl?: string | null;
     /**
-     * If non-empty, limits the matches to page elements only on the given pages.  Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
+     * If non-empty, limits the matches to page elements only on the given pages. Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
      */
     pageObjectIds?: string[] | null;
     /**
-     * The replace method.  &lt;b&gt;Deprecated&lt;/b&gt;: use `image_replace_method` instead.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.
+     * The replace method. *Deprecated*: use `image_replace_method` instead. If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.
      */
     replaceMethod?: string | null;
   }
@@ -1338,7 +1338,7 @@ export namespace slides_v1 {
     occurrencesChanged?: number | null;
   }
   /**
-   * Replaces all shapes that match the given criteria with the provided Google Sheets chart. The chart will be scaled and centered to fit within the bounds of the original shape.  NOTE: Replacing shapes with a chart requires at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or drive OAuth scopes.
+   * Replaces all shapes that match the given criteria with the provided Google Sheets chart. The chart will be scaled and centered to fit within the bounds of the original shape. NOTE: Replacing shapes with a chart requires at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or drive OAuth scopes.
    */
   export interface Schema$ReplaceAllShapesWithSheetsChartRequest {
     /**
@@ -1354,7 +1354,7 @@ export namespace slides_v1 {
      */
     linkingMode?: string | null;
     /**
-     * If non-empty, limits the matches to page elements only on the given pages.  Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
+     * If non-empty, limits the matches to page elements only on the given pages. Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
      */
     pageObjectIds?: string[] | null;
     /**
@@ -1380,7 +1380,7 @@ export namespace slides_v1 {
      */
     containsText?: Schema$SubstringMatchCriteria;
     /**
-     * If non-empty, limits the matches to page elements only on the given pages.  Returns a 400 bad request error if given the page object ID of a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
+     * If non-empty, limits the matches to page elements only on the given pages. Returns a 400 bad request error if given the page object ID of a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
      */
     pageObjectIds?: string[] | null;
     /**
@@ -1398,7 +1398,7 @@ export namespace slides_v1 {
     occurrencesChanged?: number | null;
   }
   /**
-   * Replaces an existing image with a new image.  Replacing an image removes some image effects from the existing image.
+   * Replaces an existing image with a new image. Replacing an image removes some image effects from the existing image.
    */
   export interface Schema$ReplaceImageRequest {
     /**
@@ -1410,7 +1410,7 @@ export namespace slides_v1 {
      */
     imageReplaceMethod?: string | null;
     /**
-     * The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
      */
     url?: string | null;
   }
@@ -1596,7 +1596,7 @@ export namespace slides_v1 {
    */
   export interface Schema$RerouteLineRequest {
     /**
-     * The object ID of the line to reroute.  Only a line with a category indicating it is a &quot;connector&quot; can be rerouted. The start and end connections of the line must be on different page elements.
+     * The object ID of the line to reroute. Only a line with a category indicating it is a &quot;connector&quot; can be rerouted. The start and end connections of the line must be on different page elements.
      */
     objectId?: string | null;
   }
@@ -1671,7 +1671,7 @@ export namespace slides_v1 {
     red?: number | null;
   }
   /**
-   * The shadow properties of a page element.  If these fields are unset, they may be inherited from a parent placeholder if it exists. If there is no parent, the fields will default to the value used for new page elements created in the Slides editor, which may depend on the page element kind.
+   * The shadow properties of a page element. If these fields are unset, they may be inherited from a parent placeholder if it exists. If there is no parent, the fields will default to the value used for new page elements created in the Slides editor, which may depend on the page element kind.
    */
   export interface Schema$Shadow {
     /**
@@ -1691,7 +1691,7 @@ export namespace slides_v1 {
      */
     color?: Schema$OpaqueColor;
     /**
-     * The shadow property state.  Updating the shadow on a page element will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no shadow on a page element, set this field to `NOT_RENDERED`. In this case, any other shadow fields set in the same request will be ignored.
+     * The shadow property state. Updating the shadow on a page element will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no shadow on a page element, set this field to `NOT_RENDERED`. In this case, any other shadow fields set in the same request will be ignored.
      */
     propertyState?: string | null;
     /**
@@ -1712,7 +1712,7 @@ export namespace slides_v1 {
    */
   export interface Schema$Shape {
     /**
-     * Placeholders are shapes that are inherit from corresponding placeholders on layouts and masters.  If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field.
+     * Placeholders are shapes that are inherit from corresponding placeholders on layouts and masters. If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field.
      */
     placeholder?: Schema$Placeholder;
     /**
@@ -1733,7 +1733,7 @@ export namespace slides_v1 {
    */
   export interface Schema$ShapeBackgroundFill {
     /**
-     * The background fill property state.  Updating the fill on a shape will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a shape, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
+     * The background fill property state. Updating the fill on a shape will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a shape, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
      */
     propertyState?: string | null;
     /**
@@ -1742,7 +1742,7 @@ export namespace slides_v1 {
     solidFill?: Schema$SolidFill;
   }
   /**
-   * The properties of a Shape.  If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value.
+   * The properties of a Shape. If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value.
    */
   export interface Schema$ShapeProperties {
     /**
@@ -1827,11 +1827,11 @@ export namespace slides_v1 {
     notesPage?: Schema$Page;
   }
   /**
-   * A solid color fill. The page or page element is filled entirely with the specified color value.  If any field is unset, its value may be inherited from a parent placeholder if it exists.
+   * A solid color fill. The page or page element is filled entirely with the specified color value. If any field is unset, its value may be inherited from a parent placeholder if it exists.
    */
   export interface Schema$SolidFill {
     /**
-     * The fraction of this `color` that should be applied to the pixel. That is, the final pixel color is defined by the equation:    pixel color = alpha * (color) + (1.0 - alpha) * (background color)  This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color.
+     * The fraction of this `color` that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color.
      */
     alpha?: number | null;
     /**
@@ -1844,7 +1844,7 @@ export namespace slides_v1 {
    */
   export interface Schema$StretchedPictureFill {
     /**
-     * Reading the content_url:  An URL to a picture with a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the picture as the original requester. Access to the picture may be lost if the presentation&#39;s sharing settings change.  Writing the content_url:  The picture is fetched once at insertion time and a copy is stored for display inside the presentation. Pictures must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+     * Reading the content_url: An URL to a picture with a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the picture as the original requester. Access to the picture may be lost if the presentation&#39;s sharing settings change. Writing the content_url: The picture is fetched once at insertion time and a copy is stored for display inside the presentation. Pictures must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length.
      */
     contentUrl?: string | null;
     /**
@@ -1857,7 +1857,7 @@ export namespace slides_v1 {
    */
   export interface Schema$SubstringMatchCriteria {
     /**
-     * Indicates whether the search should respect case:  - `True`: the search is case sensitive. - `False`: the search is case insensitive.
+     * Indicates whether the search should respect case: - `True`: the search is case sensitive. - `False`: the search is case insensitive.
      */
     matchCase?: boolean | null;
     /**
@@ -1874,7 +1874,7 @@ export namespace slides_v1 {
      */
     columns?: number | null;
     /**
-     * Properties of horizontal cell borders.  A table&#39;s horizontal cell borders are represented as a grid. The grid has one more row than the number of rows in the table and the same number of columns as the table. For example, if the table is 3 x 3, its horizontal borders will be represented as a grid with 4 rows and 3 columns.
+     * Properties of horizontal cell borders. A table&#39;s horizontal cell borders are represented as a grid. The grid has one more row than the number of rows in the table and the same number of columns as the table. For example, if the table is 3 x 3, its horizontal borders will be represented as a grid with 4 rows and 3 columns.
      */
     horizontalBorderRows?: Schema$TableBorderRow[];
     /**
@@ -1886,11 +1886,11 @@ export namespace slides_v1 {
      */
     tableColumns?: Schema$TableColumnProperties[];
     /**
-     * Properties and contents of each row.  Cells that span multiple rows are contained in only one of these rows and have a row_span greater than 1.
+     * Properties and contents of each row. Cells that span multiple rows are contained in only one of these rows and have a row_span greater than 1.
      */
     tableRows?: Schema$TableRow[];
     /**
-     * Properties of vertical cell borders.  A table&#39;s vertical cell borders are represented as a grid. The grid has the same number of rows as the table and one more column than the number of columns in the table. For example, if the table is 3 x 3, its vertical borders will be represented as a grid with 3 rows and 4 columns.
+     * Properties of vertical cell borders. A table&#39;s vertical cell borders are represented as a grid. The grid has the same number of rows as the table and one more column than the number of columns in the table. For example, if the table is 3 x 3, its vertical borders will be represented as a grid with 3 rows and 4 columns.
      */
     verticalBorderRows?: Schema$TableBorderRow[];
   }
@@ -1972,7 +1972,7 @@ export namespace slides_v1 {
    */
   export interface Schema$TableCellBackgroundFill {
     /**
-     * The background fill property state.  Updating the fill on a table cell will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a table cell, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
+     * The background fill property state. Updating the fill on a table cell will implicitly update this field to `RENDERED`, unless another value is specified in the same request. To have no fill on a table cell, set this field to `NOT_RENDERED`. In this case, any other fill fields set in the same request will be ignored.
      */
     propertyState?: string | null;
     /**
@@ -2016,7 +2016,7 @@ export namespace slides_v1 {
     columnWidth?: Schema$Dimension;
   }
   /**
-   * A table range represents a reference to a subset of a table.  It&#39;s important to note that the cells specified by a table range do not necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3 table where all the cells of the last row are merged together. The table looks like this:                      [             ]  A table range with location = (0, 0), row span = 3 and column span = 2 specifies the following cells:        x     x       [ x    x    x ]
+   * A table range represents a reference to a subset of a table. It&#39;s important to note that the cells specified by a table range do not necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3 table where all the cells of the last row are merged together. The table looks like this: [ ] A table range with location = (0, 0), row span = 3 and column span = 2 specifies the following cells: x x [ x x x ]
    */
   export interface Schema$TableRange {
     /**
@@ -2041,7 +2041,7 @@ export namespace slides_v1 {
      */
     rowHeight?: Schema$Dimension;
     /**
-     * Properties and contents of each cell.  Cells that span multiple columns are represented only once with a column_span greater than 1. As a result, the length of this collection does not always match the number of columns of the entire table.
+     * Properties and contents of each cell. Cells that span multiple columns are represented only once with a column_span greater than 1. As a result, the length of this collection does not always match the number of columns of the entire table.
      */
     tableCells?: Schema$TableCell[];
     /**
@@ -2084,7 +2084,7 @@ export namespace slides_v1 {
      */
     endIndex?: number | null;
     /**
-     * A marker representing the beginning of a new paragraph.  The `start_index` and `end_index` of this TextElement represent the range of the paragraph. Other TextElements with an index range contained inside this paragraph&#39;s range are considered to be part of this paragraph. The range of indices of two separate paragraphs will never overlap.
+     * A marker representing the beginning of a new paragraph. The `start_index` and `end_index` of this TextElement represent the range of the paragraph. Other TextElements with an index range contained inside this paragraph&#39;s range are considered to be part of this paragraph. The range of indices of two separate paragraphs will never overlap.
      */
     paragraphMarker?: Schema$ParagraphMarker;
     /**
@@ -2092,7 +2092,7 @@ export namespace slides_v1 {
      */
     startIndex?: number | null;
     /**
-     * A TextElement representing a run of text where all of the characters in the run have the same TextStyle.  The `start_index` and `end_index` of TextRuns will always be fully contained in the index range of a single `paragraph_marker` TextElement. In other words, a TextRun will never span multiple paragraphs.
+     * A TextElement representing a run of text where all of the characters in the run have the same TextStyle. The `start_index` and `end_index` of TextRuns will always be fully contained in the index range of a single `paragraph_marker` TextElement. In other words, a TextRun will never span multiple paragraphs.
      */
     textRun?: Schema$TextRun;
   }
@@ -2110,7 +2110,7 @@ export namespace slides_v1 {
     style?: Schema$TextStyle;
   }
   /**
-   * Represents the styling that can be applied to a TextRun.  If this text is contained in a shape with a parent placeholder, then these text styles may be inherited from the parent. Which text styles are inherited depend on the nesting level of lists:  * A text run in a paragraph that is not in a list will inherit its text style   from the the newline character in the paragraph at the 0 nesting level of   the list inside the parent placeholder. * A text run in a paragraph that is in a list will inherit its text style   from the newline character in the paragraph at its corresponding nesting   level of the list inside the parent placeholder.  Inherited text styles are represented as unset fields in this message. If text is contained in a shape without a parent placeholder, unsetting these fields will revert the style to a value matching the defaults in the Slides editor.
+   * Represents the styling that can be applied to a TextRun. If this text is contained in a shape with a parent placeholder, then these text styles may be inherited from the parent. Which text styles are inherited depend on the nesting level of lists: * A text run in a paragraph that is not in a list will inherit its text style from the the newline character in the paragraph at the 0 nesting level of the list inside the parent placeholder. * A text run in a paragraph that is in a list will inherit its text style from the newline character in the paragraph at its corresponding nesting level of the list inside the parent placeholder. Inherited text styles are represented as unset fields in this message. If text is contained in a shape without a parent placeholder, unsetting these fields will revert the style to a value matching the defaults in the Slides editor.
    */
   export interface Schema$TextStyle {
     /**
@@ -2118,7 +2118,7 @@ export namespace slides_v1 {
      */
     backgroundColor?: Schema$OptionalColor;
     /**
-     * The text&#39;s vertical offset from its normal position.  Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.
+     * The text&#39;s vertical offset from its normal position. Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.
      */
     baselineOffset?: string | null;
     /**
@@ -2126,7 +2126,7 @@ export namespace slides_v1 {
      */
     bold?: boolean | null;
     /**
-     * The font family of the text.  The font family can be any font from the Font menu in Slides or from [Google Fonts] (https://fonts.google.com/). If the font name is unrecognized, the text is rendered in `Arial`.  Some fonts can affect the weight of the text. If an update request specifies values for both `font_family` and `bold`, the explicitly-set `bold` value is used.
+     * The font family of the text. The font family can be any font from the Font menu in Slides or from [Google Fonts] (https://fonts.google.com/). If the font name is unrecognized, the text is rendered in `Arial`. Some fonts can affect the weight of the text. If an update request specifies values for both `font_family` and `bold`, the explicitly-set `bold` value is used.
      */
     fontFamily?: string | null;
     /**
@@ -2142,7 +2142,7 @@ export namespace slides_v1 {
      */
     italic?: boolean | null;
     /**
-     * The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text.  Changing the link in an update request causes some other changes to the text style of the range:  * When setting a link, the text foreground color will be set to   ThemeColorType.HYPERLINK and the text will   be underlined. If these fields are modified in the same   request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will   also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link   on a text range that crosses a paragraph boundary, such as `&quot;ABCx/123&quot;`,   will separate the newline character(s) into their own text runs. The   link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the   style of the preceding text (or the default text styles if the preceding   text is another link) unless different styles are being set in the same   request.
+     * The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text. Changing the link in an update request causes some other changes to the text style of the range: * When setting a link, the text foreground color will be set to ThemeColorType.HYPERLINK and the text will be underlined. If these fields are modified in the same request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link on a text range that crosses a paragraph boundary, such as `&quot;ABCx/123&quot;`, will separate the newline character(s) into their own text runs. The link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the style of the preceding text (or the default text styles if the preceding text is another link) unless different styles are being set in the same request.
      */
     link?: Schema$Link;
     /**
@@ -2158,7 +2158,7 @@ export namespace slides_v1 {
      */
     underline?: boolean | null;
     /**
-     * The font family and rendered weight of the text.  This field is an extension of `font_family` meant to support explicit font weights without breaking backwards compatibility. As such, when reading the style of a range of text, the value of `weighted_font_family#font_family` will always be equal to that of `font_family`. However, when writing, if both fields are included in the field mask (either explicitly or through the wildcard `&quot;*&quot;`), their values are reconciled as follows:  * If `font_family` is set and `weighted_font_family` is not, the value of   `font_family` is applied with weight `400` (&quot;normal&quot;). * If both fields are set, the value of `font_family` must match that of   `weighted_font_family#font_family`. If so, the font family and weight of   `weighted_font_family` is applied. Otherwise, a 400 bad request error is   returned. * If `weighted_font_family` is set and `font_family` is not, the font   family and weight of `weighted_font_family` is applied. * If neither field is set, the font family and weight of the text inherit   from the parent. Note that these properties cannot inherit separately   from each other.  If an update request specifies values for both `weighted_font_family` and `bold`, the `weighted_font_family` is applied first, then `bold`.  If `weighted_font_family#weight` is not set, it defaults to `400`.  If `weighted_font_family` is set, then `weighted_font_family#font_family` must also be set with a non-empty value. Otherwise, a 400 bad request error is returned.
+     * The font family and rendered weight of the text. This field is an extension of `font_family` meant to support explicit font weights without breaking backwards compatibility. As such, when reading the style of a range of text, the value of `weighted_font_family#font_family` will always be equal to that of `font_family`. However, when writing, if both fields are included in the field mask (either explicitly or through the wildcard `&quot;*&quot;`), their values are reconciled as follows: * If `font_family` is set and `weighted_font_family` is not, the value of `font_family` is applied with weight `400` (&quot;normal&quot;). * If both fields are set, the value of `font_family` must match that of `weighted_font_family#font_family`. If so, the font family and weight of `weighted_font_family` is applied. Otherwise, a 400 bad request error is returned. * If `weighted_font_family` is set and `font_family` is not, the font family and weight of `weighted_font_family` is applied. * If neither field is set, the font family and weight of the text inherit from the parent. Note that these properties cannot inherit separately from each other. If an update request specifies values for both `weighted_font_family` and `bold`, the `weighted_font_family` is applied first, then `bold`. If `weighted_font_family#weight` is not set, it defaults to `400`. If `weighted_font_family` is set, then `weighted_font_family#font_family` must also be set with a non-empty value. Otherwise, a 400 bad request error is returned.
      */
     weightedFontFamily?: Schema$WeightedFontFamily;
   }
@@ -2180,7 +2180,7 @@ export namespace slides_v1 {
    */
   export interface Schema$Thumbnail {
     /**
-     * The content URL of the thumbnail image.  The URL to the image has a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the image as the original requester. Access to the image may be lost if the presentation&#39;s sharing settings change. The mime type of the thumbnail image is the same as specified in the `GetPageThumbnailRequest`.
+     * The content URL of the thumbnail image. The URL to the image has a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the image as the original requester. Access to the image may be lost if the presentation&#39;s sharing settings change. The mime type of the thumbnail image is the same as specified in the `GetPageThumbnailRequest`.
      */
     contentUrl?: string | null;
     /**
@@ -2197,7 +2197,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UngroupObjectsRequest {
     /**
-     * The object IDs of the objects to ungroup.  Only groups that are not inside other groups can be ungrouped. All the groups should be on the same page. The group itself is deleted. The visual sizes and positions of all the children are preserved.
+     * The object IDs of the objects to ungroup. Only groups that are not inside other groups can be ungrouped. All the groups should be on the same page. The group itself is deleted. The visual sizes and positions of all the children are preserved.
      */
     objectIds?: string[] | null;
   }
@@ -2210,7 +2210,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The table range specifying which cells of the table to unmerge.  All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing. If there is text in any of the merged cells, the text will remain in the upper-left (&quot;head&quot;) cell of the resulting block of unmerged cells.
+     * The table range specifying which cells of the table to unmerge. All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing. If there is text in any of the merged cells, the text will remain in the upper-left (&quot;head&quot;) cell of the resulting block of unmerged cells.
      */
     tableRange?: Schema$TableRange;
   }
@@ -2219,7 +2219,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateImagePropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `imageProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the image outline color, set `fields` to `&quot;outline.outlineFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `imageProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the image outline color, set `fields` to `&quot;outline.outlineFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2236,11 +2236,11 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateLineCategoryRequest {
     /**
-     * The line category to update to.  The exact line type is determined based on the category to update to and how it&#39;s routed to connect to other page elements.
+     * The line category to update to. The exact line type is determined based on the category to update to and how it&#39;s routed to connect to other page elements.
      */
     lineCategory?: string | null;
     /**
-     * The object ID of the line the update is applied to.  Only a line with a category indicating it is a &quot;connector&quot; can be updated.  The line may be rerouted after updating its category.
+     * The object ID of the line the update is applied to. Only a line with a category indicating it is a &quot;connector&quot; can be updated. The line may be rerouted after updating its category.
      */
     objectId?: string | null;
   }
@@ -2249,7 +2249,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateLinePropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `lineProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the line solid fill color, set `fields` to `&quot;lineFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `lineProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the line solid fill color, set `fields` to `&quot;lineFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2283,16 +2283,16 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdatePageElementsZOrderRequest {
     /**
-     * The Z-order operation to apply on the page elements.  When applying the operation on multiple page elements, the relative Z-orders within these page elements before the operation is maintained.
+     * The Z-order operation to apply on the page elements. When applying the operation on multiple page elements, the relative Z-orders within these page elements before the operation is maintained.
      */
     operation?: string | null;
     /**
-     * The object IDs of the page elements to update.  All the page elements must be on the same page and must not be grouped.
+     * The object IDs of the page elements to update. All the page elements must be on the same page and must not be grouped.
      */
     pageElementObjectIds?: string[] | null;
   }
   /**
-   * Updates the transform of a page element.  Updating the transform of a group will change the absolute transform of the page elements in that group, which can change their visual appearance. See the documentation for PageElement.transform for more details.
+   * Updates the transform of a page element. Updating the transform of a group will change the absolute transform of the page elements in that group, which can change their visual appearance. See the documentation for PageElement.transform for more details.
    */
   export interface Schema$UpdatePageElementTransformRequest {
     /**
@@ -2313,7 +2313,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdatePagePropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `pageProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the page background solid fill color, set `fields` to `&quot;pageBackgroundFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `pageProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the page background solid fill color, set `fields` to `&quot;pageBackgroundFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2334,7 +2334,7 @@ export namespace slides_v1 {
      */
     cellLocation?: Schema$TableCellLocation;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example, to update the paragraph alignment, set `fields` to `&quot;alignment&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example, to update the paragraph alignment, set `fields` to `&quot;alignment&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2355,7 +2355,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateShapePropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `shapeProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the shape background solid fill color, set `fields` to `&quot;shapeBackgroundFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `shapeProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the shape background solid fill color, set `fields` to `&quot;shapeBackgroundFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2389,7 +2389,7 @@ export namespace slides_v1 {
      */
     borderPosition?: string | null;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `tableBorderProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the table border solid fill color, set `fields` to `&quot;tableBorderFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `tableBorderProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the table border solid fill color, set `fields` to `&quot;tableBorderFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2410,7 +2410,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateTableCellPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `tableCellProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the table cell background solid fill color, set `fields` to `&quot;tableCellBackgroundFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `tableCellProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the table cell background solid fill color, set `fields` to `&quot;tableCellBackgroundFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2435,7 +2435,7 @@ export namespace slides_v1 {
      */
     columnIndices?: number[] | null;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `tableColumnProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the column width, set `fields` to `&quot;column_width&quot;`.  If &#39;&quot;column_width&quot;&#39; is included in the field mask but the property is left unset, the column width will default to 406,400 EMU (32 points).
+     * The fields that should be updated. At least one field must be specified. The root `tableColumnProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the column width, set `fields` to `&quot;column_width&quot;`. If &#39;&quot;column_width&quot;&#39; is included in the field mask but the property is left unset, the column width will default to 406,400 EMU (32 points).
      */
     fields?: string | null;
     /**
@@ -2443,7 +2443,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The table column properties to update.  If the value of `table_column_properties#column_width` in the request is less than 406,400 EMU (32 points), a 400 bad request error is returned.
+     * The table column properties to update. If the value of `table_column_properties#column_width` in the request is less than 406,400 EMU (32 points), a 400 bad request error is returned.
      */
     tableColumnProperties?: Schema$TableColumnProperties;
   }
@@ -2452,7 +2452,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateTableRowPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `tableRowProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the minimum row height, set `fields` to `&quot;min_row_height&quot;`.  If &#39;&quot;min_row_height&quot;&#39; is included in the field mask but the property is left unset, the minimum row height will default to 0.
+     * The fields that should be updated. At least one field must be specified. The root `tableRowProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the minimum row height, set `fields` to `&quot;min_row_height&quot;`. If &#39;&quot;min_row_height&quot;&#39; is included in the field mask but the property is left unset, the minimum row height will default to 0.
      */
     fields?: string | null;
     /**
@@ -2477,7 +2477,7 @@ export namespace slides_v1 {
      */
     cellLocation?: Schema$TableCellLocation;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2485,11 +2485,11 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The style(s) to set on the text.  If the value for a particular style matches that of the parent, that style will be set to inherit.  Certain text style changes may cause other changes meant to mirror the behavior of the Slides editor. See the documentation of TextStyle for more information.
+     * The style(s) to set on the text. If the value for a particular style matches that of the parent, that style will be set to inherit. Certain text style changes may cause other changes meant to mirror the behavior of the Slides editor. See the documentation of TextStyle for more information.
      */
     style?: Schema$TextStyle;
     /**
-     * The range of text to style.  The range may be extended to include adjacent newlines.  If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style.
+     * The range of text to style. The range may be extended to include adjacent newlines. If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style.
      */
     textRange?: Schema$Range;
   }
@@ -2498,7 +2498,7 @@ export namespace slides_v1 {
    */
   export interface Schema$UpdateVideoPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `videoProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the video outline color, set `fields` to `&quot;outline.outlineFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `videoProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the video outline color, set `fields` to `&quot;outline.outlineFill.solidFill.color&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -2561,7 +2561,7 @@ export namespace slides_v1 {
    */
   export interface Schema$WeightedFontFamily {
     /**
-     * The font family of the text.  The font family can be any font from the Font menu in Slides or from [Google Fonts] (https://fonts.google.com/). If the font name is unrecognized, the text is rendered in `Arial`.
+     * The font family of the text. The font family can be any font from the Font menu in Slides or from [Google Fonts] (https://fonts.google.com/). If the font name is unrecognized, the text is rendered in `Arial`.
      */
     fontFamily?: string | null;
     /**
@@ -2598,7 +2598,7 @@ export namespace slides_v1 {
 
     /**
      * slides.presentations.batchUpdate
-     * @desc Applies one or more updates to the presentation.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies: the reply to the third request, and another empty reply, in that order.  Because other users may be editing the presentation, the presentation might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * @desc Applies one or more updates to the presentation. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies: the reply to the third request, and another empty reply, in that order. Because other users may be editing the presentation, the presentation might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3236,7 +3236,7 @@ export namespace slides_v1 {
 
     /**
      * slides.presentations.pages.getThumbnail
-     * @desc Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image.  This request counts as an [expensive read request](/slides/limits) for quota purposes.
+     * @desc Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](/slides/limits) for quota purposes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3271,14 +3271,9 @@ export namespace slides_v1 {
      *     pageObjectId: 'placeholder-value',
      *     // The ID of the presentation to retrieve.
      *     presentationId: 'placeholder-value',
-     *     // The optional mime type of the thumbnail image.
-     *     //
-     *     // If you don't specify the mime type, the mime type defaults to PNG.
+     *     // The optional mime type of the thumbnail image. If you don't specify the mime type, the mime type defaults to PNG.
      *     'thumbnailProperties.mimeType': 'placeholder-value',
-     *     // The optional thumbnail image size.
-     *     //
-     *     // If you don't specify the size, the server chooses a default size of the
-     *     // image.
+     *     // The optional thumbnail image size. If you don't specify the size, the server chooses a default size of the image.
      *     'thumbnailProperties.thumbnailSize': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3302,8 +3297,8 @@ export namespace slides_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.pageObjectId The object ID of the page whose thumbnail to retrieve.
      * @param {string} params.presentationId The ID of the presentation to retrieve.
-     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
-     * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
+     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image. If you don't specify the mime type, the mime type defaults to PNG.
+     * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size. If you don't specify the size, the server chooses a default size of the image.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3410,11 +3405,11 @@ export namespace slides_v1 {
      */
     presentationId?: string;
     /**
-     * The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
+     * The optional mime type of the thumbnail image. If you don't specify the mime type, the mime type defaults to PNG.
      */
     'thumbnailProperties.mimeType'?: string;
     /**
-     * The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
+     * The optional thumbnail image size. If you don't specify the size, the server chooses a default size of the image.
      */
     'thumbnailProperties.thumbnailSize'?: string;
   }

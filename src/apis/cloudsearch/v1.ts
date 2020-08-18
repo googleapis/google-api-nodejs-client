@@ -101,7 +101,7 @@ export namespace cloudsearch_v1 {
   /**
    * Cloud Search API
    *
-   * Cloud Search provides cloud-based search capabilities over G Suite data.  The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
+   * Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
    *
    * @example
    * const {google} = require('googleapis');
@@ -144,7 +144,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$BooleanOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&amp;lt;value&amp;gt;* show results only where the value of the property named *isClosed* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&lt;value&gt;* show results only where the value of the property named *isClosed* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -159,7 +159,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$CheckAccessResponse {
     /**
-     * Returns true if principal has access.  Returns false otherwise.
+     * Returns true if principal has access. Returns false otherwise.
      */
     hasAccess?: boolean | null;
   }
@@ -222,7 +222,7 @@ export namespace cloudsearch_v1 {
     thirtyDaysActiveUsersCount?: string | null;
   }
   /**
-   * Datasource is a logical namespace for items to be indexed. All items must belong to a datasource.  This is the prerequisite before items can be indexed into Cloud Search.
+   * Datasource is a logical namespace for items to be indexed. All items must belong to a datasource. This is the prerequisite before items can be indexed into Cloud Search.
    */
   export interface Schema$DataSource {
     /**
@@ -246,7 +246,7 @@ export namespace cloudsearch_v1 {
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
-     * Name of the datasource resource. Format: datasources/{source_id}. &lt;br /&gt;The name is ignored when creating a datasource.
+     * Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
      */
     name?: string | null;
     /**
@@ -254,7 +254,7 @@ export namespace cloudsearch_v1 {
      */
     operationIds?: string[] | null;
     /**
-     * A short name or alias for the source.  This value will be used to match the &#39;source&#39; operator. For example, if the short name is *&amp;lt;value&amp;gt;* then queries like *source:&amp;lt;value&amp;gt;* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
+     * A short name or alias for the source. This value will be used to match the &#39;source&#39; operator. For example, if the short name is *&lt;value&gt;* then queries like *source:&lt;value&gt;* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
      */
     shortName?: string | null;
   }
@@ -276,7 +276,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DataSourceRestriction {
     /**
-     * Filter options restricting the results. If multiple filters are present, they are grouped by object type before joining. Filters with the same object type are joined conjunctively, then the resulting expressions are joined disjunctively.  The maximum number of elements is 20.  NOTE: Suggest API supports only few filters at the moment:   &quot;objecttype&quot;, &quot;type&quot; and &quot;mimetype&quot;. For now, schema specific filters cannot be used to filter suggestions.
+     * Filter options restricting the results. If multiple filters are present, they are grouped by object type before joining. Filters with the same object type are joined conjunctively, then the resulting expressions are joined disjunctively. The maximum number of elements is 20. NOTE: Suggest API supports only few filters at the moment: &quot;objecttype&quot;, &quot;type&quot; and &quot;mimetype&quot;. For now, schema specific filters cannot be used to filter suggestions.
      */
     filterOptions?: Schema$FilterOptions[];
     /**
@@ -306,15 +306,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DateOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&lt;value&gt;* show results only where the value of the property named *closeDate* is later than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&lt;value&gt;* show results only where the value of the property named *closeDate* is earlier than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&amp;lt;value&amp;gt;* show results only where the value of the *closeDate* property matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&lt;value&gt;* show results only where the value of the *closeDate* property matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -344,7 +344,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$DeleteQueueItemsRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -427,7 +427,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$EnumOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&lt;value&gt;* show results only where the value of the property named *priorityVal* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -550,7 +550,7 @@ export namespace cloudsearch_v1 {
     field?: string | null;
   }
   /**
-   * A generic way of expressing filters in a query, which supports two approaches: &lt;br/&gt;&lt;br/&gt; **1. Setting a ValueFilter.** The name must match an operator_name defined in the schema for your data source. &lt;br/&gt; **2. Setting a CompositeFilter.** The filters are evaluated using the logical operator. The top-level operators can only be either an AND or a NOT. AND can appear only at the top-most level. OR can appear only under a top-level AND.
+   * A generic way of expressing filters in a query, which supports two approaches: **1. Setting a ValueFilter.** The name must match an operator_name defined in the schema for your data source. **2. Setting a CompositeFilter.** The filters are evaluated using the logical operator. The top-level operators can only be either an AND or a NOT. AND can appear only at the top-most level. OR can appear only under a top-level AND.
    */
   export interface Schema$Filter {
     compositeFilter?: Schema$CompositeFilter;
@@ -578,7 +578,7 @@ export namespace cloudsearch_v1 {
      */
     freshnessDuration?: string | null;
     /**
-     * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters.  When a property is used to calculate freshness, the value defaults to 2 years from the current time.
+     * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters. When a property is used to calculate freshness, the value defaults to 2 years from the current time.
      */
     freshnessProperty?: string | null;
   }
@@ -631,7 +631,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$HtmlOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator return all items where *&amp;lt;value&amp;gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&lt;value&gt;* show results only where the value of the property named *subjectLine* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator return all items where *&lt;value&gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -665,7 +665,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$IndexItemRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -674,7 +674,7 @@ export namespace cloudsearch_v1 {
     debugOptions?: Schema$DebugOptions;
     indexItemOptions?: Schema$IndexItemOptions;
     /**
-     * Name of the item.  Format: datasources/{source_id}/items/{item_id}
+     * Name of the item. Format: datasources/{source_id}/items/{item_id}
      */
     item?: Schema$Item;
     /**
@@ -687,15 +687,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$IntegerOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* is greater than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&lt;value&gt;* show results only where the value of the property named *priorityVal* is greater than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* is less than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&lt;value&gt;* show results only where the value of the property named *priorityVal* is less than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&lt;value&gt;* show results only where the value of the property named *priorityVal* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -731,7 +731,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Interaction {
     /**
-     * The time when the user acted on the item.  If multiple actions of the same type exist for a single user, only the most recent action is recorded.
+     * The time when the user acted on the item. If multiple actions of the same type exist for a single user, only the most recent action is recorded.
      */
     interactionTime?: string | null;
     /**
@@ -761,7 +761,7 @@ export namespace cloudsearch_v1 {
      */
     metadata?: Schema$ItemMetadata;
     /**
-     * Name of the Item. Format: datasources/{source_id}/items/{item_id} &lt;br /&gt;This is a required field. The maximum length is 1536 characters.
+     * Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
      */
     name?: string | null;
     /**
@@ -781,7 +781,7 @@ export namespace cloudsearch_v1 {
      */
     structuredData?: Schema$ItemStructuredData;
     /**
-     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. &lt;br /&gt;&lt;br /&gt; Cloud Search Indexing won&#39;t index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won&#39;t index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      */
     version?: string | null;
   }
@@ -843,7 +843,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$ItemMetadata {
     /**
-     * The name of the container for this item. Deletion of the container item leads to automatic deletion of this item.  Note: ACLs are not inherited from a container item. To provide ACL inheritance for an item, use the inheritAclFrom field. The maximum length is 1536 characters.
+     * The name of the container for this item. Deletion of the container item leads to automatic deletion of this item. Note: ACLs are not inherited from a container item. To provide ACL inheritance for an item, use the inheritAclFrom field. The maximum length is 1536 characters.
      */
     containerName?: string | null;
     /**
@@ -859,7 +859,7 @@ export namespace cloudsearch_v1 {
      */
     hash?: string | null;
     /**
-     * A list of interactions for the item.  Interactions are used to improve Search quality, but are not exposed to end users. The maximum number of elements is 1000.
+     * A list of interactions for the item. Interactions are used to improve Search quality, but are not exposed to end users. The maximum number of elements is 1000.
      */
     interactions?: Schema$Interaction[];
     /**
@@ -871,7 +871,7 @@ export namespace cloudsearch_v1 {
      */
     mimeType?: string | null;
     /**
-     * The type of the item.  This should correspond to the name of an object definition in the schema registered for the data source.  For example, if the schema for the data source contains an object definition with name &#39;document&#39;, then item indexing requests for objects of that type should set objectType to &#39;document&#39;. The maximum length is 256 characters.
+     * The type of the item. This should correspond to the name of an object definition in the schema registered for the data source. For example, if the schema for the data source contains an object definition with name &#39;document&#39;, then item indexing requests for objects of that type should set objectType to &#39;document&#39;. The maximum length is 256 characters.
      */
     objectType?: string | null;
     /**
@@ -879,11 +879,11 @@ export namespace cloudsearch_v1 {
      */
     searchQualityMetadata?: Schema$SearchQualityMetadata;
     /**
-     * Link to the source repository serving the data.  &amp;#83;earch results apply this link to the title. Whitespace or special characters may cause Cloud &amp;#83;earch result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.
+     * Link to the source repository serving the data. Search results apply this link to the title. Whitespace or special characters may cause Cloud Search result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.
      */
     sourceRepositoryUrl?: string | null;
     /**
-     * The title of the item.  If given, this will be the displayed title of the Search result. The maximum length is 2048 characters.
+     * The title of the item. If given, this will be the displayed title of the Search result. The maximum length is 2048 characters.
      */
     title?: string | null;
     /**
@@ -1036,12 +1036,12 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Name {
     /**
-     * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the &lt;code&gt;Accept-Language&lt;/code&gt; HTTP header.
+     * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the Accept-Language HTTP header.
      */
     displayName?: string | null;
   }
   /**
-   * A typed name-value pair for structured data.  The type of the value should be the same as the registered type for the `name` property in the object definition of `objectType`.
+   * A typed name-value pair for structured data. The type of the value should be the same as the registered type for the `name` property in the object definition of `objectType`.
    */
   export interface Schema$NamedProperty {
     booleanValue?: boolean | null;
@@ -1051,7 +1051,7 @@ export namespace cloudsearch_v1 {
     htmlValues?: Schema$HtmlValues;
     integerValues?: Schema$IntegerValues;
     /**
-     * The name of the property.  This name should correspond to the name of the property that was registered for object definition in the schema. The maximum allowable length for this property is 256 characters.
+     * The name of the property. This name should correspond to the name of the property that was registered for object definition in the schema. The maximum allowable length for this property is 256 characters.
      */
     name?: string | null;
     objectValues?: Schema$ObjectValues;
@@ -1129,7 +1129,7 @@ export namespace cloudsearch_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1137,7 +1137,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1159,7 +1159,7 @@ export namespace cloudsearch_v1 {
      */
     emailAddresses?: Schema$EmailAddress[];
     /**
-     * The resource name of the person to provide information about. See &lt;a href=&quot;https://developers.google.com/people/api/rest/v1/people/get&quot;&gt; People.get&lt;/a&gt; from Google People API.
+     * The resource name of the person to provide information about. See People.get from Google People API.
      */
     name?: string | null;
     /**
@@ -1186,7 +1186,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PollItemsRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -1194,11 +1194,11 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * Maximum number of items to return. &lt;br /&gt;The maximum value is 100 and the default value is 20.
+     * Maximum number of items to return. The maximum value is 100 and the default value is 20.
      */
     limit?: number | null;
     /**
-     * Queue name to fetch items from.  If unspecified, PollItems will fetch from &#39;default&#39; queue. The maximum length is 100 characters.
+     * Queue name to fetch items from. If unspecified, PollItems will fetch from &#39;default&#39; queue. The maximum length is 100 characters.
      */
     queue?: string | null;
     /**
@@ -1208,7 +1208,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PollItemsResponse {
     /**
-     * Set of items from the queue available for connector to process. &lt;br /&gt;These items have the following subset of fields populated: &lt;br /&gt; &lt;br /&gt;version &lt;br /&gt;metadata.hash &lt;br /&gt;structured_data.hash &lt;br /&gt;content.hash &lt;br /&gt;payload &lt;br /&gt;status &lt;br /&gt;queue
+     * Set of items from the queue available for connector to process. These items have the following subset of fields populated: version metadata.hash structured_data.hash content.hash payload status queue
      */
     items?: Schema$Item[];
   }
@@ -1315,7 +1315,7 @@ export namespace cloudsearch_v1 {
      */
     payload?: string | null;
     /**
-     * Queue to which this item belongs to.  The &lt;code&gt;default&lt;/code&gt; queue is chosen if this field is not specified. The maximum length is 512 characters.
+     * Queue to which this item belongs to. The default queue is chosen if this field is not specified. The maximum length is 512 characters.
      */
     queue?: string | null;
     /**
@@ -1333,7 +1333,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PushItemRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -1398,7 +1398,7 @@ export namespace cloudsearch_v1 {
      */
     enumValues?: string[] | null;
     /**
-     * Indicates the operator name that can be used to  isolate the property using the greater-than operator.
+     * Indicates the operator name that can be used to isolate the property using the greater-than operator.
      */
     greaterThanOperatorName?: string | null;
     /**
@@ -1422,7 +1422,7 @@ export namespace cloudsearch_v1 {
      */
     isSuggestable?: boolean | null;
     /**
-     * Indicates the operator name that can be used to  isolate the property using the less-than operator.
+     * Indicates the operator name that can be used to isolate the property using the less-than operator.
      */
     lessThanOperatorName?: string | null;
     /**
@@ -1451,7 +1451,7 @@ export namespace cloudsearch_v1 {
      */
     operators?: Schema$QueryOperator[];
     /**
-     * A short name or alias for the source.  This value can be used with the &#39;source&#39; operator.
+     * A short name or alias for the source. This value can be used with the &#39;source&#39; operator.
      */
     shortName?: string | null;
     /**
@@ -1472,7 +1472,7 @@ export namespace cloudsearch_v1 {
      */
     errorMessage?: string | null;
     /**
-     * Error codes.  Matches the definition of HTTP status codes.
+     * Error codes. Matches the definition of HTTP status codes.
      */
     httpStatusCode?: number | null;
     /**
@@ -1489,7 +1489,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user&#39;s language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user&#39;s language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     languageCode?: string | null;
     /**
@@ -1639,7 +1639,7 @@ export namespace cloudsearch_v1 {
      */
     displayName?: string | null;
     /**
-     * Name of the Search Application. &lt;br /&gt;Format: searchapplications/{application_id}.
+     * Name of the Search Application. Format: searchapplications/{application_id}.
      */
     name?: string | null;
     /**
@@ -1939,7 +1939,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$StartUploadItemRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -1948,7 +1948,7 @@ export namespace cloudsearch_v1 {
     debugOptions?: Schema$DebugOptions;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1956,7 +1956,7 @@ export namespace cloudsearch_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1987,7 +1987,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SuggestRequest {
     /**
-     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application.  NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).
+     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application. NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
@@ -2038,7 +2038,7 @@ export namespace cloudsearch_v1 {
      */
     exactMatchWithOperator?: boolean | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&lt;value&gt;* show results only where the value of the property named *subjectLine* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -2069,15 +2069,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TimestampOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&lt;value&gt;* show results only where the value of the property named *closeDate* is later than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&lt;value&gt;* show results only where the value of the property named *closeDate* is earlier than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&lt;value&gt;* show results only where the value of the property named *closeDate* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -2108,7 +2108,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$UnreserveItemsRequest {
     /**
-     * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string | null;
     /**
@@ -2163,7 +2163,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$ValueFilter {
     /**
-     * The `operator_name` applied to the query, such as *price_greater_than*. The filter can work against both types of filters defined in the schema for your data source: &lt;br/&gt;&lt;br/&gt; 1. `operator_name`, where the query filters results by the property that matches the value. &lt;br/&gt; 2. `greater_than_operator_name` or `less_than_operator_name` in your schema. The query filters the results for the property values that are greater than or less than  the supplied value in the query.
+     * The `operator_name` applied to the query, such as *price_greater_than*. The filter can work against both types of filters defined in the schema for your data source: 1. `operator_name`, where the query filters results by the property that matches the value. 2. `greater_than_operator_name` or `less_than_operator_name` in your schema. The query filters the results for the property values that are greater than or less than the supplied value in the query.
      */
     operatorName?: string | null;
     /**
@@ -2204,7 +2204,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.checkAccess
-     * @desc Checks whether an item is accessible by specified principal.  **Note:** This API requires an admin account to execute.
+     * @desc Checks whether an item is accessible by specified principal. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2232,11 +2232,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.checkAccess({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Item name, format:
-     *     // datasources/{source_id}/items/{item_id}
+     *     // Item name, format: datasources/{source_id}/items/{item_id}
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -2359,7 +2357,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.searchByViewUrl
-     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request.  **Note:** This API requires an admin account to execute.
+     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2387,8 +2385,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.searchByViewUrl({
-     *     // Source name, format:
-     *     // datasources/{source_id}
+     *     // Source name, format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -2551,7 +2548,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.unmappedids.list
-     * @desc List all unmapped identities for a specific item.  **Note:** This API requires an admin account to execute.
+     * @desc List all unmapped identities for a specific item. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2579,16 +2576,13 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.unmappedids.list({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Maximum number of items to fetch in a request.
-     *     // Defaults to 100.
+     *     // Maximum number of items to fetch in a request. Defaults to 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the item, in the following format:
-     *     // datasources/{source_id}/items/{ID}
+     *     // The name of the item, in the following format: datasources/{source_id}/items/{ID}
      *     parent: 'datasources/my-datasource/items/my-item',
      *   });
      *   console.log(res.data);
@@ -2747,7 +2741,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.items.listForunmappedidentity
-     * @desc Lists names of items associated with an unmapped identity.  **Note:** This API requires an admin account to execute.
+     * @desc Lists names of items associated with an unmapped identity. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2776,18 +2770,15 @@ export namespace cloudsearch_v1 {
      *   // Do the magic
      *   const res = await cloudsearch.debug.identitysources.items.listForunmappedidentity(
      *     {
-     *       // If you are asked by Google to help with debugging, set this field.
-     *       // Otherwise, ignore this field.
+     *       // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *       'debugOptions.enableDebugging': 'placeholder-value',
      *
      *       groupResourceName: 'placeholder-value',
-     *       // Maximum number of items to fetch in a request.
-     *       // Defaults to 100.
+     *       // Maximum number of items to fetch in a request. Defaults to 100.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the identity source, in the following format:
-     *       // identitysources/{source_id}}
+     *       // The name of the identity source, in the following format: identitysources/{source_id}}
      *       parent: 'identitysources/my-identitysource',
      *
      *       userResourceName: 'placeholder-value',
@@ -2951,7 +2942,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.unmappedids.list
-     * @desc Lists unmapped user identities for an identity source.  **Note:** This API requires an admin account to execute.
+     * @desc Lists unmapped user identities for an identity source. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2979,16 +2970,13 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.identitysources.unmappedids.list({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Maximum number of items to fetch in a request.
-     *     // Defaults to 100.
+     *     // Maximum number of items to fetch in a request. Defaults to 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the identity source, in the following format:
-     *     // identitysources/{source_id}
+     *     // The name of the identity source, in the following format: identitysources/{source_id}
      *     parent: 'identitysources/my-identitysource',
      *     // Limit users selection to this status.
      *     resolutionStatusCode: 'placeholder-value',
@@ -3152,7 +3140,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.deleteSchema
-     * @desc Deletes the schema of a data source.  **Note:** This API requires an admin or service account to execute.
+     * @desc Deletes the schema of a data source. **Note:** This API requires an admin or service account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3181,11 +3169,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.deleteSchema({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to delete Schema.  Format:
-     *     // datasources/{source_id}
+     *     // Name of the data source to delete Schema. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3210,7 +3196,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the data source to delete Schema.  Format: datasources/{source_id}
+     * @param {string} params.name Name of the data source to delete Schema. Format: datasources/{source_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3296,7 +3282,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.getSchema
-     * @desc Gets the schema of a data source.  **Note:** This API requires an admin or service account to execute.
+     * @desc Gets the schema of a data source. **Note:** This API requires an admin or service account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3325,11 +3311,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.getSchema({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to get Schema.  Format:
-     *     // datasources/{source_id}
+     *     // Name of the data source to get Schema. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3351,7 +3335,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the data source to get Schema.  Format: datasources/{source_id}
+     * @param {string} params.name Name of the data source to get Schema. Format: datasources/{source_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3437,7 +3421,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.updateSchema
-     * @desc Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema.  **Note:** This API requires an admin or service account to execute.
+     * @desc Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema. **Note:** This API requires an admin or service account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3466,8 +3450,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.updateSchema({
-     *     // Name of the data source to update Schema.  Format:
-     *     // datasources/{source_id}
+     *     // Name of the data source to update Schema. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -3501,7 +3484,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the data source to update Schema.  Format: datasources/{source_id}
+     * @param {string} params.name Name of the data source to update Schema. Format: datasources/{source_id}
      * @param {().UpdateSchemaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3594,7 +3577,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to delete Schema.  Format: datasources/{source_id}
+     * Name of the data source to delete Schema. Format: datasources/{source_id}
      */
     name?: string;
   }
@@ -3605,14 +3588,14 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to get Schema.  Format: datasources/{source_id}
+     * Name of the data source to get Schema. Format: datasources/{source_id}
      */
     name?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Updateschema
     extends StandardParameters {
     /**
-     * Name of the data source to update Schema.  Format: datasources/{source_id}
+     * Name of the data source to update Schema. Format: datasources/{source_id}
      */
     name?: string;
 
@@ -3658,26 +3641,15 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.delete({
-     *     // Name of connector making this call.
-     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      *     connectorName: 'placeholder-value',
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // Required. The RequestMode for this request.
      *     mode: 'placeholder-value',
-     *     // Required. Name of the item to delete.
-     *     // Format: datasources/{source_id}/items/{item_id}
+     *     // Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
      *     name: 'datasources/my-datasource/items/my-item',
-     *     // Required. The incremented version of the item to delete from the index.
-     *     // The indexing system stores the version from the datasource as a
-     *     // byte string and compares the Item version in the index
-     *     // to the version of the queued Item using lexical ordering.
-     *     // <br /><br />
-     *     // Cloud Search Indexing won't delete any queued item with
-     *     // a version value that is less than or equal to
-     *     // the version of the currently indexed item.
-     *     // The maximum length for this field is 1024 bytes.
+     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      *     version: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3701,11 +3673,11 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string=} params.mode Required. The RequestMode for this request.
      * @param {string} params.name Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
-     * @param {string=} params.version Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. <br /><br /> Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * @param {string=} params.version Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3791,7 +3763,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.deleteQueueItems
-     * @desc Deletes all items in a queue. This method is useful for deleting stale items.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Deletes all items in a queue. This method is useful for deleting stale items. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3819,8 +3791,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
-     *     // Name of the Data Source to delete items in a queue.
-     *     // Format: datasources/{source_id}
+     *     // Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -3940,7 +3911,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.get
-     * @desc Gets Item resource by item name.  This API requires an admin or service account to execute.  The service account used is the one whitelisted in the corresponding data source.
+     * @desc Gets Item resource by item name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3968,14 +3939,11 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.get({
-     *     // Name of connector making this call.
-     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      *     connectorName: 'placeholder-value',
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the item to get info.
-     *     // Format: datasources/{source_id}/items/{item_id}
+     *     // Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
      *     name: 'datasources/my-datasource/items/my-item',
      *   });
      *   console.log(res.data);
@@ -4004,7 +3972,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4092,7 +4060,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.index
-     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates.  Fields with no provided values are cleared out in the Cloud Search index.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates. Fields with no provided values are cleared out in the Cloud Search index. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4120,10 +4088,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.index({
-     *     // Name of the Item. Format:
-     *     // datasources/{source_id}/items/{item_id}
-     *     // <br />This is a required field.
-     *     // The maximum length is 1536 characters.
+     *     // Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4159,7 +4124,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
+     * @param {string} params.name Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
      * @param {().IndexItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4246,7 +4211,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.list
-     * @desc Lists all or a subset of Item resources.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Lists all or a subset of Item resources. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4274,39 +4239,15 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.list({
-     *     // When set to true, the indexing system only populates the following fields:
-     *     // name,
-     *     // version,
-     *     // queue.
-     *     // metadata.hash,
-     *     // metadata.title,
-     *     // metadata.sourceRepositoryURL,
-     *     // metadata.objectType,
-     *     // metadata.createTime,
-     *     // metadata.updateTime,
-     *     // metadata.contentLanguage,
-     *     // metadata.mimeType,
-     *     // structured_data.hash,
-     *     // content.hash,
-     *     // itemType,
-     *     // itemStatus.code,
-     *     // itemStatus.processingError.code,
-     *     // itemStatus.repositoryError.type,
-     *     // <br />If this value is false, then all the fields are populated in Item.
+     *     // When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
      *     brief: 'placeholder-value',
-     *     // Name of connector making this call.
-     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      *     connectorName: 'placeholder-value',
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the Data Source to list Items.  Format:
-     *     // datasources/{source_id}
+     *     // Name of the Data Source to list Items. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
-     *     // Maximum number of items to fetch in a request.
-     *     // The max value is 1000 when brief is true.  The max value is 10 if brief
-     *     // is false.
-     *     // <br />The default value is 10
+     *     // Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -4329,11 +4270,11 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
-     * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
+     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the Data Source to list Items.  Format: datasources/{source_id}
-     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. The max value is 1000 when brief is true.  The max value is 10 if brief is false. <br />The default value is 10
+     * @param {string} params.name Name of the Data Source to list Items. Format: datasources/{source_id}
+     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4423,7 +4364,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.poll
-     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: <br /> ERROR <br /> MODIFIED <br /> NEW_ITEM <br /> ACCEPTED <br /> Reserving items ensures that polling from other threads cannot create overlapping sets.  After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE.  Items automatically become available (unreserved) after 4 hours even if no update or push method is called.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: ERROR MODIFIED NEW_ITEM ACCEPTED Reserving items ensures that polling from other threads cannot create overlapping sets. After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE. Items automatically become available (unreserved) after 4 hours even if no update or push method is called. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4451,8 +4392,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.poll({
-     *     // Name of the Data Source to poll items.
-     *     // Format: datasources/{source_id}
+     *     // Name of the Data Source to poll items. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4574,7 +4514,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.push
-     * @desc Pushes an item onto a queue for later polling and updating.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Pushes an item onto a queue for later polling and updating. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4602,11 +4542,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.push({
-     *     // Name of the item to
-     *     // push into the indexing queue.<br />
-     *     // Format: datasources/{source_id}/items/{ID}
-     *     // <br />This is a required field.
-     *     // The maximum length is 1536 characters.
+     *     // Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4645,7 +4581,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
+     * @param {string} params.name Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
      * @param {().PushItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4732,7 +4668,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.unreserve
-     * @desc Unreserves all items from a queue, making them all eligible to be polled.  This method is useful for resetting the indexing queue after a connector has been restarted.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Unreserves all items from a queue, making them all eligible to be polled. This method is useful for resetting the indexing queue after a connector has been restarted. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4760,8 +4696,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.unreserve({
-     *     // Name of the Data Source to unreserve all items.
-     *     // Format: datasources/{source_id}
+     *     // Name of the Data Source to unreserve all items. Format: datasources/{source_id}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4882,7 +4817,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.upload
-     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4910,9 +4845,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.upload({
-     *     // Name of the Item to start a resumable upload.
-     *     // Format: datasources/{source_id}/items/{item_id}.
-     *     // The maximum length is 1536 bytes.
+     *     // Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -5030,7 +4963,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Delete
     extends StandardParameters {
     /**
-     * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string;
     /**
@@ -5046,7 +4979,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
     /**
-     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. <br /><br /> Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      */
     version?: string;
   }
@@ -5065,7 +4998,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Get
     extends StandardParameters {
     /**
-     * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string;
     /**
@@ -5080,7 +5013,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Index
     extends StandardParameters {
     /**
-     * Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
+     * Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5092,11 +5025,11 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$List
     extends StandardParameters {
     /**
-     * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
+     * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
      */
     brief?: boolean;
     /**
-     * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string;
     /**
@@ -5104,11 +5037,11 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the Data Source to list Items.  Format: datasources/{source_id}
+     * Name of the Data Source to list Items. Format: datasources/{source_id}
      */
     name?: string;
     /**
-     * Maximum number of items to fetch in a request. The max value is 1000 when brief is true.  The max value is 10 if brief is false. <br />The default value is 10
+     * Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
      */
     pageSize?: number;
     /**
@@ -5131,7 +5064,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Push
     extends StandardParameters {
     /**
-     * Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
+     * Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5173,7 +5106,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.media.upload
-     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).    **Note:** This API requires a service account to execute.
+     * @desc Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the resource name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5201,8 +5134,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.media.upload({
-     *     // Name of the media that is being downloaded.  See
-     *     // ReadRequest.resource_name.
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
      *     resourceName: '.*',
      *
      *     // Request body metadata
@@ -5234,7 +5166,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -5328,7 +5260,7 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * Name of the media that is being downloaded. See ReadRequest.resource_name.
      */
     resourceName?: string;
 
@@ -5361,7 +5293,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5515,7 +5447,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.search
-     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5667,7 +5599,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.suggest
-     * @desc Provides suggestions for autocompleting the query.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @desc Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5824,7 +5756,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.sources.list
-     * @desc Returns list of sources that user can use for Search and Suggest APIs.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @desc Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5854,34 +5786,13 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.query.sources.list({
      *     // Number of sources to return in the response.
      *     pageToken: 'placeholder-value',
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn".
-     *     // For more information, see
-     *     // http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     *     // For translations.
-     *     //
-     *     // Set this field using the language set in browser or for the page. In the
-     *     // event that the user's language preference is known, set this field to the
-     *     // known user language.
-     *     //
-     *     // When specified, the documents in search results are biased towards the
-     *     // specified language.
-     *     //
-     *     // The suggest API does not use this parameter. Instead, suggest autocompletes
-     *     // only based on characters in the query.
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      *     'requestOptions.languageCode': 'placeholder-value',
-     *     // The ID generated when you create a search application using the
-     *     // [admin console](https://support.google.com/a/answer/9043922).
+     *     // The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      *     'requestOptions.searchApplicationId': 'placeholder-value',
-     *     // Current user's time zone id, such as "America/Los_Angeles" or
-     *     // "Australia/Sydney". These IDs are defined by
-     *     // [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/)
-     *     // project, and currently available in the file
-     *     // [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml).
-     *     // This field is used to correctly interpret date and time queries.
-     *     // If this field is not specified, the default time zone (UTC) is used.
+     *     // Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      *     'requestOptions.timeZone': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5904,7 +5815,7 @@ export namespace cloudsearch_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken Number of sources to return in the response.
      * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      * @param {string=} params.requestOptions.searchApplicationId The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6004,7 +5915,7 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     'requestOptions.languageCode'?: string;
     /**
@@ -6038,7 +5949,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.create
-     * @desc Creates a datasource.  **Note:** This API requires an admin account to execute.
+     * @desc Creates a datasource. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6189,7 +6100,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.delete
-     * @desc Deletes a datasource.  **Note:** This API requires an admin account to execute.
+     * @desc Deletes a datasource. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6218,11 +6129,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.delete({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource.
-     *     // Format: datasources/{source_id}.
+     *     // Name of the datasource. Format: datasources/{source_id}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -6333,7 +6242,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.get
-     * @desc Gets a datasource.  **Note:** This API requires an admin account to execute.
+     * @desc Gets a datasource. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6362,11 +6271,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.get({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource resource.
-     *     // Format: datasources/{source_id}.
+     *     // Name of the datasource resource. Format: datasources/{source_id}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -6480,7 +6387,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.list
-     * @desc Lists datasources.  **Note:** This API requires an admin account to execute.
+     * @desc Lists datasources. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6509,12 +6416,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.list({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Maximum number of datasources to fetch in a request.
-     *     // The max value is 100.
-     *     // <br />The default value is 10
+     *     // Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
      *     pageSize: 'placeholder-value',
      *     // Starting index of the results.
      *     pageToken: 'placeholder-value',
@@ -6538,7 +6442,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {integer=} params.pageSize Maximum number of datasources to fetch in a request. The max value is 100. <br />The default value is 10
+     * @param {integer=} params.pageSize Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
      * @param {string=} params.pageToken Starting index of the results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6630,7 +6534,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.update
-     * @desc Updates a datasource.  **Note:** This API requires an admin account to execute.
+     * @desc Updates a datasource. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6659,9 +6563,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.update({
-     *     // Name of the datasource resource.
-     *     // Format: datasources/{source_id}.
-     *     // <br />The name is ignored when creating a datasource.
+     *     // Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -6694,7 +6596,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
+     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
      * @param {().UpdateDataSourceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6816,7 +6718,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Maximum number of datasources to fetch in a request. The max value is 100. <br />The default value is 10
+     * Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
      */
     pageSize?: number;
     /**
@@ -6827,7 +6729,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Update
     extends StandardParameters {
     /**
-     * Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
+     * Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
      */
     name?: string;
 
@@ -6845,7 +6747,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.create
-     * @desc Creates a search application.  **Note:** This API requires an admin account to execute.
+     * @desc Creates a search application. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6996,7 +6898,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.delete
-     * @desc Deletes a search application.  **Note:** This API requires an admin account to execute.
+     * @desc Deletes a search application. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7025,11 +6927,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.delete({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // The name of the search application to be deleted.
-     *     // <br />Format: applications/{application_id}.
+     *     // The name of the search application to be deleted. Format: applications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7054,7 +6954,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name The name of the search application to be deleted. <br />Format: applications/{application_id}.
+     * @param {string} params.name The name of the search application to be deleted. Format: applications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7140,7 +7040,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.get
-     * @desc Gets the specified search application.  **Note:** This API requires an admin account to execute.
+     * @desc Gets the specified search application. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7169,11 +7069,9 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.get({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the search application.
-     *     // <br />Format: searchapplications/{application_id}.
+     *     // Name of the search application. Format: searchapplications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7201,7 +7099,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the search application. <br />Format: searchapplications/{application_id}.
+     * @param {string} params.name Name of the search application. Format: searchapplications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7290,7 +7188,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.list
-     * @desc Lists all search applications.  **Note:** This API requires an admin account to execute.
+     * @desc Lists all search applications. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7319,13 +7217,11 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.list({
-     *     // If you are asked by Google to help with debugging, set this field.
-     *     // Otherwise, ignore this field.
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // The maximum number of items to return.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     // <br/> The default value is 10
+     *     // The next_page_token value returned from a previous List request, if any. The default value is 10
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7348,7 +7244,7 @@ export namespace cloudsearch_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. <br/> The default value is 10
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. The default value is 10
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7443,7 +7339,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.reset
-     * @desc Resets a search application to default settings. This will return an empty response.  **Note:** This API requires an admin account to execute.
+     * @desc Resets a search application to default settings. This will return an empty response. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7472,8 +7368,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.reset({
-     *     // The name of the search application to be reset.
-     *     // <br />Format: applications/{application_id}.
+     *     // The name of the search application to be reset. Format: applications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *
      *     // Request body metadata
@@ -7505,7 +7400,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the search application to be reset. <br />Format: applications/{application_id}.
+     * @param {string} params.name The name of the search application to be reset. Format: applications/{application_id}.
      * @param {().ResetSearchApplicationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7592,7 +7487,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.update
-     * @desc Updates a search application.  **Note:** This API requires an admin account to execute.
+     * @desc Updates a search application. **Note:** This API requires an admin account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7621,8 +7516,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.update({
-     *     // Name of the Search Application.
-     *     // <br />Format: searchapplications/{application_id}.
+     *     // Name of the Search Application. Format: searchapplications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *
      *     // Request body metadata
@@ -7661,7 +7555,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Search Application. <br />Format: searchapplications/{application_id}.
+     * @param {string} params.name Name of the Search Application. Format: searchapplications/{application_id}.
      * @param {().SearchApplication} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7761,7 +7655,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * The name of the search application to be deleted. <br />Format: applications/{application_id}.
+     * The name of the search application to be deleted. Format: applications/{application_id}.
      */
     name?: string;
   }
@@ -7772,7 +7666,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. <br />Format: searchapplications/{application_id}.
+     * Name of the search application. Format: searchapplications/{application_id}.
      */
     name?: string;
   }
@@ -7787,14 +7681,14 @@ export namespace cloudsearch_v1 {
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous List request, if any. <br/> The default value is 10
+     * The next_page_token value returned from a previous List request, if any. The default value is 10
      */
     pageToken?: string;
   }
   export interface Params$Resource$Settings$Searchapplications$Reset
     extends StandardParameters {
     /**
-     * The name of the search application to be reset. <br />Format: applications/{application_id}.
+     * The name of the search application to be reset. Format: applications/{application_id}.
      */
     name?: string;
 
@@ -7806,7 +7700,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Update
     extends StandardParameters {
     /**
-     * Name of the Search Application. <br />Format: searchapplications/{application_id}.
+     * Name of the Search Application. Format: searchapplications/{application_id}.
      */
     name?: string;
 
@@ -7832,7 +7726,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getIndex
-     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day.  **Note:** This API requires a standard end user account to execute.
+     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7987,7 +7881,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getQuery
-     * @desc Get the query statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the query statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8142,7 +8036,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getSession
-     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8297,7 +8191,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getUser
-     * @desc Get the users statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the users statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8573,7 +8467,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.index.datasources.get
-     * @desc Gets indexed item statistics for a single data source.  **Note:** This API requires a standard end user account to execute.
+     * @desc Gets indexed item statistics for a single data source. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8608,8 +8502,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the data source to retrieve statistics for,
-     *     // in the following format: "datasources/{source_id}"
+     *     // The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
      *     name: 'datasources/my-datasource',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -8786,7 +8679,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.query.searchapplications.get
-     * @desc Get the query statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the query statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8821,8 +8714,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application query stats, in the following
-     *     // format: searchapplications/{application_id}
+     *     // The resource id of the search application query stats, in the following format: searchapplications/{application_id}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -9005,7 +8897,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.session.searchapplications.get
-     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9040,8 +8932,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application session stats, in the following
-     *     // format: searchapplications/{application_id}
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -9224,7 +9115,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.user.searchapplications.get
-     * @desc Get the users statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @desc Get the users statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9259,8 +9150,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application session stats, in the following
-     *     // format: searchapplications/{application_id}
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',

@@ -703,6 +703,10 @@ export namespace dataproc_v1beta2 {
      */
     instanceNames?: string[] | null;
     /**
+     * Output only. List of references to Compute Engine instances.
+     */
+    instanceReferences?: Schema$InstanceReference[];
+    /**
      * Output only. Specifies that this instance group contains preemptible instances.
      */
     isPreemptible?: boolean | null;
@@ -726,6 +730,19 @@ export namespace dataproc_v1beta2 {
      * Optional. Specifies the preemptibility of the instance group.The default value for master and worker groups is NON_PREEMPTIBLE. This default cannot be changed.The default value for secondary instances is PREEMPTIBLE.
      */
     preemptibility?: string | null;
+  }
+  /**
+   * A reference to a Compute Engine instance.
+   */
+  export interface Schema$InstanceReference {
+    /**
+     * The unique identifier of the Compute Engine instance.
+     */
+    instanceId?: string | null;
+    /**
+     * The user-friendly name of the Compute Engine instance.
+     */
+    instanceName?: string | null;
   }
   /**
    * A request to instantiate a workflow template.
