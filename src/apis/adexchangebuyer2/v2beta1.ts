@@ -909,7 +909,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     bidCount?: Schema$MetricValue;
     /**
-     * The ID of the detail. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.
+     * The ID of the detail, can be numeric or text. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.
+     */
+    detail?: string | null;
+    /**
+     * Note: this field will be deprecated, use &quot;detail&quot; field instead. When &quot;detail&quot; field represents an integer value, this field is populated as the same integer value &quot;detail&quot; field represents, otherwise this field will be 0. The ID of the detail. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.
      */
     detailId?: number | null;
     /**
@@ -1767,7 +1771,7 @@ export namespace adexchangebuyer2_v2beta1 {
     updateTime?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
    */
   export interface Schema$PublisherProfile {
     /**
@@ -1795,7 +1799,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     googlePlusUrl?: string | null;
     /**
-     * Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806?hl=en for details.
+     * Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806 for details.
      */
     isParent?: boolean | null;
     /**
