@@ -161,7 +161,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$AnnotationConfig {
     /**
-     * The name of the annotation store, in the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`).   * The destination annotation store must be in the same project as the    source data. De-identifying data across multiple projects is not    supported.  * The destination annotation store must exist when using    DeidentifyDicomStore or    DeidentifyFhirStore.    DeidentifyDataset    automatically creates the destination annotation store.
+     * The name of the annotation store, in the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`). * The destination annotation store must be in the same project as the source data. De-identifying data across multiple projects is not supported. * The destination annotation store must exist when using DeidentifyDicomStore or DeidentifyFhirStore. DeidentifyDataset automatically creates the destination annotation store.
      */
     annotationStoreName?: string | null;
     /**
@@ -183,7 +183,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$AnnotationStore {
     /**
-     * Optional. User-supplied key-value pairs used to organize Annotation stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     * Optional. User-supplied key-value pairs used to organize Annotation stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -192,7 +192,7 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -205,7 +205,7 @@ export namespace healthcare_v1beta1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -222,11 +222,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -288,7 +288,7 @@ export namespace healthcare_v1beta1 {
     cryptoKey?: string | null;
   }
   /**
-   * A message representing a health dataset.  A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.
+   * A message representing a health dataset. A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.
    */
   export interface Schema$Dataset {
     /**
@@ -343,7 +343,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the dataset resource to create and write the redacted data to.   * The destination dataset must not exist.  * The destination dataset must be in the same project and location as the  source dataset. De-identifying data across multiple projects or locations  is not supported.
+     * The name of the dataset resource to create and write the redacted data to. * The destination dataset must not exist. * The destination dataset must be in the same project and location as the source dataset. De-identifying data across multiple projects or locations is not supported.
      */
     destinationDataset?: string | null;
   }
@@ -356,7 +356,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the DICOM store to create and write the redacted data to. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.   * The destination dataset must exist.  * The source dataset and destination dataset must both reside in the same    project. De-identifying data across multiple projects is not supported.  * The destination DICOM store must not exist.  * The caller must have the necessary permissions to create the destination    DICOM store.
+     * The name of the DICOM store to create and write the redacted data to. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same project. De-identifying data across multiple projects is not supported. * The destination DICOM store must not exist. * The caller must have the necessary permissions to create the destination DICOM store.
      */
     destinationStore?: string | null;
     /**
@@ -365,7 +365,7 @@ export namespace healthcare_v1beta1 {
     filterConfig?: Schema$DicomFilterConfig;
   }
   /**
-   * Contains the status of the Deidentify operation.
+   * Deprecated. Contains the status of the Deidentify operation.
    */
   export interface Schema$DeidentifyErrorDetails {
     /**
@@ -394,7 +394,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the FHIR store to create and write the redacted data to. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.   * The destination dataset must exist.  * The source dataset and destination dataset must both reside in the same    project. De-identifying data across multiple projects is not supported.  * The destination FHIR store must exist.  * The caller must have the healthcare.fhirResources.update permission to    write to the destination FHIR store.
+     * The name of the FHIR store to create and write the redacted data to. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same project. De-identifying data across multiple projects is not supported. * The destination FHIR store must exist. * The caller must have the healthcare.fhirResources.update permission to write to the destination FHIR store.
      */
     destinationStore?: string | null;
     /**
@@ -407,7 +407,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DeidentifySummary {
     /**
-     * Number of resources that failed to process. The failures might be caused by:    * Invalid user input data   * Transient errors that could be skipped
+     * Number of resources that failed to process. The failures might be caused by: * Invalid user input data * Transient errors that could be skipped
      */
     failureResourceCount?: string | null;
     /**
@@ -451,7 +451,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DicomFilterConfig {
     /**
-     * The Cloud Storage location of the filter configuration file. The `gcs_uri` must be in the format `gs://bucket/path/to/object`. The filter configuration file must contain a list of resource paths separated by newline characters (x/ or \rx/). Each resource path must be in the format &quot;/studies/{studyUID}[/series/{seriesUID}[/instances/{instanceUID}]]&quot;  The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location.
+     * The Cloud Storage location of the filter configuration file. The `gcs_uri` must be in the format `gs://bucket/path/to/object`. The filter configuration file must contain a list of resource paths separated by newline characters (x/ or \rx/). Each resource path must be in the format &quot;/studies/{studyUID}[/series/{seriesUID}[/instances/{instanceUID}]]&quot; The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location.
      */
     resourcePathsGcsUri?: string | null;
   }
@@ -460,7 +460,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DicomStore {
     /**
-     * User-supplied key-value pairs used to organize DICOM stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     * User-supplied key-value pairs used to organize DICOM stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -471,9 +471,13 @@ export namespace healthcare_v1beta1 {
      * Notification destination for new DICOM instances. Supplied by the client.
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * A list of streaming configs used to configure the destination of streaming exports for every DICOM instance insertion in this DICOM store. After a new config is added to `stream_configs`, DICOM instance insertions are streamed to the new destination. When a config is removed from `stream_configs`, the server stops streaming to that destination. Each config must contain a unique destination.
+     */
+    streamConfigs?: Schema$GoogleCloudHealthcareV1beta1DicomStreamConfig[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -498,7 +502,7 @@ export namespace healthcare_v1beta1 {
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination;
     /**
-     * Optional. InfoType mapping for `eval_store`. Different resources can map to the same infoType. For example, `PERSON_NAME`, `PERSON`, `NAME`, and `HUMAN` are different. To map all of these into a single infoType (such as `PERSON_NAME`), specify the following mapping: ```   info_type_mapping[&quot;PERSON&quot;] = &quot;PERSON_NAME&quot;   info_type_mapping[&quot;NAME&quot;] = &quot;PERSON_NAME&quot;   info_type_mapping[&quot;HUMAN&quot;] = &quot;PERSON_NAME&quot; ``` Unmentioned infoTypes, such as `DATE`, are treated as identity mapping. For example: ```   info_type_mapping[&quot;DATE&quot;] = &quot;DATE&quot; ``` InfoTypes are case-insensitive.
+     * Optional. InfoType mapping for `eval_store`. Different resources can map to the same infoType. For example, `PERSON_NAME`, `PERSON`, `NAME`, and `HUMAN` are different. To map all of these into a single infoType (such as `PERSON_NAME`), specify the following mapping: ``` info_type_mapping[&quot;PERSON&quot;] = &quot;PERSON_NAME&quot; info_type_mapping[&quot;NAME&quot;] = &quot;PERSON_NAME&quot; info_type_mapping[&quot;HUMAN&quot;] = &quot;PERSON_NAME&quot; ``` Unmentioned infoTypes, such as `DATE`, are treated as identity mapping. For example: ``` info_type_mapping[&quot;DATE&quot;] = &quot;DATE&quot; ``` InfoTypes are case-insensitive.
      */
     evalInfoTypeMapping?: {[key: string]: string} | null;
     /**
@@ -510,6 +514,10 @@ export namespace healthcare_v1beta1 {
      */
     goldenStore?: string | null;
     infoTypeConfig?: Schema$InfoTypeConfig;
+    /**
+     * The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string | null;
   }
   /**
    * Response for successful Annotation store evaluation operations. This structure is included in the response upon operation completion.
@@ -533,7 +541,7 @@ export namespace healthcare_v1beta1 {
     matchedCount?: string | null;
   }
   /**
-   * Response for failed annotation export operations. This structure is included in error details upon operation completion.
+   * Deprecated. Response for failed annotation export operations. This structure is included in error details upon operation completion.
    */
   export interface Schema$ExportAnnotationsErrorDetails {
     /**
@@ -554,13 +562,17 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportAnnotationsRequest {
     /**
-     * The BigQuery output destination, which requires two IAM roles:   `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination, which requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination;
     /**
      * The Cloud Storage destination, which requires the `roles/storage.objectAdmin` Cloud IAM role.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsDestination;
+    /**
+     * The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string | null;
   }
   /**
    * Response for successful annotation export operations. This structure is included in response upon operation completion.
@@ -580,11 +592,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination.  You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from.  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
     /**
-     * The Cloud Storage output destination.  The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
+     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination;
   }
@@ -593,20 +605,20 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataResponse {}
   /**
-   * Request to export resources.
+   *  Request to export resources.
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination.  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.  The output is one BigQuery table per resource type.
+     * The BigQuery output destination. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
-     * The Cloud Storage output destination.  The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.  The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
+     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -665,7 +677,7 @@ export namespace healthcare_v1beta1 {
      */
     enableUpdateCreate?: boolean | null;
     /**
-     * User-supplied key-value pairs used to organize FHIR stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     * User-supplied key-value pairs used to organize FHIR stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -681,7 +693,7 @@ export namespace healthcare_v1beta1 {
      */
     streamConfigs?: Schema$StreamConfig[];
     /**
-     * The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. An empty value is treated as STU3.
+     * The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
      */
     version?: string | null;
   }
@@ -755,7 +767,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) to import.  The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  *  `*` to match 0 or more non-separator characters *  `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. *  `?` to match 1 character  Files matching the wildcard are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) to import. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: * `*` to match 0 or more non-separator characters * `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. * `?` to match 1 character Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string | null;
   }
@@ -790,7 +802,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1AnnotationGcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  &#39;*&#39; to match 0 or more non-separator characters  &#39;**&#39; to match 0 or more characters (including separators). Must be used  at       the end of a path and with no other wildcards in the       path. Can also be used with a file extension (such as .dcm), which       imports all files with the extension in the specified directory and       its sub-directories. For example,       `gs://my-bucket/my-directory/**.json` imports all files with .json       extensions in `my-directory/` and its sub-directories.  &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: &#39;*&#39; to match 0 or more non-separator characters &#39;**&#39; to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .dcm), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.json` imports all files with .json extensions in `my-directory/` and its sub-directories. &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string | null;
   }
@@ -821,7 +833,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination {
     /**
-     * This flag is being replaced by write_disposition which provides additional options. force=false is equivalent to WRITE_EMPTY and force=true is equivalent to WRITE_TRUNCATE.
+     * If the destination table already exists and this flag is `TRUE`, the table is overwritten by the contents of the DICOM store. If the flag is not set and the destination table already exists, the export call returns an error.
      */
     force?: boolean | null;
     /**
@@ -834,11 +846,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination {
     /**
-     * MIME types supported by DICOM spec. Each file is written in the following format: `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}` The frame_number component exists only for multi-frame instances.  Supported MIME types are consistent with supported formats in DICOMweb: https://cloud.google.com/healthcare/docs/dicom#retrieve_transaction. Specifically, the following are supported:    - application/dicom; transfer-syntax=1.2.840.10008.1.2.1     (uncompressed DICOM)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.50     (DICOM with embedded JPEG Baseline)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.90     (DICOM with embedded JPEG 2000 Lossless Only)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.91     (DICOM with embedded JPEG 2000)h   - application/dicom; transfer-syntax=*     (DICOM with no transcoding)   - application/octet-stream; transfer-syntax=1.2.840.10008.1.2.1     (raw uncompressed PixelData)   - application/octet-stream; transfer-syntax=*     (raw PixelData in whatever format it was uploaded in)   - image/jpeg; transfer-syntax=1.2.840.10008.1.2.4.50     (Consumer JPEG)   - image/png  The following extensions are used for output files:   - application/dicom -&gt; .dcm  - image/jpeg -&gt; .jpg  - image/png -&gt; .png  - application/octet-stream -&gt; no extension  If unspecified, the instances are exported in the original DICOM format they were uploaded in.
+     * MIME types supported by DICOM spec. Each file is written in the following format: `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}` The frame_number component exists only for multi-frame instances. Supported MIME types are consistent with supported formats in DICOMweb: https://cloud.google.com/healthcare/docs/dicom#retrieve_transaction. Specifically, the following are supported: - application/dicom; transfer-syntax=1.2.840.10008.1.2.1 (uncompressed DICOM) - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.50 (DICOM with embedded JPEG Baseline) - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.90 (DICOM with embedded JPEG 2000 Lossless Only) - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.91 (DICOM with embedded JPEG 2000)h - application/dicom; transfer-syntax=* (DICOM with no transcoding) - application/octet-stream; transfer-syntax=1.2.840.10008.1.2.1 (raw uncompressed PixelData) - application/octet-stream; transfer-syntax=* (raw PixelData in whatever format it was uploaded in) - image/jpeg; transfer-syntax=1.2.840.10008.1.2.4.50 (Consumer JPEG) - image/png The following extensions are used for output files: - application/dicom -&gt; .dcm - image/jpeg -&gt; .jpg - image/png -&gt; .png - application/octet-stream -&gt; no extension If unspecified, the instances are exported in the original DICOM format they were uploaded in.
      */
     mimeType?: string | null;
     /**
-     * The Cloud Storage destination to export to.  URI for a Cloud Storage directory where the server writes the result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
+     * The Cloud Storage destination to export to. URI for a Cloud Storage directory where the server writes the result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
      */
     uriPrefix?: string | null;
   }
@@ -847,20 +859,29 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomGcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  &#39;*&#39; to match 0 or more non-separator characters  &#39;**&#39; to match 0 or more characters (including separators). Must be used at       the end of a path and with no other wildcards in the       path. Can also be used with a file extension (such as .dcm), which       imports all files with the extension in the specified directory and       its sub-directories. For example,       `gs://my-bucket/my-directory/**.dcm` imports all files with .dcm       extensions in `my-directory/` and its sub-directories.  &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: &#39;*&#39; to match 0 or more non-separator characters &#39;**&#39; to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .dcm), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.dcm` imports all files with .dcm extensions in `my-directory/` and its sub-directories. &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string | null;
+  }
+  /**
+   * StreamConfig specifies configuration for a streaming DICOM export.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1DicomStreamConfig {
+    /**
+     * Results are appended to this table. The server creates a new table in the given BigQuery dataset if the specified table does not exist. To enable the Cloud Healthcare API to write to your BigQuery table, you must give the Cloud Healthcare API service account the bigquery.dataEditor role. The service account is: `service-{PROJECT_NUMBER}@gcp-sa-healthcare.iam.gserviceaccount.com`. The PROJECT_NUMBER identifies the project that the DICOM store resides in. To get the project number, go to the Cloud Console Dashboard. It is recommended to not have a custom schema in the destination table which could conflict with the schema created by the Cloud Healthcare API. Instance deletions are not applied to the destination table. The destination&#39;s table schema will be automatically updated in case a new instance&#39;s data is incompatible with the current schema. The schema should not be updated manually as this can cause incompatibilies that cannot be resolved automatically. One resolution in this case is to delete the incompatible table and let the server recreate one, though the newly created table only contains data after the table recreation. BigQuery imposes a 1 MB limit on streaming insert row size, therefore any instance that generates more than 1 MB of BigQuery data will not be streamed. If an instance cannot be streamed to BigQuery, errors will be logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how- [Viewing logs](/healthcare/docs/how-tos/logging)).
+     */
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
   }
   /**
    * The configuration for exporting to BigQuery.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination {
     /**
-     * BigQuery URI to a dataset, up to 2000 characters long, in the format `bq://projectId.bqDatasetId`
+     * BigQuery URI to an existing dataset, up to 2000 characters long, in the format `bq://projectId.bqDatasetId`.
      */
     datasetUri?: string | null;
     /**
-     * This flag is being replaced by write_disposition which provides additional options. force=false is equivalent to WRITE_EMPTY and force=true is equivalent to WRITE_TRUNCATE.
+     * If this flag is `TRUE`, all tables will be deleted from the dataset before the new exported tables are written. If the flag is not set and the destination dataset contains tables, the export call returns an error. This option is not used for the streaming export.
      */
     force?: boolean | null;
     /**
@@ -869,7 +890,7 @@ export namespace healthcare_v1beta1 {
     schemaConfig?: Schema$SchemaConfig;
   }
   /**
-   * Response when errors occur while exporting resources. This structure is included in the error details to describe the detailed outcome. It is only included when the operation finishes with errors.
+   *  Response when errors occur while exporting resources. This structure is included in the error details to describe the detailed outcome. It is only included when the operation finishes with errors.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestExportResourcesErrorDetails {
     /**
@@ -890,7 +911,7 @@ export namespace healthcare_v1beta1 {
     successCount?: string | null;
   }
   /**
-   * Response when all resources export successfully. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
+   *  Response when all resources export successfully. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestExportResourcesResponse {
     /**
@@ -903,7 +924,7 @@ export namespace healthcare_v1beta1 {
     resourceCount?: string | null;
   }
   /**
-   * The configuration for exporting to Cloud Storage.
+   *  The configuration for exporting to Cloud Storage.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination {
     /**
@@ -912,16 +933,16 @@ export namespace healthcare_v1beta1 {
     uriPrefix?: string | null;
   }
   /**
-   * Specifies the configuration for importing data from Cloud Storage.
+   *  Specifies the configuration for importing data from Cloud Storage.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) to import.  The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  *  `*` to match 0 or more non-separator characters *  `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. *  `?` to match 1 character  Files matching the wildcard are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) to import. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: * `*` to match 0 or more non-separator characters * `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. * `?` to match 1 character Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string | null;
   }
   /**
-   * Error response of importing resources. This structure is included in the error details to describe the detailed error after the operation finishes with some failure.
+   *  Error response of importing resources. This structure is included in the error details to describe the detailed error after the operation finishes with some failure.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesErrorDetails {
     /**
@@ -942,7 +963,7 @@ export namespace healthcare_v1beta1 {
     successCount?: string | null;
   }
   /**
-   * Final response of importing resources. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
+   *  Final response of importing resources. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesResponse {
     /**
@@ -992,11 +1013,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Hl7V2NotificationConfig {
     /**
-     * Restricts notifications sent for messages matching a filter. If this is empty, all messages are matched. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  The following fields and functions are available for filtering:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = &quot;ADT&quot;`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset&#39;s time_zone, from the MSH-7 segment. For example, `send_date &lt; &quot;2017-01-02&quot;`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time &lt; &quot;2017-01-02T00:00:00-05:00&quot;`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = &quot;ABC&quot;`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId(&quot;123456&quot;, &quot;MRN&quot;)`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels.&quot;priority&quot;=&quot;high&quot;`. The operator `:*` can be used to assert the existence of a label. For example, `labels.&quot;priority&quot;:*`.
+     * Restricts notifications sent for messages matching a filter. If this is empty, all messages are matched. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = &quot;ADT&quot;`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset&#39;s time_zone, from the MSH-7 segment. For example, `send_date &lt; &quot;2017-01-02&quot;`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time &lt; &quot;2017-01-02T00:00:00-05:00&quot;`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = &quot;ABC&quot;`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId(&quot;123456&quot;, &quot;MRN&quot;)`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels.&quot;priority&quot;=&quot;high&quot;`. The operator `:*` can be used to assert the existence of a label. For example, `labels.&quot;priority&quot;:*`.
      */
     filter?: string | null;
     /**
-     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. The notification is a `PubsubMessage` with the following fields:  *  `PubsubMessage.Data` contains the resource name. *  `PubsubMessage.MessageId` is the ID of this notification. It is guaranteed to be unique within the topic. *  `PubsubMessage.PublishTime` is the time when the message was published.  Note that notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail.  If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging. For more information, see [Viewing error logs in Cloud Logging](/healthcare/docs/how-tos/logging).
+     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. The notification is a `PubsubMessage` with the following fields: * `PubsubMessage.Data` contains the resource name. * `PubsubMessage.MessageId` is the ID of this notification. It is guaranteed to be unique within the topic. * `PubsubMessage.PublishTime` is the time when the message was published. Note that notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail. If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging. For more information, see [Viewing error logs in Cloud Logging](/healthcare/docs/how-tos/logging).
      */
     pubsubTopic?: string | null;
   }
@@ -1005,7 +1026,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Hl7V2Store {
     /**
-     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     * User-supplied key-value pairs used to organize HL7v2 stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1030,7 +1051,7 @@ export namespace healthcare_v1beta1 {
     rejectDuplicateMessage?: boolean | null;
   }
   /**
-   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page.   This message can be used both in streaming and non-streaming API methods in the request as well as the response.  It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body.  Example:      message GetResourceRequest {       // A unique request id.       string request_id = 1;        // The raw HTTP body is bound to this field.       google.api.HttpBody http_body = 2;     }      service ResourceService {       rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc UpdateResource(google.api.HttpBody) returns       (google.protobuf.Empty);     }  Example with streaming methods:      service CaldavService {       rpc GetCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);       rpc UpdateCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);     }  Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$HttpBody {
     /**
@@ -1069,7 +1090,7 @@ export namespace healthcare_v1beta1 {
     textRedactionMode?: string | null;
   }
   /**
-   * Final response of importing Annotations in partial or total failure case. This structure is included in the error details. It is only included when the operation finishes.
+   * Deprecated. Final response of importing Annotations in partial or total failure case. This structure is included in the error details. It is only included when the operation finishes.
    */
   export interface Schema$ImportAnnotationsErrorDetails {
     /**
@@ -1090,6 +1111,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportAnnotationsRequest {
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsSource;
+    /**
+     * The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string | null;
   }
   /**
    * Final response of importing Annotations in successful case. This structure is included in the response. It is only included when the operation finishes.
@@ -1105,11 +1130,11 @@ export namespace healthcare_v1beta1 {
     successCount?: string | null;
   }
   /**
-   * Returns the errors encountered during DICOM store import.
+   * Deprecated. Error details are in [Cloud Logging](/healthcare/docs/how-tos/logging). Returns the errors encountered during DICOM store import.
    */
   export interface Schema$ImportDicomDataErrorDetails {
     /**
-     * Deprecated. Use only for debugging purposes.  Contains sample errors encountered in imports of individual resources. For example, a Cloud Storage object.
+     * Deprecated. Use only for debugging purposes. Contains sample errors encountered in imports of individual resources. For example, a Cloud Storage object.
      */
     sampleErrors?: Schema$ErrorDetail[];
   }
@@ -1118,7 +1143,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
   }
@@ -1131,7 +1156,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportMessagesRequest {
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
      */
     gcsSource?: Schema$GcsSource;
   }
@@ -1140,7 +1165,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportMessagesResponse {}
   /**
-   * Request to import resources.
+   *  Request to import resources.
    */
   export interface Schema$ImportResourcesRequest {
     /**
@@ -1148,7 +1173,7 @@ export namespace healthcare_v1beta1 {
      */
     contentStructure?: string | null;
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.  Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
+     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role. Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource;
   }
@@ -1159,7 +1184,7 @@ export namespace healthcare_v1beta1 {
     evaluateList?: Schema$FilterList;
     ignoreList?: Schema$FilterList;
     /**
-     * If `TRUE`, infoTypes described by `filter` are used for evaluation. Otherwise, infoTypes are not considered for evaluation. For example:  * Annotated text:   &quot;Toronto is a location&quot; * Finding 1:   `{&quot;infoType&quot;: &quot;PERSON&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 2:   `{&quot;infoType&quot;: &quot;CITY&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 3:   `{}` * Ground truth:   `{&quot;infoType&quot;: &quot;LOCATION&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}`  When `strict_matching` is `TRUE`:  * Finding 1: 1 false positive * Finding 2: 1 false positive * Finding 3: 1 false negative  When `strict_matching` is `FALSE`:  * Finding 1: 1 true positive * Finding 2: 1 true positive * Finding 3: 1 false negative
+     * If `TRUE`, infoTypes described by `filter` are used for evaluation. Otherwise, infoTypes are not considered for evaluation. For example: * Annotated text: &quot;Toronto is a location&quot; * Finding 1: `{&quot;infoType&quot;: &quot;PERSON&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 2: `{&quot;infoType&quot;: &quot;CITY&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 3: `{}` * Ground truth: `{&quot;infoType&quot;: &quot;LOCATION&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` When `strict_matching` is `TRUE`: * Finding 1: 1 false positive * Finding 2: 1 false positive * Finding 3: 1 false negative When `strict_matching` is `FALSE`: * Finding 1: 1 true positive * Finding 2: 1 true positive * Finding 3: 1 false negative
      */
     strictMatching?: boolean | null;
   }
@@ -1340,7 +1365,7 @@ export namespace healthcare_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1369,7 +1394,7 @@ export namespace healthcare_v1beta1 {
      */
     data?: string | null;
     /**
-     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     * User-supplied key-value pairs used to organize HL7v2 stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1406,7 +1431,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$NotificationConfig {
     /**
-     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data contains the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail.  If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). If the number of errors exceeds a certain rate, some aren&#39;t submitted.
+     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data contains the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail. If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). If the number of errors exceeds a certain rate, some aren&#39;t submitted.
      */
     pubsubTopic?: string | null;
   }
@@ -1423,7 +1448,7 @@ export namespace healthcare_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1431,7 +1456,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1498,7 +1523,7 @@ export namespace healthcare_v1beta1 {
     value?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1510,11 +1535,11 @@ export namespace healthcare_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -1570,7 +1595,7 @@ export namespace healthcare_v1beta1 {
      */
     recursiveStructureDepth?: string | null;
     /**
-     * Specifies the output schema type. If unspecified, the default is `LOSSLESS`.
+     * Specifies the output schema type. Schema type is required.
      */
     schemaType?: string | null;
   }
@@ -1619,6 +1644,10 @@ export namespace healthcare_v1beta1 {
      * Schema type definitions that are layered based on their VersionSources that match the incoming message. Type definitions present in higher indices override those in lower indices with the same type name if their VersionSources all match an incoming message.
      */
     types?: Schema$Hl7TypesConfig[];
+    /**
+     * Determines how unexpected segments (segments not matched to the schema) are handled.
+     */
+    unexpectedSegmentHandling?: string | null;
   }
   /**
    * An HL7v2 Segment.
@@ -1664,7 +1693,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Segment {
     /**
-     * A mapping from the positional location to the value. The key string uses zero-based indexes separated by dots to identify Fields, components and sub-components. A bracket notation is also used to identify different instances of a repeated field. Regex for key: (\d+)(\[\d+\])?(.\d+)?(.\d+)?  Examples of (key, value) pairs:  * (0.1, &quot;hemoglobin&quot;) denotes that the first component of Field 0 has the   value &quot;hemoglobin&quot;.  * (1.1.2, &quot;CBC&quot;) denotes that the second sub-component of the first   component of Field 1 has the value &quot;CBC&quot;.  * (1[0].1, &quot;HbA1c&quot;) denotes that the first component of the   first Instance of Field 1, which is repeated, has the value &quot;HbA1c&quot;.
+     * A mapping from the positional location to the value. The key string uses zero-based indexes separated by dots to identify Fields, components and sub-components. A bracket notation is also used to identify different instances of a repeated field. Regex for key: (\d+)(\[\d+\])?(.\d+)?(.\d+)? Examples of (key, value) pairs: * (0.1, &quot;hemoglobin&quot;) denotes that the first component of Field 0 has the value &quot;hemoglobin&quot;. * (1.1.2, &quot;CBC&quot;) denotes that the second sub-component of the first component of Field 1 has the value &quot;CBC&quot;. * (1[0].1, &quot;HbA1c&quot;) denotes that the first component of the first Instance of Field 1, which is repeated, has the value &quot;HbA1c&quot;.
      */
     fields?: {[key: string]: string} | null;
     /**
@@ -1694,12 +1723,12 @@ export namespace healthcare_v1beta1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1707,7 +1736,7 @@ export namespace healthcare_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1720,7 +1749,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$StreamConfig {
     /**
-     * The destination BigQuery structure that contains both the dataset location and corresponding schema config.  The output is organized in one table per resource type. The server reuses the existing tables (if any) that are named after the resource types, e.g. &quot;Patient&quot;, &quot;Observation&quot;. When there is no existing table for a given resource type, the server attempts to create one.  When a table schema doesn&#39;t align with the schema config, either because of existing incompatible schema or out of band incompatible modification, the server does not stream in new data.  One resolution in this case is to delete the incompatible table and let the server recreate one, though the newly created table only contains data after the table recreation.  BigQuery imposes a 1 MB limit on streaming insert row size, therefore any resource mutation that generates more than 1 MB of BigQuery data will not be streamed.  Results are appended to the corresponding BigQuery tables. Different versions of the same resource are distinguishable by the meta.versionId and meta.lastUpdated columns. The operation (CREATE/UPDATE/DELETE) that results in the new version is recorded in the meta.tag.  The tables contain all historical resource versions since streaming was enabled. For query convenience, the server also creates one view per table of the same name containing only the current resource version.  The streamed data in the BigQuery dataset is not guaranteed to be completely unique. The combination of the id and meta.versionId columns should ideally identify a single unique row. But in rare cases, duplicates may exist. At query time, users may use the SQL select statement to keep only one of the duplicate rows given an id and meta.versionId pair. Alternatively, the server created view mentioned above also filters out duplicates.  If a resource mutation cannot be streamed to BigQuery, errors will be logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how- tos/logging)).
+     * The destination BigQuery structure that contains both the dataset location and corresponding schema config. The output is organized in one table per resource type. The server reuses the existing tables (if any) that are named after the resource types, e.g. &quot;Patient&quot;, &quot;Observation&quot;. When there is no existing table for a given resource type, the server attempts to create one. When a table schema doesn&#39;t align with the schema config, either because of existing incompatible schema or out of band incompatible modification, the server does not stream in new data. One resolution in this case is to delete the incompatible table and let the server recreate one, though the newly created table only contains data after the table recreation. BigQuery imposes a 1 MB limit on streaming insert row size, therefore any resource mutation that generates more than 1 MB of BigQuery data will not be streamed. Results are appended to the corresponding BigQuery tables. Different versions of the same resource are distinguishable by the meta.versionId and meta.lastUpdated columns. The operation (CREATE/UPDATE/DELETE) that results in the new version is recorded in the meta.tag. The tables contain all historical resource versions since streaming was enabled. For query convenience, the server also creates one view per table of the same name containing only the current resource version. The streamed data in the BigQuery dataset is not guaranteed to be completely unique. The combination of the id and meta.versionId columns should ideally identify a single unique row. But in rare cases, duplicates may exist. At query time, users may use the SQL select statement to keep only one of the duplicate rows given an id and meta.versionId pair. Alternatively, the server created view mentioned above also filters out duplicates. If a resource mutation cannot be streamed to BigQuery, errors will be logged to Cloud Logging (see [Viewing error logs in Cloud Logging](/healthcare/docs/how-tos/logging)).
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
@@ -2181,11 +2210,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.create({
-     *     // The ID of the dataset that is being created.
-     *     // The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *     // The ID of the dataset that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      *     datasetId: 'placeholder-value',
-     *     // The name of the project where the server creates the dataset. For
-     *     // example, `projects/{project_id}/locations/{location_id}`.
+     *     // The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2306,7 +2333,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.deidentify
-     * @desc Creates a new dataset containing de-identified data from the source dataset. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifySummary. If errors occur, error details field type is DeidentifyErrorDetails. The LRO result may still be successful if de-identification fails for some DICOM instances. The new de-identified dataset will not contain these failed resources. Failed resource totals are tracked in DeidentifySummary.failure_resource_count. Error details are also logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging).
+     * @desc Creates a new dataset containing de-identified data from the source dataset. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifySummary. The LRO result may still be successful if de-identification fails for some resources. The new de-identified dataset will not contain these failed resources. The number of resources processed are tracked in Operation.metadata. Error details are logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2331,8 +2358,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.deidentify({
-     *     // Source dataset resource name. For example,
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     *     // Source dataset resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      *     sourceDataset:
      *       'projects/my-project/locations/my-location/datasets/my-dataset',
      *
@@ -2478,8 +2504,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.delete({
-     *     // The name of the dataset to delete. For example,
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     *     // The name of the dataset to delete. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      *     name: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *   });
      *   console.log(res.data);
@@ -2605,8 +2630,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.get({
-     *     // The name of the dataset to read. For example,
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     *     // The name of the dataset to read. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      *     name: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *   });
      *   console.log(res.data);
@@ -2735,21 +2759,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *   });
      *   console.log(res.data);
@@ -2772,7 +2784,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2884,13 +2896,11 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.list({
-     *     // The maximum number of items to return. Capped to 100 if not specified.
-     *     // May not be larger than 1000.
+     *     // The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the project whose datasets should be listed.
-     *     // For example, `projects/{project_id}/locations/{location_id}`.
+     *     // The name of the project whose datasets should be listed. For example, `projects/{project_id}/locations/{location_id}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3029,12 +3039,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.patch({
-     *     // Resource name of the dataset, of the form
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     *     // Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      *     name: 'projects/my-project/locations/my-location/datasets/my-dataset',
-     *     // The update mask applies to the resource. For the `FieldMask` definition,
-     *     // see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3149,7 +3156,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3174,8 +3181,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *
      *     // Request body metadata
@@ -3294,7 +3300,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3319,8 +3325,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *
      *     // Request body metadata
@@ -3486,7 +3491,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3588,8 +3593,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.create(
      *     {
-     *       // The ID of the Annotation store that is being created.
-     *       // The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *       // The ID of the Annotation store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      *       annotationStoreId: 'placeholder-value',
      *       // The name of the dataset this Annotation store belongs to.
      *       parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
@@ -3865,9 +3869,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.evaluate(
      *     {
-     *       // The Annotation store to compare against `golden_store`, in the
-     *       // format of
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       // The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       evalStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -3879,7 +3881,8 @@ export namespace healthcare_v1beta1 {
      *         //   "evalInfoTypeMapping": {},
      *         //   "goldenInfoTypeMapping": {},
      *         //   "goldenStore": "my_goldenStore",
-     *         //   "infoTypeConfig": {}
+     *         //   "infoTypeConfig": {},
+     *         //   "name": "my_name"
      *         // }
      *       },
      *     }
@@ -3992,7 +3995,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.export
-     * @desc Export Annotations from the Annotation store. If the request is successful, a detailed response is returned of type ExportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. If errors occur, the error field type is ImportAnnotationsErrorDetails. Errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @desc Export Annotations from the Annotation store. If the request is successful, a detailed response is returned of type ExportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. Errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4018,9 +4021,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.export(
      *     {
-     *       // The name of the Annotation store to export annotations to, in
-     *       // the format of
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       // The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       annotationStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -4029,7 +4030,8 @@ export namespace healthcare_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "bigqueryDestination": {},
-     *         //   "gcsDestination": {}
+     *         //   "gcsDestination": {},
+     *         //   "name": "my_name"
      *         // }
      *       },
      *     }
@@ -4300,21 +4302,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *     }
@@ -4339,7 +4329,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4426,7 +4416,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.import
-     * @desc Import Annotations to the Annotation store by loading data from the specified sources. If the request is successful, a detailed response is returned as of type ImportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. If errors occur, the error field type is ImportAnnotationsErrorDetails. Errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @desc Import Annotations to the Annotation store by loading data from the specified sources. If the request is successful, a detailed response is returned as of type ImportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. Errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4452,9 +4442,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.import(
      *     {
-     *       // The name of the Annotation store to which the server imports
-     *       // annotations, in the format
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       // The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       annotationStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -4462,7 +4450,8 @@ export namespace healthcare_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "gcsSource": {}
+     *         //   "gcsSource": {},
+     *         //   "name": "my_name"
      *         // }
      *       },
      *     }
@@ -4601,12 +4590,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.list(
      *     {
-     *       // Restricts stores returned to those matching a filter. Syntax:
-     *       // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     *       // Only filtering on labels is supported, for example `labels.key=value`.
+     *       // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotation stores to return in a single response.
-     *       // If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -4756,13 +4742,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.patch(
      *     {
-     *       // Resource name of the Annotation store, of the form
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       // Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
-     *       // The update mask applies to the resource. For the `FieldMask` definition,
-     *       // see
-     *       // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -4878,7 +4861,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4904,8 +4887,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -5026,7 +5008,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5052,8 +5034,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -5233,7 +5214,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -5347,8 +5328,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.create(
      *     {
-     *       // The name of the Annotation store this annotation belongs to. For example,
-     *       // `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.
+     *       // The name of the Annotation store this annotation belongs to. For example, `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -5766,21 +5746,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.list(
      *     {
-     *       // Restricts Annotations returned to those matching a filter. Functions
-     *       // available for filtering are:
-     *       //
-     *       // - `matches("annotation_source.cloud_healthcare_source.name", substring)`.
-     *       // Filter on `cloud_healthcare_source.name`. For example:
-     *       // `matches("annotation_source.cloud_healthcare_source.name", "some source")`.
-     *       //
-     *       // - `matches("annotation", substring)`. Filter on all fields of annotation.
-     *       // For example: `matches("annotation", "some-content")`.
-     *       //
-     *       // - `type("text")`, `type("image")`, `type("resource")`. Filter on the type
-     *       // of annotation `data`.
+     *       // Restricts Annotations returned to those matching a filter. Functions available for filtering are: - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`. - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`. - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotations to return in a single response.
-     *       // If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -5809,7 +5777,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Restricts Annotations returned to those matching a filter. Functions available for filtering are:  - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`.  - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`.  - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
+     * @param {string=} params.filter Restricts Annotations returned to those matching a filter. Functions available for filtering are: - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`. - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`. - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
      * @param {integer=} params.pageSize Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
      * @param {string} params.parent Name of the Annotation store to retrieve Annotations from.
@@ -5930,13 +5898,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.patch(
      *     {
-     *       // Resource name of the Annotation, of the form
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
+     *       // Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore/annotations/my-annotation',
-     *       // The update mask applies to the resource. For the `FieldMask` definition,
-     *       // see
-     *       // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6088,7 +6053,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List
     extends StandardParameters {
     /**
-     * Restricts Annotations returned to those matching a filter. Functions available for filtering are:  - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`.  - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`.  - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
+     * Restricts Annotations returned to those matching a filter. Functions available for filtering are: - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`. - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`. - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
      */
     filter?: string;
     /**
@@ -6162,8 +6127,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.create({
-     *     // The ID of the DICOM store that is being created.
-     *     // Any string value up to 256 characters in length.
+     *     // The ID of the DICOM store that is being created. Any string value up to 256 characters in length.
      *     dicomStoreId: 'placeholder-value',
      *     // The name of the dataset this DICOM store belongs to.
      *     parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
@@ -6174,7 +6138,8 @@ export namespace healthcare_v1beta1 {
      *       // {
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "notificationConfig": {}
+     *       //   "notificationConfig": {},
+     *       //   "streamConfigs": []
      *       // }
      *     },
      *   });
@@ -6184,7 +6149,8 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "notificationConfig": {}
+     *   //   "notificationConfig": {},
+     *   //   "streamConfigs": []
      *   // }
      * }
      *
@@ -6285,7 +6251,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.deidentify
-     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyDicomStoreSummary. If errors occur, error details field type is DeidentifyErrorDetails. The LRO result may still be successful if de-identification fails for some DICOM instances. The output DICOM store will not contain these failed resources. Failed resource totals are tracked in DeidentifySummary.failure_resource_count. Error details are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyDicomStoreSummary. The LRO result may still be successful if de-identification fails for some DICOM instances. The output DICOM store will not contain these failed resources. The number of resources processed are tracked in Operation.metadata. Error details are logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6311,8 +6277,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.deidentify(
      *     {
-     *       // Source DICOM store resource name. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // Source DICOM store resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       sourceStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -6587,9 +6552,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.export({
-     *     // The DICOM store resource name from which to export the data. For
-     *     // example,
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *     // The DICOM store resource name from which to export the data. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -6745,7 +6708,8 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "notificationConfig": {}
+     *   //   "notificationConfig": {},
+     *   //   "streamConfigs": []
      *   // }
      * }
      *
@@ -6867,21 +6831,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -6906,7 +6858,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6993,7 +6945,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.import
-     * @desc Imports data into the DICOM store by copying it from the specified source. For errors, the Operation is populated with error details (in the form of ImportDicomDataErrorDetails in error.details), which hold finer-grained error information. Errors are also logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging). The metadata field type is OperationMetadata.
+     * @desc Imports data into the DICOM store by copying it from the specified source. Errors are logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging). The metadata field type is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7018,9 +6970,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.import({
-     *     // The name of the DICOM store resource into which the data is imported.
-     *     // For example,
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *     // The name of the DICOM store resource into which the data is imported. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -7165,12 +7115,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax:
-     *     // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     *     // Only filtering on labels is supported. For example, `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of DICOM stores to return in a single response.
-     *     // If zero the default page size of 100 is used.
+     *     // Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -7314,13 +7261,10 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.patch({
-     *     // Resource name of the DICOM store, of the form
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *     // Resource name of the DICOM store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     // The update mask applies to the resource. For the `FieldMask` definition,
-     *     // see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7329,7 +7273,8 @@ export namespace healthcare_v1beta1 {
      *       // {
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "notificationConfig": {}
+     *       //   "notificationConfig": {},
+     *       //   "streamConfigs": []
      *       // }
      *     },
      *   });
@@ -7339,7 +7284,8 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "notificationConfig": {}
+     *   //   "notificationConfig": {},
+     *   //   "streamConfigs": []
      *   // }
      * }
      *
@@ -7463,12 +7409,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForInstances(
      *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example,
-     *       // `instances`, `series/{series_uid}/instances`, or
-     *       // `studies/{study_uid}/instances`.
+     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid}/instances`, or `studies/{study_uid}/instances`.
      *       dicomWebPath: 'instances',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -7604,11 +7547,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForSeries(
      *     {
-     *       // The path of the SearchForSeries DICOMweb request. For example, `series` or
-     *       // `studies/{study_uid}/series`.
+     *       // The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid}/series`.
      *       dicomWebPath: 'series',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -7746,8 +7687,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // The path of the SearchForStudies DICOMweb request. For example, `studies`.
      *       dicomWebPath: 'studies',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -7857,7 +7797,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7883,8 +7823,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -8031,11 +7970,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.storeInstances(
      *     {
-     *       // The path of the StoreInstances DICOMweb request. For example,
-     *       // `studies/[{study_uid}]`. Note that the `study_uid` is optional.
+     *       // The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid}]`. Note that the `study_uid` is optional.
      *       dicomWebPath: 'studies',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -8156,7 +8093,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8182,8 +8119,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -8363,7 +8299,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -8664,11 +8600,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata(
      *     {
-     *       // The path of the RetrieveStudyMetadata DICOMweb request. For example,
-     *       // `studies/{study_uid}/metadata`.
+     *       // The path of the RetrieveStudyMetadata DICOMweb request. For example, `studies/{study_uid}/metadata`.
      *       dicomWebPath: 'studies/my-studie/metadata',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -8804,11 +8738,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy(
      *     {
-     *       // The path of the RetrieveStudy DICOMweb request. For example,
-     *       // `studies/{study_uid}`.
+     *       // The path of the RetrieveStudy DICOMweb request. For example, `studies/{study_uid}`.
      *       dicomWebPath: 'studies/my-studie',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -8944,12 +8876,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances(
      *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example,
-     *       // `instances`, `series/{series_uid}/instances`, or
-     *       // `studies/{study_uid}/instances`.
+     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid}/instances`, or `studies/{study_uid}/instances`.
      *       dicomWebPath: 'studies/my-studie/instances',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -9085,11 +9014,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries(
      *     {
-     *       // The path of the SearchForSeries DICOMweb request. For example, `series` or
-     *       // `studies/{study_uid}/series`.
+     *       // The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid}/series`.
      *       dicomWebPath: 'studies/my-studie/series',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -9225,11 +9152,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.storeInstances(
      *     {
-     *       // The path of the StoreInstances DICOMweb request. For example,
-     *       // `studies/[{study_uid}]`. Note that the `study_uid` is optional.
+     *       // The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid}]`. Note that the `study_uid` is optional.
      *       dicomWebPath: 'studies/my-studie',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -9459,11 +9384,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.delete(
      *     {
-     *       // The path of the DeleteSeries request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}`.
+     *       // The path of the DeleteSeries request. For example, `studies/{study_uid}/series/{series_uid}`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -9595,11 +9518,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata(
      *     {
-     *       // The path of the RetrieveSeriesMetadata DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/metadata`.
+     *       // The path of the RetrieveSeriesMetadata DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/metadata`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie/metadata',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -9735,11 +9656,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries(
      *     {
-     *       // The path of the RetrieveSeries DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}`.
+     *       // The path of the RetrieveSeries DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -9875,12 +9794,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances(
      *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example,
-     *       // `instances`, `series/{series_uid}/instances`, or
-     *       // `studies/{study_uid}/instances`.
+     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid}/instances`, or `studies/{study_uid}/instances`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie/instances',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10072,11 +9988,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete(
      *     {
-     *       // The path of the DeleteInstance request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`.
+     *       // The path of the DeleteInstance request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10208,11 +10122,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance(
      *     {
-     *       // The path of the RetrieveInstance DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`.
+     *       // The path of the RetrieveInstance DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`.
      *       dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10348,12 +10260,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata(
      *     {
-     *       // The path of the RetrieveInstanceMetadata DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/metadata`.
+     *       // The path of the RetrieveInstanceMetadata DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/metadata`.
      *       dicomWebPath:
      *         'studies/my-studie/series/my-serie/instances/my-instance/metadata',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10489,12 +10399,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered(
      *     {
-     *       // The path of the RetrieveRenderedInstance DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/rendered`.
+     *       // The path of the RetrieveRenderedInstance DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/rendered`.
      *       dicomWebPath:
      *         'studies/my-studie/series/my-serie/instances/my-instance/rendered',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10682,12 +10590,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames(
      *     {
-     *       // The path of the RetrieveFrames DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/frames/{frame_list}`.
+     *       // The path of the RetrieveFrames DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/frames/{frame_list}`.
      *       dicomWebPath:
      *         'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10823,12 +10729,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered(
      *     {
-     *       // The path of the RetrieveRenderedFrames DICOMweb request. For example,
-     *       // `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/frames/{frame_list}/rendered`.
+     *       // The path of the RetrieveRenderedFrames DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/frames/{frame_list}/rendered`.
      *       dicomWebPath:
      *         'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame/rendered',
-     *       // The name of the DICOM store that is being accessed. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     }
@@ -10997,8 +10901,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.create({
-     *     // The ID of the FHIR store that is being created.
-     *     // The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *     // The ID of the FHIR store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      *     fhirStoreId: 'placeholder-value',
      *     // The name of the dataset this FHIR store belongs to.
      *     parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
@@ -11132,7 +11035,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.deidentify
-     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyFhirStoreSummary. If errors occur, error details field type is DeidentifyErrorDetails. Errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyFhirStoreSummary. The number of resources processed are tracked in Operation.metadata. Error details are logged to Cloud Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/logging).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11158,8 +11061,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.deidentify(
      *     {
-     *       // Source FHIR store resource name. For example,
-     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     *       // Source FHIR store resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      *       sourceStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -11409,7 +11311,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.export
-     * @desc Export resources from the FHIR store to the specified destination.  This method returns an Operation that can be used to track the status of the export by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc  Export resources from the FHIR store to the specified destination. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11434,8 +11336,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.export({
-     *     // The name of the FHIR store to export resource from, in the format of
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     *     // The name of the FHIR store to export resource from, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -11719,21 +11620,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *     }
@@ -11758,7 +11647,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11845,7 +11734,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.import
-     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data.  Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store.  The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity.  The import process does not trigger Cloud Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store.  If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once.  The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients.  If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back.  The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc  Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data. Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store. The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity. The import process does not trigger Cloud Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store. If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once. The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients. If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back. The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11870,8 +11759,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.import({
-     *     // The name of the FHIR store to import FHIR resources to, in the format of
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     *     // The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -12017,12 +11905,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax:
-     *     // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     *     // Only filtering on labels is supported, for example `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of FHIR stores to return in a single response.  If zero
-     *     // the default page size of 100 is used.
+     *     // Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -12048,7 +11933,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
-     * @param {integer=} params.pageSize Limit on the number of FHIR stores to return in a single response.  If zero the default page size of 100 is used.
+     * @param {integer=} params.pageSize Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
      * @param {string} params.parent Name of the dataset.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12166,13 +12051,10 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.patch({
-     *     // Output only. Resource name of the FHIR store, of the form
-     *     // `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     *     // Output only. Resource name of the FHIR store, of the form `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *     // The update mask applies to the resource. For the `FieldMask` definition,
-     *     // see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12301,7 +12183,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12327,8 +12209,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -12449,7 +12330,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12475,8 +12356,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -12656,7 +12536,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -12683,7 +12563,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of FHIR stores to return in a single response.  If zero the default page size of 100 is used.
+     * Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
      */
     pageSize?: number;
     /**
@@ -12744,7 +12624,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.capabilities
-     * @desc Gets the FHIR capability statement ([STU3](https://hl7.org/implement/standards/fhir/STU3/capabilitystatement.html), [R4](https://hl7.org/implement/standards/fhir/R4/capabilitystatement.html)), or the [conformance statement](https://hl7.org/implement/standards/fhir/DSTU2/conformance.html) in the DSTU2 case for the store, which contains a description of functionality supported by the server.  Implements the FHIR standard capabilities interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#capabilities), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#capabilities)), or the [conformance interaction](https://hl7.org/implement/standards/fhir/DSTU2/http.html#conformance) in the DSTU2 case.  On success, the response body contains a JSON-encoded representation of a `CapabilityStatement` resource.
+     * @desc Gets the FHIR capability statement ([STU3](https://hl7.org/implement/standards/fhir/STU3/capabilitystatement.html), [R4](https://hl7.org/implement/standards/fhir/R4/capabilitystatement.html)), or the [conformance statement](https://hl7.org/implement/standards/fhir/DSTU2/conformance.html) in the DSTU2 case for the store, which contains a description of functionality supported by the server. Implements the FHIR standard capabilities interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#capabilities), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#capabilities)), or the [conformance interaction](https://hl7.org/implement/standards/fhir/DSTU2/http.html#conformance) in the DSTU2 case. On success, the response body contains a JSON-encoded representation of a `CapabilityStatement` resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12880,7 +12760,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-search-translate
-     * @desc Translates a code from one value set to another by searching for appropriate concept maps.  Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)).  On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Translates a code from one value set to another by searching for appropriate concept maps. Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)). On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12910,23 +12790,18 @@ export namespace healthcare_v1beta1 {
      *     translate({
      *       // The code to translate.
      *       code: 'placeholder-value',
-     *       // The version of the concept map to use. If unset, the most current version
-     *       // is used.
+     *       // The version of the concept map to use. If unset, the most current version is used.
      *       conceptMapVersion: 'placeholder-value',
-     *       // The name for the FHIR store containing the concept map(s) to use for the
-     *       // translation.
+     *       // The name for the FHIR store containing the concept map(s) to use for the translation.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // The source value set of the concept map to be used. If unset, target is
-     *       // used to search for concept maps.
+     *       // The source value set of the concept map to be used. If unset, target is used to search for concept maps.
      *       source: 'placeholder-value',
      *       // The system for the code to be translated.
      *       system: 'placeholder-value',
-     *       // The target value set of the concept map to be used. If unset, source is
-     *       // used to search for concept maps.
+     *       // The target value set of the concept map to be used. If unset, source is used to search for concept maps.
      *       target: 'placeholder-value',
-     *       // The canonical url of the concept map to use. If unset, the source and
-     *       // target is used to search for concept maps.
+     *       // The canonical url of the concept map to use. If unset, the source and target is used to search for concept maps.
      *       url: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -13041,7 +12916,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-translate
-     * @desc Translates a code from one value set to another using a concept map.  Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)).  On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Translates a code from one value set to another using a concept map. Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)). On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13070,8 +12945,7 @@ export namespace healthcare_v1beta1 {
      *     translate({
      *       // The code to translate.
      *       code: 'placeholder-value',
-     *       // The version of the concept map to use. If unset, the most current version
-     *       // is used.
+     *       // The version of the concept map to use. If unset, the most current version is used.
      *       conceptMapVersion: 'placeholder-value',
      *       // The URL for the concept map to use for the translation.
      *       name:
@@ -13187,7 +13061,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDelete
-     * @desc Deletes FHIR resources that match a search query.  Implements the FHIR standard conditional delete interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.12.1), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.13.1), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#3.1.0.7.1)). If multiple resources match, all matching resources are deleted.  Search terms are provided as query parameters following the same pattern as the search method.  Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources are moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method.  This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.delete` permissions on the parent FHIR store.  For samples that show how to call `conditionalDelete`, see [Conditionally deleting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_deleting_a_fhir_resource).
+     * @desc Deletes FHIR resources that match a search query. Implements the FHIR standard conditional delete interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.12.1), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.13.1), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#3.1.0.7.1)). If multiple resources match, all matching resources are deleted. Search terms are provided as query parameters following the same pattern as the search method. Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources are moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method. This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.delete` permissions on the parent FHIR store. For samples that show how to call `conditionalDelete`, see [Conditionally deleting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_deleting_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13216,11 +13090,7 @@ export namespace healthcare_v1beta1 {
      *       // The name of the FHIR store this resource belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // The FHIR resource type to delete, such as Patient or Observation. For a
-     *       // complete list, see the FHIR Resource Index
-     *       // ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html),
-     *       // [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html),
-     *       // [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     *       // The FHIR resource type to delete, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      *       type: '[^/]+',
      *     }
      *   );
@@ -13326,7 +13196,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatch
-     * @desc If a resource is found based on the search criteria specified in the query parameters, updates part of that resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard conditional patch interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#patch)).  DSTU2 doesn't define a conditional patch method, but the server supports it in the same way it supports STU3.  Search terms are provided as query parameters following the same pattern as the search method.  If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error.  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  This method requires the`healthcare.fhirStores.searchResources` permission on the parent FHIR store and the `healthcare.fhirResources.patch` permission on the requested FHIR store resource.  For samples that show how to call `conditionalPatch`, see [Conditionally patching a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_patching_a_fhir_resource).
+     * @desc If a resource is found based on the search criteria specified in the query parameters, updates part of that resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document. Implements the FHIR standard conditional patch interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#patch)). DSTU2 doesn't define a conditional patch method, but the server supports it in the same way it supports STU3. Search terms are provided as query parameters following the same pattern as the search method. If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error. The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. This method requires the`healthcare.fhirStores.searchResources` permission on the parent FHIR store and the `healthcare.fhirResources.patch` permission on the requested FHIR store resource. For samples that show how to call `conditionalPatch`, see [Conditionally patching a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_patching_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13355,11 +13225,7 @@ export namespace healthcare_v1beta1 {
      *       // The name of the FHIR store this resource belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // The FHIR resource type to update, such as Patient or Observation. For a
-     *       // complete list, see the FHIR Resource Index
-     *       // ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html),
-     *       // [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html),
-     *       // [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     *       // The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      *       type: '[^/]+',
      *
      *       // Request body metadata
@@ -13480,7 +13346,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdate
-     * @desc If a resource is found based on the search criteria specified in the query parameters, updates the entire contents of that resource.  Implements the FHIR standard conditional update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.10.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cond-update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cond-update)).  Search terms are provided as query parameters following the same pattern as the search method.  If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error. If the search criteria identify zero matches, and the supplied resource body contains an `id`, and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. If the search criteria identify zero matches, and the supplied resource body does not contain an `id`, the resource is created with a server-assigned ID as per the create method.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`.  On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.update` permissions on the parent FHIR store.  For samples that show how to call `conditionalUpdate`, see [Conditionally updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_updating_a_fhir_resource).
+     * @desc If a resource is found based on the search criteria specified in the query parameters, updates the entire contents of that resource. Implements the FHIR standard conditional update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.10.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cond-update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cond-update)). Search terms are provided as query parameters following the same pattern as the search method. If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error. If the search criteria identify zero matches, and the supplied resource body contains an `id`, and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. If the search criteria identify zero matches, and the supplied resource body does not contain an `id`, the resource is created with a server-assigned ID as per the create method. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.update` permissions on the parent FHIR store. For samples that show how to call `conditionalUpdate`, see [Conditionally updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_updating_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13509,12 +13375,7 @@ export namespace healthcare_v1beta1 {
      *       // The name of the FHIR store this resource belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // The FHIR resource type to update, such as Patient or Observation. For a
-     *       // complete list, see the FHIR Resource Index
-     *       // ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html),
-     *       // [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html),
-     *       // [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
-     *       // Must match the resource type in the provided content.
+     *       // The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      *       type: '[^/]+',
      *
      *       // Request body metadata
@@ -13635,7 +13496,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.create
-     * @desc Creates a FHIR resource.  Implements the FHIR standard create interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#create), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#create), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#create)), which creates a new resource with a server-assigned resource ID.  Also supports the FHIR standard conditional create interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#ccreate), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#ccreate), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#ccreate)), specified by supplying an `If-None-Exist` header containing a FHIR search query. If no resources match this search query, the server processes the create operation as normal.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`.  On success, the response body contains a JSON-encoded representation of the resource as it was created on the server, including the server-assigned resource ID and version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `create`, see [Creating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#creating_a_fhir_resource).
+     * @desc Creates a FHIR resource. Implements the FHIR standard create interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#create), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#create), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#create)), which creates a new resource with a server-assigned resource ID. Also supports the FHIR standard conditional create interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#ccreate), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#ccreate), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#ccreate)), specified by supplying an `If-None-Exist` header containing a FHIR search query. If no resources match this search query, the server processes the create operation as normal. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. On success, the response body contains a JSON-encoded representation of the resource as it was created on the server, including the server-assigned resource ID and version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `create`, see [Creating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#creating_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13664,12 +13525,7 @@ export namespace healthcare_v1beta1 {
      *       // The name of the FHIR store this resource belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // The FHIR resource type to create, such as Patient or Observation. For a
-     *       // complete list, see the FHIR Resource Index
-     *       // ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html),
-     *       // [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html),
-     *       // [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
-     *       // Must match the resource type in the provided content.
+     *       // The FHIR resource type to create, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      *       type: '[^/]+',
      *
      *       // Request body metadata
@@ -13790,7 +13646,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.delete
-     * @desc Deletes a FHIR resource.  Implements the FHIR standard delete interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#delete), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#delete), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#delete)).  Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources are moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method.  For samples that show how to call `delete`, see [Deleting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#deleting_a_fhir_resource).
+     * @desc Deletes a FHIR resource. Implements the FHIR standard delete interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#delete), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#delete), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#delete)). Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources are moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method. For samples that show how to call `delete`, see [Deleting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#deleting_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13923,7 +13779,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle
-     * @desc Executes all the requests in the given Bundle.  Implements the FHIR standard batch/transaction interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#transaction), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#transaction), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#transaction)).  Supports all interactions within a bundle, except search. This method accepts Bundles of type `batch` and `transaction`, processing them according to the batch processing rules ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.16.1), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.1), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#brules)) and transaction processing rules ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.16.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.2), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#trules)).  The request body must contain a JSON-encoded FHIR `Bundle` resource, and the request headers must contain `Content-Type: application/fhir+json`.  For a batch bundle or a successful transaction the response body contains a JSON-encoded representation of a `Bundle` resource of type `batch-response` or `transaction-response` containing one entry for each entry in the request, with the outcome of processing the entry. In the case of an error for a transaction bundle, the response body contains a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  This method requires permission for executing the requests in the bundle. The `executeBundle` permission grants permission to execute the request in the bundle but you must grant sufficient permissions to execute the individual requests in the bundle. For example, if the bundle contains a `create` request, you must have permission to execute the `create` request.  Logging is available for the `executeBundle` permission.  For samples that show how to call `executeBundle`, see [Managing FHIR resources using FHIR bundles](/healthcare/docs/how-tos/fhir-bundles).
+     * @desc Executes all the requests in the given Bundle. Implements the FHIR standard batch/transaction interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#transaction), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#transaction), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#transaction)). Supports all interactions within a bundle, except search. This method accepts Bundles of type `batch` and `transaction`, processing them according to the batch processing rules ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.16.1), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.1), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#brules)) and transaction processing rules ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.16.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.2), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#trules)). The request body must contain a JSON-encoded FHIR `Bundle` resource, and the request headers must contain `Content-Type: application/fhir+json`. For a batch bundle or a successful transaction the response body contains a JSON-encoded representation of a `Bundle` resource of type `batch-response` or `transaction-response` containing one entry for each entry in the request, with the outcome of processing the entry. In the case of an error for a transaction bundle, the response body contains a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. This method requires permission for executing the requests in the bundle. The `executeBundle` permission grants permission to execute the request in the bundle but you must grant sufficient permissions to execute the individual requests in the bundle. For example, if the bundle contains a `create` request, you must have permission to execute the `create` request. Logging is available for the `executeBundle` permission. For samples that show how to call `executeBundle`, see [Managing FHIR resources using FHIR bundles](/healthcare/docs/how-tos/fhir-bundles).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14070,7 +13926,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.history
-     * @desc Lists all the versions of a resource (including the current version and deleted versions) from the FHIR store.  Implements the per-resource form of the FHIR standard history interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#history), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#history), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#history)).  On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `history`, containing the version history sorted from most recent to oldest versions. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `history`, see [Listing FHIR resource versions](/healthcare/docs/how-tos/fhir-resources#listing_fhir_resource_versions).
+     * @desc Lists all the versions of a resource (including the current version and deleted versions) from the FHIR store. Implements the per-resource form of the FHIR standard history interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#history), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#history), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#history)). On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `history`, containing the version history sorted from most recent to oldest versions. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `history`, see [Listing FHIR resource versions](/healthcare/docs/how-tos/fhir-resources#listing_fhir_resource_versions).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14099,32 +13955,13 @@ export namespace healthcare_v1beta1 {
      *       // The name of the resource to retrieve.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
-     *       // Only include resource versions that were current at some point during the
-     *       // time period specified in the date time value. The date parameter format is
-     *       // yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm]
-     *       //
-     *       // Clients may specify any of the following:
-     *       //
-     *       // *  An entire year: `_at=2019`
-     *       // *  An entire month: `_at=2019-01`
-     *       // *  A specific day: `_at=2019-01-20`
-     *       // *  A specific second: `_at=2018-12-31T23:59:58Z`
+     *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
      *       // The maximum number of search results on a page. Defaults to 1000.
      *       _count: 'placeholder-value',
-     *       // Used to retrieve the first, previous, next, or last page of resource
-     *       // versions when using pagination. Value should be set to the value of
-     *       // `_page_token` set in next or previous page links' URLs. Next and previous
-     *       // page are returned in the response bundle's links field, where
-     *       // `link.relation` is "previous" or "next".
-     *       //
-     *       // Omit `_page_token` if no previous request has been made.
+     *       // Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
-     *       // Only include resource versions that were created at or after the given
-     *       // instant in time. The instant in time uses the format
-     *       // YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or
-     *       // 2017-01-01T00:00:00Z). The time must be specified to the second and
-     *       // include a time zone.
+     *       // Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
      *     }
      *   );
@@ -14148,9 +13985,9 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the resource to retrieve.
-     * @param {string=} params._at Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm]  Clients may specify any of the following:  *  An entire year: `_at=2019` *  An entire month: `_at=2019-01` *  A specific day: `_at=2019-01-20` *  A specific second: `_at=2018-12-31T23:59:58Z`
+     * @param {string=} params._at Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      * @param {integer=} params._count The maximum number of search results on a page. Defaults to 1000.
-     * @param {string=} params._page_token Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * @param {string=} params._page_token Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      * @param {string=} params._since Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14237,7 +14074,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.Observation-lastn
-     * @desc Retrieves the N most recent `Observation` resources for a subject matching search criteria specified as query parameters, grouped by `Observation.code`, sorted from most recent to oldest.  Implements the FHIR extended operation Observation-lastn ([STU3](https://hl7.org/implement/standards/fhir/STU3/observation-operations.html#lastn), [R4](https://hl7.org/implement/standards/fhir/R4/observation-operations.html#lastn)).  DSTU2 doesn't define the Observation-lastn method, but the server supports it the same way it supports STU3.  Search terms are provided as query parameters following the same pattern as the search method. The following search parameters must be provided:      - `subject` or `patient` to specify a subject for the Observation.     - `code`, `category` or any of the composite parameters that include       `code`.  Any other valid Observation search parameters can also be provided. This operation accepts an additional query parameter `max`, which specifies N, the maximum number of Observations to return from each group, with a default of 1.  Searches with over 1000 results are rejected. Results are counted before grouping and limiting the results with `max`. To stay within the limit, constrain these searches using Observation search parameters such as `_lastUpdated` or `date`.  On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Retrieves the N most recent `Observation` resources for a subject matching search criteria specified as query parameters, grouped by `Observation.code`, sorted from most recent to oldest. Implements the FHIR extended operation Observation-lastn ([STU3](https://hl7.org/implement/standards/fhir/STU3/observation-operations.html#lastn), [R4](https://hl7.org/implement/standards/fhir/R4/observation-operations.html#lastn)). DSTU2 doesn't define the Observation-lastn method, but the server supports it the same way it supports STU3. Search terms are provided as query parameters following the same pattern as the search method. The following search parameters must be provided: - `subject` or `patient` to specify a subject for the Observation. - `code`, `category` or any of the composite parameters that include `code`. Any other valid Observation search parameters can also be provided. This operation accepts an additional query parameter `max`, which specifies N, the maximum number of Observations to return from each group, with a default of 1. Searches with over 1000 results are rejected. Results are counted before grouping and limiting the results with `max`. To stay within the limit, constrain these searches using Observation search parameters such as `_lastUpdated` or `date`. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14372,7 +14209,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.patch
-     * @desc Updates part of an existing resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard patch interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#patch)).  DSTU2 doesn't define a patch method, but the server supports it in the same way it supports STU3.  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `patch`, see [Patching a FHIR resource](/healthcare/docs/how-tos/fhir-resources#patching_a_fhir_resource).
+     * @desc Updates part of an existing resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document. Implements the FHIR standard patch interaction ([STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#patch)). DSTU2 doesn't define a patch method, but the server supports it in the same way it supports STU3. The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `patch`, see [Patching a FHIR resource](/healthcare/docs/how-tos/fhir-resources#patching_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14516,7 +14353,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.Patient-everything
-     * @desc Retrieves a Patient resource and resources related to that patient.  Implements the FHIR extended operation Patient-everything ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/patient-operations.html#everything), [STU3](https://hl7.org/implement/standards/fhir/STU3/patient-operations.html#everything), [R4](https://hl7.org/implement/standards/fhir/R4/patient-operations.html#everything)).  On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  The resources in scope for the response are:  * The patient resource itself. * All the resources directly referenced by the patient resource. * Resources directly referencing the patient resource that meet the   inclusion criteria. The inclusion criteria are based on the membership   rules in the patient compartment definition   ([DSTU2](https://hl7.org/fhir/DSTU2/compartment-patient.html),   [STU3](http://www.hl7.org/fhir/stu3/compartmentdefinition-patient.html),   [R4](https://hl7.org/fhir/R4/compartmentdefinition-patient.html)), which   details the eligible resource types and referencing search parameters.  For samples that show how to call `Patient-everything`, see [Getting all patient compartment resources](/healthcare/docs/how-tos/fhir-resources#getting_all_patient_compartment_resources).
+     * @desc Retrieves a Patient resource and resources related to that patient. Implements the FHIR extended operation Patient-everything ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/patient-operations.html#everything), [STU3](https://hl7.org/implement/standards/fhir/STU3/patient-operations.html#everything), [R4](https://hl7.org/implement/standards/fhir/R4/patient-operations.html#everything)). On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The resources in scope for the response are: * The patient resource itself. * All the resources directly referenced by the patient resource. * Resources directly referencing the patient resource that meet the inclusion criteria. The inclusion criteria are based on the membership rules in the patient compartment definition ([DSTU2](https://hl7.org/fhir/DSTU2/compartment-patient.html), [STU3](http://www.hl7.org/fhir/stu3/compartmentdefinition-patient.html), [R4](https://hl7.org/fhir/R4/compartmentdefinition-patient.html)), which details the eligible resource types and referencing search parameters. For samples that show how to call `Patient-everything`, see [Getting all patient compartment resources](/healthcare/docs/how-tos/fhir-resources#getting_all_patient_compartment_resources).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14543,32 +14380,20 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     (await healthcare.projects.locations.datasets.fhirStores.fhir.Patient) -
      *     everything({
-     *       // The response includes records prior to the end date. If no end date is
-     *       // provided, all records subsequent to the start date are in scope.
+     *       // The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
      *       end: 'placeholder-value',
      *       // Name of the `Patient` resource for which the information is required.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
-     *       // The response includes records subsequent to the start date. If no start
-     *       // date is provided, all records prior to the end date are in scope.
+     *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
      *       // Maximum number of resources in a page. Defaults to 100.
      *       _count: 'placeholder-value',
-     *       // Used to retrieve the next or previous page of results
-     *       // when using pagination. Set `_page_token` to the value of _page_token set
-     *       // in next or previous page links' url. Next and previous page are returned
-     *       // in the response bundle's links field, where `link.relation` is "previous"
-     *       // or "next".
-     *       //
-     *       // Omit `_page_token` if no previous request has been made.
+     *       // Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
-     *       // If provided, only resources updated after this time are
-     *       // returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.
-     *       // For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.
-     *       // The time must be specified to the second and include a time zone.
+     *       // If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
-     *       // String of comma-delimited FHIR resource types. If provided, only resources
-     *       // of the specified resource type(s) are returned.
+     *       // String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
      *       _type: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -14594,7 +14419,7 @@ export namespace healthcare_v1beta1 {
      * @param {string} params.name Name of the `Patient` resource for which the information is required.
      * @param {string=} params.start The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      * @param {integer=} params._count Maximum number of resources in a page. Defaults to 100.
-     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      * @param {string=} params._since If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      * @param {string=} params._type String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14682,7 +14507,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.read
-     * @desc Gets the contents of a FHIR resource.  Implements the FHIR standard read interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#read), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#read), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#read)).  Also supports the FHIR standard conditional read interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#cread), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cread), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cread)) specified by supplying an `If-Modified-Since` header with a date/time value or an `If-None-Match` header with an ETag value.  On success, the response body contains a JSON-encoded representation of the resource. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `read`, see [Getting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#getting_a_fhir_resource).
+     * @desc Gets the contents of a FHIR resource. Implements the FHIR standard read interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#read), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#read), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#read)). Also supports the FHIR standard conditional read interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#cread), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cread), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cread)) specified by supplying an `If-Modified-Since` header with a date/time value or an `If-None-Match` header with an ETag value. On success, the response body contains a JSON-encoded representation of the resource. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `read`, see [Getting a FHIR resource](/healthcare/docs/how-tos/fhir-resources#getting_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14815,7 +14640,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.Resource-purge
-     * @desc Deletes all the historical versions of a resource (excluding the current version) from the FHIR store. To remove all versions of a resource, first delete the current version and then call this method.  This is not a FHIR standard operation.  For samples that show how to call `Resource-purge`, see [Deleting historical versions of a FHIR resource](/healthcare/docs/how-tos/fhir-resources#deleting_historical_versions_of_a_fhir_resource).
+     * @desc Deletes all the historical versions of a resource (excluding the current version) from the FHIR store. To remove all versions of a resource, first delete the current version and then call this method. This is not a FHIR standard operation. For samples that show how to call `Resource-purge`, see [Deleting historical versions of a FHIR resource](/healthcare/docs/how-tos/fhir-resources#deleting_historical_versions_of_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14947,7 +14772,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.search
-     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters.  Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)).  Supports three methods of search defined by the specification:  *  `GET [base]?[parameters]` to search across all resources. *  `GET [base]/[type]?[parameters]` to search resources of a specified type. *  `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method.  The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters.  On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page.  Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`.  Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`.  The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains pagination links.  Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases.  Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results.  For samples and detailed information, see [Searching for FHIR resources](/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](/healthcare/docs/how-tos/fhir-advanced-search).
+     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports three methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method. The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains pagination links. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](/healthcare/docs/how-tos/fhir-advanced-search).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15092,7 +14917,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.update
-     * @desc Updates the entire contents of a resource.  Implements the FHIR standard update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#update), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#update)).  If the specified resource does not exist and the FHIR store has enable_update_create set, creates the resource with the client-specified ID.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The resource must contain an `id` element having an identical value to the ID in the REST path of the request.  On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `update`, see [Updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#updating_a_fhir_resource).
+     * @desc Updates the entire contents of a resource. Implements the FHIR standard update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#update), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#update)). If the specified resource does not exist and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The resource must contain an `id` element having an identical value to the ID in the REST path of the request. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `update`, see [Updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#updating_a_fhir_resource).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15236,7 +15061,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.vread
-     * @desc Gets the contents of a version (current or historical) of a FHIR resource by version ID.  Implements the FHIR standard vread interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#vread), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#vread), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#vread)).  On success, the response body contains a JSON-encoded representation of the resource. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  For samples that show how to call `vread`, see [Retrieving a FHIR resource version](/healthcare/docs/how-tos/fhir-resources#retrieving_a_fhir_resource_version).
+     * @desc Gets the contents of a version (current or historical) of a FHIR resource by version ID. Implements the FHIR standard vread interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#vread), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#vread), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#vread)). On success, the response body contains a JSON-encoded representation of the resource. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `vread`, see [Retrieving a FHIR resource version](/healthcare/docs/how-tos/fhir-resources#retrieving_a_fhir_resource_version).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15510,7 +15335,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
     /**
-     * Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm]  Clients may specify any of the following:  *  An entire year: `_at=2019` *  An entire month: `_at=2019-01` *  A specific day: `_at=2019-01-20` *  A specific second: `_at=2018-12-31T23:59:58Z`
+     * Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      */
     _at?: string;
     /**
@@ -15518,7 +15343,7 @@ export namespace healthcare_v1beta1 {
      */
     _count?: number;
     /**
-     * Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      */
     _page_token?: string;
     /**
@@ -15564,7 +15389,7 @@ export namespace healthcare_v1beta1 {
      */
     _count?: number;
     /**
-     * Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      */
     _page_token?: string;
     /**
@@ -15659,8 +15484,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.create({
-     *     // The ID of the HL7v2 store that is being created.
-     *     // The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *     // The ID of the HL7v2 store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      *     hl7V2StoreId: 'placeholder-value',
      *     // The name of the dataset this HL7v2 store belongs to.
      *     parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
@@ -16075,21 +15899,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *     }
@@ -16114,7 +15926,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16201,7 +16013,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.import
-     * @desc Import messages to the HL7v2 store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some HL7v2 store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty HL7v2 store that is not being used by other clients.  An existing message will be overwritten if a duplicate message is imported. A duplicate message is a message with the same raw bytes as a message that already exists in this HL7v2 store. When a message is overwritten, its labels will also be overwritten.  The import operation is idempotent unless the input data contains multiple valid messages with the same raw bytes but different labels. In that case, after the import completes, the store contains exactly one message with those raw bytes but there is no ordering guarantee on which version of the labels it has. The operation result counters do not count duplicated raw bytes as an error and count one success for each message in the input, which might result in a success count larger than the number of messages in the HL7v2 store.  If some messages fail to import, for example due to parsing errors, successfully imported messages are not rolled back.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a response of type ImportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc Import messages to the HL7v2 store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some HL7v2 store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty HL7v2 store that is not being used by other clients. An existing message will be overwritten if a duplicate message is imported. A duplicate message is a message with the same raw bytes as a message that already exists in this HL7v2 store. When a message is overwritten, its labels will also be overwritten. The import operation is idempotent unless the input data contains multiple valid messages with the same raw bytes but different labels. In that case, after the import completes, the store contains exactly one message with those raw bytes but there is no ordering guarantee on which version of the labels it has. The operation result counters do not count duplicated raw bytes as an error and count one success for each message in the input, which might result in a success count larger than the number of messages in the HL7v2 store. If some messages fail to import, for example due to parsing errors, successfully imported messages are not rolled back. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a response of type ImportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16226,8 +16038,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.import({
-     *     // The name of the target HL7v2 store, in the format
-     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     *     // The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
@@ -16372,12 +16183,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax:
-     *     // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     *     // Only filtering on labels is supported. For example, `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of HL7v2 stores to return in a single response.
-     *     // If zero the default page size of 100 is used.
+     *     // Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -16521,13 +16329,10 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.patch({
-     *     // Resource name of the HL7v2 store, of the form
-     *     // `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
+     *     // Resource name of the HL7v2 store, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
-     *     // The update mask applies to the resource. For the `FieldMask` definition,
-     *     // see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -16650,7 +16455,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16676,8 +16481,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
@@ -16798,7 +16602,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16824,8 +16628,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
@@ -16981,7 +16784,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -17379,8 +17182,7 @@ export namespace healthcare_v1beta1 {
      *       // The resource name of the HL7v2 message to retrieve.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
-     *       // Specifies which parts of the Message resource to return in the response.
-     *       // When unspecified, equivalent to FULL.
+     *       // Specifies which parts of the Message resource to return in the response. When unspecified, equivalent to FULL.
      *       view: 'placeholder-value',
      *     }
      *   );
@@ -17643,7 +17445,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.list
-     * @desc Lists all the messages in the given HL7v2 store with support for filtering.  Note: HL7v2 messages are indexed asynchronously, so there might be a slight delay between the time a message is created and when it can be found through a filter.
+     * @desc Lists all the messages in the given HL7v2 store with support for filtering. Note: HL7v2 messages are indexed asynchronously, so there might be a slight delay between the time a message is created and when it can be found through a filter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17669,48 +17471,18 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.list(
      *     {
-     *       // Restricts messages returned to those matching a filter. Syntax:
-     *       // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     *       //
-     *       // The following fields and functions are available for filtering:
-     *       //
-     *       // *  `message_type`, from the MSH-9.1 field. For example,
-     *       // `NOT message_type = "ADT"`.
-     *       // *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in
-     *       // the dataset's time_zone, from the MSH-7 segment. For example,
-     *       // `send_date < "2017-01-02"`.
-     *       // *  `send_time`, the timestamp when the message was sent, using the
-     *       // RFC3339 time format for comparisons, from the MSH-7 segment. For example,
-     *       // `send_time < "2017-01-02T00:00:00-05:00"`.
-     *       // *  `send_facility`, the care center that the message came from, from the
-     *       // MSH-4 segment. For example, `send_facility = "ABC"`.
-     *       // *  `PatientId(value, type)`, which matches if the message lists a patient
-     *       // having an ID of the given value and type in the PID-2, PID-3, or PID-4
-     *       // segments. For example, `PatientId("123456", "MRN")`.
-     *       // *  `labels.x`, a string value of the label with key `x` as set using the
-     *       // Message.labels
-     *       // map. For example, `labels."priority"="high"`. The operator `:*` can be used
-     *       // to assert the existence of a label. For example, `labels."priority":*`.
+     *       // Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      *       filter: 'placeholder-value',
-     *       // Orders messages returned by the specified order_by clause.
-     *       // Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order
-     *       //
-     *       // Fields available for ordering are:
-     *       //
-     *       // *  `send_time`
+     *       // Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      *       orderBy: 'placeholder-value',
-     *       // Limit on the number of messages to return in a single response.
-     *       // If zero the default page size of 100 is used.
+     *       // Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
      *       // Name of the HL7v2 store to retrieve messages from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
-     *       // Specifies the parts of the Message to return in the response.
-     *       // When unspecified, equivalent to BASIC. Setting this to anything other than
-     *       // BASIC with a `page_size` larger than the default can generate a large
-     *       // response, which impacts the performance of this method.
+     *       // Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC. Setting this to anything other than BASIC with a `page_size` larger than the default can generate a large response, which impacts the performance of this method.
      *       view: 'placeholder-value',
      *     }
      *   );
@@ -17732,8 +17504,8 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  The following fields and functions are available for filtering:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
-     * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order  Fields available for ordering are:  *  `send_time`
+     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
+     * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      * @param {integer=} params.pageSize Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
      * @param {string} params.parent Name of the HL7v2 store to retrieve messages from.
@@ -17828,7 +17600,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.patch
-     * @desc Update the message.  The contents of the message in Message.data and data extracted from the contents such as Message.create_time can't be altered. Only the Message.labels field is allowed to be updated. The labels in the request are merged with the existing set of labels. Existing labels with the same keys are updated.
+     * @desc Update the message. The contents of the message in Message.data and data extracted from the contents such as Message.create_time can't be altered. Only the Message.labels field is allowed to be updated. The labels in the request are merged with the existing set of labels. Existing labels with the same keys are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17854,14 +17626,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.patch(
      *     {
-     *       // Resource name of the Message, of the form
-     *       // `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.
-     *       // Assigned by the server.
+     *       // Resource name of the Message, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
-     *       // The update mask applies to the resource. For the `FieldMask` definition,
-     *       // see
-     *       // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -18037,11 +17805,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List
     extends StandardParameters {
     /**
-     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  The following fields and functions are available for filtering:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
+     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      */
     filter?: string;
     /**
-     * Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order  Fields available for ordering are:  *  `send_time`
+     * Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      */
     orderBy?: string;
     /**
@@ -18086,7 +17854,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18223,7 +17991,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18356,7 +18124,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
