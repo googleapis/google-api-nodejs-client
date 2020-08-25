@@ -163,7 +163,7 @@ export namespace servicecontrol_v1 {
      */
     operationId?: string | null;
     /**
-     * Quota metrics to indicate the result of allocation. Depending on the request, one or more of the following metrics will be included:  1. Per quota group or per quota metric incremental usage will be specified using the following delta metric :   &quot;serviceruntime.googleapis.com/api/consumer/quota_used_count&quot;  2. The quota limit reached condition will be specified using the following boolean metric :   &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
+     * Quota metrics to indicate the result of allocation. Depending on the request, one or more of the following metrics will be included: 1. Per quota group or per quota metric incremental usage will be specified using the following delta metric : &quot;serviceruntime.googleapis.com/api/consumer/quota_used_count&quot; 2. The quota limit reached condition will be specified using the following boolean metric : &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
      */
     quotaMetrics?: Schema$MetricValueSet[];
     /**
@@ -176,7 +176,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: &quot;/instance_id&quot;: &quot;my-instance&quot; &quot;/http/user_agent&quot;: &quot;&quot; &quot;/http/request_bytes&quot;: 300 &quot;abc.com/myattribute&quot;: true
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -218,7 +218,7 @@ export namespace servicecontrol_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The name of the service method or operation. For API calls, this should be the name of the API method. For example,      &quot;google.cloud.bigquery.v2.TableService.InsertTable&quot;     &quot;google.logging.v2.ConfigServiceV2.CreateSink&quot;
+     * The name of the service method or operation. For API calls, this should be the name of the API method. For example, &quot;google.cloud.bigquery.v2.TableService.InsertTable&quot; &quot;google.logging.v2.ConfigServiceV2.CreateSink&quot;
      */
     methodName?: string | null;
     /**
@@ -238,7 +238,7 @@ export namespace servicecontrol_v1 {
      */
     resourceLocation?: Schema$ResourceLocation;
     /**
-     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example:      &quot;projects/PROJECT_ID/zones/us-central1-a/instances&quot;     &quot;projects/PROJECT_ID/datasets/DATASET_ID&quot;
+     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example: &quot;projects/PROJECT_ID/zones/us-central1-a/instances&quot; &quot;projects/PROJECT_ID/datasets/DATASET_ID&quot;
      */
     resourceName?: string | null;
     /**
@@ -267,15 +267,15 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$Auth {
     /**
-     * A list of access level resource names that allow resources to be accessed by authenticated requester. It is part of Secure GCP processing for the incoming request. An access level string has the format: &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot;  Example: &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
+     * A list of access level resource names that allow resources to be accessed by authenticated requester. It is part of Secure GCP processing for the incoming request. An access level string has the format: &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot; Example: &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
      */
     accessLevels?: string[] | null;
     /**
-     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential. For example,    [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
+     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information: * The services intended to receive the credential. For example, [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. * A set of service-based scopes. For example, [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. * The client id of an app, such as the Firebase project id for JWTs from Firebase Auth. Consult the documentation for the credential issuer to determine the information provided.
      */
     audiences?: string[] | null;
     /**
-     * Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT:     {&#39;iss&#39;: &#39;accounts.google.com&#39;,     &#39;sub&#39;: &#39;113289723416554971153&#39;,     &#39;aud&#39;: [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;],     &#39;azp&#39;: &#39;123456789012.apps.googleusercontent.com&#39;,     &#39;email&#39;: &#39;jsmith@example.com&#39;,     &#39;iat&#39;: 1353601026,     &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but with an identity provider dependent structure.
+     * Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {&#39;iss&#39;: &#39;accounts.google.com&#39;, &#39;sub&#39;: &#39;113289723416554971153&#39;, &#39;aud&#39;: [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;], &#39;azp&#39;: &#39;123456789012.apps.googleusercontent.com&#39;, &#39;email&#39;: &#39;jsmith@example.com&#39;, &#39;iat&#39;: 1353601026, &#39;exp&#39;: 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.
      */
     claims?: {[key: string]: any} | null;
     /**
@@ -308,7 +308,7 @@ export namespace servicecontrol_v1 {
      */
     serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
     /**
-     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example:  &quot;//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}&quot;
+     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: &quot;//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}&quot;
      */
     serviceAccountKeyName?: string | null;
     /**
@@ -329,11 +329,11 @@ export namespace servicecontrol_v1 {
      */
     permission?: string | null;
     /**
-     * The resource being accessed, as a REST-style string. For example:      bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
      */
     resource?: string | null;
     /**
-     * Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name.  To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`.
+     * Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`.
      */
     resourceAttributes?: Schema$Resource;
   }
@@ -354,7 +354,7 @@ export namespace servicecontrol_v1 {
      */
     status?: Schema$Status;
     /**
-     * Subject to whom this error applies. See the specific code enum for more details on this field. For example:  - &quot;project:&lt;project-id or project-number&gt;&quot; - &quot;folder:&lt;folder-id&gt;&quot; - &quot;organization:&lt;organization-id&gt;&quot;
+     * Subject to whom this error applies. See the specific code enum for more details on this field. For example: - &quot;project:&quot; - &quot;folder:&quot; - &quot;organization:&quot;
      */
     subject?: string | null;
   }
@@ -384,7 +384,7 @@ export namespace servicecontrol_v1 {
      */
     requestProjectSettings?: boolean | null;
     /**
-     * Specifies which version of service configuration should be used to process the request.  If unspecified or no matching version can be found, the latest one will be used.
+     * Specifies which version of service configuration should be used to process the request. If unspecified or no matching version can be found, the latest one will be used.
      */
     serviceConfigId?: string | null;
     /**
@@ -397,7 +397,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$CheckResponse {
     /**
-     * Indicate the decision of the check.  If no check errors are present, the service should process the operation. Otherwise the service should use the list of errors to determine the appropriate action.
+     * Indicate the decision of the check. If no check errors are present, the service should process the operation. Otherwise the service should use the list of errors to determine the appropriate action.
      */
     checkErrors?: Schema$CheckError[];
     /**
@@ -430,7 +430,7 @@ export namespace servicecontrol_v1 {
      */
     consumerNumber?: string | null;
     /**
-     * The Google cloud project number, e.g. 1234567890. A value of 0 indicates no project number is found.  NOTE: This field is deprecated after Chemist support flexible consumer id. New code should not depend on this field anymore.
+     * The Google cloud project number, e.g. 1234567890. A value of 0 indicates no project number is found. NOTE: This field is deprecated after Chemist support flexible consumer id. New code should not depend on this field anymore.
      */
     projectNumber?: string | null;
     /**
@@ -439,11 +439,11 @@ export namespace servicecontrol_v1 {
     type?: string | null;
   }
   /**
-   * Distribution represents a frequency distribution of double-valued sample points. It contains the size of the population of sample points plus additional optional information:    - the arithmetic mean of the samples   - the minimum and maximum of the samples   - the sum-squared-deviation of the samples, used to compute variance   - a histogram of the values of the sample points
+   * Distribution represents a frequency distribution of double-valued sample points. It contains the size of the population of sample points plus additional optional information: - the arithmetic mean of the samples - the minimum and maximum of the samples - the sum-squared-deviation of the samples, used to compute variance - a histogram of the values of the sample points
    */
   export interface Schema$Distribution {
     /**
-     * The number of samples in each histogram bucket. `bucket_counts` are optional. If present, they must sum to the `count` value.  The buckets are defined below in `bucket_option`. There are N buckets. `bucket_counts[0]` is the number of samples in the underflow bucket. `bucket_counts[1]` to `bucket_counts[N-1]` are the numbers of samples in each of the finite buckets. And `bucket_counts[N] is the number of samples in the overflow bucket. See the comments of `bucket_option` below for more details.  Any suffix of trailing zeros may be omitted.
+     * The number of samples in each histogram bucket. `bucket_counts` are optional. If present, they must sum to the `count` value. The buckets are defined below in `bucket_option`. There are N buckets. `bucket_counts[0]` is the number of samples in the underflow bucket. `bucket_counts[1]` to `bucket_counts[N-1]` are the numbers of samples in each of the finite buckets. And `bucket_counts[N] is the number of samples in the overflow bucket. See the comments of `bucket_option` below for more details. Any suffix of trailing zeros may be omitted.
      */
     bucketCounts?: string[] | null;
     /**
@@ -479,7 +479,7 @@ export namespace servicecontrol_v1 {
      */
     minimum?: number | null;
     /**
-     * The sum of squared deviations from the mean:   Sum[i=1..count]((x_i - mean)^2) where each x_i is a sample values. If `count` is zero then this field must be zero, otherwise validation of the request fails.
+     * The sum of squared deviations from the mean: Sum[i=1..count]((x_i - mean)^2) where each x_i is a sample values. If `count` is zero then this field must be zero, otherwise validation of the request fails.
      */
     sumOfSquaredDeviation?: number | null;
   }
@@ -488,7 +488,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$Exemplar {
     /**
-     * Contextual information about the example value. Examples are:    Trace: type.googleapis.com/google.monitoring.v3.SpanContext    Literal string: type.googleapis.com/google.protobuf.StringValue    Labels dropped during aggregation:     type.googleapis.com/google.monitoring.v3.DroppedLabels  There may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
+     * Contextual information about the example value. Examples are: Trace: type.googleapis.com/google.monitoring.v3.SpanContext Literal string: type.googleapis.com/google.protobuf.StringValue Labels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabels There may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
      */
     attachments?: Array<{[key: string]: any}> | null;
     /**
@@ -505,7 +505,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ExplicitBuckets {
     /**
-     * &#39;bound&#39; is a list of strictly increasing boundaries between buckets. Note that a list of length N-1 defines N buckets because of fenceposting. See comments on `bucket_options` for details.  The i&#39;th finite bucket covers the interval   [bound[i-1], bound[i]) where i ranges from 1 to bound_size() - 1. Note that there are no finite buckets at all if &#39;bound&#39; only contains a single element; in that special case the single bound defines the boundary between the underflow and overflow buckets.  bucket number                   lower bound    upper bound  i == 0 (underflow)              -inf           bound[i]  0 &lt; i &lt; bound_size()            bound[i-1]     bound[i]  i == bound_size() (overflow)    bound[i-1]     +inf
+     * &#39;bound&#39; is a list of strictly increasing boundaries between buckets. Note that a list of length N-1 defines N buckets because of fenceposting. See comments on `bucket_options` for details. The i&#39;th finite bucket covers the interval [bound[i-1], bound[i]) where i ranges from 1 to bound_size() - 1. Note that there are no finite buckets at all if &#39;bound&#39; only contains a single element; in that special case the single bound defines the boundary between the underflow and overflow buckets. bucket number lower bound upper bound i == 0 (underflow) -inf bound[i] 0 &lt; i &lt; bound_size() bound[i-1] bound[i] i == bound_size() (overflow) bound[i-1] +inf
      */
     bounds?: number[] | null;
   }
@@ -514,7 +514,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ExponentialBuckets {
     /**
-     * The i&#39;th exponential bucket covers the interval   [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be larger than 1.0.
+     * The i&#39;th exponential bucket covers the interval [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be larger than 1.0.
      */
     growthFactor?: number | null;
     /**
@@ -522,7 +522,7 @@ export namespace servicecontrol_v1 {
      */
     numFiniteBuckets?: number | null;
     /**
-     * The i&#39;th exponential bucket covers the interval   [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be &gt; 0.
+     * The i&#39;th exponential bucket covers the interval [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be &gt; 0.
      */
     scale?: number | null;
   }
@@ -613,11 +613,11 @@ export namespace servicecontrol_v1 {
      */
     numFiniteBuckets?: number | null;
     /**
-     * The i&#39;th linear bucket covers the interval   [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive.
+     * The i&#39;th linear bucket covers the interval [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive.
      */
     offset?: number | null;
     /**
-     * The i&#39;th linear bucket covers the interval   [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive. Must be strictly positive.
+     * The i&#39;th linear bucket covers the interval [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive. Must be strictly positive.
      */
     width?: number | null;
   }
@@ -691,7 +691,7 @@ export namespace servicecontrol_v1 {
      */
     last?: boolean | null;
     /**
-     * Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique.  Examples for `producer`: `&quot;MyDivision.MyBigCompany.com&quot;`, `&quot;github.com/MyProject/MyApplication&quot;`.
+     * Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique. Examples for `producer`: `&quot;MyDivision.MyBigCompany.com&quot;`, `&quot;github.com/MyProject/MyApplication&quot;`.
      */
     producer?: string | null;
   }
@@ -788,7 +788,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$Operation {
     /**
-     * Identity of the consumer who is using the service. This field should be filled in for the operations initiated by a consumer, but not for service-initiated operations that are not related to a specific consumer.  - This can be in one of the following formats:     - project:PROJECT_ID,     - project`_`number:PROJECT_NUMBER,     - projects/PROJECT_ID or PROJECT_NUMBER,     - folders/FOLDER_NUMBER,     - organizations/ORGANIZATION_NUMBER,     - api`_`key:API_KEY.
+     * Identity of the consumer who is using the service. This field should be filled in for the operations initiated by a consumer, but not for service-initiated operations that are not related to a specific consumer. - This can be in one of the following formats: - project:PROJECT_ID, - project`_`number:PROJECT_NUMBER, - projects/PROJECT_ID or PROJECT_NUMBER, - folders/FOLDER_NUMBER, - organizations/ORGANIZATION_NUMBER, - api`_`key:API_KEY.
      */
     consumerId?: string | null;
     /**
@@ -804,7 +804,7 @@ export namespace servicecontrol_v1 {
      */
     importance?: string | null;
     /**
-     * Labels describing the operation. Only the following labels are allowed:  - Labels describing monitored resources as defined in   the service configuration. - Default labels of metric values. When specified, labels defined in the   metric value override these default. - The following labels defined by Google Cloud Platform:     - `cloud.googleapis.com/location` describing the location where the        operation happened,     - `servicecontrol.googleapis.com/user_agent` describing the user agent        of the API request,     - `servicecontrol.googleapis.com/service_agent` describing the service        used to handle the API request (e.g. ESP),     - `servicecontrol.googleapis.com/platform` describing the platform        where the API is served, such as App Engine, Compute Engine, or        Kubernetes Engine.
+     * Labels describing the operation. Only the following labels are allowed: - Labels describing monitored resources as defined in the service configuration. - Default labels of metric values. When specified, labels defined in the metric value override these default. - The following labels defined by Google Cloud Platform: - `cloud.googleapis.com/location` describing the location where the operation happened, - `servicecontrol.googleapis.com/user_agent` describing the user agent of the API request, - `servicecontrol.googleapis.com/service_agent` describing the service used to handle the API request (e.g. ESP), - `servicecontrol.googleapis.com/platform` describing the platform where the API is served, such as App Engine, Compute Engine, or Kubernetes Engine.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -812,11 +812,11 @@ export namespace servicecontrol_v1 {
      */
     logEntries?: Schema$LogEntry[];
     /**
-     * Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition.  Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error.
+     * Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition. Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error.
      */
     metricValueSets?: Schema$MetricValueSet[];
     /**
-     * Identity of the operation. This must be unique within the scope of the service that generated the operation. If the service calls Check() and Report() on the same operation, the two calls should carry the same id.  UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
+     * Identity of the operation. This must be unique within the scope of the service that generated the operation. If the service calls Check() and Report() on the same operation, the two calls should carry the same id. UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
      */
     operationId?: string | null;
     /**
@@ -882,7 +882,7 @@ export namespace servicecontrol_v1 {
      */
     description?: string | null;
     /**
-     * Subject to whom this error applies. See the specific enum for more details on this field. For example, &quot;clientip:&lt;ip address of client&gt;&quot; or &quot;project:&lt;Google developer project id&gt;&quot;.
+     * Subject to whom this error applies. See the specific enum for more details on this field. For example, &quot;clientip:&quot; or &quot;project:&quot;.
      */
     subject?: string | null;
   }
@@ -895,11 +895,11 @@ export namespace servicecontrol_v1 {
      */
     limitExceeded?: string[] | null;
     /**
-     * Map of quota group name to the actual number of tokens consumed. If the quota check was not successful, then this will not be populated due to no quota consumption.  We are not merging this field with &#39;quota_metrics&#39; field because of the complexity of scaling in Chemist client code base. For simplicity, we will keep this field for Castor (that scales quota usage) and &#39;quota_metrics&#39; for SuperQuota (that doesn&#39;t scale quota usage).
+     * Map of quota group name to the actual number of tokens consumed. If the quota check was not successful, then this will not be populated due to no quota consumption. We are not merging this field with &#39;quota_metrics&#39; field because of the complexity of scaling in Chemist client code base. For simplicity, we will keep this field for Castor (that scales quota usage) and &#39;quota_metrics&#39; for SuperQuota (that doesn&#39;t scale quota usage).
      */
     quotaConsumed?: {[key: string]: number} | null;
     /**
-     * Quota metrics to indicate the usage. Depending on the check request, one or more of the following metrics will be included:  1. For rate quota, per quota group or per quota metric incremental usage will be specified using the following delta metric:   &quot;serviceruntime.googleapis.com/api/consumer/quota_used_count&quot;  2. For allocation quota, per quota metric total usage will be specified using the following gauge metric:   &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot;  3. For both rate quota and allocation quota, the quota limit reached condition will be specified using the following boolean metric:   &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
+     * Quota metrics to indicate the usage. Depending on the check request, one or more of the following metrics will be included: 1. For rate quota, per quota group or per quota metric incremental usage will be specified using the following delta metric: &quot;serviceruntime.googleapis.com/api/consumer/quota_used_count&quot; 2. For allocation quota, per quota metric total usage will be specified using the following gauge metric: &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot; 3. For both rate quota and allocation quota, the quota limit reached condition will be specified using the following boolean metric: &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
      */
     quotaMetrics?: Schema$MetricValueSet[];
   }
@@ -908,7 +908,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$QuotaOperation {
     /**
-     * Identity of the consumer for whom this quota operation is being performed.  This can be in one of the following formats:   project:&lt;project_id&gt;,   project_number:&lt;project_number&gt;,   api_key:&lt;api_key&gt;.
+     * Identity of the consumer for whom this quota operation is being performed. This can be in one of the following formats: project:, project_number:, api_key:.
      */
     consumerId?: string | null;
     /**
@@ -916,15 +916,15 @@ export namespace servicecontrol_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Fully qualified name of the API method for which this quota operation is requested. This name is used for matching quota rules or metric rules and billing status rules defined in service configuration.  This field should not be set if any of the following is true: (1) the quota operation is performed on non-API resources. (2) quota_metrics is set because the caller is doing quota override.  Example of an RPC method name:     google.example.library.v1.LibraryService.CreateShelf
+     * Fully qualified name of the API method for which this quota operation is requested. This name is used for matching quota rules or metric rules and billing status rules defined in service configuration. This field should not be set if any of the following is true: (1) the quota operation is performed on non-API resources. (2) quota_metrics is set because the caller is doing quota override. Example of an RPC method name: google.example.library.v1.LibraryService.CreateShelf
      */
     methodName?: string | null;
     /**
-     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries.  In order to ensure best performance and latency in the Quota backends, operation_ids are optimally associated with time, so that related operations can be accessed fast in storage. For this reason, the recommended token for services that intend to operate at a high QPS is Unix time in nanos + UUID
+     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries. In order to ensure best performance and latency in the Quota backends, operation_ids are optimally associated with time, so that related operations can be accessed fast in storage. For this reason, the recommended token for services that intend to operate at a high QPS is Unix time in nanos + UUID
      */
     operationId?: string | null;
     /**
-     * Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition.  Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error.  This field is mutually exclusive with method_name.
+     * Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition. Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error. This field is mutually exclusive with method_name.
      */
     quotaMetrics?: Schema$MetricValueSet[];
     /**
@@ -972,11 +972,11 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ReportRequest {
     /**
-     * Operations to be reported.  Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report.  There is no limit on the number of operations in the same ReportRequest, however the ReportRequest size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
+     * Operations to be reported. Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report. There is no limit on the number of operations in the same ReportRequest, however the ReportRequest size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
      */
     operations?: Schema$Operation[];
     /**
-     * Specifies which version of service config should be used to process the request.  If unspecified or no matching version can be found, the latest one will be used.
+     * Specifies which version of service config should be used to process the request. If unspecified or no matching version can be found, the latest one will be used.
      */
     serviceConfigId?: string | null;
   }
@@ -985,11 +985,11 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ReportResponse {
     /**
-     * Partial failures, one for each `Operation` in the request that failed processing. There are three possible combinations of the RPC status:  1. The combination of a successful RPC status and an empty `report_errors`    list indicates a complete success where all `Operations` in the    request are processed successfully. 2. The combination of a successful RPC status and a non-empty    `report_errors` list indicates a partial success where some    `Operations` in the request succeeded. Each    `Operation` that failed processing has a corresponding item    in this list. 3. A failed RPC status indicates a general non-deterministic failure.    When this happens, it&#39;s impossible to know which of the    &#39;Operations&#39; in the request succeeded or failed.
+     * Partial failures, one for each `Operation` in the request that failed processing. There are three possible combinations of the RPC status: 1. The combination of a successful RPC status and an empty `report_errors` list indicates a complete success where all `Operations` in the request are processed successfully. 2. The combination of a successful RPC status and a non-empty `report_errors` list indicates a partial success where some `Operations` in the request succeeded. Each `Operation` that failed processing has a corresponding item in this list. 3. A failed RPC status indicates a general non-deterministic failure. When this happens, it&#39;s impossible to know which of the &#39;Operations&#39; in the request succeeded or failed.
      */
     reportErrors?: Schema$ReportError[];
     /**
-     * Quota usage for each quota release `Operation` request.  Fully or partially failed quota release request may or may not be present in `report_quota_info`. For example, a failed quota release request will have the current quota usage info when precise quota library returns the info. A deadline exceeded quota request will not have quota usage info.  If there is no quota release request, report_quota_info will be empty.
+     * Quota usage for each quota release `Operation` request. Fully or partially failed quota release request may or may not be present in `report_quota_info`. For example, a failed quota release request will have the current quota usage info when precise quota library returns the info. A deadline exceeded quota request will not have quota usage info. If there is no quota release request, report_quota_info will be empty.
      */
     reportInfos?: Schema$ReportInfo[];
     /**
@@ -1063,11 +1063,11 @@ export namespace servicecontrol_v1 {
      */
     callerIp?: string | null;
     /**
-     * The network of the caller. Set only if the network host project is part of the same GCP organization (or project) as the accessed resource. See https://cloud.google.com/compute/docs/vpc/ for more information. This is a scheme-less URI full resource name. For example:      &quot;//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID&quot;
+     * The network of the caller. Set only if the network host project is part of the same GCP organization (or project) as the accessed resource. See https://cloud.google.com/compute/docs/vpc/ for more information. This is a scheme-less URI full resource name. For example: &quot;//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID&quot;
      */
     callerNetwork?: string | null;
     /**
-     * The user agent of the caller. This information is not authenticated and should be treated accordingly. For example:  +   `google-api-python-client/1.4.0`:     The request was made by the Google API client for Python. +   `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:     The request was made by the Google Cloud SDK CLI (gcloud). +   `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`:     The request was made from the `my-project` App Engine app. NOLINT
+     * The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app. NOLINT
      */
     callerSuppliedUserAgent?: string | null;
     /**
@@ -1075,7 +1075,7 @@ export namespace servicecontrol_v1 {
      */
     destinationAttributes?: Schema$Peer;
     /**
-     * Request attributes used in IAM condition evaluation. This field contains request attributes like request time and access levels associated with the request.   To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.authentication_info.resource_attributes`.
+     * Request attributes used in IAM condition evaluation. This field contains request attributes like request time and access levels associated with the request. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.authentication_info.resource_attributes`.
      */
     requestAttributes?: Schema$Request;
   }
@@ -1088,7 +1088,7 @@ export namespace servicecontrol_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as &quot;//{resource.service}/{resource.name}&quot;. The differences between a resource name and a URI are:  *   Resource name is a logical identifier, independent of network     protocol and API version. For example,     `//pubsub.googleapis.com/projects/123/topics/news-feed`. *   URI often includes protocol and version information, so it can     be used directly by applications. For example,     `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`.  See https://cloud.google.com/apis/design/resource_names for details.
+     * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as &quot;//{resource.service}/{resource.name}&quot;. The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details.
      */
     name?: string | null;
     /**
@@ -1096,7 +1096,7 @@ export namespace servicecontrol_v1 {
      */
     service?: string | null;
     /**
-     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently.  For Google APIs, the type format must be &quot;{service}/{kind}&quot;.
+     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be &quot;{service}/{kind}&quot;.
      */
     type?: string | null;
   }
@@ -1105,7 +1105,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ResourceInfo {
     /**
-     * The identifier of the parent of this resource instance. Must be in one of the following formats:     - “projects/&lt;project-id or project-number&gt;”     - “folders/&lt;folder-id&gt;”     - “organizations/&lt;organization-id&gt;”
+     * The identifier of the parent of this resource instance. Must be in one of the following formats: - “projects/” - “folders/” - “organizations/”
      */
     resourceContainer?: string | null;
     /**
@@ -1122,11 +1122,11 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ResourceLocation {
     /**
-     * The locations of a resource after the execution of the operation. Requests to create or delete a location based resource must populate the &#39;current_locations&#39; field and not the &#39;original_locations&#39; field. For example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;     &quot;nam3&quot;
+     * The locations of a resource after the execution of the operation. Requests to create or delete a location based resource must populate the &#39;current_locations&#39; field and not the &#39;original_locations&#39; field. For example: &quot;europe-west1-a&quot; &quot;us-east1&quot; &quot;nam3&quot;
      */
     currentLocations?: string[] | null;
     /**
-     * The locations of a resource prior to the execution of the operation. Requests that mutate the resource&#39;s location must populate both the &#39;original_locations&#39; as well as the &#39;current_locations&#39; fields. For example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;     &quot;nam3&quot;
+     * The locations of a resource prior to the execution of the operation. Requests that mutate the resource&#39;s location must populate both the &#39;original_locations&#39; as well as the &#39;current_locations&#39; fields. For example: &quot;europe-west1-a&quot; &quot;us-east1&quot; &quot;nam3&quot;
      */
     originalLocations?: string[] | null;
   }
@@ -1144,16 +1144,16 @@ export namespace servicecontrol_v1 {
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
   }
   /**
-   * The context of a span, attached to Exemplars in Distribution values during aggregation.  It contains the name of a span with format:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   * The context of a span, attached to Exemplars in Distribution values during aggregation. It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
    */
   export interface Schema$SpanContext {
     /**
-     * The resource name of the span. The format is:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]  `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * The resource name of the span. The format is: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID] `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     spanName?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1161,7 +1161,7 @@ export namespace servicecontrol_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1179,7 +1179,7 @@ export namespace servicecontrol_v1 {
     thirdPartyClaims?: {[key: string]: any} | null;
   }
   /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous&amp;mdash;there may be gaps or overlaps between spans in a trace.
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there may be gaps or overlaps between spans in a trace.
    */
   export interface Schema$TraceSpan {
     /**
@@ -1199,7 +1199,7 @@ export namespace servicecontrol_v1 {
      */
     endTime?: string | null;
     /**
-     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     name?: string | null;
     /**
@@ -1236,7 +1236,7 @@ export namespace servicecontrol_v1 {
      */
     truncatedByteCount?: number | null;
     /**
-     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
+     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
      */
     value?: string | null;
   }
@@ -1249,7 +1249,7 @@ export namespace servicecontrol_v1 {
 
     /**
      * servicecontrol.services.allocateQuota
-     * @desc Attempts to allocate quota for the specified consumer. It should be called before the operation is executed.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).  **NOTE:** The client **must** fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system reliability, the server may inject these errors to prohibit any hard dependency on the quota functionality.
+     * @desc Attempts to allocate quota for the specified consumer. It should be called before the operation is executed. This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam). **NOTE:** The client **must** fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system reliability, the server may inject these errors to prohibit any hard dependency on the quota functionality.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1277,10 +1277,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.allocateQuota({
-     *     // Name of the service as specified in the service configuration. For example,
-     *     // `"pubsub.googleapis.com"`.
-     *     //
-     *     // See google.api.Service for the definition of a service name.
+     *     // Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`. See google.api.Service for the definition of a service name.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1313,7 +1310,7 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`. See google.api.Service for the definition of a service name.
      * @param {().AllocateQuotaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1408,7 +1405,7 @@ export namespace servicecontrol_v1 {
 
     /**
      * servicecontrol.services.check
-     * @desc Checks whether an operation on a service should be allowed to proceed based on the configuration of the service and related policies. It must be called before the operation is executed.  If feasible, the client should cache the check results and reuse them for 60 seconds. In case of any server errors, the client should rely on the cached results for much longer time to avoid outage. WARNING: There is general 60s delay for the configuration and policy propagation, therefore callers MUST NOT depend on the `Check` method having the latest policy information.  NOTE: the CheckRequest has the size limit of 64KB.  This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).
+     * @desc Checks whether an operation on a service should be allowed to proceed based on the configuration of the service and related policies. It must be called before the operation is executed. If feasible, the client should cache the check results and reuse them for 60 seconds. In case of any server errors, the client should rely on the cached results for much longer time to avoid outage. WARNING: There is general 60s delay for the configuration and policy propagation, therefore callers MUST NOT depend on the `Check` method having the latest policy information. NOTE: the CheckRequest has the size limit of 64KB. This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1436,12 +1433,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.check({
-     *     // The service name as specified in its service configuration. For example,
-     *     // `"pubsub.googleapis.com"`.
-     *     //
-     *     // See
-     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     // for the definition of a service name.
+     *     // The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1477,7 +1469,7 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().CheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1564,7 +1556,7 @@ export namespace servicecontrol_v1 {
 
     /**
      * servicecontrol.services.report
-     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the ReportRequest has the size limit (wire-format byte size) of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed. If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons. NOTE: the ReportRequest has the size limit (wire-format byte size) of 1MB. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1592,12 +1584,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.report({
-     *     // The service name as specified in its service configuration. For example,
-     *     // `"pubsub.googleapis.com"`.
-     *     //
-     *     // See
-     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     // for the definition of a service name.
+     *     // The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1629,7 +1616,7 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1718,7 +1705,7 @@ export namespace servicecontrol_v1 {
   export interface Params$Resource$Services$Allocatequota
     extends StandardParameters {
     /**
-     * Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`. See google.api.Service for the definition of a service name.
      */
     serviceName?: string;
 
@@ -1729,7 +1716,7 @@ export namespace servicecontrol_v1 {
   }
   export interface Params$Resource$Services$Check extends StandardParameters {
     /**
-     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
 
@@ -1740,7 +1727,7 @@ export namespace servicecontrol_v1 {
   }
   export interface Params$Resource$Services$Report extends StandardParameters {
     /**
-     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
 
