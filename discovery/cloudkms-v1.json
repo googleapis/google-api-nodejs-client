@@ -1259,7 +1259,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200814",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1407,6 +1407,34 @@
         "role": {
           "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateChains": {
+      "description": "Certificate chains needed to verify the attestation. Certificates in chains are PEM-encoded and are ordered based on https://tools.ietf.org/html/rfc5246#section-7.4.2.",
+      "id": "CertificateChains",
+      "properties": {
+        "caviumCerts": {
+          "description": "Cavium certificate chain corresponding to the attestation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "googleCardCerts": {
+          "description": "Google card certificate chain corresponding to the attestation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "googlePartitionCerts": {
+          "description": "Google partition certificate chain corresponding to the attestation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1998,6 +2026,11 @@
       "description": "Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).",
       "id": "KeyOperationAttestation",
       "properties": {
+        "certChains": {
+          "$ref": "CertificateChains",
+          "description": "Output only. The certificate chains needed to validate the attestation",
+          "readOnly": true
+        },
         "content": {
           "description": "Output only. The attestation data provided by the HSM when the key operation was performed.",
           "format": "byte",
