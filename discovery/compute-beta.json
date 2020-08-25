@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/z_zdSpRFe7PoaKN-1HOatnUsIHU\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/MI2Izrh2YXwfaZc9kxT9YEz1NtM\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -27885,7 +27885,7 @@
       }
     }
   },
-  "revision": "20200719",
+  "revision": "20200727",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -29907,17 +29907,17 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN?s edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
+          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN's edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
         "defaultTtl": {
-          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "maxTtl": {
-          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
@@ -29925,8 +29925,8 @@
           "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 414 (URI Too Long), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
           "type": "boolean"
         },
-        "negativeCachingPolicys": {
-          "description": "Sets a cache TTL for the specified HTTP status code. negative_caching must be enabled to configure negative_caching_policy. Omitting the policy and leaving negative_caching enabled will use Cloud CDN?s default cache TTLs. Note that when specifying an explicit negative_caching_policy, you should take care to specify a cache TTL for all response codes that you wish to cache. Cloud CDN will not apply any default negative caching when a policy exists.",
+        "negativeCachingPolicy": {
+          "description": "Sets a cache TTL for the specified HTTP status code. negative_caching must be enabled to configure negative_caching_policy. Omitting the policy and leaving negative_caching enabled will use Cloud CDN's default cache TTLs. Note that when specifying an explicit negative_caching_policy, you should take care to specify a cache TTL for all response codes that you wish to cache. Cloud CDN will not apply any default negative caching when a policy exists.",
           "items": {
             "$ref": "BackendBucketCdnPolicyNegativeCachingPolicy"
           },
@@ -29957,7 +29957,7 @@
           "type": "integer"
         },
         "ttl": {
-          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         }
@@ -30434,17 +30434,17 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN?s edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
+          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN's edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
         "defaultTtl": {
-          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "maxTtl": {
-          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
@@ -30452,8 +30452,8 @@
           "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 414 (URI Too Long), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
           "type": "boolean"
         },
-        "negativeCachingPolicys": {
-          "description": "Sets a cache TTL for the specified HTTP status code. negative_caching must be enabled to configure negative_caching_policy. Omitting the policy and leaving negative_caching enabled will use Cloud CDN?s default cache TTLs. Note that when specifying an explicit negative_caching_policy, you should take care to specify a cache TTL for all response codes that you wish to cache. Cloud CDN will not apply any default negative caching when a policy exists.",
+        "negativeCachingPolicy": {
+          "description": "Sets a cache TTL for the specified HTTP status code. negative_caching must be enabled to configure negative_caching_policy. Omitting the policy and leaving negative_caching enabled will use Cloud CDN's default cache TTLs. Note that when specifying an explicit negative_caching_policy, you should take care to specify a cache TTL for all response codes that you wish to cache. Cloud CDN will not apply any default negative caching when a policy exists.",
           "items": {
             "$ref": "BackendServiceCdnPolicyNegativeCachingPolicy"
           },
@@ -30484,7 +30484,7 @@
           "type": "integer"
         },
         "ttl": {
-          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of ?0? means ?always revalidate? and a value of ?-1? disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         }
@@ -50498,7 +50498,7 @@
           "type": "array"
         },
         "srcIpRanges": {
-          "description": "CIDR IP address range.",
+          "description": "CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.",
           "items": {
             "type": "string"
           },
@@ -51991,23 +51991,14 @@
           "enum": [
             "DISABLE_GOOGLE_ACCESS",
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
-            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
-            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS"
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             ""
           ],
           "type": "string"
-        },
-        "privateIpv6GoogleAccessServiceAccounts": {
-          "description": "Deprecated in favor of enable PrivateIpv6GoogleAccess on instance directly. The service accounts can be used to selectively turn on Private IPv6 Google Access only on the VMs primary service account matching the value. This value only takes effect when PrivateIpv6GoogleAccess is ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS or ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "purpose": {
           "description": "The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.",
@@ -52547,7 +52538,7 @@
       "type": "object"
     },
     "TargetGrpcProxy": {
-      "description": "Represents a Target gRPC Proxy resource.\n\nA target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Global forwarding rules reference a target gRPC proxy. The Target gRPC Proxy references a URL map which specifies how traffic routes to gRPC backend services.",
+      "description": "Represents a Target gRPC Proxy resource.\n\nA target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Global forwarding rules reference a target gRPC proxy. The Target gRPC Proxy references a URL map which specifies how traffic routes to gRPC backend services. (== resource_for {$api_version}.targetGrpcProxies ==)",
       "id": "TargetGrpcProxy",
       "properties": {
         "creationTimestamp": {
@@ -52596,7 +52587,7 @@
           "type": "string"
         },
         "validateForProxyless": {
-          "description": "If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use \"xds-experimental:///\" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use \"xds-experimental:///\" scheme in the target URI of the service it is connecting to",
+          "description": "If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use \"xds:///\" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use \"xds:///\" scheme in the target URI of the service it is connecting to",
           "type": "boolean"
         }
       },
@@ -56554,7 +56545,7 @@
       "type": "object"
     },
     "VpnTunnel": {
-      "description": "Represents a Cloud VPN Tunnel resource.\n\nFor more information about VPN, read the the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)",
+      "description": "Represents a Cloud VPN Tunnel resource.\n\nFor more information about VPN, read the  the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)",
       "id": "VpnTunnel",
       "properties": {
         "creationTimestamp": {
