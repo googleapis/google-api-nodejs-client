@@ -2,7 +2,7 @@
 
 # doubleclickbidmanager
 
-> API for viewing and managing your reports in DoubleClick Bid Manager.
+> DoubleClick Bid Manager API allows users to manage and create campaigns and reports.
 
 ## Installation
 
