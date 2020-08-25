@@ -177,7 +177,7 @@ export namespace sheets_v4 {
     rule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Creates a group over the specified range.  If the requested range is a superset of the range of an existing group G, then the depth of G is incremented and this new group G&#39; has the depth of that group. For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range is a subset of the range of an existing group G, then the depth of the new group G&#39; becomes one greater than the depth of G. For example, a group [B:E, depth 1] + [C:D] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range starts before and ends within, or starts within and ends after, the range of an existing group G, then the range of the existing group G becomes the union of the ranges, and the new group G&#39; has depth one greater than the depth of G and range as the intersection of the ranges. For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D, depth 2].
+   * Creates a group over the specified range. If the requested range is a superset of the range of an existing group G, then the depth of G is incremented and this new group G&#39; has the depth of that group. For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range is a subset of the range of an existing group G, then the depth of the new group G&#39; becomes one greater than the depth of G. For example, a group [B:E, depth 1] + [C:D] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range starts before and ends within, or starts within and ends after, the range of an existing group G, then the range of the existing group G becomes the union of the ranges, and the new group G&#39; has depth one greater than the depth of G and range as the intersection of the ranges. For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D, depth 2].
    */
   export interface Schema$AddDimensionGroupRequest {
     /**
@@ -383,7 +383,7 @@ export namespace sheets_v4 {
     rowProperties?: Schema$BandingProperties;
   }
   /**
-   * Properties referring a single dimension (either row or column). If both BandedRange.row_properties and BandedRange.column_properties are set, the fill colors are applied to cells according to the following rules:  * header_color and footer_color take priority over band colors. * first_band_color takes priority over second_band_color. * row_properties takes priority over column_properties.  For example, the first row color takes priority over the first column color, but the first column color takes priority over the second row color. Similarly, the row header takes priority over the column header in the top left cell, but the column header takes priority over the first row color if the row header is not set.
+   * Properties referring a single dimension (either row or column). If both BandedRange.row_properties and BandedRange.column_properties are set, the fill colors are applied to cells according to the following rules: * header_color and footer_color take priority over band colors. * first_band_color takes priority over second_band_color. * row_properties takes priority over column_properties. For example, the first row color takes priority over the first column color, but the first column color takes priority over the second row color. Similarly, the row header takes priority over the column header in the top left cell, but the column header takes priority over the first row color if the row header is not set.
    */
   export interface Schema$BandingProperties {
     /**
@@ -499,11 +499,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used.
+     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used.
      */
     color?: Schema$Color;
     /**
-     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used. If color is also set, this field takes precedence.
+     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. If color is also set, this field takes precedence.
      */
     colorStyle?: Schema$ColorStyle;
     /**
@@ -524,7 +524,7 @@ export namespace sheets_v4 {
     type?: string | null;
   }
   /**
-   * The specification for a basic chart.  See BasicChartType for the list of charts this supports.
+   * The specification for a basic chart. See BasicChartType for the list of charts this supports.
    */
   export interface Schema$BasicChartSpec {
     /**
@@ -544,11 +544,11 @@ export namespace sheets_v4 {
      */
     domains?: Schema$BasicChartDomain[];
     /**
-     * The number of rows or columns in the data that are &quot;headers&quot;. If not set, Google Sheets will guess how many rows are headers based on the data.  (Note that BasicChartAxis.title may override the axis title  inferred from the header values.)
+     * The number of rows or columns in the data that are &quot;headers&quot;. If not set, Google Sheets will guess how many rows are headers based on the data. (Note that BasicChartAxis.title may override the axis title inferred from the header values.)
      */
     headerCount?: number | null;
     /**
-     * If some values in a series are missing, gaps may appear in the chart (e.g, segments of lines in a line chart will be missing).  To eliminate these gaps set this to true. Applies to Line, Area, and Combo charts.
+     * If some values in a series are missing, gaps may appear in the chart (e.g, segments of lines in a line chart will be missing). To eliminate these gaps set this to true. Applies to Line, Area, and Combo charts.
      */
     interpolateNulls?: boolean | null;
     /**
@@ -646,7 +646,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string | null;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string | null;
     /**
@@ -706,7 +706,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetResponse {
     /**
-     * The reply of the updates.  This maps 1:1 with the updates, although replies to some requests may be empty.
+     * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
     /**
@@ -723,7 +723,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateValuesByDataFilterRequest {
     /**
-     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values are applied to all of those ranges.
+     * The new values to apply to the spreadsheet. If more than one range is matched by the specified DataFilter the specified values are applied to all of those ranges.
      */
     data?: Schema$DataFilterValueRange[];
     /**
@@ -835,7 +835,7 @@ export namespace sheets_v4 {
      */
     type?: string | null;
     /**
-     * The values of the condition. The number of supported values depends on the condition type.  Some support zero values, others one or two values, and ConditionType.ONE_OF_LIST supports an arbitrary number of values.
+     * The values of the condition. The number of supported values depends on the condition type. Some support zero values, others one or two values, and ConditionType.ONE_OF_LIST supports an arbitrary number of values.
      */
     values?: Schema$ConditionValue[];
   }
@@ -895,7 +895,7 @@ export namespace sheets_v4 {
     top?: Schema$Border;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/bubblechart&quot;&gt;bubble chart&lt;/a&gt;.
+   * A bubble chart.
    */
   export interface Schema$BubbleChartSpec {
     /**
@@ -907,7 +907,7 @@ export namespace sheets_v4 {
      */
     bubbleBorderColorStyle?: Schema$ColorStyle;
     /**
-     * The data containing the bubble labels.  These do not need to be unique.
+     * The data containing the bubble labels. These do not need to be unique.
      */
     bubbleLabels?: Schema$ChartData;
     /**
@@ -923,7 +923,7 @@ export namespace sheets_v4 {
      */
     bubbleOpacity?: number | null;
     /**
-     * The data contianing the bubble sizes.  Bubble sizes are used to draw the bubbles at different sizes relative to each other. If specified, group_ids must also be specified.  This field is optional.
+     * The data contianing the bubble sizes. Bubble sizes are used to draw the bubbles at different sizes relative to each other. If specified, group_ids must also be specified. This field is optional.
      */
     bubbleSizes?: Schema$ChartData;
     /**
@@ -931,7 +931,7 @@ export namespace sheets_v4 {
      */
     bubbleTextStyle?: Schema$TextFormat;
     /**
-     * The data containing the bubble x-values.  These values locate the bubbles in the chart horizontally.
+     * The data containing the bubble x-values. These values locate the bubbles in the chart horizontally.
      */
     domain?: Schema$ChartData;
     /**
@@ -943,12 +943,12 @@ export namespace sheets_v4 {
      */
     legendPosition?: string | null;
     /**
-     * The data contianing the bubble y-values.  These values locate the bubbles in the chart vertically.
+     * The data contianing the bubble y-values. These values locate the bubbles in the chart vertically.
      */
     series?: Schema$ChartData;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/candlestickchart&quot;&gt;candlestick chart&lt;/a&gt;.
+   * A candlestick chart.
    */
   export interface Schema$CandlestickChartSpec {
     /**
@@ -956,7 +956,7 @@ export namespace sheets_v4 {
      */
     data?: Schema$CandlestickData[];
     /**
-     * The domain data (horizontal axis) for the candlestick chart.  String data will be treated as discrete labels, other data will be treated as continuous values.
+     * The domain data (horizontal axis) for the candlestick chart. String data will be treated as discrete labels, other data will be treated as continuous values.
      */
     domain?: Schema$CandlestickDomain;
   }
@@ -965,7 +965,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CandlestickData {
     /**
-     * The range data (vertical axis) for the close/final value for each candle. This is the top of the candle body.  If greater than the open value the candle will be filled.  Otherwise the candle will be hollow.
+     * The range data (vertical axis) for the close/final value for each candle. This is the top of the candle body. If greater than the open value the candle will be filled. Otherwise the candle will be hollow.
      */
     closeSeries?: Schema$CandlestickSeries;
     /**
@@ -977,7 +977,7 @@ export namespace sheets_v4 {
      */
     lowSeries?: Schema$CandlestickSeries;
     /**
-     * The range data (vertical axis) for the open/initial value for each candle. This is the bottom of the candle body.  If less than the close value the candle will be filled.  Otherwise the candle will be hollow.
+     * The range data (vertical axis) for the open/initial value for each candle. This is the bottom of the candle body. If less than the close value the candle will be filled. Otherwise the candle will be hollow.
      */
     openSeries?: Schema$CandlestickSeries;
   }
@@ -1008,7 +1008,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellData {
     /**
-     * A data validation rule on the cell, if any.  When writing, the new data validation rule will overwrite any prior rule.
+     * A data validation rule on the cell, if any. When writing, the new data validation rule will overwrite any prior rule.
      */
     dataValidation?: Schema$DataValidationRule;
     /**
@@ -1016,7 +1016,7 @@ export namespace sheets_v4 {
      */
     effectiveFormat?: Schema$CellFormat;
     /**
-     * The effective value of the cell. For cells with formulas, this is the calculated value.  For cells with literals, this is the same as the user_entered_value. This field is read-only.
+     * The effective value of the cell. For cells with formulas, this is the calculated value. For cells with literals, this is the same as the user_entered_value. This field is read-only.
      */
     effectiveValue?: Schema$ExtendedValue;
     /**
@@ -1024,7 +1024,7 @@ export namespace sheets_v4 {
      */
     formattedValue?: string | null;
     /**
-     * A hyperlink this cell points to, if any. This field is read-only.  (To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.)
+     * A hyperlink this cell points to, if any. This field is read-only. (To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.)
      */
     hyperlink?: string | null;
     /**
@@ -1036,11 +1036,11 @@ export namespace sheets_v4 {
      */
     pivotTable?: Schema$PivotTable;
     /**
-     * Runs of rich text applied to subsections of the cell.  Runs are only valid on user entered strings, not formulas, bools, or numbers. Runs start at specific indexes in the text and continue until the next run. Properties of a run will continue unless explicitly changed in a subsequent run (and properties of the first run will continue the properties of the cell unless explicitly changed).  When writing, the new runs will overwrite any prior runs.  When writing a new user_entered_value, previous runs are erased.
+     * Runs of rich text applied to subsections of the cell. Runs are only valid on user entered strings, not formulas, bools, or numbers. Runs start at specific indexes in the text and continue until the next run. Properties of a run will continue unless explicitly changed in a subsequent run (and properties of the first run will continue the properties of the cell unless explicitly changed). When writing, the new runs will overwrite any prior runs. When writing a new user_entered_value, previous runs are erased.
      */
     textFormatRuns?: Schema$TextFormatRun[];
     /**
-     * The format the user entered for the cell.  When writing, the new format will be merged with the existing format.
+     * The format the user entered for the cell. When writing, the new format will be merged with the existing format.
      */
     userEnteredFormat?: Schema$CellFormat;
     /**
@@ -1145,7 +1145,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartSourceRange {
     /**
-     * The ranges of data for a series or domain. Exactly one dimension must have a length of 1, and all sources in the list must have the same dimension with length 1. The domain (if it exists) &amp; all series must have the same number of source ranges. If using more than one source range, then the source range at a given offset must be in order and contiguous across the domain and series.  For example, these are valid configurations:      domain sources: A1:A5     series1 sources: B1:B5     series2 sources: D6:D10      domain sources: A1:A5, C10:C12     series1 sources: B1:B5, D10:D12     series2 sources: C1:C5, E10:E12
+     * The ranges of data for a series or domain. Exactly one dimension must have a length of 1, and all sources in the list must have the same dimension with length 1. The domain (if it exists) &amp; all series must have the same number of source ranges. If using more than one source range, then the source range at a given offset must be in order and contiguous across the domain and series. For example, these are valid configurations: domain sources: A1:A5 series1 sources: B1:B5 series2 sources: D6:D10 domain sources: A1:A5, C10:C12 series1 sources: B1:B5, D10:D12 series2 sources: C1:C5, E10:E12
      */
     sources?: Schema$GridRange[];
   }
@@ -1154,7 +1154,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartSpec {
     /**
-     * The alternative text that describes the chart.  This is often used for accessibility.
+     * The alternative text that describes the chart. This is often used for accessibility.
      */
     altText?: string | null;
     /**
@@ -1178,7 +1178,7 @@ export namespace sheets_v4 {
      */
     candlestickChart?: Schema$CandlestickChartSpec;
     /**
-     * The name of the font to use by default for all chart text (e.g. title, axis labels, legend).  If a font is specified for a specific part of the chart it will override this font name.
+     * The name of the font to use by default for all chart text (e.g. title, axis labels, legend). If a font is specified for a specific part of the chart it will override this font name.
      */
     fontName?: string | null;
     /**
@@ -1190,7 +1190,7 @@ export namespace sheets_v4 {
      */
     histogramChart?: Schema$HistogramChartSpec;
     /**
-     * True to make a chart fill the entire space in which it&#39;s rendered with minimum padding.  False to use the default padding. (Not applicable to Geo and Org charts.)
+     * True to make a chart fill the entire space in which it&#39;s rendered with minimum padding. False to use the default padding. (Not applicable to Geo and Org charts.)
      */
     maximized?: boolean | null;
     /**
@@ -1256,7 +1256,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ClearValuesResponse {
     /**
-     * The range (in A1 notation) that was cleared. (If the request was for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual range  that was cleared, bounded to the sheet&#39;s limits.)
+     * The range (in A1 notation) that was cleared. (If the request was for an unbounded range or a ranger larger than the bounds of the sheet, this will be the actual range that was cleared, bounded to the sheet&#39;s limits.)
      */
     clearedRange?: string | null;
     /**
@@ -1265,11 +1265,11 @@ export namespace sheets_v4 {
     spreadsheetId?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well.  Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space.  Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5.  Example (Java):       import com.google.type.Color;       // ...      public static java.awt.Color fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha()            ? protocolor.getAlpha().getValue()            : 1.0;         return new java.awt.Color(            protocolor.getRed(),            protocolor.getGreen(),            protocolor.getBlue(),            alpha);      }       public static Color toProto(java.awt.Color color) {        float red = (float) color.getRed();        float green = (float) color.getGreen();        float blue = (float) color.getBlue();        float denominator = 255.0;        Color.Builder resultBuilder =            Color                .newBuilder()                .setRed(red / denominator)                .setGreen(green / denominator)                .setBlue(blue / denominator);        int alpha = color.getAlpha();        if (alpha != 255) {          result.setAlpha(              FloatValue                  .newBuilder()                  .setValue(((float) alpha) / denominator)                  .build());        }        return resultBuilder.build();      }      // ...  Example (iOS / Obj-C):       // ...      static UIColor* fromProto(Color* protocolor) {         float red = [protocolor red];         float green = [protocolor green];         float blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) {           alpha = [alpha_wrapper value];         }         return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];      }       static Color* toProto(UIColor* color) {          CGFloat red, green, blue, alpha;          if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {            return nil;          }          Color* result = [[Color alloc] init];          [result setRed:red];          [result setGreen:green];          [result setBlue:blue];          if (alpha &lt;= 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)];          }          [result autorelease];          return result;     }     // ...   Example (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {        var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green || 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red = Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);        var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in rgb_color)) {           return rgbToCssColor_(red, green, blue);        }         var alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red, green, blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString = rgbNumber.toString(16);       var missingZeros = 6 - hexString.length;       var resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt; missingZeros; i++) {          resultBuilder.push(&#39;0&#39;);       }       resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);     };      // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha &lt;= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!(&#39;alpha&#39; in rgb_color)) { return rgbToCssColor_(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(&#39;,&#39;); return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;); }; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = [&#39;#&#39;]; for (var i = 0; i &lt; missingZeros; i++) { resultBuilder.push(&#39;0&#39;); } resultBuilder.push(hexString); return resultBuilder.join(&#39;&#39;); }; // ...
    */
   export interface Schema$Color {
     /**
-     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation:    pixel color = alpha * (this color) + (1.0 - alpha) * (background color)  This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
+     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (this color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
      */
     alpha?: number | null;
     /**
@@ -1320,7 +1320,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ConditionValue {
     /**
-     * A relative date (based on the current date). Valid only if the type is DATE_BEFORE, DATE_AFTER, DATE_ON_OR_BEFORE or DATE_ON_OR_AFTER.  Relative dates are not supported in data validation. They are supported only in conditional formatting and conditional filters.
+     * A relative date (based on the current date). Valid only if the type is DATE_BEFORE, DATE_AFTER, DATE_ON_OR_BEFORE or DATE_ON_OR_AFTER. Relative dates are not supported in data validation. They are supported only in conditional formatting and conditional filters.
      */
     relativeDate?: string | null;
     /**
@@ -1385,7 +1385,7 @@ export namespace sheets_v4 {
      */
     destination?: Schema$GridCoordinate;
     /**
-     * What kind of data to paste.  All the source data will be cut, regardless of what is pasted.
+     * What kind of data to paste. All the source data will be cut, regardless of what is pasted.
      */
     pasteType?: string | null;
     /**
@@ -1423,7 +1423,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request fails.  If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
+     * The data to be written. If the provided values exceed any of the ranges matched by the data filter then the request fails. If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
      */
     values?: any[][] | null;
   }
@@ -1449,7 +1449,7 @@ export namespace sheets_v4 {
     strict?: boolean | null;
   }
   /**
-   * Allows you to organize the date-time values in a source data column into buckets based on selected parts of their date or time values. For example, consider a pivot table showing sales transactions by date:      +----------+--------------+     | Date     | SUM of Sales |     +----------+--------------+     | 1/1/2017 |      $621.14 |     | 2/3/2017 |      $708.84 |     | 5/8/2017 |      $326.84 |     ...     +----------+--------------+ Applying a date-time group rule with a DateTimeRuleType of YEAR_MONTH results in the following pivot table.      +--------------+--------------+     | Grouped Date | SUM of Sales |     +--------------+--------------+     | 2017-Jan     |   $53,731.78 |     | 2017-Feb     |   $83,475.32 |     | 2017-Mar     |   $94,385.05 |     ...     +--------------+--------------+
+   * Allows you to organize the date-time values in a source data column into buckets based on selected parts of their date or time values. For example, consider a pivot table showing sales transactions by date: +----------+--------------+ | Date | SUM of Sales | +----------+--------------+ | 1/1/2017 | $621.14 | | 2/3/2017 | $708.84 | | 5/8/2017 | $326.84 | ... +----------+--------------+ Applying a date-time group rule with a DateTimeRuleType of YEAR_MONTH results in the following pivot table. +--------------+--------------+ | Grouped Date | SUM of Sales | +--------------+--------------+ | 2017-Jan | $53,731.78 | | 2017-Feb | $83,475.32 | | 2017-Mar | $94,385.05 | ... +--------------+--------------+
    */
   export interface Schema$DateTimeRule {
     /**
@@ -1507,7 +1507,7 @@ export namespace sheets_v4 {
     deletedDeveloperMetadata?: Schema$DeveloperMetadata[];
   }
   /**
-   * Deletes a group over the specified range by decrementing the depth of the dimensions in the range.  For example, assume the sheet has a depth-1 group over B:E and a depth-2 group over C:D. Deleting a group over D:E leaves the sheet with a depth-1 group over B:D and a depth-2 group over C:C.
+   * Deletes a group over the specified range by decrementing the depth of the dimensions in the range. For example, assume the sheet has a depth-1 group over B:E and a depth-2 group over C:D. Deleting a group over D:E leaves the sheet with a depth-1 group over B:D and a depth-2 group over C:C.
    */
   export interface Schema$DeleteDimensionGroupRequest {
     /**
@@ -1534,7 +1534,7 @@ export namespace sheets_v4 {
     range?: Schema$DimensionRange;
   }
   /**
-   * Removes rows within this range that contain values in the specified columns that are duplicates of values in any previous row. Rows with identical values but different letter cases, formatting, or formulas are considered to be duplicates.  This request also removes duplicate rows hidden from view (for example, due to a filter). When removing duplicates, the first instance of each duplicate row scanning from the top downwards is kept in the resulting range. Content outside of the specified range isn&#39;t removed, and rows considered duplicates do not have to be adjacent to each other in the range.
+   * Removes rows within this range that contain values in the specified columns that are duplicates of values in any previous row. Rows with identical values but different letter cases, formatting, or formulas are considered to be duplicates. This request also removes duplicate rows hidden from view (for example, due to a filter). When removing duplicates, the first instance of each duplicate row scanning from the top downwards is kept in the resulting range. Content outside of the specified range isn&#39;t removed, and rows considered duplicates do not have to be adjacent to each other in the range.
    */
   export interface Schema$DeleteDuplicatesRequest {
     /**
@@ -1614,7 +1614,7 @@ export namespace sheets_v4 {
     sheetId?: number | null;
   }
   /**
-   * Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited.  For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.
+   * Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited. For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.
    */
   export interface Schema$DeveloperMetadata {
     /**
@@ -1626,7 +1626,7 @@ export namespace sheets_v4 {
      */
     metadataId?: number | null;
     /**
-     * The metadata key. There may be multiple metadata in a spreadsheet with the same key.  Developer metadata must always have a key specified.
+     * The metadata key. There may be multiple metadata in a spreadsheet with the same key. Developer metadata must always have a key specified.
      */
     metadataKey?: string | null;
     /**
@@ -1634,7 +1634,7 @@ export namespace sheets_v4 {
      */
     metadataValue?: string | null;
     /**
-     * The metadata visibility.  Developer metadata must always have a visibility specified.
+     * The metadata visibility. Developer metadata must always have a visibility specified.
      */
     visibility?: string | null;
   }
@@ -1647,7 +1647,7 @@ export namespace sheets_v4 {
      */
     dimensionRange?: Schema$DimensionRange;
     /**
-     * The type of location this object represents.  This field is read-only.
+     * The type of location this object represents. This field is read-only.
      */
     locationType?: string | null;
     /**
@@ -1660,15 +1660,15 @@ export namespace sheets_v4 {
     spreadsheet?: boolean | null;
   }
   /**
-   * Selects DeveloperMetadata that matches all of the specified fields.  For example, if only a metadata ID is specified this considers the DeveloperMetadata with that particular unique ID. If a metadata key is specified, this considers all developer metadata with that key.  If a key, visibility, and location type are all specified, this considers all developer metadata with that key and visibility that are associated with a location of that type.  In general, this selects all DeveloperMetadata that matches the intersection of all the specified fields; any field or combination of fields may be specified.
+   * Selects DeveloperMetadata that matches all of the specified fields. For example, if only a metadata ID is specified this considers the DeveloperMetadata with that particular unique ID. If a metadata key is specified, this considers all developer metadata with that key. If a key, visibility, and location type are all specified, this considers all developer metadata with that key and visibility that are associated with a location of that type. In general, this selects all DeveloperMetadata that matches the intersection of all the specified fields; any field or combination of fields may be specified.
    */
   export interface Schema$DeveloperMetadataLookup {
     /**
-     * Determines how this lookup matches the location.  If this field is specified as EXACT, only developer metadata associated on the exact location specified is matched.  If this field is specified to INTERSECTING, developer metadata associated on intersecting locations is also matched.  If left unspecified, this field assumes a default value of INTERSECTING. If this field is specified, a metadataLocation must also be specified.
+     * Determines how this lookup matches the location. If this field is specified as EXACT, only developer metadata associated on the exact location specified is matched. If this field is specified to INTERSECTING, developer metadata associated on intersecting locations is also matched. If left unspecified, this field assumes a default value of INTERSECTING. If this field is specified, a metadataLocation must also be specified.
      */
     locationMatchingStrategy?: string | null;
     /**
-     * Limits the selected developer metadata to those entries which are associated with locations of the specified type.  For example, when this field is specified as ROW this lookup only considers developer metadata associated on rows.  If the field is left unspecified, all location types are considered.  This field cannot be specified as SPREADSHEET when the locationMatchingStrategy is specified as INTERSECTING or when the metadataLocation is specified as a non-spreadsheet location: spreadsheet metadata cannot intersect any other developer metadata location.  This field also must be left unspecified when the locationMatchingStrategy is specified as EXACT.
+     * Limits the selected developer metadata to those entries which are associated with locations of the specified type. For example, when this field is specified as ROW this lookup only considers developer metadata associated on rows. If the field is left unspecified, all location types are considered. This field cannot be specified as SPREADSHEET when the locationMatchingStrategy is specified as INTERSECTING or when the metadataLocation is specified as a non-spreadsheet location: spreadsheet metadata cannot intersect any other developer metadata location. This field also must be left unspecified when the locationMatchingStrategy is specified as EXACT.
      */
     locationType?: string | null;
     /**
@@ -1680,7 +1680,7 @@ export namespace sheets_v4 {
      */
     metadataKey?: string | null;
     /**
-     * Limits the selected developer metadata to those entries associated with the specified location.  This field either matches exact locations or all intersecting locations according the specified locationMatchingStrategy.
+     * Limits the selected developer metadata to those entries associated with the specified location. This field either matches exact locations or all intersecting locations according the specified locationMatchingStrategy.
      */
     metadataLocation?: Schema$DeveloperMetadataLocation;
     /**
@@ -1688,7 +1688,7 @@ export namespace sheets_v4 {
      */
     metadataValue?: string | null;
     /**
-     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.visibility.  If left unspecified, all developer metadata visibile to the requesting project is considered.
+     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.visibility. If left unspecified, all developer metadata visibile to the requesting project is considered.
      */
     visibility?: string | null;
   }
@@ -1697,7 +1697,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DimensionGroup {
     /**
-     * This field is true if this group is collapsed. A collapsed group remains collapsed if an overlapping group at a shallower depth is expanded.  A true value does not imply that all dimensions within the group are hidden, since a dimension&#39;s visibility can change independently from this group property. However, when this property is updated, all dimensions within it are set to hidden if this field is true, or set to visible if this field is false.
+     * This field is true if this group is collapsed. A collapsed group remains collapsed if an overlapping group at a shallower depth is expanded. A true value does not imply that all dimensions within the group are hidden, since a dimension&#39;s visibility can change independently from this group property. However, when this property is updated, all dimensions within it are set to hidden if this field is true, or set to visible if this field is false.
      */
     collapsed?: boolean | null;
     /**
@@ -1782,7 +1782,7 @@ export namespace sheets_v4 {
      */
     newSheetId?: number | null;
     /**
-     * The name of the new sheet.  If empty, a new name is chosen for you.
+     * The name of the new sheet. If empty, a new name is chosen for you.
      */
     newSheetName?: string | null;
     /**
@@ -1804,7 +1804,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Editors {
     /**
-     * True if anyone in the document&#39;s domain has edit access to the protected range.  Domain protection is only supported on documents within a domain.
+     * True if anyone in the document&#39;s domain has edit access to the protected range. Domain protection is only supported on documents within a domain.
      */
     domainUsersCanEdit?: boolean | null;
     /**
@@ -1893,7 +1893,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterCriteria {
     /**
-     * A condition that must be true for values to be shown. (This does not override hidden_values -- if a value is listed there,  it will still be hidden.)
+     * A condition that must be true for values to be shown. (This does not override hidden_values -- if a value is listed there, it will still be hidden.)
      */
     condition?: Schema$BooleanCondition;
     /**
@@ -1930,11 +1930,11 @@ export namespace sheets_v4 {
      */
     filterViewId?: number | null;
     /**
-     * The named range this filter view is backed by, if any.  When writing, only one of range or named_range_id may be set.
+     * The named range this filter view is backed by, if any. When writing, only one of range or named_range_id may be set.
      */
     namedRangeId?: string | null;
     /**
-     * The range this filter view covers.  When writing, only one of range or named_range_id may be set.
+     * The range this filter view covers. When writing, only one of range or named_range_id may be set.
      */
     range?: Schema$GridRange;
     /**
@@ -2118,7 +2118,7 @@ export namespace sheets_v4 {
     rowGroupControlAfter?: boolean | null;
   }
   /**
-   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side.  For example, if `&quot;Sheet1&quot;` is sheet ID 0, then:    `Sheet1!A1:A1 == sheet_id: 0,                   start_row_index: 0, end_row_index: 1,                   start_column_index: 0, end_column_index: 1`    `Sheet1!A3:B4 == sheet_id: 0,                   start_row_index: 2, end_row_index: 4,                   start_column_index: 0, end_column_index: 2`    `Sheet1!A:B == sheet_id: 0,                 start_column_index: 0, end_column_index: 2`    `Sheet1!A5:B == sheet_id: 0,                  start_row_index: 4,                  start_column_index: 0, end_column_index: 2`    `Sheet1 == sheet_id:0`  The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
+   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side. For example, if `&quot;Sheet1&quot;` is sheet ID 0, then: `Sheet1!A1:A1 == sheet_id: 0, start_row_index: 0, end_row_index: 1, start_column_index: 0, end_column_index: 1` `Sheet1!A3:B4 == sheet_id: 0, start_row_index: 2, end_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1!A:B == sheet_id: 0, start_column_index: 0, end_column_index: 2` `Sheet1!A5:B == sheet_id: 0, start_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1 == sheet_id:0` The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
    */
   export interface Schema$GridRange {
     /**
@@ -2143,7 +2143,7 @@ export namespace sheets_v4 {
     startRowIndex?: number | null;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/histogram&quot;&gt;histogram chart&lt;/a&gt;. A histogram chart groups data items into bins, displaying each bin as a column of stacked items.  Histograms are used to display the distribution of a dataset.  Each column of items represents a range into which those items fall.  The number of bins can be chosen automatically or specified explicitly.
+   * A histogram chart. A histogram chart groups data items into bins, displaying each bin as a column of stacked items. Histograms are used to display the distribution of a dataset. Each column of items represents a range into which those items fall. The number of bins can be chosen automatically or specified explicitly.
    */
   export interface Schema$HistogramChartSpec {
     /**
@@ -2155,7 +2155,7 @@ export namespace sheets_v4 {
      */
     legendPosition?: string | null;
     /**
-     * The outlier percentile is used to ensure that outliers do not adversely affect the calculation of bucket sizes.  For example, setting an outlier percentile of 0.05 indicates that the top and bottom 5% of values when calculating buckets.  The values are still included in the chart, they will be added to the first or last buckets instead of their own buckets. Must be between 0.0 and 0.5.
+     * The outlier percentile is used to ensure that outliers do not adversely affect the calculation of bucket sizes. For example, setting an outlier percentile of 0.05 indicates that the top and bottom 5% of values when calculating buckets. The values are still included in the chart, they will be added to the first or last buckets instead of their own buckets. Must be between 0.0 and 0.5.
      */
     outlierPercentile?: number | null;
     /**
@@ -2168,7 +2168,7 @@ export namespace sheets_v4 {
     showItemDividers?: boolean | null;
   }
   /**
-   * Allows you to organize the numeric values in a source data column into buckets of a constant size. All values from HistogramRule.start to HistogramRule.end are placed into groups of size HistogramRule.interval. In addition, all values below HistogramRule.start are placed in one group, and all values above HistogramRule.end are placed in another. Only HistogramRule.interval is required, though if HistogramRule.start and HistogramRule.end are both provided, HistogramRule.start must be less than HistogramRule.end. For example, a pivot table showing average purchase amount by age that has 50+ rows:      +-----+-------------------+     | Age | AVERAGE of Amount |     +-----+-------------------+     | 16  |            $27.13 |     | 17  |             $5.24 |     | 18  |            $20.15 |     ...     +-----+-------------------+ could be turned into a pivot table that looks like the one below by applying a histogram group rule with a HistogramRule.start of 25, an HistogramRule.interval of 20, and an HistogramRule.end of 65.      +-------------+-------------------+     | Grouped Age | AVERAGE of Amount |     +-------------+-------------------+     | &lt; 25        |            $19.34 |     | 25-45       |            $31.43 |     | 45-65       |            $35.87 |     | &gt; 65        |            $27.55 |     +-------------+-------------------+     | Grand Total |            $29.12 |     +-------------+-------------------+
+   * Allows you to organize the numeric values in a source data column into buckets of a constant size. All values from HistogramRule.start to HistogramRule.end are placed into groups of size HistogramRule.interval. In addition, all values below HistogramRule.start are placed in one group, and all values above HistogramRule.end are placed in another. Only HistogramRule.interval is required, though if HistogramRule.start and HistogramRule.end are both provided, HistogramRule.start must be less than HistogramRule.end. For example, a pivot table showing average purchase amount by age that has 50+ rows: +-----+-------------------+ | Age | AVERAGE of Amount | +-----+-------------------+ | 16 | $27.13 | | 17 | $5.24 | | 18 | $20.15 | ... +-----+-------------------+ could be turned into a pivot table that looks like the one below by applying a histogram group rule with a HistogramRule.start of 25, an HistogramRule.interval of 20, and an HistogramRule.end of 65. +-------------+-------------------+ | Grouped Age | AVERAGE of Amount | +-------------+-------------------+ | &lt; 25 | $19.34 | | 25-45 | $31.43 | | 45-65 | $35.87 | | &gt; 65 | $27.55 | +-------------+-------------------+ | Grand Total | $29.12 | +-------------+-------------------+
    */
   export interface Schema$HistogramRule {
     /**
@@ -2206,11 +2206,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$InsertDimensionRequest {
     /**
-     * Whether dimension properties should be extended from the dimensions before or after the newly inserted dimensions. True to inherit from the dimensions before (in which case the start index must be greater than 0), and false to inherit from the dimensions after.  For example, if row index 0 has red background and row index 1 has a green background, then inserting 2 rows at index 1 can inherit either the green or red background.  If `inheritFromBefore` is true, the two new rows will be red (because the row before the insertion point was red), whereas if `inheritFromBefore` is false, the two new rows will be green (because the row after the insertion point was green).
+     * Whether dimension properties should be extended from the dimensions before or after the newly inserted dimensions. True to inherit from the dimensions before (in which case the start index must be greater than 0), and false to inherit from the dimensions after. For example, if row index 0 has red background and row index 1 has a green background, then inserting 2 rows at index 1 can inherit either the green or red background. If `inheritFromBefore` is true, the two new rows will be red (because the row before the insertion point was red), whereas if `inheritFromBefore` is false, the two new rows will be green (because the row after the insertion point was green).
      */
     inheritFromBefore?: boolean | null;
     /**
-     * The dimensions to insert.  Both the start and end indexes must be bounded.
+     * The dimensions to insert. Both the start and end indexes must be bounded.
      */
     range?: Schema$DimensionRange;
   }
@@ -2244,7 +2244,7 @@ export namespace sheets_v4 {
      */
     type?: string | null;
     /**
-     * The value this interpolation point uses.  May be a formula. Unused if type is MIN or MAX.
+     * The value this interpolation point uses. May be a formula. Unused if type is MIN or MAX.
      */
     value?: string | null;
   }
@@ -2288,7 +2288,7 @@ export namespace sheets_v4 {
     width?: number | null;
   }
   /**
-   * Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state:      +-------+-------------------+     | State | SUM of Population |     +-------+-------------------+     | AK    |               0.7 |     | AL    |               4.8 |     | AR    |               2.9 |     ...     +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = &#39;Central&#39;, items = [&#39;AL&#39;, &#39;AR&#39;, &#39;IA&#39;, ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table.      +-----------+-------------------+     | Time Zone | SUM of Population |     +-----------+-------------------+     | Central   |             106.3 |     | Eastern   |             151.9 |     | Mountain  |              17.4 |     ...     +-----------+-------------------+
+   * Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state: +-------+-------------------+ | State | SUM of Population | +-------+-------------------+ | AK | 0.7 | | AL | 4.8 | | AR | 2.9 | ... +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = &#39;Central&#39;, items = [&#39;AL&#39;, &#39;AR&#39;, &#39;IA&#39;, ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table. +-----------+-------------------+ | Time Zone | SUM of Population | +-----------+-------------------+ | Central | 106.3 | | Eastern | 151.9 | | Mountain | 17.4 | ... +-----------+-------------------+
    */
   export interface Schema$ManualRule {
     /**
@@ -2353,7 +2353,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$MoveDimensionRequest {
     /**
-     * The zero-based start index of where to move the source data to, based on the coordinates *before* the source data is removed from the grid.  Existing data will be shifted down or right (depending on the dimension) to make room for the moved dimensions. The source dimensions are removed from the grid, so the the data may end up in a different index than specified.  For example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to move `&quot;1&quot;` and `&quot;2&quot;` to between `&quot;3&quot;` and `&quot;4&quot;`, the source would be `ROWS [1..3)`,and the destination index would be `&quot;4&quot;` (the zero-based index of row 5). The end result would be `A1..A5` of `0, 3, 1, 2, 4`.
+     * The zero-based start index of where to move the source data to, based on the coordinates *before* the source data is removed from the grid. Existing data will be shifted down or right (depending on the dimension) to make room for the moved dimensions. The source dimensions are removed from the grid, so the the data may end up in a different index than specified. For example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to move `&quot;1&quot;` and `&quot;2&quot;` to between `&quot;3&quot;` and `&quot;4&quot;`, the source would be `ROWS [1..3)`,and the destination index would be `&quot;4&quot;` (the zero-based index of row 5). The end result would be `A1..A5` of `0, 3, 1, 2, 4`.
      */
     destinationIndex?: number | null;
     /**
@@ -2383,7 +2383,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$NumberFormat {
     /**
-     * Pattern string used for formatting.  If not set, a default pattern based on the user&#39;s locale will be used if necessary for the given type. See the [Date and Number Formats guide](/sheets/api/guides/formats) for more information about the supported patterns.
+     * Pattern string used for formatting. If not set, a default pattern based on the user&#39;s locale will be used if necessary for the given type. See the [Date and Number Formats guide](/sheets/api/guides/formats) for more information about the supported patterns.
      */
     pattern?: string | null;
     /**
@@ -2392,11 +2392,11 @@ export namespace sheets_v4 {
     type?: string | null;
   }
   /**
-   * An &lt;a href=&quot;/chart/interactive/docs/gallery/orgchart&quot;&gt;org chart&lt;/a&gt;. Org charts require a unique set of labels in labels and may optionally include parent_labels and tooltips. parent_labels contain, for each node, the label identifying the parent node.  tooltips contain, for each node, an optional tooltip.  For example, to describe an OrgChart with Alice as the CEO, Bob as the President (reporting to Alice) and Cathy as VP of Sales (also reporting to Alice), have labels contain &quot;Alice&quot;, &quot;Bob&quot;, &quot;Cathy&quot;, parent_labels contain &quot;&quot;, &quot;Alice&quot;, &quot;Alice&quot; and tooltips contain &quot;CEO&quot;, &quot;President&quot;, &quot;VP Sales&quot;.
+   * An org chart. Org charts require a unique set of labels in labels and may optionally include parent_labels and tooltips. parent_labels contain, for each node, the label identifying the parent node. tooltips contain, for each node, an optional tooltip. For example, to describe an OrgChart with Alice as the CEO, Bob as the President (reporting to Alice) and Cathy as VP of Sales (also reporting to Alice), have labels contain &quot;Alice&quot;, &quot;Bob&quot;, &quot;Cathy&quot;, parent_labels contain &quot;&quot;, &quot;Alice&quot;, &quot;Alice&quot; and tooltips contain &quot;CEO&quot;, &quot;President&quot;, &quot;VP Sales&quot;.
    */
   export interface Schema$OrgChartSpec {
     /**
-     * The data containing the labels for all the nodes in the chart.  Labels must be unique.
+     * The data containing the labels for all the nodes in the chart. Labels must be unique.
      */
     labels?: Schema$ChartData;
     /**
@@ -2424,7 +2424,7 @@ export namespace sheets_v4 {
      */
     selectedNodeColorStyle?: Schema$ColorStyle;
     /**
-     * The data containing the tooltip for the corresponding node.  A blank value results in no tooltip being displayed for the node. This field is optional.
+     * The data containing the tooltip for the corresponding node. A blank value results in no tooltip being displayed for the node. This field is optional.
      */
     tooltips?: Schema$ChartData;
   }
@@ -2500,7 +2500,7 @@ export namespace sheets_v4 {
     type?: string | null;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/piechart&quot;&gt;pie chart&lt;/a&gt;.
+   * A pie chart.
    */
   export interface Schema$PieChartSpec {
     /**
@@ -2529,7 +2529,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotFilterCriteria {
     /**
-     * Values that should be included.  Values not listed here are excluded.
+     * Values that should be included. Values not listed here are excluded.
      */
     visibleValues?: string[] | null;
   }
@@ -2542,11 +2542,11 @@ export namespace sheets_v4 {
      */
     groupRule?: Schema$PivotGroupRule;
     /**
-     * The labels to use for the row/column groups which can be customized. For example, in the following pivot table, the row label is `Region` (which could be renamed to `State`) and the column label is `Product` (which could be renamed `Item`). Pivot tables created before December 2017 do not have header labels. If you&#39;d like to add header labels to an existing pivot table, please delete the existing pivot table and then create a new pivot table with same parameters.      +--------------+---------+-------+     | SUM of Units | Product |       |     | Region       | Pen     | Paper |     +--------------+---------+-------+     | New York     |     345 |    98 |     | Oregon       |     234 |   123 |     | Tennessee    |     531 |   415 |     +--------------+---------+-------+     | Grand Total  |    1110 |   636 |     +--------------+---------+-------+
+     * The labels to use for the row/column groups which can be customized. For example, in the following pivot table, the row label is `Region` (which could be renamed to `State`) and the column label is `Product` (which could be renamed `Item`). Pivot tables created before December 2017 do not have header labels. If you&#39;d like to add header labels to an existing pivot table, please delete the existing pivot table and then create a new pivot table with same parameters. +--------------+---------+-------+ | SUM of Units | Product | | | Region | Pen | Paper | +--------------+---------+-------+ | New York | 345 | 98 | | Oregon | 234 | 123 | | Tennessee | 531 | 415 | +--------------+---------+-------+ | Grand Total | 1110 | 636 | +--------------+---------+-------+
      */
     label?: string | null;
     /**
-     * True if the headings in this pivot group should be repeated. This is only valid for row groupings and is ignored by columns.  By default, we minimize repitition of headings by not showing higher level headings where they are the same. For example, even though the third row below corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it is redundant with previous rows. Setting repeat_headings to true would cause &quot;Q1&quot; to be repeated for &quot;Feb&quot; and &quot;Mar&quot;.      +--------------+     | Q1     | Jan |     |        | Feb |     |        | Mar |     +--------+-----+     | Q1 Total     |     +--------------+
+     * True if the headings in this pivot group should be repeated. This is only valid for row groupings and is ignored by columns. By default, we minimize repitition of headings by not showing higher level headings where they are the same. For example, even though the third row below corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it is redundant with previous rows. Setting repeat_headings to true would cause &quot;Q1&quot; to be repeated for &quot;Feb&quot; and &quot;Mar&quot;. +--------------+ | Q1 | Jan | | | Feb | | | Mar | +--------+-----+ | Q1 Total | +--------------+
      */
     repeatHeadings?: boolean | null;
     /**
@@ -2558,7 +2558,7 @@ export namespace sheets_v4 {
      */
     sortOrder?: string | null;
     /**
-     * The column offset of the source range that this grouping is based on.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this group refers to column `C`, whereas the offset `1` would refer to column `D`.
+     * The column offset of the source range that this grouping is based on. For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this group refers to column `C`, whereas the offset `1` would refer to column `D`.
      */
     sourceColumnOffset?: number | null;
     /**
@@ -2592,7 +2592,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotGroupSortValueBucket {
     /**
-     * Determines the bucket from which values are chosen to sort.  For example, in a pivot table with one row group &amp; two column groups, the row group can list up to two values. The first value corresponds to a value within the first column group, and the second value corresponds to a value in the second column group.  If no values are listed, this would indicate that the row should be sorted according to the &quot;Grand Total&quot; over the column groups. If a single value is listed, this would correspond to using the &quot;Total&quot; of that bucket.
+     * Determines the bucket from which values are chosen to sort. For example, in a pivot table with one row group &amp; two column groups, the row group can list up to two values. The first value corresponds to a value within the first column group, and the second value corresponds to a value in the second column group. If no values are listed, this would indicate that the row should be sorted according to the &quot;Grand Total&quot; over the column groups. If a single value is listed, this would correspond to using the &quot;Total&quot; of that bucket.
      */
     buckets?: Schema$ExtendedValue[];
     /**
@@ -2609,7 +2609,7 @@ export namespace sheets_v4 {
      */
     collapsed?: boolean | null;
     /**
-     * The calculated value the metadata corresponds to. (Note that formulaValue is not valid,  because the values will be calculated.)
+     * The calculated value the metadata corresponds to. (Note that formulaValue is not valid, because the values will be calculated.)
      */
     value?: Schema$ExtendedValue;
   }
@@ -2622,7 +2622,7 @@ export namespace sheets_v4 {
      */
     columns?: Schema$PivotGroup[];
     /**
-     * An optional mapping of filters per source column offset.  The filters are applied before aggregating data into the pivot table. The map&#39;s key is the column offset of the source range that you want to filter, and the value is the criteria for that column.  For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`.
+     * An optional mapping of filters per source column offset. The filters are applied before aggregating data into the pivot table. The map&#39;s key is the column offset of the source range that you want to filter, and the value is the criteria for that column. For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`.
      */
     criteria?: {[key: string]: Schema$PivotFilterCriteria} | null;
     /**
@@ -2651,7 +2651,7 @@ export namespace sheets_v4 {
      */
     calculatedDisplayType?: string | null;
     /**
-     * A custom formula to calculate the value.  The formula must start with an `=` character.
+     * A custom formula to calculate the value. The formula must start with an `=` character.
      */
     formula?: string | null;
     /**
@@ -2659,7 +2659,7 @@ export namespace sheets_v4 {
      */
     name?: string | null;
     /**
-     * The column offset of the source range that this value reads from.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this value refers to column `C`, whereas the offset `1` would refer to column `D`.
+     * The column offset of the source range that this value reads from. For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this value refers to column `C`, whereas the offset `1` would refer to column `D`.
      */
     sourceColumnOffset?: number | null;
     /**
@@ -2680,7 +2680,7 @@ export namespace sheets_v4 {
      */
     editors?: Schema$Editors;
     /**
-     * The named range this protected range is backed by, if any.  When writing, only one of range or named_range_id may be set.
+     * The named range this protected range is backed by, if any. When writing, only one of range or named_range_id may be set.
      */
     namedRangeId?: string | null;
     /**
@@ -2688,7 +2688,7 @@ export namespace sheets_v4 {
      */
     protectedRangeId?: number | null;
     /**
-     * The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet.  When writing, only one of range or named_range_id may be set.
+     * The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet. When writing, only one of range or named_range_id may be set.
      */
     range?: Schema$GridRange;
     /**
@@ -2700,7 +2700,7 @@ export namespace sheets_v4 {
      */
     unprotectedRanges?: Schema$GridRange[];
     /**
-     * True if this protected range will show a warning when editing. Warning-based protection means that every user can edit data in the protected range, except editing will prompt a warning asking the user to confirm the edit.  When writing: if this field is true, then editors is ignored. Additionally, if this field is changed from true to false and the `editors` field is not set (nor included in the field mask), then the editors will be set to all the editors in the document.
+     * True if this protected range will show a warning when editing. Warning-based protection means that every user can edit data in the protected range, except editing will prompt a warning asking the user to confirm the edit. When writing: if this field is true, then editors is ignored. Additionally, if this field is changed from true to false and the `editors` field is not set (nor included in the field mask), then the editors will be set to all the editors in the document.
      */
     warningOnly?: boolean | null;
   }
@@ -2714,7 +2714,7 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
-   * Updates all cells in the range to the values in the given Cell object. Only the fields listed in the fields field are updated; others are unchanged.  If writing a cell with a formula, the formula&#39;s ranges will automatically increment for each field in the range. For example, if writing a cell with formula `=A1` into range B2:C4, B2 would be `=A1`, B3 would be `=A2`, B4 would be `=A3`, C2 would be `=B1`, C3 would be `=B2`, C4 would be `=B3`.  To keep the formula&#39;s ranges static, use the `$` indicator. For example, use the formula `=$A$1` to prevent both the row and the column from incrementing.
+   * Updates all cells in the range to the values in the given Cell object. Only the fields listed in the fields field are updated; others are unchanged. If writing a cell with a formula, the formula&#39;s ranges will automatically increment for each field in the range. For example, if writing a cell with formula `=A1` into range B2:C4, B2 would be `=A1`, B3 would be `=A2`, B4 would be `=A3`, C2 would be `=B1`, C3 would be `=B2`, C4 would be `=B3`. To keep the formula&#39;s ranges static, use the `$` indicator. For example, use the formula `=$A$1` to prevent both the row and the column from incrementing.
    */
   export interface Schema$RepeatCellRequest {
     /**
@@ -2722,7 +2722,7 @@ export namespace sheets_v4 {
      */
     cell?: Schema$CellData;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `cell` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `cell` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3111,7 +3111,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SearchDeveloperMetadataRequest {
     /**
-     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters are included in the response.
+     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return. DeveloperMetadata matching any of the specified filters are included in the response.
      */
     dataFilters?: Schema$DataFilter[];
   }
@@ -3171,7 +3171,7 @@ export namespace sheets_v4 {
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
     /**
-     * Data in the grid, if this is a grid sheet.  The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
+     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
      */
     data?: Schema$GridData[];
     /**
@@ -3353,7 +3353,7 @@ export namespace sheets_v4 {
      */
     dimension?: string | null;
     /**
-     * The number of rows or columns that data should be filled into. Positive numbers expand beyond the last row or last column of the source.  Negative numbers expand before the first row or first column of the source.
+     * The number of rows or columns that data should be filled into. Positive numbers expand beyond the last row or last column of the source. Negative numbers expand before the first row or first column of the source.
      */
     fillLength?: number | null;
     /**
@@ -3403,11 +3403,11 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references result in calculation errors.
+     * Determines whether and how circular references are resolved with iterative calculation. Absence of this field means that circular references result in calculation errors.
      */
     iterativeCalculationSettings?: Schema$IterativeCalculationSettings;
     /**
-     * The locale of the spreadsheet in one of the following formats:  * an ISO 639-1 language code such as `en`  * an ISO 639-2 language code such as `fil`, if no 639-1 code exists  * a combination of the ISO language code and country code, such as `en_US`  Note: when updating this field, not all locales/languages are supported.
+     * The locale of the spreadsheet in one of the following formats: * an ISO 639-1 language code such as `en` * an ISO 639-2 language code such as `fil`, if no 639-1 code exists * a combination of the ISO language code and country code, such as `en_US` Note: when updating this field, not all locales/languages are supported.
      */
     locale?: string | null;
     /**
@@ -3478,7 +3478,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$TextFormatRun {
     /**
-     * The format of this run.  Absent values inherit the cell&#39;s format.
+     * The format of this run. Absent values inherit the cell&#39;s format.
      */
     format?: Schema$TextFormat;
     /**
@@ -3500,11 +3500,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$TextRotation {
     /**
-     * The angle between the standard orientation and the desired orientation. Measured in degrees. Valid values are between -90 and 90. Positive angles are angled upwards, negative are angled downwards.  Note: For LTR text direction positive angles are in the counterclockwise direction, whereas for RTL they are in the clockwise direction
+     * The angle between the standard orientation and the desired orientation. Measured in degrees. Valid values are between -90 and 90. Positive angles are angled upwards, negative are angled downwards. Note: For LTR text direction positive angles are in the counterclockwise direction, whereas for RTL they are in the clockwise direction
      */
     angle?: number | null;
     /**
-     * If true, text reads top to bottom, but the orientation of individual characters is unchanged. For example:      | V |     | e |     | r |     | t |     | i |     | c |     | a |     | l |
+     * If true, text reads top to bottom, but the orientation of individual characters is unchanged. For example: | V | | e | | r | | t | | i | | c | | a | | l |
      */
     vertical?: boolean | null;
   }
@@ -3521,7 +3521,7 @@ export namespace sheets_v4 {
      */
     delimiterType?: string | null;
     /**
-     * The source data range.  This must span exactly one column.
+     * The source data range. This must span exactly one column.
      */
     source?: Schema$GridRange;
   }
@@ -3576,7 +3576,7 @@ export namespace sheets_v4 {
     noDataColorStyle?: Schema$ColorStyle;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/treemap&quot;&gt;Treemap chart&lt;/a&gt;.
+   * A Treemap chart.
    */
   export interface Schema$TreemapChartSpec {
     /**
@@ -3668,12 +3668,12 @@ export namespace sheets_v4 {
      */
     bandedRange?: Schema$BandedRange;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `bandedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `bandedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
   }
   /**
-   * Updates the borders of a range. If a field is not set in the request, that means the border remains as-is. For example, with two subsequent UpdateBordersRequest:   1. range: A1:A5 `{ top: RED, bottom: WHITE }`  2. range: A1:A5 `{ left: BLUE }`  That would result in A1:A5 having a borders of `{ top: RED, bottom: WHITE, left: BLUE }`. If you want to clear a border, explicitly set the style to NONE.
+   * Updates the borders of a range. If a field is not set in the request, that means the border remains as-is. For example, with two subsequent UpdateBordersRequest: 1. range: A1:A5 `{ top: RED, bottom: WHITE }` 2. range: A1:A5 `{ left: BLUE }` That would result in A1:A5 having a borders of `{ top: RED, bottom: WHITE, left: BLUE }`. If you want to clear a border, explicitly set the style to NONE.
    */
   export interface Schema$UpdateBordersRequest {
     /**
@@ -3714,7 +3714,7 @@ export namespace sheets_v4 {
      */
     fields?: string | null;
     /**
-     * The range to write data to.  If the data in rows does not cover the entire requested range, the fields matching those set in fields will be cleared.
+     * The range to write data to. If the data in rows does not cover the entire requested range, the fields matching those set in fields will be cleared.
      */
     range?: Schema$GridRange;
     /**
@@ -3727,7 +3727,7 @@ export namespace sheets_v4 {
     start?: Schema$GridCoordinate;
   }
   /**
-   * Updates a chart&#39;s specifications. (This does not move or resize a chart. To move or resize a chart, use  UpdateEmbeddedObjectPositionRequest.)
+   * Updates a chart&#39;s specifications. (This does not move or resize a chart. To move or resize a chart, use UpdateEmbeddedObjectPositionRequest.)
    */
   export interface Schema$UpdateChartSpecRequest {
     /**
@@ -3756,7 +3756,7 @@ export namespace sheets_v4 {
      */
     rule?: Schema$ConditionalFormatRule;
     /**
-     * The sheet of the rule to move.  Required if new_index is set, unused otherwise.
+     * The sheet of the rule to move. Required if new_index is set, unused otherwise.
      */
     sheetId?: number | null;
   }
@@ -3782,7 +3782,7 @@ export namespace sheets_v4 {
     oldRule?: Schema$ConditionalFormatRule;
   }
   /**
-   * A request to update properties of developer metadata. Updates the properties of the developer metadata selected by the filters to the values provided in the DeveloperMetadata resource.  Callers must specify the properties they wish to update in the fields parameter, as well as specify at least one DataFilter matching the metadata they wish to update.
+   * A request to update properties of developer metadata. Updates the properties of the developer metadata selected by the filters to the values provided in the DeveloperMetadata resource. Callers must specify the properties they wish to update in the fields parameter, as well as specify at least one DataFilter matching the metadata they wish to update.
    */
   export interface Schema$UpdateDeveloperMetadataRequest {
     /**
@@ -3794,7 +3794,7 @@ export namespace sheets_v4 {
      */
     developerMetadata?: Schema$DeveloperMetadata;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `developerMetadata` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `developerMetadata` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
   }
@@ -3816,7 +3816,7 @@ export namespace sheets_v4 {
      */
     dimensionGroup?: Schema$DimensionGroup;
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `dimensionGroup` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `dimensionGroup` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
   }
@@ -3825,7 +3825,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateDimensionPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3842,7 +3842,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateEmbeddedObjectPositionRequest {
     /**
-     * The fields of OverlayPosition that should be updated when setting a new position. Used only if newPosition.overlayPosition is set, in which case at least one field must be specified.  The root `newPosition.overlayPosition` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields of OverlayPosition that should be updated when setting a new position. Used only if newPosition.overlayPosition is set, in which case at least one field must be specified. The root `newPosition.overlayPosition` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3868,7 +3868,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateFilterViewRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `filter` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `filter` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3881,7 +3881,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateNamedRangeRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `namedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `namedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3894,7 +3894,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateProtectedRangeRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `protectedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `protectedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3907,7 +3907,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateSheetPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3920,7 +3920,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateSlicerSpecRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root `SlicerSpec` is implied and should not be specified. A single &quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root `SlicerSpec` is implied and should not be specified. A single &quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -3937,7 +3937,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateSpreadsheetPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified. The root &#39;properties&#39; is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated. At least one field must be specified. The root &#39;properties&#39; is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string | null;
     /**
@@ -4008,7 +4008,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ValueRange {
     /**
-     * The major dimension of the values.  For output, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.  For input, with `range=A1:B2,majorDimension=ROWS` then `[[1,2],[3,4]]` will set `A1=1,B1=2,A2=3,B2=4`. With `range=A1:B2,majorDimension=COLUMNS` then `[[1,2],[3,4]]` will set `A1=1,B1=3,A2=2,B2=4`.  When writing, if this field is not set, it defaults to ROWS.
+     * The major dimension of the values. For output, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`. For input, with `range=A1:B2,majorDimension=ROWS` then `[[1,2],[3,4]]` will set `A1=1,B1=2,A2=3,B2=4`. With `range=A1:B2,majorDimension=COLUMNS` then `[[1,2],[3,4]]` will set `A1=1,B1=3,A2=2,B2=4`. When writing, if this field is not set, it defaults to ROWS.
      */
     majorDimension?: string | null;
     /**
@@ -4016,7 +4016,7 @@ export namespace sheets_v4 {
      */
     range?: string | null;
     /**
-     * The data that was read or to be written.  This is an array of arrays, the outer array representing all the data and each inner array representing a major dimension. Each item in the inner array corresponds with one cell.  For output, empty trailing rows and columns will not be included.  For input, supported value types are: bool, string, and double. Null values will be skipped. To set a cell to an empty value, set the string value to an empty string.
+     * The data that was read or to be written. This is an array of arrays, the outer array representing all the data and each inner array representing a major dimension. Each item in the inner array corresponds with one cell. For output, empty trailing rows and columns will not be included. For input, supported value types are: bool, string, and double. Null values will be skipped. To set a cell to an empty value, set the string value to an empty string.
      */
     values?: any[][] | null;
   }
@@ -4142,7 +4142,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.batchUpdate
-     * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
+     * @desc Applies one or more updates to the spreadsheet. Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. The replies will mirror the requests. For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order. Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4446,7 +4446,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.get
-     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids will not be returned. You can include grid data one of two ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want. To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified. Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4477,8 +4477,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.get({
-     *     // True if grid data should be returned.
-     *     // This parameter is ignored if a field mask was set in the request.
+     *     // True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      *     includeGridData: 'placeholder-value',
      *     // The ranges to retrieve from the spreadsheet.
      *     ranges: 'placeholder-value',
@@ -4594,7 +4593,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.getByDataFilter
-     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified.  Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids will not be returned. You can include grid data one of two ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5304,7 +5303,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.append
-     * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
+     * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended. The caller must specify the spreadsheet ID, range, and a valueInputOption. The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5333,22 +5332,15 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.append({
-     *     // Determines if the update response should include the values
-     *     // of the cells that were appended. By default, responses
-     *     // do not include the updated values.
+     *     // Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      *     includeValuesInResponse: 'placeholder-value',
      *     // How the input data should be inserted.
      *     insertDataOption: 'placeholder-value',
-     *     // The A1 notation of a range to search for a logical table of data.
-     *     // Values are appended after the last row of the table.
+     *     // The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      *     range: 'placeholder-value',
-     *     // Determines how dates, times, and durations in the response should be
-     *     // rendered. This is ignored if response_value_render_option is
-     *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      *     responseDateTimeRenderOption: 'placeholder-value',
-     *     // Determines how values in the response should be rendered.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     responseValueRenderOption: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -5632,7 +5624,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchClearByDataFilter
-     * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared.  Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+     * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5823,24 +5815,15 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGet({
-     *     // How dates, times, and durations should be represented in the output.
-     *     // This is ignored if value_render_option is
-     *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      *     dateTimeRenderOption: 'placeholder-value',
-     *     // The major dimension that results should use.
-     *     //
-     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`,
-     *     // then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
-     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
-     *     // `[[1,3],[2,4]]`.
+     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
      *     // The A1 notation of the values to retrieve.
      *     ranges: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     valueRenderOption: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5862,7 +5845,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string=} params.ranges The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -5957,7 +5940,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchGetByDataFilter
-     * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
+     * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges that match any of the data filters in the request will be returned.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6620,24 +6603,15 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.get({
-     *     // How dates, times, and durations should be represented in the output.
-     *     // This is ignored if value_render_option is
-     *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      *     dateTimeRenderOption: 'placeholder-value',
-     *     // The major dimension that results should use.
-     *     //
-     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then
-     *     // requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
-     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
-     *     // `[[1,3],[2,4]]`.
+     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
      *     // The A1 notation of the values to retrieve.
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     valueRenderOption: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6660,7 +6634,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string} params.range The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6777,23 +6751,13 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.update({
-     *     // Determines if the update response should include the values
-     *     // of the cells that were updated. By default, responses
-     *     // do not include the updated values.
-     *     // If the range to write was larger than the range actually written, the
-     *     // response includes all values in the requested range (excluding trailing
-     *     // empty rows and columns).
+     *     // Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      *     includeValuesInResponse: 'placeholder-value',
      *     // The A1 notation of the values to update.
      *     range: 'placeholder-value',
-     *     // Determines how dates, times, and durations in the response should be
-     *     // rendered. This is ignored if response_value_render_option is
-     *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is
-     *     // DateTimeRenderOption.SERIAL_NUMBER.
+     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
-     *     // Determines how values in the response should be rendered.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     responseValueRenderOption: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -6994,7 +6958,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -7069,7 +7033,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
