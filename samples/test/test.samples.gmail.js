@@ -39,7 +39,7 @@ for (const sample of Object.values(samples)) {
   });
 }
 
-const baseUrl = 'https://www.googleapis.com';
+const gmailUrl = 'https://gmail.googleapis.com'
 
 describe('gmail samples', () => {
   afterEach(() => {
@@ -47,7 +47,7 @@ describe('gmail samples', () => {
   });
 
   it('should list emails', async () => {
-    const scope = nock(baseUrl)
+    const scope = nock(gmailUrl)
       .get('/gmail/v1/users/me/messages')
       .reply(200, {});
     const data = await samples.list.runSample();
@@ -58,7 +58,7 @@ describe('gmail samples', () => {
   it('should add a label', async () => {
     const messageId = '12345';
     const labelId = 'abcde';
-    const scope = nock(baseUrl)
+    const scope = nock(gmailUrl)
       .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
       .reply(200, {});
     const data = await samples.labels.runSample('add', messageId, labelId);
@@ -67,7 +67,7 @@ describe('gmail samples', () => {
   });
 
   it('should add a user watch', async () => {
-    const scope = nock(baseUrl).post('/gmail/v1/users/me/watch').reply(200, {
+    const scope = nock(gmailUrl).post('/gmail/v1/users/me/watch').reply(200, {
       data: true,
     });
     const data = await samples.watch.runSample();
@@ -76,7 +76,7 @@ describe('gmail samples', () => {
   });
 
   it('should send an email', async () => {
-    const scope = nock(baseUrl)
+    const scope = nock(gmailUrl)
       .post('/gmail/v1/users/me/messages/send')
       .reply(200, {});
     const data = await samples.send.runSample();
