@@ -1404,7 +1404,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1530,7 +1531,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1664,7 +1666,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1805,7 +1808,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1938,7 +1942,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2147,7 +2152,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2283,7 +2289,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2429,7 +2436,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2636,7 +2644,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2786,7 +2795,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3002,7 +3012,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3202,7 +3213,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3351,7 +3363,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3500,7 +3513,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3692,7 +3706,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3853,7 +3868,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4014,7 +4030,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4182,7 +4199,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4448,7 +4466,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4607,7 +4626,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4750,7 +4770,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4906,7 +4927,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5148,7 +5170,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5275,7 +5298,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5416,7 +5440,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5556,7 +5581,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5710,7 +5736,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5864,7 +5891,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6101,7 +6129,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6247,7 +6276,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6393,7 +6423,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6593,7 +6624,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6731,7 +6763,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6879,7 +6912,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7027,7 +7061,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7227,7 +7262,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7371,7 +7407,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7534,7 +7571,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7684,7 +7722,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7850,7 +7889,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8016,7 +8056,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8272,7 +8313,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8427,7 +8469,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8622,7 +8665,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8798,7 +8842,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8947,7 +8992,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9129,7 +9175,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9259,7 +9306,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9412,7 +9460,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9584,7 +9633,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9714,7 +9764,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9844,7 +9895,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10110,7 +10162,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10287,7 +10340,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10434,7 +10488,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10581,7 +10636,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10794,7 +10850,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10924,7 +10981,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11062,7 +11120,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11201,7 +11260,8 @@ export namespace androidpublisher_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
