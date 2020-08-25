@@ -2,7 +2,7 @@
 
 # groupssettings
 
-> Manages permission levels and related settings of a group.
+> The Groups Settings API allows domain administrators to view and manage access levels and advanced settings for a group.
 
 ## Installation
 
