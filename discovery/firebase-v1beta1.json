@@ -427,6 +427,11 @@
             "parent"
           ],
           "parameters": {
+            "filter": {
+              "description": "A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`appId`](../projects.apps#FirebaseProjectInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseProjectInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseProjectInfo.FIELDS.platform)",
+              "location": "query",
+              "type": "string"
+            },
             "pageSize": {
               "description": "The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.",
               "format": "int32",
@@ -1116,7 +1121,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200822",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1293,7 +1298,8 @@
       "id": "FirebaseAppInfo",
       "properties": {
         "appId": {
-          "description": "Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "description": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -1302,6 +1308,11 @@
         },
         "name": {
           "description": "The resource name of the Firebase App, in the format: projects/PROJECT_ID /iosApps/APP_ID or projects/PROJECT_ID/androidApps/APP_ID or projects/ PROJECT_ID/webApps/APP_ID",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Output only. Immutable. The platform-specific identifier of the App. *Note:* For most use cases, use `appId`, which is the canonical, globally unique identifier for referencing an App. This string is derived from a native identifier for each platform: `packageName` for an `AndroidApp`, `bundleId` for an `IosApp`, and `webId` for a `WebApp`. Its contents should be treated as opaque, as the native identifier format may change as platforms evolve. This string is only unique within a `FirebaseProject` and its associated Apps.",
+          "readOnly": true,
           "type": "string"
         },
         "platform": {
@@ -1534,12 +1545,6 @@
       "properties": {
         "features": {
           "description": "Products and services that are available in the GCP resource location.",
-          "enumDescriptions": [
-            "Used internally for distinguishing unset values and is not intended for external use.",
-            "This location supports Cloud Firestore database instances. App Engine is available in this location, so it can be a Project's [default GCP resource location](//firebase.google.com/docs/projects/locations#default-cloud-location).",
-            "This location supports default Cloud Storage buckets. App Engine is available in this location, so it can be a Project's [default GCP resource location](//firebase.google.com/docs/projects/locations#default-cloud-location).",
-            "Cloud Functions for Firebase is available in this location."
-          ],
           "items": {
             "enum": [
               "LOCATION_FEATURE_UNSPECIFIED",
@@ -1743,10 +1748,6 @@
           "$ref": "MessageSet",
           "description": "message_set associates an arbitrary proto message with the status."
         },
-        "payload": {
-          "$ref": "TypedMessage",
-          "description": "DEPRECATED. This field was deprecated in 2011 with cl/20297133. Java support for the field was moved to a proto1 backward compatibility class in April 2017 with cl/142615857 and cl/154123203. There was never support for this field in Go; if set Go will ignore it. C++ stopped setting StatusProto::payload in October 2015 with cl/106347055, and stopped reading the field in October 2017 with cl/173324114. In general, newly written code should use only \"message_set\". If you need to maintain backward compatibility with code written before 3/25/2011, do the following: - During the transition period, either (1) set both \"payload\" and \"message_set\", or (2) write the consumer of StatusProto so that it can forge a MessageSet object from \"payload\" if \"message_set\" is missing. The C++ util::Status implementation does (2). - Once all the consumers are converted to accept \"message_set\", then remove the use of \"payload\" on the producer side."
-        },
         "space": {
           "description": "The following are usually only present when code != 0 Space to which this status belongs",
           "type": "string"
@@ -1770,23 +1771,6 @@
           "description": "The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TypedMessage": {
-      "description": "Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type. Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set. To embed \"proto\" inside \"typed_msg\": MyProtoMessage proto; TypedMessage typed_msg; typed_msg.set_type_id(proto2::bridge::GetTypeId(proto)); proto.AppendToCord(typed_msg.mutable_message()); Error handling is omitted from the sample code above. GetTypeId() will return 0 for messages that don't have a TypeId specified.",
-      "id": "TypedMessage",
-      "properties": {
-        "message": {
-          "description": "Message bytes.",
-          "format": "byte",
-          "type": "string"
-        },
-        "typeId": {
-          "description": "Identifier for the type.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -1816,6 +1800,11 @@
         },
         "projectId": {
           "description": "Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.",
+          "type": "string"
+        },
+        "webId": {
+          "description": "Output only. Immutable. A unique, Firebase-assigned identifier for the `WebApp`. This identifier is only used to populate the `namespace` value for the `WebApp`. For most use cases, use `appId` to identify or reference the App. The `webId` value is only unique within a `FirebaseProject` and its associated Apps.",
+          "readOnly": true,
           "type": "string"
         }
       },
