@@ -141,7 +141,7 @@ export namespace networkmanagement_v1beta1 {
     resourceUri?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -154,7 +154,7 @@ export namespace networkmanagement_v1beta1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -171,11 +171,11 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -187,6 +187,35 @@ export namespace networkmanagement_v1beta1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * For display only. Metadata associated with a Cloud SQL instance.
+   */
+  export interface Schema$CloudSQLInstanceInfo {
+    /**
+     * Name of a Cloud SQL instance.
+     */
+    displayName?: string | null;
+    /**
+     * External IP address of Cloud SQL instance.
+     */
+    externalIp?: string | null;
+    /**
+     * Internal IP address of Cloud SQL instance.
+     */
+    internalIp?: string | null;
+    /**
+     * URI of a Cloud SQL instance network or empty string if instance does not have one.
+     */
+    networkUri?: string | null;
+    /**
+     * Region in which the Cloud SQL instance is running.
+     */
+    region?: string | null;
+    /**
+     * URI of a Cloud SQL instance.
+     */
+    uri?: string | null;
+  }
   /**
    * A Connectivity Test for a network reachability analysis.
    */
@@ -200,7 +229,7 @@ export namespace networkmanagement_v1beta1 {
      */
     description?: string | null;
     /**
-     * Required. Destination specification of the Connectivity Test.  You can use a combination of destination IP address, Compute Engine VM instance, or VPC network to uniquely identify the destination location.  Even if the destination IP address is not unique, the source IP location is unique. Usually, the analysis can infer the destination endpoint from route information.  If the destination you specify is a VM instance and the instance has multiple network interfaces, then you must also specify either a destination IP address  or VPC network to identify the destination interface.  A reachability analysis proceeds even if the destination location is ambiguous. However, the result can include endpoints that you don&#39;t intend to test.
+     * Required. Destination specification of the Connectivity Test. You can use a combination of destination IP address, Compute Engine VM instance, or VPC network to uniquely identify the destination location. Even if the destination IP address is not unique, the source IP location is unique. Usually, the analysis can infer the destination endpoint from route information. If the destination you specify is a VM instance and the instance has multiple network interfaces, then you must also specify either a destination IP address or VPC network to identify the destination interface. A reachability analysis proceeds even if the destination location is ambiguous. However, the result can include endpoints that you don&#39;t intend to test.
      */
     destination?: Schema$Endpoint;
     /**
@@ -212,7 +241,7 @@ export namespace networkmanagement_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     * Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`
      */
     name?: string | null;
     /**
@@ -228,7 +257,7 @@ export namespace networkmanagement_v1beta1 {
      */
     relatedProjects?: string[] | null;
     /**
-     * Required. Source specification of the Connectivity Test.  You can use a combination of source IP address, virtual machine (VM) instance, or Compute Engine network to uniquely identify the source location.  Examples: If the source IP address is an internal IP address within a Google Cloud Virtual Private Cloud (VPC) network, then you must also specify the VPC network. Otherwise, specify the VM instance, which already contains its internal IP address and VPC network information.  If the source of the test is within an on-premises network, then you must provide the destination VPC network.  If the source endpoint is a Compute Engine VM instance with multiple network interfaces, the instance itself is not sufficient to identify the endpoint. So, you must also specify the source IP address or VPC network.  A reachability analysis proceeds even if the source location is ambiguous. However, the test result may include endpoints that you don&#39;t intend to test.
+     * Required. Source specification of the Connectivity Test. You can use a combination of source IP address, virtual machine (VM) instance, or Compute Engine network to uniquely identify the source location. Examples: If the source IP address is an internal IP address within a Google Cloud Virtual Private Cloud (VPC) network, then you must also specify the VPC network. Otherwise, specify the VM instance, which already contains its internal IP address and VPC network information. If the source of the test is within an on-premises network, then you must provide the destination VPC network. If the source endpoint is a Compute Engine VM instance with multiple network interfaces, the instance itself is not sufficient to identify the endpoint. So, you must also specify the source IP address or VPC network. A reachability analysis proceeds even if the source location is ambiguous. However, the test result may include endpoints that you don&#39;t intend to test.
      */
     source?: Schema$Endpoint;
     /**
@@ -263,7 +292,7 @@ export namespace networkmanagement_v1beta1 {
     resourceUri?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -271,11 +300,19 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
+     * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
+     */
+    cloudSqlInstance?: string | null;
+    /**
+     * A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     */
+    gkeMasterCluster?: string | null;
+    /**
      * A Compute Engine instance URI.
      */
     instance?: string | null;
     /**
-     * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test&#39;s destination is a [global load balancer VIP](/load-balancing/docs/load-balancing-overview).
+     * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test&#39;s destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      */
     ipAddress?: string | null;
     /**
@@ -329,7 +366,7 @@ export namespace networkmanagement_v1beta1 {
     sourcePort?: number | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -431,6 +468,27 @@ export namespace networkmanagement_v1beta1 {
      * VIP of the forwarding rule.
      */
     vip?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a Google Kubernetes Engine cluster master.
+   */
+  export interface Schema$GKEMasterInfo {
+    /**
+     * URI of a Google Kubernetes Engine cluster network.
+     */
+    clusterNetworkUri?: string | null;
+    /**
+     * URI of a Google Kubernetes Engine cluster.
+     */
+    clusterUri?: string | null;
+    /**
+     * External IP address of a Google Kubernetes Engine cluster master.
+     */
+    externalIp?: string | null;
+    /**
+     * Internal IP address of a Google Kubernetes Engine cluster master.
+     */
+    internalIp?: string | null;
   }
   /**
    * For display only. Metadata associated with a Compute Engine instance.
@@ -571,7 +629,7 @@ export namespace networkmanagement_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -617,7 +675,7 @@ export namespace networkmanagement_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -625,7 +683,7 @@ export namespace networkmanagement_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -663,7 +721,7 @@ export namespace networkmanagement_v1beta1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -675,11 +733,11 @@ export namespace networkmanagement_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -758,12 +816,12 @@ export namespace networkmanagement_v1beta1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -771,7 +829,7 @@ export namespace networkmanagement_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -791,6 +849,10 @@ export namespace networkmanagement_v1beta1 {
      * This is a step that leads to the final state Drop.
      */
     causesDrop?: boolean | null;
+    /**
+     * Display info of a Cloud SQL instance.
+     */
+    cloudSqlInstance?: Schema$CloudSQLInstanceInfo;
     /**
      * Display info of the final state &quot;deliver&quot; and reason.
      */
@@ -819,6 +881,10 @@ export namespace networkmanagement_v1beta1 {
      * Display info of a Compute Engine forwarding rule.
      */
     forwardingRule?: Schema$ForwardingRuleInfo;
+    /**
+     * Display info of a Google Kubernetes Engine cluster master.
+     */
+    gkeMaster?: Schema$GKEMasterInfo;
     /**
      * Display info of a Compute Engine instance.
      */
@@ -871,7 +937,7 @@ export namespace networkmanagement_v1beta1 {
     permissions?: string[] | null;
   }
   /**
-   * Trace represents one simulated packet forwarding path. &lt;ul&gt;   &lt;li&gt;Each trace contains multiple ordered steps.&lt;/li&gt;   &lt;li&gt;Each step is in a particular state and has an associated   configuration.&lt;/li&gt; &lt;li&gt;State is categorized as a final or non-final   state.&lt;/li&gt; &lt;li&gt;Each final state has a reason associated with it.&lt;/li&gt;   &lt;li&gt;Each trace must end with a final state (the last step).&lt;/li&gt; &lt;/ul&gt; &lt;pre&gt;&lt;code&gt;   |---------------------Trace----------------------|   Step1(State) Step2(State) ---  StepN(State(final)) &lt;/code&gt;&lt;/pre&gt;
+   * Trace represents one simulated packet forwarding path. - Each trace contains multiple ordered steps. - Each step is in a particular state and has an associated configuration. - State is categorized as a final or non-final state. - Each final state has a reason associated with it. - Each trace must end with a final state (the last step). |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final))
    */
   export interface Schema$Trace {
     /**
@@ -879,7 +945,7 @@ export namespace networkmanagement_v1beta1 {
      */
     endpointInfo?: Schema$EndpointInfo;
     /**
-     * A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted).  The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.
+     * A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.
      */
     steps?: Schema$Step[];
   }
@@ -1302,7 +1368,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.create
-     * @desc Creates a new Connectivity Test. After you create a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes.  If the endpoint specifications in `ConnectivityTest` are invalid (for example, containing non-existent resources in the network, or you don't have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`.  If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of <code>AMBIGUOUS</code>. For more information, see the Connectivity Test documentation.
+     * @desc Creates a new Connectivity Test. After you create a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. If the endpoint specifications in `ConnectivityTest` are invalid (for example, containing non-existent resources in the network, or you don't have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of AMBIGUOUS. For more information, see the Connectivity Test documentation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1328,17 +1394,9 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.create(
      *     {
-     *       // Required. The parent resource of the Connectivity Test to create:
-     *       //     `projects/{project_id}/locations/global`
+     *       // Required. The parent resource of the Connectivity Test to create: `projects/{project_id}/locations/global`
      *       parent: 'projects/my-project/locations/global',
-     *       // Required. The logical name of the Connectivity Test in your project
-     *       // with the following restrictions:
-     *       //
-     *       // * Must contain only lowercase letters, numbers, and hyphens.
-     *       // * Must start with a letter.
-     *       // * Must be between 1-40 characters.
-     *       // * Must end with a number or a letter.
-     *       // * Must be unique within the customer project
+     *       // Required. The logical name of the Connectivity Test in your project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
      *       testId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -1381,8 +1439,8 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource of the Connectivity Test to create:     `projects/{project_id}/locations/global`
-     * @param {string=} params.testId Required. The logical name of the Connectivity Test in your project with the following restrictions:  * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
+     * @param {string} params.parent Required. The parent resource of the Connectivity Test to create: `projects/{project_id}/locations/global`
+     * @param {string=} params.testId Required. The logical name of the Connectivity Test in your project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
      * @param {().ConnectivityTest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1496,8 +1554,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.delete(
      *     {
-     *       // Required. Connectivity Test resource name using the form:
-     *       //     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *       // Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *     }
@@ -1523,7 +1580,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * @param {string} params.name Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1633,8 +1690,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.get(
      *     {
-     *       // Required. `ConnectivityTest` resource name using the form:
-     *       //     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *       // Required. `ConnectivityTest` resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *     }
@@ -1666,7 +1722,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. `ConnectivityTest` resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * @param {string} params.name Required. `ConnectivityTest` resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1776,21 +1832,9 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *     }
@@ -1815,7 +1859,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1929,24 +1973,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.list(
      *     {
-     *       // Lists the `ConnectivityTests` that match the filter expression. A filter
-     *       // expression filters the resources listed in the response. The expression
-     *       // must be of the form `<field> <operator> <value>` where operators: `<`, `>`,
-     *       // `<=`,
-     *       // `>=`,
-     *       // `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is
-     *       // roughly synonymous with equality). <field> can refer to a proto or JSON
-     *       // field, or a synthetic field. Field names can be camelCase or snake_case.
-     *       //
-     *       // Examples:
-     *       // - Filter by name:
-     *       //   name = "projects/proj-1/locations/global/connectivityTests/test-1
-     *       //
-     *       // - Filter by labels:
-     *       //   - Resources that have a key called `foo`
-     *       //     labels.foo:*
-     *       //   - Resources that have a key called `foo` whose value is `bar`
-     *       //     labels.foo = bar
+     *       // Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
      *       filter: 'placeholder-value',
      *       // Field to use to sort the list.
      *       orderBy: 'placeholder-value',
@@ -1954,8 +1981,7 @@ export namespace networkmanagement_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Page token from an earlier query, as returned in `next_page_token`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the Connectivity Tests:
-     *       //     `projects/{project_id}/locations/global`
+     *       // Required. The parent resource of the Connectivity Tests: `projects/{project_id}/locations/global`
      *       parent: 'projects/my-project/locations/global',
      *     }
      *   );
@@ -1978,11 +2004,11 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/locations/global/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
+     * @param {string=} params.filter Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
      * @param {string=} params.orderBy Field to use to sort the list.
      * @param {integer=} params.pageSize Number of `ConnectivityTests` to return.
      * @param {string=} params.pageToken Page token from an earlier query, as returned in `next_page_token`.
-     * @param {string} params.parent Required. The parent resource of the Connectivity Tests:     `projects/{project_id}/locations/global`
+     * @param {string} params.parent Required. The parent resource of the Connectivity Tests: `projects/{project_id}/locations/global`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2078,7 +2104,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.patch
-     * @desc Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result.  If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of <code>UNKNOWN</code>.  If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.
+     * @desc Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2104,12 +2130,10 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.patch(
      *     {
-     *       // Required. Unique name of the resource using the form:
-     *       //     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     *       // Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
-     *       // Required. Mask of fields to update. At least one path must be supplied in
-     *       // this field.
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2152,7 +2176,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     * @param {string} params.name Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field.
      * @param {().ConnectivityTest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2238,7 +2262,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.rerun
-     * @desc Rerun an existing `ConnectivityTest`. After the user triggers the rerun, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes.  Even though the test configuration remains the same, the reachability result may change due to underlying network configuration changes.  If the endpoint specifications in `ConnectivityTest` become invalid (for example, specified resources are deleted in the network, or you lost read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`.
+     * @desc Rerun an existing `ConnectivityTest`. After the user triggers the rerun, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. Even though the test configuration remains the same, the reachability result may change due to underlying network configuration changes. If the endpoint specifications in `ConnectivityTest` become invalid (for example, specified resources are deleted in the network, or you lost read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2264,8 +2288,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.rerun(
      *     {
-     *       // Required. Connectivity Test resource name using the form:
-     *       //     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *       // Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *       name:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
@@ -2297,7 +2320,7 @@ export namespace networkmanagement_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * @param {string} params.name Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      * @param {().RerunConnectivityTestRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2385,7 +2408,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2411,8 +2434,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
@@ -2534,7 +2556,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.connectivityTests.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2560,8 +2582,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
@@ -2688,11 +2709,11 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the Connectivity Test to create:     `projects/{project_id}/locations/global`
+     * Required. The parent resource of the Connectivity Test to create: `projects/{project_id}/locations/global`
      */
     parent?: string;
     /**
-     * Required. The logical name of the Connectivity Test in your project with the following restrictions:  * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
+     * Required. The logical name of the Connectivity Test in your project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
      */
     testId?: string;
 
@@ -2704,21 +2725,21 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Delete
     extends StandardParameters {
     /**
-     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Get
     extends StandardParameters {
     /**
-     * Required. `ConnectivityTest` resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * Required. `ConnectivityTest` resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2729,7 +2750,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$List
     extends StandardParameters {
     /**
-     * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/locations/global/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
+     * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
      */
     filter?: string;
     /**
@@ -2745,14 +2766,14 @@ export namespace networkmanagement_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the Connectivity Tests:     `projects/{project_id}/locations/global`
+     * Required. The parent resource of the Connectivity Tests: `projects/{project_id}/locations/global`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     * Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`
      */
     name?: string;
     /**
@@ -2768,7 +2789,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun
     extends StandardParameters {
     /**
-     * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     * Required. Connectivity Test resource name using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
 
@@ -2810,7 +2831,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3078,7 +3099,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3211,7 +3232,7 @@ export namespace networkmanagement_v1beta1 {
 
     /**
      * networkmanagement.projects.locations.global.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
