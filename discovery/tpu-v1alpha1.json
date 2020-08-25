@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20200728",
+  "revision": "20200814",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -967,6 +967,10 @@
         "tensorflowVersion": {
           "description": "The version of Tensorflow running in the Node. Required.",
           "type": "string"
+        },
+        "useServiceNetworking": {
+          "description": "Whether the VPC peering for the node is set up through Service Networking API. The VPC Peering should be set up before provisioning the node. If this field is set, cidr_block field should not be specified. If the network, that you want to peer the TPU Node to, is Shared VPC networks, the node must be created with this this field enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
