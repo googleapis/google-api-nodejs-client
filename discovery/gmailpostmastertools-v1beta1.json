@@ -265,7 +265,7 @@
       }
     }
   },
-  "revision": "20200813",
+  "revision": "20200821",
   "rootUrl": "https://gmailpostmastertools.googleapis.com/",
   "schemas": {
     "DeliveryError": {
@@ -527,7 +527,7 @@
     }
   },
   "servicePath": "",
-  "title": "Postmaster Tools API",
+  "title": "Gmail Postmaster Tools API",
   "version": "v1beta1",
   "version_module": true
 }
