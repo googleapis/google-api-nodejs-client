@@ -229,6 +229,10 @@ export namespace cloudbuild_v1 {
      */
     secrets?: Schema$Secret[];
     /**
+     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in alpha and is not publicly available.
+     */
+    serviceAccount?: string | null;
+    /**
      * The location of the source files to build.
      */
     source?: Schema$Source;
@@ -1285,6 +1289,7 @@ export namespace cloudbuild_v1 {
      *   //   "queueTtl": "my_queueTtl",
      *   //   "results": {},
      *   //   "secrets": [],
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "source": {},
      *   //   "sourceProvenance": {},
      *   //   "startTime": "my_startTime",
@@ -1439,6 +1444,7 @@ export namespace cloudbuild_v1 {
      *       //   "queueTtl": "my_queueTtl",
      *       //   "results": {},
      *       //   "secrets": [],
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "source": {},
      *       //   "sourceProvenance": {},
      *       //   "startTime": "my_startTime",
@@ -1607,6 +1613,7 @@ export namespace cloudbuild_v1 {
      *   //   "queueTtl": "my_queueTtl",
      *   //   "results": {},
      *   //   "secrets": [],
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "source": {},
      *   //   "sourceProvenance": {},
      *   //   "startTime": "my_startTime",
