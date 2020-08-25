@@ -101,7 +101,7 @@ export namespace webfonts_v1 {
   /**
    * Web Fonts Developer API
    *
-   * The Google Web Fonts Developer API lets you retrieve information about web fonts served     by Google.
+   * The Google Web Fonts Developer API lets you retrieve information about web fonts served by Google.
    *
    * @example
    * const {google} = require('googleapis');
