@@ -39,7 +39,7 @@ for (const sample of Object.values(samples)) {
   });
 }
 
-const gmailUrl = 'https://gmail.googleapis.com'
+const gmailUrl = 'https://gmail.googleapis.com';
 
 describe('gmail samples', () => {
   afterEach(() => {
