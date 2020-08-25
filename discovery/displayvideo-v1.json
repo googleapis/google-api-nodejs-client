@@ -134,7 +134,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount",
+              "description": "Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount * channelsCount * negativelyTargetedChannelsCount * negativeKeywordListsCount * adGroupCriteriaCount * campaignCriteriaCount",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -302,7 +302,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus=\"ENTITY_STATUS_ACTIVE\"` The length of this field should be no more than 500 characters.",
+              "description": "Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: . - `advertiserId` . - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus=\"ENTITY_STATUS_ACTIVE\"` The length of this field should be no more than 500 characters.",
               "location": "query",
               "type": "string"
             },
@@ -541,7 +541,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1309,7 +1309,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `entityStatus` Examples: * All insertion orders under a campaign: `campaignId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<\"2019-03-28\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1597,7 +1597,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5610,7 +5610,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be \"=\" (equal sign). * Supported fields: - `targetingOptionId` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be \"=\" (equal sign). * Supported fields: - `carrier_and_isp_details.type` - `geo_region_details.geo_region_type` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geo_region_details.geo_region_type=\"GEO_REGION_TYPE_COUNTRY\" OR geo_region_details.geo_region_type=\"GEO_REGION_TYPE_STATE\"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrier_and_isp_details.type=\"CARRIER_AND_ISP_TYPE_CARRIER\"`. The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5906,7 +5906,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200820",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -6030,17 +6030,6 @@
       "properties": {
         "excludedAdlooxCategories": {
           "description": "Adloox's brand safety settings.",
-          "enumDescriptions": [
-            "This enum is only a placeholder and it doesn't specify any Adloox option.",
-            "Adult content (hard).",
-            "Adult content (soft).",
-            "Illegal content.",
-            "Borderline content.",
-            "Discriminatory content.",
-            "Violent content & weapons.",
-            "Low viewability domains.",
-            "Fraud."
-          ],
           "items": {
             "enum": [
               "ADLOOX_UNSPECIFIED",
@@ -6853,6 +6842,31 @@
       "description": "Response message for AdvertiserService.AuditAdvertiser.",
       "id": "AuditAdvertiserResponse",
       "properties": {
+        "adGroupCriteriaCount": {
+          "description": "The number of individual targeting options from the following targeting types that are assigned to a line item under this advertiser. These individual targeting options count towards the limit of 4500000 ad group targeting options per advertiser. Qualifying Targeting types: * Channels, URLs, apps, and collections * Demographic * Google Audiences, including Affinity, Custom Affinity, and In-market audiences * Inventory source * Keyword * Mobile app category * User lists * Video targeting * Viewability",
+          "format": "int64",
+          "type": "string"
+        },
+        "campaignCriteriaCount": {
+          "description": "The number of individual targeting options from the following targeting types that are assigned to a line item under this advertiser. These individual targeting options count towards the limit of 900000 campaign targeting options per advertiser. Qualifying Targeting types: * Position * Browser * Connection speed * Day and time * Device and operating system * Digital content label * Sensitive categories * Environment * Geography, including business chains and proximity * ISP * Language * Third-party verification",
+          "format": "int64",
+          "type": "string"
+        },
+        "channelsCount": {
+          "description": "The number of channels created under this advertiser. These channels count towards the limit of 1000 channels per advertiser.",
+          "format": "int64",
+          "type": "string"
+        },
+        "negativeKeywordListsCount": {
+          "description": "The number of negative keyword lists created under this advertiser. These negative keyword lists count towards the limit of 20 negative keyword lists per advertiser.",
+          "format": "int64",
+          "type": "string"
+        },
+        "negativelyTargetedChannelsCount": {
+          "description": "The number of negatively targeted channels created under this advertiser. These negatively targeted channels count towards the limit of 5 negatively targeted channels per advertiser.",
+          "format": "int64",
+          "type": "string"
+        },
         "usedCampaignsCount": {
           "description": "The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9999 campaigns per advertiser.",
           "format": "int64",
@@ -8028,12 +8042,6 @@
         },
         "creativeAttributes": {
           "description": "Output only. A list of attributes of the creative that is generated by the system.",
-          "enumDescriptions": [
-            "The creative attribute is not specified or is unknown in this version.",
-            "The creative is a VAST creative.",
-            "The creative is a linear VPAID creative.",
-            "The creative is a non-linear VPAID creative."
-          ],
           "items": {
             "enum": [
               "CREATIVE_ATTRIBUTE_UNSPECIFIED",
@@ -8854,15 +8862,6 @@
         },
         "avoidedAgeRatings": {
           "description": "Avoid bidding on apps with the age rating.",
-          "enumDescriptions": [
-            "This enum is only a placeholder and it doesn't specify any age rating options.",
-            "Apps with unknown age rating.",
-            "Apps rated for Everyone (4+).",
-            "Apps rated for Everyone (9+).",
-            "Apps rated for Teens (12+).",
-            "Apps rated for Mature (17+).",
-            "Apps rated for Adults Only (18+)."
-          ],
           "items": {
             "enum": [
               "AGE_RATING_UNSPECIFIED",
@@ -8950,16 +8949,6 @@
         },
         "avoidedHighSeverityCategories": {
           "description": "Brand safety high severity avoidance categories.",
-          "enumDescriptions": [
-            "This enum is only a placeholder and it doesn't specify any high severity categories.",
-            "Adult Content: Pornography, Mature Topics & Nudity.",
-            "Copyright Infringement.",
-            "Drugs/Alcohol/Controlled Substances: Substance Abuse.",
-            "Extreme Graphic/Explicit Violence/Weapons.",
-            "Hate/Profanity.",
-            "Illegal Activities: Criminal Skills.",
-            "Incentivized/Malware/Clutter."
-          ],
           "items": {
             "enum": [
               "HIGHER_SEVERITY_UNSPECIFIED",
@@ -8987,29 +8976,6 @@
         },
         "avoidedMediumSeverityCategories": {
           "description": "Brand safety medium severity avoidance categories.",
-          "enumDescriptions": [
-            "This enum is only a placeholder and it doesn't specify any medium severity categories.",
-            "Ad Servers.",
-            "Adult Content: Swimsuit.",
-            "Controversial Subjects: Alternative Lifestyles.",
-            "Controversial Subjects: Celebrity Gossip.",
-            "Controversial Subjects: Gambling.",
-            "Controversial Subjects: Occult.",
-            "Controversial Subjects: Sex Education.",
-            "Disaster: Aviation.",
-            "Disaster: Man-made.",
-            "Disaster: Natural.",
-            "Disaster: Terrorist Events.",
-            "Disaster: Vehicle.",
-            "Drugs/Alcohol/Controlled Substances: Alcohol.",
-            "Drugs/Alcohol/Controlled Substances: Smoking.",
-            "Negative News: Financial.",
-            "Non-Std Content: Non-English.",
-            "Non-Std Content: Parking Page.",
-            "Unmoderated UGC: Forums, Images & Video.",
-            "Controversial Subjects: Inflammatory Politics and News.",
-            "Negative News: Pharmaceutical."
-          ],
           "items": {
             "enum": [
               "MEDIUM_SEVERITY_UNSPECIFIED",
@@ -12400,15 +12366,6 @@
       "properties": {
         "fileType": {
           "description": "Required. File types that will be returned.",
-          "enumDescriptions": [
-            "Default value when type is unspecified or is unknown in this version.",
-            "Campaign.",
-            "Media Product.",
-            "Insertion Order.",
-            "Line Item.",
-            "YouTube Ad Group.",
-            "YouTube Ad."
-          ],
           "items": {
             "enum": [
               "FILE_TYPE_UNSPECIFIED",
