@@ -136,7 +136,7 @@ export namespace lifesciences_v2beta {
      */
     count?: string | null;
     /**
-     * The accelerator type string (for example, &quot;nvidia-tesla-k80&quot;).  Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
+     * The accelerator type string (for example, &quot;nvidia-tesla-k80&quot;). Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
      */
     type?: string | null;
   }
@@ -157,11 +157,11 @@ export namespace lifesciences_v2beta {
      */
     containerName?: string | null;
     /**
-     * If the specified image is hosted on a private registry other than Google Container Registry, the credentials required to pull the image must be specified here as an encrypted secret.  The secret must decrypt to a JSON-encoded dictionary containing both `username` and `password` keys.
+     * If the specified image is hosted on a private registry other than Google Container Registry, the credentials required to pull the image must be specified here as an encrypted secret. The secret must decrypt to a JSON-encoded dictionary containing both `username` and `password` keys.
      */
     credentials?: Schema$Secret;
     /**
-     * All container images are typically downloaded before any actions are executed. This helps prevent typos in URIs or issues like lack of disk space from wasting large amounts of compute resources.  If set, this flag prevents the worker from downloading the image until just before the action is executed.
+     * All container images are typically downloaded before any actions are executed. This helps prevent typos in URIs or issues like lack of disk space from wasting large amounts of compute resources. If set, this flag prevents the worker from downloading the image until just before the action is executed.
      */
     disableImagePrefetch?: boolean | null;
     /**
@@ -169,7 +169,7 @@ export namespace lifesciences_v2beta {
      */
     disableStandardErrorCapture?: boolean | null;
     /**
-     * Enable access to the FUSE device for this action. Filesystems can then be mounted into disks shared with other actions. The other actions do not need the `enable_fuse` flag to access the mounted filesystem.  This has the effect of causing the container to be executed with `CAP_SYS_ADMIN` and exposes `/dev/fuse` to the container, so use it only for containers you trust.
+     * Enable access to the FUSE device for this action. Filesystems can then be mounted into disks shared with other actions. The other actions do not need the `enable_fuse` flag to access the mounted filesystem. This has the effect of causing the container to be executed with `CAP_SYS_ADMIN` and exposes `/dev/fuse` to the container, so use it only for containers you trust.
      */
     enableFuse?: boolean | null;
     /**
@@ -177,7 +177,7 @@ export namespace lifesciences_v2beta {
      */
     entrypoint?: string | null;
     /**
-     * The environment to pass into the container. This environment is merged with values specified in the google.cloud.lifesciences.v2beta.Pipeline message, overwriting any duplicate values.  In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten.  `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute.  `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
+     * The environment to pass into the container. This environment is merged with values specified in the google.cloud.lifesciences.v2beta.Pipeline message, overwriting any duplicate values. In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten. `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute. `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
      */
     environment?: {[key: string]: string} | null;
     /**
@@ -185,7 +185,7 @@ export namespace lifesciences_v2beta {
      */
     ignoreExitStatus?: boolean | null;
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline.  The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library.  No schema is required in any of these cases.  If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.cloud.lifesciences.v2beta.Action.credentials field.
+     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline. The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library. No schema is required in any of these cases. If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.cloud.lifesciences.v2beta.Action.credentials field.
      */
     imageUri?: string | null;
     /**
@@ -193,15 +193,15 @@ export namespace lifesciences_v2beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A list of mounts to make available to the action.  In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components.  &lt;ul&gt;   &lt;li&gt;&lt;code&gt;/google/logs&lt;/code&gt; All logs written during the pipeline   execution.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/output&lt;/code&gt; The combined standard output and   standard error of all actions run as part of the pipeline   execution.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/action/x/stdout&lt;/code&gt; The complete contents of   each individual action&#39;s standard output.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/action/x/stderr&lt;/code&gt; The complete contents of   each individual action&#39;s standard error output.&lt;/li&gt; &lt;/ul&gt;
+     * A list of mounts to make available to the action. In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components. - /google/logs All logs written during the pipeline execution. - /google/logs/output The combined standard output and standard error of all actions run as part of the pipeline execution. - /google/logs/action/x/stdout The complete contents of each individual action&#39;s standard output. - /google/logs/action/x/stderr The complete contents of each individual action&#39;s standard error output.
      */
     mounts?: Schema$Mount[];
     /**
-     * An optional identifier for a PID namespace to run the action inside. Multiple actions should use the same string to share a namespace.  If unspecified, a separate isolated namespace is used.
+     * An optional identifier for a PID namespace to run the action inside. Multiple actions should use the same string to share a namespace. If unspecified, a separate isolated namespace is used.
      */
     pidNamespace?: string | null;
     /**
-     * A map of containers to host port mappings for this container. If the container already specifies exposed ports, use the `PUBLISH_EXPOSED_PORTS` flag instead.  The host port number must be less than 65536. If it is zero, an unused random port is assigned. To determine the resulting port number, consult the `ContainerStartedEvent` in the operation metadata.
+     * A map of containers to host port mappings for this container. If the container already specifies exposed ports, use the `PUBLISH_EXPOSED_PORTS` flag instead. The host port number must be less than 65536. If it is zero, an unused random port is assigned. To determine the resulting port number, consult the `ContainerStartedEvent` in the operation metadata.
      */
     portMappings?: {[key: string]: number} | null;
     /**
@@ -260,7 +260,7 @@ export namespace lifesciences_v2beta {
      */
     exitStatus?: number | null;
     /**
-     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
+     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag. Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
      */
     stderr?: string | null;
   }
@@ -278,7 +278,7 @@ export namespace lifesciences_v2beta {
     metrics?: string[] | null;
   }
   /**
-   * Carries information about a disk that can be attached to a VM.  See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
    */
   export interface Schema$Disk {
     /**
@@ -286,7 +286,7 @@ export namespace lifesciences_v2beta {
      */
     name?: string | null;
     /**
-     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance.  If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
+     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance. If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
      */
     sizeGb?: number | null;
     /**
@@ -299,7 +299,7 @@ export namespace lifesciences_v2beta {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -403,7 +403,7 @@ export namespace lifesciences_v2beta {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -470,15 +470,15 @@ export namespace lifesciences_v2beta {
    */
   export interface Schema$Network {
     /**
-     * The network name to attach the VM&#39;s network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL.  If unspecified, the global default network is used.
+     * The network name to attach the VM&#39;s network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL. If unspecified, the global default network is used.
      */
     network?: string | null;
     /**
-     * If the specified network is configured for custom subnet creation, the name of the subnetwork to attach the instance to must be specified here.  The value is prefixed with `regions/x/subnetworks/` unless it contains a `/`, in which case it is assumed to be a fully specified subnetwork resource URL.  If the `*` character appears in the value, it is replaced with the region that the virtual machine has been allocated in.
+     * If the specified network is configured for custom subnet creation, the name of the subnetwork to attach the instance to must be specified here. The value is prefixed with `regions/x/subnetworks/` unless it contains a `/`, in which case it is assumed to be a fully specified subnetwork resource URL. If the `*` character appears in the value, it is replaced with the region that the virtual machine has been allocated in.
      */
     subnetwork?: string | null;
     /**
-     * If set to true, do not attach a public IP address to the VM. Note that without a public IP address, additional configuration is required to allow the VM to access Google services.  See https://cloud.google.com/vpc/docs/configure-private-google-access for more information.
+     * If set to true, do not attach a public IP address to the VM. Note that without a public IP address, additional configuration is required to allow the VM to access Google services. See https://cloud.google.com/vpc/docs/configure-private-google-access for more information.
      */
     usePrivateAddress?: boolean | null;
   }
@@ -499,7 +499,7 @@ export namespace lifesciences_v2beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name for the operation.  This may be passed to the other operation methods to retrieve information about the operation&#39;s status.
+     * The server-assigned name for the operation. This may be passed to the other operation methods to retrieve information about the operation&#39;s status.
      */
     name?: string | null;
     /**
@@ -524,7 +524,7 @@ export namespace lifesciences_v2beta {
      */
     resources?: Schema$Resources;
     /**
-     * The maximum amount of time to give the pipeline to complete.  This includes the time spent waiting for a worker to be allocated.  If the pipeline fails to complete before the timeout, it will be cancelled and the error code will be set to DEADLINE_EXCEEDED.  If unspecified, it will default to 7 days.
+     * The maximum amount of time to give the pipeline to complete. This includes the time spent waiting for a worker to be allocated. If the pipeline fails to complete before the timeout, it will be cancelled and the error code will be set to DEADLINE_EXCEEDED. If unspecified, it will default to 7 days.
      */
     timeout?: string | null;
   }
@@ -547,7 +547,7 @@ export namespace lifesciences_v2beta {
     imageUri?: string | null;
   }
   /**
-   * The system resources for the pipeline run.  At least one zone or region must be specified or the pipeline run will fail.
+   * The system resources for the pipeline run. At least one zone or region must be specified or the pipeline run will fail.
    */
   export interface Schema$Resources {
     /**
@@ -568,7 +568,7 @@ export namespace lifesciences_v2beta {
    */
   export interface Schema$RunPipelineRequest {
     /**
-     * User-defined labels to associate with the returned operation. These labels are not propagated to any Google Cloud Platform resources used by the operation, and can be modified at any time.  To associate labels with resources created while executing the operation, see the appropriate resource message (for example, `VirtualMachine`).
+     * User-defined labels to associate with the returned operation. These labels are not propagated to any Google Cloud Platform resources used by the operation, and can be modified at any time. To associate labels with resources created while executing the operation, see the appropriate resource message (for example, `VirtualMachine`).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -607,7 +607,7 @@ export namespace lifesciences_v2beta {
     scopes?: string[] | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -615,7 +615,7 @@ export namespace lifesciences_v2beta {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -649,11 +649,11 @@ export namespace lifesciences_v2beta {
      */
     bootDiskSizeGb?: number | null;
     /**
-     * The host operating system image to use.  Currently, only Container-Optimized OS images can be used.  The default value is `projects/cos-cloud/global/images/family/cos-stable`, which selects the latest stable release of Container-Optimized OS.  This option is provided to allow testing against the beta release of the operating system to ensure that the new version does not interact negatively with production pipelines.  To test a pipeline against the beta release of Container-Optimized OS, use the value `projects/cos-cloud/global/images/family/cos-beta`.
+     * The host operating system image to use. Currently, only Container-Optimized OS images can be used. The default value is `projects/cos-cloud/global/images/family/cos-stable`, which selects the latest stable release of Container-Optimized OS. This option is provided to allow testing against the beta release of the operating system to ensure that the new version does not interact negatively with production pipelines. To test a pipeline against the beta release of Container-Optimized OS, use the value `projects/cos-cloud/global/images/family/cos-beta`.
      */
     bootImage?: string | null;
     /**
-     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as &quot;Intel Skylake&quot;). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact.  For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
+     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as &quot;Intel Skylake&quot;). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact. For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      */
     cpuPlatform?: string | null;
     /**
@@ -661,7 +661,7 @@ export namespace lifesciences_v2beta {
      */
     disks?: Schema$Disk[];
     /**
-     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. Only a single image is supported.
+     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Only a single image is supported.
      */
     dockerCacheImages?: string[] | null;
     /**
@@ -669,7 +669,7 @@ export namespace lifesciences_v2beta {
      */
     enableStackdriverMonitoring?: boolean | null;
     /**
-     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine.  Labels keys with the prefix &#39;google-&#39; are reserved for use by Google.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
+     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine. Labels keys with the prefix &#39;google-&#39; are reserved for use by Google. Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1059,7 +1059,7 @@ export namespace lifesciences_v2beta {
 
     /**
      * lifesciences.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `lifesciences.operations.cancel`
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.cancel`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1195,7 +1195,7 @@ export namespace lifesciences_v2beta {
 
     /**
      * lifesciences.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `lifesciences.operations.get`
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.get`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1327,7 +1327,7 @@ export namespace lifesciences_v2beta {
 
     /**
      * lifesciences.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `lifesciences.operations.list`
+     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.list`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1352,18 +1352,7 @@ export namespace lifesciences_v2beta {
      *
      *   // Do the magic
      *   const res = await lifesciences.projects.locations.operations.list({
-     *     // A string for filtering Operations.
-     *     // The following filter fields are supported&#58;
-     *     //
-     *     // * createTime&#58; The time this job was created
-     *     // * events&#58; The set of event (names) that have occurred while running
-     *     //   the pipeline.  The &#58; operator can be used to determine if a
-     *     //   particular event has occurred.
-     *     // * error&#58; If the pipeline is running, this value is NULL.  Once the
-     *     //   pipeline finishes, the value is the standard Google error code.
-     *     // * labels.key or labels."key with space" where key is a label key.
-     *     // * done&#58; If the pipeline is running, this value is false. Once the
-     *     //   pipeline finishes, the value is true.
+     *     // A string for filtering Operations. The following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true.
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
      *     name: 'projects/my-project/locations/my-location',
@@ -1390,7 +1379,7 @@ export namespace lifesciences_v2beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true.
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The maximum number of results to return. The maximum value is 256.
      * @param {string=} params.pageToken The standard list page token.
@@ -1505,7 +1494,7 @@ export namespace lifesciences_v2beta {
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
     /**
-     * A string for filtering Operations. The following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.
+     * A string for filtering Operations. The following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true.
      */
     filter?: string;
     /**
@@ -1530,7 +1519,7 @@ export namespace lifesciences_v2beta {
 
     /**
      * lifesciences.projects.locations.pipelines.run
-     * @desc Runs a pipeline.  The returned Operation's metadata field will contain a google.cloud.lifesciences.v2beta.Metadata object describing the status of the pipeline execution. The response field will contain a google.cloud.lifesciences.v2beta.RunPipelineResponse object if the pipeline completes successfully.  **Note:** Before you can use this method, the *Life Sciences Service Agent* must have access to your project. This is done automatically when the Cloud Life Sciences API is first enabled, but if you delete this permission you must disable and re-enable the API to grant the Life Sciences Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission:  * `lifesciences.workflows.run`
+     * @desc Runs a pipeline. The returned Operation's metadata field will contain a google.cloud.lifesciences.v2beta.Metadata object describing the status of the pipeline execution. The response field will contain a google.cloud.lifesciences.v2beta.RunPipelineResponse object if the pipeline completes successfully. **Note:** Before you can use this method, the *Life Sciences Service Agent* must have access to your project. This is done automatically when the Cloud Life Sciences API is first enabled, but if you delete this permission you must disable and re-enable the API to grant the Life Sciences Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission: * `lifesciences.workflows.run`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
