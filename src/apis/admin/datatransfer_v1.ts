@@ -53,9 +53,21 @@ export namespace admin_datatransfer_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace admin_datatransfer_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Admin Data Transfer API
+   * Admin SDK
    *
-   * Transfers user data from one user to another.
+   * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,7 +130,7 @@ export namespace admin_datatransfer_v1 {
   }
 
   /**
-   * The JSON template for an Application resource.
+   * The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Application {
     /**
@@ -156,7 +172,7 @@ export namespace admin_datatransfer_v1 {
     applicationTransferStatus?: string | null;
   }
   /**
-   * Template for a collection of Applications.
+   * Template for a collection of Applications. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ApplicationsListResponse {
     /**
@@ -190,7 +206,7 @@ export namespace admin_datatransfer_v1 {
     value?: string[] | null;
   }
   /**
-   * The JSON template for a DataTransfer resource.
+   * The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$DataTransfer {
     /**
@@ -227,7 +243,7 @@ export namespace admin_datatransfer_v1 {
     requestTime?: string | null;
   }
   /**
-   * Template for a collection of DataTransfer resources.
+   * Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$DataTransfersListResponse {
     /**
@@ -420,7 +436,7 @@ export namespace admin_datatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await datatransfer.applications.list({
-     *     // Immutable ID of the G Suite account.
+     *     // Immutable ID of the Google Apps account.
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Default is 100.
      *     maxResults: 'placeholder-value',
@@ -446,8 +462,8 @@ export namespace admin_datatransfer_v1 {
      * @alias datatransfer.applications.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the G Suite account.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerId Immutable ID of the Google Apps account.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
      * @param {string=} params.pageToken Token to specify next page in the list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -548,7 +564,7 @@ export namespace admin_datatransfer_v1 {
   export interface Params$Resource$Applications$List
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account.
+     * Immutable ID of the Google Apps account.
      */
     customerId?: string;
     /**
@@ -885,7 +901,7 @@ export namespace admin_datatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await datatransfer.transfers.list({
-     *     // Immutable ID of the G Suite account.
+     *     // Immutable ID of the Google Apps account.
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Default is 100.
      *     maxResults: 'placeholder-value',
@@ -917,8 +933,8 @@ export namespace admin_datatransfer_v1 {
      * @alias datatransfer.transfers.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the G Suite account.
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerId Immutable ID of the Google Apps account.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
      * @param {string=} params.newOwnerUserId Destination user's profile ID.
      * @param {string=} params.oldOwnerUserId Source user's profile ID.
@@ -1028,7 +1044,7 @@ export namespace admin_datatransfer_v1 {
   }
   export interface Params$Resource$Transfers$List extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account.
+     * Immutable ID of the Google Apps account.
      */
     customerId?: string;
     /**

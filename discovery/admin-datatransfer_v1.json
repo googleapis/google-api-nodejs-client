@@ -11,34 +11,62 @@
       }
     }
   },
-  "basePath": "/admin/datatransfer/v1/",
-  "baseUrl": "https://www.googleapis.com/admin/datatransfer/v1/",
+  "basePath": "",
+  "baseUrl": "https://www.googleapis.com/",
   "batchPath": "batch/admin/datatransfer_v1",
   "canonicalName": "DataTransfer",
-  "description": "Transfers user data from one user to another.",
+  "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/admin-sdk/data-transfer/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/o-H78Id0Lcq1iHheSzpqURY4CLE\"",
+  "documentationLink": "http://developers.google.com/admin-sdk/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
-    "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-    "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
   "id": "admin:datatransfer_v1",
   "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
   "name": "admin",
   "ownerDomain": "google.com",
   "ownerName": "Google",
   "packagePath": "admin",
   "parameters": {
-    "alt": {
-      "default": "json",
-      "description": "Data format for the response.",
+    "$.xgafv": {
+      "description": "V1 error format.",
       "enum": [
-        "json"
+        "1",
+        "2"
       ],
       "enumDescriptions": [
-        "Responses with Content-Type of application/json"
+        "v1 error format",
+        "v2 error format"
       ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
       "location": "query",
       "type": "string"
     },
@@ -64,12 +92,17 @@
       "type": "boolean"
     },
     "quotaUser": {
-      "description": "An opaque string that represents a user for quota purposes. Must not exceed 40 characters.",
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
       "location": "query",
       "type": "string"
     },
-    "userIp": {
-      "description": "Deprecated. Please use quotaUser instead.",
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
       "location": "query",
       "type": "string"
     }
@@ -80,6 +113,7 @@
       "methods": {
         "get": {
           "description": "Retrieves information about an application for the given application ID.",
+          "flatPath": "admin/datatransfer/v1/applications/{applicationId}",
           "httpMethod": "GET",
           "id": "datatransfer.applications.get",
           "parameterOrder": [
@@ -94,7 +128,7 @@
               "type": "string"
             }
           },
-          "path": "applications/{applicationId}",
+          "path": "admin/datatransfer/v1/applications/{applicationId}",
           "response": {
             "$ref": "Application"
           },
@@ -105,11 +139,13 @@
         },
         "list": {
           "description": "Lists the applications available for data transfer for a customer.",
+          "flatPath": "admin/datatransfer/v1/applications",
           "httpMethod": "GET",
           "id": "datatransfer.applications.list",
+          "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account.",
+              "description": "Immutable ID of the Google Apps account.",
               "location": "query",
               "type": "string"
             },
@@ -127,7 +163,7 @@
               "type": "string"
             }
           },
-          "path": "applications",
+          "path": "admin/datatransfer/v1/applications",
           "response": {
             "$ref": "ApplicationsListResponse"
           },
@@ -142,6 +178,7 @@
       "methods": {
         "get": {
           "description": "Retrieves a data transfer request by its resource ID.",
+          "flatPath": "admin/datatransfer/v1/transfers/{dataTransferId}",
           "httpMethod": "GET",
           "id": "datatransfer.transfers.get",
           "parameterOrder": [
@@ -155,7 +192,7 @@
               "type": "string"
             }
           },
-          "path": "transfers/{dataTransferId}",
+          "path": "admin/datatransfer/v1/transfers/{dataTransferId}",
           "response": {
             "$ref": "DataTransfer"
           },
@@ -166,9 +203,12 @@
         },
         "insert": {
           "description": "Inserts a data transfer request.",
+          "flatPath": "admin/datatransfer/v1/transfers",
           "httpMethod": "POST",
           "id": "datatransfer.transfers.insert",
-          "path": "transfers",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "admin/datatransfer/v1/transfers",
           "request": {
             "$ref": "DataTransfer"
           },
@@ -181,11 +221,13 @@
         },
         "list": {
           "description": "Lists the transfers for a customer by source user, destination user, or status.",
+          "flatPath": "admin/datatransfer/v1/transfers",
           "httpMethod": "GET",
           "id": "datatransfer.transfers.list",
+          "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account.",
+              "description": "Immutable ID of the Google Apps account.",
               "location": "query",
               "type": "string"
             },
@@ -218,7 +260,7 @@
               "type": "string"
             }
           },
-          "path": "transfers",
+          "path": "admin/datatransfer/v1/transfers",
           "response": {
             "$ref": "DataTransfersListResponse"
           },
@@ -230,11 +272,11 @@
       }
     }
   },
-  "revision": "20191105",
+  "revision": "20200819",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Application": {
-      "description": "The JSON template for an Application resource.",
+      "description": "The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "Application",
       "properties": {
         "etag": {
@@ -307,7 +349,7 @@
       "type": "object"
     },
     "ApplicationsListResponse": {
-      "description": "Template for a collection of Applications.",
+      "description": "Template for a collection of Applications. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "ApplicationsListResponse",
       "properties": {
         "applications": {
@@ -334,7 +376,7 @@
       "type": "object"
     },
     "DataTransfer": {
-      "description": "The JSON template for a DataTransfer resource.",
+      "description": "The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "DataTransfer",
       "properties": {
         "applicationDataTransfers": {
@@ -378,7 +420,7 @@
       "type": "object"
     },
     "DataTransfersListResponse": {
-      "description": "Template for a collection of DataTransfer resources.",
+      "description": "Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "DataTransfersListResponse",
       "properties": {
         "dataTransfers": {
@@ -405,7 +447,7 @@
       "type": "object"
     }
   },
-  "servicePath": "admin/datatransfer/v1/",
-  "title": "Admin Data Transfer API",
+  "servicePath": "",
+  "title": "Admin SDK",
   "version": "datatransfer_v1"
 }

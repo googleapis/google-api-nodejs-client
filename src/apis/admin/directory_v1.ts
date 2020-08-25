@@ -53,9 +53,21 @@ export namespace admin_directory_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace admin_directory_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Admin Directory API
+   * Admin SDK
    *
-   * Manages enterprise resources such as users and groups, administrative notifications, security features, and more.
+   * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
    * @example
    * const {google} = require('googleapis');
@@ -108,7 +124,6 @@ export namespace admin_directory_v1 {
     groups: Resource$Groups;
     members: Resource$Members;
     mobiledevices: Resource$Mobiledevices;
-    notifications: Resource$Notifications;
     orgunits: Resource$Orgunits;
     privileges: Resource$Privileges;
     resources: Resource$Resources;
@@ -134,7 +149,6 @@ export namespace admin_directory_v1 {
       this.groups = new Resource$Groups(this.context);
       this.members = new Resource$Members(this.context);
       this.mobiledevices = new Resource$Mobiledevices(this.context);
-      this.notifications = new Resource$Notifications(this.context);
       this.orgunits = new Resource$Orgunits(this.context);
       this.privileges = new Resource$Privileges(this.context);
       this.resources = new Resource$Resources(this.context);
@@ -151,46 +165,22 @@ export namespace admin_directory_v1 {
    * JSON template for Alias object in Directory API.
    */
   export interface Schema$Alias {
-    /**
-     * A alias email
-     */
     alias?: string | null;
-    /**
-     * ETag of the resource.
-     */
     etag?: string | null;
-    /**
-     * Unique id of the group (Read-only) Unique id of the user (Read-only)
-     */
     id?: string | null;
-    /**
-     * Kind of resource this is.
-     */
     kind?: string | null;
-    /**
-     * Group&#39;s primary email (Read-only) User&#39;s primary email (Read-only)
-     */
     primaryEmail?: string | null;
   }
   /**
    * JSON response template to list aliases in Directory API.
    */
   export interface Schema$Aliases {
-    /**
-     * List of alias objects.
-     */
     aliases?: any[] | null;
-    /**
-     * ETag of the resource.
-     */
     etag?: string | null;
-    /**
-     * Kind of resource this is.
-     */
     kind?: string | null;
   }
   /**
-   * The template that returns individual ASP (Access Code) data.
+   * The template that returns individual ASP (Access Code) data. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Asp {
     /**
@@ -222,6 +212,9 @@ export namespace admin_directory_v1 {
      */
     userKey?: string | null;
   }
+  /**
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   */
   export interface Schema$Asps {
     /**
      * ETag of the resource.
@@ -237,7 +230,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * JSON template for Building object in Directory API.
+   * Public API: Resources.buildings
    */
   export interface Schema$Building {
     /**
@@ -274,7 +267,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * JSON template for the postal address of a building in Directory API.
+   * Public API: Resources.buildings
    */
   export interface Schema$BuildingAddress {
     /**
@@ -307,7 +300,7 @@ export namespace admin_directory_v1 {
     sublocality?: string | null;
   }
   /**
-   * JSON template for coordinates of a building in Directory API.
+   * Public API: Resources.buildings
    */
   export interface Schema$BuildingCoordinates {
     /**
@@ -320,7 +313,7 @@ export namespace admin_directory_v1 {
     longitude?: number | null;
   }
   /**
-   * JSON template for Building List Response object in Directory API.
+   * Public API: Resources.buildings
    */
   export interface Schema$Buildings {
     /**
@@ -341,7 +334,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Calendar Resource object in Directory API.
+   * Public API: Resources.calendars
    */
   export interface Schema$CalendarResource {
     /**
@@ -356,6 +349,9 @@ export namespace admin_directory_v1 {
      * ETag of the resource.
      */
     etags?: string | null;
+    /**
+     * Instances of features for the calendar resource.
+     */
     featureInstances?: any | null;
     /**
      * Name of the floor a resource is located on.
@@ -403,7 +399,7 @@ export namespace admin_directory_v1 {
     userVisibleDescription?: string | null;
   }
   /**
-   * JSON template for Calendar Resource List Response object in Directory API.
+   * Public API: Resources.calendars
    */
   export interface Schema$CalendarResources {
     /**
@@ -469,7 +465,7 @@ export namespace admin_directory_v1 {
     type?: string | null;
   }
   /**
-   * JSON template for Chrome Os Device resource in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ChromeOsDevice {
     /**
@@ -528,7 +524,7 @@ export namespace admin_directory_v1 {
       }>;
     }> | null;
     /**
-     * (Read-only) Built-in MAC address for the docking station that the device connected to. Factory sets Media access control address (MAC address) assigned for use by a dock. Currently this is only supported on the Dell Arcada / Sarien devices and the Dell WD19 / WD19TB Docking Station. It is reserved specifically for MAC pass through device policy. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for Dell devices.
+     * (Read-only) Built-in MAC address for the docking station that the device connected to. Factory sets Media access control address (MAC address) assigned for use by a dock. It is reserved specifically for MAC pass through device policy. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.
      */
     dockMacAddress?: string | null;
     /**
@@ -556,7 +552,7 @@ export namespace admin_directory_v1 {
      */
     lastEnrollmentTime?: string | null;
     /**
-     * Contains last used network (Read-only)
+     * Contains last known network (Read-only)
      */
     lastKnownNetwork?: Array<{
       ipAddress?: string;
@@ -645,9 +641,6 @@ export namespace admin_directory_v1 {
      */
     willAutoRenew?: boolean | null;
   }
-  /**
-   * JSON request template for firing actions on ChromeOs Device in Directory Devices API.
-   */
   export interface Schema$ChromeOsDeviceAction {
     /**
      * Action to be taken on the ChromeOs Device
@@ -656,7 +649,7 @@ export namespace admin_directory_v1 {
     deprovisionReason?: string | null;
   }
   /**
-   * JSON response template for List Chrome OS Devices operation in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ChromeOsDevices {
     /**
@@ -676,9 +669,6 @@ export namespace admin_directory_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * JSON request template for moving ChromeOs Device to given OU in Directory Devices API.
-   */
   export interface Schema$ChromeOsMoveDevicesToOu {
     /**
      * ChromeOs Devices to be moved to OU
@@ -686,7 +676,7 @@ export namespace admin_directory_v1 {
     deviceIds?: string[] | null;
   }
   /**
-   * JSON template for Customer Resource object in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Customer {
     /**
@@ -727,7 +717,7 @@ export namespace admin_directory_v1 {
     postalAddress?: Schema$CustomerPostalAddress;
   }
   /**
-   * JSON template for postal address of a customer.
+   * STEPLADDER: Generated unstable field number for field &#39;address_line2&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;address_line3&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$CustomerPostalAddress {
     /**
@@ -759,7 +749,7 @@ export namespace admin_directory_v1 {
      */
     organizationName?: string | null;
     /**
-     * The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element.
+     * The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http: //portablecontacts.net/draft-spec.html#address_element.
      */
     postalCode?: string | null;
     /**
@@ -767,9 +757,6 @@ export namespace admin_directory_v1 {
      */
     region?: string | null;
   }
-  /**
-   * JSON template for Domain Alias object in Directory API.
-   */
   export interface Schema$DomainAlias {
     /**
      * The creation time of the domain alias. (Read-only).
@@ -796,9 +783,6 @@ export namespace admin_directory_v1 {
      */
     verified?: boolean | null;
   }
-  /**
-   * JSON response template to list domain aliases in Directory API.
-   */
   export interface Schema$DomainAliases {
     /**
      * List of domain alias objects.
@@ -813,9 +797,6 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
   }
-  /**
-   * JSON template for Domain object in Directory API.
-   */
   export interface Schema$Domains {
     /**
      * Creation time of the domain. (Read-only).
@@ -846,9 +827,6 @@ export namespace admin_directory_v1 {
      */
     verified?: boolean | null;
   }
-  /**
-   * JSON response template to list Domains in Directory API.
-   */
   export interface Schema$Domains2 {
     /**
      * List of domain objects.
@@ -881,7 +859,7 @@ export namespace admin_directory_v1 {
     name?: string | null;
   }
   /**
-   * JSON template for a &quot;feature instance&quot;.
+   * JSON template for a feature instance.
    */
   export interface Schema$FeatureInstance {
     /**
@@ -889,9 +867,6 @@ export namespace admin_directory_v1 {
      */
     feature?: Schema$Feature;
   }
-  /**
-   * JSON request template for renaming a feature.
-   */
   export interface Schema$FeatureRename {
     /**
      * New name of the feature.
@@ -899,7 +874,7 @@ export namespace admin_directory_v1 {
     newName?: string | null;
   }
   /**
-   * JSON template for Feature List Response object in Directory API.
+   * Public API: Resources.features
    */
   export interface Schema$Features {
     /**
@@ -920,7 +895,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Group resource in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Group {
     /**
@@ -965,7 +940,7 @@ export namespace admin_directory_v1 {
     nonEditableAliases?: string[] | null;
   }
   /**
-   * JSON response template for List Groups operation in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Groups {
     /**
@@ -985,9 +960,6 @@ export namespace admin_directory_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * JSON template for Member resource in Directory API.
-   */
   export interface Schema$Member {
     /**
      * Delivery settings of member
@@ -1002,7 +974,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The unique ID of the group member. A member id can be used as a member request URI&#39;s memberKey. Unique identifier of group (Read-only) Unique identifier of member (Read-only)
+     * Unique identifier of group (Read-only) Unique identifier of member (Read-only) The unique ID of the group member. A member id can be used as a member request URI&#39;s memberKey.
      */
     id?: string | null;
     /**
@@ -1022,9 +994,6 @@ export namespace admin_directory_v1 {
      */
     type?: string | null;
   }
-  /**
-   * JSON response template for List Members operation in Directory API.
-   */
   export interface Schema$Members {
     /**
      * ETag of the resource.
@@ -1048,13 +1017,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$MembersHasMember {
     /**
-     * Identifies whether the given user is a member of the group. Membership can be direct or nested.
+     * Output only. Identifies whether the given user is a member of the group. Membership can be direct or nested.
      */
     isMember?: boolean | null;
   }
-  /**
-   * JSON template for Mobile Device resource in Directory API.
-   */
   export interface Schema$MobileDevice {
     /**
      * Adb (USB debugging) enabled or disabled on device (Read-only)
@@ -1223,18 +1189,12 @@ export namespace admin_directory_v1 {
      */
     wifiMacAddress?: string | null;
   }
-  /**
-   * JSON request template for firing commands on Mobile Device in Directory Devices API.
-   */
   export interface Schema$MobileDeviceAction {
     /**
      * Action to be taken on the Mobile Device
      */
     action?: string | null;
   }
-  /**
-   * JSON response template for List Mobile Devices operation in Directory API.
-   */
   export interface Schema$MobileDevices {
     /**
      * ETag of the resource.
@@ -1254,66 +1214,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Template for a notification resource.
-   */
-  export interface Schema$Notification {
-    /**
-     * Body of the notification (Read-only)
-     */
-    body?: string | null;
-    /**
-     * ETag of the resource.
-     */
-    etag?: string | null;
-    /**
-     * Address from which the notification is received (Read-only)
-     */
-    fromAddress?: string | null;
-    /**
-     * Boolean indicating whether the notification is unread or not.
-     */
-    isUnread?: boolean | null;
-    /**
-     * The type of the resource.
-     */
-    kind?: string | null;
-    notificationId?: string | null;
-    /**
-     * Time at which notification was sent (Read-only)
-     */
-    sendTime?: string | null;
-    /**
-     * Subject of the notification (Read-only)
-     */
-    subject?: string | null;
-  }
-  /**
-   * Template for notifications list response.
-   */
-  export interface Schema$Notifications {
-    /**
-     * ETag of the resource.
-     */
-    etag?: string | null;
-    /**
-     * List of notifications in this page.
-     */
-    items?: Schema$Notification[];
-    /**
-     * The type of the resource.
-     */
-    kind?: string | null;
-    /**
-     * Token for fetching the next page of notifications.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Number of unread notification for the domain.
-     */
-    unreadNotificationsCount?: number | null;
-  }
-  /**
-   * JSON template for Org Unit resource in Directory API.
+   * JSON template for Org Unit resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$OrgUnit {
     /**
@@ -1354,7 +1255,7 @@ export namespace admin_directory_v1 {
     parentOrgUnitPath?: string | null;
   }
   /**
-   * JSON response template for List Organization Units operation in Directory API.
+   * JSON response template for List Organization Units operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$OrgUnits {
     /**
@@ -1370,9 +1271,6 @@ export namespace admin_directory_v1 {
      */
     organizationUnits?: Schema$OrgUnit[];
   }
-  /**
-   * JSON template for privilege resource in Directory API.
-   */
   export interface Schema$Privilege {
     /**
      * A list of child privileges. Privileges for a service form a tree. Each privilege can have a list of child privileges; this list is empty for a leaf privilege.
@@ -1403,9 +1301,6 @@ export namespace admin_directory_v1 {
      */
     serviceName?: string | null;
   }
-  /**
-   * JSON response template for List privileges operation in Directory API.
-   */
   export interface Schema$Privileges {
     /**
      * ETag of the resource.
@@ -1420,9 +1315,6 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
   }
-  /**
-   * JSON template for role resource in Directory API.
-   */
   export interface Schema$Role {
     /**
      * ETag of the resource.
@@ -1457,9 +1349,6 @@ export namespace admin_directory_v1 {
      */
     rolePrivileges?: Array<{privilegeName?: string; serviceId?: string}> | null;
   }
-  /**
-   * JSON template for roleAssignment resource in Directory API.
-   */
   export interface Schema$RoleAssignment {
     /**
      * The unique ID of the user this role is assigned to.
@@ -1486,13 +1375,10 @@ export namespace admin_directory_v1 {
      */
     roleId?: string | null;
     /**
-     * The scope in which this role is assigned. Possible values are:  - CUSTOMER - ORG_UNIT
+     * The scope in which this role is assigned. Possible values are: - CUSTOMER - ORG_UNIT
      */
     scopeType?: string | null;
   }
-  /**
-   * JSON response template for List roleAssignments operation in Directory API.
-   */
   export interface Schema$RoleAssignments {
     /**
      * ETag of the resource.
@@ -1503,14 +1389,11 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$RoleAssignment[];
     /**
-     * The type of the API resource. This is always admin#directory#roleAssignments.
+     * The type of the API resource. This is always admin#directory#roleAssignments .
      */
     kind?: string | null;
     nextPageToken?: string | null;
   }
-  /**
-   * JSON response template for List roles operation in Directory API.
-   */
   export interface Schema$Roles {
     /**
      * ETag of the resource.
@@ -1527,7 +1410,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Schema resource in Directory API.
+   * JSON template for Schema resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Schema {
     /**
@@ -1556,7 +1439,7 @@ export namespace admin_directory_v1 {
     schemaName?: string | null;
   }
   /**
-   * JSON template for FieldSpec resource for Schemas in Directory API.
+   * JSON template for FieldSpec resource for Schemas in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$SchemaFieldSpec {
     /**
@@ -1601,7 +1484,7 @@ export namespace admin_directory_v1 {
     readAccessType?: string | null;
   }
   /**
-   * JSON response template for List Schema operation in Directory API.
+   * JSON response template for List Schema operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Schemas {
     /**
@@ -1618,7 +1501,7 @@ export namespace admin_directory_v1 {
     schemas?: Schema$Schema[];
   }
   /**
-   * JSON template for token resource in Directory API.
+   * JSON template for token resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Token {
     /**
@@ -1655,7 +1538,7 @@ export namespace admin_directory_v1 {
     userKey?: string | null;
   }
   /**
-   * JSON response template for List tokens operation in Directory API.
+   * JSON response template for List tokens operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Tokens {
     /**
@@ -1672,16 +1555,19 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * JSON template for User object in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;external_ids&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;relations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;addresses&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;organizations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;phones&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;languages&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;posix_accounts&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;ssh_public_keys&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;notes&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;websites&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;locations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;keywords&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;gender&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;thumbnail_photo_etag&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$User {
+    /**
+     * Addresses of User
+     */
     addresses?: any | null;
     /**
-     * Indicates if user has agreed to terms (Read-only)
+     * Output only. Indicates if user has agreed to terms (Read-only)
      */
     agreedToTerms?: boolean | null;
     /**
-     * List of aliases (Read-only)
+     * Output only. List of aliases (Read-only)
      */
     aliases?: string[] | null;
     /**
@@ -1697,7 +1583,7 @@ export namespace admin_directory_v1 {
      */
     creationTime?: string | null;
     /**
-     * CustomerId of User (Read-only)
+     * Output only. CustomerId of User (Read-only)
      */
     customerId?: string | null;
     /**
@@ -1705,12 +1591,21 @@ export namespace admin_directory_v1 {
      */
     customSchemas?: {[key: string]: Schema$UserCustomProperties} | null;
     deletionTime?: string | null;
+    /**
+     * Emails of User
+     */
     emails?: any | null;
     /**
-     * ETag of the resource.
+     * Output only. ETag of the resource.
      */
     etag?: string | null;
+    /**
+     * The external Ids of User *
+     */
     externalIds?: any | null;
+    /**
+     * Gender of User
+     */
     gender?: any | null;
     /**
      * Hash function name for password. Supported are MD5, SHA-1 and crypt
@@ -1720,6 +1615,9 @@ export namespace admin_directory_v1 {
      * Unique identifier of User (Read-only)
      */
     id?: string | null;
+    /**
+     * User&#39;s Instant Messenger
+     */
     ims?: any | null;
     /**
      * Boolean indicating if user is included in Global Address List
@@ -1730,45 +1628,60 @@ export namespace admin_directory_v1 {
      */
     ipWhitelisted?: boolean | null;
     /**
-     * Boolean indicating if the user is admin (Read-only)
+     * Output only. Boolean indicating if the user is admin (Read-only)
      */
     isAdmin?: boolean | null;
     /**
-     * Boolean indicating if the user is delegated admin (Read-only)
+     * Output only. Boolean indicating if the user is delegated admin (Read-only)
      */
     isDelegatedAdmin?: boolean | null;
     /**
-     * Is 2-step verification enforced (Read-only)
+     * Output only. Is 2-step verification enforced (Read-only)
      */
     isEnforcedIn2Sv?: boolean | null;
     /**
-     * Is enrolled in 2-step verification (Read-only)
+     * Output only. Is enrolled in 2-step verification (Read-only)
      */
     isEnrolledIn2Sv?: boolean | null;
     /**
-     * Is mailbox setup (Read-only)
+     * Output only. Is mailbox setup (Read-only)
      */
     isMailboxSetup?: boolean | null;
+    /**
+     * Keywords of User
+     */
     keywords?: any | null;
     /**
-     * Kind of resource this is.
+     * Output only. Kind of resource this is.
      */
     kind?: string | null;
+    /**
+     * Languages of User
+     */
     languages?: any | null;
     /**
      * User&#39;s last login time. (Read-only)
      */
     lastLoginTime?: string | null;
+    /**
+     * Locations of User
+     */
     locations?: any | null;
     /**
      * User&#39;s name
      */
     name?: Schema$UserName;
     /**
-     * List of non editable aliases (Read-only)
+     * Output only. List of non editable aliases (Read-only)
      */
     nonEditableAliases?: string[] | null;
+    /**
+     * Notes of User
+     */
     notes?: any | null;
+    /**
+     * Organizations of User
+     */
     organizations?: any | null;
     /**
      * OrgUnit of User
@@ -1778,7 +1691,13 @@ export namespace admin_directory_v1 {
      * User&#39;s password
      */
     password?: string | null;
+    /**
+     * Phone numbers of User
+     */
     phones?: any | null;
+    /**
+     * The POSIX accounts of User
+     */
     posixAccounts?: any | null;
     /**
      * username of User
@@ -1789,27 +1708,36 @@ export namespace admin_directory_v1 {
      */
     recoveryEmail?: string | null;
     /**
-     * Recovery phone of the user. The phone number must be in the E.164 format, starting with the plus sign (+). Example: +16506661212.
+     * Recovery phone of the user. The phone number must be in the E.164 format, starting with the plus sign (+). Example: *+16506661212*.
      */
     recoveryPhone?: string | null;
+    /**
+     * The Relations of User *
+     */
     relations?: any | null;
+    /**
+     * The SSH public keys of User
+     */
     sshPublicKeys?: any | null;
     /**
      * Indicates if user is suspended.
      */
     suspended?: boolean | null;
     /**
-     * Suspension reason if user is suspended (Read-only)
+     * Output only. Suspension reason if user is suspended (Read-only)
      */
     suspensionReason?: string | null;
     /**
-     * ETag of the user&#39;s photo (Read-only)
+     * Output only. ETag of the user&#39;s photo (Read-only)
      */
     thumbnailPhotoEtag?: string | null;
     /**
-     * Photo Url of the user (Read-only)
+     * Output only. Photo Url of the user (Read-only)
      */
     thumbnailPhotoUrl?: string | null;
+    /**
+     * Websites of User
+     */
     websites?: any | null;
   }
   /**
@@ -1870,7 +1798,7 @@ export namespace admin_directory_v1 {
      */
     region?: string | null;
     /**
-     * User supplied address was structured. Structured addresses are NOT supported at this time. You might be able to write structured addresses, but any values will eventually be clobbered.
+     * User supplied address was structured. Structured addresses are NOT supported at this time. You might be able to write structured addresses but any values will eventually be clobbered.
      */
     sourceIsStructured?: boolean | null;
     /**
@@ -1878,7 +1806,7 @@ export namespace admin_directory_v1 {
      */
     streetAddress?: string | null;
     /**
-     * Each entry can have a type which indicates standard values of that entry. For example address could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard values of that entry. For example address could be of home work etc. In addition to the standard type an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
   }
@@ -1926,7 +1854,7 @@ export namespace admin_directory_v1 {
   }
   export interface Schema$UserGender {
     /**
-     * AddressMeAs. A human-readable string containing the proper way to refer to the profile owner by humans, for example &quot;he/him/his&quot; or &quot;they/them/their&quot;.
+     * AddressMeAs. A human-readable string containing the proper way to refer to the profile owner by humans for example he/him/his or they/them/their.
      */
     addressMeAs?: string | null;
     /**
@@ -1959,11 +1887,11 @@ export namespace admin_directory_v1 {
      */
     primary?: boolean | null;
     /**
-     * Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and specify the custom name in customProtocol field.
+     * Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type it can take a CUSTOM value and specify the custom name in customProtocol field.
      */
     protocol?: string | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home work etc. In addition to the standard type an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
   }
@@ -1976,7 +1904,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string | null;
     /**
-     * Each entry can have a type which indicates standard type of that entry. For example, keyword could be of type occupation or outlook. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard type of that entry. For example keyword could be of type occupation or outlook. In addition to the standard type an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
     /**
@@ -2002,7 +1930,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLocation {
     /**
-     * Textual location. This is most useful for display purposes to concisely describe the location. For example, &quot;Mountain View, CA&quot;, &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
+     * Textual location. This is most useful for display purposes to concisely describe the location. For example &#39;Mountain View, CA&#39;, &#39;Near Seattle&#39;, &#39;US-NYC-9TH 9A209A.&#39;&#39;
      */
     area?: string | null;
     /**
@@ -2022,26 +1950,20 @@ export namespace admin_directory_v1 {
      */
     floorName?: string | null;
     /**
-     * Floor section. More specific location within the floor. For example, if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
+     * Floor section. More specific location within the floor. For example if a floor is divided into sections &#39;A&#39;, &#39;B&#39; and &#39;C&#39; this field would identify one of those values.
      */
     floorSection?: string | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type an entry can have a custom type and can give it any name. Such types should have &#39;custom&#39; as type and also have a customType value.
      */
     type?: string | null;
   }
-  /**
-   * JSON request template for setting/revoking admin status of a user in Directory API.
-   */
   export interface Schema$UserMakeAdmin {
     /**
      * Boolean indicating new admin status of the user
      */
     status?: boolean | null;
   }
-  /**
-   * JSON template for name of a user in Directory API.
-   */
   export interface Schema$UserName {
     /**
      * Last Name
@@ -2105,7 +2027,7 @@ export namespace admin_directory_v1 {
      */
     title?: string | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example organization could be of school, work etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
+     * Each entry can have a type which indicates standard types of that entry. For example organization could be of school work etc. In addition to the standard type an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
      */
     type?: string | null;
   }
@@ -2122,7 +2044,7 @@ export namespace admin_directory_v1 {
      */
     primary?: boolean | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax, work, mobile etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax work mobile etc. In addition to the standard type an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
     /**
@@ -2131,7 +2053,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * JSON template for Photo object in Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$UserPhoto {
     /**
@@ -2221,7 +2143,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string | null;
     /**
-     * The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
+     * The relation of the user. Some of the possible values are mother father sister brother manager assistant partner.
      */
     type?: string | null;
     /**
@@ -2230,7 +2152,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * JSON response template for List Users operation in Apps Directory API.
+   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Users {
     /**
@@ -2271,9 +2193,6 @@ export namespace admin_directory_v1 {
      */
     key?: string | null;
   }
-  /**
-   * JSON request template to undelete a user in Directory API.
-   */
   export interface Schema$UserUndelete {
     /**
      * OrgUnit of User
@@ -2293,7 +2212,7 @@ export namespace admin_directory_v1 {
      */
     primary?: boolean | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example website could be of home work blog etc. In addition to the standard type an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
     /**
@@ -2302,7 +2221,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * JSON template for verification codes in Directory API.
+   * JSON template for verification codes in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$VerificationCode {
     /**
@@ -2323,7 +2242,7 @@ export namespace admin_directory_v1 {
     verificationCode?: string | null;
   }
   /**
-   * JSON response template for List verification codes operation in Directory API.
+   * JSON response template for List verification codes operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$VerificationCodes {
     /**
@@ -2777,7 +2696,7 @@ export namespace admin_directory_v1 {
 
     /**
      * admin.channels.stop
-     * @desc Stop watching resources through this channel
+     * @desc Stop watching resources through this channel.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2798,7 +2717,6 @@ export namespace admin_directory_v1 {
      *       'https://www.googleapis.com/auth/admin.directory.user.alias',
      *       'https://www.googleapis.com/auth/admin.directory.user.alias.readonly',
      *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
-     *       'https://www.googleapis.com/auth/cloud-platform',
      *     ],
      *   });
      *
@@ -2895,9 +2813,10 @@ export namespace admin_directory_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/admin/directory/v1/admin/directory_v1/channels/stop'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/admin/directory_v1/channels/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -3275,7 +3194,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.chromeosdevices.list({
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
-     *     // Maximum number of results to return. Max allowed value is 200.
+     *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Column to use for sorting results
      *     orderBy: 'placeholder-value',
@@ -3285,7 +3204,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format provided by this Help Center article.
+     *     // Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -3311,12 +3230,12 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
+     * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format provided by this Help Center article.
+     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3539,7 +3458,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.chromeosdevices.patch
-     * @desc Update Chrome OS Device. This method supports patch semantics.
+     * @desc Patch Chrome OS Device
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4008,7 +3927,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * Maximum number of results to return. Max allowed value is 200.
+     * Maximum number of results to return.
      */
     maxResults?: number;
     /**
@@ -4028,7 +3947,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format provided by this Help Center article.
+     * Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      */
     query?: string;
     /**
@@ -4241,7 +4160,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.customers.patch
-     * @desc Updates a customer. This method supports patch semantics.
+     * @desc Patch Customers via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4585,7 +4504,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.domainAliases.delete
-     * @desc Deletes a Domain Alias of the customer.
+     * @desc Deletes a domain Alias of the customer.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4854,7 +4773,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.domainAliases.insert
-     * @desc Inserts a Domain alias of the customer.
+     * @desc Inserts a domain alias of the customer.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6249,7 +6168,7 @@ export namespace admin_directory_v1 {
      *     orderBy: 'placeholder-value',
      *     // Token to specify next page in the list
      *     pageToken: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -6275,13 +6194,13 @@ export namespace admin_directory_v1 {
      * @alias directory.groups.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
      * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If it's an ID, it should match with the ID of the user object.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6368,7 +6287,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.groups.patch
-     * @desc Update Group. This method supports patch semantics.
+     * @desc Patch Groups via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6721,7 +6640,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
      */
     query?: string;
     /**
@@ -7927,7 +7846,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.members.patch
-     * @desc Update membership of a user in the specified group. This method supports patch semantics.
+     * @desc Patch Member via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8824,7 +8743,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.mobiledevices.list({
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
-     *     // Maximum number of results to return.
+     *     // Maximum number of results to return. Max allowed value is 100.
      *     maxResults: 'placeholder-value',
      *     // Column to use for sorting results
      *     orderBy: 'placeholder-value',
@@ -8832,7 +8751,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format provided by this Help Center article.
+     *     // Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -8858,11 +8777,11 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 100.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format provided by this Help Center article.
+     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8997,7 +8916,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * Maximum number of results to return.
+     * Maximum number of results to return. Max allowed value is 100.
      */
     maxResults?: number;
     /**
@@ -9013,819 +8932,13 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format provided by this Help Center article.
+     * Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      */
     query?: string;
     /**
      * Whether to return results in ascending or descending order. Only of use when orderBy is also used
      */
     sortOrder?: string;
-  }
-
-  export class Resource$Notifications {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * directory.notifications.delete
-     * @desc Deletes a notification
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const admin = google.admin('directory_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await directory.notifications.delete({
-     *     // The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     *     customer: 'placeholder-value',
-     *     // The unique ID of the notification.
-     *     notificationId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias directory.notifications.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-      params: Params$Resource$Notifications$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Notifications$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    delete(
-      params: Params$Resource$Notifications$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Notifications$Delete,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    delete(
-      params: Params$Resource$Notifications$Delete,
-      callback: BodyResponseCallback<void>
-    ): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Notifications$Delete
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Notifications$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Notifications$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/admin/directory/v1/customer/{customer}/notifications/{notificationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
-     * directory.notifications.get
-     * @desc Retrieves a notification.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const admin = google.admin('directory_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await directory.notifications.get({
-     *     // The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     *     customer: 'placeholder-value',
-     *     // The unique ID of the notification.
-     *     notificationId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "etag": "my_etag",
-     *   //   "fromAddress": "my_fromAddress",
-     *   //   "isUnread": false,
-     *   //   "kind": "my_kind",
-     *   //   "notificationId": "my_notificationId",
-     *   //   "sendTime": "my_sendTime",
-     *   //   "subject": "my_subject"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias directory.notifications.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Notifications$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Notifications$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
-    get(
-      params: Params$Resource$Notifications$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Notifications$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Notification>,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    get(
-      params: Params$Resource$Notifications$Get,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Notification>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Notifications$Get
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Notifications$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Notifications$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/admin/directory/v1/customer/{customer}/notifications/{notificationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Notification>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Notification>(parameters);
-      }
-    }
-
-    /**
-     * directory.notifications.list
-     * @desc Retrieves a list of notifications.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const admin = google.admin('directory_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await directory.notifications.list({
-     *     // The unique ID for the customer's G Suite account.
-     *     customer: 'placeholder-value',
-     *     // The ISO 639-1 code of the language notifications are returned in. The default is English (en).
-     *     language: 'placeholder-value',
-     *     // Maximum number of notifications to return per page. The default is 100.
-     *     maxResults: 'placeholder-value',
-     *     // The token to specify the page of results to retrieve.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreadNotificationsCount": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias directory.notifications.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
-     * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
-     * @param {string=} params.pageToken The token to specify the page of results to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Notifications$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Notifications$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Notifications>;
-    list(
-      params: Params$Resource$Notifications$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Notifications$List,
-      options: MethodOptions | BodyResponseCallback<Schema$Notifications>,
-      callback: BodyResponseCallback<Schema$Notifications>
-    ): void;
-    list(
-      params: Params$Resource$Notifications$List,
-      callback: BodyResponseCallback<Schema$Notifications>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$Notifications>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Notifications$List
-        | BodyResponseCallback<Schema$Notifications>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Notifications>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Notifications>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notifications> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Notifications$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Notifications$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/admin/directory/v1/customer/{customer}/notifications'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Notifications>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Notifications>(parameters);
-      }
-    }
-
-    /**
-     * directory.notifications.patch
-     * @desc Updates a notification. This method supports patch semantics.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const admin = google.admin('directory_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await directory.notifications.patch({
-     *     // The unique ID for the customer's G Suite account.
-     *     customer: 'placeholder-value',
-     *     // The unique ID of the notification.
-     *     notificationId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "body": "my_body",
-     *       //   "etag": "my_etag",
-     *       //   "fromAddress": "my_fromAddress",
-     *       //   "isUnread": false,
-     *       //   "kind": "my_kind",
-     *       //   "notificationId": "my_notificationId",
-     *       //   "sendTime": "my_sendTime",
-     *       //   "subject": "my_subject"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "etag": "my_etag",
-     *   //   "fromAddress": "my_fromAddress",
-     *   //   "isUnread": false,
-     *   //   "kind": "my_kind",
-     *   //   "notificationId": "my_notificationId",
-     *   //   "sendTime": "my_sendTime",
-     *   //   "subject": "my_subject"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias directory.notifications.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {().Notification} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params: Params$Resource$Notifications$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Notifications$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
-    patch(
-      params: Params$Resource$Notifications$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Notifications$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Notification>,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    patch(
-      params: Params$Resource$Notifications$Patch,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Notification>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Notifications$Patch
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Notifications$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Notifications$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/admin/directory/v1/customer/{customer}/notifications/{notificationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Notification>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Notification>(parameters);
-      }
-    }
-
-    /**
-     * directory.notifications.update
-     * @desc Updates a notification.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const admin = google.admin('directory_v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admin.directory.notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await directory.notifications.update({
-     *     // The unique ID for the customer's G Suite account.
-     *     customer: 'placeholder-value',
-     *     // The unique ID of the notification.
-     *     notificationId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "body": "my_body",
-     *       //   "etag": "my_etag",
-     *       //   "fromAddress": "my_fromAddress",
-     *       //   "isUnread": false,
-     *       //   "kind": "my_kind",
-     *       //   "notificationId": "my_notificationId",
-     *       //   "sendTime": "my_sendTime",
-     *       //   "subject": "my_subject"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "etag": "my_etag",
-     *   //   "fromAddress": "my_fromAddress",
-     *   //   "isUnread": false,
-     *   //   "kind": "my_kind",
-     *   //   "notificationId": "my_notificationId",
-     *   //   "sendTime": "my_sendTime",
-     *   //   "subject": "my_subject"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias directory.notifications.update
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {().Notification} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update(
-      params: Params$Resource$Notifications$Update,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    update(
-      params?: Params$Resource$Notifications$Update,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
-    update(
-      params: Params$Resource$Notifications$Update,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    update(
-      params: Params$Resource$Notifications$Update,
-      options: MethodOptions | BodyResponseCallback<Schema$Notification>,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    update(
-      params: Params$Resource$Notifications$Update,
-      callback: BodyResponseCallback<Schema$Notification>
-    ): void;
-    update(callback: BodyResponseCallback<Schema$Notification>): void;
-    update(
-      paramsOrCallback?:
-        | Params$Resource$Notifications$Update
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Notification>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Notifications$Update;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Notifications$Update;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/admin/directory/v1/customer/{customer}/notifications/{notificationId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PUT',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Notification>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Notification>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Notifications$Delete
-    extends StandardParameters {
-    /**
-     * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     */
-    customer?: string;
-    /**
-     * The unique ID of the notification.
-     */
-    notificationId?: string;
-  }
-  export interface Params$Resource$Notifications$Get
-    extends StandardParameters {
-    /**
-     * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     */
-    customer?: string;
-    /**
-     * The unique ID of the notification.
-     */
-    notificationId?: string;
-  }
-  export interface Params$Resource$Notifications$List
-    extends StandardParameters {
-    /**
-     * The unique ID for the customer's G Suite account.
-     */
-    customer?: string;
-    /**
-     * The ISO 639-1 code of the language notifications are returned in. The default is English (en).
-     */
-    language?: string;
-    /**
-     * Maximum number of notifications to return per page. The default is 100.
-     */
-    maxResults?: number;
-    /**
-     * The token to specify the page of results to retrieve.
-     */
-    pageToken?: string;
-  }
-  export interface Params$Resource$Notifications$Patch
-    extends StandardParameters {
-    /**
-     * The unique ID for the customer's G Suite account.
-     */
-    customer?: string;
-    /**
-     * The unique ID of the notification.
-     */
-    notificationId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Notification;
-  }
-  export interface Params$Resource$Notifications$Update
-    extends StandardParameters {
-    /**
-     * The unique ID for the customer's G Suite account.
-     */
-    customer?: string;
-    /**
-     * The unique ID of the notification.
-     */
-    notificationId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Notification;
   }
 
   export class Resource$Orgunits {
@@ -9864,7 +8977,7 @@ export namespace admin_directory_v1 {
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
      *     // Full path of the organizational unit or its ID
-     *     orgUnitPath: 'placeholder-value',
+     *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
      * }
@@ -9939,7 +9052,7 @@ export namespace admin_directory_v1 {
           {
             url: (
               rootUrl +
-              '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}'
+              '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -9993,7 +9106,7 @@ export namespace admin_directory_v1 {
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
      *     // Full path of the organizational unit or its ID
-     *     orgUnitPath: 'placeholder-value',
+     *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
      *
@@ -10083,7 +9196,7 @@ export namespace admin_directory_v1 {
           {
             url: (
               rootUrl +
-              '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}'
+              '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10400,7 +9513,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.orgunits.patch
-     * @desc Update organizational unit. This method supports patch semantics.
+     * @desc Patch organization unit via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10428,7 +9541,7 @@ export namespace admin_directory_v1 {
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
      *     // Full path of the organizational unit or its ID
-     *     orgUnitPath: 'placeholder-value',
+     *     orgUnitPath: '.*',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10535,7 +9648,7 @@ export namespace admin_directory_v1 {
           {
             url: (
               rootUrl +
-              '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}'
+              '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10586,7 +9699,7 @@ export namespace admin_directory_v1 {
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
      *     // Full path of the organizational unit or its ID
-     *     orgUnitPath: 'placeholder-value',
+     *     orgUnitPath: '.*',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10693,7 +9806,7 @@ export namespace admin_directory_v1 {
           {
             url: (
               rootUrl +
-              '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}'
+              '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -10723,7 +9836,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string[];
+    orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
     /**
@@ -10733,7 +9846,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string[];
+    orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
@@ -10768,7 +9881,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string[];
+    orgUnitPath?: string;
 
     /**
      * Request body metadata
@@ -10783,7 +9896,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string[];
+    orgUnitPath?: string;
 
     /**
      * Request body metadata
@@ -10988,7 +10101,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.buildings.delete({
-     *     // The ID of the building to delete.
+     *     // The id of the building to delete.
      *     buildingId: 'placeholder-value',
      *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
@@ -11005,7 +10118,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.buildingId The ID of the building to delete.
+     * @param {string} params.buildingId The id of the building to delete.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11536,7 +10649,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.buildings.patch
-     * @desc Updates a building. This method supports patch semantics.
+     * @desc Patches a building via Apiary Patch Orchestration.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11563,7 +10676,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.buildings.patch({
-     *     // The ID of the building to update.
+     *     // The id of the building to update.
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
@@ -11609,7 +10722,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.buildingId The ID of the building to update.
+     * @param {string} params.buildingId The id of the building to update.
      * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {().Building} params.requestBody Request body data
@@ -11725,7 +10838,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.buildings.update({
-     *     // The ID of the building to update.
+     *     // The id of the building to update.
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
@@ -11771,7 +10884,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.buildingId The ID of the building to update.
+     * @param {string} params.buildingId The id of the building to update.
      * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {().Building} params.requestBody Request body data
@@ -11862,7 +10975,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$Delete
     extends StandardParameters {
     /**
-     * The ID of the building to delete.
+     * The id of the building to delete.
      */
     buildingId?: string;
     /**
@@ -11915,7 +11028,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$Patch
     extends StandardParameters {
     /**
-     * The ID of the building to update.
+     * The id of the building to update.
      */
     buildingId?: string;
     /**
@@ -11935,7 +11048,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$Update
     extends StandardParameters {
     /**
-     * The ID of the building to update.
+     * The id of the building to update.
      */
     buildingId?: string;
     /**
@@ -12447,7 +11560,7 @@ export namespace admin_directory_v1 {
      *     orderBy: 'placeholder-value',
      *     // Token to specify the next page in the list.
      *     pageToken: 'placeholder-value',
-     *     // String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     *     // String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12474,7 +11587,7 @@ export namespace admin_directory_v1 {
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
      * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12563,7 +11676,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.calendars.patch
-     * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved. This method supports patch semantics.
+     * @desc Patches a calendar resource via Apiary Patch Orchestration.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12736,7 +11849,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.calendars.update
-     * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
+     * @desc Updates a calendar resource. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12961,7 +12074,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     * String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
      */
     query?: string;
   }
@@ -13563,7 +12676,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.features.patch
-     * @desc Updates a feature. This method supports patch semantics.
+     * @desc Patches a feature via Apiary Patch Orchestration.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15300,7 +14413,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.roles.patch
-     * @desc Updates a role. This method supports patch semantics.
+     * @desc Patch role via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16242,7 +15355,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.schemas.patch
-     * @desc Update schema. This method supports patch semantics.
+     * @desc Patch Schema via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17624,8 +16737,6 @@ export namespace admin_directory_v1 {
      *     customFieldMask: 'placeholder-value',
      *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      *     domain: 'placeholder-value',
-     *     // Event on which subscription is intended (if subscribing)
-     *     event: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Column to use for sorting results
@@ -17634,7 +16745,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // What subset of fields to fetch for this user.
      *     projection: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
      *     query: 'placeholder-value',
      *     // If set to true, retrieves the list of deleted users. (Default: false)
      *     showDeleted: 'placeholder-value',
@@ -17663,16 +16774,15 @@ export namespace admin_directory_v1 {
      * @alias directory.users.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
      * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
@@ -17891,7 +17001,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.users.patch
-     * @desc update user. This method supports patch semantics.
+     * @desc Patch Users via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18499,7 +17609,6 @@ export namespace admin_directory_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/admin.directory.user',
      *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
-     *       'https://www.googleapis.com/auth/cloud-platform',
      *     ],
      *   });
      *
@@ -18511,28 +17620,10 @@ export namespace admin_directory_v1 {
      *   const res = await directory.users.watch({
      *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      *     customer: 'placeholder-value',
-     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     *     customFieldMask: 'placeholder-value',
-     *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      *     domain: 'placeholder-value',
-     *     // Event on which subscription is intended (if subscribing)
+     *     // Event on which subscription is intended
      *     event: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Column to use for sorting results
-     *     orderBy: 'placeholder-value',
-     *     // Token to specify next page in the list
-     *     pageToken: 'placeholder-value',
-     *     // What subset of fields to fetch for this user.
-     *     projection: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     *     query: 'placeholder-value',
-     *     // If set to true, retrieves the list of deleted users. (Default: false)
-     *     showDeleted: 'placeholder-value',
-     *     // Whether to return results in ascending or descending order.
-     *     sortOrder: 'placeholder-value',
-     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     *     viewType: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -18578,17 +17669,8 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
+     * @param {string=} params.event Event on which subscription is intended
      * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18717,10 +17799,6 @@ export namespace admin_directory_v1 {
      */
     domain?: string;
     /**
-     * Event on which subscription is intended (if subscribing)
-     */
-    event?: string;
-    /**
      * Maximum number of results to return.
      */
     maxResults?: number;
@@ -18737,7 +17815,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
      */
     query?: string;
     /**
@@ -18803,49 +17881,13 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
     /**
-     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     */
-    customFieldMask?: string;
-    /**
-     * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      */
     domain?: string;
     /**
-     * Event on which subscription is intended (if subscribing)
+     * Event on which subscription is intended
      */
     event?: string;
-    /**
-     * Maximum number of results to return.
-     */
-    maxResults?: number;
-    /**
-     * Column to use for sorting results
-     */
-    orderBy?: string;
-    /**
-     * Token to specify next page in the list
-     */
-    pageToken?: string;
-    /**
-     * What subset of fields to fetch for this user.
-     */
-    projection?: string;
-    /**
-     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     */
-    query?: string;
-    /**
-     * If set to true, retrieves the list of deleted users. (Default: false)
-     */
-    showDeleted?: string;
-    /**
-     * Whether to return results in ascending or descending order.
-     */
-    sortOrder?: string;
-    /**
-     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     */
-    viewType?: string;
 
     /**
      * Request body metadata
@@ -19170,8 +18212,6 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.list({
-     *     // Event on which subscription is intended (if subscribing)
-     *     event: 'placeholder-value',
      *     // Email or immutable ID of the user
      *     userKey: 'placeholder-value',
      *   });
@@ -19194,7 +18234,6 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
      * @param {string} params.userKey Email or immutable ID of the user
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19280,7 +18319,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.users.aliases.watch
-     * @desc Watch for changes in user aliases list
+     * @desc Watch for changes in users list
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -19469,10 +18508,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Aliases$List
     extends StandardParameters {
-    /**
-     * Event on which subscription is intended (if subscribing)
-     */
-    event?: string;
     /**
      * Email or immutable ID of the user
      */
@@ -19765,7 +18800,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.users.photos.patch
-     * @desc Add a photo for the user. This method supports patch semantics.
+     * @desc Patch Photo via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
