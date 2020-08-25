@@ -235,6 +235,23 @@ export namespace cloudkms_v1 {
     role?: string | null;
   }
   /**
+   * Certificate chains needed to verify the attestation. Certificates in chains are PEM-encoded and are ordered based on https://tools.ietf.org/html/rfc5246#section-7.4.2.
+   */
+  export interface Schema$CertificateChains {
+    /**
+     * Cavium certificate chain corresponding to the attestation.
+     */
+    caviumCerts?: string[] | null;
+    /**
+     * Google card certificate chain corresponding to the attestation.
+     */
+    googleCardCerts?: string[] | null;
+    /**
+     * Google partition certificate chain corresponding to the attestation.
+     */
+    googlePartitionCerts?: string[] | null;
+  }
+  /**
    * A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
    */
   export interface Schema$CryptoKey {
@@ -538,6 +555,10 @@ export namespace cloudkms_v1 {
    * Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).
    */
   export interface Schema$KeyOperationAttestation {
+    /**
+     * Output only. The certificate chains needed to validate the attestation
+     */
+    certChains?: Schema$CertificateChains;
     /**
      * Output only. The attestation data provided by the HSM when the key operation was performed.
      */
