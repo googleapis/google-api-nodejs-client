@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200821",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountWarning": {
@@ -1267,12 +1267,6 @@
         },
         "suppressedActionTypes": {
           "description": "Actions suppressed due to other actions with higher priority.",
-          "enumDescriptions": [
-            "Action type is unspecified.",
-            "Block sharing a file externally.",
-            "Show a warning message when sharing a file externally.",
-            "Send alert."
-          ],
           "items": {
             "enum": [
               "ACTION_TYPE_UNSPECIFIED",
@@ -1304,12 +1298,6 @@
         },
         "triggeredActionTypes": {
           "description": "Actions applied as a consequence of the rule being triggered.",
-          "enumDescriptions": [
-            "Action type is unspecified.",
-            "Block sharing a file externally.",
-            "Show a warning message when sharing a file externally.",
-            "Send alert."
-          ],
           "items": {
             "enum": [
               "ACTION_TYPE_UNSPECIFIED",

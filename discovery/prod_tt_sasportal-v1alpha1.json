@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20200813",
+  "revision": "20200821",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -1764,11 +1764,6 @@
         },
         "measurementCapabilities": {
           "description": "Measurement reporting capabilities of the device.",
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "MEASUREMENT_CAPABILITY_UNSPECIFIED",

@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/a4Ez9tiFRSeZTVCssBYotIRGffk\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/g_FXgEBUU2zytdB3NoOSx8Gl_nI\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3507,7 +3507,7 @@
       }
     }
   },
-  "revision": "20200723",
+  "revision": "20200811",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4681,7 +4681,7 @@
               "type": "boolean"
             },
             "canMoveChildrenWithinDrive": {
-              "description": "Whether the current user can move children of this folder within the shared drive. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Whether the current user can move children of this folder within this drive. This is false when the item is not a folder. Note that a request to move the child may still fail depending on the current user's access to the child and to the destination folder.",
               "type": "boolean"
             },
             "canMoveChildrenWithinTeamDrive": {
@@ -4701,7 +4701,7 @@
               "type": "boolean"
             },
             "canMoveItemWithinDrive": {
-              "description": "Whether the current user can move this item within this shared drive. Note that a request to change the parent of the item may still fail depending on the new parent that is being added. Only populated for items in shared drives.",
+              "description": "Whether the current user can move this item within this drive. Note that a request to change the parent of the item may still fail depending on the new parent that is being added and the parent that is being removed.",
               "type": "boolean"
             },
             "canMoveItemWithinTeamDrive": {
