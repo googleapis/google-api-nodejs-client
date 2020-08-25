@@ -63,4 +63,5 @@ export abstract class Utils {
 
   static readonly noop = () => undefined;
   static readonly baseUrl = 'https://www.googleapis.com';
+  static readonly gmailUrl = 'https://gmail.googleapis.com';
 }

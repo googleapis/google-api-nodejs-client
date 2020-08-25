@@ -216,7 +216,7 @@ describe('Query params', () => {
   });
 
   it('should handle multi-value query params properly', async () => {
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .get(
         '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date'
       )
@@ -231,7 +231,7 @@ describe('Query params', () => {
       'metadataHeaders=To&metadataHeaders=Date'
     );
 
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .get(
         '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date'
       )
