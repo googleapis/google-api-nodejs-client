@@ -12,7 +12,7 @@
   "baseUrl": "https://apigee.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Apigee",
-  "description": "The Apigee API lets you programmatically manage Apigee hybrid with a set of RESTful operations, including: - Create, edit, and delete API proxies - Manage users - Deploy and undeploy proxy revisions - Configure environments For information on using the APIs described in this section, see Get started using the APIs. *Note:* This product is available as a free trial for a time period of 60 days.",
+  "description": "Use the Apigee API to programmatically develop and manage APIs with a set of RESTful operations. Develop and secure API proxies, deploy and undeploy API proxy revisions, monitor APIs, configure environments, manage users, and more. Get started using the APIs. *Note:* This product is available as a free trial for a time period of 60 days.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/apigee-api-management/",
   "fullyEncodeReservedExpansion": true,
@@ -2979,11 +2979,11 @@
                 },
                 "revisions": {
                   "methods": {
-                    "deployments": {
-                      "description": "Undeploys an API proxy revision from an environment. Because multiple revisions of the same API proxy can be deployed in the same environment if the base paths are different, you must specify the revision number of the API proxy.",
+                    "deploy": {
+                      "description": "Deploys a revision of an API proxy. If an API proxy revision is currently deployed, to ensure seamless deployment with zero downtime set the `override` parameter to `true`. In this case, hybrid attempts to deploy the new revision fully before undeploying the existing revision. You cannot invoke an API proxy until it has been deployed to an environment. After you deploy an API proxy revision, you cannot edit it. To edit the API proxy, you must create and deploy a new revision. ",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments",
-                      "httpMethod": "DELETE",
-                      "id": "apigee.organizations.environments.apis.revisions.deployments",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.environments.apis.revisions.deploy",
                       "parameterOrder": [
                         "name"
                       ],
@@ -2995,15 +2995,20 @@
                           "required": true,
                           "type": "string"
                         },
+                        "override": {
+                          "description": "Flag that specifies whether the new deployment replaces other deployed revisions of the API proxy in the environment. Set override to true to replace other deployed revisions. By default, override is false and the deployment is rejected if other revisions of the API proxy are deployed in the environment.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "sequencedRollout": {
-                          "description": "If true, a best-effort attempt will be made to remove the environment group routing rules corresponding to this deployment before removing the deployment from the runtime. This is likely to be a rare use case; it is only needed when the intended effect of undeploying this proxy is to cause the traffic it currently handles to be rerouted to some other existing proxy in the environment group. The GenerateUndeployChangeReport API may be used to examine routing changes before issuing the undeployment request, and its response will indicate if a sequenced rollout is recommended for the undeployment.",
+                          "description": "If true, a best-effort attempt will be made to roll out the routing rules corresponding to this deployment and the environment changes to add this deployment in a safe order. This reduces the risk of downtime that could be caused by changing the environment group's routing before the new destination for the affected traffic is ready to receive it. This should only be necessary if the new deployment will be capturing traffic from another environment under a shared environment group or if traffic will be rerouted to a different environment due to a basepath removal. The GenerateDeployChangeReport API may be used to examine routing changes before issuing the deployment request, and its response will indicate if a sequenced rollout is recommended for the deployment.",
                           "location": "query",
                           "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/deployments",
                       "response": {
-                        "$ref": "GoogleProtobufEmpty"
+                        "$ref": "GoogleCloudApigeeV1Deployment"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3029,6 +3034,36 @@
                       "path": "v1/{+name}/deployments",
                       "response": {
                         "$ref": "GoogleCloudApigeeV1Deployment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "undeploy": {
+                      "description": "Undeploys an API proxy revision from an environment. Because multiple revisions of the same API proxy can be deployed in the same environment if the base paths are different, you must specify the revision number of the API proxy.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments",
+                      "httpMethod": "DELETE",
+                      "id": "apigee.organizations.environments.apis.revisions.undeploy",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "sequencedRollout": {
+                          "description": "If true, a best-effort attempt will be made to remove the environment group routing rules corresponding to this deployment before removing the deployment from the runtime. This is likely to be a rare use case; it is only needed when the intended effect of undeploying this proxy is to cause the traffic it currently handles to be rerouted to some other existing proxy in the environment group. The GenerateUndeployChangeReport API may be used to examine routing changes before issuing the undeployment request, and its response will indicate if a sequenced rollout is recommended for the undeployment.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}/deployments",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -4353,26 +4388,31 @@
                 },
                 "revisions": {
                   "methods": {
-                    "deployments": {
-                      "description": "Undeploys a shared flow revision from an environment.",
+                    "deploy": {
+                      "description": "Deploys a revision of a shared flow. If a shared flow revision is currently deployed, to ensure seamless deployment with zero downtime set the `override` parameter to `true`. In this case, hybrid attempts to deply the new revision fully before undeploying the existing revision. You cannot use a shared flows until it has been deployed to an environment.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/sharedflows/{sharedflowsId}/revisions/{revisionsId}/deployments",
-                      "httpMethod": "DELETE",
-                      "id": "apigee.organizations.environments.sharedflows.revisions.deployments",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.environments.sharedflows.revisions.deploy",
                       "parameterOrder": [
                         "name"
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the shared flow revision to undeploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
+                          "description": "Required. Name of the shared flow revision to deploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "override": {
+                          "description": "Flag that specifies whether to force the deployment of the new revision over the currently deployed revision by overriding conflict checks. If an existing shared flow revision is deployed, to ensure seamless deployment with no downtime, set this parameter to `true`. In this case, hybrid deploys the new revision fully before undeploying the existing revision. If set to `false`, you must undeploy the existing revision before deploying the new revision.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/deployments",
                       "response": {
-                        "$ref": "GoogleProtobufEmpty"
+                        "$ref": "GoogleCloudApigeeV1Deployment"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -4398,6 +4438,31 @@
                       "path": "v1/{+name}/deployments",
                       "response": {
                         "$ref": "GoogleCloudApigeeV1Deployment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "undeploy": {
+                      "description": "Undeploys a shared flow revision from an environment.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/sharedflows/{sharedflowsId}/revisions/{revisionsId}/deployments",
+                      "httpMethod": "DELETE",
+                      "id": "apigee.organizations.environments.sharedflows.revisions.undeploy",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the shared flow revision to undeploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/deployments",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -5445,7 +5510,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200821",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5565,11 +5630,11 @@
       "id": "GoogleCloudApigeeV1AliasRevisionConfig",
       "properties": {
         "location": {
-          "description": "The location of the alias file, e.g. a GCS URI.",
+          "description": "Location of the alias file. For example, a Google Cloud Storage URI.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the alias revision included in the keystore. Must be of the form: 'organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}/revisions/{rev}'.",
+          "description": "Name of the alias revision included in the keystore in the following format: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}/revisions/{rev}`",
           "type": "string"
         },
         "type": {
@@ -5637,6 +5702,10 @@
         "name": {
           "description": "The internal name of the API Product. Characters you can use in the name are restricted to: A-Z0-9._\\-$ %. *NOTE:* The internal name cannot be edited when updating the API product.",
           "type": "string"
+        },
+        "operationGroup": {
+          "$ref": "GoogleCloudApigeeV1OperationGroup",
+          "description": "The operation_group enables api product creators to group Apigee proxies or remote services with resources, method types and quotas. The resource refers to the resource URI(excluding the base path). With this grouping, API product creator is able to finetune and give precise control over which REST methods have access to which resources, and how many such calls can be made (via Quota). Note that api_resources cannot be specified at both the API product level as well as within the operation_group. If configured that way, the call will fail. Please refer go/api-product-with-methods for additional details."
         },
         "proxies": {
           "description": "A comma-separated list of API proxy names to which this API product is bound. By specifying API proxies, you can associate resources in the API product with specific API proxies, preventing developers from accessing those resources through other API proxies. Edge rejects requests to API proxies that are not listed. *NOTE:* The API proxy names must already exist in the specified environment as they will be validated upon creation.",
@@ -6294,15 +6363,15 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1DataCollectorConfig": {
-      "description": "A DataCollector and its configuration.",
+      "description": "Data collector and its configuration.",
       "id": "GoogleCloudApigeeV1DataCollectorConfig",
       "properties": {
         "name": {
-          "description": "The name of the data collector. Must be of the form 'organizations/{org}/datacollectors/{dc}'.",
+          "description": "Name of the data collector in the following format: `organizations/{org}/datacollectors/{datacollector}`",
           "type": "string"
         },
         "type": {
-          "description": "The data type this DataCollector accepts.",
+          "description": "Data type accepted by the data collector.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "INTEGER",
@@ -6707,27 +6776,27 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Additional key-value metadata about the deployment.",
+          "description": "Additional key-value metadata for the deployment.",
           "type": "object"
         },
         "basePath": {
-          "description": "Base path where the application needs to be hosted. Default value is assumed to be \"/\".",
+          "description": "Base path where the application will be hosted. Defaults to \"/\".",
           "type": "string"
         },
         "location": {
-          "description": "The location of the proxy bundle, as a uri.",
+          "description": "Location of the API proxy bundle as a URI.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the API or shared flow revision to be deployed. Must be of the form 'organizations/{org}/apis/{api}/revisions/{rev}' or 'organizations/{org}/sharedflows/{sf}/revisions/{rev}'.",
+          "description": "Name of the API or shared flow revision to be deployed in the following format: `organizations/{org}/apis/{api}/revisions/{rev}` or `organizations/{org}/sharedflows/{sharedflow}/revisions/{rev}`",
           "type": "string"
         },
         "proxyUid": {
-          "description": "The uid of the proxy revision.",
+          "description": "Unique ID of the API proxy revision.",
           "type": "string"
         },
         "uid": {
-          "description": "A unique id that will only change if the deployment is deleted and recreated.",
+          "description": "Unique ID. The ID will only change if the deployment is deleted and recreated.",
           "type": "string"
         }
       },
@@ -7012,12 +7081,12 @@
       "id": "GoogleCloudApigeeV1EnvironmentConfig",
       "properties": {
         "createTime": {
-          "description": "The time at which this environment config was created.",
+          "description": "Time that the environment configuration was created.",
           "format": "google-datetime",
           "type": "string"
         },
         "dataCollectors": {
-          "description": "The list of Data Collectors used by deployments in the environment.",
+          "description": "List of data collectors used by the deployments in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DataCollectorConfig"
           },
@@ -7028,7 +7097,7 @@
           "description": "Debug mask that applies to all deployments in the environment."
         },
         "deployments": {
-          "description": "A list of deployments in the environment",
+          "description": "List of deployments in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DeploymentConfig"
           },
@@ -7038,68 +7107,68 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Feature flags inherited from the org and environment parents.",
+          "description": "Feature flags inherited from the organization and environment.",
           "type": "object"
         },
         "flowhooks": {
-          "description": "A list of flow hooks in the environment.",
+          "description": "List of flow hooks in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1FlowHookConfig"
           },
           "type": "array"
         },
         "keystores": {
-          "description": "A list of keystores in the environment.",
+          "description": "List of keystores in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1KeystoreConfig"
           },
           "type": "array"
         },
         "name": {
-          "description": "The name of the environment config. Must be of the form 'organizations/{org}/environments/{env}/configs/{config_id}",
+          "description": "Name of the environment configuration in the following format: `organizations/{org}/environments/{env}/configs/{config}`",
           "type": "string"
         },
         "provider": {
-          "description": "This field can be used by the control plane to add some context information about itself. This information could help detect the source of the document during diagnostics and debugging.",
+          "description": "Used by the Control plane to add context information to help detect the source of the document during diagnostics and debugging.",
           "type": "string"
         },
         "pubsubTopic": {
-          "description": "Name of the pubsub topic for this environment.",
+          "description": "Name of the PubSub topic for the environment.",
           "type": "string"
         },
         "resourceReferences": {
-          "description": "A list of resource references in the environment.",
+          "description": "List of resource references in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1ReferenceConfig"
           },
           "type": "array"
         },
         "resources": {
-          "description": "A list of resource versions in the environment.",
+          "description": "List of resource versions in the environment.",
           "items": {
             "$ref": "GoogleCloudApigeeV1ResourceConfig"
           },
           "type": "array"
         },
         "revisionId": {
-          "description": "Revision id that defines the ordering on the environment config. The higher the revision, the more recently the configuration was deployed.",
+          "description": "Revision ID of the environment configuration. The higher the value, the more recently the configuration was deployed.",
           "format": "int64",
           "type": "string"
         },
         "sequenceNumber": {
-          "description": "DEPRECATED: use revision_id",
+          "description": "DEPRECATED: Use revision_id.",
           "format": "int64",
           "type": "string"
         },
         "targets": {
-          "description": "A list of target servers in the environment. Disabled target servers are not included.",
+          "description": "List of target servers in the environment. Disabled target servers are not displayed.",
           "items": {
             "$ref": "GoogleCloudApigeeV1TargetServerConfig"
           },
           "type": "array"
         },
         "uid": {
-          "description": "A unique id for the environment config that will only change if the environment is deleted and recreated.",
+          "description": "Unique ID for the environment configuration. The ID will only change if the environment is deleted and recreated.",
           "type": "string"
         }
       },
@@ -7297,15 +7366,15 @@
       "id": "GoogleCloudApigeeV1FlowHookConfig",
       "properties": {
         "continueOnError": {
-          "description": "Should the flow abort after an error in the flow hook. Should default to true if unset.",
+          "description": "Flag that specifies whether the flow should abort after an error in the flow hook. Defaults to `true` (continue on error).",
           "type": "boolean"
         },
         "name": {
-          "description": "The name of the flow hook. Must be of the form 'organizations/{org}/environments/{env}/flowhooks/{point}'. Known points are PreProxyFlowHook, PostProxyFlowHook, PreTargetFlowHook, and PostTargetFlowHook",
+          "description": "Name of the flow hook in the following format: `organizations/{org}/environments/{env}/flowhooks/{point}`. Valid `point` values include: `PreProxyFlowHook`, `PostProxyFlowHook`, `PreTargetFlowHook`, and `PostTargetFlowHook`",
           "type": "string"
         },
         "sharedFlowName": {
-          "description": "The name of the shared flow to invoke. Must be of the form 'organizations/{org}/sharedflows/{sharedflow}'.",
+          "description": "Name of the shared flow to invoke in the following format: `organizations/{org}/sharedflows/{sharedflow}`",
           "type": "string"
         }
       },
@@ -7488,11 +7557,11 @@
       "id": "GoogleCloudApigeeV1KeyAliasReference",
       "properties": {
         "aliasId": {
-          "description": "The alias id. Must exist in the keystore referred to by reference.",
+          "description": "Alias ID. Must exist in the keystore referred to by the reference.",
           "type": "string"
         },
         "reference": {
-          "description": "The reference name. Must be of the form: organizations/{org}/environments/{env}/references/{ref}.",
+          "description": "Reference name in the following format: `organizations/{org}/environments/{env}/references/{reference}`",
           "type": "string"
         }
       },
@@ -7543,7 +7612,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The resource name. Must be of the form: 'organizations/{org}/environments/{env}/keystores/{keystore}'.",
+          "description": "Resource name in the following format: `organizations/{org}/environments/{env}/keystores/{keystore}`",
           "type": "string"
         }
       },
@@ -7854,6 +7923,60 @@
           "description": "List of metric values. Possible value format: \"values\":[\"39.0\"] or \"values\":[ { \"value\": \"39.0\", \"timestamp\": 1232434354} ]",
           "items": {
             "type": "any"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1OperationConfig": {
+      "description": "OperationConfig binds the resources in a proxy or remote service with the allowed REST methods and its associated quota enforcement.",
+      "id": "GoogleCloudApigeeV1OperationConfig",
+      "properties": {
+        "apiSource": {
+          "description": "Required. api_source represents either a proxy or remote service name for which the resources, methods and quota are associated with.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "custom attribute associated with the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "methods": {
+          "description": "methods refers to the REST verbs as in https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html. When none specified, all verb types are allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "$ref": "GoogleCloudApigeeV1Quota",
+          "description": "Quota parameters to be enforced for the resources, methods, api_source combination. If none specified, quota enforcement will not be done."
+        },
+        "resources": {
+          "description": "Required. resources represents a list of REST resource path associated with the proxy/remote service.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1OperationGroup": {
+      "description": "The OperationGroup contains a list of configuration details associated with Apigee proxies or Remote services. Remote services are non-Apigee Edge proxies. eg, Istio-Envoy.",
+      "id": "GoogleCloudApigeeV1OperationGroup",
+      "properties": {
+        "operationConfigType": {
+          "description": "Identfies whether the configuration is for Apigee proxy or a remote service. Possible values are \"proxy\" and \"remote_service\". If none specified, the default is \"proxy\". \"proxy\" is used when Apigee proxies are associated with the API product. \"remote_service\" is used when non-Apigee proxy like Envoy is used, and is associated with the API product.",
+          "type": "string"
+        },
+        "operationConfigs": {
+          "description": "Required. A list of OperationConfig for either Apigee proxies or other other remote services, that are associated with this API product.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1OperationConfig"
           },
           "type": "array"
         }
@@ -8293,6 +8416,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1Quota": {
+      "description": "Quota contains the essential parameters needed that can be applied on a proxy/remote service, resources and methods combination associated with this API product. While setting of Quota is optional, setting it prevents requests from exceeding the provisioned parameters.",
+      "id": "GoogleCloudApigeeV1Quota",
+      "properties": {
+        "interval": {
+          "description": "Required. The time interval over which the number of request messages is calculated.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Required. Limit represents the upper bound count allowed for the time interval and time unit specified. Requests exceeding this limit will get rejected.",
+          "type": "string"
+        },
+        "timeUnit": {
+          "description": "The time unit defined for the `interval`. Valid values include minute, hour, day, or month. The default value is empty. If limit and interval are valid, the default value is \"hour\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Reference": {
       "description": "A Reference configuration. References must refer to a keystore that also exists in the parent environment.",
       "id": "GoogleCloudApigeeV1Reference",
@@ -8320,11 +8462,11 @@
       "id": "GoogleCloudApigeeV1ReferenceConfig",
       "properties": {
         "name": {
-          "description": "The name of the reference. Must be of the form 'organizations/{org}/environments/{env}/references/{ref}'.",
+          "description": "Name of the reference in the following format: `organizations/{org}/environments/{env}/references/{reference}`",
           "type": "string"
         },
         "resourceName": {
-          "description": "The name of the referred resource. Only references to keystore resources are supported. Must be of the form 'organizations/{org}/environments/{env}/keystores/{ks}'.",
+          "description": "Name of the referenced resource in the following format: `organizations/{org}/environments/{env}/keystores/{keystore}` Only references to keystore resources are supported.",
           "type": "string"
         }
       },
@@ -8380,11 +8522,11 @@
       "id": "GoogleCloudApigeeV1ResourceConfig",
       "properties": {
         "location": {
-          "description": "The location of the resource as a URI.",
+          "description": "Location of the resource as a URI.",
           "type": "string"
         },
         "name": {
-          "description": "The resource name. Only environment-scoped resource files are supported. Must be of the form 'organizations/{org}/environments/{env}/resourcefiles/{type}/{file}/revisions/{rev}'.",
+          "description": "Resource name in the following format: `organizations/{org}/environments/{env}/resourcefiles/{type}/{file}/revisions/{rev}` Only environment-scoped resource files are supported.",
           "type": "string"
         }
       },
@@ -8845,21 +8987,21 @@
       "id": "GoogleCloudApigeeV1TargetServerConfig",
       "properties": {
         "host": {
-          "description": "Target host name.",
+          "description": "Host name of the target server.",
           "type": "string"
         },
         "name": {
-          "description": "The target server revision name. Must be of the form 'organizations/{org}/environments/{env}/targetservers/{ts_id}/revisions/{rev}'.",
+          "description": "Target server revision name in the following format: `organizations/{org}/environments/{env}/targetservers/{targetserver}/revisions/{rev}`",
           "type": "string"
         },
         "port": {
-          "description": "Target port.",
+          "description": "Port number for the target server.",
           "format": "int32",
           "type": "integer"
         },
         "tlsInfo": {
           "$ref": "GoogleCloudApigeeV1TlsInfoConfig",
-          "description": "TLS settings for the target."
+          "description": "TLS settings for the target server."
         }
       },
       "type": "object"
@@ -8948,45 +9090,45 @@
       "id": "GoogleCloudApigeeV1TlsInfoConfig",
       "properties": {
         "ciphers": {
-          "description": "Whitelist of supported ciphers.",
+          "description": "List of ciphers that are granted access.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "clientAuthEnabled": {
-          "description": "Indicates if client auth is enabled for the target. Enables two-way TLS.",
+          "description": "Flag that specifies whether client-side authentication is enabled for the target server. Enables two-way TLS.",
           "type": "boolean"
         },
         "commonName": {
           "$ref": "GoogleCloudApigeeV1CommonNameConfig",
-          "description": "Common name to validate the target against."
+          "description": "Common name to validate the target server against."
         },
         "enabled": {
-          "description": "Enables one-way TLS.",
+          "description": "Flag that specifies whether one-way TLS is enabled. Set to `true` to enable one-way TLS.",
           "type": "boolean"
         },
         "ignoreValidationErrors": {
-          "description": "If true, ignore TLS certificate validation errors.",
+          "description": "Flag that specifies whether to ignore TLS certificate validation errors. Set to `true` to ignore errors.",
           "type": "boolean"
         },
         "keyAlias": {
-          "description": "The name of the Alias used for client side auth. It must be of the form: organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}",
+          "description": "Name of the alias used for client-side authentication in the following format: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`",
           "type": "string"
         },
         "keyAliasReference": {
           "$ref": "GoogleCloudApigeeV1KeyAliasReference",
-          "description": "A pair of reference name and alias to use for client side auth."
+          "description": "Reference name and alias pair to use for client-side authentication."
         },
         "protocols": {
-          "description": "Whitelist of supported TLS protocols.",
+          "description": "List of TLS protocols that are granted access.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "trustStore": {
-          "description": "The name of the Keystore or keystore reference containing trusted certificates for the server. It must be of either the form organizations/{org}/environments/{env}/keystores/{keystore} or organizations/{org}/environments/{env}/references/{reference}.",
+          "description": "Name of the keystore or keystore reference containing trusted certificates for the server in the following format: `organizations/{org}/environments/{env}/keystores/{keystore}` or `organizations/{org}/environments/{env}/references/{reference}`",
           "type": "string"
         }
       },

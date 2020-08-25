@@ -121,6 +121,7 @@ import * as language from './language';
 import * as libraryagent from './libraryagent';
 import * as licensing from './licensing';
 import * as lifesciences from './lifesciences';
+import * as localservices from './localservices';
 import * as logging from './logging';
 import * as managedidentities from './managedidentities';
 import * as manufacturers from './manufacturers';
@@ -305,6 +306,7 @@ export const APIS: APIList = {
   libraryagent: libraryagent.VERSIONS,
   licensing: licensing.VERSIONS,
   lifesciences: lifesciences.VERSIONS,
+  localservices: localservices.VERSIONS,
   logging: logging.VERSIONS,
   managedidentities: managedidentities.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
@@ -486,6 +488,7 @@ export class GeneratedAPIs {
   libraryagent = libraryagent.libraryagent;
   licensing = licensing.licensing;
   lifesciences = lifesciences.lifesciences;
+  localservices = localservices.localservices;
   logging = logging.logging;
   managedidentities = managedidentities.managedidentities;
   manufacturers = manufacturers.manufacturers;

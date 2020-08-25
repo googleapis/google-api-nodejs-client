@@ -1160,7 +1160,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200818",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1585,9 +1585,11 @@
             "GREATER_THAN",
             "GREATER_THAN_OR_EQUAL",
             "EQUAL",
+            "NOT_EQUAL",
             "ARRAY_CONTAINS",
             "IN",
-            "ARRAY_CONTAINS_ANY"
+            "ARRAY_CONTAINS_ANY",
+            "NOT_IN"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
@@ -1596,9 +1598,11 @@
             "The given `field` is greater than the given `value`. Requires: * That `field` come first in `order_by`.",
             "The given `field` is greater than or equal to the given `value`. Requires: * That `field` come first in `order_by`.",
             "The given `field` is equal to the given `value`.",
+            "The given `field` is not equal to the given `value`. Requires: * No other `NOT_EQUAL`, `NOT_IN`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`.",
             "The given `field` is an array that contains the given `value`.",
             "The given `field` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `ARRAY_CONTAINS_ANY`.",
-            "The given `field` is an array that contains any of the values in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `ARRAY_CONTAINS_ANY`."
+            "The given `field` is an array that contains any of the values in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `ARRAY_CONTAINS_ANY`.",
+            "The value of the `field` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `ARRAY_CONTAINS_ANY`, `NOT_IN`, `NOT_EQUAL`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         },
@@ -2798,12 +2802,16 @@
           "enum": [
             "OPERATOR_UNSPECIFIED",
             "IS_NAN",
-            "IS_NULL"
+            "IS_NULL",
+            "IS_NOT_NAN",
+            "IS_NOT_NULL"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
             "The given `field` is equal to `NaN`.",
-            "The given `field` is equal to `NULL`."
+            "The given `field` is equal to `NULL`.",
+            "The given `field` is not equal to `NaN`. Requires: * No other `NOT_EQUAL`, `NOT_IN`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`.",
+            "The given `field` is not equal to `NULL`. Requires: * A single `NOT_EQUAL`, `NOT_IN`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         }

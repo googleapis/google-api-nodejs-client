@@ -212,10 +212,6 @@
     "package": "@google-cloud/error-reporting"
   },
   {
-    "api": "irm",
-    "package": "@google-cloud/irm"
-  },
-  {
     "api": "logging",
     "package": "@google-cloud/logging"
   },

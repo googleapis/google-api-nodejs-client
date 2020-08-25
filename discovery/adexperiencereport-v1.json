@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200823",
   "rootUrl": "https://adexperiencereport.googleapis.com/",
   "schemas": {
     "PlatformSummary": {
@@ -191,12 +191,6 @@
         },
         "region": {
           "description": "The site's regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions.",
-          "enumDescriptions": [
-            "Ad standard not yet defined for your region.",
-            "Region A.",
-            "Region B.",
-            "Region C."
-          ],
           "items": {
             "enum": [
               "REGION_UNKNOWN",

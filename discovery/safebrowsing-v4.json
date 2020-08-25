@@ -259,7 +259,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200825",
   "rootUrl": "https://safebrowsing.googleapis.com/",
   "schemas": {
     "Checksum": {
@@ -317,11 +317,6 @@
         },
         "supportedCompressions": {
           "description": "The compression types supported by the client.",
-          "enumDescriptions": [
-            "Unknown.",
-            "Raw, uncompressed data.",
-            "Rice-Golomb encoded data."
-          ],
           "items": {
             "enum": [
               "COMPRESSION_TYPE_UNSPECIFIED",
@@ -960,17 +955,6 @@
       "properties": {
         "platformTypes": {
           "description": "The platform types to be checked.",
-          "enumDescriptions": [
-            "Unknown platform.",
-            "Threat posed to Windows.",
-            "Threat posed to Linux.",
-            "Threat posed to Android.",
-            "Threat posed to OS X.",
-            "Threat posed to iOS.",
-            "Threat posed to at least one of the defined platforms.",
-            "Threat posed to all defined platforms.",
-            "Threat posed to Chrome."
-          ],
           "items": {
             "enum": [
               "PLATFORM_TYPE_UNSPECIFIED",
@@ -1007,15 +991,6 @@
         },
         "threatEntryTypes": {
           "description": "The entry types to be checked.",
-          "enumDescriptions": [
-            "Unspecified.",
-            "A URL.",
-            "An executable program.",
-            "An IP range.",
-            "Chrome extension.",
-            "Filename.",
-            "CERT"
-          ],
           "items": {
             "enum": [
               "THREAT_ENTRY_TYPE_UNSPECIFIED",
@@ -1041,25 +1016,6 @@
         },
         "threatTypes": {
           "description": "The threat types to be checked.",
-          "enumDescriptions": [
-            "Unknown.",
-            "Malware threat type.",
-            "Social engineering threat type.",
-            "Unwanted software threat type.",
-            "Potentially harmful application threat type.",
-            "Social engineering threat type for internal use.",
-            "API abuse threat type.",
-            "Malicious binary threat type.",
-            "Client side detection whitelist threat type.",
-            "Client side download detection whitelist threat type.",
-            "Client incident threat type.",
-            "Whitelist used when detecting client incident threats. This enum was never launched and should be re-used for the next list.",
-            "List used for offline APK checks in PAM.",
-            "Patterns to be used for activating the subresource filter. Interstitial will not be shown for patterns from this list.",
-            "Entities that are suspected to present a threat.",
-            "Trick-to-bill threat list.",
-            "Safe list to ship hashes of known safe URL expressions."
-          ],
           "items": {
             "enum": [
               "THREAT_TYPE_UNSPECIFIED",
