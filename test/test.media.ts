@@ -296,7 +296,7 @@ describe('Media', () => {
   });
 
   it('should handle metadata-only media requests properly', async () => {
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .post('/gmail/v1/users/me/drafts')
       .times(2)
       .reply(201, (uri: string, reqBody: {}) => {
@@ -329,7 +329,7 @@ describe('Media', () => {
   });
 
   it('should accept readable stream as media body without metadata', async () => {
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .post('/upload/gmail/v1/users/me/drafts?uploadType=media')
       .times(2)
       .reply(201, (uri: string, reqBody: {}) => {
@@ -363,7 +363,7 @@ describe('Media', () => {
   });
 
   it('should accept readable stream as media body with metadata', async () => {
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
       .reply(201, (uri: string, reqBody: {}) => {
@@ -438,7 +438,7 @@ describe('Media', () => {
   });
 
   it('should return err, {object}body, resp for streaming media requests', async () => {
-    nock(Utils.baseUrl)
+    nock(Utils.gmailUrl)
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
       .reply(201, () => {
