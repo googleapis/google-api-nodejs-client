@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/CksIT3-yvN8mvgQ0wLcNMxzX3cw\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/FWKLLmBLe_ZSL6-D10gDeUs_6TY\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -24666,7 +24666,7 @@
       }
     }
   },
-  "revision": "20200719",
+  "revision": "20200727",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -25192,9 +25192,11 @@
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
             "NAT_AUTO",
+            "SHARED_LOADBALANCER_VIP",
             "VPC_PEERING"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -45828,7 +45830,7 @@
       "id": "SecurityPolicyRuleMatcherConfig",
       "properties": {
         "srcIpRanges": {
-          "description": "CIDR IP address range.",
+          "description": "CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.",
           "items": {
             "type": "string"
           },
@@ -47668,7 +47670,7 @@
       "type": "object"
     },
     "TargetGrpcProxy": {
-      "description": "Represents a Target gRPC Proxy resource.\n\nA target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Global forwarding rules reference a target gRPC proxy. The Target gRPC Proxy references a URL map which specifies how traffic routes to gRPC backend services.",
+      "description": "Represents a Target gRPC Proxy resource.\n\nA target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Global forwarding rules reference a target gRPC proxy. The Target gRPC Proxy references a URL map which specifies how traffic routes to gRPC backend services. (== resource_for {$api_version}.targetGrpcProxies ==)",
       "id": "TargetGrpcProxy",
       "properties": {
         "creationTimestamp": {
@@ -47717,7 +47719,7 @@
           "type": "string"
         },
         "validateForProxyless": {
-          "description": "If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use \"xds-experimental:///\" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use \"xds-experimental:///\" scheme in the target URI of the service it is connecting to",
+          "description": "If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use \"xds:///\" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use \"xds:///\" scheme in the target URI of the service it is connecting to",
           "type": "boolean"
         }
       },
@@ -51558,7 +51560,7 @@
       "type": "object"
     },
     "VpnTunnel": {
-      "description": "Represents a Cloud VPN Tunnel resource.\n\nFor more information about VPN, read the the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)",
+      "description": "Represents a Cloud VPN Tunnel resource.\n\nFor more information about VPN, read the  the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)",
       "id": "VpnTunnel",
       "properties": {
         "creationTimestamp": {
