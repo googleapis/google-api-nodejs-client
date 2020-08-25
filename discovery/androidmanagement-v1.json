@@ -929,7 +929,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20200817",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1841,7 +1841,7 @@
           "type": "string"
         },
         "allowPersonalUsage": {
-          "description": "Controls personal usage on devices provisioned using this enrollment token.",
+          "description": "Controls whether personal usage is allowed on a device provisioned with this enrollment token.For company-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage requires the user provision the device as a fully managed device.For personally-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage will prevent the device from provisioning. Personal usage cannot be disabled on personally-owned device.",
           "enum": [
             "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
             "PERSONAL_USAGE_ALLOWED",
@@ -2869,7 +2869,7 @@
       "type": "object"
     },
     "PersonalApplicationPolicy": {
-      "description": "Policies for apps on the personal profile of a Corporate Owned Personally Enabled device.",
+      "description": "Policies for apps on the personal profile of a company-owned device with a work profile.",
       "id": "PersonalApplicationPolicy",
       "properties": {
         "installType": {
@@ -2892,7 +2892,7 @@
       "type": "object"
     },
     "PersonalUsagePolicies": {
-      "description": "Policies controlling personal usage on a Corporate Owned Personally Enabled device.",
+      "description": "Policies controlling personal usage on a company-owned device with a work profile.",
       "id": "PersonalUsagePolicies",
       "properties": {
         "accountTypesWithManagementDisabled": {
@@ -3703,6 +3703,10 @@
         "securityPatchLevel": {
           "description": "Security patch level, e.g. 2016-05-01.",
           "type": "string"
+        },
+        "systemUpdateInfo": {
+          "$ref": "SystemUpdateInfo",
+          "description": "Information about a potential pending system update."
         }
       },
       "type": "object"
@@ -3815,6 +3819,36 @@
             "Install automatically as soon as an update is available.",
             "Install automatically within a daily maintenance window. This also configures Play apps to be updated within the window. This is strongly recommended for kiosk devices because this is the only way apps persistently pinned to the foreground can be updated by Play.",
             "Postpone automatic install up to a maximum of 30 days."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SystemUpdateInfo": {
+      "description": "Information about a potential pending system update.",
+      "id": "SystemUpdateInfo",
+      "properties": {
+        "updateReceivedTime": {
+          "description": "The time when the update was first available. A zero value indicates that this field is not set. This field is set only if an update is available (that is, updateStatus is neither UPDATE_STATUS_UNKNOWN nor UP_TO_DATE).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateStatus": {
+          "description": "The status of an update: whether an update exists and what type it is.",
+          "enum": [
+            "UPDATE_STATUS_UNKNOWN",
+            "UP_TO_DATE",
+            "UNKNOWN_UPDATE_AVAILABLE",
+            "SECURITY_UPDATE_AVAILABLE",
+            "OS_UPDATE_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "It is unknown whether there is a pending system update. This happens when, for example, the device API level is less than 26, or if the version of Android Device Policy is outdated.",
+            "There is no pending system update available on the device.",
+            "There is a pending system update available, but its type is not known.",
+            "There is a pending security update available.",
+            "There is a pending OS update available."
           ],
           "type": "string"
         }

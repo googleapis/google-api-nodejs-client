@@ -273,7 +273,7 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$FirebaseAppInfo {
     /**
-     * Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
+     * Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
     /**
@@ -284,6 +284,10 @@ export namespace firebase_v1beta1 {
      * The resource name of the Firebase App, in the format: projects/PROJECT_ID /iosApps/APP_ID or projects/PROJECT_ID/androidApps/APP_ID or projects/ PROJECT_ID/webApps/APP_ID
      */
     name?: string | null;
+    /**
+     * Output only. Immutable. The platform-specific identifier of the App. *Note:* For most use cases, use `appId`, which is the canonical, globally unique identifier for referencing an App. This string is derived from a native identifier for each platform: `packageName` for an `AndroidApp`, `bundleId` for an `IosApp`, and `webId` for a `WebApp`. Its contents should be treated as opaque, as the native identifier format may change as platforms evolve. This string is only unique within a `FirebaseProject` and its associated Apps.
+     */
+    namespace?: string | null;
     /**
      * The platform of the Firebase App.
      */
@@ -560,10 +564,6 @@ export namespace firebase_v1beta1 {
      */
     messageSet?: Schema$MessageSet;
     /**
-     * DEPRECATED. This field was deprecated in 2011 with cl/20297133. Java support for the field was moved to a proto1 backward compatibility class in April 2017 with cl/142615857 and cl/154123203. There was never support for this field in Go; if set Go will ignore it. C++ stopped setting StatusProto::payload in October 2015 with cl/106347055, and stopped reading the field in October 2017 with cl/173324114. In general, newly written code should use only &quot;message_set&quot;. If you need to maintain backward compatibility with code written before 3/25/2011, do the following: - During the transition period, either (1) set both &quot;payload&quot; and &quot;message_set&quot;, or (2) write the consumer of StatusProto so that it can forge a MessageSet object from &quot;payload&quot; if &quot;message_set&quot; is missing. The C++ util::Status implementation does (2). - Once all the consumers are converted to accept &quot;message_set&quot;, then remove the use of &quot;payload&quot; on the producer side.
-     */
-    payload?: Schema$TypedMessage;
-    /**
      * The following are usually only present when code != 0 Space to which this status belongs
      */
     space?: string | null;
@@ -584,19 +584,6 @@ export namespace firebase_v1beta1 {
      * The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).
      */
     streamId?: string | null;
-  }
-  /**
-   * Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type. Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set. To embed &quot;proto&quot; inside &quot;typed_msg&quot;: MyProtoMessage proto; TypedMessage typed_msg; typed_msg.set_type_id(proto2::bridge::GetTypeId(proto)); proto.AppendToCord(typed_msg.mutable_message()); Error handling is omitted from the sample code above. GetTypeId() will return 0 for messages that don&#39;t have a TypeId specified.
-   */
-  export interface Schema$TypedMessage {
-    /**
-     * Message bytes.
-     */
-    message?: string | null;
-    /**
-     * Identifier for the type.
-     */
-    typeId?: number | null;
   }
   /**
    * Details of a Firebase App for the web.
@@ -622,6 +609,10 @@ export namespace firebase_v1beta1 {
      * Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
      */
     projectId?: string | null;
+    /**
+     * Output only. Immutable. A unique, Firebase-assigned identifier for the `WebApp`. This identifier is only used to populate the `namespace` value for the `WebApp`. For most use cases, use `appId` to identify or reference the App. The `webId` value is only unique within a `FirebaseProject` and its associated Apps.
+     */
+    webId?: string | null;
   }
   /**
    * Configuration metadata of a single Firebase App for the web.
@@ -2181,6 +2172,8 @@ export namespace firebase_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebase.projects.searchApps({
+     *     // A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`appId`](../projects.apps#FirebaseProjectInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseProjectInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseProjectInfo.FIELDS.platform)
+     *     filter: 'placeholder-value',
      *     // The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.
      *     pageSize: 'placeholder-value',
      *     // Token returned from a previous call to `SearchFirebaseApps` indicating where in the set of Apps to resume listing.
@@ -2206,6 +2199,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`appId`](../projects.apps#FirebaseProjectInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseProjectInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseProjectInfo.FIELDS.platform)
      * @param {integer=} params.pageSize The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.
      * @param {string=} params.pageToken Token returned from a previous call to `SearchFirebaseApps` indicating where in the set of Apps to resume listing.
      * @param {string} params.parent The parent FirebaseProject for which to list Apps, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
@@ -2383,6 +2377,10 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Searchapps
     extends StandardParameters {
+    /**
+     * A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`appId`](../projects.apps#FirebaseProjectInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseProjectInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseProjectInfo.FIELDS.platform)
+     */
+    filter?: string;
     /**
      * The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.
      */
@@ -4814,7 +4812,8 @@ export namespace firebase_v1beta1 {
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
+     *       //   "projectId": "my_projectId",
+     *       //   "webId": "my_webId"
      *       // }
      *     },
      *   });
@@ -4967,7 +4966,8 @@ export namespace firebase_v1beta1 {
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "projectId": "my_projectId"
+     *   //   "projectId": "my_projectId",
+     *   //   "webId": "my_webId"
      *   // }
      * }
      *
@@ -5391,7 +5391,8 @@ export namespace firebase_v1beta1 {
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
+     *       //   "projectId": "my_projectId",
+     *       //   "webId": "my_webId"
      *       // }
      *     },
      *   });
@@ -5403,7 +5404,8 @@ export namespace firebase_v1beta1 {
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "projectId": "my_projectId"
+     *   //   "projectId": "my_projectId",
+     *   //   "webId": "my_webId"
      *   // }
      * }
      *

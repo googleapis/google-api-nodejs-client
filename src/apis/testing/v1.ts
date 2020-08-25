@@ -806,6 +806,10 @@ export namespace testing_v1 {
    */
   export interface Schema$IosTestSetup {
     /**
+     * iOS apps to install in addition to those being directly tested.
+     */
+    additionalIpas?: Schema$FileReference[];
+    /**
      * The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string | null;

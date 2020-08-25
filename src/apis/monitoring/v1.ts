@@ -252,7 +252,7 @@ export namespace monitoring_v1 {
     label?: {[key: string]: string} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
   /**
@@ -417,7 +417,7 @@ export namespace monitoring_v1 {
      */
     sparkChartView?: Schema$SparkChartView;
     /**
-     * The thresholds used to determine the state of the scorecard given the time series&#39; current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: {  value: 90,  category: &#39;DANGER&#39;,  trigger: &#39;ABOVE&#39;, }, {  value: 70,  category: &#39;WARNING&#39;,  trigger: &#39;ABOVE&#39;, }, {  value: 10,  category: &#39;DANGER&#39;,  trigger: &#39;BELOW&#39;, }, {  value: 20,  category: &#39;WARNING&#39;,  trigger: &#39;BELOW&#39;, }Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.
+     * The thresholds used to determine the state of the scorecard given the time series&#39; current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: { value: 90, category: &#39;DANGER&#39;, trigger: &#39;ABOVE&#39;, }, { value: 70, category: &#39;WARNING&#39;, trigger: &#39;ABOVE&#39;, }, { value: 10, category: &#39;DANGER&#39;, trigger: &#39;BELOW&#39;, }, { value: 20, category: &#39;WARNING&#39;, trigger: &#39;BELOW&#39;, }Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.
      */
     thresholds?: Schema$Threshold[];
     /**
@@ -704,9 +704,7 @@ export namespace monitoring_v1 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.create({
-     *     // Required. The project on which to execute the request. The format is:
-     *     // projects/[PROJECT_ID_OR_NUMBER]
-     *     // The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
+     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -860,9 +858,7 @@ export namespace monitoring_v1 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.delete({
-     *     // Required. The resource name of the Dashboard. The format is:
-     *     // projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
-     *     //
+     *     // Required. The resource name of the Dashboard. The format is: projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
      *     name: 'projects/my-project/dashboards/my-dashboard',
      *   });
      *   console.log(res.data);
@@ -992,9 +988,7 @@ export namespace monitoring_v1 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.get({
-     *     // Required. The resource name of the Dashboard. The format is one of:
-     *     // dashboards/[DASHBOARD_ID] (for system dashboards)
-     *     // projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
+     *     // Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID] (for custom dashboards).
      *     name: 'projects/my-project/dashboards/my-dashboard',
      *   });
      *   console.log(res.data);
@@ -1019,7 +1013,7 @@ export namespace monitoring_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
+     * @param {string} params.name Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID] (for custom dashboards).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1135,9 +1129,7 @@ export namespace monitoring_v1 {
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The scope of the dashboards to list. The format is:
-     *     // projects/[PROJECT_ID_OR_NUMBER]
-     *     //
+     *     // Required. The scope of the dashboards to list. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1423,7 +1415,7 @@ export namespace monitoring_v1 {
   export interface Params$Resource$Projects$Dashboards$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
+     * Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID] (for custom dashboards).
      */
     name?: string;
   }

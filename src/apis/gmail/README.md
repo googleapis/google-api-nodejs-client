@@ -2,7 +2,7 @@
 
 # gmail
 
-> Access Gmail mailboxes including sending user email.
+> The Gmail API lets you view and manage Gmail mailbox data like threads, messages, and labels.
 
 ## Installation
 

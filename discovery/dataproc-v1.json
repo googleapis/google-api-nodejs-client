@@ -2134,7 +2134,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20200813",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3882,15 +3882,6 @@
         },
         "optionalComponents": {
           "description": "Optional. The set of components to activate on the cluster.",
-          "enumDescriptions": [
-            "Unspecified component. Specifying this will cause Cluster creation to fail.",
-            "The Anaconda python distribution.",
-            "The Hive Web HCatalog (the REST service for accessing HCatalog).",
-            "The Jupyter Notebook.",
-            "The Presto query engine.",
-            "The Zeppelin notebook.",
-            "The Zookeeper service."
-          ],
           "items": {
             "enum": [
               "COMPONENT_UNSPECIFIED",

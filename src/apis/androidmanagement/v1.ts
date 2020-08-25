@@ -656,7 +656,7 @@ export namespace androidmanagement_v1 {
      */
     additionalData?: string | null;
     /**
-     * Controls personal usage on devices provisioned using this enrollment token.
+     * Controls whether personal usage is allowed on a device provisioned with this enrollment token.For company-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage requires the user provision the device as a fully managed device.For personally-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage will prevent the device from provisioning. Personal usage cannot be disabled on personally-owned device.
      */
     allowPersonalUsage?: string | null;
     /**
@@ -1246,7 +1246,7 @@ export namespace androidmanagement_v1 {
     receiverActivity?: string | null;
   }
   /**
-   * Policies for apps on the personal profile of a Corporate Owned Personally Enabled device.
+   * Policies for apps on the personal profile of a company-owned device with a work profile.
    */
   export interface Schema$PersonalApplicationPolicy {
     /**
@@ -1259,7 +1259,7 @@ export namespace androidmanagement_v1 {
     packageName?: string | null;
   }
   /**
-   * Policies controlling personal usage on a Corporate Owned Personally Enabled device.
+   * Policies controlling personal usage on a company-owned device with a work profile.
    */
   export interface Schema$PersonalUsagePolicies {
     /**
@@ -1792,6 +1792,10 @@ export namespace androidmanagement_v1 {
      * Security patch level, e.g. 2016-05-01.
      */
     securityPatchLevel?: string | null;
+    /**
+     * Information about a potential pending system update.
+     */
+    systemUpdateInfo?: Schema$SystemUpdateInfo;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -1875,6 +1879,19 @@ export namespace androidmanagement_v1 {
      * The type of system update to configure.
      */
     type?: string | null;
+  }
+  /**
+   * Information about a potential pending system update.
+   */
+  export interface Schema$SystemUpdateInfo {
+    /**
+     * The time when the update was first available. A zero value indicates that this field is not set. This field is set only if an update is available (that is, updateStatus is neither UPDATE_STATUS_UNKNOWN nor UP_TO_DATE).
+     */
+    updateReceivedTime?: string | null;
+    /**
+     * The status of an update: whether an update exists and what type it is.
+     */
+    updateStatus?: string | null;
   }
   /**
    * A terms and conditions page to be accepted during provisioning.

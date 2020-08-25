@@ -133,7 +133,7 @@
           ]
         },
         "updateOrganizationSettings": {
-          "description": " Updates an organization's settings.",
+          "description": "Updates an organization's settings.",
           "flatPath": "v1p1beta1/organizations/{organizationsId}/organizationSettings",
           "httpMethod": "PATCH",
           "id": "securitycenter.organizations.updateOrganizationSettings",
@@ -214,7 +214,7 @@
                   "type": "string"
                 },
                 "fieldMask": {
-                  "description": " A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.",
+                  "description": "A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -263,7 +263,7 @@
               ]
             },
             "runDiscovery": {
-              "description": "Runs asset discovery. The discovery is tracked with a long-running operation. // This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.",
+              "description": "Runs asset discovery. The discovery is tracked with a long-running operation. This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.",
               "flatPath": "v1p1beta1/organizations/{organizationsId}/assets:runDiscovery",
               "httpMethod": "POST",
               "id": "securitycenter.organizations.assets.runDiscovery",
@@ -291,7 +291,7 @@
               ]
             },
             "updateSecurityMarks": {
-              "description": " Updates security marks.",
+              "description": "Updates security marks.",
               "flatPath": "v1p1beta1/organizations/{organizationsId}/assets/{assetsId}/securityMarks",
               "httpMethod": "PATCH",
               "id": "securitycenter.organizations.assets.updateSecurityMarks",
@@ -454,7 +454,7 @@
               ]
             },
             "patch": {
-              "description": " Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter",
+              "description": "Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter",
               "flatPath": "v1p1beta1/organizations/{organizationsId}/notificationConfigs/{notificationConfigsId}",
               "httpMethod": "PATCH",
               "id": "securitycenter.organizations.notificationConfigs.patch",
@@ -729,7 +729,7 @@
               ]
             },
             "patch": {
-              "description": " Updates a source.",
+              "description": "Updates a source.",
               "flatPath": "v1p1beta1/organizations/{organizationsId}/sources/{sourcesId}",
               "httpMethod": "PATCH",
               "id": "securitycenter.organizations.sources.patch",
@@ -823,7 +823,7 @@
             "findings": {
               "methods": {
                 "create": {
-                  "description": " Creates a finding. The corresponding source must exist for finding creation to succeed.",
+                  "description": "Creates a finding. The corresponding source must exist for finding creation to succeed.",
                   "flatPath": "v1p1beta1/organizations/{organizationsId}/sources/{sourcesId}/findings",
                   "httpMethod": "POST",
                   "id": "securitycenter.organizations.sources.findings.create",
@@ -899,7 +899,7 @@
                       "type": "string"
                     },
                     "fieldMask": {
-                      "description": " A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.",
+                      "description": "A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -948,7 +948,7 @@
                   ]
                 },
                 "patch": {
-                  "description": " Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.",
+                  "description": "Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.",
                   "flatPath": "v1p1beta1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}",
                   "httpMethod": "PATCH",
                   "id": "securitycenter.organizations.sources.findings.patch",
@@ -982,7 +982,7 @@
                   ]
                 },
                 "setState": {
-                  "description": " Updates the state of a finding.",
+                  "description": "Updates the state of a finding.",
                   "flatPath": "v1p1beta1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}:setState",
                   "httpMethod": "POST",
                   "id": "securitycenter.organizations.sources.findings.setState",
@@ -1010,7 +1010,7 @@
                   ]
                 },
                 "updateSecurityMarks": {
-                  "description": " Updates security marks.",
+                  "description": "Updates security marks.",
                   "flatPath": "v1p1beta1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}/securityMarks",
                   "httpMethod": "PATCH",
                   "id": "securitycenter.organizations.sources.findings.updateSecurityMarks",
@@ -1056,7 +1056,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200820",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "AssetDiscoveryConfig": {
@@ -1200,7 +1200,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1428,7 +1428,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2111,7 +2111,7 @@
       "type": "object"
     },
     "Resource": {
-      "description": "Information related to the Google Cloud resource that is associated with this finding. LINT.IfChange",
+      "description": "Information related to the Google Cloud resource that is associated with this finding.",
       "id": "Resource",
       "properties": {
         "name": {

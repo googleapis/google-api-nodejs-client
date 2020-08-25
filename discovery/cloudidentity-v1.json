@@ -527,12 +527,27 @@
       }
     }
   },
-  "revision": "20200809",
+  "revision": "20200817",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
-    "AndroidAttributes": {
+    "EntityKey": {
+      "description": "An EntityKey uniquely identifies an Entity. Namespaces are used to provide isolation for IDs. A single ID can be reused across namespaces but the combination of a namespace and an ID must be unique.",
+      "id": "EntityKey",
+      "properties": {
+        "id": {
+          "description": "The ID of the entity within the given namespace. The ID must be unique within its namespace.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespaces provide isolation for IDs, so an ID only needs to be unique within its namespace. Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `\"identitysources/{identity_source_id}\"` is created corresponding to every Identity Source `identity_source_id`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1AndroidAttributes": {
       "description": "Resource representing the Android specific attributes of a Device.",
-      "id": "AndroidAttributes",
+      "id": "GoogleAppsCloudidentityDevicesV1AndroidAttributes",
       "properties": {
         "enabledUnknownSources": {
           "description": "Whether applications from unknown sources can be installed on device.",
@@ -565,53 +580,53 @@
       },
       "type": "object"
     },
-    "ApproveDeviceUserResponse": {
+    "GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse": {
       "description": "Response message for approving the device to access user data.",
-      "id": "ApproveDeviceUserResponse",
+      "id": "GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse",
       "properties": {
         "deviceUser": {
-          "$ref": "DeviceUser",
+          "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser",
           "description": "Resultant DeviceUser object for the action."
         }
       },
       "type": "object"
     },
-    "BlockDeviceUserResponse": {
+    "GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse": {
       "description": "Response message for blocking the device from accessing user data.",
-      "id": "BlockDeviceUserResponse",
+      "id": "GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse",
       "properties": {
         "deviceUser": {
-          "$ref": "DeviceUser",
+          "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser",
           "description": "Resultant DeviceUser object for the action."
         }
       },
       "type": "object"
     },
-    "CancelWipeDeviceResponse": {
+    "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse": {
       "description": "Response message for cancelling an unfinished device wipe.",
-      "id": "CancelWipeDeviceResponse",
+      "id": "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse",
       "properties": {
         "device": {
-          "$ref": "Device",
+          "$ref": "GoogleAppsCloudidentityDevicesV1Device",
           "description": "Resultant Device object for the action. Note that asset tags will not be returned in the device object."
         }
       },
       "type": "object"
     },
-    "CancelWipeDeviceUserResponse": {
+    "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse": {
       "description": "Response message for cancelling an unfinished user account wipe.",
-      "id": "CancelWipeDeviceUserResponse",
+      "id": "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse",
       "properties": {
         "deviceUser": {
-          "$ref": "DeviceUser",
+          "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser",
           "description": "Resultant DeviceUser object for the action."
         }
       },
       "type": "object"
     },
-    "ClientState": {
+    "GoogleAppsCloudidentityDevicesV1ClientState": {
       "description": "Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users",
-      "id": "ClientState",
+      "id": "GoogleAppsCloudidentityDevicesV1ClientState",
       "properties": {
         "assetTags": {
           "description": "The caller can specify asset tags for this resource",
@@ -670,7 +685,7 @@
         },
         "keyValuePairs": {
           "additionalProperties": {
-            "$ref": "CustomAttributeValue"
+            "$ref": "GoogleAppsCloudidentityDevicesV1CustomAttributeValue"
           },
           "description": "The map of key-value attributes stored by callers specific to a device. The total serialized length of this map may not exceed 10KB. No limit is placed on the number of attributes in a map.",
           "type": "object"
@@ -722,9 +737,9 @@
       },
       "type": "object"
     },
-    "CustomAttributeValue": {
+    "GoogleAppsCloudidentityDevicesV1CustomAttributeValue": {
       "description": "Additional custom attribute values may be one of these types",
-      "id": "CustomAttributeValue",
+      "id": "GoogleAppsCloudidentityDevicesV1CustomAttributeValue",
       "properties": {
         "boolValue": {
           "description": "Represents a boolean value.",
@@ -742,12 +757,12 @@
       },
       "type": "object"
     },
-    "Device": {
+    "GoogleAppsCloudidentityDevicesV1Device": {
       "description": "A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.",
-      "id": "Device",
+      "id": "GoogleAppsCloudidentityDevicesV1Device",
       "properties": {
         "androidSpecificAttributes": {
-          "$ref": "AndroidAttributes",
+          "$ref": "GoogleAppsCloudidentityDevicesV1AndroidAttributes",
           "description": "Output only. Attributes specific to Android devices.",
           "readOnly": true
         },
@@ -964,9 +979,9 @@
       },
       "type": "object"
     },
-    "DeviceUser": {
+    "GoogleAppsCloudidentityDevicesV1DeviceUser": {
       "description": "Represents a user's use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user's use of a Device",
-      "id": "DeviceUser",
+      "id": "GoogleAppsCloudidentityDevicesV1DeviceUser",
       "properties": {
         "compromisedState": {
           "description": "Compromised State of the DeviceUser object",
@@ -1058,17 +1073,24 @@
       },
       "type": "object"
     },
-    "EntityKey": {
-      "description": "An EntityKey uniquely identifies an Entity. Namespaces are used to provide isolation for IDs. A single ID can be reused across namespaces but the combination of a namespace and an ID must be unique.",
-      "id": "EntityKey",
+    "GoogleAppsCloudidentityDevicesV1WipeDeviceResponse": {
+      "description": "Response message for wiping all data on the device.",
+      "id": "GoogleAppsCloudidentityDevicesV1WipeDeviceResponse",
       "properties": {
-        "id": {
-          "description": "The ID of the entity within the given namespace. The ID must be unique within its namespace.",
-          "type": "string"
-        },
-        "namespace": {
-          "description": "Namespaces provide isolation for IDs, so an ID only needs to be unique within its namespace. Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `\"identitysources/{identity_source_id}\"` is created corresponding to every Identity Source `identity_source_id`.",
-          "type": "string"
+        "device": {
+          "$ref": "GoogleAppsCloudidentityDevicesV1Device",
+          "description": "Resultant Device object for the action. Note that asset tags will not be returned in the device object."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse": {
+      "description": "Response message for wiping the user's account from the device.",
+      "id": "GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse",
+      "properties": {
+        "deviceUser": {
+          "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser",
+          "description": "Resultant DeviceUser object for the action."
         }
       },
       "type": "object"
@@ -1296,28 +1318,6 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "WipeDeviceResponse": {
-      "description": "Response message for wiping all data on the device.",
-      "id": "WipeDeviceResponse",
-      "properties": {
-        "device": {
-          "$ref": "Device",
-          "description": "Resultant Device object for the action. Note that asset tags will not be returned in the device object."
-        }
-      },
-      "type": "object"
-    },
-    "WipeDeviceUserResponse": {
-      "description": "Response message for wiping the user's account from the device.",
-      "id": "WipeDeviceUserResponse",
-      "properties": {
-        "deviceUser": {
-          "$ref": "DeviceUser",
-          "description": "Resultant DeviceUser object for the action."
         }
       },
       "type": "object"

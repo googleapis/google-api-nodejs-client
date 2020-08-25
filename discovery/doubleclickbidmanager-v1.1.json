@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20200811",
+  "revision": "20200817",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -682,7 +682,6 @@
             "FILTER_ADVERTISER_NAME",
             "FILTER_ADVERTISER_INTEGRATION_CODE",
             "FILTER_ADVERTISER_INTEGRATION_STATUS",
-            "FILTER_AD_POSITION_NAME",
             "FILTER_CARRIER_NAME",
             "FILTER_CHANNEL_NAME",
             "FILTER_CITY_NAME",
@@ -823,7 +822,6 @@
             "FILTER_CHANNEL_GROUPING"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             "",
@@ -1428,7 +1426,6 @@
             "",
             "",
             "",
-            "",
             ""
           ],
           "items": {
@@ -1556,7 +1553,6 @@
               "FILTER_ADVERTISER_NAME",
               "FILTER_ADVERTISER_INTEGRATION_CODE",
               "FILTER_ADVERTISER_INTEGRATION_STATUS",
-              "FILTER_AD_POSITION_NAME",
               "FILTER_CARRIER_NAME",
               "FILTER_CHANNEL_NAME",
               "FILTER_CITY_NAME",
@@ -1957,7 +1953,6 @@
               "",
               "",
               "",
-              "",
               ""
             ],
             "type": "string"
@@ -1971,7 +1966,6 @@
         "metrics": {
           "description": "Metrics to include as columns in your report.",
           "enumDescriptions": [
-            "",
             "",
             "",
             "",
@@ -2759,7 +2753,6 @@
               "METRIC_COMPANION_IMPRESSIONS_AUDIO",
               "METRIC_COMPLETE_LISTENS_AUDIO",
               "METRIC_COMPLETION_RATE_AUDIO",
-              "METRIC_COST_PER_STORE_VISIT",
               "METRIC_COUNTERS",
               "METRIC_CUSTOM_FEE_1_ADVERTISER_CURRENCY",
               "METRIC_CUSTOM_FEE_2_ADVERTISER_CURRENCY",
@@ -2852,7 +2845,6 @@
               "METRIC_PROVISIONAL_IMPRESSIONS"
             ],
             "enumDescriptions": [
-              "",
               "",
               "",
               "",
@@ -3554,7 +3546,6 @@
             "FILTER_ADVERTISER_NAME",
             "FILTER_ADVERTISER_INTEGRATION_CODE",
             "FILTER_ADVERTISER_INTEGRATION_STATUS",
-            "FILTER_AD_POSITION_NAME",
             "FILTER_CARRIER_NAME",
             "FILTER_CHANNEL_NAME",
             "FILTER_CITY_NAME",
@@ -3695,7 +3686,6 @@
             "FILTER_CHANNEL_GROUPING"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             "",

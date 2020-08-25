@@ -2,7 +2,7 @@
 
 # webfonts
 
-> 
+> The Google Web Fonts Developer API lets you retrieve information about web fonts served by Google.
 
 ## Installation
 

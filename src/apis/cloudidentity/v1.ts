@@ -128,9 +128,22 @@ export namespace cloudidentity_v1 {
   }
 
   /**
+   * An EntityKey uniquely identifies an Entity. Namespaces are used to provide isolation for IDs. A single ID can be reused across namespaces but the combination of a namespace and an ID must be unique.
+   */
+  export interface Schema$EntityKey {
+    /**
+     * The ID of the entity within the given namespace. The ID must be unique within its namespace.
+     */
+    id?: string | null;
+    /**
+     * Namespaces provide isolation for IDs, so an ID only needs to be unique within its namespace. Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `&quot;identitysources/{identity_source_id}&quot;` is created corresponding to every Identity Source `identity_source_id`.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Resource representing the Android specific attributes of a Device.
    */
-  export interface Schema$AndroidAttributes {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1AndroidAttributes {
     /**
      * Whether applications from unknown sources can be installed on device.
      */
@@ -151,43 +164,43 @@ export namespace cloudidentity_v1 {
   /**
    * Response message for approving the device to access user data.
    */
-  export interface Schema$ApproveDeviceUserResponse {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse {
     /**
      * Resultant DeviceUser object for the action.
      */
-    deviceUser?: Schema$DeviceUser;
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
    * Response message for blocking the device from accessing user data.
    */
-  export interface Schema$BlockDeviceUserResponse {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse {
     /**
      * Resultant DeviceUser object for the action.
      */
-    deviceUser?: Schema$DeviceUser;
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
    * Response message for cancelling an unfinished device wipe.
    */
-  export interface Schema$CancelWipeDeviceResponse {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse {
     /**
      * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
      */
-    device?: Schema$Device;
+    device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
   }
   /**
    * Response message for cancelling an unfinished user account wipe.
    */
-  export interface Schema$CancelWipeDeviceUserResponse {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse {
     /**
      * Resultant DeviceUser object for the action.
      */
-    deviceUser?: Schema$DeviceUser;
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
    * Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users
    */
-  export interface Schema$ClientState {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ClientState {
     /**
      * The caller can specify asset tags for this resource
      */
@@ -215,7 +228,11 @@ export namespace cloudidentity_v1 {
     /**
      * The map of key-value attributes stored by callers specific to a device. The total serialized length of this map may not exceed 10KB. No limit is placed on the number of attributes in a map.
      */
-    keyValuePairs?: {[key: string]: Schema$CustomAttributeValue} | null;
+    keyValuePairs?: {
+      [
+        key: string
+      ]: Schema$GoogleAppsCloudidentityDevicesV1CustomAttributeValue;
+    } | null;
     /**
      * Output only. The time the client state data was last updated.
      */
@@ -240,7 +257,7 @@ export namespace cloudidentity_v1 {
   /**
    * Additional custom attribute values may be one of these types
    */
-  export interface Schema$CustomAttributeValue {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CustomAttributeValue {
     /**
      * Represents a boolean value.
      */
@@ -257,11 +274,11 @@ export namespace cloudidentity_v1 {
   /**
    * A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
    */
-  export interface Schema$Device {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1Device {
     /**
      * Output only. Attributes specific to Android devices.
      */
-    androidSpecificAttributes?: Schema$AndroidAttributes;
+    androidSpecificAttributes?: Schema$GoogleAppsCloudidentityDevicesV1AndroidAttributes;
     /**
      * Asset tag of the device.
      */
@@ -374,7 +391,7 @@ export namespace cloudidentity_v1 {
   /**
    * Represents a user&#39;s use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user&#39;s use of a Device
    */
-  export interface Schema$DeviceUser {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeviceUser {
     /**
      * Compromised State of the DeviceUser object
      */
@@ -417,17 +434,22 @@ export namespace cloudidentity_v1 {
     userEmail?: string | null;
   }
   /**
-   * An EntityKey uniquely identifies an Entity. Namespaces are used to provide isolation for IDs. A single ID can be reused across namespaces but the combination of a namespace and an ID must be unique.
+   * Response message for wiping all data on the device.
    */
-  export interface Schema$EntityKey {
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceResponse {
     /**
-     * The ID of the entity within the given namespace. The ID must be unique within its namespace.
+     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
      */
-    id?: string | null;
+    device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
+  }
+  /**
+   * Response message for wiping the user&#39;s account from the device.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse {
     /**
-     * Namespaces provide isolation for IDs, so an ID only needs to be unique within its namespace. Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `&quot;identitysources/{identity_source_id}&quot;` is created corresponding to every Identity Source `identity_source_id`.
+     * Resultant DeviceUser object for the action.
      */
-    namespace?: string | null;
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
    * Resource representing a Group.
@@ -586,24 +608,6 @@ export namespace cloudidentity_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  /**
-   * Response message for wiping all data on the device.
-   */
-  export interface Schema$WipeDeviceResponse {
-    /**
-     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
-     */
-    device?: Schema$Device;
-  }
-  /**
-   * Response message for wiping the user&#39;s account from the device.
-   */
-  export interface Schema$WipeDeviceUserResponse {
-    /**
-     * Resultant DeviceUser object for the action.
-     */
-    deviceUser?: Schema$DeviceUser;
   }
 
   export class Resource$Groups {

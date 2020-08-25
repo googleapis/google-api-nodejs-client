@@ -1192,6 +1192,91 @@
         }
       }
     },
+    "endscreens": {
+      "methods": {
+        "get": {
+          "description": "Retrieves endscreen for a given video.",
+          "flatPath": "youtube/v3/endscreen",
+          "httpMethod": "GET",
+          "id": "youtube.endscreens.get",
+          "parameterOrder": [
+            "videoId",
+            "part"
+          ],
+          "parameters": {
+            "onBehalfOfContentOwner": {
+              "description": "Content owner of the video.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The properties to return.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            },
+            "videoId": {
+              "description": "Encrypted id of the video.",
+              "location": "query",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/endscreen",
+          "response": {
+            "$ref": "EndscreenGetResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        },
+        "update": {
+          "description": "Updates endscreen for a given video. Note: * If the element id is not provided, a new element will be created. * If the element id is provided, that element will be updated. * Existing elements will be discarded if they're not included in the request.",
+          "flatPath": "youtube/v3/endscreen",
+          "httpMethod": "POST",
+          "id": "youtube.endscreens.update",
+          "parameterOrder": [
+            "videoId",
+            "part"
+          ],
+          "parameters": {
+            "onBehalfOfContentOwner": {
+              "description": "Content owner of the video.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The properties to return.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            },
+            "videoId": {
+              "description": "Encrypted id of the video this endscreen corresponds to.",
+              "location": "query",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/endscreen",
+          "request": {
+            "$ref": "Endscreen"
+          },
+          "response": {
+            "$ref": "Endscreen"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        }
+      }
+    },
     "guideCategories": {
       "methods": {
         "list": {
@@ -3970,7 +4055,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200823",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4902,6 +4987,20 @@
             "$ref": "ChannelConversionPing"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelElement": {
+      "id": "ChannelElement",
+      "properties": {
+        "channelId": {
+          "description": "External channel ID. Required.",
+          "type": "string"
+        },
+        "customMessage": {
+          "description": "Customized message for the element. Required.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6208,21 +6307,6 @@
         },
         "djctqRatingReasons": {
           "description": "Reasons that explain why the video received its DJCQT (Brazil) rating.",
-          "enumDescriptions": [
-            "",
-            "Brazil rating content descriptors. See http://go/brazilratings section F. Violência (Violence)",
-            "Violência extrema (Extreme violence)",
-            "Conteúdo sexual (Sexual content)",
-            "Nudez (Nudity)",
-            "Sexo (Sex)",
-            "Sexo Explícito (Explicit sex)",
-            "Drogas (Drugs)",
-            "Drogas Lícitas (Legal drugs)",
-            "Drogas Ilícitas (Illegal drugs)",
-            "Linguagem Imprópria (Inappropriate language)",
-            "Atos Criminosos (Criminal Acts)",
-            "Conteúdo Impactante (Impacting content)"
-          ],
           "items": {
             "enum": [
               "djctqRatingReasonUnspecified",
@@ -6460,20 +6544,6 @@
         },
         "fpbRatingReasons": {
           "description": "Reasons that explain why the video received its FPB (South Africa) rating.",
-          "enumDescriptions": [
-            "",
-            "South Africa rating content descriptors.",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "fpbRatingReasonUnspecified",
@@ -7464,6 +7534,115 @@
       },
       "type": "object"
     },
+    "Endscreen": {
+      "id": "Endscreen",
+      "properties": {
+        "elements": {
+          "description": "A list of endscreen elements.",
+          "items": {
+            "$ref": "EndscreenElement"
+          },
+          "type": "array"
+        },
+        "startOffset": {
+          "description": "The time we start the endscreen in milliseconds.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndscreenElement": {
+      "id": "EndscreenElement",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "id": {
+          "description": "UUID for this element.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#endscreen",
+          "description": "Identifies what kind of resource this is.",
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "EndscreenElementSnippet",
+          "description": "The snippet object contains basic details about the element."
+        }
+      },
+      "type": "object"
+    },
+    "EndscreenElementSnippet": {
+      "id": "EndscreenElementSnippet",
+      "properties": {
+        "channelElement": {
+          "$ref": "ChannelElement"
+        },
+        "duration": {
+          "description": "Duration of the element in milliseconds. Required.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "left": {
+          "description": "Fraction of video width.",
+          "format": "float",
+          "type": "number"
+        },
+        "linkElement": {
+          "$ref": "LinkElement"
+        },
+        "merchandiseElement": {
+          "$ref": "MerchandiseElement"
+        },
+        "playlistElement": {
+          "$ref": "PlaylistElement"
+        },
+        "startOffset": {
+          "description": "Start of the element in milliseconds. Required.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "subscribeElement": {
+          "$ref": "SubscribeElement"
+        },
+        "top": {
+          "description": "Fraction of video height.",
+          "format": "float",
+          "type": "number"
+        },
+        "videoElement": {
+          "$ref": "VideoElement"
+        },
+        "width": {
+          "description": "Fraction of video width.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "EndscreenGetResponse": {
+      "id": "EndscreenGetResponse",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#endscreenGetResponse",
+          "description": "Identifies what kind of resource this is.",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "Endscreen",
+          "description": "Endscreen resource."
+        }
+      },
+      "type": "object"
+    },
     "Entity": {
       "id": "Entity",
       "properties": {
@@ -8100,6 +8279,85 @@
     },
     "LinkCardUploadedImage": {
       "id": "LinkCardUploadedImage",
+      "properties": {
+        "imageFile": {
+          "description": "Image reference on the thumbnail service.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version in the thumbnail service.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkElement": {
+      "id": "LinkElement",
+      "properties": {
+        "callToActionType": {
+          "enum": [
+            "unknownLinkText",
+            "learnMore",
+            "visit",
+            "signUp",
+            "shop",
+            "download",
+            "support",
+            "order",
+            "buy"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "customLinkText": {
+          "description": "Custom text to show as the website link.",
+          "type": "string"
+        },
+        "externalImageUrl": {
+          "description": "URL to an externally hosted image.",
+          "type": "string"
+        },
+        "targetUrl": {
+          "description": "The URL to which this card points. Required.",
+          "type": "string"
+        },
+        "uploadedImage": {
+          "$ref": "LinkElementUploadedImage",
+          "description": "Previously uploaded image."
+        },
+        "websiteType": {
+          "enum": [
+            "unknownWebsite",
+            "associated",
+            "crowdfunding",
+            "merch",
+            "other"
+          ],
+          "enumDescriptions": [
+            "",
+            "The website associated with the creator's channel.",
+            "White-listed crowdfunding sites, such as Patreon.",
+            "White-listed merchandise sites.",
+            "Website type that does not match any of the other types. Only certain users are allowed to link to arbitrary external websites."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkElementUploadedImage": {
+      "id": "LinkElementUploadedImage",
       "properties": {
         "imageFile": {
           "description": "Image reference on the thumbnail service.",
@@ -9478,6 +9736,11 @@
       },
       "type": "object"
     },
+    "MerchandiseElement": {
+      "id": "MerchandiseElement",
+      "properties": {},
+      "type": "object"
+    },
     "MonitorStreamInfo": {
       "description": "Settings and Info of the monitor stream",
       "id": "MonitorStreamInfo",
@@ -9593,6 +9856,16 @@
           "description": "The number of videos in the playlist.",
           "format": "uint32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PlaylistElement": {
+      "id": "PlaylistElement",
+      "properties": {
+        "playlistId": {
+          "description": "External playlist ID. Required.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10203,6 +10476,11 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SubscribeElement": {
+      "id": "SubscribeElement",
+      "properties": {},
       "type": "object"
     },
     "Subscription": {
@@ -11107,6 +11385,36 @@
       },
       "type": "object"
     },
+    "VideoElement": {
+      "id": "VideoElement",
+      "properties": {
+        "playbackStartOffset": {
+          "description": "Playback start time offset in milliseconds. Optional.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "videoId": {
+          "description": "Encrypted Video ID. Required.",
+          "type": "string"
+        },
+        "videoType": {
+          "enum": [
+            "videoTypeUnknown",
+            "fixed",
+            "recentUpload",
+            "bestForViewer"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VideoFileDetails": {
       "description": "Describes original video file properties, including technical details about audio and video streams, but also metadata information like content length, digitization time, or geotagging information.",
       "id": "VideoFileDetails",
@@ -11780,12 +12088,6 @@
       "properties": {
         "editorSuggestions": {
           "description": "A list of video editing operations that might improve the video quality or playback experience of the uploaded video.",
-          "enumDescriptions": [
-            "Picture brightness levels seem off and could be corrected.",
-            "The video appears shaky and could be stabilized.",
-            "Margins (mattes) detected around the picture could be cropped.",
-            "The audio track appears silent and could be swapped with a better quality one."
-          ],
           "items": {
             "enum": [
               "videoAutoLevels",
@@ -11805,15 +12107,6 @@
         },
         "processingErrors": {
           "description": "A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video's current processing status, eventually, that status will almost certainly be failed.",
-          "enumDescriptions": [
-            "File contains audio only (e.g., an MP3 file).",
-            "Image file (e.g., a JPEG image).",
-            "Movie project file (e.g., Microsoft Windows Movie Maker project).",
-            "Other non-video file.",
-            "Document or text file (e.g., MS Word document).",
-            "An archive file (e.g., a ZIP archive).",
-            "Unsupported spatial audio layout type."
-          ],
           "items": {
             "enum": [
               "audioFile",
@@ -11839,14 +12132,6 @@
         },
         "processingHints": {
           "description": "A list of suggestions that may improve YouTube's ability to process the video.",
-          "enumDescriptions": [
-            "The MP4 file is not streamable, this will slow down the processing. MOOV atom was not found at the beginning of the file.",
-            "Probably a better quality version of the video exists. The video has wide screen aspect ratio, but is not an HD video.",
-            "Uploaded video is spherical video.",
-            "Uploaded video has spatial audio.",
-            "Uploaded video is VR video.",
-            "Uploaded video is HDR video."
-          ],
           "items": {
             "enum": [
               "nonStreamableMov",
@@ -11870,20 +12155,6 @@
         },
         "processingWarnings": {
           "description": "A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding. These warnings are generated before YouTube actually processes the uploaded video file. In addition, they identify issues that are unlikely to cause the video processing to fail but that might cause problems such as sync issues, video artifacts, or a missing audio track.",
-          "enumDescriptions": [
-            "Unrecognized file format, transcoding is likely to fail.",
-            "Unrecognized video codec, transcoding is likely to fail.",
-            "Unrecognized audio codec, transcoding is likely to fail.",
-            "Conflicting container and stream resolutions.",
-            "Edit lists are not currently supported.",
-            "Video codec that is known to cause problems was used.",
-            "Audio codec that is known to cause problems was used.",
-            "Unsupported VR video stereo mode.",
-            "Unsupported spherical video projection type.",
-            "Unsupported HDR pixel format.",
-            "Unspecified HDR color metadata.",
-            "Problematic HDR lookup table attached."
-          ],
           "items": {
             "enum": [
               "unknownContainer",
