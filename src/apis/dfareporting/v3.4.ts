@@ -304,7 +304,7 @@ export namespace dfareporting_v3_4 {
      */
     countryId?: string | null;
     /**
-     * ID of currency associated with this account. This is a required field. Acceptable values are: - &quot;1&quot; for USD - &quot;2&quot; for GBP - &quot;3&quot; for ESP - &quot;4&quot; for SEK - &quot;5&quot; for CAD - &quot;6&quot; for JPY - &quot;7&quot; for DEM - &quot;8&quot; for AUD - &quot;9&quot; for FRF - &quot;10&quot; for ITL - &quot;11&quot; for DKK - &quot;12&quot; for NOK - &quot;13&quot; for FIM - &quot;14&quot; for ZAR - &quot;15&quot; for IEP - &quot;16&quot; for NLG - &quot;17&quot; for EUR - &quot;18&quot; for KRW - &quot;19&quot; for TWD - &quot;20&quot; for SGD - &quot;21&quot; for CNY - &quot;22&quot; for HKD - &quot;23&quot; for NZD - &quot;24&quot; for MYR - &quot;25&quot; for BRL - &quot;26&quot; for PTE - &quot;27&quot; for MXP - &quot;28&quot; for CLP - &quot;29&quot; for TRY - &quot;30&quot; for ARS - &quot;31&quot; for PEN - &quot;32&quot; for ILS - &quot;33&quot; for CHF - &quot;34&quot; for VEF - &quot;35&quot; for COP - &quot;36&quot; for GTQ - &quot;37&quot; for PLN - &quot;39&quot; for INR - &quot;40&quot; for THB - &quot;41&quot; for IDR - &quot;42&quot; for CZK - &quot;43&quot; for RON - &quot;44&quot; for HUF - &quot;45&quot; for RUB - &quot;46&quot; for AED - &quot;47&quot; for BGN - &quot;48&quot; for HRK - &quot;49&quot; for MXN - &quot;50&quot; for NGN - &quot;51&quot; for EGP
+     * ID of currency associated with this account. This is a required field. Acceptable values are: - &quot;1&quot; for USD - &quot;2&quot; for GBP - &quot;3&quot; for ESP - &quot;4&quot; for SEK - &quot;5&quot; for CAD - &quot;6&quot; for JPY - &quot;7&quot; for DEM - &quot;8&quot; for AUD - &quot;9&quot; for FRF - &quot;10&quot; for ITL - &quot;11&quot; for DKK - &quot;12&quot; for NOK - &quot;13&quot; for FIM - &quot;14&quot; for ZAR - &quot;15&quot; for IEP - &quot;16&quot; for NLG - &quot;17&quot; for EUR - &quot;18&quot; for KRW - &quot;19&quot; for TWD - &quot;20&quot; for SGD - &quot;21&quot; for CNY - &quot;22&quot; for HKD - &quot;23&quot; for NZD - &quot;24&quot; for MYR - &quot;25&quot; for BRL - &quot;26&quot; for PTE - &quot;28&quot; for CLP - &quot;29&quot; for TRY - &quot;30&quot; for ARS - &quot;31&quot; for PEN - &quot;32&quot; for ILS - &quot;33&quot; for CHF - &quot;34&quot; for VEF - &quot;35&quot; for COP - &quot;36&quot; for GTQ - &quot;37&quot; for PLN - &quot;39&quot; for INR - &quot;40&quot; for THB - &quot;41&quot; for IDR - &quot;42&quot; for CZK - &quot;43&quot; for RON - &quot;44&quot; for HUF - &quot;45&quot; for RUB - &quot;46&quot; for AED - &quot;47&quot; for BGN - &quot;48&quot; for HRK - &quot;49&quot; for MXN - &quot;50&quot; for NGN - &quot;51&quot; for EGP
      */
     currencyId?: string | null;
     /**
@@ -1569,11 +1569,15 @@ export namespace dfareporting_v3_4 {
      */
     customVariables?: Schema$CustomFloodlightVariable[];
     /**
-     * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId and gclid. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid is a required field.
+     * The display click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid is a required field.
+     */
+    dclid?: string | null;
+    /**
+     * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId, gclid and dclid. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid or dclid is a required field.
      */
     encryptedUserId?: string | null;
     /**
-     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId and gclid. This or encryptedUserId or matchId or mobileDeviceId or gclid is a required field.
+     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId, gclid and dclid. This or encryptedUserId or matchId or mobileDeviceId or gclid or dclid is a required field.
      */
     encryptedUserIdCandidates?: string[] | null;
     /**
@@ -1585,7 +1589,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightConfigurationId?: string | null;
     /**
-     * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId and mobileDeviceId. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId is a required field.
+     * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or dclid is a required field.
      */
     gclid?: string | null;
     /**
@@ -1597,11 +1601,11 @@ export namespace dfareporting_v3_4 {
      */
     limitAdTracking?: boolean | null;
     /**
-     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required field.
+     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId or gclid or dclid is a required field.
      */
     matchId?: string | null;
     /**
-     * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid is a required field.
+     * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid or dclid is a required field.
      */
     mobileDeviceId?: string | null;
     /**
