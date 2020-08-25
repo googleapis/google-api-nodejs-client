@@ -593,7 +593,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200822",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdTechnologyProviders": {
@@ -711,46 +711,6 @@
         },
         "declaredAttributes": {
           "description": "All declared attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto\") contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.",
-          "enumDescriptions": [
-            "Do not use. This is a placeholder value only.",
-            "The creative is of type image/rich media. For pretargeting.",
-            "The creative is of video type Adobe Flash FLV. For pretargeting.",
-            "The creative is tagged.",
-            "The creative is cookie targeted.",
-            "The creative is user interest targeted.",
-            "The creative does not expand.",
-            "The creative expands up.",
-            "The creative expands down.",
-            "The creative expands left.",
-            "The creative expands right.",
-            "The creative expands up and left.",
-            "The creative expands up and right.",
-            "The creative expands down and left.",
-            "The creative expands down and right.",
-            "The creative type is HTML.",
-            "The creative type is VAST video.",
-            "The creative expands up or down.",
-            "The creative expands left or right.",
-            "The creative expands on any diagonal.",
-            "The creative expands when rolled over.",
-            "The instream vast video type is vpaid flash.",
-            "The creative is MRAID.",
-            "The creative is Flash.",
-            "The creative is HTML5.",
-            "The creative has an instream VAST video type of skippable instream video. For pretargeting.",
-            "The creative is SSL.",
-            "The creative is non-SSL.",
-            "The creative is an interstitial.",
-            "The creative has an instream VAST video type of non-skippable instream video. For pretargeting.",
-            "The creative is eligible for native.",
-            "The creative has an instream VAST video type of non-VPAID. For pretargeting.",
-            "The creative is not eligible for native.",
-            "The creative has an interstitial size of any interstitial. For pretargeting.",
-            "The creative has an interstitial size of non interstitial. For pretargeting.",
-            "The video type is in-banner video.",
-            "The creative can dynamically resize to fill a variety of slot sizes.",
-            "The open measurement SDK is supported."
-          ],
           "items": {
             "enum": [
               "ATTRIBUTE_UNSPECIFIED",
@@ -845,10 +805,6 @@
         },
         "declaredRestrictedCategories": {
           "description": "All declared restricted categories for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method.",
-          "enumDescriptions": [
-            "Default value that should never be used.",
-            "The alcohol restricted category."
-          ],
           "items": {
             "enum": [
               "RESTRICTED_CATEGORY_UNSPECIFIED",
@@ -892,10 +848,6 @@
         },
         "restrictedCategories": {
           "description": "All restricted categories for the ads that may be shown from this creative.",
-          "enumDescriptions": [
-            "Default value that should never be used.",
-            "The alcohol restricted category."
-          ],
           "items": {
             "enum": [
               "RESTRICTED_CATEGORY_UNSPECIFIED",
@@ -947,46 +899,6 @@
         },
         "detectedAttributes": {
           "description": "Publisher-excludable attributes that were detected for this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.",
-          "enumDescriptions": [
-            "Do not use. This is a placeholder value only.",
-            "The creative is of type image/rich media. For pretargeting.",
-            "The creative is of video type Adobe Flash FLV. For pretargeting.",
-            "The creative is tagged.",
-            "The creative is cookie targeted.",
-            "The creative is user interest targeted.",
-            "The creative does not expand.",
-            "The creative expands up.",
-            "The creative expands down.",
-            "The creative expands left.",
-            "The creative expands right.",
-            "The creative expands up and left.",
-            "The creative expands up and right.",
-            "The creative expands down and left.",
-            "The creative expands down and right.",
-            "The creative type is HTML.",
-            "The creative type is VAST video.",
-            "The creative expands up or down.",
-            "The creative expands left or right.",
-            "The creative expands on any diagonal.",
-            "The creative expands when rolled over.",
-            "The instream vast video type is vpaid flash.",
-            "The creative is MRAID.",
-            "The creative is Flash.",
-            "The creative is HTML5.",
-            "The creative has an instream VAST video type of skippable instream video. For pretargeting.",
-            "The creative is SSL.",
-            "The creative is non-SSL.",
-            "The creative is an interstitial.",
-            "The creative has an instream VAST video type of non-skippable instream video. For pretargeting.",
-            "The creative is eligible for native.",
-            "The creative has an instream VAST video type of non-VPAID. For pretargeting.",
-            "The creative is not eligible for native.",
-            "The creative has an interstitial size of any interstitial. For pretargeting.",
-            "The creative has an interstitial size of non interstitial. For pretargeting.",
-            "The video type is in-banner video.",
-            "The creative can dynamically resize to fill a variety of slot sizes.",
-            "The open measurement SDK is supported."
-          ],
           "items": {
             "enum": [
               "ATTRIBUTE_UNSPECIFIED",

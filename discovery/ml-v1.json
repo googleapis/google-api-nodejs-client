@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200814",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -2554,7 +2554,8 @@
             "DELETE_MODEL",
             "UPDATE_MODEL",
             "UPDATE_VERSION",
-            "UPDATE_CONFIG"
+            "UPDATE_CONFIG",
+            "MIGRATE_TO_UCAIP"
           ],
           "enumDescriptions": [
             "Unspecified operation type.",
@@ -2563,7 +2564,8 @@
             "An operation to delete an existing model.",
             "An operation to update an existing model.",
             "An operation to update an existing version.",
-            "An operation to update project configuration."
+            "An operation to update project configuration.",
+            "An operation to migrate existing model/version to uCAIP."
           ],
           "type": "string"
         },

@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200825",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {
@@ -357,20 +357,6 @@
         },
         "dimensions": {
           "description": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account.",
-          "enumDescriptions": [
-            "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "The unique ID of the ad source (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
-            "The unique ID of the ad source instance (for example, \"ca-app-pub-1234#5678\" and \"AdMob (default)\" as label value).",
-            "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
-            "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
-            "The unique ID of the mediation group (for example, \"ca-app-pub-1234:mg:1234\" and \"AdMob (default)\" as label value).",
-            "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
-            "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
-          ],
           "items": {
             "enum": [
               "DIMENSION_UNSPECIFIED",
@@ -415,17 +401,6 @@
         },
         "metrics": {
           "description": "List of metrics of the report. A report must specify at least one metric.",
-          "enumDescriptions": [
-            "Default value for an unset field. Do not use.",
-            "The number of requests. The value is an integer.",
-            "The number of times a user clicks an ad. The value is an integer.",
-            "The estimated earnings of the AdMob publisher. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $6.50 would be represented as 6500000. Estimated earnings per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated earnings will show 0 for dates prior to October 20, 2019.",
-            "The total number of ads shown to users. The value is an integer.",
-            "The ratio of clicks over impressions. The value is a double precision (approximate) decimal value.",
-            "The number of times ads are returned in response to a request. The value is an integer.",
-            "The ratio of matched ad requests over the total ad requests. The value is a double precision (approximate) decimal value.",
-            "The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019."
-          ],
           "items": {
             "enum": [
               "METRIC_UNSPECIFIED",
@@ -606,18 +581,6 @@
         },
         "dimensions": {
           "description": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account.",
-          "enumDescriptions": [
-            "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "The unique ID of the ad unit (for example, \"ca-app-pub-1234/1234\"). If AD_UNIT dimension is specified, then APP is included automatically.",
-            "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
-            "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
-            "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
-            "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
-          ],
           "items": {
             "enum": [
               "DIMENSION_UNSPECIFIED",
@@ -658,18 +621,6 @@
         },
         "metrics": {
           "description": "List of metrics of the report. A report must specify at least one metric.",
-          "enumDescriptions": [
-            "Default value for an unset field. Do not use.",
-            "The number of ad requests. The value is an integer. **Warning:** The metric is incompatible with [AD_TYPE](#Dimension.ENUM_VALUES.AD_TYPE) dimension.",
-            "The number of times a user clicks an ad. The value is an integer.",
-            "The estimated earnings of the AdMob publisher. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $6.50 would be represented as 6500000.",
-            "The total number of ads shown to users. The value is an integer.",
-            "The ratio of clicks over impressions. The value is a double precision (approximate) decimal value.",
-            "The estimated earnings per thousand ad impressions. The value is in micros. For example, $1.03 would be represented as 1030000. **Warning:** The metric is incompatible with [AD_TYPE](#Dimension.ENUM_VALUES.AD_TYPE) dimension.",
-            "The number of times ads are returned in response to a request. The value is an integer.",
-            "The ratio of matched ad requests over the total ad requests. The value is a double precision (approximate) decimal value. **Warning:** The metric is incompatible with [AD_TYPE](#Dimension.ENUM_VALUES.AD_TYPE) dimension.",
-            "The ratio of ads that are displayed over ads that are returned, defined as impressions / matched requests. The value is a double precision (approximate) decimal value."
-          ],
           "items": {
             "enum": [
               "METRIC_UNSPECIFIED",

@@ -3136,7 +3136,7 @@
       }
     }
   },
-  "revision": "20200809",
+  "revision": "20200821",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3593,17 +3593,6 @@
         },
         "fileTypes": {
           "description": "List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well. Images are scanned only as binary if the specified region does not support image inspection and no file_types were specified. Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.",
-          "enumDescriptions": [
-            "Includes all files.",
-            "Includes all file extensions not covered by another entry. Binary scanning attempts to convert the content of the file to utf_8 to scan the file. If you wish to avoid this fall back, specify one or more of the other FileType's in your storage scan.",
-            "Included file extensions: asc, brf, c, cc, cpp, csv, cxx, c++, cs, css, dart, eml, go, h, hh, hpp, hxx, h++, hs, html, htm, shtml, shtm, xhtml, lhs, ini, java, js, json, ocaml, md, mkd, markdown, m, ml, mli, pl, pm, php, phtml, pht, py, pyw, rb, rbw, rs, rc, scala, sh, sql, tex, txt, text, tsv, vcard, vcs, wml, xml, xsl, xsd, yml, yaml.",
-            "Included file extensions: bmp, gif, jpg, jpeg, jpe, png. bytes_limit_per_file has no effect on image files. Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.",
-            "Word files >30 MB will be scanned as binary files. Included file extensions: docx, dotx, docm, dotm",
-            "PDF files >30 MB will be scanned as binary files. Included file extensions: pdf",
-            "Included file extensions: avro",
-            "Included file extensions: csv",
-            "Included file extensions: tsv"
-          ],
           "items": {
             "enum": [
               "FILE_TYPE_UNSPECIFIED",
@@ -5007,11 +4996,6 @@
         },
         "supportedBy": {
           "description": "Which parts of the API supports this InfoType.",
-          "enumDescriptions": [
-            "Unused.",
-            "Supported by the inspect operations.",
-            "Supported by the risk analysis operations."
-          ],
           "items": {
             "enum": [
               "ENUM_TYPE_UNSPECIFIED",
@@ -5100,11 +5084,6 @@
       "properties": {
         "contentOptions": {
           "description": "List of options defining data content to scan. If empty, text, images, and other content will be included.",
-          "enumDescriptions": [
-            "Includes entire content of a file or a data stream.",
-            "Text content within the data, excluding any metadata.",
-            "Images found in the data."
-          ],
           "items": {
             "enum": [
               "CONTENT_UNSPECIFIED",
