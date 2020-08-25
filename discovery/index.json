@@ -2745,6 +2745,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "memcache:v1",
+      "name": "memcache",
+      "version": "v1",
+      "title": "Cloud Memorystore for Memcached API",
+      "description": "Google Cloud Memorystore for Memcached API is used for creating and managing Memcached instances in GCP.",
+      "discoveryRestUrl": "https://memcache.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/memorystore/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "memcache:v1beta2",
       "name": "memcache",
       "version": "v1beta2",
@@ -2756,7 +2771,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/memorystore/",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -3451,6 +3466,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/secret-manager/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "securitycenter:v1p1alpha1",
+      "name": "securitycenter",
+      "version": "v1p1alpha1",
+      "title": "Security Command Center API",
+      "description": "Security Command Center API provides access to temporal views of assets and findings within an organization.",
+      "discoveryRestUrl": "https://securitycenter.googleapis.com/$discovery/rest?version=v1p1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://console.cloud.google.com/apis/api/securitycenter.googleapis.com/overview",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "securitycenter:v1p1beta1",
+      "name": "securitycenter",
+      "version": "v1p1beta1",
+      "title": "Security Command Center API",
+      "description": "Security Command Center API provides access to temporal views of assets and findings within an organization.",
+      "discoveryRestUrl": "https://securitycenter.googleapis.com/$discovery/rest?version=v1p1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://console.cloud.google.com/apis/api/securitycenter.googleapis.com/overview",
       "preferred": false
     },
     {
