@@ -1463,7 +1463,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200824",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1958,6 +1958,10 @@
       "properties": {
         "crashed": {
           "description": "If the failure was severe because the system (app) under test crashed.",
+          "type": "boolean"
+        },
+        "deviceOutOfMemory": {
+          "description": "If the device ran out of memory during a test, causing the test to crash.",
           "type": "boolean"
         },
         "failedRoboscript": {
@@ -2816,13 +2820,6 @@
         },
         "perfMetrics": {
           "description": "Set of resource collected",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "perfMetricTypeUnspecified",
