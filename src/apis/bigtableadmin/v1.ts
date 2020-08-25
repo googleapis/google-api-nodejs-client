@@ -301,17 +301,6 @@ export namespace bigtableadmin_v1 {
     parent?: string | null;
   }
   /**
-   * Added to the error payload.
-   */
-  export interface Schema$FailureTrace {
-    frames?: Schema$Frame[];
-  }
-  export interface Schema$Frame {
-    targetName?: string | null;
-    workflowGuid?: string | null;
-    zoneId?: string | null;
-  }
-  /**
    * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
    */
   export interface Schema$Instance {
