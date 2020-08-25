@@ -128,6 +128,157 @@ export namespace documentai_v1beta2 {
   }
 
   /**
+   * The long running operation metadata for CreateLabelerPool.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * Used only when Operation.done is false.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The metadata that represents a processor version being created.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateProcessorVersionMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the current disable processor operation.
+     */
+    state?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The long running operation metadata for DeleteLabelerPool.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * Used only when Operation.done is false.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the current delete processor operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the current disable processor operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse {}
+  /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the current enable processor operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse {}
+  /**
+   * The long running operation metadata for UpdateLabelerPool.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * Used only when Operation.done is false.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Response to an batch document processing request. This is returned in the LRO Operation after the operation is complete.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse {
@@ -194,7 +345,7 @@ export namespace documentai_v1beta2 {
      */
     translations?: Schema$GoogleCloudDocumentaiV1beta1DocumentTranslation[];
     /**
-     * Currently supports Google Cloud Storage URI of the form    `gs://bucket_name/object_name`. Object versioning is not supported.    See [Google Cloud Storage Request    URIs](https://cloud.google.com/storage/docs/reference-uris) for more    info.
+     * Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
      */
     uri?: string | null;
   }
@@ -207,13 +358,21 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * Deprecated.  Use `id` field instead.
+     * Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
     /**
      * Text value in the document e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
+    /**
+     * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
+     */
+    normalizedValue?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue;
+    /**
+     * Optional. Whether the entity will be redacted for de-identification purposes.
+     */
+    redacted?: boolean | null;
     /**
      * Provenance of the entity. Text anchor indexing into the Document.text.
      */
@@ -222,6 +381,27 @@ export namespace documentai_v1beta2 {
      * Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
+  }
+  /**
+   * Parsed and normalized entity value.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue {
+    /**
+     * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
+     */
+    datetimeValue?: Schema$GoogleTypeDateTime;
+    /**
+     * Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto
+     */
+    dateValue?: Schema$GoogleTypeDate;
+    /**
+     * Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto
+     */
+    moneyValue?: Schema$GoogleTypeMoney;
+    /**
+     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective &#39;structured_value&#39; fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     */
+    text?: string | null;
   }
   /**
    * Relationship between Entities.
@@ -536,7 +716,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Text decoration. Follows CSS standard. &lt;text-decoration-line&gt; &lt;text-decoration-color&gt; &lt;text-decoration-style&gt; https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp
      */
     textDecoration?: string | null;
     /**
@@ -588,7 +768,7 @@ export namespace documentai_v1beta2 {
      */
     languageCode?: string | null;
     /**
-     * Provenance of the translation. Text anchor indexing into the Document.text.
+     * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
@@ -664,7 +844,7 @@ export namespace documentai_v1beta2 {
      */
     gcsDestination?: Schema$GoogleCloudDocumentaiV1beta1GcsDestination;
     /**
-     * The max number of pages to include into each output Document shard JSON on Google Cloud Storage.  The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 parsed pages will be produced. If `pages_per_shard` = 20, then 5 Document shard JSON files each containing 20 parsed pages will be written under the prefix OutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where x and y are 1-indexed page numbers.  Example GCS outputs with 157 pages and pages_per_shard = 50:  &lt;prefix&gt;pages-001-to-050.json &lt;prefix&gt;pages-051-to-100.json &lt;prefix&gt;pages-101-to-150.json &lt;prefix&gt;pages-151-to-157.json
+     * The max number of pages to include into each output Document shard JSON on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20. For example, for one pdf file with 100 pages, 100 parsed pages will be produced. If `pages_per_shard` = 20, then 5 Document shard JSON files each containing 20 parsed pages will be written under the prefix OutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where x and y are 1-indexed page numbers. Example GCS outputs with 157 pages and pages_per_shard = 50: pages-001-to-050.json pages-051-to-100.json pages-101-to-150.json pages-151-to-157.json
      */
     pagesPerShard?: number | null;
   }
@@ -699,7 +879,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2AutoMlParams {
     /**
-     * Resource name of the AutoML model.  Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`.
+     * Resource name of the AutoML model. Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`.
      */
     model?: string | null;
   }
@@ -783,7 +963,7 @@ export namespace documentai_v1beta2 {
      */
     translations?: Schema$GoogleCloudDocumentaiV1beta2DocumentTranslation[];
     /**
-     * Currently supports Google Cloud Storage URI of the form    `gs://bucket_name/object_name`. Object versioning is not supported.    See [Google Cloud Storage Request    URIs](https://cloud.google.com/storage/docs/reference-uris) for more    info.
+     * Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
      */
     uri?: string | null;
   }
@@ -796,13 +976,21 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * Deprecated.  Use `id` field instead.
+     * Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
     /**
      * Text value in the document e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
+    /**
+     * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
+     */
+    normalizedValue?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue;
+    /**
+     * Optional. Whether the entity will be redacted for de-identification purposes.
+     */
+    redacted?: boolean | null;
     /**
      * Provenance of the entity. Text anchor indexing into the Document.text.
      */
@@ -811,6 +999,27 @@ export namespace documentai_v1beta2 {
      * Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
+  }
+  /**
+   * Parsed and normalized entity value.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue {
+    /**
+     * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
+     */
+    datetimeValue?: Schema$GoogleTypeDateTime;
+    /**
+     * Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto
+     */
+    dateValue?: Schema$GoogleTypeDate;
+    /**
+     * Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto
+     */
+    moneyValue?: Schema$GoogleTypeMoney;
+    /**
+     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective &#39;structured_value&#39; fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     */
+    text?: string | null;
   }
   /**
    * Relationship between Entities.
@@ -834,7 +1043,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentLabel {
     /**
-     * Label is generated AutoML model. This field stores the full resource name of the AutoML model.  Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`
+     * Label is generated AutoML model. This field stores the full resource name of the AutoML model. Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`
      */
     automlModel?: string | null;
     /**
@@ -842,7 +1051,7 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * Name of the label.  When the label is generated from AutoML Text Classification model, this field represents the name of the category.
+     * Name of the label. When the label is generated from AutoML Text Classification model, this field represents the name of the category.
      */
     name?: string | null;
   }
@@ -1146,7 +1355,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Text decoration. Follows CSS standard. &lt;text-decoration-line&gt; &lt;text-decoration-color&gt; &lt;text-decoration-style&gt; https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp
      */
     textDecoration?: string | null;
     /**
@@ -1198,7 +1407,7 @@ export namespace documentai_v1beta2 {
      */
     languageCode?: string | null;
     /**
-     * Provenance of the translation. Text anchor indexing into the Document.text.
+     * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
@@ -1253,7 +1462,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2InputConfig {
     /**
-     * Content in bytes, represented as a stream of bytes. Note: As with all `bytes` fields, proto buffer messages use a pure binary representation, whereas JSON representations use base64.  This field only works for synchronous ProcessDocument method.
+     * Content in bytes, represented as a stream of bytes. Note: As with all `bytes` fields, proto buffer messages use a pure binary representation, whereas JSON representations use base64. This field only works for synchronous ProcessDocument method.
      */
     contents?: string | null;
     /**
@@ -1330,7 +1539,7 @@ export namespace documentai_v1beta2 {
      */
     gcsDestination?: Schema$GoogleCloudDocumentaiV1beta2GcsDestination;
     /**
-     * The max number of pages to include into each output Document shard JSON on Google Cloud Storage.  The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 parsed pages will be produced. If `pages_per_shard` = 20, then 5 Document shard JSON files each containing 20 parsed pages will be written under the prefix OutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where x and y are 1-indexed page numbers.  Example GCS outputs with 157 pages and pages_per_shard = 50:  &lt;prefix&gt;pages-001-to-050.json &lt;prefix&gt;pages-051-to-100.json &lt;prefix&gt;pages-101-to-150.json &lt;prefix&gt;pages-151-to-157.json
+     * The max number of pages to include into each output Document shard JSON on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20. For example, for one pdf file with 100 pages, 100 parsed pages will be produced. If `pages_per_shard` = 20, then 5 Document shard JSON files each containing 20 parsed pages will be written under the prefix OutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where x and y are 1-indexed page numbers. Example GCS outputs with 157 pages and pages_per_shard = 50: pages-001-to-050.json pages-051-to-100.json pages-101-to-150.json pages-151-to-157.json
      */
     pagesPerShard?: number | null;
   }
@@ -1367,7 +1576,7 @@ export namespace documentai_v1beta2 {
      */
     outputConfig?: Schema$GoogleCloudDocumentaiV1beta2OutputConfig;
     /**
-     * Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string | null;
     /**
@@ -1436,6 +1645,52 @@ export namespace documentai_v1beta2 {
     y?: number | null;
   }
   /**
+   * The long running operation metadata for batch process method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The list of response details of each document.
+     */
+    individualProcessStatuses?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus[];
+    /**
+     * The state of the current batch processing.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The status of a each individual document in the batch process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus {
+    /**
+     * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The output_gcs_destination (in the request as &#39;output_gcs_destination&#39;) of the processed document if it was successful, otherwise empty.
+     */
+    outputGcsDestination?: string | null;
+    /**
+     * The status of the processing of the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response message for batch process document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessResponse {}
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$GoogleLongrunningOperation {
@@ -1448,7 +1703,7 @@ export namespace documentai_v1beta2 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1456,12 +1711,16 @@ export namespace documentai_v1beta2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$GoogleProtobufEmpty {}
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -1469,7 +1728,7 @@ export namespace documentai_v1beta2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1478,11 +1737,11 @@ export namespace documentai_v1beta2 {
     message?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well.  Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space.  Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5.  Example (Java):       import com.google.type.Color;       // ...      public static java.awt.Color fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha()            ? protocolor.getAlpha().getValue()            : 1.0;         return new java.awt.Color(            protocolor.getRed(),            protocolor.getGreen(),            protocolor.getBlue(),            alpha);      }       public static Color toProto(java.awt.Color color) {        float red = (float) color.getRed();        float green = (float) color.getGreen();        float blue = (float) color.getBlue();        float denominator = 255.0;        Color.Builder resultBuilder =            Color                .newBuilder()                .setRed(red / denominator)                .setGreen(green / denominator)                .setBlue(blue / denominator);        int alpha = color.getAlpha();        if (alpha != 255) {          result.setAlpha(              FloatValue                  .newBuilder()                  .setValue(((float) alpha) / denominator)                  .build());        }        return resultBuilder.build();      }      // ...  Example (iOS / Obj-C):       // ...      static UIColor* fromProto(Color* protocolor) {         float red = [protocolor red];         float green = [protocolor green];         float blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) {           alpha = [alpha_wrapper value];         }         return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];      }       static Color* toProto(UIColor* color) {          CGFloat red, green, blue, alpha;          if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {            return nil;          }          Color* result = [[Color alloc] init];          [result setRed:red];          [result setGreen:green];          [result setBlue:blue];          if (alpha &lt;= 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)];          }          [result autorelease];          return result;     }     // ...   Example (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {        var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green || 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red = Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);        var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in rgb_color)) {           return rgbToCssColor_(red, green, blue);        }         var alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red, green, blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString = rgbNumber.toString(16);       var missingZeros = 6 - hexString.length;       var resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt; missingZeros; i++) {          resultBuilder.push(&#39;0&#39;);       }       resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);     };      // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha &lt;= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!(&#39;alpha&#39; in rgb_color)) { return rgbToCssColor_(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(&#39;,&#39;); return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;); }; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = [&#39;#&#39;]; for (var i = 0; i &lt; missingZeros; i++) { resultBuilder.push(&#39;0&#39;); } resultBuilder.push(hexString); return resultBuilder.join(&#39;&#39;); }; // ...
    */
   export interface Schema$GoogleTypeColor {
     /**
-     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation:    pixel color = alpha * (this color) + (1.0 - alpha) * (background color)  This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
+     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (this color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
      */
     alpha?: number | null;
     /**
@@ -1497,6 +1756,94 @@ export namespace documentai_v1beta2 {
      * The amount of red in the color as a value in the interval [0, 1].
      */
     red?: number | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     */
+    day?: number | null;
+    /**
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type is more flexible than some applications may want. Make sure to document and validate your application&#39;s limitations.
+   */
+  export interface Schema$GoogleTypeDateTime {
+    /**
+     * Required. Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    day?: number | null;
+    /**
+     * Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Required. Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Required. Month of year. Must be from 1 to 12.
+     */
+    month?: number | null;
+    /**
+     * Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$GoogleTypeTimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$GoogleTypeMoney {
+    /**
+     * The 3-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
+  }
+  /**
+   * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$GoogleTypeTimeZone {
+    /**
+     * IANA Time Zone Database time zone, e.g. &quot;America/New_York&quot;.
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number, e.g. &quot;2019a&quot;.
+     */
+    version?: string | null;
   }
 
   export class Resource$Projects {
@@ -1545,11 +1892,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.documents.batchProcess({
-     *     // Target project and location to make a call.
-     *     //
-     *     // Format: `projects/{project-id}/locations/{location-id}`.
-     *     //
-     *     // If no location is specified, a region will be chosen automatically.
+     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1581,7 +1924,7 @@ export namespace documentai_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically.
+     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      * @param {().GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1699,12 +2042,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.documents.process({
-     *     // Target project and location to make a call.
-     *     //
-     *     // Format: `projects/{project-id}/locations/{location-id}`.
-     *     //
-     *     // If no location is specified, a region will be chosen automatically.
-     *     // This field is only populated when used in ProcessDocument method.
+     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1751,7 +2089,7 @@ export namespace documentai_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      * @param {().GoogleCloudDocumentaiV1beta2ProcessDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1855,7 +2193,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Documents$Batchprocess
     extends StandardParameters {
     /**
-     * Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically.
+     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      */
     parent?: string;
 
@@ -1867,7 +2205,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Documents$Process
     extends StandardParameters {
     /**
-     * Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string;
 
@@ -1923,11 +2261,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.documents.batchProcess({
-     *     // Target project and location to make a call.
-     *     //
-     *     // Format: `projects/{project-id}/locations/{location-id}`.
-     *     //
-     *     // If no location is specified, a region will be chosen automatically.
+     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1959,7 +2293,7 @@ export namespace documentai_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically.
+     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      * @param {().GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2077,12 +2411,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.documents.process({
-     *     // Target project and location to make a call.
-     *     //
-     *     // Format: `projects/{project-id}/locations/{location-id}`.
-     *     //
-     *     // If no location is specified, a region will be chosen automatically.
-     *     // This field is only populated when used in ProcessDocument method.
+     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2129,7 +2458,7 @@ export namespace documentai_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      * @param {().GoogleCloudDocumentaiV1beta2ProcessDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2233,7 +2562,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Locations$Documents$Batchprocess
     extends StandardParameters {
     /**
-     * Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically.
+     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
      */
     parent?: string;
 
@@ -2245,7 +2574,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Locations$Documents$Process
     extends StandardParameters {
     /**
-     * Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string;
 
@@ -2263,7 +2592,7 @@ export namespace documentai_v1beta2 {
 
     /**
      * documentai.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2417,7 +2746,7 @@ export namespace documentai_v1beta2 {
 
     /**
      * documentai.projects.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
