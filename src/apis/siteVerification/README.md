@@ -2,7 +2,7 @@
 
 # siteVerification
 
-> Verifies ownership of websites or domains with Google.
+> The Google Site Verification API lets applications automate the process of managing ownership records for websites and domains.
 
 ## Installation
 
