@@ -296,7 +296,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200822",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -492,11 +492,6 @@
         "gcsTfliteUri": {
           "description": "The TfLite file containing the model. (Stored in Google Cloud). The gcs_tflite_uri should have form: gs://some-bucket/some-model.tflite Note: If you update the file in the original location, it is necessary to call UpdateModel for ML to pick up and validate the updated file.",
           "type": "string"
-        },
-        "managedUpload": {
-          "description": "Output only. A boolean indicating that this model was uploaded from the console. Read only",
-          "readOnly": true,
-          "type": "boolean"
         },
         "sizeBytes": {
           "description": "Output only. The size of the TFLite model",
