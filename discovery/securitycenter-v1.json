@@ -1056,7 +1056,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200820",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1240,7 +1240,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1468,7 +1468,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
           "format": "google-datetime",
           "type": "string"
         },
