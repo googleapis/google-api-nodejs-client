@@ -984,7 +984,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1111,6 +1114,8 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -1248,7 +1253,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1398,7 +1406,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1547,7 +1559,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1699,7 +1714,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1851,7 +1869,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2152,7 +2174,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2277,6 +2303,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -2428,7 +2457,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2609,6 +2641,8 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -2764,7 +2798,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2945,7 +2983,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3128,6 +3170,8 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -3430,7 +3474,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3552,7 +3599,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3677,6 +3728,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *       'https://www.googleapis.com/auth/calendar.calendars.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -3815,7 +3869,10 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3964,7 +4021,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4117,7 +4178,11 @@ export namespace calendar_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/calendar'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4326,7 +4391,16 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *       'https://www.googleapis.com/auth/calendar.settings.readonly',
@@ -4483,6 +4557,13 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
@@ -4624,7 +4705,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -4760,7 +4843,12 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
@@ -4943,7 +5031,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -5164,7 +5254,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -5396,7 +5488,12 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
@@ -5571,7 +5668,12 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
@@ -5780,6 +5882,7 @@ export namespace calendar_v3 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -5963,7 +6066,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -6201,7 +6306,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -6381,7 +6488,9 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
      *     ],
      *   });
      *
@@ -6619,7 +6728,12 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
      *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
@@ -7259,6 +7373,7 @@ export namespace calendar_v3 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
      *       'https://www.googleapis.com/auth/calendar.readonly',
      *     ],
      *   });
