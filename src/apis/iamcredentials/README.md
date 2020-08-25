@@ -2,7 +2,7 @@
 
 # iamcredentials
 
-> Creates short-lived credentials for impersonating IAM service accounts.
+> Creates short-lived credentials for impersonating IAM service accounts. *Note:* This API is tied to the IAM API &lt;/iam/docs/reference/rest&gt; ( iam.googleapis.com). Enabling or disabling this API will also enable or disable the IAM API.
 
 ## Installation
 
