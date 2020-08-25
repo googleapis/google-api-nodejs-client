@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20200810",
+  "revision": "20200819",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1943,6 +1943,21 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig": {
+      "description": "SoleTenancyConfig specifies information required to host a pool on STNs.",
+      "id": "GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig",
+      "properties": {
+        "nodeType": {
+          "description": "The sole-tenant node type to host the pool's workers on.",
+          "type": "string"
+        },
+        "nodesZone": {
+          "description": "Zone in which STNs are reserved.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest": {
       "description": "The request used for `UpdateInstance`.",
       "id": "GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest",
@@ -1984,7 +1999,7 @@
       "type": "object"
     },
     "GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig": {
-      "description": "Defines the configuration to be used for a creating workers in the worker pool.",
+      "description": "Defines the configuration to be used for creating workers in the worker pool.",
       "id": "GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig",
       "properties": {
         "accelerator": {
@@ -2027,6 +2042,10 @@
         "reserved": {
           "description": "Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won't be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.",
           "type": "boolean"
+        },
+        "soleTenancy": {
+          "$ref": "GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig",
+          "description": "Sole-tenant node information for pools hosted on STNs."
         },
         "vmImage": {
           "description": "The name of the image used by each VM.",
