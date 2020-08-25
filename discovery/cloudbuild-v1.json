@@ -594,7 +594,7 @@
       }
     }
   },
-  "revision": "20200809",
+  "revision": "20200817",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -614,7 +614,8 @@
         },
         "timing": {
           "$ref": "TimeSpan",
-          "description": "Output only. Stores timing information for pushing all artifact objects."
+          "description": "Output only. Stores timing information for pushing all artifact objects.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -727,13 +728,18 @@
           },
           "type": "array"
         },
+        "serviceAccount": {
+          "description": "IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in alpha and is not publicly available.",
+          "type": "string"
+        },
         "source": {
           "$ref": "Source",
           "description": "The location of the source files to build."
         },
         "sourceProvenance": {
           "$ref": "SourceProvenance",
-          "description": "Output only. A permanent fixed identifier for source."
+          "description": "Output only. A permanent fixed identifier for source.",
+          "readOnly": true
         },
         "startTime": {
           "description": "Output only. Time at which execution of the build was started.",
@@ -765,10 +771,12 @@
             "Build or step was canceled by a user.",
             "Build was enqueued for longer than the value of `queue_ttl`."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "statusDetail": {
           "description": "Output only. Customer-readable message about the current status.",
+          "readOnly": true,
           "type": "string"
         },
         "steps": {
@@ -1024,6 +1032,7 @@
             "Build or step was canceled by a user.",
             "Build was enqueued for longer than the value of `queue_ttl`."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "timeout": {

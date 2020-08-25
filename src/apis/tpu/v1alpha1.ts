@@ -324,6 +324,10 @@ export namespace tpu_v1alpha1 {
      * The version of Tensorflow running in the Node. Required.
      */
     tensorflowVersion?: string | null;
+    /**
+     * Whether the VPC peering for the node is set up through Service Networking API. The VPC Peering should be set up before provisioning the node. If this field is set, cidr_block field should not be specified. If the network, that you want to peer the TPU Node to, is Shared VPC networks, the node must be created with this this field enabled.
+     */
+    useServiceNetworking?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1158,7 +1162,8 @@ export namespace tpu_v1alpha1 {
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state",
-     *       //   "tensorflowVersion": "my_tensorflowVersion"
+     *       //   "tensorflowVersion": "my_tensorflowVersion",
+     *       //   "useServiceNetworking": false
      *       // }
      *     },
      *   });
@@ -1450,7 +1455,8 @@ export namespace tpu_v1alpha1 {
      *   //   "schedulingConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state",
-     *   //   "tensorflowVersion": "my_tensorflowVersion"
+     *   //   "tensorflowVersion": "my_tensorflowVersion",
+     *   //   "useServiceNetworking": false
      *   // }
      * }
      *

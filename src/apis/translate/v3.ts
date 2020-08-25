@@ -140,11 +140,11 @@ export namespace translate_v3 {
      */
     inputConfigs?: Schema$InputConfig[];
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/advanced/labels for more information.
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
+     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
      */
     models?: {[key: string]: string} | null;
     /**
@@ -186,7 +186,7 @@ export namespace translate_v3 {
      */
     content?: string | null;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/advanced/labels for more information.
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -194,7 +194,7 @@ export namespace translate_v3 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The language detection model to be used.  Format: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
+     * Optional. The language detection model to be used. Format: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/{model-id}` Only one language detection model is currently supported: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/default`. If not specified, the default model is used.
      */
     model?: string | null;
   }
@@ -208,7 +208,7 @@ export namespace translate_v3 {
     languages?: Schema$DetectedLanguage[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -216,7 +216,7 @@ export namespace translate_v3 {
    */
   export interface Schema$GcsDestination {
     /**
-     * Required. The bucket used in &#39;output_uri_prefix&#39; must exist and there must be no files under &#39;output_uri_prefix&#39;. &#39;output_uri_prefix&#39; must end with &quot;/&quot; and start with &quot;gs://&quot;. One &#39;output_uri_prefix&#39; can only be used by one batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error is  returned.
+     * Required. The bucket used in &#39;output_uri_prefix&#39; must exist and there must be no files under &#39;output_uri_prefix&#39;. &#39;output_uri_prefix&#39; must end with &quot;/&quot; and start with &quot;gs://&quot;. One &#39;output_uri_prefix&#39; can only be used by one batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     outputUriPrefix?: string | null;
   }
@@ -267,7 +267,7 @@ export namespace translate_v3 {
    */
   export interface Schema$GlossaryInputConfig {
     /**
-     * Required. Google Cloud Storage location of glossary data. File format is determined based on the filename extension. API returns [google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file formats. Wildcards are not allowed. This must be a single file in one of the following formats:  For unidirectional glossaries:  - TSV/CSV (`.tsv`/`.csv`): 2 column file, tab- or comma-separated.   The first column is source text. The second column is target text.   The file must not contain headers. That is, the first row is data, not   column names.  - TMX (`.tmx`): TMX file with parallel data defining source/target term pairs.  For equivalent term sets glossaries:  - CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms   in multiple languages. See documentation for more information -   [glossaries](https://cloud.google.com/translate/docs/advanced/glossary).
+     * Required. Google Cloud Storage location of glossary data. File format is determined based on the filename extension. API returns [google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file formats. Wildcards are not allowed. This must be a single file in one of the following formats: For unidirectional glossaries: - TSV/CSV (`.tsv`/`.csv`): 2 column file, tab- or comma-separated. The first column is source text. The second column is target text. The file must not contain headers. That is, the first row is data, not column names. - TMX (`.tmx`): TMX file with parallel data defining source/target term pairs. For equivalent term sets glossaries: - CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms in multiple languages. See documentation for more information - [glossaries](https://cloud.google.com/translate/docs/advanced/glossary).
      */
     gcsSource?: Schema$GcsSource;
   }
@@ -276,7 +276,7 @@ export namespace translate_v3 {
    */
   export interface Schema$InputConfig {
     /**
-     * Required. Google Cloud Storage location for the source input. This can be a single file (for example, `gs://translation-test/input.tsv`) or a wildcard (for example, `gs://translation-test/x). If a file extension is `.tsv`, it can contain either one or two columns. The first column (optional) is the id of the text request. If the first column is missing, we use the row number (0-based) from the input file as the ID in the output file. The second column is the actual text to be  translated. We recommend each row be &lt;= 10K Unicode codepoints, otherwise an error might be returned. Note that the input tsv must be RFC 4180 compliant.  You could use https://github.com/Clever/csvlint to check potential formatting errors in your tsv file. csvlint --delimiter=&#39;\t&#39; your_input_file.tsv  The other supported file extensions are `.txt` or `.html`, which is treated as a single large chunk of text.
+     * Required. Google Cloud Storage location for the source input. This can be a single file (for example, `gs://translation-test/input.tsv`) or a wildcard (for example, `gs://translation-test/x). If a file extension is `.tsv`, it can contain either one or two columns. The first column (optional) is the id of the text request. If the first column is missing, we use the row number (0-based) from the input file as the ID in the output file. The second column is the actual text to be translated. We recommend each row be &lt;= 10K Unicode codepoints, otherwise an error might be returned. Note that the input tsv must be RFC 4180 compliant. You could use https://github.com/Clever/csvlint to check potential formatting errors in your tsv file. csvlint --delimiter=&#39;\t&#39; your_input_file.tsv The other supported file extensions are `.txt` or `.html`, which is treated as a single large chunk of text.
      */
     gcsSource?: Schema$GcsSource;
     /**
@@ -354,7 +354,7 @@ export namespace translate_v3 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -383,7 +383,7 @@ export namespace translate_v3 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -391,7 +391,7 @@ export namespace translate_v3 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -400,12 +400,12 @@ export namespace translate_v3 {
    */
   export interface Schema$OutputConfig {
     /**
-     * Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest).  Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are &#39;x/&#39; instead of &#39;\rx/&#39;. We don&#39;t provide any way to change record delimiters.  While the input files are being processed, we write/update an index file &#39;index.csv&#39;  under &#39;output_uri_prefix&#39; (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is:  input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file  input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output.  Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written).  The format of translations_file (for target language code &#39;trg&#39;) is: gs://translation_test/a_b_c_&#39;trg&#39;_translations.[extension]  If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it&#39;s not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied.  If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of gs://translation_test/a_b_c_&#39;trg&#39;_glossary_translations.[extension]  The format of errors file (for target language code &#39;trg&#39;) is: gs://translation_test/a_b_c_&#39;trg&#39;_errors.[extension]  If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it&#39;s not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary.  If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of gs://translation_test/a_b_c_&#39;trg&#39;_glossary_errors.[extension]
+     * Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest). Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are &#39;x/&#39; instead of &#39;\rx/&#39;. We don&#39;t provide any way to change record delimiters. While the input files are being processed, we write/update an index file &#39;index.csv&#39; under &#39;output_uri_prefix&#39; (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is: input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). The format of translations_file (for target language code &#39;trg&#39;) is: gs://translation_test/a_b_c_&#39;trg&#39;_translations.[extension] If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it&#39;s not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied. If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of gs://translation_test/a_b_c_&#39;trg&#39;_glossary_translations.[extension] The format of errors file (for target language code &#39;trg&#39;) is: gs://translation_test/a_b_c_&#39;trg&#39;_errors.[extension] If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it&#39;s not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary. If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of gs://translation_test/a_b_c_&#39;trg&#39;_glossary_errors.[extension]
      */
     gcsDestination?: Schema$GcsDestination;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -413,7 +413,7 @@ export namespace translate_v3 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -456,7 +456,7 @@ export namespace translate_v3 {
    */
   export interface Schema$TranslateTextGlossaryConfig {
     /**
-     * Required. The `glossary` to be applied for this translation.  The format depends on glossary:  - User provided custom glossary:   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
+     * Required. The `glossary` to be applied for this translation. The format depends on glossary: - User provided custom glossary: `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      */
     glossary?: string | null;
     /**
@@ -477,15 +477,15 @@ export namespace translate_v3 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/advanced/labels for more information.
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The format of the source text, for example, &quot;text/html&quot;,  &quot;text/plain&quot;. If left blank, the MIME type defaults to &quot;text/html&quot;.
+     * Optional. The format of the source text, for example, &quot;text/html&quot;, &quot;text/plain&quot;. If left blank, the MIME type defaults to &quot;text/html&quot;.
      */
     mimeType?: string | null;
     /**
-     * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
+     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`. If missing, the system decides which google base model to use.
      */
     model?: string | null;
     /**
@@ -520,7 +520,7 @@ export namespace translate_v3 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Only present when `model` is present in the request. `model` here is normalized to have project number.  For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`.
+     * Only present when `model` is present in the request. `model` here is normalized to have project number. For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`.
      */
     model?: string | null;
     /**
@@ -576,17 +576,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.detectLanguage({
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}/locations/{location-id}` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Only models within the same region (has same location-id) can be used.
-     *     // Otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -617,7 +607,7 @@ export namespace translate_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -739,38 +729,11 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.getSupportedLanguages({
-     *     // Optional. The language to use to return localized, human readable names
-     *     // of supported languages. If missing, then display names are not returned
-     *     // in a response.
+     *     // Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      *     displayLanguageCode: 'placeholder-value',
-     *     // Optional. Get supported languages of this model.
-     *     //
-     *     // The format depends on model type:
-     *     //
-     *     // - AutoML Translation models:
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
-     *     //
-     *     // - General (built-in) models:
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
-     *     //
-     *     //
-     *     // Returns languages supported by the specified model.
-     *     // If missing, we get supported languages of Google general base (PBMT) model.
+     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      *     model: 'placeholder-value',
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}` or
-     *     // `projects/{project-number-or-id}/locations/{location-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Non-global location is required for AutoML models.
-     *     //
-     *     // Only models within the same region (have same location-id) can be used,
-     *     // otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -791,8 +754,8 @@ export namespace translate_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -911,20 +874,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.translateText({
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}` or
-     *     // `projects/{project-number-or-id}/locations/{location-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Non-global location is required for requests using AutoML models or
-     *     // custom glossaries.
-     *     //
-     *     // Models and glossaries must be within the same region (have same
-     *     // location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -959,7 +909,7 @@ export namespace translate_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1055,7 +1005,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Detectlanguage
     extends StandardParameters {
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1071,18 +1021,18 @@ export namespace translate_v3 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Translatetext
     extends StandardParameters {
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1108,7 +1058,7 @@ export namespace translate_v3 {
 
     /**
      * translate.projects.locations.batchTranslateText
-     * @desc Translates a large volume of text in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location.  This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call.
+     * @desc Translates a large volume of text in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location. This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1133,15 +1083,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.batchTranslateText({
-     *     // Required. Location to make a call. Must refer to a caller's project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}/locations/{location-id}`.
-     *     //
-     *     // The `global` location is not supported for batch translation.
-     *     //
-     *     // Only AutoML Translation models or glossaries within the same region (have
-     *     // the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
-     *     // error is returned.
+     *     // Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1179,7 +1121,7 @@ export namespace translate_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().BatchTranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1294,17 +1236,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.detectLanguage({
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}/locations/{location-id}` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Only models within the same region (has same location-id) can be used.
-     *     // Otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1335,7 +1267,7 @@ export namespace translate_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1592,38 +1524,11 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.getSupportedLanguages({
-     *     // Optional. The language to use to return localized, human readable names
-     *     // of supported languages. If missing, then display names are not returned
-     *     // in a response.
+     *     // Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      *     displayLanguageCode: 'placeholder-value',
-     *     // Optional. Get supported languages of this model.
-     *     //
-     *     // The format depends on model type:
-     *     //
-     *     // - AutoML Translation models:
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
-     *     //
-     *     // - General (built-in) models:
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
-     *     //
-     *     //
-     *     // Returns languages supported by the specified model.
-     *     // If missing, we get supported languages of Google general base (PBMT) model.
+     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      *     model: 'placeholder-value',
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}` or
-     *     // `projects/{project-number-or-id}/locations/{location-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Non-global location is required for AutoML models.
-     *     //
-     *     // Only models within the same region (have same location-id) can be used,
-     *     // otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1644,8 +1549,8 @@ export namespace translate_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1913,20 +1818,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.translateText({
-     *     // Required. Project or location to make a call. Must refer to a caller's
-     *     // project.
-     *     //
-     *     // Format: `projects/{project-number-or-id}` or
-     *     // `projects/{project-number-or-id}/locations/{location-id}`.
-     *     //
-     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
-     *     // `projects/{project-number-or-id}`.
-     *     //
-     *     // Non-global location is required for requests using AutoML models or
-     *     // custom glossaries.
-     *     //
-     *     // Models and glossaries must be within the same region (have same
-     *     // location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1961,7 +1853,7 @@ export namespace translate_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2057,7 +1949,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Batchtranslatetext
     extends StandardParameters {
     /**
-     * Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -2069,7 +1961,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Detectlanguage
     extends StandardParameters {
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -2092,11 +1984,11 @@ export namespace translate_v3 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, `projects/{project-number-or-id}/locations/{location-id}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
@@ -2122,7 +2014,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Translatetext
     extends StandardParameters {
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -2590,30 +2482,11 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.glossaries.list({
-     *     // Optional. Filter specifying constraints of a list operation.
-     *     // Specify the constraint by the format of "key=value", where key must be
-     *     // "src" or "tgt", and the value must be a valid language code.
-     *     // For multiple restrictions, concatenate them by "AND" (uppercase only),
-     *     // such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used
-     *     // here, which means using 'en-US' and 'en' can lead to different results,
-     *     // which depends on the language code you used when you create the glossary.
-     *     // For the unidirectional glossaries, the "src" and "tgt" add restrictions
-     *     // on the source and target language code separately.
-     *     // For the equivalent term set glossaries, the "src" and/or "tgt" add
-     *     // restrictions on the term set.
-     *     // For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional
-     *     // glossaries which exactly match the source language code as "en-US" and the
-     *     // target language code "zh-CN", but all equivalent term set glossaries which
-     *     // contain "en-US" and "zh-CN" in their language set will be picked.
-     *     // If missing, no filtering is performed.
+     *     // Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of "key=value", where key must be "src" or "tgt", and the value must be a valid language code. For multiple restrictions, concatenate them by "AND" (uppercase only), such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the "src" and "tgt" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the "src" and/or "tgt" add restrictions on the term set. For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which exactly match the source language code as "en-US" and the target language code "zh-CN", but all equivalent term set glossaries which contain "en-US" and "zh-CN" in their language set will be picked. If missing, no filtering is performed.
      *     filter: 'placeholder-value',
-     *     // Optional. Requested page size. The server may return fewer glossaries than
-     *     // requested. If unspecified, the server picks an appropriate default.
+     *     // Optional. Requested page size. The server may return fewer glossaries than requested. If unspecified, the server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return.
-     *     // Typically, this is the value of [ListGlossariesResponse.next_page_token]
-     *     // returned from the previous call to `ListGlossaries` method.
-     *     // The first page is returned if `page_token`is empty or missing.
+     *     // Optional. A token identifying a page of results the server should return. Typically, this is the value of [ListGlossariesResponse.next_page_token] returned from the previous call to `ListGlossaries` method. The first page is returned if `page_token`is empty or missing.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the project from which to list all of the glossaries.
      *     parent: 'projects/my-project/locations/my-location',
@@ -2783,7 +2656,7 @@ export namespace translate_v3 {
 
     /**
      * translate.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3048,7 +2921,7 @@ export namespace translate_v3 {
 
     /**
      * translate.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3183,7 +3056,7 @@ export namespace translate_v3 {
 
     /**
      * translate.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3332,7 +3205,7 @@ export namespace translate_v3 {
 
     /**
      * translate.projects.locations.operations.wait
-     * @desc Waits for the specified long-running operation until it is done or reaches at most a specified timeout, returning the latest state.  If the operation is already done, the latest state is immediately returned.  If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used.  If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis.  It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     * @desc Waits for the specified long-running operation until it is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

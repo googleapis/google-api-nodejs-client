@@ -221,7 +221,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     createTime?: string | null;
     /**
-     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
+     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.
      */
     eventTime?: string | null;
     /**
@@ -347,7 +347,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     createTime?: string | null;
     /**
-     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
+     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.
      */
     eventTime?: string | null;
     /**
@@ -869,7 +869,7 @@ export namespace securitycenter_v1p1beta1 {
     version?: number | null;
   }
   /**
-   * Information related to the Google Cloud resource that is associated with this finding. LINT.IfChange
+   * Information related to the Google Cloud resource that is associated with this finding.
    */
   export interface Schema$Resource {
     /**
@@ -1154,7 +1154,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.updateOrganizationSettings
-     * @desc  Updates an organization's settings.
+     * @desc Updates an organization's settings.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1516,7 +1516,7 @@ export namespace securitycenter_v1p1beta1 {
      *   const res = await securitycenter.organizations.assets.list({
      *     // When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state_change" values when compare_duration is specified: * "ADDED": indicates that the asset was not present at the start of compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all assets present at read_time.
      *     compareDuration: 'placeholder-value',
-     *     //  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
+     *     // A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      *     fieldMask: 'placeholder-value',
      *     // Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include: * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. The following are the allowed field and operator combinations: * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `update_time = "2019-06-10T16:07:18-07:00"` `update_time = 1560208038000` * create_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `create_time = "2019-06-10T16:07:18-07:00"` `create_time = 1560208038000` * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:` For example, `resource_properties.size = 100` is a valid filter string. Use a partial match on the empty string to filter based on a property existing: `resource_properties.my_property : ""` Use a negated partial match on the empty string to filter based on a property not existing: `-resource_properties.my_property : ""`
      *     filter: 'placeholder-value',
@@ -1552,7 +1552,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state_change" values when compare_duration is specified: * "ADDED": indicates that the asset was not present at the start of compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all assets present at read_time.
-     * @param {string=} params.fieldMask  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
+     * @param {string=} params.fieldMask A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include: * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. The following are the allowed field and operator combinations: * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `update_time = "2019-06-10T16:07:18-07:00"` `update_time = 1560208038000` * create_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `create_time = "2019-06-10T16:07:18-07:00"` `create_time = 1560208038000` * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:` For example, `resource_properties.size = 100` is a valid filter string. Use a partial match on the empty string to filter based on a property existing: `resource_properties.my_property : ""` Use a negated partial match on the empty string to filter based on a property not existing: `-resource_properties.my_property : ""`
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,resource_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,resource_properties.a_property" and " name desc , resource_properties.a_property " are equivalent. The following fields are supported: name update_time resource_properties security_marks.marks security_center_properties.resource_name security_center_properties.resource_display_name security_center_properties.resource_parent security_center_properties.resource_parent_display_name security_center_properties.resource_project security_center_properties.resource_project_display_name security_center_properties.resource_type
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
@@ -1648,7 +1648,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.assets.runDiscovery
-     * @desc Runs asset discovery. The discovery is tracked with a long-running operation. // This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.
+     * @desc Runs asset discovery. The discovery is tracked with a long-running operation. This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1791,7 +1791,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.assets.updateSecurityMarks
-     * @desc  Updates security marks.
+     * @desc Updates security marks.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1977,7 +1977,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     compareDuration?: string;
     /**
-     *  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
+     * A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**
@@ -2617,7 +2617,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.notificationConfigs.patch
-     * @desc  Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter
+     * @desc Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3987,7 +3987,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.sources.patch
-     * @desc  Updates a source.
+     * @desc Updates a source.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4518,7 +4518,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.create
-     * @desc  Creates a finding. The corresponding source must exist for finding creation to succeed.
+     * @desc Creates a finding. The corresponding source must exist for finding creation to succeed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4880,7 +4880,7 @@ export namespace securitycenter_v1p1beta1 {
      *   const res = await securitycenter.organizations.sources.findings.list({
      *     // When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible "state_change" values when compare_duration is specified: * "CHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * "ADDED": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * "REMOVED": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      *     compareDuration: 'placeholder-value',
-     *     //  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
+     *     // A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      *     fieldMask: 'placeholder-value',
      *     // Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. Examples include: * name * source_properties.a_property * security_marks.marks.marka The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. The following field and operator combinations are supported: name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `event_time = "2019-06-10T16:07:18-07:00"` `event_time = 1560208038000` security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=` For example, `source_properties.size = 100` is a valid filter string. Use a partial match on the empty string to filter based on a property existing: `source_properties.my_property : ""` Use a negated partial match on the empty string to filter based on a property not existing: `-source_properties.my_property : ""`
      *     filter: 'placeholder-value',
@@ -4916,7 +4916,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible "state_change" values when compare_duration is specified: * "CHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * "ADDED": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * "REMOVED": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
-     * @param {string=} params.fieldMask  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
+     * @param {string=} params.fieldMask A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. Examples include: * name * source_properties.a_property * security_marks.marks.marka The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. The following field and operator combinations are supported: name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=` Usage: This should be milliseconds since epoch or an RFC3339 string. Examples: `event_time = "2019-06-10T16:07:18-07:00"` `event_time = 1560208038000` security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=` For example, `source_properties.size = 100` is a valid filter string. Use a partial match on the empty string to filter based on a property existing: `source_properties.my_property : ""` Use a negated partial match on the empty string to filter based on a property not existing: `-source_properties.my_property : ""`
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name desc , source_properties.a_property " are equivalent. The following fields are supported: name parent state category resource_name event_time source_properties security_marks.marks
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
@@ -5014,7 +5014,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.patch
-     * @desc  Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.
+     * @desc Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5192,7 +5192,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.setState
-     * @desc  Updates the state of a finding.
+     * @desc Updates the state of a finding.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5361,7 +5361,7 @@ export namespace securitycenter_v1p1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.updateSecurityMarks
-     * @desc  Updates security marks.
+     * @desc Updates security marks.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5566,7 +5566,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     compareDuration?: string;
     /**
-     *  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
+     * A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**

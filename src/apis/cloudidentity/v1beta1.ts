@@ -468,6 +468,42 @@ export namespace cloudidentity_v1beta1 {
     userEmail?: string | null;
   }
   /**
+   * Dynamic group metadata like queries and status.
+   */
+  export interface Schema$DynamicGroupMetadata {
+    /**
+     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported.
+     */
+    queries?: Schema$DynamicGroupQuery[];
+    /**
+     * Output only. Status of the dynamic group.
+     */
+    status?: Schema$DynamicGroupStatus;
+  }
+  /**
+   * Defines a query on a resource.
+   */
+  export interface Schema$DynamicGroupQuery {
+    /**
+     * Query that determines the memberships of the dynamic group. Examples: All users with at least one `organizations.department` of engineering. `user.organizations.exists(org, org.department==&#39;engineering&#39;)` All users with at least one location that has `area` of `foo` and `building_id` of `bar`. `user.locations.exists(loc, loc.area==&#39;foo&#39; &amp;&amp; loc.building_id==&#39;bar&#39;)`
+     */
+    query?: string | null;
+    resourceType?: string | null;
+  }
+  /**
+   * The current status of a dynamic group along with timestamp.
+   */
+  export interface Schema$DynamicGroupStatus {
+    /**
+     * Status of the dynamic group.
+     */
+    status?: string | null;
+    /**
+     * The latest time at which the dynamic group is guaranteed to be in the given status. If status is `UP_TO_DATE`, the latest time at which the dynamic group was confirmed to be up-to-date. If status is `UPDATING_MEMBERSHIPS`, the time at which dynamic group was created.
+     */
+    statusTime?: string | null;
+  }
+  /**
    * A unique identifier for an entity in the Cloud Identity Groups API. An entity can represent either a group with an optional `namespace` or a user without a `namespace`. The combination of `id` and `namespace` must be unique; however, the same `id` can be used with different `namespace`s.
    */
   export interface Schema$EntityKey {
@@ -503,6 +539,317 @@ export namespace cloudidentity_v1beta1 {
     groups?: Schema$Group[];
   }
   /**
+   * Resource representing the Android specific attributes of a Device.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1AndroidAttributes {
+    /**
+     * Whether applications from unknown sources can be installed on device.
+     */
+    enabledUnknownSources?: boolean | null;
+    /**
+     * Whether this account is on an owner/primary profile. For phones, only true for owner profiles. Android 4+ devices can have secondary or restricted user profiles.
+     */
+    ownerProfileAccount?: boolean | null;
+    /**
+     * Ownership privileges on device.
+     */
+    ownershipPrivilege?: string | null;
+    /**
+     * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the &quot;Enforce Work Profile&quot; policy.
+     */
+    supportsWorkProfile?: boolean | null;
+  }
+  /**
+   * Response message for approving the device to access user data.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
+  }
+  /**
+   * Response message for blocking the device from accessing user data.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
+  }
+  /**
+   * Response message for cancelling an unfinished device wipe.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse {
+    /**
+     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
+     */
+    device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
+  }
+  /**
+   * Response message for cancelling an unfinished user account wipe.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
+  }
+  /**
+   * Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ClientState {
+    /**
+     * The caller can specify asset tags for this resource
+     */
+    assetTags?: string[] | null;
+    /**
+     * The compliance state of the resource as specified by the API client.
+     */
+    complianceState?: string | null;
+    /**
+     * Output only. The time the client state data was created.
+     */
+    createTime?: string | null;
+    /**
+     * This field may be used to store a unique identifier for the API resource within which these CustomAttributes are a field.
+     */
+    customId?: string | null;
+    /**
+     * The token that needs to be passed back for concurrency control in updates. Token needs to be passed back in UpdateRequest
+     */
+    etag?: string | null;
+    /**
+     * The Health score of the resource
+     */
+    healthScore?: string | null;
+    /**
+     * The map of key-value attributes stored by callers specific to a device. The total serialized length of this map may not exceed 10KB. No limit is placed on the number of attributes in a map.
+     */
+    keyValuePairs?: {
+      [
+        key: string
+      ]: Schema$GoogleAppsCloudidentityDevicesV1CustomAttributeValue;
+    } | null;
+    /**
+     * Output only. The time the client state data was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * The management state of the resource as specified by the API client.
+     */
+    managed?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data.
+     */
+    name?: string | null;
+    /**
+     * Output only. The owner of the ClientState
+     */
+    ownerType?: string | null;
+    /**
+     * A descriptive cause of the health score.
+     */
+    scoreReason?: string | null;
+  }
+  /**
+   * Additional custom attribute values may be one of these types
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CustomAttributeValue {
+    /**
+     * Represents a boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Represents a double value.
+     */
+    numberValue?: number | null;
+    /**
+     * Represents a string value.
+     */
+    stringValue?: string | null;
+  }
+  /**
+   * A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1Device {
+    /**
+     * Output only. Attributes specific to Android devices.
+     */
+    androidSpecificAttributes?: Schema$GoogleAppsCloudidentityDevicesV1AndroidAttributes;
+    /**
+     * Asset tag of the device.
+     */
+    assetTag?: string | null;
+    /**
+     * Output only. Baseband version of the device.
+     */
+    basebandVersion?: string | null;
+    /**
+     * Output only. Device bootloader version. Example: 0.6.7.
+     */
+    bootloaderVersion?: string | null;
+    /**
+     * Output only. Device brand. Example: Samsung.
+     */
+    brand?: string | null;
+    /**
+     * Output only. Build number of the device.
+     */
+    buildNumber?: string | null;
+    /**
+     * Output only. Represents whether the Device is compromised.
+     */
+    compromisedState?: string | null;
+    /**
+     * Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Type of device.
+     */
+    deviceType?: string | null;
+    /**
+     * Output only. Whether developer options is enabled on device.
+     */
+    enabledDeveloperOptions?: boolean | null;
+    /**
+     * Output only. Whether USB debugging is enabled on device.
+     */
+    enabledUsbDebugging?: boolean | null;
+    /**
+     * Output only. Device encryption state.
+     */
+    encryptionState?: string | null;
+    /**
+     * Output only. IMEI number of device if GSM device; empty otherwise.
+     */
+    imei?: string | null;
+    /**
+     * Output only. Kernel version of the device.
+     */
+    kernelVersion?: string | null;
+    /**
+     * Most recent time when device synced with this service.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. Management state of the device
+     */
+    managementState?: string | null;
+    /**
+     * Output only. Device manufacturer. Example: Motorola.
+     */
+    manufacturer?: string | null;
+    /**
+     * Output only. MEID number of device if CDMA device; empty otherwise.
+     */
+    meid?: string | null;
+    /**
+     * Output only. Model name of device. Example: Pixel 3.
+     */
+    model?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique id assigned to the Device.
+     */
+    name?: string | null;
+    /**
+     * Output only. Mobile or network operator of device, if available.
+     */
+    networkOperator?: string | null;
+    /**
+     * Output only. OS version of the device. Example: Android 8.1.0.
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. Domain name for Google accounts on device. Type for other accounts on device. On Android, will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account&#39;s domain has only one account. Examples: &quot;com.example&quot;, &quot;xyz.com&quot;.
+     */
+    otherAccounts?: string[] | null;
+    /**
+     * Output only. Whether the device is owned by the company or an individual
+     */
+    ownerType?: string | null;
+    /**
+     * Output only. OS release version. Example: 6.0.
+     */
+    releaseVersion?: string | null;
+    /**
+     * Output only. OS security patch update time on device.
+     */
+    securityPatchTime?: string | null;
+    /**
+     * Serial Number of device. Example: HT82V1A01076.
+     */
+    serialNumber?: string | null;
+    /**
+     * WiFi MAC addresses of device.
+     */
+    wifiMacAddresses?: string[] | null;
+  }
+  /**
+   * Represents a user&#39;s use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user&#39;s use of a Device
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeviceUser {
+    /**
+     * Compromised State of the DeviceUser object
+     */
+    compromisedState?: string | null;
+    /**
+     * When the user first signed in to the device
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Most recent time when user registered with this service.
+     */
+    firstSyncTime?: string | null;
+    /**
+     * Output only. Default locale used on device, in IETF BCP-47 format.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. Last time when user synced with policies.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. Management state of the user on the device.
+     */
+    managementState?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id}/deviceUsers/{user_id}`, where user_id is the ID of the user associated with the user session.
+     */
+    name?: string | null;
+    /**
+     * Password state of the DeviceUser object
+     */
+    passwordState?: string | null;
+    /**
+     * Output only. User agent on the device for this specific user
+     */
+    userAgent?: string | null;
+    /**
+     * Email address of the user registered on the device.
+     */
+    userEmail?: string | null;
+  }
+  /**
+   * Response message for wiping all data on the device.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceResponse {
+    /**
+     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
+     */
+    device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
+  }
+  /**
+   * Response message for wiping the user&#39;s account from the device.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
+  }
+  /**
    * A group within the Cloud Identity Groups API. A `Group` is a collection of entities, where each entity is either a user, another group, or a service account.
    */
   export interface Schema$Group {
@@ -522,6 +869,10 @@ export namespace cloudidentity_v1beta1 {
      * The display name of the `Group`.
      */
     displayName?: string | null;
+    /**
+     * Optional. Dynamic group metadata like queries and status.
+     */
+    dynamicGroupMetadata?: Schema$DynamicGroupMetadata;
     /**
      * Required. Immutable. The `EntityKey` of the `Group`.
      */
@@ -3481,6 +3832,7 @@ export namespace cloudidentity_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "dynamicGroupMetadata": {},
      *       //   "groupKey": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -3769,6 +4121,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "dynamicGroupMetadata": {},
      *   //   "groupKey": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -4200,6 +4553,7 @@ export namespace cloudidentity_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "dynamicGroupMetadata": {},
      *       //   "groupKey": {},
      *       //   "labels": {},
      *       //   "name": "my_name",

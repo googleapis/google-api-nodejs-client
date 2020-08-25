@@ -149,7 +149,7 @@ export namespace servicecontrol_v2 {
     version?: string | null;
   }
   /**
-   * This message defines the standard attribute vocabulary for Google APIs.  An attribute is a piece of metadata that describes an activity on a network service. For example, the size of an HTTP request, or the status code of an HTTP response.  Each attribute has a type and a name, which is logically defined as a proto message field in `AttributeContext`. The field type becomes the attribute type, and the field path becomes the attribute name. For example, the attribute `source.ip` maps to field `AttributeContext.source.ip`.  This message definition is guaranteed not to have any wire breaking change. So you can use it directly for passing attributes across different systems.  NOTE: Different system may generate different subset of attributes. Please verify the system specification before relying on an attribute generated a system.
+   * This message defines the standard attribute vocabulary for Google APIs. An attribute is a piece of metadata that describes an activity on a network service. For example, the size of an HTTP request, or the status code of an HTTP response. Each attribute has a type and a name, which is logically defined as a proto message field in `AttributeContext`. The field type becomes the attribute type, and the field path becomes the attribute name. For example, the attribute `source.ip` maps to field `AttributeContext.source.ip`. This message definition is guaranteed not to have any wire breaking change. So you can use it directly for passing attributes across different systems. NOTE: Different system may generate different subset of attributes. Please verify the system specification before relying on an attribute generated a system.
    */
   export interface Schema$AttributeContext {
     /**
@@ -202,7 +202,7 @@ export namespace servicecontrol_v2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The name of the service method or operation. For API calls, this should be the name of the API method. For example,      &quot;google.cloud.bigquery.v2.TableService.InsertTable&quot;     &quot;google.logging.v2.ConfigServiceV2.CreateSink&quot;
+     * The name of the service method or operation. For API calls, this should be the name of the API method. For example, &quot;google.cloud.bigquery.v2.TableService.InsertTable&quot; &quot;google.logging.v2.ConfigServiceV2.CreateSink&quot;
      */
     methodName?: string | null;
     /**
@@ -222,7 +222,7 @@ export namespace servicecontrol_v2 {
      */
     resourceLocation?: Schema$ResourceLocation;
     /**
-     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example:      &quot;projects/PROJECT_ID/zones/us-central1-a/instances&quot;     &quot;projects/PROJECT_ID/datasets/DATASET_ID&quot;
+     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example: &quot;projects/PROJECT_ID/zones/us-central1-a/instances&quot; &quot;projects/PROJECT_ID/datasets/DATASET_ID&quot;
      */
     resourceName?: string | null;
     /**
@@ -251,15 +251,15 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$Auth {
     /**
-     * A list of access level resource names that allow resources to be accessed by authenticated requester. It is part of Secure GCP processing for the incoming request. An access level string has the format: &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot;  Example: &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
+     * A list of access level resource names that allow resources to be accessed by authenticated requester. It is part of Secure GCP processing for the incoming request. An access level string has the format: &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot; Example: &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
      */
     accessLevels?: string[] | null;
     /**
-     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential. For example,    [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
+     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information: * The services intended to receive the credential. For example, [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. * A set of service-based scopes. For example, [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. * The client id of an app, such as the Firebase project id for JWTs from Firebase Auth. Consult the documentation for the credential issuer to determine the information provided.
      */
     audiences?: string[] | null;
     /**
-     * Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT:     {&#39;iss&#39;: &#39;accounts.google.com&#39;,     &#39;sub&#39;: &#39;113289723416554971153&#39;,     &#39;aud&#39;: [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;],     &#39;azp&#39;: &#39;123456789012.apps.googleusercontent.com&#39;,     &#39;email&#39;: &#39;jsmith@example.com&#39;,     &#39;iat&#39;: 1353601026,     &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but with an identity provider dependent structure.
+     * Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {&#39;iss&#39;: &#39;accounts.google.com&#39;, &#39;sub&#39;: &#39;113289723416554971153&#39;, &#39;aud&#39;: [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;], &#39;azp&#39;: &#39;123456789012.apps.googleusercontent.com&#39;, &#39;email&#39;: &#39;jsmith@example.com&#39;, &#39;iat&#39;: 1353601026, &#39;exp&#39;: 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.
      */
     claims?: {[key: string]: any} | null;
     /**
@@ -292,7 +292,7 @@ export namespace servicecontrol_v2 {
      */
     serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
     /**
-     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example:  &quot;//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}&quot;
+     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: &quot;//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}&quot;
      */
     serviceAccountKeyName?: string | null;
     /**
@@ -313,11 +313,11 @@ export namespace servicecontrol_v2 {
      */
     permission?: string | null;
     /**
-     * The resource being accessed, as a REST-style string. For example:      bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
      */
     resource?: string | null;
     /**
-     * Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name.  To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`.
+     * Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`.
      */
     resourceAttributes?: Schema$Resource;
   }
@@ -468,11 +468,11 @@ export namespace servicecontrol_v2 {
      */
     callerIp?: string | null;
     /**
-     * The network of the caller. Set only if the network host project is part of the same GCP organization (or project) as the accessed resource. See https://cloud.google.com/compute/docs/vpc/ for more information. This is a scheme-less URI full resource name. For example:      &quot;//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID&quot;
+     * The network of the caller. Set only if the network host project is part of the same GCP organization (or project) as the accessed resource. See https://cloud.google.com/compute/docs/vpc/ for more information. This is a scheme-less URI full resource name. For example: &quot;//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID&quot;
      */
     callerNetwork?: string | null;
     /**
-     * The user agent of the caller. This information is not authenticated and should be treated accordingly. For example:  +   `google-api-python-client/1.4.0`:     The request was made by the Google API client for Python. +   `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:     The request was made by the Google Cloud SDK CLI (gcloud). +   `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`:     The request was made from the `my-project` App Engine app. NOLINT
+     * The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app. NOLINT
      */
     callerSuppliedUserAgent?: string | null;
     /**
@@ -480,7 +480,7 @@ export namespace servicecontrol_v2 {
      */
     destinationAttributes?: Schema$Peer;
     /**
-     * Request attributes used in IAM condition evaluation. This field contains request attributes like request time and access levels associated with the request.   To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.authentication_info.resource_attributes`.
+     * Request attributes used in IAM condition evaluation. This field contains request attributes like request time and access levels associated with the request. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.authentication_info.resource_attributes`.
      */
     requestAttributes?: Schema$Request;
   }
@@ -493,7 +493,7 @@ export namespace servicecontrol_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as &quot;//{resource.service}/{resource.name}&quot;. The differences between a resource name and a URI are:  *   Resource name is a logical identifier, independent of network     protocol and API version. For example,     `//pubsub.googleapis.com/projects/123/topics/news-feed`. *   URI often includes protocol and version information, so it can     be used directly by applications. For example,     `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`.  See https://cloud.google.com/apis/design/resource_names for details.
+     * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as &quot;//{resource.service}/{resource.name}&quot;. The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details.
      */
     name?: string | null;
     /**
@@ -501,7 +501,7 @@ export namespace servicecontrol_v2 {
      */
     service?: string | null;
     /**
-     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently.  For Google APIs, the type format must be &quot;{service}/{kind}&quot;.
+     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be &quot;{service}/{kind}&quot;.
      */
     type?: string | null;
   }
@@ -527,11 +527,11 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$ResourceLocation {
     /**
-     * The locations of a resource after the execution of the operation. Requests to create or delete a location based resource must populate the &#39;current_locations&#39; field and not the &#39;original_locations&#39; field. For example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;     &quot;nam3&quot;
+     * The locations of a resource after the execution of the operation. Requests to create or delete a location based resource must populate the &#39;current_locations&#39; field and not the &#39;original_locations&#39; field. For example: &quot;europe-west1-a&quot; &quot;us-east1&quot; &quot;nam3&quot;
      */
     currentLocations?: string[] | null;
     /**
-     * The locations of a resource prior to the execution of the operation. Requests that mutate the resource&#39;s location must populate both the &#39;original_locations&#39; as well as the &#39;current_locations&#39; fields. For example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;     &quot;nam3&quot;
+     * The locations of a resource prior to the execution of the operation. Requests that mutate the resource&#39;s location must populate both the &#39;original_locations&#39; as well as the &#39;current_locations&#39; fields. For example: &quot;europe-west1-a&quot; &quot;us-east1&quot; &quot;nam3&quot;
      */
     originalLocations?: string[] | null;
   }
@@ -570,16 +570,16 @@ export namespace servicecontrol_v2 {
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
   }
   /**
-   * The context of a span, attached to Exemplars in Distribution values during aggregation.  It contains the name of a span with format:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   * The context of a span, attached to Exemplars in Distribution values during aggregation. It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
    */
   export interface Schema$SpanContext {
     /**
-     * The resource name of the span. The format is:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]  `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * The resource name of the span. The format is: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID] `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     spanName?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -587,7 +587,7 @@ export namespace servicecontrol_v2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -613,7 +613,7 @@ export namespace servicecontrol_v2 {
 
     /**
      * servicecontrol.services.check
-     * @desc Private Preview. This feature is only available for approved services.  This method provides admission control for services that are integrated with [Service Infrastructure](/service-infrastructure). It checks whether an operation should be allowed based on the service configuration and relevant policies. It must be called before the operation is executed. For more information, see [Admission Control](/service-infrastructure/docs/admission-control).  NOTE: The admission control has an expected policy propagation delay of 60s. The caller **must** not depend on the most recent policy changes.  NOTE: The admission control has a hard limit of 1 referenced resources per call. If an operation refers to more than 1 resources, the caller must call the Check method multiple times.  This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+     * @desc Private Preview. This feature is only available for approved services. This method provides admission control for services that are integrated with [Service Infrastructure](/service-infrastructure). It checks whether an operation should be allowed based on the service configuration and relevant policies. It must be called before the operation is executed. For more information, see [Admission Control](/service-infrastructure/docs/admission-control). NOTE: The admission control has an expected policy propagation delay of 60s. The caller **must** not depend on the most recent policy changes. NOTE: The admission control has a hard limit of 1 referenced resources per call. If an operation refers to more than 1 resources, the caller must call the Check method multiple times. This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -641,12 +641,7 @@ export namespace servicecontrol_v2 {
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.check({
-     *     // The service name as specified in its service configuration. For example,
-     *     // `"pubsub.googleapis.com"`.
-     *     //
-     *     // See
-     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     // for the definition of a service name.
+     *     // The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -677,7 +672,7 @@ export namespace servicecontrol_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().CheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -764,7 +759,7 @@ export namespace servicecontrol_v2 {
 
     /**
      * servicecontrol.services.report
-     * @desc Private Preview. This feature is only available for approved services.  This method provides telemetry reporting for services that are integrated with [Service Infrastructure](/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](/service-infrastructure/docs/telemetry-reporting).  NOTE: The telemetry reporting has a hard limit of 1000 operations and 1MB per Report call. It is recommended to have no more than 100 operations per call.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+     * @desc Private Preview. This feature is only available for approved services. This method provides telemetry reporting for services that are integrated with [Service Infrastructure](/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](/service-infrastructure/docs/telemetry-reporting). NOTE: The telemetry reporting has a hard limit of 1000 operations and 1MB per Report call. It is recommended to have no more than 100 operations per call. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -792,12 +787,7 @@ export namespace servicecontrol_v2 {
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.report({
-     *     // The service name as specified in its service configuration. For example,
-     *     // `"pubsub.googleapis.com"`.
-     *     //
-     *     // See
-     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     // for the definition of a service name.
+     *     // The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -824,7 +814,7 @@ export namespace servicecontrol_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -912,7 +902,7 @@ export namespace servicecontrol_v2 {
 
   export interface Params$Resource$Services$Check extends StandardParameters {
     /**
-     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
 
@@ -923,7 +913,7 @@ export namespace servicecontrol_v2 {
   }
   export interface Params$Resource$Services$Report extends StandardParameters {
     /**
-     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
 

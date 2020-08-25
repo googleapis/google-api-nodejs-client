@@ -453,6 +453,10 @@ export namespace toolresults_v1beta3 {
      */
     crashed?: boolean | null;
     /**
+     * If the device ran out of memory during a test, causing the test to crash.
+     */
+    deviceOutOfMemory?: boolean | null;
+    /**
      * If the Roboscript failed to complete successfully, e.g., because a Roboscript action or assertion failed or a Roboscript action could not be matched during the entire crawl.
      */
     failedRoboscript?: boolean | null;

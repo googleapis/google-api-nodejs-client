@@ -2,7 +2,7 @@
 
 # tasks
 
-> Manages your tasks and task lists.
+> The Google Tasks API lets you manage your tasks and task lists.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

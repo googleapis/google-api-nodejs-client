@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20200820",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1235,6 +1235,13 @@
       "description": "A description of how to set up an iOS device prior to running the test.",
       "id": "IosTestSetup",
       "properties": {
+        "additionalIpas": {
+          "description": "iOS apps to install in addition to those being directly tested.",
+          "items": {
+            "$ref": "FileReference"
+          },
+          "type": "array"
+        },
         "networkProfile": {
           "description": "The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.",
           "type": "string"
