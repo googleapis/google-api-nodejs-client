@@ -307,6 +307,10 @@ export namespace sasportal_v1alpha1 {
      */
     frequencyRange?: Schema$SasPortalFrequencyRange;
     /**
+     * Grant Id.
+     */
+    grantId?: string | null;
+    /**
      * Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of maxEirp represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).
      */
     maxEirp?: number | null;
