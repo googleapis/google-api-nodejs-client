@@ -641,6 +641,103 @@
             }
           }
         },
+        "projects": {
+          "resources": {
+            "global": {
+              "resources": {
+                "networks": {
+                  "resources": {
+                    "peeredDnsDomains": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a peered DNS domain which sends requests for records in given namespace originating in the service producer VPC network to the consumer VPC network to be resolved.",
+                          "flatPath": "v1/services/{servicesId}/projects/{projectsId}/global/networks/{networksId}/peeredDnsDomains",
+                          "httpMethod": "POST",
+                          "id": "servicenetworking.services.projects.global.networks.peeredDnsDomains.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent resource identifying the connection for which the peered DNS domain will be created in the format: `services/{service}/projects/{project}/global/networks/{network}` {service} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network} is the name of the service consumer's VPC network.",
+                              "location": "path",
+                              "pattern": "^services/[^/]+/projects/[^/]+/global/networks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/peeredDnsDomains",
+                          "request": {
+                            "$ref": "PeeredDnsDomain"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/service.management"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a peered DNS domain.",
+                          "flatPath": "v1/services/{servicesId}/projects/{projectsId}/global/networks/{networksId}/peeredDnsDomains/{peeredDnsDomainsId}",
+                          "httpMethod": "DELETE",
+                          "id": "servicenetworking.services.projects.global.networks.peeredDnsDomains.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the peered DNS domain to delete in the format: `services/{service}/projects/{project}/global/networks/{network}/peeredDnsDomains/{name}`. {service} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network} is the name of the service consumer's VPC network. {name} is the name of the peered DNS domain.",
+                              "location": "path",
+                              "pattern": "^services/[^/]+/projects/[^/]+/global/networks/[^/]+/peeredDnsDomains/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/service.management"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists peered DNS domains for a connection.",
+                          "flatPath": "v1/services/{servicesId}/projects/{projectsId}/global/networks/{networksId}/peeredDnsDomains",
+                          "httpMethod": "GET",
+                          "id": "servicenetworking.services.projects.global.networks.peeredDnsDomains.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent resource identifying the connection which owns this collection of peered DNS domains in the format: `services/{service}/projects/{project}/global/networks/{network}`. {service} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project} is a project number e.g. `12345` that contains the service consumer's VPC network. {network} is the name of the service consumer's VPC network.",
+                              "location": "path",
+                              "pattern": "^services/[^/]+/projects/[^/]+/global/networks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/peeredDnsDomains",
+                          "response": {
+                            "$ref": "ListPeeredDnsDomainsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/service.management"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "roles": {
           "methods": {
             "add": {
@@ -677,7 +774,7 @@
       }
     }
   },
-  "revision": "20200804",
+  "revision": "20200822",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1240,6 +1337,12 @@
       },
       "type": "object"
     },
+    "DeletePeeredDnsDomainMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by DeletePeeredDnsDomain API.",
+      "id": "DeletePeeredDnsDomainMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "DisableVpcServiceControlsRequest": {
       "description": "Request to disable VPC service controls.",
       "id": "DisableVpcServiceControlsRequest",
@@ -1737,6 +1840,20 @@
       },
       "type": "object"
     },
+    "ListPeeredDnsDomainsResponse": {
+      "description": "Response to list peered DNS domains for a given connection.",
+      "id": "ListPeeredDnsDomainsResponse",
+      "properties": {
+        "peeredDnsDomains": {
+          "description": "The list of peered DNS domains.",
+          "items": {
+            "$ref": "PeeredDnsDomain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LogDescriptor": {
       "description": "A description of a log type. Example in YAML format: - name: library.googleapis.com/activity_history description: The history of borrowing and returning library items. display_name: Activity labels: - key: /customer_id description: Identifier of a library customer",
       "id": "LogDescriptor",
@@ -2016,7 +2133,7 @@
       "type": "object"
     },
     "Mixin": {
-      "description": "Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v1/{resource=**}:getAcl\"; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = \"/v2/{resource=**}\"; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v2/{resource=**}:getAcl\"; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v2/acls/{resource=**}:getAcl\"; } ... }",
+      "description": "Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v1/{resource=**}:getAcl\"; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = \"/v2/{resource=**}\"; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v2/{resource=**}:getAcl\"; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = \"/v2/acls/{resource=**}:getAcl\"; } ... }",
       "id": "Mixin",
       "properties": {
         "name": {
@@ -2208,6 +2325,27 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "PeeredDnsDomain": {
+      "description": "DNS domain suffix for which requests originating in the producer VPC network are resolved in the associated consumer VPC network.",
+      "id": "PeeredDnsDomain",
+      "properties": {
+        "dnsSuffix": {
+          "description": "The DNS domain name suffix e.g. `example.com.`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "User assigned name for this resource. Must be unique within the consumer network. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PeeredDnsDomainMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by CreatePeeredDnsDomain API.",
+      "id": "PeeredDnsDomainMetadata",
+      "properties": {},
       "type": "object"
     },
     "PolicyBinding": {
