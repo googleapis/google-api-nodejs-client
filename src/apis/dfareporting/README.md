@@ -2,7 +2,7 @@
 
 # dfareporting
 
-> Manages your DoubleClick Campaign Manager ad campaigns and reports.
+> Manage your DoubleClick Campaign Manager ad campaigns and reports.
 
 ## Installation
 
