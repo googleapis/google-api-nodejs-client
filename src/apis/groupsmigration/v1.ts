@@ -262,7 +262,8 @@ export namespace groupsmigration_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://groupsmigration.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
