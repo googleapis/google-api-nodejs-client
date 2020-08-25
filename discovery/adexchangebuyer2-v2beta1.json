@@ -2500,7 +2500,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200822",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -2612,10 +2612,6 @@
       "properties": {
         "appTypes": {
           "description": "The app types this restriction applies to.",
-          "enumDescriptions": [
-            "Native app context.",
-            "Mobile web app context."
-          ],
           "items": {
             "enum": [
               "NATIVE",
@@ -2638,10 +2634,6 @@
       "properties": {
         "auctionTypes": {
           "description": "The auction types this restriction applies to.",
-          "enumDescriptions": [
-            "The restriction applies to open auction.",
-            "The restriction applies to direct deals."
-          ],
           "items": {
             "enum": [
               "OPEN_AUCTION",
@@ -3010,46 +3002,6 @@
         },
         "attributes": {
           "description": "All attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method.",
-          "enumDescriptions": [
-            "Do not use. This is a placeholder value only.",
-            "The creative is of type image/rich media. For pretargeting.",
-            "The creative is of video type Adobe Flash FLV. For pretargeting.",
-            "The creative is tagged.",
-            "The creative is cookie targeted.",
-            "The creative is user interest targeted.",
-            "The creative does not expand.",
-            "The creative expands up.",
-            "The creative expands down.",
-            "The creative expands left.",
-            "The creative expands right.",
-            "The creative expands up and left.",
-            "The creative expands up and right.",
-            "The creative expands down and left.",
-            "The creative expands down and right.",
-            "The creative type is HTML.",
-            "The creative type is VAST video.",
-            "The creative expands up or down.",
-            "The creative expands left or right.",
-            "The creative expands on any diagonal.",
-            "The creative expands when rolled over.",
-            "The instream vast video type is vpaid flash.",
-            "The creative is MRAID.",
-            "The creative is Flash.",
-            "The creative is HTML5.",
-            "The creative has an instream VAST video type of skippable instream video. For pretargeting.",
-            "The creative is SSL.",
-            "The creative is non-SSL.",
-            "The creative is an interstitial.",
-            "The creative has an instream VAST video type of non-skippable instream video. For pretargeting.",
-            "The creative is eligible for native.",
-            "The creative has an instream VAST video type of non-VPAID. For pretargeting.",
-            "The creative is not eligible for native.",
-            "The creative has an interstitial size of any interstitial. For pretargeting.",
-            "The creative has an interstitial size of non interstitial. For pretargeting.",
-            "The video type is in-banner video.",
-            "The creative can dynamically resize to fill a variety of slot sizes.",
-            "The open measurement SDK is supported."
-          ],
           "items": {
             "enum": [
               "ATTRIBUTE_UNSPECIFIED",
@@ -3259,10 +3211,6 @@
         },
         "restrictedCategories": {
           "description": "All restricted categories for the ads that may be shown from this creative.",
-          "enumDescriptions": [
-            "The ad has no restricted categories",
-            "The alcohol restricted category."
-          ],
           "items": {
             "enum": [
               "NO_RESTRICTED_CATEGORIES",
@@ -3371,10 +3319,6 @@
       "properties": {
         "allowedFormats": {
           "description": "What formats are allowed by the publisher. If this repeated field is empty then all formats are allowed. For example, if this field contains AllowedFormatType.AUDIO then the publisher only allows an audio ad (without any video).",
-          "enumDescriptions": [
-            "A placeholder for an undefined allowed format.",
-            "An audio-only ad (without any video)."
-          ],
           "items": {
             "enum": [
               "UNKNOWN",
@@ -4150,10 +4094,6 @@
         },
         "breakdownDimensions": {
           "description": "The set of dimensions along which to break down the response; may be empty. If multiple dimensions are requested, the breakdown is along the Cartesian product of the requested dimensions.",
-          "enumDescriptions": [
-            "A placeholder for an unspecified dimension; should not be used.",
-            "The response should be broken down by publisher identifier. This option is available only for Open Bidding buyers."
-          ],
           "items": {
             "enum": [
               "BREAKDOWN_DIMENSION_UNSPECIFIED",
@@ -4210,13 +4150,6 @@
         },
         "formats": {
           "description": "Creative formats bidded on or allowed to bid on, can be empty. Although this field is a list, it can only be populated with a single item. A HTTP 400 bad request error will be returned in the response if you specify multiple items.",
-          "enumDescriptions": [
-            "A placeholder for an undefined format; indicates that no format filter will be applied.",
-            "The ad impression is a native ad, and display (i.e., image) format.",
-            "The ad impression is a native ad, and video format.",
-            "The ad impression is not a native ad, and display (i.e., image) format.",
-            "The ad impression is not a native ad, and video format."
-          ],
           "items": {
             "enum": [
               "FORMAT_UNSPECIFIED",
@@ -4242,12 +4175,6 @@
         },
         "platforms": {
           "description": "The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e., if non-empty, results must match any one of the platforms).",
-          "enumDescriptions": [
-            "A placeholder for an undefined platform; indicates that no platform filter will be applied.",
-            "The ad impression appears on a desktop.",
-            "The ad impression appears on a tablet.",
-            "The ad impression appears on a mobile device."
-          ],
           "items": {
             "enum": [
               "PLATFORM_UNSPECIFIED",
@@ -4332,8 +4259,12 @@
           "$ref": "MetricValue",
           "description": "The number of bids with the specified detail."
         },
+        "detail": {
+          "description": "The ID of the detail, can be numeric or text. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.",
+          "type": "string"
+        },
         "detailId": {
-          "description": "The ID of the detail. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.",
+          "description": "Note: this field will be deprecated, use \"detail\" field instead. When \"detail\" field represents an integer value, this field is populated as the same integer value \"detail\" field represents, otherwise this field will be 0. The ID of the detail. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.",
           "format": "int32",
           "type": "integer"
         },
@@ -4662,7 +4593,8 @@
             "VENDOR",
             "SENSITIVE_CATEGORY",
             "PRODUCT_CATEGORY",
-            "DISAPPROVAL_REASON"
+            "DISAPPROVAL_REASON",
+            "POLICY_TOPIC"
           ],
           "enumDescriptions": [
             "A placeholder for an undefined status. This value will never be returned in responses.",
@@ -4670,7 +4602,8 @@
             "Indicates that the detail ID refers to a vendor; see [vendors](https://developers.google.com/authorized-buyers/rtb/downloads/vendors).",
             "Indicates that the detail ID refers to a sensitive category; see [ad-sensitive-categories](https://developers.google.com/authorized-buyers/rtb/downloads/ad-sensitive-categories).",
             "Indicates that the detail ID refers to a product category; see [ad-product-categories](https://developers.google.com/authorized-buyers/rtb/downloads/ad-product-categories).",
-            "Indicates that the detail ID refers to a disapproval reason; see DisapprovalReason enum in [snippet-status-report-proto](https://developers.google.com/authorized-buyers/rtb/downloads/snippet-status-report-proto)."
+            "Indicates that the detail ID refers to a disapproval reason; see DisapprovalReason enum in [snippet-status-report-proto](https://developers.google.com/authorized-buyers/rtb/downloads/snippet-status-report-proto).",
+            "Indicates that the detail ID refers to a policy topic."
           ],
           "type": "string"
         },
@@ -5188,11 +5121,6 @@
       "properties": {
         "platforms": {
           "description": "The platforms this restriction applies to.",
-          "enumDescriptions": [
-            "Desktop platform.",
-            "Android platform.",
-            "iOS platform."
-          ],
           "items": {
             "enum": [
               "DESKTOP",
@@ -5491,7 +5419,7 @@
       "type": "object"
     },
     "PublisherProfile": {
-      "description": "Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.",
+      "description": "Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.",
       "id": "PublisherProfile",
       "properties": {
         "audienceDescription": {
@@ -5522,7 +5450,7 @@
           "type": "string"
         },
         "isParent": {
-          "description": "Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806?hl=en for details.",
+          "description": "Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806 for details.",
           "type": "boolean"
         },
         "logoUrl": {
@@ -5634,10 +5562,6 @@
       "properties": {
         "securities": {
           "description": "The security types in this context.",
-          "enumDescriptions": [
-            "Matches impressions that require insecure compatibility.",
-            "Matches impressions that require SSL compatibility."
-          ],
           "items": {
             "enum": [
               "INSECURE",
@@ -5922,12 +5846,6 @@
       "properties": {
         "excludedPositionTypes": {
           "description": "A list of video positions to be excluded. Position types can either be included or excluded (XOR).",
-          "enumDescriptions": [
-            "A placeholder for an undefined video position.",
-            "Ad is played before the video.",
-            "Ad is played during the video.",
-            "Ad is played after the video."
-          ],
           "items": {
             "enum": [
               "POSITION_TYPE_UNSPECIFIED",
@@ -5947,12 +5865,6 @@
         },
         "targetedPositionTypes": {
           "description": "A list of video positions to be included. When the included list is present, the excluded list must be empty. When the excluded list is present, the included list must be empty.",
-          "enumDescriptions": [
-            "A placeholder for an undefined video position.",
-            "Ad is played before the video.",
-            "Ad is played during the video.",
-            "Ad is played after the video."
-          ],
           "items": {
             "enum": [
               "POSITION_TYPE_UNSPECIFIED",
