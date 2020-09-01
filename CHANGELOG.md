@@ -4,6 +4,92 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [60.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v59.0.0...v60.0.0) (2020-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **toolresults:** This release has breaking changes.
+* **sasportal:** This release has breaking changes.
+* **groupsmigration:** This release has breaking changes.
+* **firebaseml:** This release has breaking changes.
+* **firebase:** This release has breaking changes.
+* **file:** This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+* **dialogflow:** This release has breaking changes.
+* **dfareporting:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **cloudidentity:** This release has breaking changes.
+* **calendar:** This release has breaking changes.
+* **bigtableadmin:** This release has breaking changes.
+* **admin:** This release has breaking changes.
+* **adexchangebuyer2:** This release has breaking changes.
+
+### Features
+
+* delete blunderbuss ([#2344](https://www.github.com/googleapis/google-api-nodejs-client/issues/2344)) ([9ee32ad](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ee32ade107674deeb3b7bb8d2a7fa0351d08ef1))
+* regenerate index files ([dd0f540](https://www.github.com/googleapis/google-api-nodejs-client/commit/dd0f5405afd54f5556335418bec733d7276bb6c1))
+* **adexchangebuyer2:** update the API ([d3865e9](https://www.github.com/googleapis/google-api-nodejs-client/commit/d3865e981b362137ebce38ba4c6db1445fe66101))
+* **admin:** update the API ([270eed6](https://www.github.com/googleapis/google-api-nodejs-client/commit/270eed65c06a3888c3231b5dd902a3d11f024454))
+* **androidmanagement:** update the API ([cf0f6a1](https://www.github.com/googleapis/google-api-nodejs-client/commit/cf0f6a171038e5ba609a6afd607cc458149ca15a))
+* **bigtableadmin:** update the API ([3cde8f6](https://www.github.com/googleapis/google-api-nodejs-client/commit/3cde8f6ee4208b243ba54a96f1b88ad778fd29db))
+* **calendar:** update the API ([cdf692a](https://www.github.com/googleapis/google-api-nodejs-client/commit/cdf692a78ecf3f59605d7853933d29444406c18d))
+* **cloudbilling:** update the API ([38dcbf9](https://www.github.com/googleapis/google-api-nodejs-client/commit/38dcbf909e2baeb90536343b1c7f21769f9fddc7))
+* **cloudbuild:** update the API ([e6cabc2](https://www.github.com/googleapis/google-api-nodejs-client/commit/e6cabc20edf5743031e6ede7a35740862a4ffb99))
+* **cloudidentity:** update the API ([c52f6bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/c52f6bf7afb9906f993485564cc700ed83a41075))
+* **cloudkms:** update the API ([ab161e7](https://www.github.com/googleapis/google-api-nodejs-client/commit/ab161e7793e704c0e48900ce287693a1354ce133))
+* **composer:** update the API ([df760ef](https://www.github.com/googleapis/google-api-nodejs-client/commit/df760ef916912071f86e504d9eca7d7aafc1bcf1))
+* **compute:** update the API ([1318e3e](https://www.github.com/googleapis/google-api-nodejs-client/commit/1318e3ebb946a881907aef22fccc5ab8d6fd2df6))
+* **container:** update the API ([95e2090](https://www.github.com/googleapis/google-api-nodejs-client/commit/95e209097fe76e4bfb2e3376b117eef336a17984))
+* **dfareporting:** update the API ([3013cdd](https://www.github.com/googleapis/google-api-nodejs-client/commit/3013cdd7805208e798c777bd9db23997c6f37575))
+* **dialogflow:** update the API ([ff39f29](https://www.github.com/googleapis/google-api-nodejs-client/commit/ff39f297da26a19e1cbe47a45f97d0482a3fed35))
+* **displayvideo:** update the API ([b6a5172](https://www.github.com/googleapis/google-api-nodejs-client/commit/b6a517249d7161b86d71b7755e541b780086359d))
+* **documentai:** update the API ([d4a1cbb](https://www.github.com/googleapis/google-api-nodejs-client/commit/d4a1cbb392687db5507727954c7173be661438c7))
+* **file:** update the API ([0ba3f79](https://www.github.com/googleapis/google-api-nodejs-client/commit/0ba3f79bf9fde4a6358872ef234c38ec00919244))
+* **firebase:** update the API ([986aaf9](https://www.github.com/googleapis/google-api-nodejs-client/commit/986aaf955c3823754e3ba4282171ce3f50add1ab))
+* **firebaseml:** update the API ([dcd0663](https://www.github.com/googleapis/google-api-nodejs-client/commit/dcd0663b00445591ffd755039c80668871850c6f))
+* **fitness:** update the API ([b10b005](https://www.github.com/googleapis/google-api-nodejs-client/commit/b10b005120975515cb0f1a44dbcc06a7bc385f67))
+* **groupsmigration:** update the API ([cc6fb96](https://www.github.com/googleapis/google-api-nodejs-client/commit/cc6fb9694afde1df4c5e0d4c337436e0c1104e82))
+* **healthcare:** update the API ([d339b28](https://www.github.com/googleapis/google-api-nodejs-client/commit/d339b288bb15ea38cdc08820143489619a8c99c6))
+* **memcache:** update the API ([99c414c](https://www.github.com/googleapis/google-api-nodejs-client/commit/99c414c7611e54e174bb304d2da683e0d8b05be2))
+* **monitoring:** update the API ([aaca4ea](https://www.github.com/googleapis/google-api-nodejs-client/commit/aaca4ea636842998e70fc98e86613f14e6256bf2))
+* **networkmanagement:** update the API ([784ca46](https://www.github.com/googleapis/google-api-nodejs-client/commit/784ca4621b971e31bedc0926aabe0c2242f2b12b))
+* **remotebuildexecution:** update the API ([d97620e](https://www.github.com/googleapis/google-api-nodejs-client/commit/d97620e1154b3f8cdfe14af38d76feaada0489a2))
+* **sasportal:** update the API ([60d2b5c](https://www.github.com/googleapis/google-api-nodejs-client/commit/60d2b5c8c6564cbcb8535cac27fab27d396b39d0))
+* **servicenetworking:** update the API ([40b7818](https://www.github.com/googleapis/google-api-nodejs-client/commit/40b78184426eaac3a7965cfffcdd66833f7a75a9))
+* **serviceusage:** update the API ([710252a](https://www.github.com/googleapis/google-api-nodejs-client/commit/710252a9f2a617411ba13d18ebc0a5a3a88ce4ea))
+* **sheets:** update the API ([5f9c7b3](https://www.github.com/googleapis/google-api-nodejs-client/commit/5f9c7b3140e03611ae021d4bcab8981bbb9be909))
+* **testing:** update the API ([1978318](https://www.github.com/googleapis/google-api-nodejs-client/commit/1978318c40187020b5d4ab14c593ccf62e408f86))
+* **toolresults:** update the API ([2afd0a7](https://www.github.com/googleapis/google-api-nodejs-client/commit/2afd0a7078c141a98bd7749d14e1c5d291894fae))
+* **tpu:** update the API ([e195d9a](https://www.github.com/googleapis/google-api-nodejs-client/commit/e195d9a5c28699e0e2fa231517bb1fa40ce4fcfe))
+* **translate:** update the API ([8d36bd6](https://www.github.com/googleapis/google-api-nodejs-client/commit/8d36bd688270eb78efff569dae5f27bc7f490ef7))
+* **webfonts:** update the API ([bfb8899](https://www.github.com/googleapis/google-api-nodejs-client/commit/bfb889999f486e92d1ab2d9389e750e7a7f7f001))
+* run the generator ([#2327](https://www.github.com/googleapis/google-api-nodejs-client/issues/2327)) ([dd6b8f5](https://www.github.com/googleapis/google-api-nodejs-client/commit/dd6b8f5f707cd716e6e1bbba3dd79ac5903032c7))
+
+
+### Bug Fixes
+
+* failing tests ([89ed4e4](https://www.github.com/googleapis/google-api-nodejs-client/commit/89ed4e474294f16e22019394659ca971c38ba492))
+* failing tests ([8d0e0b3](https://www.github.com/googleapis/google-api-nodejs-client/commit/8d0e0b3e8eefa8f728557fcf7525201384b5e998))
+* npm runlint ([bdb29bb](https://www.github.com/googleapis/google-api-nodejs-client/commit/bdb29bbe1702446a7a977b36611c9d91163536f5))
+* **androidpublisher:** update the API ([fc7fb9e](https://www.github.com/googleapis/google-api-nodejs-client/commit/fc7fb9e91348bc6b2b83f443f36ae06fdc8bb58d))
+* **cloudasset:** update the API ([6bd56f9](https://www.github.com/googleapis/google-api-nodejs-client/commit/6bd56f91d383984757b714a1f5688580fd6a9665))
+* **cloudscheduler:** update the API ([fbcd73b](https://www.github.com/googleapis/google-api-nodejs-client/commit/fbcd73bfccbc71a720e7693783105410e973a8d7))
+* **doubleclickbidmanager:** update the API ([bdf1b91](https://www.github.com/googleapis/google-api-nodejs-client/commit/bdf1b9162a9e416d0d4be8d6a9c42a403008fc62))
+* **gmail:** update the API ([ad82454](https://www.github.com/googleapis/google-api-nodejs-client/commit/ad82454c24435ca979bb33a3cc2dd75f9d830065))
+* **gmailpostmastertools:** update the API ([37d0f0b](https://www.github.com/googleapis/google-api-nodejs-client/commit/37d0f0b7b2c656254347130b8576262555e32749))
+* **iam:** update the API ([29b7117](https://www.github.com/googleapis/google-api-nodejs-client/commit/29b7117bdab06a38b0a48f46e351e976a1aae7ab))
+* **iamcredentials:** update the API ([db5cc71](https://www.github.com/googleapis/google-api-nodejs-client/commit/db5cc71d874078eaecc571caa7703d0c95517229))
+* **lifesciences:** update the API ([4118789](https://www.github.com/googleapis/google-api-nodejs-client/commit/4118789e43fa8b308f10830dfd5c6c9b32dc712e))
+* **localservices:** update the API ([feba241](https://www.github.com/googleapis/google-api-nodejs-client/commit/feba241fdeb7a8bec2bd1c9cf887e01f7972a52a))
+* **pubsublite:** update the API ([9a0510a](https://www.github.com/googleapis/google-api-nodejs-client/commit/9a0510ae2190cb9323d7d8e34abdb2fa7351f37c))
+* **securitycenter:** update the API ([99139ed](https://www.github.com/googleapis/google-api-nodejs-client/commit/99139ed943b7eca66e2b14e51b807cce5f13c5f9))
+* **serviceconsumermanagement:** update the API ([84097df](https://www.github.com/googleapis/google-api-nodejs-client/commit/84097dfb1743205da4516a69b3039c2acd5f0abb))
+* **servicecontrol:** update the API ([061d08c](https://www.github.com/googleapis/google-api-nodejs-client/commit/061d08c240be07bc578f3563aef24ce09158c85a))
+* **siteVerification:** update the API ([b98ef47](https://www.github.com/googleapis/google-api-nodejs-client/commit/b98ef47338b2cc2aa5b81104b1257626433a21f2))
+* **tasks:** update the API ([65a1c7d](https://www.github.com/googleapis/google-api-nodejs-client/commit/65a1c7d77fb060dc92fde1ce2aa3b4aec9da32b4))
+* **texttospeech:** update the API ([6bc9ba6](https://www.github.com/googleapis/google-api-nodejs-client/commit/6bc9ba67acb53e34b86d7aee1184115503a4df8c))
+
 ## [59.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v58.0.0...v59.0.0) (2020-08-11)
 
 
