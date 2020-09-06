@@ -73,7 +73,7 @@
     "codecov": "^3.4.0",
     "execa": "^4.0.0",
     "gaxios": "^3.0.3",
-    "gts": "^2.0.0",
+    "gts": "^3.0.0-alpha.1",
     "js-green-licenses": "^2.0.0",
     "linkinator": "^2.0.0",
     "mkdirp": "^1.0.0",
