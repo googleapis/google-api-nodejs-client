@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [60.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v60.0.0...v60.0.1) (2020-09-22)
+
+
+### Bug Fixes
+
+* fixed compile error of invalid export ([#2362](https://www.github.com/googleapis/google-api-nodejs-client/issues/2362)) ([3e98a0d](https://www.github.com/googleapis/google-api-nodejs-client/commit/3e98a0d2548579417c0f7781a5d6ffdc3c0e804c))
+
 ## [60.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v59.0.0...v60.0.0) (2020-09-01)
 
 
