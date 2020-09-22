@@ -69,6 +69,7 @@
     "@types/sinon": "^9.0.0",
     "@types/tmp": "^0.2.0",
     "@types/url-template": "^2.0.28",
+    "@types/yargs-parser": "^15.0.0",
     "c8": "^7.0.0",
     "codecov": "^3.4.0",
     "execa": "^4.0.0",
@@ -90,6 +91,6 @@
     "sinon": "^9.0.2",
     "tmp": "^0.2.0",
     "typescript": "^3.8.3",
-    "yargs-parser": "^19.0.1"
+    "yargs-parser": "^20.2.0"
   }
 }
