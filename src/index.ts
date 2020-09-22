@@ -15,8 +15,9 @@
 import {GoogleApis} from './googleapis';
 const google = new GoogleApis();
 export {google, GoogleApis};
-export * as Common from 'googleapis-common';
-export * as Auth from 'google-auth-library';
+import * as Common from 'googleapis-common';
+import * as Auth from 'google-auth-library';
+export {Common, Auth};
 
 export {abusiveexperiencereport_v1} from './apis/abusiveexperiencereport/v1';
 export {acceleratedmobilepageurl_v1} from './apis/acceleratedmobilepageurl/v1';
