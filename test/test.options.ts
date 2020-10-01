@@ -265,4 +265,23 @@ describe('Options', () => {
     await drive.files.list({auth});
     assert(stub.calledOnce);
   });
+
+  it('should allow using a Gaxios adapter', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
+    const google = new GoogleApis();
+    let count = 0;
+    google.options({
+      adapter: async (opts, defaultAdapter) => {
+        count++;
+        const reply = await defaultAdapter(opts);
+        count++;
+        return reply;
+      },
+    });
+    const drive = google.drive('v2');
+    const res = await drive.files.list({}, {validateStatus: () => true});
+    assert.strictEqual(res.status, 500);
+    assert.strictEqual(count, 2);
+    scope.done();
+  });
 });
