@@ -9,8 +9,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/androidenterprise/v1",
+  "baseUrl": "https://androidenterprise.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Android Enterprise",
   "description": "Manages the deployment of apps to Android Enterprise devices.",
   "discoveryVersion": "v1",
@@ -21,7 +21,7 @@
   },
   "id": "androidenterprise:v1",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://androidenterprise.mtls.googleapis.com/",
   "name": "androidenterprise",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -2610,8 +2610,8 @@
       }
     }
   },
-  "revision": "20200801",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200929",
+  "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
       "description": "This represents an enterprise admin who can manage the enterprise in the managed Google Play store.",
@@ -2649,11 +2649,6 @@
         },
         "permission": {
           "description": "Deprecated. Use PlaySearch.approveApps.",
-          "enumDescriptions": [
-            "Unknown permission.",
-            "Permission to approve and unapprove apps.",
-            "Permission to manage app restrictions."
-          ],
           "items": {
             "enum": [
               "unknown",
@@ -3955,12 +3950,6 @@
         },
         "availableTracks": {
           "description": "Deprecated, use appTracks instead.",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "appTrackUnspecified",
@@ -4024,10 +4013,6 @@
         },
         "features": {
           "description": "Noteworthy features (if any) of this product.",
-          "enumDescriptions": [
-            "",
-            "The app is a VPN."
-          ],
           "items": {
             "enum": [
               "featureUnknown",
@@ -4234,12 +4219,6 @@
         },
         "tracks": {
           "description": "Deprecated. Use trackIds instead.",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "appTrackUnspecified",
@@ -4328,12 +4307,6 @@
         },
         "tracks": {
           "description": "Deprecated. Use trackIds instead.",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "appTrackUnspecified",
