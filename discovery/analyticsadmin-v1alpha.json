@@ -1,0 +1,2753 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/analytics.edit": {
+          "description": "Edit Google Analytics management entities"
+        },
+        "https://www.googleapis.com/auth/analytics.manage.users": {
+          "description": "Manage Google Analytics Account users by email address"
+        },
+        "https://www.googleapis.com/auth/analytics.manage.users.readonly": {
+          "description": "View Google Analytics user permissions"
+        },
+        "https://www.googleapis.com/auth/analytics.readonly": {
+          "description": "View your Google Analytics data"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://analyticsadmin.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Google Analytics Admin",
+  "description": "",
+  "discoveryVersion": "v1",
+  "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "analyticsadmin:v1alpha",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://analyticsadmin.mtls.googleapis.com/",
+  "name": "analyticsadmin",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "accountSummaries": {
+      "methods": {
+        "list": {
+          "description": "Returns summaries of all accounts accessible by the caller.",
+          "flatPath": "v1alpha/accountSummaries",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.accountSummaries.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of AccountSummary resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListAccountSummaries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountSummaries` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/accountSummaries",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaListAccountSummariesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        }
+      }
+    },
+    "accounts": {
+      "methods": {
+        "delete": {
+          "description": "Marks target Account as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.",
+          "flatPath": "v1alpha/accounts/{accountsId}",
+          "httpMethod": "DELETE",
+          "id": "analyticsadmin.accounts.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the Account to soft-delete. Format: accounts/{account} Example: \"accounts/100\"",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleProtobufEmpty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "get": {
+          "description": "Lookup for a single Account. Throws \"Target not found\" if no such account found, or if caller does not have permissions to access it.",
+          "flatPath": "v1alpha/accounts/{accountsId}",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.accounts.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the account to lookup. Format: accounts/{account} Example: \"accounts/100\"",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccount"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "getDataSharingSettings": {
+          "description": "Get data sharing settings on an account. Data sharing settings are singletons.",
+          "flatPath": "v1alpha/accounts/{accountsId}/dataSharingSettings",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.accounts.getDataSharingSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: \"accounts/1000/dataSharingSettings\"",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/dataSharingSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDataSharingSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "list": {
+          "description": "Returns all accounts accessible by the caller. Note that these accounts might not currently have App+Web properties. Soft-deleted (ie: \"trashed\") accounts are excluded by default. Returns an empty list if no relevant accounts are found.",
+          "flatPath": "v1alpha/accounts",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.accounts.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "showDeleted": {
+              "description": "Whether to include soft-deleted (ie: \"trashed\") Accounts in the results. Accounts can be inspected to determine whether they are deleted or not.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1alpha/accounts",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaListAccountsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "patch": {
+          "description": "Updates an account.",
+          "flatPath": "v1alpha/accounts/{accountsId}",
+          "httpMethod": "PATCH",
+          "id": "analyticsadmin.accounts.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Resource name of this account. Format: accounts/{account} Example: \"accounts/100\"",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields to be updated. Omitted fields will not be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccount"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccount"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "provisionAccountTicket": {
+          "description": "Requests a ticket for creating an account.",
+          "flatPath": "v1alpha/accounts:provisionAccountTicket",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.accounts.provisionAccountTicket",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/accounts:provisionAccountTicket",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        }
+      },
+      "resources": {
+        "userLinks": {
+          "methods": {
+            "audit": {
+              "description": "Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:audit",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.userLinks.audit",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:audit",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchCreate": {
+              "description": "Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.userLinks.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.userLinks.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.userLinks.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.userLinks.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.userLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "notifyNewUser": {
+                  "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a user link on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.accounts.userLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about a user's link to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.userLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all user links on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.userLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a user link on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.accounts.userLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Example format: properties/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "properties": {
+      "methods": {
+        "create": {
+          "description": "Creates an \"App+Web\" property with the specified location and attributes.",
+          "flatPath": "v1alpha/properties",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "delete": {
+          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an App+Web Property.",
+          "flatPath": "v1alpha/properties/{propertiesId}",
+          "httpMethod": "DELETE",
+          "id": "analyticsadmin.properties.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the Property to soft-delete. Format: properties/{property_id} Example: \"properties/1000\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleProtobufEmpty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "get": {
+          "description": "Lookup for a single \"App+Web\" Property. Throws \"Target not found\" if no such property found, if property is not of the type \"App+Web\", or if caller does not have permissions to access it.",
+          "flatPath": "v1alpha/properties/{propertiesId}",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the property to lookup. Format: properties/{property_id} Example: \"properties/1000\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "list": {
+          "description": "Returns child Properties under the specified parent Account. Only \"App+Web\" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: \"trashed\") properties are excluded by default. Returns an empty list if no relevant properties are found.",
+          "flatPath": "v1alpha/properties",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListProperties` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "showDeleted": {
+              "description": "Whether to include soft-deleted (ie: \"trashed\") Properties in the results. Properties can be inspected to determine whether they are deleted or not.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1alpha/properties",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaListPropertiesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "patch": {
+          "description": "Updates a property.",
+          "flatPath": "v1alpha/properties/{propertiesId}",
+          "httpMethod": "PATCH",
+          "id": "analyticsadmin.properties.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Resource name of this property. Format: properties/{property_id} Example: \"properties/1000\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields to be updated. Omitted fields will not be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        }
+      },
+      "resources": {
+        "androidAppDataStreams": {
+          "methods": {
+            "create": {
+              "description": "Creates an android app stream with the specified location and attributes.",
+              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.androidAppDataStreams.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where this android app data stream will be created. Format: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/androidAppDataStreams",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an android app stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.androidAppDataStreams.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the android app data stream to delete. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: \"properties/123/androidAppDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single AndroidAppDataStream Throws \"Target not found\" if no such android app data stream found, or if the caller does not have permissions to access it.",
+              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.androidAppDataStreams.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the android app data stream to lookup. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: \"properties/123/androidAppDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Returns child android app streams under the specified parent property. Android app streams will be excluded if the caller does not have access. Returns an empty list if no relevant android app streams are found.",
+              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.androidAppDataStreams.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAndroidAppDataStreams` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent property. For example, to limit results to app streams under the property with Id 123: \"properties/123\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/androidAppDataStreams",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an android app stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.androidAppDataStreams.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: \"properties/1000/androidAppDataStreams/2000\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
+        "firebaseLinks": {
+          "methods": {
+            "create": {
+              "description": "Creates a FirebaseLink. Properties can have at most one FirebaseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/firebaseLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.firebaseLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/firebaseLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a FirebaseLink on a property",
+              "flatPath": "v1alpha/properties/{propertiesId}/firebaseLinks/{firebaseLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.firebaseLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/firebaseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "list": {
+              "description": "Lists FirebaseLinks on a property. Properties can have at most one FirebaseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/firebaseLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.firebaseLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/firebaseLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a FirebaseLink on a property",
+              "flatPath": "v1alpha/properties/{propertiesId}/firebaseLinks/{firebaseLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.firebaseLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Example format: properties/1234/firebaseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/firebaseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
+        "googleAdsLinks": {
+          "methods": {
+            "create": {
+              "description": "Creates a GoogleAdsLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/googleAdsLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.googleAdsLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/googleAdsLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a GoogleAdsLink on a property",
+              "flatPath": "v1alpha/properties/{propertiesId}/googleAdsLinks/{googleAdsLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.googleAdsLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: properties/1234/googleAdsLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/googleAdsLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "list": {
+              "description": "Lists GoogleAdsLinks on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/googleAdsLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.googleAdsLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListGoogleAdsLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoogleAdsLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/googleAdsLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a GoogleAdsLink on a property",
+              "flatPath": "v1alpha/properties/{propertiesId}/googleAdsLinks/{googleAdsLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.googleAdsLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/googleAdsLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
+        "iosAppDataStreams": {
+          "methods": {
+            "create": {
+              "description": "Creates an iOS app data stream with the specified location and attributes.",
+              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.iosAppDataStreams.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where this ios app data stream will be created. Format: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/iosAppDataStreams",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an iOS app stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.iosAppDataStreams.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the iOS app data stream to delete. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: \"properties/123/iosAppDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single IosAppDataStream Throws \"Target not found\" if no such iOS app data stream found, or if the caller does not have permissions to access it.",
+              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.iosAppDataStreams.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the iOS app data stream to lookup. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: \"properties/123/iosAppDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Returns child iOS app data streams under the specified parent property. iOS app data streams will be excluded if the caller does not have access. Returns an empty list if no relevant iOS app data streams are found.",
+              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.iosAppDataStreams.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListIosAppDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIosAppDataStreams` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent property. For example, to list results of app streams under the property with Id 123: \"properties/123\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/iosAppDataStreams",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an iOS app stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.iosAppDataStreams.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: \"properties/1000/iosAppDataStreams/2000\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
+        "userLinks": {
+          "methods": {
+            "audit": {
+              "description": "Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:audit",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.userLinks.audit",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:audit",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchCreate": {
+              "description": "Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.userLinks.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.userLinks.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.userLinks.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.userLinks.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.userLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "notifyNewUser": {
+                  "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a user link on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.userLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about a user's link to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.userLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all user links on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.userLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: accounts/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/userLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListUserLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a user link on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.userLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Example format: properties/1234/userLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        },
+        "webDataStreams": {
+          "methods": {
+            "create": {
+              "description": "Creates a web stream with the specified location and attributes.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.webDataStreams.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where this web data stream will be created. Format: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/webDataStreams",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a web stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.webDataStreams.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the web data stream to delete. Format: properties/{property_id}/webDataStreams/{stream_id} Example: \"properties/123/webDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single WebDataStream Throws \"Target not found\" if no such web data stream found, or if the caller does not have permissions to access it.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.webDataStreams.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the web data stream to lookup. Format: properties/{property_id}/webDataStreams/{stream_id} Example: \"properties/123/webDataStreams/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "getEnhancedMeasurementSettings": {
+              "description": "Returns the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the settings to lookup. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "getGlobalSiteTag": {
+              "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/globalSiteTag",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.webDataStreams.getGlobalSiteTag",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag Example: \"properties/123/webDataStreams/456/globalSiteTag\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/globalSiteTag$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGlobalSiteTag"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Returns child web data streams under the specified parent property. Web data streams will be excluded if the caller does not have access. Returns an empty list if no relevant web data streams are found.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.webDataStreams.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListWebDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWebDataStreams` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent property. For example, to list results of web streams under the property with Id 123: \"properties/123\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/webDataStreams",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a web stream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.webDataStreams.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: \"properties/1000/webDataStreams/2000\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "updateEnhancedMeasurementSettings": {
+              "description": "Updates the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20201003",
+  "rootUrl": "https://analyticsadmin.googleapis.com/",
+  "schemas": {
+    "GoogleAnalyticsAdminV1alphaAccount": {
+      "description": "A resource message representing a Google Analytics account.",
+      "id": "GoogleAnalyticsAdminV1alphaAccount",
+      "properties": {
+        "countryCode": {
+          "description": "Country of business. Must be a non-deprecated code for a UN M.49 region. https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when this account was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleted": {
+          "description": "Output only. Indicates whether this Account is soft-deleted or not. Deleted accounts are excluded from List results unless specifically requested.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Required. Human-readable display name for this account.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this account. Format: accounts/{account} Example: \"accounts/100\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when account payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAccountSummary": {
+      "description": "A virtual resource representing an overview of an account and all its child App+Web properties.",
+      "id": "GoogleAnalyticsAdminV1alphaAccountSummary",
+      "properties": {
+        "account": {
+          "description": "Resource name of account referred to by this account summary Format: accounts/{account_id} Example: \"accounts/1000\"",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name for the account referred to in this account summary.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name for this account summary. Format: accountSummaries/{account_id} Example: \"accountSummaries/1000\"",
+          "type": "string"
+        },
+        "propertySummaries": {
+          "description": "List of summaries for child accounts of this account.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaPropertySummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAndroidAppDataStream": {
+      "description": "A resource message representing a Google Analytics Android app stream.",
+      "id": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this stream was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Human-readable display name for the Data Stream. The max allowed display name length is 255 UTF-16 code units.",
+          "type": "string"
+        },
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding Android app in Firebase, if any. This ID can change if the Android app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: \"properties/1000/androidAppDataStreams/2000\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Immutable. The package name for the app being measured. Example: \"com.example.myandroidapp\"",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when stream payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAuditUserLink": {
+      "description": "Read-only resource used to summarize a principal's effective roles.",
+      "id": "GoogleAnalyticsAdminV1alphaAuditUserLink",
+      "properties": {
+        "directRoles": {
+          "description": "Roles directly assigned to this user for this entity. Format: predefinedRoles/read Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveRoles": {
+          "description": "Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/read",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "emailAddress": {
+          "description": "Email address of the linked user",
+          "type": "string"
+        },
+        "name": {
+          "description": "Example format: properties/1234/userLinks/5678",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest": {
+      "description": "Request message for AuditUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest",
+      "properties": {
+        "pageSize": {
+          "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 1000 user links will be returned. The maximum value is 5000; values above 5000 will be coerced to 5000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous `AuditUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `AuditUserLinks` must match the call that provided the page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse": {
+      "description": "Response message for AuditUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userLinks": {
+          "description": "List of AuditUserLinks. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest": {
+      "description": "Request message for BatchCreateUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest",
+      "properties": {
+        "notifyNewUsers": {
+          "description": "Optional. If notify_new_users is set, then email new users that they've been given permissions on the resource.",
+          "type": "boolean"
+        },
+        "requests": {
+          "description": "The requests specifying the user links to create. A maximum of 1000 user links can be created in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse": {
+      "description": "Response message for BatchCreateUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse",
+      "properties": {
+        "userLinks": {
+          "description": "The user links created.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest": {
+      "description": "Request message for BatchDeleteUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest",
+      "properties": {
+        "requests": {
+          "description": "The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse": {
+      "description": "Response message for BatchGetUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse",
+      "properties": {
+        "userLinks": {
+          "description": "The requested user links.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest": {
+      "description": "Request message for BatchUpdateUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest",
+      "properties": {
+        "requests": {
+          "description": "The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse": {
+      "description": "Response message for BatchUpdateUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse",
+      "properties": {
+        "userLinks": {
+          "description": "The user links updated.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest": {
+      "description": "Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the \"primary\" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the \"primary\" email address. As a result, the input and output email address for this request may differ.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest",
+      "properties": {
+        "notifyNewUser": {
+          "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+          "type": "boolean"
+        },
+        "parent": {
+          "description": "Required. Example format: accounts/1234",
+          "type": "string"
+        },
+        "userLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaUserLink",
+          "description": "Required. The user link to create."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataSharingSettings": {
+      "description": "A resource message representing data sharing settings of a Google Analytics account.",
+      "id": "GoogleAnalyticsAdminV1alphaDataSharingSettings",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name. Format: accounts/{account}/dataSharingSettings Example: \"accounts/1000/dataSharingSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sharingWithGoogleAnySalesEnabled": {
+          "description": "Allows any of Google sales to access the data in order to suggest configuration changes to improve results.",
+          "type": "boolean"
+        },
+        "sharingWithGoogleAssignedSalesEnabled": {
+          "description": "Allows Google sales teams that are assigned to the customer to access the data in order to suggest configuration changes to improve results. Sales team restrictions still apply when enabled.",
+          "type": "boolean"
+        },
+        "sharingWithGoogleProductsEnabled": {
+          "description": "Allows Google to use the data to improve other Google products or services.",
+          "type": "boolean"
+        },
+        "sharingWithGoogleSupportEnabled": {
+          "description": "Allows Google support to access the data in order to help troubleshoot issues.",
+          "type": "boolean"
+        },
+        "sharingWithOthersEnabled": {
+          "description": "Allows Google to share the data anonymously in aggregate form with others.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest": {
+      "description": "Request message for DeleteUserLink RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest",
+      "properties": {
+        "name": {
+          "description": "Required. Example format: accounts/1234/userLinks/5678",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings": {
+      "description": "Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.",
+      "id": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
+      "properties": {
+        "articlesAndBlogsEnabled": {
+          "description": "Capture events when your visitors view content on your site that has articles or blog posts.",
+          "type": "boolean"
+        },
+        "contentViewsEnabled": {
+          "description": "Capture events when your visitors view content on your site that has structured data (eg, articles, blog posts, product details screens, etc.).",
+          "type": "boolean"
+        },
+        "dataTaggedElementClicksEnabled": {
+          "description": "If enabled, capture a click event each time a visitor clicks a link or element that has data attributes beginning with \"data-ga\".",
+          "type": "boolean"
+        },
+        "excludedDomains": {
+          "description": "Domains to exclude from measurement. Max length is 1024 characters.",
+          "type": "string"
+        },
+        "fileDownloadsEnabled": {
+          "description": "If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.",
+          "type": "boolean"
+        },
+        "formInteractionsEnabled": {
+          "description": "If enabled, capture a view search results event each time a visitor interacts with a form on your site.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outboundClicksEnabled": {
+          "description": "If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.",
+          "type": "boolean"
+        },
+        "pageChangesEnabled": {
+          "description": "If enabled, capture a page view event each time the website changes the browser history state.",
+          "type": "boolean"
+        },
+        "pageLoadsEnabled": {
+          "description": "If enabled, capture a page view event each time a page loads.",
+          "type": "boolean"
+        },
+        "pageViewsEnabled": {
+          "description": "Output only. If enabled, capture a page view event each time a page loads or the website changes the browser history state.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "productsAndEcommerceEnabled": {
+          "description": "Capture events when your visitors view content on your site that has product details screens, etc.",
+          "type": "boolean"
+        },
+        "scrollsEnabled": {
+          "description": "If enabled, capture scroll events each time a visitor gets to the bottom of a page.",
+          "type": "boolean"
+        },
+        "searchQueryParameter": {
+          "description": "Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.",
+          "type": "string"
+        },
+        "siteSearchEnabled": {
+          "description": "If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).",
+          "type": "boolean"
+        },
+        "streamEnabled": {
+          "description": "Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.",
+          "type": "boolean"
+        },
+        "urlQueryParameter": {
+          "description": "Additional URL query parameters. Max length is 1024 characters.",
+          "type": "string"
+        },
+        "videoEngagementEnabled": {
+          "description": "If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFirebaseLink": {
+      "description": "A link between an App+Web property and a Firebase project.",
+      "id": "GoogleAnalyticsAdminV1alphaFirebaseLink",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this FirebaseLink was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maximumUserAccess": {
+          "description": "Maximum user access to the App + Web property allowed to admins of the linked Firebase project.",
+          "enum": [
+            "MAXIMUM_USER_ACCESS_UNSPECIFIED",
+            "NO_ACCESS",
+            "READ_AND_ANALYZE",
+            "EDITOR_WITHOUT_LINK_MANAGEMENT",
+            "EDITOR_INCLUDING_LINK_MANAGEMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified maximum user access.",
+            "Firebase users have no access to the Analytics property.",
+            "Firebase users have Read & Analyze access to the Analytics property.",
+            "Firebase users have edit access to the Analytics property, but may not manage the Firebase link.",
+            "Firebase users have edit access to the Analytics property and may manage the Firebase link."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Example format: properties/1234/firebaseLinks/5678",
+          "readOnly": true,
+          "type": "string"
+        },
+        "project": {
+          "description": "Immutable. Firebase project resource name. When creating a FirebaseLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, returned FirebaseLinks will always have a project_name that contains a project number. Format: 'projects/{project number}' Example: 'projects/1234'",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaGlobalSiteTag": {
+      "description": "Read-only resource with the tag for sending data from a website to a WebDataStream.",
+      "id": "GoogleAnalyticsAdminV1alphaGlobalSiteTag",
+      "properties": {
+        "snippet": {
+          "description": "Immutable. JavaScript code snippet to be pasted as the first item into the head tag of every webpage to measure.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaGoogleAdsLink": {
+      "description": "A link between an App+Web property and a Google Ads account.",
+      "id": "GoogleAnalyticsAdminV1alphaGoogleAdsLink",
+      "properties": {
+        "adsPersonalizationEnabled": {
+          "description": "Enable personalized advertising features with this integration. Automatically publish my Google Analytics audience lists and Google Analytics remarketing events/parameters to the linked Google Ads account. If this field is not set on create/update it will be defaulted to true.",
+          "type": "boolean"
+        },
+        "canManageClients": {
+          "description": "Output only. If true, this link is for a Google Ads manager account.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. Time when this link was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerId": {
+          "description": "Immutable. Google Ads customer ID.",
+          "type": "string"
+        },
+        "emailAddress": {
+          "description": "Output only. Email address of the user that created the link. An empty string will be returned if the email address can't be retrieved.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Immutable. Format: properties/{propertyId}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when this link was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaIosAppDataStream": {
+      "description": "A resource message representing a Google Analytics IOS app stream.",
+      "id": "GoogleAnalyticsAdminV1alphaIosAppDataStream",
+      "properties": {
+        "bundleId": {
+          "description": "Required. Immutable. The Apple App Store Bundle ID for the app Example: \"com.example.myiosapp\"",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when this stream was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Human-readable display name for the Data Stream. The max allowed display name length is 255 UTF-16 code units.",
+          "type": "string"
+        },
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding iOS app in Firebase, if any. This ID can change if the iOS app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: \"properties/1000/iosAppDataStreams/2000\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when stream payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListAccountSummariesResponse": {
+      "description": "Response message for ListAccountSummaries RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAccountSummariesResponse",
+      "properties": {
+        "accountSummaries": {
+          "description": "Account summaries of all accounts the caller has access to.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccountSummary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListAccountsResponse": {
+      "description": "Request message for ListAccounts RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAccountsResponse",
+      "properties": {
+        "accounts": {
+          "description": "Results that were accessible to the caller.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccount"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse": {
+      "description": "Request message for ListAndroidDataStreams RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse",
+      "properties": {
+        "androidAppDataStreams": {
+          "description": "Results that matched the filter criteria and were accessible to the caller.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse": {
+      "description": "Response message for ListFirebaseLinks RPC",
+      "id": "GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse",
+      "properties": {
+        "firebaseLinks": {
+          "description": "List of FirebaseLinks. This will have at most one value.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse": {
+      "description": "Response message for ListGoogleAdsLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse",
+      "properties": {
+        "googleAdsLinks": {
+          "description": "List of GoogleAdsLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse": {
+      "description": "Request message for ListIosAppDataStreams RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse",
+      "properties": {
+        "iosAppDataStreams": {
+          "description": "Results that matched the filter criteria and were accessible to the caller.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListPropertiesResponse": {
+      "description": "Response message for ListProperties RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListPropertiesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Results that matched the filter criteria and were accessible to the caller.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListUserLinksResponse": {
+      "description": "Response message for ListUserLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListUserLinksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userLinks": {
+          "description": "List of UserLinks. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse": {
+      "description": "Request message for ListWebDataStreams RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "webDataStreams": {
+          "description": "Results that matched the filter criteria and were accessible to the caller.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaProperty": {
+      "description": "A resource message representing a Google Analytics App+Web property.",
+      "id": "GoogleAnalyticsAdminV1alphaProperty",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the entity was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "The currency type used in reports involving monetary values. Format: https://en.wikipedia.org/wiki/ISO_4217 Examples: \"USD\", \"EUR\", \"JPY\"",
+          "type": "string"
+        },
+        "deleted": {
+          "description": "Output only. Indicates whether this Property is soft-deleted or not. Deleted properties are excluded from List results unless specifically requested.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Required. Human-readable display name for this property. The max allowed display name length is 100 UTF-16 code units.",
+          "type": "string"
+        },
+        "industryCategory": {
+          "description": "Industry associated with this property Example: AUTOMOTIVE, FOOD_AND_DRINK",
+          "enum": [
+            "INDUSTRY_CATEGORY_UNSPECIFIED",
+            "AUTOMOTIVE",
+            "BUSINESS_AND_INDUSTRIAL_MARKETS",
+            "FINANCE",
+            "HEALTHCARE",
+            "TECHNOLOGY",
+            "TRAVEL",
+            "OTHER",
+            "ARTS_AND_ENTERTAINMENT",
+            "BEAUTY_AND_FITNESS",
+            "BOOKS_AND_LITERATURE",
+            "FOOD_AND_DRINK",
+            "GAMES",
+            "HOBBIES_AND_LEISURE",
+            "HOME_AND_GARDEN",
+            "INTERNET_AND_TELECOM",
+            "LAW_AND_GOVERNMENT",
+            "NEWS",
+            "ONLINE_COMMUNITIES",
+            "PEOPLE_AND_SOCIETY",
+            "PETS_AND_ANIMALS",
+            "REAL_ESTATE",
+            "REFERENCE",
+            "SCIENCE",
+            "SPORTS",
+            "JOBS_AND_EDUCATION",
+            "SHOPPING"
+          ],
+          "enumDescriptions": [
+            "Industry category unspecified",
+            "Automotive",
+            "Business and industrial markets",
+            "Finance",
+            "Healthcare",
+            "Technology",
+            "Travel",
+            "Other",
+            "Arts and entertainment",
+            "Beauty and fitness",
+            "Books and literature",
+            "Food and drink",
+            "Games",
+            "Hobbies and leisure",
+            "Home and garden",
+            "Internet and telecom",
+            "Law and government",
+            "News",
+            "Online communities",
+            "People and society",
+            "Pets and animals",
+            "Real estate",
+            "Reference",
+            "Science",
+            "Sports",
+            "Jobs and education",
+            "Shopping"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this property. Format: properties/{property_id} Example: \"properties/1000\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account} Example: \"accounts/100\"",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Reporting Time Zone, used as the day boundary for reports, regardless of where the data originates. If the time zone honors DST, Analytics will automatically adjust for the changes. NOTE: Changing the time zone only affects data going forward, and is not applied retroactively. Format: https://www.iana.org/time-zones Example: \"America/Los_Angeles\"",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when entity payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaPropertySummary": {
+      "description": "A virtual resource representing metadata for an App+Web property.",
+      "id": "GoogleAnalyticsAdminV1alphaPropertySummary",
+      "properties": {
+        "displayName": {
+          "description": "Display name for the property referred to in this account summary.",
+          "type": "string"
+        },
+        "property": {
+          "description": "Resource name of property referred to by this property summary Format: properties/{property_id} Example: \"properties/1000\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest": {
+      "description": "Request message for ProvisionAccountTicket RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest",
+      "properties": {
+        "account": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccount",
+          "description": "The account to create."
+        },
+        "redirectUri": {
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse": {
+      "description": "Response message for ProvisionAccountTicket RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse",
+      "properties": {
+        "accountTicketId": {
+          "description": "The param to be passed in the ToS link.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest": {
+      "description": "Request message for UpdateUserLink RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest",
+      "properties": {
+        "userLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaUserLink",
+          "description": "Required. The user link to update."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaUserLink": {
+      "description": "A resource message representing a user's permissions on an Account or Property resource.",
+      "id": "GoogleAnalyticsAdminV1alphaUserLink",
+      "properties": {
+        "directRoles": {
+          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/manage-users Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "emailAddress": {
+          "description": "Email address of the user to link",
+          "type": "string"
+        },
+        "name": {
+          "description": "Example format: properties/1234/userLinks/5678",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaWebDataStream": {
+      "description": "A resource message representing a Google Analytics web stream.",
+      "id": "GoogleAnalyticsAdminV1alphaWebDataStream",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this stream was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultUri": {
+          "description": "Immutable. Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Human-readable display name for the Data Stream. The max allowed display name length is 100 UTF-16 code units.",
+          "type": "string"
+        },
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding web app in Firebase, if any. This ID can change if the web app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "measurementId": {
+          "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: \"properties/1000/webDataStreams/2000\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when stream payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleProtobufEmpty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "GoogleProtobufEmpty",
+      "properties": {},
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Google Analytics Admin API",
+  "version": "v1alpha",
+  "version_module": true
+}
