@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/dQTKcKkHCtoDI02XVzspF-olZZM\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/HoJylgVKNq-0RAXxL1Z9iQcu3gc\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -2232,7 +2232,7 @@
               "type": "string"
             },
             "guestFlush": {
-              "description": "[Input Only] Specifies to create an application consistent snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
+              "description": "[Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
               "location": "query",
               "type": "boolean"
             },
@@ -7820,7 +7820,7 @@
           ]
         },
         "get": {
-          "description": "Returns the specified instance group. Gets a list of available instance groups by making a list() request.",
+          "description": "Returns the specified zonal instance group. Get a list of available zonal instance groups by making a list() request.\n\nFor managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.",
           "httpMethod": "GET",
           "id": "compute.instanceGroups.get",
           "parameterOrder": [
@@ -7900,7 +7900,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves the list of instance groups that are located in the specified project and zone.",
+          "description": "Retrieves the list of zonal instance group resources contained within the specified zone.\n\nFor managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.",
           "httpMethod": "GET",
           "id": "compute.instanceGroups.list",
           "parameterOrder": [
@@ -8625,7 +8625,7 @@
           ],
           "parameters": {
             "forceAttach": {
-              "description": "Whether to force attach the regional disk even if it's currently attached to another instance.",
+              "description": "Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.",
               "location": "query",
               "type": "boolean"
             },
@@ -16016,7 +16016,7 @@
           "id": "compute.organizationSecurityPolicies.insert",
           "parameters": {
             "parentId": {
-              "description": "Parent ID for this request.",
+              "description": "Parent ID for this request. The ID can be either be \"folders/[FOLDER_ID]\" if the parent is a folder or \"organizations/[ORGANIZATION_ID]\" if the parent is an organization.",
               "location": "query",
               "type": "string"
             },
@@ -21755,6 +21755,387 @@
         }
       }
     },
+    "regionInstantSnapshots": {
+      "methods": {
+        "delete": {
+          "description": "Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot.\n\nFor more information, see Deleting instantSnapshots.",
+          "httpMethod": "DELETE",
+          "id": "compute.regionInstantSnapshots.delete",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "Returns the specified InstantSnapshot resource in the specified region.",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshots.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "InstantSnapshot"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshots.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "Creates an instant snapshot in the specified region.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshots.insert",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots",
+          "request": {
+            "$ref": "InstantSnapshot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "Retrieves the list of InstantSnapshot resources contained within the specified region.",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshots.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.\n\nFor example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.\n\nYou can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.\n\nTo filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots",
+          "response": {
+            "$ref": "InstantSnapshotList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshots.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "RegionSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setLabels": {
+          "description": "Sets the labels on a instantSnapshot in the given region. To learn more about labels, read the Labeling Resources documentation.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshots.setLabels",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{resource}/setLabels",
+          "request": {
+            "$ref": "RegionSetLabelsRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshots.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshots/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "regionNetworkEndpointGroups": {
       "methods": {
         "delete": {
@@ -26300,6 +26681,39 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "insert": {
+          "description": "Creates a snapshot in the specified project using the data included in the request.",
+          "httpMethod": "POST",
+          "id": "compute.snapshots.insert",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/snapshots",
+          "request": {
+            "$ref": "Snapshot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "list": {
           "description": "Retrieves the list of Snapshot resources contained within the specified project.",
           "httpMethod": "GET",
@@ -28073,6 +28487,47 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "patch": {
+          "description": "Patches the specified TargetHttpProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)",
+          "httpMethod": "PATCH",
+          "id": "compute.targetHttpProxies.patch",
+          "parameterOrder": [
+            "project",
+            "targetHttpProxy"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "targetHttpProxy": {
+              "description": "Name of the TargetHttpProxy resource to patch.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/targetHttpProxies/{targetHttpProxy}",
+          "request": {
+            "$ref": "TargetHttpProxy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
           ]
         },
         "setUrlMap": {
@@ -32080,6 +32535,387 @@
         }
       }
     },
+    "zoneInstantSnapshots": {
+      "methods": {
+        "delete": {
+          "description": "Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot.\n\nFor more information, see Deleting instantSnapshots.",
+          "httpMethod": "DELETE",
+          "id": "compute.zoneInstantSnapshots.delete",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "Returns the specified InstantSnapshot resource in the specified zone.",
+          "httpMethod": "GET",
+          "id": "compute.zoneInstantSnapshots.get",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "InstantSnapshot"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
+          "httpMethod": "GET",
+          "id": "compute.zoneInstantSnapshots.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "Creates an instant snapshot in the specified zone.",
+          "httpMethod": "POST",
+          "id": "compute.zoneInstantSnapshots.insert",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots",
+          "request": {
+            "$ref": "InstantSnapshot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "Retrieves the list of InstantSnapshot resources contained within the specified zone.",
+          "httpMethod": "GET",
+          "id": "compute.zoneInstantSnapshots.list",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.\n\nFor example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.\n\nYou can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.\n\nTo filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots",
+          "response": {
+            "$ref": "InstantSnapshotList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
+          "httpMethod": "POST",
+          "id": "compute.zoneInstantSnapshots.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "ZoneSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setLabels": {
+          "description": "Sets the labels on a instantSnapshot in the given zone. To learn more about labels, read the Labeling Resources documentation.",
+          "httpMethod": "POST",
+          "id": "compute.zoneInstantSnapshots.setLabels",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels",
+          "request": {
+            "$ref": "ZoneSetLabelsRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "httpMethod": "POST",
+          "id": "compute.zoneInstantSnapshots.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "zoneOperations": {
       "methods": {
         "delete": {
@@ -32361,7 +33197,7 @@
       }
     }
   },
-  "revision": "20200727",
+  "revision": "20200901",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -32929,6 +33765,7 @@
           "enum": [
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
+            "IPSEC_INTERCONNECT",
             "NAT_AUTO",
             "PRIVATE_SERVICE_CONNECT",
             "PSC_PRODUCER_NAT_RANGE",
@@ -32936,6 +33773,7 @@
             "VPC_PEERING"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -33324,6 +34162,11 @@
         "enableNestedVirtualization": {
           "description": "Whether to enable nested virtualization or not (default is false).",
           "type": "boolean"
+        },
+        "threadsPerCore": {
+          "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -33398,18 +34241,6 @@
           "description": "Specifies the number of hours after reservation creation where instances using the reservation won't be scheduled for maintenance.",
           "format": "int32",
           "type": "integer"
-        },
-        "maintenanceInterval": {
-          "description": "Specifies whether this VM may be a stable fleet VM. Setting this to \"Periodic\" designates this VM as a Stable Fleet VM.\n\nSee go/stable-fleet-ug for more details.",
-          "enum": [
-            "AS_NEEDED",
-            "PERIODIC"
-          ],
-          "enumDescriptions": [
-            "",
-            ""
-          ],
-          "type": "string"
         },
         "minCpuPlatform": {
           "description": "Minimum cpu platform the reservation.",
@@ -34331,7 +35162,7 @@
       "id": "AutoscalingPolicyCpuUtilization",
       "properties": {
         "predictiveMethod": {
-          "description": "Indicates which method of prediction is used for CPU utilization metric, if any. Current set of possible values: * NONE: No predictions are made based on the scaling metric when calculating the number of VM instances. * STANDARD: Standard predictive autoscaling predicts the future values of the scaling metric and then scales a MIG to ensure that new VM instances are ready in time to cover the predicted peak. New values might be added in the future. Some of the values might not be available in all API versions.",
+          "description": "Indicates which method of prediction is used for CPU utilization metric, if any. Current set of possible values: * NONE: No predictions are made based on the scaling metric when calculating the number of VM instances. * OPTIMIZE_AVAILABILITY: Standard predictive autoscaling predicts the future values of the scaling metric and then scales a MIG to ensure that new VM instances are ready in time to cover the predicted peak. New values might be added in the future. Some of the values might not be available in all API versions.",
           "enum": [
             "NONE",
             "OPTIMIZE_AVAILABILITY",
@@ -34604,6 +35435,13 @@
       "description": "Message containing Cloud CDN configuration for a backend bucket.",
       "id": "BackendBucketCdnPolicy",
       "properties": {
+        "bypassCacheOnRequestHeaders": {
+          "description": "Bypass the cache when the specified request headers are matched - e.g. Pragma or Authorization headers. Up to 5 headers can be specified. The cache is bypassed for all cdnPolicy.cacheMode settings.",
+          "items": {
+            "$ref": "BackendBucketCdnPolicyBypassCacheOnRequestHeader"
+          },
+          "type": "array"
+        },
         "cacheMode": {
           "enum": [
             "CACHE_ALL_STATIC",
@@ -34625,17 +35463,17 @@
           "type": "integer"
         },
         "defaultTtl": {
-          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "maxTtl": {
-          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of \"0\" means \"always revalidate\". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "negativeCaching": {
-          "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 414 (URI Too Long), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
+          "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 421 (Misdirected Request), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
           "type": "boolean"
         },
         "negativeCachingPolicy": {
@@ -34648,6 +35486,11 @@
         "requestCoalescing": {
           "description": "If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.",
           "type": "boolean"
+        },
+        "serveWhileStale": {
+          "description": "Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default \"max-stale\" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.",
+          "format": "int32",
+          "type": "integer"
         },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
@@ -34664,17 +35507,28 @@
       },
       "type": "object"
     },
+    "BackendBucketCdnPolicyBypassCacheOnRequestHeader": {
+      "description": "Bypass the cache when the specified request headers are present, e.g. Pragma or Authorization headers. Values are case insensitive. The presence of such a header overrides the cache_mode setting.",
+      "id": "BackendBucketCdnPolicyBypassCacheOnRequestHeader",
+      "properties": {
+        "headerName": {
+          "description": "The header field name to match on when bypassing cache. Values are case-insensitive.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackendBucketCdnPolicyNegativeCachingPolicy": {
       "description": "Specify CDN TTLs for response error codes.",
       "id": "BackendBucketCdnPolicyNegativeCachingPolicy",
       "properties": {
         "code": {
-          "description": "The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 308, 404, 405, 410, 414, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.",
+          "description": "The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 308, 404, 405, 410, 421, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.",
           "format": "int32",
           "type": "integer"
         },
         "ttl": {
-          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         }
@@ -34800,7 +35654,7 @@
       "id": "BackendService",
       "properties": {
         "affinityCookieTtlSec": {
-          "description": "If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value is one day (86,400).",
+          "description": "Lifetime of cookies in seconds. Only applicable if the loadBalancingScheme is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, the protocol is HTTP or HTTPS, and the sessionAffinity is GENERATED_COOKIE, or HTTP_COOKIE.\n\nIf set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value is one day (86,400).\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "format": "int32",
           "type": "integer"
         },
@@ -34817,14 +35671,14 @@
         },
         "circuitBreakers": {
           "$ref": "CircuitBreakers",
-          "description": "Settings controlling the volume of connections to a backend service. If not set, this feature is considered disabled.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED."
+          "description": "Settings controlling the volume of connections to a backend service. If not set, this feature is considered disabled.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "connectionDraining": {
           "$ref": "ConnectionDraining"
         },
         "consistentHash": {
           "$ref": "ConsistentHashLoadBalancerSettings",
-          "description": "Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED."
+          "description": "Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
@@ -34901,7 +35755,7 @@
           "type": "string"
         },
         "localityLbPolicy": {
-          "description": "The load balancing algorithm used within the scope of the locality. The possible values are:  \n- ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default. \n- LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests. \n- RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests. \n- RANDOM: The load balancer selects a random healthy host. \n- ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer. \n- MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see https://ai.google/research/pubs/pub44824 \n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nIf sessionAffinity is not NONE, and this field is not set to >MAGLEV or RING_HASH, session affinity settings will not take effect.",
+          "description": "The load balancing algorithm used within the scope of the locality. The possible values are:  \n- ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default. \n- LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests. \n- RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests. \n- RANDOM: The load balancer selects a random healthy host. \n- ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer. \n- MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see https://ai.google/research/pubs/pub44824 \n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nIf sessionAffinity is not NONE, and this field is not set to MAGLEV or RING_HASH, session affinity settings will not take effect.\n\nOnly the default ROUND_ROBIN policy is supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "enum": [
             "INVALID_LB_POLICY",
             "LEAST_REQUEST",
@@ -34937,7 +35791,7 @@
         },
         "outlierDetection": {
           "$ref": "OutlierDetection",
-          "description": "Settings controlling the eviction of unhealthy hosts from the load balancing pool for the backend service. If not set, this feature is considered disabled.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED."
+          "description": "Settings controlling the eviction of unhealthy hosts from the load balancing pool for the backend service. If not set, this feature is considered disabled.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "port": {
           "description": "Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.\n\nThis cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).",
@@ -34949,7 +35803,7 @@
           "type": "string"
         },
         "protocol": {
-          "description": "The protocol this BackendService uses to communicate with backends.\n\nPossible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.",
+          "description": "The protocol this BackendService uses to communicate with backends.\n\nPossible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.\n\nMust be set to GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.",
           "enum": [
             "ALL",
             "GRPC",
@@ -34993,7 +35847,7 @@
           "type": "string"
         },
         "sessionAffinity": {
-          "description": "Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.\n\nWhen the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.",
+          "description": "Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.\n\nWhen the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "enum": [
             "CLIENT_IP",
             "CLIENT_IP_NO_DESTINATION",
@@ -35015,6 +35869,9 @@
             ""
           ],
           "type": "string"
+        },
+        "subsetting": {
+          "$ref": "Subsetting"
         },
         "timeoutSec": {
           "description": "The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds.",
@@ -35150,6 +36007,13 @@
       "description": "Message containing Cloud CDN configuration for a backend service.",
       "id": "BackendServiceCdnPolicy",
       "properties": {
+        "bypassCacheOnRequestHeaders": {
+          "description": "Bypass the cache when the specified request headers are matched - e.g. Pragma or Authorization headers. Up to 5 headers can be specified. The cache is bypassed for all cdnPolicy.cacheMode settings.",
+          "items": {
+            "$ref": "BackendServiceCdnPolicyBypassCacheOnRequestHeader"
+          },
+          "type": "array"
+        },
         "cacheKeyPolicy": {
           "$ref": "CacheKeyPolicy",
           "description": "The CacheKeyPolicy for this CdnPolicy."
@@ -35175,17 +36039,17 @@
           "type": "integer"
         },
         "defaultTtl": {
-          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "maxTtl": {
-          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Setting a TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of \"0\" means \"always revalidate\". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         },
         "negativeCaching": {
-          "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 414 (URI Too Long), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
+          "description": "Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 421 (Misdirected Request), 501 (Not Implemented): 60s These defaults can be overridden in negative_caching_policy",
           "type": "boolean"
         },
         "negativeCachingPolicy": {
@@ -35198,6 +36062,11 @@
         "requestCoalescing": {
           "description": "If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.",
           "type": "boolean"
+        },
+        "serveWhileStale": {
+          "description": "Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default \"max-stale\" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.",
+          "format": "int32",
+          "type": "integer"
         },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
@@ -35214,17 +36083,28 @@
       },
       "type": "object"
     },
+    "BackendServiceCdnPolicyBypassCacheOnRequestHeader": {
+      "description": "Bypass the cache when the specified request headers are present, e.g. Pragma or Authorization headers. Values are case insensitive. The presence of such a header overrides the cache_mode setting.",
+      "id": "BackendServiceCdnPolicyBypassCacheOnRequestHeader",
+      "properties": {
+        "headerName": {
+          "description": "The header field name to match on when bypassing cache. Values are case-insensitive.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackendServiceCdnPolicyNegativeCachingPolicy": {
       "description": "Specify CDN TTLs for response error codes.",
       "id": "BackendServiceCdnPolicyNegativeCachingPolicy",
       "properties": {
         "code": {
-          "description": "The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 308, 404, 405, 410, 414, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.",
+          "description": "The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 308, 404, 405, 410, 421, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.",
           "format": "int32",
           "type": "integer"
         },
         "ttl": {
-          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. A TTL of \"0\" means \"always revalidate\" and a value of \"-1\" disables caching for that status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "description": "The TTL (in seconds) to cache responses with the corresponding status code for. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
         }
@@ -35824,6 +36704,10 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the current request.\n\nIf the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -36715,7 +37599,6 @@
       "type": "object"
     },
     "CustomerEncryptionKey": {
-      "description": "Represents a customer-supplied encryption key",
       "id": "CustomerEncryptionKey",
       "properties": {
         "kmsKeyName": {
@@ -36926,6 +37809,10 @@
           },
           "type": "array"
         },
+        "satisfiesPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
+        },
         "selfLink": {
           "description": "[Output Only] Server-defined fully-qualified URL for this resource.",
           "type": "string"
@@ -36965,6 +37852,14 @@
         },
         "sourceInPlaceSnapshotId": {
           "description": "[Deprecated] [Output Only] The unique ID of the in-place snapshot used to create this disk. This value identifies the exact in-place snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an in-place snapshot that was later deleted and recreated under the same name, the source in-place snapshot ID would identify the exact version of the in-place snapshot that was used.",
+          "type": "string"
+        },
+        "sourceInstantSnapshot": {
+          "description": "The source instant snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone/instantSnapshots/instantSnapshot \n- projects/project/zones/zone/instantSnapshots/instantSnapshot \n- zones/zone/instantSnapshots/instantSnapshot",
+          "type": "string"
+        },
+        "sourceInstantSnapshotId": {
+          "description": "[Output Only] The unique ID of the instant snapshot used to create this disk. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact version of the instant snapshot that was used.",
           "type": "string"
         },
         "sourceSnapshot": {
@@ -38957,7 +39852,7 @@
       "id": "ForwardingRule",
       "properties": {
         "IPAddress": {
-          "description": "IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.\n\nIf you don't specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:\n\n* IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in: * projects/project_id/regions/region/addresses/address-name * regions/region/addresses/address-name * global/addresses/address-name * address-name \n\nThe loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).",
+          "description": "IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.\n\nIf you don't specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:\n\n* IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in: * projects/project_id/regions/region/addresses/address-name * regions/region/addresses/address-name * global/addresses/address-name * address-name \n\nThe loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n\nMust be set to `0.0.0.0` when the target is targetGrpcProxy that has validateForProxyless field set to true.",
           "type": "string"
         },
         "IPProtocol": {
@@ -39066,7 +39961,7 @@
           "type": "string"
         },
         "metadataFilters": {
-          "description": "Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant configuration is made available to those proxies. Otherwise, all the resources (e.g. TargetHttpProxy, UrlMap) referenced by the ForwardingRule will not be visible to those proxies.\nFor each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata.\nmetadataFilters specified here will be applifed before those specified in the UrlMap that this ForwardingRule references.\nmetadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.",
+          "description": "Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. When there is a match, the relevant configuration is made available to those proxies. Otherwise, all the resources (e.g. TargetHttpProxy, UrlMap) referenced by the ForwardingRule will not be visible to those proxies.\nFor each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. If multiple metadataFilters are specified, all of them need to be satisfied in order to be considered a match.\nmetadataFilters specified here will be applifed before those specified in the UrlMap that this ForwardingRule references.\nmetadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.",
           "items": {
             "$ref": "MetadataFilter"
           },
@@ -39078,7 +39973,7 @@
           "type": "string"
         },
         "network": {
-          "description": "This field is not used for external load balancing.\n\nFor INTERNAL and INTERNAL_SELF_MANAGED load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.",
+          "description": "This field is not used for external load balancing.\n\nFor internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.",
           "type": "string"
         },
         "networkTier": {
@@ -39118,6 +40013,13 @@
           "description": "[Output Only] Server-defined URL for this resource with the resource id.",
           "type": "string"
         },
+        "serviceDirectoryRegistrations": {
+          "description": "Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.",
+          "items": {
+            "$ref": "ForwardingRuleServiceDirectoryRegistration"
+          },
+          "type": "array"
+        },
         "serviceLabel": {
           "description": "An optional prefix to the service name for this Forwarding Rule. If specified, the prefix is the first label of the fully qualified service name.\n\nThe label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.\n\nThis field is only used for internal load balancing.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
@@ -39128,7 +40030,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "This field is only used for INTERNAL load balancing.\n\nFor internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.\n\nIf the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.",
+          "description": "This field is only used for internal load balancing.\n\nFor internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.\n\nIf the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.",
           "type": "string"
         },
         "target": {
@@ -39377,6 +40279,21 @@
       "id": "ForwardingRuleReference",
       "properties": {
         "forwardingRule": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ForwardingRuleServiceDirectoryRegistration": {
+      "description": "Describes the auto-registration of the Forwarding Rule to Service Directory. The region and project of the Service Directory resource generated from this registration will be the same as this Forwarding Rule.",
+      "id": "ForwardingRuleServiceDirectoryRegistration",
+      "properties": {
+        "namespace": {
+          "description": "Service Directory namespace to register the forwarding rule under.",
+          "type": "string"
+        },
+        "service": {
+          "description": "Service Directory service to register the forwarding rule under.",
           "type": "string"
         }
       },
@@ -40625,7 +41542,7 @@
           "type": "string"
         },
         "hosts": {
-          "description": "The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..",
+          "description": "The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..\n* based matching is not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "items": {
             "type": "string"
           },
@@ -40749,7 +41666,7 @@
           "type": "string"
         },
         "headerName": {
-          "description": "The name of the HTTP header to match.\nFor matching against the HTTP request's authority, use a headerMatch with the header name \":authority\".\nFor matching a request's method, use the headerName \":method\".",
+          "description": "The name of the HTTP header to match.\nFor matching against the HTTP request's authority, use a headerMatch with the header name \":authority\".\nFor matching a request's method, use the headerName \":method\".\nWhen the URL map is bound to target gRPC proxy that has validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin.",
           "type": "string"
         },
         "invertMatch": {
@@ -41079,30 +41996,30 @@
       "properties": {
         "corsPolicy": {
           "$ref": "CorsPolicy",
-          "description": "The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing"
+          "description": "The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing \nNot supported when the URL map is bound to target gRPC proxy."
         },
         "faultInjectionPolicy": {
           "$ref": "HttpFaultInjection",
-          "description": "The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.\ntimeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy."
+          "description": "The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.\ntimeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "requestMirrorPolicy": {
           "$ref": "RequestMirrorPolicy",
-          "description": "Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow."
+          "description": "Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "retryPolicy": {
           "$ref": "HttpRetryPolicy",
-          "description": "Specifies the retry policy associated with this route."
+          "description": "Specifies the retry policy associated with this route.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "timeout": {
           "$ref": "Duration",
-          "description": "Specifies the timeout for the selected route. Timeout is computed from the time the request has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.\nIf not specified, will use the largest timeout among all backend services associated with the route."
+          "description": "Specifies the timeout for the selected route. Timeout is computed from the time the request has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.\nIf not specified, will use the largest timeout among all backend services associated with the route.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "urlRewrite": {
           "$ref": "UrlRewrite",
-          "description": "The spec to modify the URL of the request, prior to forwarding the request to the matched service.\nurlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers."
+          "description": "The spec to modify the URL of the request, prior to forwarding the request to the matched service.\nurlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "weightedBackendServices": {
-          "description": "A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non 0 number.\nOnce a backendService is identified and before forwarding the request to the backend service, advanced routing actions like Url rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.",
+          "description": "A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non-zero number.\nOnce a backendService is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.",
           "items": {
             "$ref": "WeightedBackendService"
           },
@@ -41121,17 +42038,17 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL."
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "httpFilterConfigs": {
-          "description": "Outbound route specific configuration for networkservices.HttpFilter resources enabled by Traffic Director. httpFilterConfigs only applies for Loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.",
+          "description": "Outbound route specific configuration for networkservices.HttpFilter resources enabled by Traffic Director. httpFilterConfigs only applies for Loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "items": {
             "$ref": "HttpFilterConfig"
           },
           "type": "array"
         },
         "httpFilterMetadata": {
-          "description": "Outbound route specific metadata supplied to networkservices.HttpFilter resources enabled by Traffic Director. httpFilterMetadata only applies for Loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.\nThe only configTypeUrl supported is type.googleapis.com/google.protobuf.Struct",
+          "description": "Outbound route specific metadata supplied to networkservices.HttpFilter resources enabled by Traffic Director. httpFilterMetadata only applies for Loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.\nThe only configTypeUrl supported is type.googleapis.com/google.protobuf.Struct \nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "items": {
             "$ref": "HttpFilterConfig"
           },
@@ -41159,7 +42076,7 @@
         },
         "urlRedirect": {
           "$ref": "HttpRedirectAction",
-          "description": "When this rule is matched, the request is redirected to a URL specified by urlRedirect.\nIf urlRedirect is specified, service or routeAction must not be set."
+          "description": "When this rule is matched, the request is redirected to a URL specified by urlRedirect.\nIf urlRedirect is specified, service or routeAction must not be set.\nNot supported when the URL map is bound to target gRPC proxy."
         }
       },
       "type": "object"
@@ -41180,11 +42097,11 @@
           "type": "array"
         },
         "ignoreCase": {
-          "description": "Specifies that prefixMatch and fullPathMatch matches are case sensitive.\nThe default value is false.\nignoreCase must not be used with regexMatch.",
+          "description": "Specifies that prefixMatch and fullPathMatch matches are case sensitive.\nThe default value is false.\nignoreCase must not be used with regexMatch.\nNot supported when the URL map is bound to target gRPC proxy.",
           "type": "boolean"
         },
         "metadataFilters": {
-          "description": "Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies.\nFor each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata.\nmetadataFilters specified here will be applied after those specified in ForwardingRule that refers to the UrlMap this HttpRouteRuleMatch belongs to.\nmetadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.",
+          "description": "Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. When there is a match, the relevant routing configuration is made available to those proxies.\nFor each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. If multiple metadataFilters are specified, all of them need to be satisfied in order to be considered a match.\nmetadataFilters specified here will be applied after those specified in ForwardingRule that refers to the UrlMap this HttpRouteRuleMatch belongs to.\nmetadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "items": {
             "$ref": "MetadataFilter"
           },
@@ -41195,7 +42112,7 @@
           "type": "string"
         },
         "queryParameterMatches": {
-          "description": "Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.",
+          "description": "Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.\nNot supported when the URL map is bound to target gRPC proxy.",
           "items": {
             "$ref": "HttpQueryParameterMatch"
           },
@@ -42082,11 +42999,11 @@
           "type": "array"
         },
         "postKeyRevocationActionType": {
-          "description": "Specifies whether this instance will be shut down on key revocation.",
+          "description": "PostKeyRevocationActionType of the instance.",
           "enum": [
             "NOOP",
-            "SHUTDOWN",
-            "UNSPECIFIED"
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
           ],
           "enumDescriptions": [
             "",
@@ -42125,9 +43042,20 @@
           },
           "type": "array"
         },
+        "satisfiesPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
+        },
         "scheduling": {
           "$ref": "Scheduling",
           "description": "Sets the scheduling options for this instance."
+        },
+        "secureLabels": {
+          "description": "Secure labels to apply to this instance. These can be later modified by the update method. Maximum number of secure labels allowed is 300.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for this resource.",
@@ -44389,11 +45317,11 @@
           "type": "array"
         },
         "postKeyRevocationActionType": {
-          "description": "Specifies whether instances will be shut down on key revocation.",
+          "description": "PostKeyRevocationActionType of the instance.",
           "enum": [
             "NOOP",
-            "SHUTDOWN",
-            "UNSPECIFIED"
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
           ],
           "enumDescriptions": [
             "",
@@ -44952,6 +45880,211 @@
       },
       "type": "object"
     },
+    "InstantSnapshot": {
+      "description": "Represents a InstantSnapshot resource.\n\nYou can use instant snapshots to create disk rollback points quickly.. (== resource_for {$api_version}.instantSnapshots ==)",
+      "id": "InstantSnapshot",
+      "properties": {
+        "creationTimestamp": {
+          "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of this resource. Provide this property when you create the resource.",
+          "type": "string"
+        },
+        "diskSizeGb": {
+          "description": "[Output Only] Size of the source disk, specified in GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "guestFlush": {
+          "description": "Whether to attempt an application consistent instant snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#instantSnapshot",
+          "description": "[Output Only] Type of the resource. Always compute#instantSnapshot for InstantSnapshot resources.",
+          "type": "string"
+        },
+        "labelFingerprint": {
+          "description": "A fingerprint for the labels being applied to this InstantSnapshot, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to retrieve a InstantSnapshot.",
+          "format": "byte",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels to apply to this InstantSnapshot. These can be later modified by the setLabels method. Label values may be empty.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+          "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+          "type": "string"
+        },
+        "region": {
+          "description": "[Output Only] URL of the region where the instant snapshot resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "[Output Only] Server-defined URL for the resource.",
+          "type": "string"
+        },
+        "selfLinkWithId": {
+          "description": "[Output Only] Server-defined URL for this resource's resource id.",
+          "type": "string"
+        },
+        "sourceDisk": {
+          "description": "URL of the source disk used to create this instant snapshot. Note that the source disk must be in the same zone/region as the instant snapshot to be created. This can be a full or valid partial URL. For example, the following are valid values:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk \n- projects/project/zones/zone/disks/disk \n- zones/zone/disks/disk",
+          "type": "string"
+        },
+        "sourceDiskId": {
+          "description": "[Output Only] The ID value of the disk used to create this InstantSnapshot. This value may be used to determine whether the InstantSnapshot was taken from the current or a previous instance of a given disk name.",
+          "type": "string"
+        },
+        "status": {
+          "description": "[Output Only] The status of the instantSnapshot. This can be CREATING, DELETING, FAILED, or READY.",
+          "enum": [
+            "CREATING",
+            "DELETING",
+            "FAILED",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zone": {
+          "description": "[Output Only] URL of the zone where the instant snapshot resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotList": {
+      "description": "Contains a list of InstantSnapshot resources.",
+      "id": "InstantSnapshotList",
+      "properties": {
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of InstantSnapshot resources.",
+          "items": {
+            "$ref": "InstantSnapshot"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#instantSnapshotList",
+          "description": "Type of resource.",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "[Output Only] Server-defined URL for this resource.",
+          "type": "string"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key: value format. For example:\n\"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement, or a warning about invalid network settings (for example, if an instance attempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Int64RangeMatch": {
       "description": "HttpRouteRuleMatch criteria for field values that must stay within the specified integer range.",
       "id": "Int64RangeMatch",
@@ -45210,6 +46343,18 @@
           ],
           "type": "string"
         },
+        "encryption": {
+          "description": "Indicates the user-supplied encryption option of this interconnect attachment.",
+          "enum": [
+            "IPSEC",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "googleReferenceId": {
           "description": "[Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.",
           "type": "string"
@@ -45222,6 +46367,13 @@
         "interconnect": {
           "description": "URL of the underlying Interconnect object that this attachment's traffic will traverse through.",
           "type": "string"
+        },
+        "ipsecInternalAddresses": {
+          "description": "URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway?s IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway?s interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "kind": {
           "default": "compute#interconnectAttachment",
@@ -47064,7 +48216,7 @@
           "type": "string"
         },
         "guestFlush": {
-          "description": "[Input Only] Specifies to create an application consistent machine image by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
+          "description": "[Input Only] Whether to attempt an application consistent machine image by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
           "type": "boolean"
         },
         "id": {
@@ -47289,7 +48441,7 @@
         },
         "deprecated": {
           "$ref": "DeprecationStatus",
-          "description": "[Output Only] The deprecation status associated with this machine type."
+          "description": "[Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable."
         },
         "description": {
           "description": "[Output Only] An optional textual description of the resource.",
@@ -48880,6 +50032,11 @@
           "description": "An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.",
           "type": "string"
         },
+        "queueCount": {
+          "description": "The networking queue count for the network interface. Both Rx and Tx queues will be set to this number. If it's not specified by the user, a default number of queues will be assigned. For Virtio-net, each interface will get (min(#vCPU, 32) / #vNIC) queues. For gVNIC, each interface will get (min(#vCPU / 2, 16) / #vNIC) qeueus.",
+          "format": "int32",
+          "type": "integer"
+        },
         "subnetwork": {
           "description": "The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs:  \n- https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork \n- regions/region/subnetworks/subnetwork",
           "type": "string"
@@ -49212,7 +50369,7 @@
           "type": "string"
         },
         "maintenancePolicy": {
-          "description": "Specifies how to handle instances when a node in the group undergoes maintenance.",
+          "description": "Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.",
           "enum": [
             "DEFAULT",
             "MAINTENANCE_POLICY_UNSPECIFIED",
@@ -49408,7 +50565,7 @@
           "type": "integer"
         },
         "mode": {
-          "description": "The autoscaling mode.",
+          "description": "The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.",
           "enum": [
             "MODE_UNSPECIFIED",
             "OFF",
@@ -49600,6 +50757,10 @@
         "nodeType": {
           "description": "The type of this node.",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
         },
         "serverBinding": {
           "$ref": "ServerBinding",
@@ -52152,7 +53313,7 @@
         },
         "defaultUrlRedirect": {
           "$ref": "HttpRedirectAction",
-          "description": "When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect.\nIf defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set."
+          "description": "When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect.\nIf defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.\nNot supported when the URL map is bound to target gRPC proxy."
         },
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
@@ -52160,7 +53321,7 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nHeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL."
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nHeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "name": {
           "description": "The name to which this PathMatcher is referred by the HostRule.",
@@ -52204,7 +53365,7 @@
         },
         "urlRedirect": {
           "$ref": "HttpRedirectAction",
-          "description": "When a path pattern is matched, the request is redirected to a URL specified by urlRedirect.\nIf urlRedirect is specified, service or routeAction must not be set."
+          "description": "When a path pattern is matched, the request is redirected to a URL specified by urlRedirect.\nIf urlRedirect is specified, service or routeAction must not be set.\nNot supported when the URL map is bound to target gRPC proxy."
         }
       },
       "type": "object"
@@ -52602,7 +53763,7 @@
           "description": "The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored."
         },
         "xpnProjectStatus": {
-          "description": "[Output Only] The role this project has in a shared VPC configuration. Currently only HOST projects are differentiated.",
+          "description": "[Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.",
           "enum": [
             "HOST",
             "UNSPECIFIED_XPN_PROJECT_STATUS"
@@ -52904,8 +54065,16 @@
       "description": "Represents a CIDR range which can be used to assign addresses.",
       "id": "PublicAdvertisedPrefixPublicDelegatedPrefix",
       "properties": {
+        "ipRange": {
+          "description": "The IP address range of the public delegated prefix",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the public delegated prefix",
+          "type": "string"
+        },
+        "project": {
+          "description": "The project number of the public delegated prefix",
           "type": "string"
         },
         "region": {
@@ -53741,6 +54910,10 @@
           ],
           "type": "string"
         },
+        "supportsPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
+        },
         "zones": {
           "description": "[Output Only] A list of zones available in this region, in the form of resource URLs.",
           "items": {
@@ -54312,7 +55485,7 @@
       "type": "object"
     },
     "RegionInstanceGroupManagersApplyUpdatesRequest": {
-      "description": "InstanceGroupManagers.applyUpdatesToInstances",
+      "description": "RegionInstanceGroupManagers.applyUpdatesToInstances",
       "id": "RegionInstanceGroupManagersApplyUpdatesRequest",
       "properties": {
         "allInstances": {
@@ -57860,11 +59033,9 @@
           "enum": [
             "ACTIVE",
             "DISABLED",
-            "OBSOLETE",
-            "PENDING"
+            "OBSOLETE"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             ""
@@ -57875,7 +59046,7 @@
       "type": "object"
     },
     "Scheduling": {
-      "description": "Sets the scheduling options for an Instance. NextID: 12",
+      "description": "Sets the scheduling options for an Instance. NextID: 13",
       "id": "Scheduling",
       "properties": {
         "automaticRestart": {
@@ -58422,8 +59593,17 @@
     "SecurityPolicyRuleRateLimitOptions": {
       "id": "SecurityPolicyRuleRateLimitOptions",
       "properties": {
+        "banDurationSec": {
+          "description": "Can only be specified if the action for the rule is \"rate_based_ban\". If specified, the key will be banned for the configured 'ban_duration' when the number of requests that exceed the 'rate_limit_threshold' also exceed this 'ban_threshold'.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "banThreshold": {
+          "$ref": "SecurityPolicyRuleRateLimitOptionsThreshold",
+          "description": "Can only be specified if the action for the rule is \"rate_based_ban\". If specified, the key will be banned for the configured 'ban_duration' when the number of requests that exceed the 'rate_limit_threshold' also exceed this 'ban_threshold'."
+        },
         "blockDuration": {
-          "description": "Can only be specifed if the action for the rule is \"rate_based_blacklist\" If specified, determines the time (in seconds) the traffic will continue to be blocked by the rate limit after the rate falls below the threshold. The default value is 0 seconds.",
+          "description": "Can only be specified if the action for the rule is \"rate_based_ban\" If specified, determines the time (in seconds) the traffic will continue to be blocked by the rate limit after the rate falls below the threshold. The default value is 0 seconds. [Deprecated] This field is deprecated.",
           "format": "int32",
           "type": "integer"
         },
@@ -58447,8 +59627,28 @@
           "description": "When a request is denied, returns the HTTP response code specified. Valid options are \"deny()\" where valid values for status are 403, 404, 429, and 502.",
           "type": "string"
         },
+        "rateLimitThreshold": {
+          "$ref": "SecurityPolicyRuleRateLimitOptionsThreshold",
+          "description": "Threshold at which to begin ratelimiting."
+        },
         "thresholdRps": {
-          "description": "Rate in requests per second at which to begin ratelimiting.",
+          "description": "Rate in requests per second at which to begin ratelimiting. [Deprecated] This field is deprecated.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyRuleRateLimitOptionsThreshold": {
+      "id": "SecurityPolicyRuleRateLimitOptionsThreshold",
+      "properties": {
+        "count": {
+          "description": "Number of HTTP(S) requests for calculating the threshold.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "intervalSec": {
+          "description": "Interval over which the threshold is computed.",
           "format": "int32",
           "type": "integer"
         }
@@ -58472,7 +59672,7 @@
           "description": "[Deprecated] Authorization config defines the Role Based Access Control (RBAC) config. Authorization config defines the Role Based Access Control (RBAC) config."
         },
         "clientTlsPolicy": {
-          "description": "Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends.\nclientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nIf left blank, communications are not encrypted.",
+          "description": "Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends.\nclientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nIf left blank, communications are not encrypted.\nNote: This field currently has no impact.",
           "type": "string"
         },
         "clientTlsSettings": {
@@ -58480,7 +59680,7 @@
           "description": "[Deprecated] TLS Settings for the backend service."
         },
         "subjectAltNames": {
-          "description": "Optional. A list of Subject Alternative Names (SANs) that the client verifies during a mutual TLS handshake with an server/endpoint for this BackendService. When the server presents its X.509 certificate to the client, the client inspects the certificate's subjectAltName field. If the field contains one of the specified values, the communication continues. Otherwise, it fails. This additional check enables the client to verify that the server is authorized to run the requested service.\nNote that the contents of the server certificate's subjectAltName field are configured by the Public Key Infrastructure which provisions server identities.\nOnly applies to a global BackendService with loadBalancingScheme set to INTERNAL_SELF_MANAGED. Only applies when BackendService has an attached clientTlsPolicy with clientCertificate (mTLS mode).",
+          "description": "Optional. A list of Subject Alternative Names (SANs) that the client verifies during a mutual TLS handshake with an server/endpoint for this BackendService. When the server presents its X.509 certificate to the client, the client inspects the certificate's subjectAltName field. If the field contains one of the specified values, the communication continues. Otherwise, it fails. This additional check enables the client to verify that the server is authorized to run the requested service.\nNote that the contents of the server certificate's subjectAltName field are configured by the Public Key Infrastructure which provisions server identities.\nOnly applies to a global BackendService with loadBalancingScheme set to INTERNAL_SELF_MANAGED. Only applies when BackendService has an attached clientTlsPolicy with clientCertificate (mTLS mode).\nNote: This field currently has no impact.",
           "items": {
             "type": "string"
           },
@@ -58638,8 +59838,8 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
-        "natIpCidrRanges": {
-          "description": "An array of IP CIDR ranges where each range is the url of the address resource which represents the range provided by the service producer to use for NAT in this service attachment.",
+        "natSubnets": {
+          "description": "An array of URLs where each entry is the URL of a subnet provided by the service producer to use for NAT in this service attachment.",
           "items": {
             "type": "string"
           },
@@ -58976,6 +60176,10 @@
           "format": "int64",
           "type": "string"
         },
+        "guestFlush": {
+          "description": "[Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).",
+          "type": "boolean"
+        },
         "guestOsFeatures": {
           "description": "[Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.",
           "items": {
@@ -59021,9 +60225,18 @@
           "type": "array"
         },
         "name": {
+          "annotations": {
+            "required": [
+              "compute.snapshots.insert"
+            ]
+          },
           "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
@@ -59038,7 +60251,7 @@
           "description": "Encrypts the snapshot using a customer-supplied encryption key.\n\nAfter you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the snapshot later. For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.\n\nCustomer-supplied encryption keys do not protect access to metadata of the snapshot.\n\nIf you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later."
         },
         "sourceDisk": {
-          "description": "[Output Only] The source disk used to create this snapshot.",
+          "description": "The source disk used to create this snapshot.",
           "type": "string"
         },
         "sourceDiskEncryptionKey": {
@@ -59315,7 +60528,7 @@
       "id": "SslCertificate",
       "properties": {
         "certificate": {
-          "description": "A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.",
+          "description": "A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.",
           "type": "string"
         },
         "creationTimestamp": {
@@ -59350,7 +60563,7 @@
           "type": "string"
         },
         "privateKey": {
-          "description": "A write-only private key in PEM format. Only insert requests will include this field.",
+          "description": "A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.",
           "type": "string"
         },
         "region": {
@@ -60285,9 +61498,11 @@
             "AGGREGATE",
             "INTERNAL_HTTPS_LOAD_BALANCER",
             "PRIVATE",
-            "PRIVATE_RFC_1918"
+            "PRIVATE_RFC_1918",
+            "PRIVATE_SERVICE_CONNECT"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -60767,6 +61982,24 @@
       },
       "type": "object"
     },
+    "Subsetting": {
+      "description": "Subsetting options to make L4 ILB support any number of backend instances",
+      "id": "Subsetting",
+      "properties": {
+        "policy": {
+          "enum": [
+            "CONSISTENT_HASH_SUBSETTING",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TCPHealthCheck": {
       "id": "TCPHealthCheck",
       "properties": {
@@ -61112,8 +62345,13 @@
           "description": "An optional description of this resource. Provide this property when you create the resource.",
           "type": "string"
         },
+        "fingerprint": {
+          "description": "Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetHttpProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpProxy.",
+          "format": "byte",
+          "type": "string"
+        },
         "httpFilters": {
-          "description": "Urls to networkservices.HttpFilter resources enabled for xDS clients using this configuration. For example, https://networkservices.googleapis.com/v1alpha1/projects/project/locations/locationhttpFilters/httpFilter Only filters that handle outbound connection and stream events may be specified. These filters work in conjunction with a default set of HTTP filters that may already be configured by Traffic Director. Traffic Director will determine the final location of these filters within xDS configuration based on the name of the HTTP filter. If Traffic Director positions multiple filters at the same location, those filters will be in the same order as specified in this list.\nhttpFilters only applies for loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.",
+          "description": "URLs to networkservices.HttpFilter resources enabled for xDS clients using this configuration. For example, https://networkservices.googleapis.com/v1alpha1/projects/project/locations/locationhttpFilters/httpFilter Only filters that handle outbound connection and stream events may be specified. These filters work in conjunction with a default set of HTTP filters that may already be configured by Traffic Director. Traffic Director will determine the final location of these filters within xDS configuration based on the name of the HTTP filter. If Traffic Director positions multiple filters at the same location, those filters will be in the same order as specified in this list.\nhttpFilters only applies for loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.",
           "items": {
             "type": "string"
           },
@@ -61544,7 +62782,7 @@
           "type": "string"
         },
         "authorizationPolicy": {
-          "description": "Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.\nRefer to the AuthorizationPolicy resource for additional details.\nauthorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.",
+          "description": "Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.\nRefer to the AuthorizationPolicy resource for additional details.\nauthorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nNote: This field currently has no impact.",
           "type": "string"
         },
         "certificateMap": {
@@ -61605,7 +62843,7 @@
           "type": "string"
         },
         "serverTlsPolicy": {
-          "description": "Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.\nserverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nIf left blank, communications are not encrypted.",
+          "description": "Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.\nserverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.\nIf left blank, communications are not encrypted.\nNote: This field currently has no impact.",
           "type": "string"
         },
         "sslCertificates": {
@@ -63601,15 +64839,19 @@
       "id": "TestFailure",
       "properties": {
         "actualService": {
+          "description": "BackendService or BackendBucket returned by load balancer.",
           "type": "string"
         },
         "expectedService": {
+          "description": "Expected BackendService or BackendBucket resource the given URL should be mapped to.",
           "type": "string"
         },
         "host": {
+          "description": "Host portion of the URL.",
           "type": "string"
         },
         "path": {
+          "description": "Path portion including query parameters in the URL.",
           "type": "string"
         }
       },
@@ -63757,11 +64999,11 @@
       "id": "UpcomingMaintenance",
       "properties": {
         "date": {
-          "description": "[Output Only] The date when the maintenance will take place. This value is in RFC3339 text format.",
+          "description": "[Output Only] The date when the maintenance will take place. This value is in RFC3339 text format. DEPRECATED: Use start_time_window instead.",
           "type": "string"
         },
         "time": {
-          "description": "[Output Only] The time when the maintenance will take place. This value is in RFC3339 text format.",
+          "description": "[Output Only] The time when the maintenance will take place. This value is in RFC3339 text format. DEPRECATED: Use start_time_window instead.",
           "type": "string"
         },
         "type": {
@@ -63782,7 +65024,7 @@
       "type": "object"
     },
     "UrlMap": {
-      "description": "Represents a URL Map resource.\n\nGoogle Compute Engine has two URL Map resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/urlMaps) * [Regional](/compute/docs/reference/rest/{$api_version}/regionUrlMaps)\n\nA URL map resource is a component of certain types of GCP load balancers and Traffic Director.\n\n* urlMaps are used by external HTTP(S) load balancers and Traffic Director. * regionUrlMaps are used by internal HTTP(S) load balancers.\n\nThis resource defines mappings from host names and URL paths to either a backend service or a backend bucket.\n\nTo use the global urlMaps resource, the backend service must have a loadBalancingScheme of either EXTERNAL or INTERNAL_SELF_MANAGED. To use the regionUrlMaps resource, the backend service must have a loadBalancingScheme of INTERNAL_MANAGED. For more information, read URL Map Concepts.",
+      "description": "Represents a URL Map resource.\n\nGoogle Compute Engine has two URL Map resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/urlMaps) * [Regional](/compute/docs/reference/rest/{$api_version}/regionUrlMaps)\n\nA URL map resource is a component of certain types of GCP load balancers and Traffic Director.\n\n* urlMaps are used by external HTTP(S) load balancers and Traffic Director. * regionUrlMaps are used by internal HTTP(S) load balancers.\n\nFor a list of supported URL map features by load balancer type, see the  Load balancing features: Routing and traffic management table.\n\nFor a list of supported URL map features for Traffic Director, see the  Traffic Director features: Routing and traffic management table.\n\nThis resource defines mappings from host names and URL paths to either a backend service or a backend bucket.\n\nTo use the global urlMaps resource, the backend service must have a loadBalancingScheme of either EXTERNAL or INTERNAL_SELF_MANAGED. To use the regionUrlMaps resource, the backend service must have a loadBalancingScheme of INTERNAL_MANAGED. For more information, read URL Map Concepts.",
       "id": "UrlMap",
       "properties": {
         "creationTimestamp": {
@@ -63791,15 +65033,15 @@
         },
         "defaultRouteAction": {
           "$ref": "HttpRouteAction",
-          "description": "defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices.\nOnly one of defaultRouteAction or defaultUrlRedirect must be set.\nUrlMaps for external HTTP(S) load balancers support only the urlRewrite action within defaultRouteAction."
+          "description": "defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices.\nOnly one of defaultRouteAction or defaultUrlRedirect must be set.\nUrlMaps for external HTTP(S) load balancers support only the urlRewrite action within defaultRouteAction.\ndefaultRouteAction has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "defaultService": {
-          "description": "The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified.\nOnly one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.",
+          "description": "The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified.\nOnly one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.\ndefaultService has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "type": "string"
         },
         "defaultUrlRedirect": {
           "$ref": "HttpRedirectAction",
-          "description": "When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect.\nIf defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set."
+          "description": "When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect.\nIf defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.\nNot supported when the URL map is bound to target gRPC proxy."
         },
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
@@ -63812,7 +65054,7 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here take effect after headerAction specified under pathMatcher."
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here take effect after headerAction specified under pathMatcher.\nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "hostRules": {
           "description": "The list of HostRules to use against the URL.",
@@ -63852,7 +65094,7 @@
           "type": "string"
         },
         "tests": {
-          "description": "The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.",
+          "description": "The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "items": {
             "$ref": "UrlMapTest"
           },
@@ -63998,11 +65240,11 @@
           "type": "string"
         },
         "expectedUrlRedirect": {
-          "description": "The expected URL that should be redirected to for the host and path being tested.",
+          "description": "The expected URL that should be redirected to for the host and path being tested. [Deprecated] This field is deprecated. Use expected_output_url instead.",
           "type": "string"
         },
         "host": {
-          "description": "Host portion of the URL.",
+          "description": "Host portion of the URL. If headers contains a host header, then host must also match the header value.",
           "type": "string"
         },
         "path": {
@@ -64010,7 +65252,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Expected BackendService resource the given URL should be mapped to.",
+          "description": "Expected BackendService or BackendBucket resource the given URL should be mapped to.\nservice cannot be set if expectedRedirectResponseCode is set.",
           "type": "string"
         }
       },
@@ -65080,6 +66322,10 @@
           "format": "uint32",
           "type": "integer"
         },
+        "interconnectAttachment": {
+          "description": "URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec over Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.",
+          "type": "string"
+        },
         "ipAddress": {
           "description": "[Output Only] The external IP address for this VPN gateway interface.",
           "type": "string"
@@ -65721,7 +66967,7 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nheaderAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap."
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nheaderAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.\nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.\nNot supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true."
         },
         "weight": {
           "description": "Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) .\nThe selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy.\nThe value must be between 0 and 1000",
@@ -65923,6 +67169,10 @@
             ""
           ],
           "type": "string"
+        },
+        "supportsPzs": {
+          "description": "[Output Only] Reserved for future use.",
+          "type": "boolean"
         }
       },
       "type": "object"
