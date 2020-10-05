@@ -132,24 +132,24 @@ export namespace jobs_v3 {
    */
   export interface Schema$ApplicationInfo {
     /**
-     * Optional but at least one of uris, emails or instruction must be specified.  Use this field to specify email address(es) to which resumes or applications can be sent.  The maximum number of allowed characters for each entry is 255.
+     * Optional but at least one of uris, emails or instruction must be specified. Use this field to specify email address(es) to which resumes or applications can be sent. The maximum number of allowed characters for each entry is 255.
      */
     emails?: string[] | null;
     /**
-     * Optional but at least one of uris, emails or instruction must be specified.  Use this field to provide instructions, such as &quot;Mail your application to ...&quot;, that a candidate can follow to apply for the job.  This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags.  The maximum number of allowed characters is 3,000.
+     * Optional but at least one of uris, emails or instruction must be specified. Use this field to provide instructions, such as &quot;Mail your application to ...&quot;, that a candidate can follow to apply for the job. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 3,000.
      */
     instruction?: string | null;
     /**
-     * Optional but at least one of uris, emails or instruction must be specified.  Use this URI field to direct an applicant to a website, for example to link to an online application form.  The maximum number of allowed characters for each entry is 2,000.
+     * Optional but at least one of uris, emails or instruction must be specified. Use this URI field to direct an applicant to a website, for example to link to an online application form. The maximum number of allowed characters for each entry is 2,000.
      */
     uris?: string[] | null;
   }
   /**
-   * Input only.  Batch delete jobs request.
+   * Input only. Batch delete jobs request.
    */
   export interface Schema$BatchDeleteJobsRequest {
     /**
-     * Required. The filter string specifies the jobs to be deleted.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Required)  Sample Query: companyName = &quot;projects/api-test-project/companies/123&quot; AND requisitionId = &quot;req-1&quot;
+     * Required. The filter string specifies the jobs to be deleted. Supported operator: =, AND The fields eligible for filtering are: * `companyName` (Required) * `requisitionId` (Required) Sample Query: companyName = &quot;projects/api-test-project/companies/123&quot; AND requisitionId = &quot;req-1&quot;
      */
     filter?: string | null;
   }
@@ -192,7 +192,7 @@ export namespace jobs_v3 {
      */
     eventId?: string | null;
     /**
-     * Optional. Extra information about this event. Used for storing information with no matching field in event payload, for example, user application specific context or details.  At most 20 keys are supported. The maximum total size of all keys and values is 2 KB.
+     * Optional. Extra information about this event. Used for storing information with no matching field in event payload, for example, user application specific context or details. At most 20 keys are supported. The maximum total size of all keys and values is 2 KB.
      */
     extraInfo?: {[key: string]: string} | null;
     /**
@@ -209,11 +209,11 @@ export namespace jobs_v3 {
     requestId?: string | null;
   }
   /**
-   * Input only.  Parameters needed for commute search.
+   * Input only. Parameters needed for commute search.
    */
   export interface Schema$CommuteFilter {
     /**
-     * Optional. If true, jobs without &quot;precise&quot; addresses (street level addresses or GPS coordinates) might also be returned. For city and coarser level addresses, text matching is used. If this field is set to false or is not specified, only jobs that include precise addresses are returned by Commute Search.  Note: If `allow_imprecise_addresses` is set to true, Commute Search is not able to calculate accurate commute times to jobs with city level and coarser address information. Jobs with imprecise addresses will return a `travel_duration` time of 0 regardless of distance from the job seeker.
+     * Optional. If true, jobs without &quot;precise&quot; addresses (street level addresses or GPS coordinates) might also be returned. For city and coarser level addresses, text matching is used. If this field is set to false or is not specified, only jobs that include precise addresses are returned by Commute Search. Note: If `allow_imprecise_addresses` is set to true, Commute Search is not able to calculate accurate commute times to jobs with city level and coarser address information. Jobs with imprecise addresses will return a `travel_duration` time of 0 regardless of distance from the job seeker.
      */
     allowImpreciseAddresses?: boolean | null;
     /**
@@ -221,7 +221,7 @@ export namespace jobs_v3 {
      */
     commuteMethod?: string | null;
     /**
-     * Optional. The departure time used to calculate traffic impact, represented as google.type.TimeOfDay in local time zone.  Currently traffic model is restricted to hour level resolution.
+     * Optional. The departure time used to calculate traffic impact, represented as google.type.TimeOfDay in local time zone. Currently traffic model is restricted to hour level resolution.
      */
     departureTime?: Schema$TimeOfDay;
     /**
@@ -238,7 +238,7 @@ export namespace jobs_v3 {
     travelDuration?: string | null;
   }
   /**
-   * Output only.  Commute details related to this job.
+   * Output only. Commute details related to this job.
    */
   export interface Schema$CommuteInfo {
     /**
@@ -267,11 +267,11 @@ export namespace jobs_v3 {
      */
     displayName?: string | null;
     /**
-     * Optional. Equal Employment Opportunity legal disclaimer text to be associated with all jobs, and typically to be displayed in all roles.  The maximum number of allowed characters is 500.
+     * Optional. Equal Employment Opportunity legal disclaimer text to be associated with all jobs, and typically to be displayed in all roles. The maximum number of allowed characters is 500.
      */
     eeoText?: string | null;
     /**
-     * Required. Client side company identifier, used to uniquely identify the company.  The maximum number of allowed characters is 255.
+     * Required. Client side company identifier, used to uniquely identify the company. The maximum number of allowed characters is 255.
      */
     externalId?: string | null;
     /**
@@ -279,7 +279,7 @@ export namespace jobs_v3 {
      */
     headquartersAddress?: string | null;
     /**
-     * Optional. Set to true if it is the hiring agency that post jobs for other employers.  Defaults to false if not provided.
+     * Optional. Set to true if it is the hiring agency that post jobs for other employers. Defaults to false if not provided.
      */
     hiringAgency?: boolean | null;
     /**
@@ -291,7 +291,7 @@ export namespace jobs_v3 {
      */
     keywordSearchableJobCustomAttributes?: string[] | null;
     /**
-     * Required during company update.  The resource name for a company. This is generated by the service when a company is created.  The format is &quot;projects/{project_id}/companies/{company_id}&quot;, for example, &quot;projects/api-test-project/companies/foo&quot;.
+     * Required during company update. The resource name for a company. This is generated by the service when a company is created. The format is &quot;projects/{project_id}/companies/{company_id}&quot;, for example, &quot;projects/api-test-project/companies/foo&quot;.
      */
     name?: string | null;
     /**
@@ -303,7 +303,7 @@ export namespace jobs_v3 {
      */
     suspended?: boolean | null;
     /**
-     * Optional. The URI representing the company&#39;s primary web site or home page, for example, &quot;https://www.google.com&quot;.  The maximum number of allowed characters is 255.
+     * Optional. The URI representing the company&#39;s primary web site or home page, for example, &quot;https://www.google.com&quot;. The maximum number of allowed characters is 255.
      */
     websiteUri?: string | null;
   }
@@ -317,7 +317,7 @@ export namespace jobs_v3 {
     headquartersLocation?: Schema$Location;
   }
   /**
-   * A compensation entry that represents one component of compensation, such as base pay, bonus, or other compensation type.  Annualization: One compensation entry can be annualized if - it contains valid amount or range. - and its expected_units_per_year is set or can be derived. Its annualized range is determined as (amount or range) times expected_units_per_year.
+   * A compensation entry that represents one component of compensation, such as base pay, bonus, or other compensation type. Annualization: One compensation entry can be annualized if - it contains valid amount or range. - and its expected_units_per_year is set or can be derived. Its annualized range is determined as (amount or range) times expected_units_per_year.
    */
   export interface Schema$CompensationEntry {
     /**
@@ -325,7 +325,7 @@ export namespace jobs_v3 {
      */
     amount?: Schema$Money;
     /**
-     * Optional. Compensation description.  For example, could indicate equity terms or provide additional context to an estimated bonus.
+     * Optional. Compensation description. For example, could indicate equity terms or provide additional context to an estimated bonus.
      */
     description?: string | null;
     /**
@@ -337,16 +337,16 @@ export namespace jobs_v3 {
      */
     range?: Schema$CompensationRange;
     /**
-     * Optional. Compensation type.  Default is CompensationUnit.COMPENSATION_TYPE_UNSPECIFIED.
+     * Optional. Compensation type. Default is CompensationUnit.COMPENSATION_TYPE_UNSPECIFIED.
      */
     type?: string | null;
     /**
-     * Optional. Frequency of the specified amount.  Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
+     * Optional. Frequency of the specified amount. Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
      */
     unit?: string | null;
   }
   /**
-   * Input only.  Filter on job compensation type and amount.
+   * Input only. Filter on job compensation type and amount.
    */
   export interface Schema$CompensationFilter {
     /**
@@ -367,7 +367,7 @@ export namespace jobs_v3 {
     units?: string[] | null;
   }
   /**
-   * Input only.  Compensation based histogram request.
+   * Input only. Compensation based histogram request.
    */
   export interface Schema$CompensationHistogramRequest {
     /**
@@ -380,7 +380,7 @@ export namespace jobs_v3 {
     type?: string | null;
   }
   /**
-   * Output only.  Compensation based histogram result.
+   * Output only. Compensation based histogram result.
    */
   export interface Schema$CompensationHistogramResult {
     /**
@@ -397,15 +397,15 @@ export namespace jobs_v3 {
    */
   export interface Schema$CompensationInfo {
     /**
-     * Output only. Annualized base compensation range. Computed as base compensation entry&#39;s CompensationEntry.compensation times CompensationEntry.expected_units_per_year.  See CompensationEntry for explanation on compensation annualization.
+     * Output only. Annualized base compensation range. Computed as base compensation entry&#39;s CompensationEntry.compensation times CompensationEntry.expected_units_per_year. See CompensationEntry for explanation on compensation annualization.
      */
     annualizedBaseCompensationRange?: Schema$CompensationRange;
     /**
-     * Output only. Annualized total compensation range. Computed as all compensation entries&#39; CompensationEntry.compensation times CompensationEntry.expected_units_per_year.  See CompensationEntry for explanation on compensation annualization.
+     * Output only. Annualized total compensation range. Computed as all compensation entries&#39; CompensationEntry.compensation times CompensationEntry.expected_units_per_year. See CompensationEntry for explanation on compensation annualization.
      */
     annualizedTotalCompensationRange?: Schema$CompensationRange;
     /**
-     * Optional. Job compensation information.  At most one entry can be of type CompensationInfo.CompensationType.BASE, which is referred as ** base compensation entry ** for the job.
+     * Optional. Job compensation information. At most one entry can be of type CompensationInfo.CompensationType.BASE, which is referred as ** base compensation entry ** for the job.
      */
     entries?: Schema$CompensationEntry[];
   }
@@ -423,7 +423,7 @@ export namespace jobs_v3 {
     minCompensation?: Schema$Money;
   }
   /**
-   * Output only.  Response of auto-complete query.
+   * Output only. Response of auto-complete query.
    */
   export interface Schema$CompleteQueryResponse {
     /**
@@ -436,7 +436,7 @@ export namespace jobs_v3 {
     metadata?: Schema$ResponseMetadata;
   }
   /**
-   * Output only.  Resource that represents completion results.
+   * Output only. Resource that represents completion results.
    */
   export interface Schema$CompletionResult {
     /**
@@ -462,7 +462,7 @@ export namespace jobs_v3 {
     clientEvent?: Schema$ClientEvent;
   }
   /**
-   * Input only.  The Request of the CreateCompany method.
+   * Input only. The Request of the CreateCompany method.
    */
   export interface Schema$CreateCompanyRequest {
     /**
@@ -471,7 +471,7 @@ export namespace jobs_v3 {
     company?: Schema$Company;
   }
   /**
-   * Input only.  Create job request.
+   * Input only. Create job request.
    */
   export interface Schema$CreateJobRequest {
     /**
@@ -484,15 +484,15 @@ export namespace jobs_v3 {
    */
   export interface Schema$CustomAttribute {
     /**
-     * Optional. If the `filterable` flag is true, the custom field values may be used for custom attribute filters JobQuery.custom_attribute_filter. If false, these values may not be used for custom attribute filters.  Default is false.
+     * Optional. If the `filterable` flag is true, the custom field values may be used for custom attribute filters JobQuery.custom_attribute_filter. If false, these values may not be used for custom attribute filters. Default is false.
      */
     filterable?: boolean | null;
     /**
-     * Optional but exactly one of string_values or long_values must be specified.  This field is used to perform number range search. (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.  Currently at most 1 long_values is supported.
+     * Optional but exactly one of string_values or long_values must be specified. This field is used to perform number range search. (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`. Currently at most 1 long_values is supported.
      */
     longValues?: string[] | null;
     /**
-     * Optional but exactly one of string_values or long_values must be specified.  This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or `CASE_INSENSITIVE_MATCH`) search. For filterable `string_value`s, a maximum total number of 200 values is allowed, with each `string_value` has a byte size of no more than 500B. For unfilterable `string_values`, the maximum total byte size of unfilterable `string_values` is 50KB.  Empty string is not allowed.
+     * Optional but exactly one of string_values or long_values must be specified. This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or `CASE_INSENSITIVE_MATCH`) search. For filterable `string_value`s, a maximum total number of 200 values is allowed, with each `string_value` has a byte size of no more than 500B. For unfilterable `string_values`, the maximum total byte size of unfilterable `string_values` is 50KB. Empty string is not allowed.
      */
     stringValues?: string[] | null;
   }
@@ -514,7 +514,7 @@ export namespace jobs_v3 {
     stringValueHistogram?: boolean | null;
   }
   /**
-   * Output only.  Custom attribute histogram result.
+   * Output only. Custom attribute histogram result.
    */
   export interface Schema$CustomAttributeHistogramResult {
     /**
@@ -544,11 +544,359 @@ export namespace jobs_v3 {
     id?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Input only.  Histogram facets to be specified in SearchJobsRequest.
+   * The result of JobService.BatchCreateJobs. It&#39;s used to replace google.longrunning.Operation.response in case of success.
+   */
+  export interface Schema$GoogleCloudTalentV4BatchCreateJobsResponse {
+    /**
+     * List of job mutation results from a batch create operation. It can change until operation status is FINISHED, FAILED or CANCELLED.
+     */
+    jobResults?: Schema$GoogleCloudTalentV4JobResult[];
+  }
+  /**
+   * The result of JobService.BatchDeleteJobs. It&#39;s used to replace google.longrunning.Operation.response in case of success.
+   */
+  export interface Schema$GoogleCloudTalentV4BatchDeleteJobsResponse {
+    /**
+     * List of job mutation results from a batch delete operation. It can change until operation status is FINISHED, FAILED or CANCELLED.
+     */
+    jobResults?: Schema$GoogleCloudTalentV4JobResult[];
+  }
+  /**
+   * Metadata used for long running operations returned by CTS batch APIs. It&#39;s used to replace google.longrunning.Operation.metadata.
+   */
+  export interface Schema$GoogleCloudTalentV4BatchOperationMetadata {
+    /**
+     * The time when the batch operation is created.
+     */
+    createTime?: string | null;
+    /**
+     * The time when the batch operation is finished and google.longrunning.Operation.done is set to `true`.
+     */
+    endTime?: string | null;
+    /**
+     * Count of failed item(s) inside an operation.
+     */
+    failureCount?: number | null;
+    /**
+     * The state of a long running operation.
+     */
+    state?: string | null;
+    /**
+     * More detailed information about operation state.
+     */
+    stateDescription?: string | null;
+    /**
+     * Count of successful item(s) inside an operation.
+     */
+    successCount?: number | null;
+    /**
+     * Count of total item(s) inside an operation.
+     */
+    totalCount?: number | null;
+    /**
+     * The time when the batch operation status is updated. The metadata and the update_time is refreshed every minute otherwise cached data is returned.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The result of JobService.BatchUpdateJobs. It&#39;s used to replace google.longrunning.Operation.response in case of success.
+   */
+  export interface Schema$GoogleCloudTalentV4BatchUpdateJobsResponse {
+    /**
+     * List of job mutation results from a batch update operation. It can change until operation status is FINISHED, FAILED or CANCELLED.
+     */
+    jobResults?: Schema$GoogleCloudTalentV4JobResult[];
+  }
+  /**
+   * Job compensation details.
+   */
+  export interface Schema$GoogleCloudTalentV4CompensationInfo {
+    /**
+     * Output only. Annualized base compensation range. Computed as base compensation entry&#39;s CompensationEntry.amount times CompensationEntry.expected_units_per_year. See CompensationEntry for explanation on compensation annualization.
+     */
+    annualizedBaseCompensationRange?: Schema$GoogleCloudTalentV4CompensationInfoCompensationRange;
+    /**
+     * Output only. Annualized total compensation range. Computed as all compensation entries&#39; CompensationEntry.amount times CompensationEntry.expected_units_per_year. See CompensationEntry for explanation on compensation annualization.
+     */
+    annualizedTotalCompensationRange?: Schema$GoogleCloudTalentV4CompensationInfoCompensationRange;
+    /**
+     * Job compensation information. At most one entry can be of type CompensationInfo.CompensationType.BASE, which is referred as **base compensation entry** for the job.
+     */
+    entries?: Schema$GoogleCloudTalentV4CompensationInfoCompensationEntry[];
+  }
+  /**
+   * A compensation entry that represents one component of compensation, such as base pay, bonus, or other compensation type. Annualization: One compensation entry can be annualized if - it contains valid amount or range. - and its expected_units_per_year is set or can be derived. Its annualized range is determined as (amount or range) times expected_units_per_year.
+   */
+  export interface Schema$GoogleCloudTalentV4CompensationInfoCompensationEntry {
+    /**
+     * Compensation amount.
+     */
+    amount?: Schema$Money;
+    /**
+     * Compensation description. For example, could indicate equity terms or provide additional context to an estimated bonus.
+     */
+    description?: string | null;
+    /**
+     * Expected number of units paid each year. If not specified, when Job.employment_types is FULLTIME, a default value is inferred based on unit. Default values: - HOURLY: 2080 - DAILY: 260 - WEEKLY: 52 - MONTHLY: 12 - ANNUAL: 1
+     */
+    expectedUnitsPerYear?: number | null;
+    /**
+     * Compensation range.
+     */
+    range?: Schema$GoogleCloudTalentV4CompensationInfoCompensationRange;
+    /**
+     * Compensation type. Default is CompensationType.COMPENSATION_TYPE_UNSPECIFIED.
+     */
+    type?: string | null;
+    /**
+     * Frequency of the specified amount. Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
+     */
+    unit?: string | null;
+  }
+  /**
+   * Compensation range.
+   */
+  export interface Schema$GoogleCloudTalentV4CompensationInfoCompensationRange {
+    /**
+     * The maximum amount of compensation. If left empty, the value is set to a maximal compensation value and the currency code is set to match the currency code of min_compensation.
+     */
+    maxCompensation?: Schema$Money;
+    /**
+     * The minimum amount of compensation. If left empty, the value is set to zero and the currency code is set to match the currency code of max_compensation.
+     */
+    minCompensation?: Schema$Money;
+  }
+  /**
+   * Custom attribute values that are either filterable or non-filterable.
+   */
+  export interface Schema$GoogleCloudTalentV4CustomAttribute {
+    /**
+     * If the `filterable` flag is true, the custom field values may be used for custom attribute filters JobQuery.custom_attribute_filter. If false, these values may not be used for custom attribute filters. Default is false.
+     */
+    filterable?: boolean | null;
+    /**
+     * If the `keyword_searchable` flag is true, the keywords in custom fields are searchable by keyword match. If false, the values are not searchable by keyword match. Default is false.
+     */
+    keywordSearchable?: boolean | null;
+    /**
+     * Exactly one of string_values or long_values must be specified. This field is used to perform number range search. (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`. Currently at most 1 long_values is supported.
+     */
+    longValues?: string[] | null;
+    /**
+     * Exactly one of string_values or long_values must be specified. This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or `CASE_INSENSITIVE_MATCH`) search. For filterable `string_value`s, a maximum total number of 200 values is allowed, with each `string_value` has a byte size of no more than 500B. For unfilterable `string_values`, the maximum total byte size of unfilterable `string_values` is 50KB. Empty string isn&#39;t allowed.
+     */
+    stringValues?: string[] | null;
+  }
+  /**
+   * A Job resource represents a job posting (also referred to as a &quot;job listing&quot; or &quot;job requisition&quot;). A job belongs to a Company, which is the hiring entity responsible for the job.
+   */
+  export interface Schema$GoogleCloudTalentV4Job {
+    /**
+     * Strongly recommended for the best service experience. Location(s) where the employer is looking to hire for this job posting. Specifying the full street address(es) of the hiring location enables better API results, especially job searches by commute time. At most 50 locations are allowed for best search performance. If a job has more locations, it is suggested to split it into multiple jobs with unique requisition_ids (e.g. &#39;ReqA&#39; becomes &#39;ReqA-1&#39;, &#39;ReqA-2&#39;, and so on.) as multiple jobs with the same company, language_code and requisition_id are not allowed. If the original requisition_id must be preserved, a custom field should be used for storage. It is also suggested to group the locations that close to each other in the same job for better search experience. The maximum number of allowed characters is 500.
+     */
+    addresses?: string[] | null;
+    /**
+     * Job application information.
+     */
+    applicationInfo?: Schema$GoogleCloudTalentV4JobApplicationInfo;
+    /**
+     * Required. The resource name of the company listing the job. The format is &quot;projects/{project_id}/tenants/{tenant_id}/companies/{company_id}&quot;. For example, &quot;projects/foo/tenants/bar/companies/baz&quot;.
+     */
+    company?: string | null;
+    /**
+     * Output only. Display name of the company listing the job.
+     */
+    companyDisplayName?: string | null;
+    /**
+     * Job compensation information (a.k.a. &quot;pay rate&quot;) i.e., the compensation that will paid to the employee.
+     */
+    compensationInfo?: Schema$GoogleCloudTalentV4CompensationInfo;
+    /**
+     * A map of fields to hold both filterable and non-filterable custom job attributes that are not covered by the provided structured fields. The keys of the map are strings up to 64 bytes and must match the pattern: a-zA-Z*. For example, key0LikeThis or KEY_1_LIKE_THIS. At most 100 filterable and at most 100 unfilterable keys are supported. For filterable `string_values`, across all keys at most 200 values are allowed, with each string no more than 255 characters. For unfilterable `string_values`, the maximum total size of `string_values` across all keys is 50KB.
+     */
+    customAttributes?: {
+      [key: string]: Schema$GoogleCloudTalentV4CustomAttribute;
+    } | null;
+    /**
+     * The desired education degrees for the job, such as Bachelors, Masters.
+     */
+    degreeTypes?: string[] | null;
+    /**
+     * The department or functional area within the company with the open position. The maximum number of allowed characters is 255.
+     */
+    department?: string | null;
+    /**
+     * Output only. Derived details about the job posting.
+     */
+    derivedInfo?: Schema$GoogleCloudTalentV4JobDerivedInfo;
+    /**
+     * Required. The description of the job, which typically includes a multi-paragraph description of the company and related information. Separate fields are provided on the job object for responsibilities, qualifications, and other job characteristics. Use of these separate job fields is recommended. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 100,000.
+     */
+    description?: string | null;
+    /**
+     * The employment type(s) of a job, for example, full time or part time.
+     */
+    employmentTypes?: string[] | null;
+    /**
+     * A description of bonus, commission, and other compensation incentives associated with the job not including salary or pay. The maximum number of allowed characters is 10,000.
+     */
+    incentives?: string | null;
+    /**
+     * The benefits included with the job.
+     */
+    jobBenefits?: string[] | null;
+    /**
+     * The end timestamp of the job. Typically this field is used for contracting engagements. Invalid timestamps are ignored.
+     */
+    jobEndTime?: string | null;
+    /**
+     * The experience level associated with the job, such as &quot;Entry Level&quot;.
+     */
+    jobLevel?: string | null;
+    /**
+     * The start timestamp of the job in UTC time zone. Typically this field is used for contracting engagements. Invalid timestamps are ignored.
+     */
+    jobStartTime?: string | null;
+    /**
+     * The language of the posting. This field is distinct from any requirements for fluency that are associated with the job. Language codes must be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){: class=&quot;external&quot; target=&quot;_blank&quot; }. If this field is unspecified and Job.description is present, detected language code based on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
+     */
+    languageCode?: string | null;
+    /**
+     * Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is &quot;projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}&quot;. For example, &quot;projects/foo/tenants/bar/jobs/baz&quot;. Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when this job posting was created.
+     */
+    postingCreateTime?: string | null;
+    /**
+     * Strongly recommended for the best service experience. The expiration timestamp of the job. After this timestamp, the job is marked as expired, and it no longer appears in search results. The expired job can&#39;t be listed by the ListJobs API, but it can be retrieved with the GetJob API or updated with the UpdateJob API or deleted with the DeleteJob API. An expired job can be updated and opened again by using a future expiration timestamp. Updating an expired job fails if there is another existing open job with same company, language_code and requisition_id. The expired jobs are retained in our system for 90 days. However, the overall expired job count cannot exceed 3 times the maximum number of open jobs over previous 7 days. If this threshold is exceeded, expired jobs are cleaned out in order of earliest expire time. Expired jobs are no longer accessible after they are cleaned out. Invalid timestamps are ignored, and treated as expire time not provided. If the timestamp is before the instant request is made, the job is treated as expired immediately on creation. This kind of job can not be updated. And when creating a job with past timestamp, the posting_publish_time must be set before posting_expire_time. The purpose of this feature is to allow other objects, such as Application, to refer a job that didn&#39;t exist in the system prior to becoming expired. If you want to modify a job that was expired on creation, delete it and create a new one. If this value isn&#39;t provided at the time of job creation or is invalid, the job posting expires after 30 days from the job&#39;s creation time. For example, if the job was created on 2017/01/01 13:00AM UTC with an unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC. If this value isn&#39;t provided on job update, it depends on the field masks set by UpdateJobRequest.update_mask. If the field masks include job_end_time, or the masks are empty meaning that every field is updated, the job posting expires after 30 days from the job&#39;s last update time. Otherwise the expiration date isn&#39;t updated.
+     */
+    postingExpireTime?: string | null;
+    /**
+     * The timestamp this job posting was most recently published. The default value is the time the request arrives at the server. Invalid timestamps are ignored.
+     */
+    postingPublishTime?: string | null;
+    /**
+     * The job PostingRegion (for example, state, country) throughout which the job is available. If this field is set, a LocationFilter in a search query within the job region finds this job posting if an exact location match isn&#39;t specified. If this field is set to PostingRegion.NATION or PostingRegion.ADMINISTRATIVE_AREA, setting job Job.addresses to the same location level as this field is strongly recommended.
+     */
+    postingRegion?: string | null;
+    /**
+     * Output only. The timestamp when this job posting was last updated.
+     */
+    postingUpdateTime?: string | null;
+    /**
+     * Options for job processing.
+     */
+    processingOptions?: Schema$GoogleCloudTalentV4JobProcessingOptions;
+    /**
+     * A promotion value of the job, as determined by the client. The value determines the sort order of the jobs returned when searching for jobs using the featured jobs search call, with higher promotional values being returned first and ties being resolved by relevance sort. Only the jobs with a promotionValue &gt;0 are returned in a FEATURED_JOB_SEARCH. Default value is 0, and negative values are treated as 0.
+     */
+    promotionValue?: number | null;
+    /**
+     * A description of the qualifications required to perform the job. The use of this field is recommended as an alternative to using the more general description field. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 10,000.
+     */
+    qualifications?: string | null;
+    /**
+     * Required. The requisition ID, also referred to as the posting ID, is assigned by the client to identify a job. This field is intended to be used by clients for client identification and tracking of postings. A job isn&#39;t allowed to be created if there is another job with the same company, language_code and requisition_id. The maximum number of allowed characters is 255.
+     */
+    requisitionId?: string | null;
+    /**
+     * A description of job responsibilities. The use of this field is recommended as an alternative to using the more general description field. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 10,000.
+     */
+    responsibilities?: string | null;
+    /**
+     * Required. The title of the job, such as &quot;Software Engineer&quot; The maximum number of allowed characters is 500.
+     */
+    title?: string | null;
+    /**
+     * Deprecated. The job is only visible to the owner. The visibility of the job. Defaults to Visibility.ACCOUNT_ONLY if not specified.
+     */
+    visibility?: string | null;
+  }
+  /**
+   * Application related details of a job posting.
+   */
+  export interface Schema$GoogleCloudTalentV4JobApplicationInfo {
+    /**
+     * Use this field to specify email address(es) to which resumes or applications can be sent. The maximum number of allowed characters for each entry is 255.
+     */
+    emails?: string[] | null;
+    /**
+     * Use this field to provide instructions, such as &quot;Mail your application to ...&quot;, that a candidate can follow to apply for the job. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 3,000.
+     */
+    instruction?: string | null;
+    /**
+     * Use this URI field to direct an applicant to a website, for example to link to an online application form. The maximum number of allowed characters for each entry is 2,000.
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * Derived details about the job posting.
+   */
+  export interface Schema$GoogleCloudTalentV4JobDerivedInfo {
+    /**
+     * Job categories derived from Job.title and Job.description.
+     */
+    jobCategories?: string[] | null;
+    /**
+     * Structured locations of the job, resolved from Job.addresses. locations are exactly matched to Job.addresses in the same order.
+     */
+    locations?: Schema$GoogleCloudTalentV4Location[];
+  }
+  /**
+   * Options for job processing.
+   */
+  export interface Schema$GoogleCloudTalentV4JobProcessingOptions {
+    /**
+     * If set to `true`, the service does not attempt to resolve a more precise address for the job.
+     */
+    disableStreetAddressResolution?: boolean | null;
+    /**
+     * Option for job HTML content sanitization. Applied fields are: * description * applicationInfo.instruction * incentives * qualifications * responsibilities HTML tags in these fields may be stripped if sanitiazation isn&#39;t disabled. Defaults to HtmlSanitization.SIMPLE_FORMATTING_ONLY.
+     */
+    htmlSanitization?: string | null;
+  }
+  /**
+   * Mutation result of a job from a batch operation.
+   */
+  export interface Schema$GoogleCloudTalentV4JobResult {
+    /**
+     * Here Job only contains basic information including name, company, language_code and requisition_id, use getJob method to retrieve detailed information of the created/updated job.
+     */
+    job?: Schema$GoogleCloudTalentV4Job;
+    /**
+     * The status of the job processed. This field is populated if the processing of the job fails.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * A resource that represents a location with full geographic information.
+   */
+  export interface Schema$GoogleCloudTalentV4Location {
+    /**
+     * An object representing a latitude/longitude pair.
+     */
+    latLng?: Schema$LatLng;
+    /**
+     * The type of a location, which corresponds to the address lines field of google.type.PostalAddress. For example, &quot;Downtown, Atlanta, GA, USA&quot; has a type of LocationType.NEIGHBORHOOD, and &quot;Kansas City, KS, USA&quot; has a type of LocationType.LOCALITY.
+     */
+    locationType?: string | null;
+    /**
+     * Postal address of the location that includes human readable information, such as postal delivery and payments addresses. Given a postal address, a postal service can deliver items to a premises, P.O. Box, or other delivery location.
+     */
+    postalAddress?: Schema$PostalAddress;
+    /**
+     * Radius in miles of the job location. This value is derived from the location bounding box in which a circle with the specified radius centered from google.type.LatLng covers the area associated with the job location. For example, currently, &quot;Mountain View, CA, USA&quot; has a radius of 6.17 miles.
+     */
+    radiusMiles?: number | null;
+  }
+  /**
+   * Input only. Histogram facets to be specified in SearchJobsRequest.
    */
   export interface Schema$HistogramFacets {
     /**
@@ -565,7 +913,7 @@ export namespace jobs_v3 {
     simpleHistogramFacets?: string[] | null;
   }
   /**
-   * Output only.  Result of a histogram call. The response contains the histogram map for the search type specified by HistogramResult.field. The response is a map of each filter value to the corresponding count of jobs for that filter.
+   * Output only. Result of a histogram call. The response contains the histogram map for the search type specified by HistogramResult.field. The response is a map of each filter value to the corresponding count of jobs for that filter.
    */
   export interface Schema$HistogramResult {
     /**
@@ -573,12 +921,12 @@ export namespace jobs_v3 {
      */
     searchType?: string | null;
     /**
-     * A map from the values of field to the number of jobs with that value in this search result.  Key: search type (filter names, such as the companyName).  Values: the count of jobs that match the filter for this search.
+     * A map from the values of field to the number of jobs with that value in this search result. Key: search type (filter names, such as the companyName). Values: the count of jobs that match the filter for this search.
      */
     values?: {[key: string]: number} | null;
   }
   /**
-   * Output only.  Histogram results that match HistogramFacets specified in SearchJobsRequest.
+   * Output only. Histogram results that match HistogramFacets specified in SearchJobsRequest.
    */
   export interface Schema$HistogramResults {
     /**
@@ -599,11 +947,11 @@ export namespace jobs_v3 {
    */
   export interface Schema$Job {
     /**
-     * Optional but strongly recommended for the best service experience.  Location(s) where the employer is looking to hire for this job posting.  Specifying the full street address(es) of the hiring location enables better API results, especially job searches by commute time.  At most 50 locations are allowed for best search performance. If a job has more locations, it is suggested to split it into multiple jobs with unique requisition_ids (e.g. &#39;ReqA&#39; becomes &#39;ReqA-1&#39;, &#39;ReqA-2&#39;, etc.) as multiple jobs with the same company_name, language_code and requisition_id are not allowed. If the original requisition_id must be preserved, a custom field should be used for storage. It is also suggested to group the locations that close to each other in the same job for better search experience.  The maximum number of allowed characters is 500.
+     * Optional but strongly recommended for the best service experience. Location(s) where the employer is looking to hire for this job posting. Specifying the full street address(es) of the hiring location enables better API results, especially job searches by commute time. At most 50 locations are allowed for best search performance. If a job has more locations, it is suggested to split it into multiple jobs with unique requisition_ids (e.g. &#39;ReqA&#39; becomes &#39;ReqA-1&#39;, &#39;ReqA-2&#39;, etc.) as multiple jobs with the same company_name, language_code and requisition_id are not allowed. If the original requisition_id must be preserved, a custom field should be used for storage. It is also suggested to group the locations that close to each other in the same job for better search experience. The maximum number of allowed characters is 500.
      */
     addresses?: string[] | null;
     /**
-     * Required. At least one field within ApplicationInfo must be specified.  Job application information.
+     * Required. At least one field within ApplicationInfo must be specified. Job application information.
      */
     applicationInfo?: Schema$ApplicationInfo;
     /**
@@ -619,7 +967,7 @@ export namespace jobs_v3 {
      */
     compensationInfo?: Schema$CompensationInfo;
     /**
-     * Optional. A map of fields to hold both filterable and non-filterable custom job attributes that are not covered by the provided structured fields.  The keys of the map are strings up to 64 bytes and must match the pattern: a-zA-Z*. For example, key0LikeThis or KEY_1_LIKE_THIS.  At most 100 filterable and at most 100 unfilterable keys are supported. For filterable `string_values`, across all keys at most 200 values are allowed, with each string no more than 255 characters. For unfilterable `string_values`, the maximum total size of `string_values` across all keys is 50KB.
+     * Optional. A map of fields to hold both filterable and non-filterable custom job attributes that are not covered by the provided structured fields. The keys of the map are strings up to 64 bytes and must match the pattern: a-zA-Z*. For example, key0LikeThis or KEY_1_LIKE_THIS. At most 100 filterable and at most 100 unfilterable keys are supported. For filterable `string_values`, across all keys at most 200 values are allowed, with each string no more than 255 characters. For unfilterable `string_values`, the maximum total size of `string_values` across all keys is 50KB.
      */
     customAttributes?: {[key: string]: Schema$CustomAttribute} | null;
     /**
@@ -627,7 +975,7 @@ export namespace jobs_v3 {
      */
     degreeTypes?: string[] | null;
     /**
-     * Optional. The department or functional area within the company with the open position.  The maximum number of allowed characters is 255.
+     * Optional. The department or functional area within the company with the open position. The maximum number of allowed characters is 255.
      */
     department?: string | null;
     /**
@@ -635,7 +983,7 @@ export namespace jobs_v3 {
      */
     derivedInfo?: Schema$JobDerivedInfo;
     /**
-     * Required. The description of the job, which typically includes a multi-paragraph description of the company and related information. Separate fields are provided on the job object for responsibilities, qualifications, and other job characteristics. Use of these separate job fields is recommended.  This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags.  The maximum number of allowed characters is 100,000.
+     * Required. The description of the job, which typically includes a multi-paragraph description of the company and related information. Separate fields are provided on the job object for responsibilities, qualifications, and other job characteristics. Use of these separate job fields is recommended. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 100,000.
      */
     description?: string | null;
     /**
@@ -643,7 +991,7 @@ export namespace jobs_v3 {
      */
     employmentTypes?: string[] | null;
     /**
-     * Optional. A description of bonus, commission, and other compensation incentives associated with the job not including salary or pay.  The maximum number of allowed characters is 10,000.
+     * Optional. A description of bonus, commission, and other compensation incentives associated with the job not including salary or pay. The maximum number of allowed characters is 10,000.
      */
     incentives?: string | null;
     /**
@@ -663,11 +1011,11 @@ export namespace jobs_v3 {
      */
     jobStartTime?: string | null;
     /**
-     * Optional. The language of the posting. This field is distinct from any requirements for fluency that are associated with the job.  Language codes must be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){: class=&quot;external&quot; target=&quot;_blank&quot; }.  If this field is unspecified and Job.description is present, detected language code based on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
+     * Optional. The language of the posting. This field is distinct from any requirements for fluency that are associated with the job. Language codes must be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){: class=&quot;external&quot; target=&quot;_blank&quot; }. If this field is unspecified and Job.description is present, detected language code based on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
      */
     languageCode?: string | null;
     /**
-     * Required during job update.  The resource name for the job. This is generated by the service when a job is created.  The format is &quot;projects/{project_id}/jobs/{job_id}&quot;, for example, &quot;projects/api-test-project/jobs/1234&quot;.  Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
+     * Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is &quot;projects/{project_id}/jobs/{job_id}&quot;, for example, &quot;projects/api-test-project/jobs/1234&quot;. Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      */
     name?: string | null;
     /**
@@ -675,7 +1023,7 @@ export namespace jobs_v3 {
      */
     postingCreateTime?: string | null;
     /**
-     * Optional but strongly recommended for the best service experience.  The expiration timestamp of the job. After this timestamp, the job is marked as expired, and it no longer appears in search results. The expired job can&#39;t be deleted or listed by the DeleteJob and ListJobs APIs, but it can be retrieved with the GetJob API or updated with the UpdateJob API. An expired job can be updated and opened again by using a future expiration timestamp. Updating an expired job fails if there is another existing open job with same company_name, language_code and requisition_id.  The expired jobs are retained in our system for 90 days. However, the overall expired job count cannot exceed 3 times the maximum of open jobs count over the past week, otherwise jobs with earlier expire time are cleaned first. Expired jobs are no longer accessible after they are cleaned out.  Invalid timestamps are ignored, and treated as expire time not provided.  Timestamp before the instant request is made is considered valid, the job will be treated as expired immediately.  If this value is not provided at the time of job creation or is invalid, the job posting expires after 30 days from the job&#39;s creation time. For example, if the job was created on 2017/01/01 13:00AM UTC with an unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC.  If this value is not provided on job update, it depends on the field masks set by UpdateJobRequest.update_mask. If the field masks include expiry_time, or the masks are empty meaning that every field is updated, the job posting expires after 30 days from the job&#39;s last update time. Otherwise the expiration date isn&#39;t updated.
+     * Optional but strongly recommended for the best service experience. The expiration timestamp of the job. After this timestamp, the job is marked as expired, and it no longer appears in search results. The expired job can&#39;t be deleted or listed by the DeleteJob and ListJobs APIs, but it can be retrieved with the GetJob API or updated with the UpdateJob API. An expired job can be updated and opened again by using a future expiration timestamp. Updating an expired job fails if there is another existing open job with same company_name, language_code and requisition_id. The expired jobs are retained in our system for 90 days. However, the overall expired job count cannot exceed 3 times the maximum of open jobs count over the past week, otherwise jobs with earlier expire time are cleaned first. Expired jobs are no longer accessible after they are cleaned out. Invalid timestamps are ignored, and treated as expire time not provided. Timestamp before the instant request is made is considered valid, the job will be treated as expired immediately. If this value is not provided at the time of job creation or is invalid, the job posting expires after 30 days from the job&#39;s creation time. For example, if the job was created on 2017/01/01 13:00AM UTC with an unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC. If this value is not provided on job update, it depends on the field masks set by UpdateJobRequest.update_mask. If the field masks include expiry_time, or the masks are empty meaning that every field is updated, the job posting expires after 30 days from the job&#39;s last update time. Otherwise the expiration date isn&#39;t updated.
      */
     postingExpireTime?: string | null;
     /**
@@ -695,32 +1043,32 @@ export namespace jobs_v3 {
      */
     processingOptions?: Schema$ProcessingOptions;
     /**
-     * Optional. A promotion value of the job, as determined by the client. The value determines the sort order of the jobs returned when searching for jobs using the featured jobs search call, with higher promotional values being returned first and ties being resolved by relevance sort. Only the jobs with a promotionValue &gt;0 are returned in a FEATURED_JOB_SEARCH.  Default value is 0, and negative values are treated as 0.
+     * Optional. A promotion value of the job, as determined by the client. The value determines the sort order of the jobs returned when searching for jobs using the featured jobs search call, with higher promotional values being returned first and ties being resolved by relevance sort. Only the jobs with a promotionValue &gt;0 are returned in a FEATURED_JOB_SEARCH. Default value is 0, and negative values are treated as 0.
      */
     promotionValue?: number | null;
     /**
-     * Optional. A description of the qualifications required to perform the job. The use of this field is recommended as an alternative to using the more general description field.  This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags.  The maximum number of allowed characters is 10,000.
+     * Optional. A description of the qualifications required to perform the job. The use of this field is recommended as an alternative to using the more general description field. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 10,000.
      */
     qualifications?: string | null;
     /**
-     * Required. The requisition ID, also referred to as the posting ID, assigned by the client to identify a job. This field is intended to be used by clients for client identification and tracking of postings. A job is not allowed to be created if there is another job with the same [company_name], language_code and requisition_id.  The maximum number of allowed characters is 255.
+     * Required. The requisition ID, also referred to as the posting ID, assigned by the client to identify a job. This field is intended to be used by clients for client identification and tracking of postings. A job is not allowed to be created if there is another job with the same [company_name], language_code and requisition_id. The maximum number of allowed characters is 255.
      */
     requisitionId?: string | null;
     /**
-     * Optional. A description of job responsibilities. The use of this field is recommended as an alternative to using the more general description field.  This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags.  The maximum number of allowed characters is 10,000.
+     * Optional. A description of job responsibilities. The use of this field is recommended as an alternative to using the more general description field. This field accepts and sanitizes HTML input, and also accepts bold, italic, ordered list, and unordered list markup tags. The maximum number of allowed characters is 10,000.
      */
     responsibilities?: string | null;
     /**
-     * Required. The title of the job, such as &quot;Software Engineer&quot;  The maximum number of allowed characters is 500.
+     * Required. The title of the job, such as &quot;Software Engineer&quot; The maximum number of allowed characters is 500.
      */
     title?: string | null;
     /**
-     * Deprecated. The job is only visible to the owner.  The visibility of the job.  Defaults to Visibility.ACCOUNT_ONLY if not specified.
+     * Deprecated. The job is only visible to the owner. The visibility of the job. Defaults to Visibility.ACCOUNT_ONLY if not specified.
      */
     visibility?: string | null;
   }
   /**
-   * Output only.  Derived details about the job posting.
+   * Output only. Derived details about the job posting.
    */
   export interface Schema$JobDerivedInfo {
     /**
@@ -728,7 +1076,7 @@ export namespace jobs_v3 {
      */
     jobCategories?: string[] | null;
     /**
-     * Structured locations of the job, resolved from Job.addresses.  locations are exactly matched to Job.addresses in the same order.
+     * Structured locations of the job, resolved from Job.addresses. locations are exactly matched to Job.addresses in the same order.
      */
     locations?: Schema$Location[];
   }
@@ -746,19 +1094,19 @@ export namespace jobs_v3 {
     type?: string | null;
   }
   /**
-   * Input only.  The query required to perform a search query.
+   * Input only. The query required to perform a search query.
    */
   export interface Schema$JobQuery {
     /**
-     * Optional. Allows filtering jobs by commute time with different travel methods (for  example, driving or public transit). Note: This only works with COMMUTE  MODE. When specified, [JobQuery.location_filters] is  ignored.   Currently we don&#39;t support sorting by commute time.
+     * Optional. Allows filtering jobs by commute time with different travel methods (for example, driving or public transit). Note: This only works with COMMUTE MODE. When specified, [JobQuery.location_filters] is ignored. Currently we don&#39;t support sorting by commute time.
      */
     commuteFilter?: Schema$CommuteFilter;
     /**
-     * Optional. This filter specifies the exact company display name of the jobs to search against.  If a value isn&#39;t specified, jobs within the search results are associated with any company.  If multiple values are specified, jobs within the search results may be associated with any of the specified companies.  At most 20 company display name filters are allowed.
+     * Optional. This filter specifies the exact company display name of the jobs to search against. If a value isn&#39;t specified, jobs within the search results are associated with any company. If multiple values are specified, jobs within the search results may be associated with any of the specified companies. At most 20 company display name filters are allowed.
      */
     companyDisplayNames?: string[] | null;
     /**
-     * Optional. This filter specifies the company entities to search against.  If a value isn&#39;t specified, jobs are searched for against all companies.  If multiple values are specified, jobs are searched against the companies specified.  The format is &quot;projects/{project_id}/companies/{company_id}&quot;, for example, &quot;projects/api-test-project/companies/foo&quot;.  At most 20 company filters are allowed.
+     * Optional. This filter specifies the company entities to search against. If a value isn&#39;t specified, jobs are searched for against all companies. If multiple values are specified, jobs are searched against the companies specified. The format is &quot;projects/{project_id}/companies/{company_id}&quot;, for example, &quot;projects/api-test-project/companies/foo&quot;. At most 20 company filters are allowed.
      */
     companyNames?: string[] | null;
     /**
@@ -766,27 +1114,27 @@ export namespace jobs_v3 {
      */
     compensationFilter?: Schema$CompensationFilter;
     /**
-     * Optional. This filter specifies a structured syntax to match against the Job.custom_attributes marked as `filterable`.  The syntax for this expression is a subset of SQL syntax.  Supported operators are: `=`, `!=`, `&lt;`, `&lt;=`, `&gt;`, and `&gt;=` where the left of the operator is a custom field key and the right of the operator is a number or a quoted string. You must escape backslash (\\) and quote (\&quot;) characters.  Supported functions are `LOWER([field_name])` to perform a case insensitive match and `EMPTY([field_name])` to filter on the existence of a key.  Boolean expressions (AND/OR/NOT) are supported up to 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), a maximum of 100 comparisons or functions are allowed in the expression. The expression must be &lt; 6000 bytes in length.  Sample Query: `(LOWER(driving_license)=&quot;class \&quot;a\&quot;&quot; OR EMPTY(driving_license)) AND driving_years &gt; 10`
+     * Optional. This filter specifies a structured syntax to match against the Job.custom_attributes marked as `filterable`. The syntax for this expression is a subset of SQL syntax. Supported operators are: `=`, `!=`, `&lt;`, `&lt;=`, `&gt;`, and `&gt;=` where the left of the operator is a custom field key and the right of the operator is a number or a quoted string. You must escape backslash (\\) and quote (\&quot;) characters. Supported functions are `LOWER([field_name])` to perform a case insensitive match and `EMPTY([field_name])` to filter on the existence of a key. Boolean expressions (AND/OR/NOT) are supported up to 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), a maximum of 100 comparisons or functions are allowed in the expression. The expression must be &lt; 6000 bytes in length. Sample Query: `(LOWER(driving_license)=&quot;class \&quot;a\&quot;&quot; OR EMPTY(driving_license)) AND driving_years &gt; 10`
      */
     customAttributeFilter?: string | null;
     /**
-     * Optional. This flag controls the spell-check feature. If false, the service attempts to correct a misspelled query, for example, &quot;enginee&quot; is corrected to &quot;engineer&quot;.  Defaults to false: a spell check is performed.
+     * Optional. This flag controls the spell-check feature. If false, the service attempts to correct a misspelled query, for example, &quot;enginee&quot; is corrected to &quot;engineer&quot;. Defaults to false: a spell check is performed.
      */
     disableSpellCheck?: boolean | null;
     /**
-     * Optional. The employment type filter specifies the employment type of jobs to search against, such as EmploymentType.FULL_TIME.  If a value is not specified, jobs in the search results includes any employment type.  If multiple values are specified, jobs in the search results include any of the specified employment types.
+     * Optional. The employment type filter specifies the employment type of jobs to search against, such as EmploymentType.FULL_TIME. If a value is not specified, jobs in the search results includes any employment type. If multiple values are specified, jobs in the search results include any of the specified employment types.
      */
     employmentTypes?: string[] | null;
     /**
-     * Optional. The category filter specifies the categories of jobs to search against. See Category for more information.  If a value is not specified, jobs from any category are searched against.  If multiple values are specified, jobs from any of the specified categories are searched against.
+     * Optional. The category filter specifies the categories of jobs to search against. See Category for more information. If a value is not specified, jobs from any category are searched against. If multiple values are specified, jobs from any of the specified categories are searched against.
      */
     jobCategories?: string[] | null;
     /**
-     * Optional. This filter specifies the locale of jobs to search against, for example, &quot;en-US&quot;.  If a value isn&#39;t specified, the search results can contain jobs in any locale.   Language codes should be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  At most 10 language code filters are allowed.
+     * Optional. This filter specifies the locale of jobs to search against, for example, &quot;en-US&quot;. If a value isn&#39;t specified, the search results can contain jobs in any locale. Language codes should be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). At most 10 language code filters are allowed.
      */
     languageCodes?: string[] | null;
     /**
-     * Optional. The location filter specifies geo-regions containing the jobs to search against. See LocationFilter for more information.  If a location value isn&#39;t specified, jobs fitting the other search criteria are retrieved regardless of where they&#39;re located.  If multiple values are specified, jobs are retrieved from any of the specified locations. If different values are specified for the LocationFilter.distance_in_miles parameter, the maximum provided distance is used for all locations.  At most 5 location filters are allowed.
+     * Optional. The location filter specifies geo-regions containing the jobs to search against. See LocationFilter for more information. If a location value isn&#39;t specified, jobs fitting the other search criteria are retrieved regardless of where they&#39;re located. If multiple values are specified, jobs are retrieved from any of the specified locations. If different values are specified for the LocationFilter.distance_in_miles parameter, the maximum provided distance is used for all locations. At most 5 location filters are allowed.
      */
     locationFilters?: Schema$LocationFilter[];
     /**
@@ -794,16 +1142,16 @@ export namespace jobs_v3 {
      */
     publishTimeRange?: Schema$TimestampRange;
     /**
-     * Optional. The query string that matches against the job title, description, and location fields.  The maximum number of allowed characters is 255.
+     * Optional. The query string that matches against the job title, description, and location fields. The maximum number of allowed characters is 255.
      */
     query?: string | null;
     /**
-     * The language code of query. For example, &quot;en-US&quot;. This field helps to better interpret the query.  If a value isn&#39;t specified, the query language code is automatically detected, which may not be accurate.  Language code should be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     * The language code of query. For example, &quot;en-US&quot;. This field helps to better interpret the query. If a value isn&#39;t specified, the query language code is automatically detected, which may not be accurate. Language code should be in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      */
     queryLanguageCode?: string | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -816,7 +1164,7 @@ export namespace jobs_v3 {
     longitude?: number | null;
   }
   /**
-   * Output only.  The List companies response object.
+   * Output only. The List companies response object.
    */
   export interface Schema$ListCompaniesResponse {
     /**
@@ -833,11 +1181,11 @@ export namespace jobs_v3 {
     nextPageToken?: string | null;
   }
   /**
-   * Output only.  List jobs response.
+   * Output only. List jobs response.
    */
   export interface Schema$ListJobsResponse {
     /**
-     * The Jobs for a given company.  The maximum number of items returned is based on the limit field provided in the request.
+     * The Jobs for a given company. The maximum number of items returned is based on the limit field provided in the request.
      */
     jobs?: Schema$Job[];
     /**
@@ -850,7 +1198,7 @@ export namespace jobs_v3 {
     nextPageToken?: string | null;
   }
   /**
-   * Output only.  A resource that represents a location with full geographic information.
+   * Output only. A resource that represents a location with full geographic information.
    */
   export interface Schema$Location {
     /**
@@ -871,7 +1219,7 @@ export namespace jobs_v3 {
     radiusInMiles?: number | null;
   }
   /**
-   * Input only.  Geographic region of the search.
+   * Input only. Geographic region of the search.
    */
   export interface Schema$LocationFilter {
     /**
@@ -887,20 +1235,20 @@ export namespace jobs_v3 {
      */
     latLng?: Schema$LatLng;
     /**
-     * Optional. CLDR region code of the country/region of the address. This is used to address ambiguity of the user-input location, for example, &quot;Liverpool&quot; against &quot;Liverpool, NY, US&quot; or &quot;Liverpool, UK&quot;.  Set this field if all the jobs to search against are from a same region, or jobs are world-wide, but the job seeker is from a specific region.  See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: &quot;CH&quot; for Switzerland.
+     * Optional. CLDR region code of the country/region of the address. This is used to address ambiguity of the user-input location, for example, &quot;Liverpool&quot; against &quot;Liverpool, NY, US&quot; or &quot;Liverpool, UK&quot;. Set this field if all the jobs to search against are from a same region, or jobs are world-wide, but the job seeker is from a specific region. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: &quot;CH&quot; for Switzerland.
      */
     regionCode?: string | null;
     /**
-     * Optional. Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched.  This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
+     * Optional. Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched. This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
      */
     telecommutePreference?: string | null;
   }
   /**
-   * Output only.  Job entry with metadata inside SearchJobsResponse.
+   * Output only. Job entry with metadata inside SearchJobsResponse.
    */
   export interface Schema$MatchingJob {
     /**
-     * Commute information which is generated based on specified  CommuteFilter.
+     * Commute information which is generated based on specified CommuteFilter.
      */
     commuteInfo?: Schema$CommuteInfo;
     /**
@@ -995,7 +1343,7 @@ export namespace jobs_v3 {
      */
     disableManualEnrollmentSelection?: boolean | null;
     /**
-     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments.  This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem.
+     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem.
      */
     disableOrganicSelection?: boolean | null;
     /**
@@ -1008,7 +1356,7 @@ export namespace jobs_v3 {
     forcedRollouts?: {[key: string]: boolean} | null;
   }
   /**
-   * Input only.  Use this field to specify bucketing option for the histogram search response.
+   * Input only. Use this field to specify bucketing option for the histogram search response.
    */
   export interface Schema$NumericBucketingOption {
     /**
@@ -1021,7 +1369,7 @@ export namespace jobs_v3 {
     requiresMinMax?: boolean | null;
   }
   /**
-   * Output only.  Custom numeric bucketing result.
+   * Output only. Custom numeric bucketing result.
    */
   export interface Schema$NumericBucketingResult {
     /**
@@ -1038,11 +1386,11 @@ export namespace jobs_v3 {
     minValue?: number | null;
   }
   /**
-   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains).  In typical usage an address would be created via user input or from importing existing data, depending on the type of process.  Advice on address input / editing:  - Use an i18n-ready address widget such as    https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of   fields outside countries where that field is used.  For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
+   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an i18n-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
    */
   export interface Schema$PostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address.  Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. &quot;Austin, TX&quot;), it is important that the line order is clear. The order of address lines should be &quot;envelope order&quot; for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. &quot;ja&quot; for large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for small-to-large). This way, the most specific line of an address can be selected based on the language.  The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved.  Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. &quot;Austin, TX&quot;), it is important that the line order is clear. The order of address lines should be &quot;envelope order&quot; for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. &quot;ja&quot; for large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
@@ -1050,7 +1398,7 @@ export namespace jobs_v3 {
      */
     administrativeArea?: string | null;
     /**
-     * Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address&#39; country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations.  If this value is not known, it should be omitted (rather than specifying a possibly incorrect default).  Examples: &quot;zh-Hant&quot;, &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
+     * Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address&#39; country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: &quot;zh-Hant&quot;, &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
      */
     languageCode?: string | null;
     /**
@@ -1074,7 +1422,7 @@ export namespace jobs_v3 {
      */
     regionCode?: string | null;
     /**
-     * The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision.  All new revisions **must** be backward compatible with old revisions.
+     * The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions.
      */
     revision?: number | null;
     /**
@@ -1087,7 +1435,7 @@ export namespace jobs_v3 {
     sublocality?: string | null;
   }
   /**
-   * Input only.  Options for job processing.
+   * Input only. Options for job processing.
    */
   export interface Schema$ProcessingOptions {
     /**
@@ -1095,12 +1443,12 @@ export namespace jobs_v3 {
      */
     disableStreetAddressResolution?: boolean | null;
     /**
-     * Optional. Option for job HTML content sanitization. Applied fields are:  * description * applicationInfo.instruction * incentives * qualifications * responsibilities  HTML tags in these fields may be stripped if sanitiazation is not disabled.  Defaults to HtmlSanitization.SIMPLE_FORMATTING_ONLY.
+     * Optional. Option for job HTML content sanitization. Applied fields are: * description * applicationInfo.instruction * incentives * qualifications * responsibilities HTML tags in these fields may be stripped if sanitiazation is not disabled. Defaults to HtmlSanitization.SIMPLE_FORMATTING_ONLY.
      */
     htmlSanitization?: string | null;
   }
   /**
-   * Input only.  Meta information related to the job searcher or entity conducting the job search. This information is used to improve the performance of the service.
+   * Input only. Meta information related to the job searcher or entity conducting the job search. This information is used to improve the performance of the service.
    */
   export interface Schema$RequestMetadata {
     /**
@@ -1108,20 +1456,20 @@ export namespace jobs_v3 {
      */
     deviceInfo?: Schema$DeviceInfo;
     /**
-     * Required. The client-defined scope or source of the service call, which typically is the domain on which the service has been implemented and is currently being run.  For example, if the service is being run by client &lt;em&gt;Foo, Inc.&lt;/em&gt;, on job board www.foo.com and career site www.bar.com, then this field is set to &quot;foo.com&quot; for use on the job board, and &quot;bar.com&quot; for use on the career site.  If this field isn&#39;t available for some reason, send &quot;UNKNOWN&quot;. Any improvements to the model for a particular tenant site rely on this field being set correctly to a domain.  The maximum number of allowed characters is 255.
+     * Required. The client-defined scope or source of the service call, which typically is the domain on which the service has been implemented and is currently being run. For example, if the service is being run by client *Foo, Inc.*, on job board www.foo.com and career site www.bar.com, then this field is set to &quot;foo.com&quot; for use on the job board, and &quot;bar.com&quot; for use on the career site. If this field isn&#39;t available for some reason, send &quot;UNKNOWN&quot;. Any improvements to the model for a particular tenant site rely on this field being set correctly to a domain. The maximum number of allowed characters is 255.
      */
     domain?: string | null;
     /**
-     * Required. A unique session identification string. A session is defined as the duration of an end user&#39;s interaction with the service over a certain period. Obfuscate this field for privacy concerns before providing it to the service.  If this field is not available for some reason, send &quot;UNKNOWN&quot;. Note that any improvements to the model for a particular tenant site, rely on this field being set correctly to some unique session_id.  The maximum number of allowed characters is 255.
+     * Required. A unique session identification string. A session is defined as the duration of an end user&#39;s interaction with the service over a certain period. Obfuscate this field for privacy concerns before providing it to the service. If this field is not available for some reason, send &quot;UNKNOWN&quot;. Note that any improvements to the model for a particular tenant site, rely on this field being set correctly to some unique session_id. The maximum number of allowed characters is 255.
      */
     sessionId?: string | null;
     /**
-     * Required. A unique user identification string, as determined by the client. To have the strongest positive impact on search quality make sure the client-level is unique. Obfuscate this field for privacy concerns before providing it to the service.  If this field is not available for some reason, send &quot;UNKNOWN&quot;. Note that any improvements to the model for a particular tenant site, rely on this field being set correctly to a unique user_id.  The maximum number of allowed characters is 255.
+     * Required. A unique user identification string, as determined by the client. To have the strongest positive impact on search quality make sure the client-level is unique. Obfuscate this field for privacy concerns before providing it to the service. If this field is not available for some reason, send &quot;UNKNOWN&quot;. Note that any improvements to the model for a particular tenant site, rely on this field being set correctly to a unique user_id. The maximum number of allowed characters is 255.
      */
     userId?: string | null;
   }
   /**
-   * Output only.  Additional information returned to client, such as debugging information.
+   * Output only. Additional information returned to client, such as debugging information.
    */
   export interface Schema$ResponseMetadata {
     /**
@@ -1130,19 +1478,19 @@ export namespace jobs_v3 {
     requestId?: string | null;
   }
   /**
-   * Input only.  The Request body of the `SearchJobs` call.
+   * Input only. The Request body of the `SearchJobs` call.
    */
   export interface Schema$SearchJobsRequest {
     /**
-     * Optional. Controls whether to disable exact keyword match on Job.job_title, Job.description, Job.company_display_name, Job.locations, Job.qualifications. When disable keyword match is turned off, a keyword match returns jobs that do not match given category filters when there are matching keywords. For example, the query &quot;program manager,&quot; a result is returned even if the job posting has the title &quot;software developer,&quot; which does not fall into &quot;program manager&quot; ontology, but does have &quot;program manager&quot; appearing in its description.  For queries like &quot;cloud&quot; that does not contain title or location specific ontology, jobs with &quot;cloud&quot; keyword matches are returned regardless of this flag&#39;s value.  Please use Company.keyword_searchable_custom_fields or Company.keyword_searchable_custom_attributes if company specific globally matched custom field/attribute string values is needed. Enabling keyword match improves recall of subsequent search requests.  Defaults to false.
+     * Optional. Controls whether to disable exact keyword match on Job.job_title, Job.description, Job.company_display_name, Job.locations, Job.qualifications. When disable keyword match is turned off, a keyword match returns jobs that do not match given category filters when there are matching keywords. For example, the query &quot;program manager,&quot; a result is returned even if the job posting has the title &quot;software developer,&quot; which does not fall into &quot;program manager&quot; ontology, but does have &quot;program manager&quot; appearing in its description. For queries like &quot;cloud&quot; that does not contain title or location specific ontology, jobs with &quot;cloud&quot; keyword matches are returned regardless of this flag&#39;s value. Please use Company.keyword_searchable_custom_fields or Company.keyword_searchable_custom_attributes if company specific globally matched custom field/attribute string values is needed. Enabling keyword match improves recall of subsequent search requests. Defaults to false.
      */
     disableKeywordMatch?: boolean | null;
     /**
-     * Optional. Controls whether highly similar jobs are returned next to each other in the search results. Jobs are identified as highly similar based on their titles, job categories, and locations. Highly similar results are clustered so that only one representative job of the cluster is displayed to the job seeker higher up in the results, with the other jobs being displayed lower down in the results.  Defaults to DiversificationLevel.SIMPLE if no value is specified.
+     * Optional. Controls whether highly similar jobs are returned next to each other in the search results. Jobs are identified as highly similar based on their titles, job categories, and locations. Highly similar results are clustered so that only one representative job of the cluster is displayed to the job seeker higher up in the results, with the other jobs being displayed lower down in the results. Defaults to DiversificationLevel.SIMPLE if no value is specified.
      */
     diversificationLevel?: string | null;
     /**
-     * Optional. Controls whether to broaden the search when it produces sparse results. Broadened queries append results to the end of the matching results list.  Defaults to false.
+     * Optional. Controls whether to broaden the search when it produces sparse results. Broadened queries append results to the end of the matching results list. Defaults to false.
      */
     enableBroadening?: boolean | null;
     /**
@@ -1158,11 +1506,11 @@ export namespace jobs_v3 {
      */
     jobView?: string | null;
     /**
-     * Optional. An integer that specifies the current offset (that is, starting result location, amongst the jobs deemed by the API as relevant) in search results. This field is only considered if page_token is unset.  The maximum allowed value is 5000. Otherwise an error is thrown.  For example, 0 means to  return results starting from the first matching job, and 10 means to return from the 11th job. This can be used for pagination, (for example, pageSize = 10 and offset = 10 means to return from the second page).
+     * Optional. An integer that specifies the current offset (that is, starting result location, amongst the jobs deemed by the API as relevant) in search results. This field is only considered if page_token is unset. The maximum allowed value is 5000. Otherwise an error is thrown. For example, 0 means to return results starting from the first matching job, and 10 means to return from the 11th job. This can be used for pagination, (for example, pageSize = 10 and offset = 10 means to return from the second page).
      */
     offset?: number | null;
     /**
-     * Optional. The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;.  Supported options are:  * `&quot;relevance desc&quot;`: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * `&quot;posting_publish_time desc&quot;`: By Job.posting_publish_time descending. * `&quot;posting_update_time desc&quot;`: By Job.posting_update_time descending. * `&quot;title&quot;`: By Job.title ascending. * `&quot;title desc&quot;`: By Job.title descending. * `&quot;annualized_base_compensation&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_base_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results.
+     * Optional. The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;. Supported options are: * `&quot;relevance desc&quot;`: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * `&quot;posting_publish_time desc&quot;`: By Job.posting_publish_time descending. * `&quot;posting_update_time desc&quot;`: By Job.posting_update_time descending. * `&quot;title&quot;`: By Job.title ascending. * `&quot;title desc&quot;`: By Job.title descending. * `&quot;annualized_base_compensation&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_base_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results.
      */
     orderBy?: string | null;
     /**
@@ -1178,16 +1526,16 @@ export namespace jobs_v3 {
      */
     requestMetadata?: Schema$RequestMetadata;
     /**
-     * Optional. Controls if the search job request requires the return of a precise count of the first 300 results. Setting this to `true` ensures consistency in the number of results per page. Best practice is to set this value to true if a client allows users to jump directly to a non-sequential search results page.  Enabling this flag may adversely impact performance.  Defaults to false.
+     * This field is deprecated.
      */
     requirePreciseResultSize?: boolean | null;
     /**
-     * Optional. Mode of a search.  Defaults to SearchMode.JOB_SEARCH.
+     * Optional. Mode of a search. Defaults to SearchMode.JOB_SEARCH.
      */
     searchMode?: string | null;
   }
   /**
-   * Output only.  Response for SearchJob method.
+   * Output only. Response for SearchJob method.
    */
   export interface Schema$SearchJobsResponse {
     /**
@@ -1195,7 +1543,7 @@ export namespace jobs_v3 {
      */
     broadenedQueryJobsCount?: number | null;
     /**
-     * An estimation of the number of jobs that match the specified query.  This number is not guaranteed to be accurate. For accurate results, see enable_precise_result_size.
+     * An estimation of the number of jobs that match the specified query. This number is not guaranteed to be accurate. For accurate results, see SearchJobsResponse.total_size.
      */
     estimatedTotalSize?: number | null;
     /**
@@ -1223,12 +1571,12 @@ export namespace jobs_v3 {
      */
     spellCorrection?: Schema$SpellingCorrection;
     /**
-     * The precise result count, which is available only if the client set enable_precise_result_size to `true`, or if the response is the last page of results. Otherwise, the value is `-1`.
+     * The precise result count with limit 100,000.
      */
     totalSize?: number | null;
   }
   /**
-   * Output only.  Spell check result.
+   * Output only. Spell check result.
    */
   export interface Schema$SpellingCorrection {
     /**
@@ -1239,6 +1587,23 @@ export namespace jobs_v3 {
      * Correction output consisting of the corrected keyword string.
      */
     correctedText?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -1275,7 +1640,7 @@ export namespace jobs_v3 {
     startTime?: string | null;
   }
   /**
-   * Input only.  Request for updating a specified company.
+   * Input only. Request for updating a specified company.
    */
   export interface Schema$UpdateCompanyRequest {
     /**
@@ -1283,12 +1648,12 @@ export namespace jobs_v3 {
      */
     company?: Schema$Company;
     /**
-     * Optional but strongly recommended for the best service experience.  If update_mask is provided, only the specified fields in company are updated. Otherwise all the fields are updated.  A field mask to specify the company fields to be updated. Only top level fields of Company are supported.
+     * Optional but strongly recommended for the best service experience. If update_mask is provided, only the specified fields in company are updated. Otherwise all the fields are updated. A field mask to specify the company fields to be updated. Only top level fields of Company are supported.
      */
     updateMask?: string | null;
   }
   /**
-   * Input only.  Update job request.
+   * Input only. Update job request.
    */
   export interface Schema$UpdateJobRequest {
     /**
@@ -1296,7 +1661,7 @@ export namespace jobs_v3 {
      */
     job?: Schema$Job;
     /**
-     * Optional but strongly recommended to be provided for the best service experience.  If update_mask is provided, only the specified fields in job are updated. Otherwise all the fields are updated.  A field mask to restrict the fields that are updated. Only top level fields of Job are supported.
+     * Optional but strongly recommended to be provided for the best service experience. If update_mask is provided, only the specified fields in job are updated. Otherwise all the fields are updated. A field mask to restrict the fields that are updated. Only top level fields of Job are supported.
      */
     updateMask?: string | null;
   }
@@ -1343,63 +1708,17 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.complete({
-     *     // Optional. If provided, restricts completion to specified company.
-     *     //
-     *     // The format is "projects/{project_id}/companies/{company_id}", for example,
-     *     // "projects/api-test-project/companies/foo".
+     *     // Optional. If provided, restricts completion to specified company. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      *     companyName: 'placeholder-value',
-     *     // Deprecated. Use language_codes instead.
-     *     //
-     *     // Optional.
-     *     //
-     *     // The language of the query. This is
-     *     // the BCP-47 language code, such as "en-US" or "sr-Latn".
-     *     // For more information, see
-     *     // [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *     //
-     *     // For CompletionType.JOB_TITLE type, only open jobs with the same
-     *     // language_code are returned.
-     *     //
-     *     // For CompletionType.COMPANY_NAME type,
-     *     // only companies having open jobs with the same language_code are
-     *     // returned.
-     *     //
-     *     // For CompletionType.COMBINED type, only open jobs with the same
-     *     // language_code or companies having open jobs with the same
-     *     // language_code are returned.
-     *     //
-     *     // The maximum number of allowed characters is 255.
+     *     // Deprecated. Use language_codes instead. Optional. The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned. For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned. The maximum number of allowed characters is 255.
      *     languageCode: 'placeholder-value',
-     *     // Optional. The list of languages of the query. This is
-     *     // the BCP-47 language code, such as "en-US" or "sr-Latn".
-     *     // For more information, see
-     *     // [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *     //
-     *     // For CompletionType.JOB_TITLE type, only open jobs with the same
-     *     // language_codes are returned.
-     *     //
-     *     // For CompletionType.COMPANY_NAME type,
-     *     // only companies having open jobs with the same language_codes are
-     *     // returned.
-     *     //
-     *     // For CompletionType.COMBINED type, only open jobs with the same
-     *     // language_codes or companies having open jobs with the same
-     *     // language_codes are returned.
-     *     //
-     *     // The maximum number of allowed characters is 255.
+     *     // Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned. For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned. The maximum number of allowed characters is 255.
      *     languageCodes: 'placeholder-value',
-     *     // Required. Resource name of project the completion is performed within.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. Resource name of project the completion is performed within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     name: 'projects/my-project',
-     *     // Required. Completion result count.
-     *     //
-     *     // The maximum allowed page size is 10.
+     *     // Required. Completion result count. The maximum allowed page size is 10.
      *     pageSize: 'placeholder-value',
-     *     // Required. The query used to generate suggestions.
-     *     //
-     *     // The maximum number of allowed characters is 255.
+     *     // Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
      *     query: 'placeholder-value',
      *     // Optional. The scope of the completion. The defaults is CompletionScope.PUBLIC.
      *     scope: 'placeholder-value',
@@ -1424,12 +1743,12 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.companyName Optional. If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
-     * @param {string=} params.languageCode Deprecated. Use language_codes instead.  Optional.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned.  For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned.  The maximum number of allowed characters is 255.
-     * @param {string=} params.languageCodes Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned.  For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned.  The maximum number of allowed characters is 255.
-     * @param {string} params.name Required. Resource name of project the completion is performed within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
-     * @param {integer=} params.pageSize Required. Completion result count.  The maximum allowed page size is 10.
-     * @param {string=} params.query Required. The query used to generate suggestions.  The maximum number of allowed characters is 255.
+     * @param {string=} params.companyName Optional. If provided, restricts completion to specified company. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {string=} params.languageCode Deprecated. Use language_codes instead. Optional. The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned. For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned. The maximum number of allowed characters is 255.
+     * @param {string=} params.languageCodes Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned. For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned. The maximum number of allowed characters is 255.
+     * @param {string} params.name Required. Resource name of project the completion is performed within. The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {integer=} params.pageSize Required. Completion result count. The maximum allowed page size is 10.
+     * @param {string=} params.query Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
      * @param {string=} params.scope Optional. The scope of the completion. The defaults is CompletionScope.PUBLIC.
      * @param {string=} params.type Optional. The completion topic. The default is CompletionType.COMBINED.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1526,27 +1845,27 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Complete
     extends StandardParameters {
     /**
-     * Optional. If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * Optional. If provided, restricts completion to specified company. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     companyName?: string;
     /**
-     * Deprecated. Use language_codes instead.  Optional.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned.  For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned.  The maximum number of allowed characters is 255.
+     * Deprecated. Use language_codes instead. Optional. The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned. For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned. The maximum number of allowed characters is 255.
      */
     languageCode?: string;
     /**
-     * Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned.  For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned.  The maximum number of allowed characters is 255.
+     * Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned. For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned. The maximum number of allowed characters is 255.
      */
     languageCodes?: string[];
     /**
-     * Required. Resource name of project the completion is performed within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. Resource name of project the completion is performed within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     name?: string;
     /**
-     * Required. Completion result count.  The maximum allowed page size is 10.
+     * Required. Completion result count. The maximum allowed page size is 10.
      */
     pageSize?: number;
     /**
-     * Required. The query used to generate suggestions.  The maximum number of allowed characters is 255.
+     * Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
      */
     query?: string;
     /**
@@ -1763,10 +2082,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.create({
-     *     // Required. Resource name of the project under which the company is created.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1806,7 +2122,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().CreateCompanyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1921,10 +2237,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.delete({
-     *     // Required. The resource name of the company to be deleted.
-     *     //
-     *     // The format is "projects/{project_id}/companies/{company_id}", for example,
-     *     // "projects/api-test-project/companies/foo".
+     *     // Required. The resource name of the company to be deleted. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      *     name: 'projects/my-project/companies/my-companie',
      *   });
      *   console.log(res.data);
@@ -1942,7 +2255,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the company to be deleted.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {string} params.name Required. The resource name of the company to be deleted. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2053,10 +2366,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.get({
-     *     // Required. The resource name of the company to be retrieved.
-     *     //
-     *     // The format is "projects/{project_id}/companies/{company_id}", for example,
-     *     // "projects/api-test-project/companies/foo".
+     *     // Required. The resource name of the company to be retrieved. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      *     name: 'projects/my-project/companies/my-companie',
      *   });
      *   console.log(res.data);
@@ -2088,7 +2398,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the company to be retrieved.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {string} params.name Required. The resource name of the company to be retrieved. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2199,22 +2509,13 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.list({
-     *     // Optional. The maximum number of companies to be returned, at most 100.
-     *     // Default is 100 if a non-positive number is provided.
+     *     // Optional. The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
      *     pageSize: 'placeholder-value',
      *     // Optional. The starting indicator from which to return results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the project under which the company is created.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
-     *     // Optional. Set to true if the companies requested must have open jobs.
-     *     //
-     *     // Defaults to false.
-     *     //
-     *     // If true, at most page_size of companies are fetched, among which
-     *     // only those with open jobs are returned.
+     *     // Optional. Set to true if the companies requested must have open jobs. Defaults to false. If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
      *     requireOpenJobs: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2238,8 +2539,8 @@ export namespace jobs_v3 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
      * @param {string=} params.pageToken Optional. The starting indicator from which to return results.
-     * @param {string} params.parent Required. Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
-     * @param {boolean=} params.requireOpenJobs Optional. Set to true if the companies requested must have open jobs.  Defaults to false.  If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
+     * @param {string} params.parent Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {boolean=} params.requireOpenJobs Optional. Set to true if the companies requested must have open jobs. Defaults to false. If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2358,13 +2659,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.patch({
-     *     // Required during company update.
-     *     //
-     *     // The resource name for a company. This is generated by the service when a
-     *     // company is created.
-     *     //
-     *     // The format is "projects/{project_id}/companies/{company_id}", for example,
-     *     // "projects/api-test-project/companies/foo".
+     *     // Required during company update. The resource name for a company. This is generated by the service when a company is created. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      *     name: 'projects/my-project/companies/my-companie',
      *
      *     // Request body metadata
@@ -2405,7 +2700,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during company update.  The resource name for a company. This is generated by the service when a company is created.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {string} params.name Required during company update. The resource name for a company. This is generated by the service when a company is created. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      * @param {().UpdateCompanyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2491,7 +2786,7 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Companies$Create
     extends StandardParameters {
     /**
-     * Required. Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
 
@@ -2503,14 +2798,14 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Companies$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the company to be deleted.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * Required. The resource name of the company to be deleted. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Companies$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the company to be retrieved.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * Required. The resource name of the company to be retrieved. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     name?: string;
   }
@@ -2525,18 +2820,18 @@ export namespace jobs_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. Resource name of the project under which the company is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
     /**
-     * Optional. Set to true if the companies requested must have open jobs.  Defaults to false.  If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
+     * Optional. Set to true if the companies requested must have open jobs. Defaults to false. If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
      */
     requireOpenJobs?: boolean;
   }
   export interface Params$Resource$Projects$Companies$Patch
     extends StandardParameters {
     /**
-     * Required during company update.  The resource name for a company. This is generated by the service when a company is created.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * Required during company update. The resource name for a company. This is generated by the service when a company is created. The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     name?: string;
 
@@ -2582,10 +2877,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.batchDelete({
-     *     // Required. The resource name of the project under which the job is created.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2611,7 +2903,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().BatchDeleteJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2698,7 +2990,7 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.jobs.create
-     * @desc Creates a new job.  Typically, the job becomes searchable within 10 seconds, but it may take up to 5 minutes.
+     * @desc Creates a new job. Typically, the job becomes searchable within 10 seconds, but it may take up to 5 minutes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2726,10 +3018,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.create({
-     *     // Required. The resource name of the project under which the job is created.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2786,7 +3075,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().CreateJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2870,7 +3159,7 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.jobs.delete
-     * @desc Deletes the specified job.  Typically, the job becomes unsearchable within 10 seconds, but it may take up to 5 minutes.
+     * @desc Deletes the specified job. Typically, the job becomes unsearchable within 10 seconds, but it may take up to 5 minutes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2898,10 +3187,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.delete({
-     *     // Required. The resource name of the job to be deleted.
-     *     //
-     *     // The format is "projects/{project_id}/jobs/{job_id}",
-     *     // for example, "projects/api-test-project/jobs/1234".
+     *     // Required. The resource name of the job to be deleted. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      *     name: 'projects/my-project/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -2919,7 +3205,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the job to be deleted.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * @param {string} params.name Required. The resource name of the job to be deleted. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3030,10 +3316,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.get({
-     *     // Required. The resource name of the job to retrieve.
-     *     //
-     *     // The format is "projects/{project_id}/jobs/{job_id}",
-     *     // for example, "projects/api-test-project/jobs/1234".
+     *     // Required. The resource name of the job to retrieve. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      *     name: 'projects/my-project/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -3082,7 +3365,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the job to retrieve.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * @param {string} params.name Required. The resource name of the job to retrieve. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3193,38 +3476,15 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.list({
-     *     // Required. The filter string specifies the jobs to be enumerated.
-     *     //
-     *     // Supported operator: =, AND
-     *     //
-     *     // The fields eligible for filtering are:
-     *     //
-     *     // * `companyName` (Required)
-     *     // * `requisitionId` (Optional)
-     *     //
-     *     // Sample Query:
-     *     //
-     *     // * companyName = "projects/api-test-project/companies/123"
-     *     // * companyName = "projects/api-test-project/companies/123" AND requisitionId
-     *     // = "req-1"
+     *     // Required. The filter string specifies the jobs to be enumerated. Supported operator: =, AND The fields eligible for filtering are: * `companyName` (Required) * `requisitionId` (Optional) Sample Query: * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
      *     filter: 'placeholder-value',
-     *     // Optional. The desired job attributes returned for jobs in the
-     *     // search response. Defaults to JobView.JOB_VIEW_FULL if no value is
-     *     // specified.
+     *     // Optional. The desired job attributes returned for jobs in the search response. Defaults to JobView.JOB_VIEW_FULL if no value is specified.
      *     jobView: 'placeholder-value',
-     *     // Optional. The maximum number of jobs to be returned per page of results.
-     *     //
-     *     // If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed
-     *     // page size is 1000. Otherwise, the maximum allowed page size is 100.
-     *     //
-     *     // Default is 100 if empty or a number < 1 is specified.
+     *     // Optional. The maximum number of jobs to be returned per page of results. If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100. Default is 100 if empty or a number < 1 is specified.
      *     pageSize: 'placeholder-value',
      *     // Optional. The starting point of a query result.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the project under which the job is created.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3246,11 +3506,11 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
+     * @param {string=} params.filter Required. The filter string specifies the jobs to be enumerated. Supported operator: =, AND The fields eligible for filtering are: * `companyName` (Required) * `requisitionId` (Optional) Sample Query: * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
      * @param {string=} params.jobView Optional. The desired job attributes returned for jobs in the search response. Defaults to JobView.JOB_VIEW_FULL if no value is specified.
-     * @param {integer=} params.pageSize Optional. The maximum number of jobs to be returned per page of results.  If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
+     * @param {integer=} params.pageSize Optional. The maximum number of jobs to be returned per page of results. If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100. Default is 100 if empty or a number < 1 is specified.
      * @param {string=} params.pageToken Optional. The starting point of a query result.
-     * @param {string} params.parent Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3333,7 +3593,7 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.jobs.patch
-     * @desc Updates specified job.  Typically, updated contents become visible in search results within 10 seconds, but it may take up to 5 minutes.
+     * @desc Updates specified job. Typically, updated contents become visible in search results within 10 seconds, but it may take up to 5 minutes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3361,16 +3621,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.patch({
-     *     // Required during job update.
-     *     //
-     *     // The resource name for the job. This is generated by the service when a
-     *     // job is created.
-     *     //
-     *     // The format is "projects/{project_id}/jobs/{job_id}",
-     *     // for example, "projects/api-test-project/jobs/1234".
-     *     //
-     *     // Use of this field in job queries and API calls is preferred over the use of
-     *     // requisition_id since this value is unique.
+     *     // Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      *     name: 'projects/my-project/jobs/my-job',
      *
      *     // Request body metadata
@@ -3428,7 +3679,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during job update.  The resource name for the job. This is generated by the service when a job is created.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".  Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
+     * @param {string} params.name Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      * @param {().UpdateJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3512,7 +3763,7 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.jobs.search
-     * @desc Searches for jobs using the provided SearchJobsRequest.  This call constrains the visibility of jobs present in the database, and only returns jobs that the caller has permission to search against.
+     * @desc Searches for jobs using the provided SearchJobsRequest. This call constrains the visibility of jobs present in the database, and only returns jobs that the caller has permission to search against.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3540,10 +3791,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.search({
-     *     // Required. The resource name of the project to search within.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3591,7 +3839,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().SearchJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3681,7 +3929,7 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.jobs.searchForAlert
-     * @desc Searches for jobs using the provided SearchJobsRequest.  This API call is intended for the use case of targeting passive job seekers (for example, job seekers who have signed up to receive email alerts about potential job opportunities), and has different algorithmic adjustments that are targeted to passive job seekers.  This call constrains the visibility of jobs present in the database, and only returns jobs the caller has permission to search against.
+     * @desc Searches for jobs using the provided SearchJobsRequest. This API call is intended for the use case of targeting passive job seekers (for example, job seekers who have signed up to receive email alerts about potential job opportunities), and has different algorithmic adjustments that are targeted to passive job seekers. This call constrains the visibility of jobs present in the database, and only returns jobs the caller has permission to search against.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3709,10 +3957,7 @@ export namespace jobs_v3 {
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.searchForAlert({
-     *     // Required. The resource name of the project to search within.
-     *     //
-     *     // The format is "projects/{project_id}", for example,
-     *     // "projects/api-test-project".
+     *     // Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3760,7 +4005,7 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().SearchJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3854,7 +4099,7 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Jobs$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
 
@@ -3866,7 +4111,7 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Jobs$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
 
@@ -3878,21 +4123,21 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Jobs$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the job to be deleted.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * Required. The resource name of the job to be deleted. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the job to retrieve.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * Required. The resource name of the job to retrieve. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Jobs$List
     extends StandardParameters {
     /**
-     * Required. The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
+     * Required. The filter string specifies the jobs to be enumerated. Supported operator: =, AND The fields eligible for filtering are: * `companyName` (Required) * `requisitionId` (Optional) Sample Query: * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
      */
     filter?: string;
     /**
@@ -3900,7 +4145,7 @@ export namespace jobs_v3 {
      */
     jobView?: string;
     /**
-     * Optional. The maximum number of jobs to be returned per page of results.  If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
+     * Optional. The maximum number of jobs to be returned per page of results. If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100. Default is 100 if empty or a number < 1 is specified.
      */
     pageSize?: number;
     /**
@@ -3908,14 +4153,14 @@ export namespace jobs_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. The resource name of the project under which the job is created. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Jobs$Patch
     extends StandardParameters {
     /**
-     * Required during job update.  The resource name for the job. This is generated by the service when a job is created.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".  Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
+     * Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      */
     name?: string;
 
@@ -3927,7 +4172,7 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Jobs$Search
     extends StandardParameters {
     /**
-     * Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
 
@@ -3939,7 +4184,7 @@ export namespace jobs_v3 {
   export interface Params$Resource$Projects$Jobs$Searchforalert
     extends StandardParameters {
     /**
-     * Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * Required. The resource name of the project to search within. The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
 
