@@ -101,7 +101,7 @@ export namespace iam_v1 {
   /**
    * Identity and Access Management (IAM) API
    *
-   * Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
+   *  Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. *Note:* This API is tied to the IAM service account credentials API ( iamcredentials.googleapis.com). Enabling or disabling this API will also enable or disable the IAM service account credentials API.
    *
    * @example
    * const {google} = require('googleapis');
@@ -192,6 +192,10 @@ export namespace iam_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5470,7 +5474,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.keys.delete
-     * @desc Deletes a ServiceAccountKey.
+     * @desc Deletes a ServiceAccountKey. Deleting a service account key does not revoke short-lived credentials that have been issued based on the service account key.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
