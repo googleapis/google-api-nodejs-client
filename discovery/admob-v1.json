@@ -1,9 +1,18 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/admob.report": {
+          "description": "See your AdMob data"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://admob.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "AdMob",
-  "description": "The Google AdMob API lets you programmatically get reports on earnings. ",
+  "description": "The AdMob API allows publishers to programmatically get information about their AdMob account. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/admob/api/",
   "fullyEncodeReservedExpansion": true,
@@ -118,7 +127,10 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "PublisherAccount"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/admob.report"
+          ]
         },
         "list": {
           "description": "Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.",
@@ -142,7 +154,10 @@
           "path": "v1/accounts",
           "response": {
             "$ref": "ListPublisherAccountsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/admob.report"
+          ]
         }
       },
       "resources": {
@@ -171,7 +186,10 @@
               },
               "response": {
                 "$ref": "GenerateMediationReportResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.report"
+              ]
             }
           }
         },
@@ -200,14 +218,17 @@
               },
               "response": {
                 "$ref": "GenerateNetworkReportResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.report"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20200825",
+  "revision": "20201002",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {
@@ -377,7 +398,7 @@
               "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
               "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
               "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-              "The unique ID of the ad source (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
+              "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
               "The unique ID of the ad source instance (for example, \"ca-app-pub-1234#5678\" and \"AdMob (default)\" as label value).",
               "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
               "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
@@ -395,7 +416,7 @@
           "description": "Localization settings of the report."
         },
         "maxReportRows": {
-          "description": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Any other values are treated as 100000.",
+          "description": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error.",
           "format": "int32",
           "type": "integer"
         },
@@ -467,7 +488,7 @@
             "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
             "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
             "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "The unique ID of the ad source (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
+            "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
             "The unique ID of the ad source instance (for example, \"ca-app-pub-1234#5678\" and \"AdMob (default)\" as label value).",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
             "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
@@ -510,7 +531,7 @@
             "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
             "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
             "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "The unique ID of the ad source (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
+            "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
             "The unique ID of the ad source instance (for example, \"ca-app-pub-1234#5678\" and \"AdMob (default)\" as label value).",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
             "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
@@ -615,7 +636,7 @@
           "description": "Localization settings of the report."
         },
         "maxReportRows": {
-          "description": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Any other values are treated as 100000.",
+          "description": "Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error.",
           "format": "int32",
           "type": "integer"
         },
