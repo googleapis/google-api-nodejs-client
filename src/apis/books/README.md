@@ -2,7 +2,7 @@
 
 # books
 
-> Searches for books and manages your Google Books library.
+> The Google Books API allows clients to access the Google Books repository.
 
 ## Installation
 
