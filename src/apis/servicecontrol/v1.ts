@@ -296,7 +296,7 @@ export namespace servicecontrol_v1 {
      */
     authoritySelector?: string | null;
     /**
-     * The email address of the authenticated user (or service account on behalf of third party principal) making the request. For privacy reasons, the principal email address is redacted for all read-only operations that fail with a &quot;permission denied&quot; error.
+     * The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
      */
     principalEmail?: string | null;
     /**
@@ -1105,7 +1105,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ResourceInfo {
     /**
-     * The identifier of the parent of this resource instance. Must be in one of the following formats: - “projects/” - “folders/” - “organizations/”
+     * The identifier of the parent of this resource instance. Must be in one of the following formats: - `projects/` - `folders/` - `organizations/`
      */
     resourceContainer?: string | null;
     /**
