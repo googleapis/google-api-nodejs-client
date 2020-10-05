@@ -450,6 +450,40 @@ export namespace ml_v1 {
     tpuServiceAccount?: string | null;
   }
   /**
+   * ContainerPort represents a network port in a single container.
+   */
+  export interface Schema$GoogleCloudMlV1__ContainerPort {
+    /**
+     * Number of port to expose on the pod&#39;s IP address. This must be a valid port number, 0 &lt; x &lt; 65536.
+     */
+    containerPort?: number | null;
+  }
+  /**
+   * Specify a custom container to deploy. Our ContainerSpec is a subset of the Kubernetes Container specification. https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#container-v1-core
+   */
+  export interface Schema$GoogleCloudMlV1__ContainerSpec {
+    /**
+     * Immutable. Arguments to the entrypoint. The docker image&#39;s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+     */
+    args?: string[] | null;
+    /**
+     * Immutable. Entrypoint array. Not executed within a shell. The docker image&#39;s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+     */
+    command?: string[] | null;
+    /**
+     * Immutable. List of environment variables to set in the container.
+     */
+    env?: Schema$GoogleCloudMlV1__EnvVar[];
+    /**
+     * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
+     */
+    image?: string | null;
+    /**
+     * Immutable. List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default &quot;0.0.0.0&quot; address inside a container will be accessible from the network.
+     */
+    ports?: Schema$GoogleCloudMlV1__ContainerPort[];
+  }
+  /**
    * Represents a custom encryption key configuration that can be applied to a resource.
    */
   export interface Schema$GoogleCloudMlV1__EncryptionConfig {
@@ -459,21 +493,17 @@ export namespace ml_v1 {
     kmsKeyName?: string | null;
   }
   /**
-   *  EndpointMap is used to provide paths for predict/explain/healthcheck to customers. It&#39;s an output only field in the version proto which can be only set on the server side. Public endpoints follow the format specified on the user facing doc, and private endpoints are customized for each privately deploymed model/version.
+   * EnvVar represents an environment variable present in a Container.
    */
-  export interface Schema$GoogleCloudMlV1__EndpointMap {
+  export interface Schema$GoogleCloudMlV1__EnvVar {
     /**
-     * Optional. Http(s) path to send explain requests.
+     * Name of the environment variable. Must be a C_IDENTIFIER.
      */
-    explain?: string | null;
+    name?: string | null;
     /**
-     * Http(s) path to send health check requests.
+     * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;.
      */
-    health?: string | null;
-    /**
-     * Http(s) path to send prediction requests.
-     */
-    predict?: string | null;
+    value?: string | null;
   }
   /**
    * Request for explanations to be issued against a trained model.
@@ -485,7 +515,7 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
-   * Message holding configuration options for explaining model predictions. There are two feature attribution methods supported for TensorFlow models: integrated gradients and sampled Shapley. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview)
+   * Message holding configuration options for explaining model predictions. There are three feature attribution methods supported for TensorFlow models: integrated gradients, sampled Shapley, and XRAI. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview)
    */
   export interface Schema$GoogleCloudMlV1__ExplanationConfig {
     /**
@@ -989,6 +1019,19 @@ export namespace ml_v1 {
     samplingPercentage?: number | null;
   }
   /**
+   * RouteMap is used to override HTTP paths sent to a Custom Container. If specified, the HTTP server implemented in the ContainerSpec must support the route. If unspecified, standard HTTP paths will be used.
+   */
+  export interface Schema$GoogleCloudMlV1__RouteMap {
+    /**
+     * HTTP path to send health check requests.
+     */
+    health?: string | null;
+    /**
+     * HTTP path to send prediction requests.
+     */
+    predict?: string | null;
+  }
+  /**
    * An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
    */
   export interface Schema$GoogleCloudMlV1__SampledShapleyAttribution {
@@ -1002,9 +1045,12 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__Scheduling {
     /**
-     * Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [provide this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: ... scheduling: maxRunningTime: 7200s ... ```
+     * Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. The duration is measured from when the job enters the `RUNNING` state; therefore it does not overlap with the duration limited by Scheduling.max_wait_time. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxRunningTime: 7200s ```
      */
     maxRunningTime?: string | null;
+    /**
+     * Optional. The maximum job wait time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, there is no limit to the wait time. The minimum for this field is `1800s` (30 minutes). If the training job has not entered the `RUNNING` state after this duration, AI Platform Training cancels it. After the job begins running, it can no longer be cancelled due to the maximum wait time. Therefore the duration limited by this field does not overlap with the duration limited by Scheduling.max_running_time. For example, if the job temporarily stops running and retries due to a [VM restart](/ai-platform/training/docs/overview#restarts), this cannot lead to a maximum wait time cancellation. However, independently of this constraint, AI Platform Training might stop a job if there are too many retries due to exhausted resources in a region. The following example describes how you might use this field: To cancel your job if it doesn&#39;t start running within 1 hour, set this field to `3600s` (1 hour * 60 minutes / hour * 60 seconds / minute). If the job is still in the `QUEUED` or `PREPARING` state after an hour of waiting, AI Platform Training cancels the job. If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxWaitTime: 3600s ```
+     */
     maxWaitTime?: string | null;
   }
   /**
@@ -1308,6 +1354,7 @@ export namespace ml_v1 {
      * Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model&#39;s ability to scale or you will start seeing increases in latency and 429 response codes. Note that you cannot use AutoScaling if your version uses [GPUs](#Version.FIELDS.accelerator_config). Instead, you must use specify `manual_scaling`.
      */
     autoScaling?: Schema$GoogleCloudMlV1__AutoScaling;
+    container?: Schema$GoogleCloudMlV1__ContainerSpec;
     /**
      * Output only. The time the version was created.
      */
@@ -1320,10 +1367,6 @@ export namespace ml_v1 {
      * Optional. The description specified for the version when it was created.
      */
     description?: string | null;
-    /**
-     * Optional. Output only. If set by server, the http(s) endpoints returned to user after the public/private deployment is successful. https://cloud.google.com/apis/design/design_patterns#output_fields.
-     */
-    endpoints?: Schema$GoogleCloudMlV1__EndpointMap;
     /**
      * Output only. The details of a failure or a cancellation.
      */
@@ -1380,6 +1423,7 @@ export namespace ml_v1 {
      * Optional. *Only* specify this field in a projects.models.versions.patch request. Specifying it in a projects.models.versions.create request has no effect. Configures the request-response pair logging on predictions from this Version.
      */
     requestLoggingConfig?: Schema$GoogleCloudMlV1__RequestLoggingConfig;
+    routes?: Schema$GoogleCloudMlV1__RouteMap;
     /**
      * Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
      */
@@ -1432,6 +1476,10 @@ export namespace ml_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$GoogleIamV1__Binding {
+    /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5822,7 +5870,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.suggest
-     * @desc Adds one or more trials to a study, with parameter values suggested by AI Platform Optimizer. Returns a long-running operation associated with the generation of trial suggestions. When this long-running operation succeeds, it will contain a SuggestTrialsResponse.
+     * @desc Adds one or more trials to a study, with parameter values suggested by AI Platform Vizier. Returns a long-running operation associated with the generation of trial suggestions. When this long-running operation succeeds, it will contain a SuggestTrialsResponse.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7419,10 +7467,10 @@ export namespace ml_v1 {
      *       // {
      *       //   "acceleratorConfig": {},
      *       //   "autoScaling": {},
+     *       //   "container": {},
      *       //   "createTime": "my_createTime",
      *       //   "deploymentUri": "my_deploymentUri",
      *       //   "description": "my_description",
-     *       //   "endpoints": {},
      *       //   "errorMessage": "my_errorMessage",
      *       //   "etag": "my_etag",
      *       //   "explanationConfig": {},
@@ -7437,6 +7485,7 @@ export namespace ml_v1 {
      *       //   "predictionClass": "my_predictionClass",
      *       //   "pythonVersion": "my_pythonVersion",
      *       //   "requestLoggingConfig": {},
+     *       //   "routes": {},
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state"
@@ -7735,10 +7784,10 @@ export namespace ml_v1 {
      *   // {
      *   //   "acceleratorConfig": {},
      *   //   "autoScaling": {},
+     *   //   "container": {},
      *   //   "createTime": "my_createTime",
      *   //   "deploymentUri": "my_deploymentUri",
      *   //   "description": "my_description",
-     *   //   "endpoints": {},
      *   //   "errorMessage": "my_errorMessage",
      *   //   "etag": "my_etag",
      *   //   "explanationConfig": {},
@@ -7753,6 +7802,7 @@ export namespace ml_v1 {
      *   //   "predictionClass": "my_predictionClass",
      *   //   "pythonVersion": "my_pythonVersion",
      *   //   "requestLoggingConfig": {},
+     *   //   "routes": {},
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state"
@@ -8051,10 +8101,10 @@ export namespace ml_v1 {
      *       // {
      *       //   "acceleratorConfig": {},
      *       //   "autoScaling": {},
+     *       //   "container": {},
      *       //   "createTime": "my_createTime",
      *       //   "deploymentUri": "my_deploymentUri",
      *       //   "description": "my_description",
-     *       //   "endpoints": {},
      *       //   "errorMessage": "my_errorMessage",
      *       //   "etag": "my_etag",
      *       //   "explanationConfig": {},
@@ -8069,6 +8119,7 @@ export namespace ml_v1 {
      *       //   "predictionClass": "my_predictionClass",
      *       //   "pythonVersion": "my_pythonVersion",
      *       //   "requestLoggingConfig": {},
+     *       //   "routes": {},
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state"
@@ -8230,10 +8281,10 @@ export namespace ml_v1 {
      *   // {
      *   //   "acceleratorConfig": {},
      *   //   "autoScaling": {},
+     *   //   "container": {},
      *   //   "createTime": "my_createTime",
      *   //   "deploymentUri": "my_deploymentUri",
      *   //   "description": "my_description",
-     *   //   "endpoints": {},
      *   //   "errorMessage": "my_errorMessage",
      *   //   "etag": "my_etag",
      *   //   "explanationConfig": {},
@@ -8248,6 +8299,7 @@ export namespace ml_v1 {
      *   //   "predictionClass": "my_predictionClass",
      *   //   "pythonVersion": "my_pythonVersion",
      *   //   "requestLoggingConfig": {},
+     *   //   "routes": {},
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state"

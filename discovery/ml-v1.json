@@ -893,7 +893,7 @@
                       ]
                     },
                     "suggest": {
-                      "description": "Adds one or more trials to a study, with parameter values suggested by AI Platform Optimizer. Returns a long-running operation associated with the generation of trial suggestions. When this long-running operation succeeds, it will contain a SuggestTrialsResponse.",
+                      "description": "Adds one or more trials to a study, with parameter values suggested by AI Platform Vizier. Returns a long-running operation associated with the generation of trial suggestions. When this long-running operation succeeds, it will contain a SuggestTrialsResponse.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/studies/{studiesId}/trials:suggest",
                       "httpMethod": "POST",
                       "id": "ml.projects.locations.studies.trials.suggest",
@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20200814",
+  "revision": "20200926",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -1878,16 +1878,6 @@
       "properties": {
         "availableAccelerators": {
           "description": "Available accelerators for the capability.",
-          "enumDescriptions": [
-            "Unspecified accelerator type. Default to no GPU.",
-            "Nvidia Tesla K80 GPU.",
-            "Nvidia Tesla P100 GPU.",
-            "Nvidia Tesla V100 GPU.",
-            "Nvidia Tesla P4 GPU.",
-            "Nvidia Tesla T4 GPU.",
-            "TPU v2.",
-            "TPU v3."
-          ],
           "items": {
             "enum": [
               "ACCELERATOR_TYPE_UNSPECIFIED",
@@ -2007,6 +1997,57 @@
       },
       "type": "object"
     },
+    "GoogleCloudMlV1__ContainerPort": {
+      "description": "ContainerPort represents a network port in a single container.",
+      "id": "GoogleCloudMlV1__ContainerPort",
+      "properties": {
+        "containerPort": {
+          "description": "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudMlV1__ContainerSpec": {
+      "description": "Specify a custom container to deploy. Our ContainerSpec is a subset of the Kubernetes Container specification. https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#container-v1-core",
+      "id": "GoogleCloudMlV1__ContainerSpec",
+      "properties": {
+        "args": {
+          "description": "Immutable. Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "Immutable. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "description": "Immutable. List of environment variables to set in the container.",
+          "items": {
+            "$ref": "GoogleCloudMlV1__EnvVar"
+          },
+          "type": "array"
+        },
+        "image": {
+          "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
+          "type": "string"
+        },
+        "ports": {
+          "description": "Immutable. List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default \"0.0.0.0\" address inside a container will be accessible from the network.",
+          "items": {
+            "$ref": "GoogleCloudMlV1__ContainerPort"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudMlV1__EncryptionConfig": {
       "description": "Represents a custom encryption key configuration that can be applied to a resource.",
       "id": "GoogleCloudMlV1__EncryptionConfig",
@@ -2018,20 +2059,16 @@
       },
       "type": "object"
     },
-    "GoogleCloudMlV1__EndpointMap": {
-      "description": " EndpointMap is used to provide paths for predict/explain/healthcheck to customers. It's an output only field in the version proto which can be only set on the server side. Public endpoints follow the format specified on the user facing doc, and private endpoints are customized for each privately deploymed model/version.",
-      "id": "GoogleCloudMlV1__EndpointMap",
+    "GoogleCloudMlV1__EnvVar": {
+      "description": "EnvVar represents an environment variable present in a Container.",
+      "id": "GoogleCloudMlV1__EnvVar",
       "properties": {
-        "explain": {
-          "description": "Optional. Http(s) path to send explain requests.",
+        "name": {
+          "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
           "type": "string"
         },
-        "health": {
-          "description": "Http(s) path to send health check requests.",
-          "type": "string"
-        },
-        "predict": {
-          "description": "Http(s) path to send prediction requests.",
+        "value": {
+          "description": "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to \"\".",
           "type": "string"
         }
       },
@@ -2049,7 +2086,7 @@
       "type": "object"
     },
     "GoogleCloudMlV1__ExplanationConfig": {
-      "description": "Message holding configuration options for explaining model predictions. There are two feature attribution methods supported for TensorFlow models: integrated gradients and sampled Shapley. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview)",
+      "description": "Message holding configuration options for explaining model predictions. There are three feature attribution methods supported for TensorFlow models: integrated gradients, sampled Shapley, and XRAI. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview)",
       "id": "GoogleCloudMlV1__ExplanationConfig",
       "properties": {
         "integratedGradientsAttribution": {
@@ -2554,8 +2591,7 @@
             "DELETE_MODEL",
             "UPDATE_MODEL",
             "UPDATE_VERSION",
-            "UPDATE_CONFIG",
-            "MIGRATE_TO_UCAIP"
+            "UPDATE_CONFIG"
           ],
           "enumDescriptions": [
             "Unspecified operation type.",
@@ -2564,8 +2600,7 @@
             "An operation to delete an existing model.",
             "An operation to update an existing model.",
             "An operation to update an existing version.",
-            "An operation to update project configuration.",
-            "An operation to migrate existing model/version to uCAIP."
+            "An operation to update project configuration."
           ],
           "type": "string"
         },
@@ -2834,6 +2869,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudMlV1__RouteMap": {
+      "description": "RouteMap is used to override HTTP paths sent to a Custom Container. If specified, the HTTP server implemented in the ContainerSpec must support the route. If unspecified, standard HTTP paths will be used.",
+      "id": "GoogleCloudMlV1__RouteMap",
+      "properties": {
+        "health": {
+          "description": "HTTP path to send health check requests.",
+          "type": "string"
+        },
+        "predict": {
+          "description": "HTTP path to send prediction requests.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudMlV1__SampledShapleyAttribution": {
       "description": "An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.",
       "id": "GoogleCloudMlV1__SampledShapleyAttribution",
@@ -2851,11 +2901,12 @@
       "id": "GoogleCloudMlV1__Scheduling",
       "properties": {
         "maxRunningTime": {
-          "description": "Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [provide this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: ... scheduling: maxRunningTime: 7200s ... ```",
+          "description": "Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. The duration is measured from when the job enters the `RUNNING` state; therefore it does not overlap with the duration limited by Scheduling.max_wait_time. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxRunningTime: 7200s ```",
           "format": "google-duration",
           "type": "string"
         },
         "maxWaitTime": {
+          "description": "Optional. The maximum job wait time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, there is no limit to the wait time. The minimum for this field is `1800s` (30 minutes). If the training job has not entered the `RUNNING` state after this duration, AI Platform Training cancels it. After the job begins running, it can no longer be cancelled due to the maximum wait time. Therefore the duration limited by this field does not overlap with the duration limited by Scheduling.max_running_time. For example, if the job temporarily stops running and retries due to a [VM restart](/ai-platform/training/docs/overview#restarts), this cannot lead to a maximum wait time cancellation. However, independently of this constraint, AI Platform Training might stop a job if there are too many retries due to exhausted resources in a region. The following example describes how you might use this field: To cancel your job if it doesn't start running within 1 hour, set this field to `3600s` (1 hour * 60 minutes / hour * 60 seconds / minute). If the job is still in the `QUEUED` or `PREPARING` state after an hour of waiting, AI Platform Training cancels the job. If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxWaitTime: 3600s ```",
           "format": "google-duration",
           "type": "string"
         }
@@ -3298,6 +3349,9 @@
           "$ref": "GoogleCloudMlV1__AutoScaling",
           "description": "Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model's ability to scale or you will start seeing increases in latency and 429 response codes. Note that you cannot use AutoScaling if your version uses [GPUs](#Version.FIELDS.accelerator_config). Instead, you must use specify `manual_scaling`."
         },
+        "container": {
+          "$ref": "GoogleCloudMlV1__ContainerSpec"
+        },
         "createTime": {
           "description": "Output only. The time the version was created.",
           "format": "google-datetime",
@@ -3310,11 +3364,6 @@
         "description": {
           "description": "Optional. The description specified for the version when it was created.",
           "type": "string"
-        },
-        "endpoints": {
-          "$ref": "GoogleCloudMlV1__EndpointMap",
-          "description": "Optional. Output only. If set by server, the http(s) endpoints returned to user after the public/private deployment is successful. https://cloud.google.com/apis/design/design_patterns#output_fields.",
-          "readOnly": true
         },
         "errorMessage": {
           "description": "Output only. The details of a failure or a cancellation.",
@@ -3391,6 +3440,9 @@
         "requestLoggingConfig": {
           "$ref": "GoogleCloudMlV1__RequestLoggingConfig",
           "description": "Optional. *Only* specify this field in a projects.models.versions.patch request. Specifying it in a projects.models.versions.create request has no effect. Configures the request-response pair logging on predictions from this Version."
+        },
+        "routes": {
+          "$ref": "GoogleCloudMlV1__RouteMap"
         },
         "runtimeVersion": {
           "description": "Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).",
@@ -3487,6 +3539,10 @@
       "description": "Associates `members` with a `role`.",
       "id": "GoogleIamV1__Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "GoogleType__Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
