@@ -2,7 +2,7 @@
 
 # sql
 
-> API for Cloud SQL database instance management
+> 
 
 ## Installation
 
