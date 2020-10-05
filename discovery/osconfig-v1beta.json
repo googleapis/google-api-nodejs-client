@@ -11,10 +11,10 @@
   "basePath": "",
   "baseUrl": "https://osconfig.googleapis.com/",
   "batchPath": "batch",
-  "canonicalName": "Systems Management",
+  "canonicalName": "OS Config",
   "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/",
+  "documentationLink": "https://cloud.google.com/compute/docs/manage-os",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -599,7 +599,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20200930",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -837,67 +837,6 @@
       "properties": {},
       "type": "object"
     },
-    "ExecResource": {
-      "description": "A resource that contains custom validation and enforcement steps.",
-      "id": "ExecResource",
-      "properties": {
-        "enforce": {
-          "$ref": "ExecResourceExec",
-          "description": "What to run to bring this resource into the desired state. Optional if policy is in validate only mode."
-        },
-        "validate": {
-          "$ref": "ExecResourceExec",
-          "description": "What to run to validate this resource is in the desired state. A successful exit code indicates resource is in the desired state."
-        }
-      },
-      "type": "object"
-    },
-    "ExecResourceExec": {
-      "description": "A file or script to execute.",
-      "id": "ExecResourceExec",
-      "properties": {
-        "allowedSuccessCodes": {
-          "description": "Exit codes that indicate success.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "args": {
-          "description": "Arguments to use.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "file": {
-          "$ref": "File",
-          "description": "A remote or local file."
-        },
-        "interpreter": {
-          "description": "The script interpreter to use.",
-          "enum": [
-            "INTERPRETER_UNSPECIFIED",
-            "NONE",
-            "SHELL",
-            "POWERSHELL"
-          ],
-          "enumDescriptions": [
-            "Defaults to NONE.",
-            "If no interpreter is specified the source will be executed directly, which will likely only succeed for executables and scripts with shebang lines. [Wikipedia shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).",
-            "Indicates that the script will be run with /bin/sh on Linux and cmd.exe on windows.",
-            "Indicates that the script will be run with powershell."
-          ],
-          "type": "string"
-        },
-        "script": {
-          "description": "An inline script.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ExecStep": {
       "description": "A step that runs an executable for a PatchJob.",
       "id": "ExecStep",
@@ -982,148 +921,6 @@
         "rollout": {
           "$ref": "PatchRollout",
           "description": "Rollout strategy of the patch job."
-        }
-      },
-      "type": "object"
-    },
-    "ExtractArchiveResource": {
-      "description": "A resource that extracts an archive",
-      "id": "ExtractArchiveResource",
-      "properties": {
-        "creates": {
-          "description": "Local file path that signals this resource is in the desired state. The absence of this file will indicate whether the archive needs to be extracted.",
-          "type": "string"
-        },
-        "destination": {
-          "description": "Directory to extract archive to.",
-          "type": "string"
-        },
-        "overwrite": {
-          "description": "Whether to overwrite existing files during extraction. If this is set to true, any existing files in the destination location will be overwritten by the extraction.",
-          "type": "boolean"
-        },
-        "source": {
-          "$ref": "File",
-          "description": "The source archive to extract."
-        },
-        "type": {
-          "description": "The type of the archive to extract.",
-          "enum": [
-            "ARCHIVE_TYPE_UNSPECIFIED",
-            "TAR",
-            "TAR_GZIP",
-            "TAR_BZIP",
-            "TAR_LZMA",
-            "TAR_XZ",
-            "ZIP"
-          ],
-          "enumDescriptions": [
-            "Unspecified is invalid.",
-            "Indicates that the archive is a tar archive with no encryption.",
-            "Indicates that the archive is a tar archive with gzip encryption.",
-            "Indicates that the archive is a tar archive with bzip encryption.",
-            "Indicates that the archive is a tar archive with lzma encryption.",
-            "Indicates that the archive is a tar archive with xz encryption.",
-            "Indicates that the archive is a zip archive."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "File": {
-      "description": "A remote or local file.",
-      "id": "File",
-      "properties": {
-        "allowInsecure": {
-          "description": "Defaults to false. When false, files will be subject to validations based on the file type: Remote: A checksum must be specified. GCS: An object generation number must be specified.",
-          "type": "boolean"
-        },
-        "gcs": {
-          "$ref": "FileGcs",
-          "description": "A GCS object."
-        },
-        "localPath": {
-          "description": "A local path to use.",
-          "type": "string"
-        },
-        "remote": {
-          "$ref": "FileRemote",
-          "description": "A generic remote file."
-        }
-      },
-      "type": "object"
-    },
-    "FileGcs": {
-      "description": "Specifies a file available as a GCS Object.",
-      "id": "FileGcs",
-      "properties": {
-        "bucket": {
-          "description": "Bucket of the GCS object.",
-          "type": "string"
-        },
-        "generation": {
-          "description": "Generation number of the GCS object.",
-          "format": "int64",
-          "type": "string"
-        },
-        "object": {
-          "description": "Name of the GCS object.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FileRemote": {
-      "description": "Specifies a file available via some URI.",
-      "id": "FileRemote",
-      "properties": {
-        "sha256Checksum": {
-          "description": "SHA256 checksum of the remote file.",
-          "type": "string"
-        },
-        "uri": {
-          "description": "URI from which to fetch the object. It should contain both the protocol and path following the format {protocol}://{location}.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FileResource": {
-      "description": "A resource that manages the state of a file.",
-      "id": "FileResource",
-      "properties": {
-        "content": {
-          "description": "A a file with this content.",
-          "type": "string"
-        },
-        "file": {
-          "$ref": "File",
-          "description": "A remote or local source."
-        },
-        "path": {
-          "description": "The absolute path of the file.",
-          "type": "string"
-        },
-        "permissions": {
-          "description": "Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4",
-          "type": "string"
-        },
-        "state": {
-          "description": "Desired state of the file.",
-          "enum": [
-            "DESIRED_STATE_UNSPECIFIED",
-            "PRESENT",
-            "ABSENT",
-            "CONTENTS_MATCH"
-          ],
-          "enumDescriptions": [
-            "Unspecified is invalid.",
-            "Ensure file at path is present.",
-            "Ensure file at path is absent.",
-            "Ensure the contents of the file at path matches. If the file does not exist it will be created."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -1427,155 +1224,6 @@
         "zypper": {
           "$ref": "ZypperRepository",
           "description": "A Zypper Repository."
-        }
-      },
-      "type": "object"
-    },
-    "PackageResource": {
-      "description": "A resource that manages a system package.",
-      "id": "PackageResource",
-      "properties": {
-        "apt": {
-          "$ref": "PackageResourceAPT",
-          "description": "A package managed by Apt."
-        },
-        "deb": {
-          "$ref": "PackageResourceDeb",
-          "description": "A deb package file."
-        },
-        "desiredState": {
-          "description": "The desired_state the agent should maintain for this package. The default is to ensure the package is installed.",
-          "enum": [
-            "DESIRED_STATE_UNSPECIFIED",
-            "INSTALLED",
-            "REMOVED"
-          ],
-          "enumDescriptions": [
-            "Unspecified is invalid.",
-            "Ensure that the package is installed.",
-            "The agent will ensure that the package is not installed and uninstall it if detected."
-          ],
-          "type": "string"
-        },
-        "googet": {
-          "$ref": "PackageResourceGooGet",
-          "description": "A package managed by GooGet."
-        },
-        "msi": {
-          "$ref": "PackageResourceMSI",
-          "description": "An MSI package."
-        },
-        "rpm": {
-          "$ref": "PackageResourceRPM",
-          "description": "An rpm package file."
-        },
-        "yum": {
-          "$ref": "PackageResourceYUM",
-          "description": "A package managed by YUM."
-        },
-        "zypper": {
-          "$ref": "PackageResourceZypper",
-          "description": "A package managed by Zypper."
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceAPT": {
-      "description": "A package managed by APT. install: `apt-get update && apt-get -y install [name]` remove: `apt-get -y remove [name]`",
-      "id": "PackageResourceAPT",
-      "properties": {
-        "name": {
-          "description": "Package name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceDeb": {
-      "description": "A deb package file. dpkg packages only support INSTALLED state.",
-      "id": "PackageResourceDeb",
-      "properties": {
-        "pullDeps": {
-          "description": "Whether dependencies should also be installed. install when false: `dpkg -i package` install when true: `apt-get update && apt-get -y install package.deb`",
-          "type": "boolean"
-        },
-        "source": {
-          "$ref": "File",
-          "description": "A deb package."
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceGooGet": {
-      "description": "A package managed by GooGet. install: `googet -noconfirm install package` remove: `googet -noconfirm remove package`",
-      "id": "PackageResourceGooGet",
-      "properties": {
-        "name": {
-          "description": "Package name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceMSI": {
-      "description": "An MSI package. MSI packages only support INSTALLED state. Install msiexec /i /qn /norestart",
-      "id": "PackageResourceMSI",
-      "properties": {
-        "allowedSuccessCodes": {
-          "description": "Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "flags": {
-          "description": "Flags to use during package install. Appended to the defalts of \"/i /qn /norestart\"",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "source": {
-          "$ref": "File",
-          "description": "The MSI package."
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceRPM": {
-      "description": "An RPM package file. RPM packages only support INSTALLED state.",
-      "id": "PackageResourceRPM",
-      "properties": {
-        "pullDeps": {
-          "description": "Whether dependencies should also be installed. install when false: `rpm --upgrade --replacepkgs package.rpm` install when true: `yum -y install package.rpm` or `zypper -y install package.rpm`",
-          "type": "boolean"
-        },
-        "source": {
-          "$ref": "File",
-          "description": "An rpm package."
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceYUM": {
-      "description": "A package managed by YUM. install: `yum -y install package` remove: `yum -y remove package`",
-      "id": "PackageResourceYUM",
-      "properties": {
-        "name": {
-          "description": "Package name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PackageResourceZypper": {
-      "description": "A package managed by Zypper. install: `zypper -y install package` remove: `zypper -y rm package`",
-      "id": "PackageResourceZypper",
-      "properties": {
-        "name": {
-          "description": "Package name.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2064,142 +1712,6 @@
       },
       "type": "object"
     },
-    "RepositoryResource": {
-      "description": "A resource that manages a package repository.",
-      "id": "RepositoryResource",
-      "properties": {
-        "apt": {
-          "$ref": "RepositoryResourceAptRepository",
-          "description": "An Apt Repository."
-        },
-        "goo": {
-          "$ref": "RepositoryResourceGooRepository",
-          "description": "A Goo Repository."
-        },
-        "yum": {
-          "$ref": "RepositoryResourceYumRepository",
-          "description": "A Yum Repository."
-        },
-        "zypper": {
-          "$ref": "RepositoryResourceZypperRepository",
-          "description": "A Zypper Repository."
-        }
-      },
-      "type": "object"
-    },
-    "RepositoryResourceAptRepository": {
-      "description": "Represents a single apt package repository. These will be added to a repo file that will be managed at /etc/apt/sources.list.d/google_osconfig.list.",
-      "id": "RepositoryResourceAptRepository",
-      "properties": {
-        "archiveType": {
-          "description": "Type of archive files in this repository. The default behavior is DEB.",
-          "enum": [
-            "ARCHIVE_TYPE_UNSPECIFIED",
-            "DEB",
-            "DEB_SRC"
-          ],
-          "enumDescriptions": [
-            "Unspecified is invalid.",
-            "Deb indicates that the archive contains binary files.",
-            "Deb-src indicates that the archive contains source files."
-          ],
-          "type": "string"
-        },
-        "components": {
-          "description": "List of components for this repository. Must contain at least one item.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "distribution": {
-          "description": "Distribution of this repository.",
-          "type": "string"
-        },
-        "gpgKey": {
-          "description": "URI of the key file for this repository. The agent will maintain a keyring at /etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg.",
-          "type": "string"
-        },
-        "uri": {
-          "description": "URI for this repository.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RepositoryResourceGooRepository": {
-      "description": "Represents a Goo package repository. These will be added to a repo file that will be managed at C:/ProgramData/GooGet/repos/google_osconfig.repo.",
-      "id": "RepositoryResourceGooRepository",
-      "properties": {
-        "name": {
-          "description": "The name of the repository.",
-          "type": "string"
-        },
-        "url": {
-          "description": "The url of the repository.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RepositoryResourceYumRepository": {
-      "description": "Represents a single yum package repository. These will be added to a repo file that will be managed at /etc/yum.repos.d/google_osconfig.repo.",
-      "id": "RepositoryResourceYumRepository",
-      "properties": {
-        "baseUrl": {
-          "description": "The location of the repository directory.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The display name of the repository.",
-          "type": "string"
-        },
-        "gpgKeys": {
-          "description": "URIs of GPG keys.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "id": {
-          "description": "A one word, unique name for this repository. This will be the `repo id` in the yum config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for resource conflicts.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RepositoryResourceZypperRepository": {
-      "description": "Represents a single zypper package repository. These will be added to a repo file that will be managed at /etc/zypp/repos.d/google_osconfig.repo.",
-      "id": "RepositoryResourceZypperRepository",
-      "properties": {
-        "baseUrl": {
-          "description": "The location of the repository directory.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The display name of the repository.",
-          "type": "string"
-        },
-        "gpgKeys": {
-          "description": "URIs of GPG keys.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "id": {
-          "description": "A one word, unique name for this repository. This will be the `repo id` in the zypper config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ServiceResource": {
-      "description": "A resource that manages a system service.",
-      "id": "ServiceResource",
-      "properties": {},
-      "type": "object"
-    },
     "SoftwareRecipe": {
       "description": "A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software. Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package. Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell. Updating a software recipe If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `UPDATED`, then the recipe is updated to the new version. Script Working Directories Each script or execution step is run in its own temporary directory which is deleted after completing the step.",
       "id": "SoftwareRecipe",
@@ -2631,18 +2143,6 @@
       "properties": {
         "classifications": {
           "description": "Only apply updates of these windows update classifications. If empty, all updates are applied.",
-          "enumDescriptions": [
-            "Invalid. If classifications are included, they must be specified.",
-            "\"A widely released fix for a specific problem that addresses a critical, non-security-related bug.\" [1]",
-            "\"A widely released fix for a product-specific, security-related vulnerability. Security vulnerabilities are rated by their severity. The severity rating is indicated in the Microsoft security bulletin as critical, important, moderate, or low.\" [1]",
-            "\"A widely released and frequent software update that contains additions to a product's definition database. Definition databases are often used to detect objects that have specific attributes, such as malicious code, phishing websites, or junk mail.\" [1]",
-            "\"Software that controls the input and output of a device.\" [1]",
-            "\"New product functionality that is first distributed outside the context of a product release and that is typically included in the next full product release.\" [1]",
-            "\"A tested, cumulative set of all hotfixes, security updates, critical updates, and updates. Additionally, service packs may contain additional fixes for problems that are found internally since the release of the product. Service packs my also contain a limited number of customer-requested design changes or features.\" [1]",
-            "\"A utility or feature that helps complete a task or set of tasks.\" [1]",
-            "\"A tested, cumulative set of hotfixes, security updates, critical updates, and updates that are packaged together for easy deployment. A rollup generally targets a specific area, such as security, or a component of a product, such as Internet Information Services (IIS).\" [1]",
-            "\"A widely released fix for a specific problem. An update addresses a noncritical, non-security-related bug.\" [1]"
-          ],
           "items": {
             "enum": [
               "CLASSIFICATION_UNSPECIFIED",
@@ -2815,7 +2315,7 @@
     }
   },
   "servicePath": "",
-  "title": "Cloud OS Config API",
+  "title": "OS Config API",
   "version": "v1beta",
   "version_module": true
 }
