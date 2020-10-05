@@ -12,8 +12,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/tasks/v1",
+  "baseUrl": "https://tasks.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Tasks",
   "description": "The Google Tasks API lets you manage your tasks and task lists.",
   "discoveryVersion": "v1",
@@ -25,7 +25,7 @@
   },
   "id": "tasks:v1",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://tasks.mtls.googleapis.com/",
   "name": "tasks",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -419,7 +419,7 @@
               "type": "string"
             },
             "showCompleted": {
-              "description": "Flag indicating whether completed tasks are returned in the result. Optional. The default is True.",
+              "description": "Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.",
               "location": "query",
               "type": "boolean"
             },
@@ -566,10 +566,11 @@
       }
     }
   },
-  "revision": "20200811",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20201003",
+  "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "Task": {
+      "description": "LINT.IfChange",
       "id": "Task",
       "properties": {
         "completed": {
