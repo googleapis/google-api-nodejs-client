@@ -227,6 +227,15 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
@@ -316,7 +325,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly {
     /**
@@ -380,6 +389,19 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1beta2_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative {
@@ -401,7 +423,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative[];
     /**
@@ -540,6 +562,10 @@ export namespace videointelligence_v1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
@@ -555,6 +581,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -722,6 +752,15 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation {
@@ -811,7 +850,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly {
     /**
@@ -875,6 +914,19 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p1beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
@@ -896,7 +948,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
     /**
@@ -1035,6 +1087,10 @@ export namespace videointelligence_v1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
@@ -1050,6 +1106,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -1217,6 +1277,15 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation {
@@ -1306,7 +1375,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly {
     /**
@@ -1370,6 +1439,19 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p2beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative {
@@ -1391,7 +1473,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative[];
     /**
@@ -1530,6 +1612,10 @@ export namespace videointelligence_v1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
@@ -1545,6 +1631,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -1759,14 +1849,6 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
     /**
-     * The thumbnail of a person&#39;s face.
-     */
-    thumbnail?: string | null;
-    /**
-     * The face tracks with attributes.
-     */
-    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
-    /**
      * Feature version.
      */
     version?: string | null;
@@ -1861,7 +1943,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly {
     /**
@@ -1972,7 +2054,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative[];
     /**
@@ -2381,6 +2463,32 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Config for FACE_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionConfig {
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses, mouth_open etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes are included in the face annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Model to use for face detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
@@ -2495,7 +2603,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingPoly {
     /**
@@ -2568,6 +2676,36 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Config for PERSON_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_PersonDetectionConfig {
+    /**
+     * Whether to enable person attributes detection, such as cloth color (black, blue, etc), type (coat, dress, etc), pattern (plain, floral, etc), hair, etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes are included in the person detection annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Whether to enable pose landmarks detection. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includePoseLandmarks?: boolean | null;
+  }
+  /**
    * Config for SHOT_CHANGE_DETECTION.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig {
@@ -2607,7 +2745,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative[];
     /**
@@ -2678,7 +2816,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_TextDetectionConfig {
     /**
-     * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format.  Automatic language detection is performed if no hint is provided.
+     * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format. Automatic language detection is performed if no hint is provided.
      */
     languageHints?: string[] | null;
     /**
@@ -2800,6 +2938,10 @@ export namespace videointelligence_v1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
@@ -2815,6 +2957,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -2857,6 +3003,10 @@ export namespace videointelligence_v1 {
      */
     explicitContentDetectionConfig?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentDetectionConfig;
     /**
+     * Config for FACE_DETECTION.
+     */
+    faceDetectionConfig?: Schema$GoogleCloudVideointelligenceV1_FaceDetectionConfig;
+    /**
      * Config for LABEL_DETECTION.
      */
     labelDetectionConfig?: Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig;
@@ -2864,6 +3014,10 @@ export namespace videointelligence_v1 {
      * Config for OBJECT_TRACKING.
      */
     objectTrackingConfig?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingConfig;
+    /**
+     * Config for PERSON_DETECTION.
+     */
+    personDetectionConfig?: Schema$GoogleCloudVideointelligenceV1_PersonDetectionConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
      */
@@ -2949,7 +3103,7 @@ export namespace videointelligence_v1 {
      */
     error?: Schema$GoogleRpc_Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -2957,16 +3111,16 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$GoogleProtobuf_Empty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpc_Status {
     /**
@@ -2974,7 +3128,7 @@ export namespace videointelligence_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -3020,7 +3174,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.operations.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3294,7 +3448,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.operations.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3471,15 +3625,186 @@ export namespace videointelligence_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    corpora: Resource$Projects$Locations$Corpora;
     corpura: Resource$Projects$Locations$Corpura;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.corpora = new Resource$Projects$Locations$Corpora(this.context);
       this.corpura = new Resource$Projects$Locations$Corpura(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Locations$Corpora {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Corpora$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Corpora$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Corpora$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * videointelligence.projects.locations.corpora.operations.get
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const videointelligence = google.videointelligence('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await videointelligence.projects.locations.corpora.operations.get(
+     *     {
+     *       // The name of the operation resource.
+     *       name:
+     *         'projects/my-project/locations/my-location/corpora/[^/]+/operations/my-operation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias videointelligence.projects.locations.corpora.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Corpora$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Corpora$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Corpora$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Corpora$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Corpora$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Corpora$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Corpora$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Corpora$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning_Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Corpora$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Corpura {
@@ -3501,7 +3826,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.projects.locations.corpura.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3659,7 +3984,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3930,7 +4255,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4070,7 +4395,7 @@ export namespace videointelligence_v1 {
 
     /**
      * videointelligence.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
