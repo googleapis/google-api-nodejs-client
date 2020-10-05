@@ -12,7 +12,7 @@
   "baseUrl": "https://iam.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "iam",
-  "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
+  "description": " Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. *Note:* This API is tied to the IAM service account credentials API ( iamcredentials.googleapis.com). Enabling or disabling this API will also enable or disable the IAM service account credentials API. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/iam/",
   "fullyEncodeReservedExpansion": true,
@@ -1013,7 +1013,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a ServiceAccountKey.",
+                  "description": "Deletes a ServiceAccountKey. Deleting a service account key does not revoke short-lived credentials that have been issued based on the service account key.",
                   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys/{keysId}",
                   "httpMethod": "DELETE",
                   "id": "iam.projects.serviceAccounts.keys.delete",
@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200910",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -1338,6 +1338,10 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
