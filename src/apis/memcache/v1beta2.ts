@@ -590,39 +590,6 @@ export namespace memcache_v1beta2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata of a long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
-    /**
-     * Output only. Time when the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. Time when the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusDetail?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -989,7 +956,7 @@ export namespace memcache_v1beta2 {
 
     /**
      * memcache.projects.locations.instances.applyParameters
-     * @desc ApplyParameters will update current set of Parameters to the set of specified nodes of the Memcached Instance.
+     * @desc ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1134,7 +1101,7 @@ export namespace memcache_v1beta2 {
 
     /**
      * memcache.projects.locations.instances.create
-     * @desc Creates a new Instance in a given project and location.
+     * @desc Creates a new Instance in a given location.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1159,7 +1126,7 @@ export namespace memcache_v1beta2 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.create({
-     *     // Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location
+     *     // Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
      *     instanceId: 'placeholder-value',
      *     // Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
      *     parent: 'projects/my-project/locations/my-location',
@@ -1208,7 +1175,7 @@ export namespace memcache_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location
+     * @param {string=} params.instanceId Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
      * @param {string} params.parent Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1571,7 +1538,7 @@ export namespace memcache_v1beta2 {
 
     /**
      * memcache.projects.locations.instances.list
-     * @desc Lists Instances in a given project and location.
+     * @desc Lists Instances in a given location.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2039,7 +2006,7 @@ export namespace memcache_v1beta2 {
   export interface Params$Resource$Projects$Locations$Instances$Create
     extends StandardParameters {
     /**
-     * Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location
+     * Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
      */
     instanceId?: string;
     /**
