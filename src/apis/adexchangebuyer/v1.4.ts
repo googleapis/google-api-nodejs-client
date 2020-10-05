@@ -343,7 +343,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     advertiserId?: string[] | null;
     /**
-     * The name of the company being advertised in the creative. The value provided must exist in the advertisers.txt file.
+     * The name of the company being advertised in the creative. A list of advertisers is provided in the advertisers.txt file.
      */
     advertiserName?: string | null;
     /**
@@ -831,6 +831,7 @@ export namespace adexchangebuyer_v1_4 {
      * The time (ms since epoch) when the deal was last updated. (readonly)
      */
     lastUpdateTimeMs?: string | null;
+    makegoodRequestedReason?: string | null;
     /**
      * The name of the deal. (updatable)
      */
@@ -930,6 +931,10 @@ export namespace adexchangebuyer_v1_4 {
      * The timestamp (ms since epoch) that this note was created. (readonly)
      */
     timestampMs?: string | null;
+  }
+  export interface Schema$MobileApplication {
+    appStore?: string | null;
+    externalAppId?: string | null;
   }
   /**
    * The configuration data for an Ad Exchange performance report list.
@@ -1469,6 +1474,14 @@ export namespace adexchangebuyer_v1_4 {
      */
     programmaticContact?: string | null;
     /**
+     * The list of app IDs represented in this pubisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.
+     */
+    publisherAppIds?: string[] | null;
+    /**
+     * The list of apps represented in this pubisher profile. Empty if this is a parent profile.
+     */
+    publisherApps?: Schema$MobileApplication[];
+    /**
      * The list of domains represented in this publisher profile. Empty if this is a parent profile.
      */
     publisherDomains?: string[] | null;
@@ -1557,6 +1570,7 @@ export namespace adexchangebuyer_v1_4 {
      * The long value to exclude/include.
      */
     longValue?: string | null;
+    requestPlatformTargetingValue?: Schema$TargetingValueRequestPlatformTargeting;
     /**
      * The string value to exclude/include.
      */
@@ -1607,6 +1621,9 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Schema$TargetingValueDemogGenderCriteria {
     demogGenderCriteriaIds?: string[] | null;
+  }
+  export interface Schema$TargetingValueRequestPlatformTargeting {
+    requestPlatforms?: string[] | null;
   }
   export interface Schema$TargetingValueSize {
     /**
