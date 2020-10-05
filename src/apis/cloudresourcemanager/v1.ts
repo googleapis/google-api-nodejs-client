@@ -175,6 +175,10 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$Binding {
     /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
+    /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
@@ -625,19 +629,19 @@ export namespace cloudresourcemanager_v1 {
      */
     lifecycleState?: string | null;
     /**
-     * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: My Project Read-write.
+     * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project` Read-write.
      */
     name?: string | null;
     /**
-     * An optional reference to a parent Resource. Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent. Read-write.
+     * An optional reference to a parent Resource. Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.
      */
     parent?: Schema$ResourceId;
     /**
-     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: tokyo-rain-123 Read-only after creation.
+     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `tokyo-rain-123` Read-only after creation.
      */
     projectId?: string | null;
     /**
-     * The number uniquely identifying the project. Example: 415104041262 Read-only.
+     * The number uniquely identifying the project. Example: `415104041262` Read-only.
      */
     projectNumber?: string | null;
   }
@@ -663,11 +667,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$ResourceId {
     /**
-     * Required field for the type-specific id. This should correspond to the id used in the type-specific API&#39;s.
+     * The type-specific id. This should correspond to the id used in the type-specific API&#39;s.
      */
     id?: string | null;
     /**
-     * Required field representing the resource type this id is for. At present, the valid types are: &quot;organization&quot;, &quot;folder&quot;, and &quot;project&quot;.
+     * The resource type this id is for. At present, the valid types are: &quot;organization&quot;, &quot;folder&quot;, and &quot;project&quot;.
      */
     type?: string | null;
   }
@@ -4550,7 +4554,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.delete
-     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject and ListProjects methods. The caller must have modify permissions for this Project.
+     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject and ListProjects methods. The caller must have delete permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4707,7 +4711,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.get({
-     *     // The Project ID (for example, `my-project-123`). Required.
+     *     // Required. The Project ID (for example, `my-project-123`).
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4733,7 +4737,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {string} params.projectId Required. The Project ID (for example, `my-project-123`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4847,7 +4851,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getAncestry({
-     *     // The Project ID (for example, `my-project-123`). Required.
+     *     // Required. The Project ID (for example, `my-project-123`).
      *     projectId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4873,7 +4877,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {string} params.projectId Required. The Project ID (for example, `my-project-123`).
      * @param {().GetAncestryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5118,7 +5122,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.getIamPolicy
-     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist. Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).
+     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist. Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](https://cloud.google.com/apis/design/resource_names).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5443,11 +5447,11 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
-     *     // An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
+     *     // Optional. An expression for filtering the results of the request. Filter rules are case insensitive. If multiple fields are included in a filter query, the query will return results that match any of the fields. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.
      *     filter: 'placeholder-value',
-     *     // The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
+     *     // Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     *     // Optional. A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5468,9 +5472,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
-     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     * @param {string=} params.filter Optional. An expression for filtering the results of the request. Filter rules are case insensitive. If multiple fields are included in a filter query, the query will return results that match any of the fields. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.
+     * @param {integer=} params.pageSize Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
+     * @param {string=} params.pageToken Optional. A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5875,7 +5879,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names). The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](https://cloud.google.com/apis/design/resource_names). The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6167,7 +6171,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names). There are no permissions required for making this API call.
+     * @desc Returns permissions that a caller has on the specified Project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](https://cloud.google.com/apis/design/resource_names). There are no permissions required for making this API call.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6317,7 +6321,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.undelete
-     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have modify permissions for this Project.
+     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have undelete permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6342,7 +6346,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.undelete({
-     *     // The project ID (for example, `foo-bar-123`). Required.
+     *     // Required. The project ID (for example, `foo-bar-123`).
      *     projectId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6366,7 +6370,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example, `foo-bar-123`). Required.
+     * @param {string} params.projectId Required. The project ID (for example, `foo-bar-123`).
      * @param {().UndeleteProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6631,14 +6635,14 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * The Project ID (for example, `my-project-123`). Required.
+     * Required. The Project ID (for example, `my-project-123`).
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry
     extends StandardParameters {
     /**
-     * The Project ID (for example, `my-project-123`). Required.
+     * Required. The Project ID (for example, `my-project-123`).
      */
     projectId?: string;
 
@@ -6685,15 +6689,15 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
+     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. If multiple fields are included in a filter query, the query will return results that match any of the fields. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.
      */
     filter?: string;
     /**
-     * The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
+     * Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     * Optional. A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.
      */
     pageToken?: string;
   }
@@ -6760,7 +6764,7 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Undelete
     extends StandardParameters {
     /**
-     * The project ID (for example, `foo-bar-123`). Required.
+     * Required. The project ID (for example, `foo-bar-123`).
      */
     projectId?: string;
 
