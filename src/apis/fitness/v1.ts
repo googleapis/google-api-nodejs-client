@@ -175,7 +175,7 @@ export namespace fitness_v1 {
      */
     aggregateBy?: Schema$AggregateBy[];
     /**
-     * Specifies that data be aggregated each activity segment recored for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications.
+     * Specifies that data be aggregated each activity segment recorded for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications.
      */
     bucketByActivitySegment?: Schema$BucketByActivity;
     /**
@@ -316,7 +316,7 @@ export namespace fitness_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * A partial list of data points contained in the dataset, ordered by largest endTimeNanos first. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.
+     * A partial list of data points contained in the dataset, ordered by endTimeNanos. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.
      */
     point?: Schema$DataPoint[];
   }
