@@ -208,7 +208,7 @@ export namespace vault_v1 {
    */
   export interface Schema$CloudStorageFile {
     /**
-     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can &lt;a href=&quot;https://cloud.google.com/storage/docs/json_api/v1/objects/get&quot;&gt; get individual export files&lt;/a&gt; by object name.
+     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can get individual export files by object name.
      */
     bucketName?: string | null;
     /**
@@ -259,7 +259,7 @@ export namespace vault_v1 {
    */
   export interface Schema$DriveExportOptions {
     /**
-     * Set to true to include access level information for users with &lt;a href=&quot;https://support.google.com/vault/answer/6099459#metadata&quot;&gt;indirect access&lt;/a&gt; to files.
+     * Set to true to include access level information for users with indirect access to files.
      */
     includeAccessInfo?: boolean | null;
   }
@@ -281,7 +281,7 @@ export namespace vault_v1 {
     versionDate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -412,7 +412,7 @@ export namespace vault_v1 {
    */
   export interface Schema$HeldAccount {
     /**
-     * The account&#39;s ID as provided by the &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
+     * The account&#39;s ID as provided by the Admin SDK.
      */
     accountId?: string | null;
     /**
@@ -647,7 +647,7 @@ export namespace vault_v1 {
    */
   export interface Schema$MatterPermission {
     /**
-     * The account ID, as provided by &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
+     * The account ID, as provided by Admin SDK.
      */
     accountId?: string | null;
     /**
@@ -660,7 +660,7 @@ export namespace vault_v1 {
    */
   export interface Schema$OrgUnitInfo {
     /**
-     * Org unit to search, as provided by the &lt;a href=&quot;https://developers.google.com/admin-sdk/directory/&quot;&gt;Admin SDK Directory API&lt;/a&gt;.
+     * Org unit to search, as provided by the Admin SDK Directory API.
      */
     orgUnitId?: string | null;
   }
@@ -725,11 +725,11 @@ export namespace vault_v1 {
      */
     teamDriveInfo?: Schema$TeamDriveInfo;
     /**
-     * The corpus-specific &lt;a href=&quot;https://support.google.com/vault/answer/2474474&quot;&gt;search operators&lt;/a&gt; used to generate search results.
+     * The corpus-specific search operators used to generate search results.
      */
     terms?: string | null;
     /**
-     * The time zone name. It should be an IANA TZ name, such as &quot;America/Los_Angeles&quot;. For more information, see &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_tz_database_time_zones&quot;&gt;Time Zone&lt;/a&gt;.
+     * The time zone name. It should be an IANA TZ name, such as &quot;America/Los_Angeles&quot;. For more information, see Time Zone.
      */
     timeZone?: string | null;
   }
@@ -803,12 +803,12 @@ export namespace vault_v1 {
    */
   export interface Schema$SharedDriveInfo {
     /**
-     * List of Shared drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Shared drive IDs, as provided by Drive API.
      */
     sharedDriveIds?: string[] | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -816,7 +816,7 @@ export namespace vault_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -829,7 +829,7 @@ export namespace vault_v1 {
    */
   export interface Schema$TeamDriveInfo {
     /**
-     * List of Team Drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Team Drive IDs, as provided by Drive API.
      */
     teamDriveIds?: string[] | null;
   }
@@ -1592,13 +1592,11 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.list({
-     *     // The number of matters to return in the response.
-     *     // Default and maximum are 100.
+     *     // The number of matters to return in the response. Default and maximum are 100.
      *     pageSize: 'placeholder-value',
      *     // The pagination token as returned in the response.
      *     pageToken: 'placeholder-value',
-     *     // If set, list only matters with that specific state. The default is listing
-     *     // matters of all states.
+     *     // If set, list only matters with that specific state. The default is listing matters of all states.
      *     state: 'placeholder-value',
      *     // Specifies which parts of the matter to return in response.
      *     view: 'placeholder-value',
@@ -3640,11 +3638,9 @@ export namespace vault_v1 {
      *   const res = await vault.matters.holds.list({
      *     // The matter ID.
      *     matterId: 'placeholder-value',
-     *     // The number of holds to return in the response, between 0 and 100 inclusive.
-     *     // Leaving this empty, or as 0, is the same as page_size = 100.
+     *     // The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
      *     pageSize: 'placeholder-value',
-     *     // The pagination token as returned in the response.
-     *     // An empty token means start from the beginning.
+     *     // The pagination token as returned in the response. An empty token means start from the beginning.
      *     pageToken: 'placeholder-value',
      *     // Specifies which parts of the Hold to return.
      *     view: 'placeholder-value',
@@ -4462,7 +4458,7 @@ export namespace vault_v1 {
 
     /**
      * vault.matters.holds.accounts.list
-     * @desc Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use <a href="https://developers.google.com/admin-sdk/">Admin SDK</a> to enumerate its members.
+     * @desc Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use Admin SDK to enumerate its members.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4678,8 +4674,7 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.create({
-     *     // The matter ID of the parent matter for which the saved query is to be
-     *     // created.
+     *     // The matter ID of the parent matter for which the saved query is to be created.
      *     matterId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4827,8 +4822,7 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.delete({
-     *     // The matter ID of the parent matter for which the saved query is to be
-     *     // deleted.
+     *     // The matter ID of the parent matter for which the saved query is to be deleted.
      *     matterId: 'placeholder-value',
      *     // ID of the saved query to be deleted.
      *     savedQueryId: 'placeholder-value',
@@ -4962,8 +4956,7 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.get({
-     *     // The matter ID of the parent matter for which the saved query is to be
-     *     // retrieved.
+     *     // The matter ID of the parent matter for which the saved query is to be retrieved.
      *     matterId: 'placeholder-value',
      *     // ID of the saved query to be retrieved.
      *     savedQueryId: 'placeholder-value',
@@ -5103,13 +5096,11 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.list({
-     *     // The matter ID of the parent matter for which the saved queries are to be
-     *     // retrieved.
+     *     // The matter ID of the parent matter for which the saved queries are to be retrieved.
      *     matterId: 'placeholder-value',
      *     // The maximum number of saved queries to return.
      *     pageSize: 'placeholder-value',
-     *     // The pagination token as returned in the previous response.
-     *     // An empty token means start from the beginning.
+     *     // The pagination token as returned in the previous response. An empty token means start from the beginning.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
