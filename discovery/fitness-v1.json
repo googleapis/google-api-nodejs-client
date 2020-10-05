@@ -51,10 +51,10 @@
           "description": "See and add info about your oxygen saturation in Google Fit. I consent to Google sharing my oxygen saturation information with this app."
         },
         "https://www.googleapis.com/auth/fitness.reproductive_health.read": {
-          "description": "See info about your reproductive health in Google Fit. I consent to Google sharing my reporductive health information with this app."
+          "description": "See info about your reproductive health in Google Fit. I consent to Google sharing my reproductive health information with this app."
         },
         "https://www.googleapis.com/auth/fitness.reproductive_health.write": {
-          "description": "See and add info about your reproductive health in Google Fit. I consent to Google sharing my reporductive health information with this app."
+          "description": "See and add info about your reproductive health in Google Fit. I consent to Google sharing my reproductive health information with this app."
         }
       }
     }
@@ -813,7 +813,7 @@
       }
     }
   },
-  "revision": "20200820",
+  "revision": "20200929",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
@@ -899,7 +899,7 @@
         },
         "bucketByActivitySegment": {
           "$ref": "BucketByActivity",
-          "description": "Specifies that data be aggregated each activity segment recored for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications."
+          "description": "Specifies that data be aggregated each activity segment recorded for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications."
         },
         "bucketByActivityType": {
           "$ref": "BucketByActivity",
@@ -925,18 +925,6 @@
         },
         "filteredDataQualityStandard": {
           "description": "DO NOT POPULATE THIS FIELD. It is ignored.",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "dataQualityUnknown",
@@ -1171,18 +1159,6 @@
         },
         "dataQualityStandard": {
           "description": "DO NOT POPULATE THIS FIELD. It is never populated in responses from the platform, and is ignored in queries. It will be removed in a future version entirely.",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "dataQualityUnknown",
@@ -1390,7 +1366,7 @@
               "fitness.users.dataSources.datasets.patch"
             ]
           },
-          "description": "A partial list of data points contained in the dataset, ordered by largest endTimeNanos first. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.",
+          "description": "A partial list of data points contained in the dataset, ordered by endTimeNanos. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.",
           "items": {
             "$ref": "DataPoint"
           },
