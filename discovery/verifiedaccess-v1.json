@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200828",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -155,7 +155,7 @@
       "properties": {
         "alternativeChallenge": {
           "$ref": "SignedData",
-          "description": "Challenge generated with the old signing key\n(this will only be present during key rotation)"
+          "description": "Challenge generated with the old signing key (this will only be present during key rotation)"
         },
         "challenge": {
           "$ref": "SignedData",
@@ -165,7 +165,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -196,7 +196,7 @@
           "description": "The generated response to the challenge"
         },
         "expectedIdentity": {
-          "description": "Service can optionally provide identity information about the device\nor user associated with the key.\nFor an EMK, this value is the enrolled domain.\nFor an EUK, this value is the user's email address.\nIf present, this value will be checked against contents\nof the response, and verification will fail if there is no match.",
+          "description": "Service can optionally provide identity information about the device or user associated with the key. For an EMK, this value is the enrolled domain. For an EUK, this value is the user's email address. If present, this value will be checked against contents of the response, and verification will fail if there is no match.",
           "type": "string"
         }
       },
@@ -207,19 +207,19 @@
       "id": "VerifyChallengeResponseResult",
       "properties": {
         "deviceEnrollmentId": {
-          "description": "Device enrollment id is returned in this field (for the machine response\nonly).",
+          "description": "Device enrollment id is returned in this field (for the machine response only).",
           "type": "string"
         },
         "devicePermanentId": {
-          "description": "Device permanent id is returned in this field (for the machine response\nonly).",
+          "description": "Device permanent id is returned in this field (for the machine response only).",
           "type": "string"
         },
         "signedPublicKeyAndChallenge": {
-          "description": "Certificate Signing Request (in the SPKAC format, base64 encoded) is\nreturned in this field. This field will be set only if device has included\nCSR in its challenge response.\n(the option to include CSR is now available for both user and machine\nresponses)",
+          "description": "Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)",
           "type": "string"
         },
         "verificationOutput": {
-          "description": "For EMCert check, device permanent id is returned here.\nFor EUCert check, signed_public_key_and_challenge [base64 encoded]\nis returned if present, otherwise empty string is returned.\nThis field is deprecated, please use device_permanent_id or\nsigned_public_key_and_challenge fields.",
+          "description": "For EMCert check, device permanent id is returned here. For EUCert check, signed_public_key_and_challenge [base64 encoded] is returned if present, otherwise empty string is returned. This field is deprecated, please use device_permanent_id or signed_public_key_and_challenge fields.",
           "type": "string"
         }
       },
