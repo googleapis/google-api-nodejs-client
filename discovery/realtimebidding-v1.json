@@ -362,7 +362,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the creative to update. See creative.name.",
+                  "description": "Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/creatives/[^/]+$",
                   "required": true,
@@ -593,7 +593,7 @@
       }
     }
   },
-  "revision": "20200822",
+  "revision": "20200930",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdTechnologyProviders": {
@@ -838,8 +838,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
-          "readOnly": true,
+          "description": "Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
           "type": "string"
         },
         "native": {
