@@ -138,6 +138,10 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$Binding {
     /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
+    /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
@@ -161,6 +165,10 @@ export namespace managedidentities_v1alpha1 {
     trust?: Schema$Trust;
   }
   export interface Schema$Domain {
+    /**
+     * Optional. Configuration for audit logs. True if audit logs are enabled, else false. Default is audit logs disabled.
+     */
+    auditLogsEnabled?: boolean | null;
     /**
      * Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Network can be added using UpdateDomain later. Domain is only available on network part of authorized_networks. Caller needs to make sure that CIDR subnets do not overlap between networks, else domain creation will fail.
      */
@@ -1292,6 +1300,7 @@ export namespace managedidentities_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
@@ -1729,6 +1738,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "auditLogsEnabled": false,
      *   //   "authorizedNetworks": [],
      *   //   "createTime": "my_createTime",
      *   //   "fqdn": "my_fqdn",
@@ -2159,6 +2169,7 @@ export namespace managedidentities_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
