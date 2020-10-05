@@ -2134,7 +2134,7 @@
       }
     }
   },
-  "revision": "20200813",
+  "revision": "20200917",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2243,6 +2243,10 @@
       "description": "Associates members with a role.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -2708,6 +2712,26 @@
           "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default",
           "type": "string"
         },
+        "nodeGroupAffinity": {
+          "$ref": "NodeGroupAffinity",
+          "description": "Optional. Node Group Affinity for sole-tenant clusters."
+        },
+        "privateIpv6GoogleAccess": {
+          "description": "Optional. The type of IPv6 access for a cluster.",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "INHERIT_FROM_SUBNETWORK",
+            "OUTBOUND",
+            "BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "If unspecified, Compute Engine default behavior will apply, which is the same as INHERIT_FROM_SUBNETWORK.",
+            "Private access to and from Google Services configuration inherited from the subnetwork configuration. This is the default Compute Engine behavior.",
+            "Enables outbound private IPv6 access to Google Services from the Dataproc cluster.",
+            "Enables bidirectional private IPv6 access between Google Services and the Dataproc cluster."
+          ],
+          "type": "string"
+        },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "Optional. Reservation Affinity for consuming Zonal reservation."
@@ -2978,7 +3002,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 100 characters.",
+          "description": "Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 1000 characters.",
           "type": "object"
         },
         "requestId": {
@@ -3156,7 +3180,7 @@
       "id": "JobScheduling",
       "properties": {
         "maxFailuresPerHour": {
-          "description": "Optional. Maximum number of times per hour a driver may be restarted as a result of driver terminating with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.",
+          "description": "Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.",
           "format": "int32",
           "type": "integer"
         }
@@ -3495,6 +3519,17 @@
       },
       "type": "object"
     },
+    "NodeGroupAffinity": {
+      "description": "Node Group Affinity for clusters using sole-tenant node groups.",
+      "id": "NodeGroupAffinity",
+      "properties": {
+        "nodeGroupUri": {
+          "description": "Optional. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeInitializationAction": {
       "description": "Specifies an executable to run on a fully configured node and a timeout period for executable completion.",
       "id": "NodeInitializationAction",
@@ -3793,7 +3828,7 @@
       "id": "QueryList",
       "properties": {
         "queries": {
-          "description": "Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: \"hiveJob\": { \"queryList\": { \"queries\": [ \"query1\", \"query2\", \"query3;query4\", ] } } ",
+          "description": "Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: \"hiveJob\": { \"queryList\": { \"queries\": [ \"query1\", \"query2\", \"query3;query4\", ] } } ",
           "items": {
             "type": "string"
           },
@@ -3886,18 +3921,26 @@
             "enum": [
               "COMPONENT_UNSPECIFIED",
               "ANACONDA",
+              "DOCKER",
+              "FLINK",
               "HIVE_WEBHCAT",
               "JUPYTER",
               "PRESTO",
+              "RANGER",
+              "SOLR",
               "ZEPPELIN",
               "ZOOKEEPER"
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
               "The Anaconda python distribution.",
+              "Docker",
+              "Flink",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
               "The Jupyter Notebook.",
               "The Presto query engine.",
+              "The Ranger service.",
+              "The Solr service.",
               "The Zeppelin notebook.",
               "The Zookeeper service."
             ],
