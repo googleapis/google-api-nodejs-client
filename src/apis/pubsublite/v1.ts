@@ -117,6 +117,7 @@ export namespace pubsublite_v1 {
     context: APIRequestContext;
     admin: Resource$Admin;
     cursor: Resource$Cursor;
+    topicStats: Resource$Topicstats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -126,6 +127,7 @@ export namespace pubsublite_v1 {
 
       this.admin = new Resource$Admin(this.context);
       this.cursor = new Resource$Cursor(this.context);
+      this.topicStats = new Resource$Topicstats(this.context);
     }
   }
 
@@ -141,6 +143,44 @@ export namespace pubsublite_v1 {
      * Subscribe throughput capacity per partition in MiB/s. Must be &gt;= 4 and &lt;= 32.
      */
     subscribeMibPerSec?: number | null;
+  }
+  /**
+   * Compute statistics about a range of messages in a given topic and partition.
+   */
+  export interface Schema$ComputeMessageStatsRequest {
+    /**
+     * The exclusive end of the range. The range is empty if end_cursor &lt;= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages.
+     */
+    endCursor?: Schema$Cursor;
+    /**
+     * Required. The partition for which we should compute message stats.
+     */
+    partition?: string | null;
+    /**
+     * The inclusive start of the range.
+     */
+    startCursor?: Schema$Cursor;
+  }
+  /**
+   * Response containing stats for messages in the requested topic and partition.
+   */
+  export interface Schema$ComputeMessageStatsResponse {
+    /**
+     * The number of quota bytes accounted to these messages.
+     */
+    messageBytes?: string | null;
+    /**
+     * The count of messages.
+     */
+    messageCount?: string | null;
+    /**
+     * The minimum event timestamp across these messages. For the purposes of this computation, if a message does not have an event time, we use the publish time. The timestamp will be unset if there are no messages.
+     */
+    minimumEventTime?: string | null;
+    /**
+     * The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages.
+     */
+    minimumPublishTime?: string | null;
   }
   /**
    * A cursor that describes the position of a message within a topic partition.
@@ -2380,5 +2420,207 @@ export namespace pubsublite_v1 {
      * Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
      */
     parent?: string;
+  }
+
+  export class Resource$Topicstats {
+    context: APIRequestContext;
+    projects: Resource$Topicstats$Projects;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Topicstats$Projects(this.context);
+    }
+  }
+
+  export class Resource$Topicstats$Projects {
+    context: APIRequestContext;
+    locations: Resource$Topicstats$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Topicstats$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Topicstats$Projects$Locations {
+    context: APIRequestContext;
+    topics: Resource$Topicstats$Projects$Locations$Topics;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.topics = new Resource$Topicstats$Projects$Locations$Topics(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Topicstats$Projects$Locations$Topics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * pubsublite.topicStats.projects.locations.topics.computeMessageStats
+     * @desc Compute statistics about a range of messages in a given topic and partition.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.topicStats.projects.locations.topics.computeMessageStats(
+     *     {
+     *       // Required. The topic for which we should compute message stats.
+     *       topic: 'projects/my-project/locations/my-location/topics/my-topic',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endCursor": {},
+     *         //   "partition": "my_partition",
+     *         //   "startCursor": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messageBytes": "my_messageBytes",
+     *   //   "messageCount": "my_messageCount",
+     *   //   "minimumEventTime": "my_minimumEventTime",
+     *   //   "minimumPublishTime": "my_minimumPublishTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias pubsublite.topicStats.projects.locations.topics.computeMessageStats
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.topic Required. The topic for which we should compute message stats.
+     * @param {().ComputeMessageStatsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    computeMessageStats(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeMessageStats(
+      params?: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ComputeMessageStatsResponse>;
+    computeMessageStats(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeMessageStats(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeMessageStatsResponse>,
+      callback: BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+    ): void;
+    computeMessageStats(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,
+      callback: BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+    ): void;
+    computeMessageStats(
+      callback: BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+    ): void;
+    computeMessageStats(
+      paramsOrCallback?:
+        | Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats
+        | BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeMessageStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ComputeMessageStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/topicStats/{+topic}:computeMessageStats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeMessageStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeMessageStatsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats
+    extends StandardParameters {
+    /**
+     * Required. The topic for which we should compute message stats.
+     */
+    topic?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeMessageStatsRequest;
   }
 }

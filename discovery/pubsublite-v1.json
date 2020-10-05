@@ -553,9 +553,53 @@
           }
         }
       }
+    },
+    "topicStats": {
+      "resources": {
+        "projects": {
+          "resources": {
+            "locations": {
+              "resources": {
+                "topics": {
+                  "methods": {
+                    "computeMessageStats": {
+                      "description": "Compute statistics about a range of messages in a given topic and partition.",
+                      "flatPath": "v1/topicStats/projects/{projectsId}/locations/{locationsId}/topics/{topicsId}:computeMessageStats",
+                      "httpMethod": "POST",
+                      "id": "pubsublite.topicStats.projects.locations.topics.computeMessageStats",
+                      "parameterOrder": [
+                        "topic"
+                      ],
+                      "parameters": {
+                        "topic": {
+                          "description": "Required. The topic for which we should compute message stats.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/topics/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/topicStats/{+topic}:computeMessageStats",
+                      "request": {
+                        "$ref": "ComputeMessageStatsRequest"
+                      },
+                      "response": {
+                        "$ref": "ComputeMessageStatsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20200818",
+  "revision": "20200929",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "Capacity": {
@@ -571,6 +615,53 @@
           "description": "Subscribe throughput capacity per partition in MiB/s. Must be >= 4 and <= 32.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeMessageStatsRequest": {
+      "description": "Compute statistics about a range of messages in a given topic and partition.",
+      "id": "ComputeMessageStatsRequest",
+      "properties": {
+        "endCursor": {
+          "$ref": "Cursor",
+          "description": "The exclusive end of the range. The range is empty if end_cursor <= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages."
+        },
+        "partition": {
+          "description": "Required. The partition for which we should compute message stats.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startCursor": {
+          "$ref": "Cursor",
+          "description": "The inclusive start of the range."
+        }
+      },
+      "type": "object"
+    },
+    "ComputeMessageStatsResponse": {
+      "description": "Response containing stats for messages in the requested topic and partition.",
+      "id": "ComputeMessageStatsResponse",
+      "properties": {
+        "messageBytes": {
+          "description": "The number of quota bytes accounted to these messages.",
+          "format": "int64",
+          "type": "string"
+        },
+        "messageCount": {
+          "description": "The count of messages.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimumEventTime": {
+          "description": "The minimum event timestamp across these messages. For the purposes of this computation, if a message does not have an event time, we use the publish time. The timestamp will be unset if there are no messages.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "minimumPublishTime": {
+          "description": "The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
