@@ -224,7 +224,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200929",
   "rootUrl": "https://firebasedynamiclinks.googleapis.com/",
   "schemas": {
     "AnalyticsInfo": {
@@ -912,10 +912,6 @@
         },
         "flaggedAttribute": {
           "description": "Attributes that have been flagged about this short url.",
-          "enumDescriptions": [
-            "Indicates that no attributes were found for this short url.",
-            "Indicates that short url has been flagged by AbuseIAm team as spam."
-          ],
           "items": {
             "enum": [
               "UNSPECIFIED_ATTRIBUTE",

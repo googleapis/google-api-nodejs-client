@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20200814",
+  "revision": "20200921",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -166,6 +166,7 @@
             "AUDIO_ENCODING_UNSPECIFIED",
             "LINEAR16",
             "MP3",
+            "MP3_64_KBPS",
             "OGG_OPUS",
             "MULAW"
           ],
@@ -173,6 +174,7 @@
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
             "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
             "MP3 audio at 32kbps.",
+            "MP3 at 64kbps.",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header."
           ],
@@ -247,10 +249,6 @@
         },
         "enableTimePointing": {
           "description": "Whether and what timepoints are returned in the response.",
-          "enumDescriptions": [
-            "Not specified. No timepoint information will be returned.",
-            "Timepoint information of tags in SSML input will be returned."
-          ],
           "items": {
             "enum": [
               "TIMEPOINT_TYPE_UNSPECIFIED",

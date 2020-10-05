@@ -155,7 +155,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200929",
   "rootUrl": "https://analyticsreporting.googleapis.com/",
   "schemas": {
     "Activity": {
@@ -1273,14 +1273,6 @@
       "properties": {
         "activityTypes": {
           "description": "Set of all activity types being requested. Only acvities matching these types will be returned in the response. If empty, all activies will be returned.",
-          "enumDescriptions": [
-            "ActivityType will never have this value in the response. Using this type in the request will result in an error.",
-            "Used when the activity resulted out of a visitor viewing a page.",
-            "Used when the activity resulted out of a visitor using an application on a mobile device.",
-            "Used to denote that a goal type activity.",
-            "An e-commerce transaction was performed by the visitor on the page.",
-            "Used when the activity is an event."
-          ],
           "items": {
             "enum": [
               "ACTIVITY_TYPE_UNSPECIFIED",

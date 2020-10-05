@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20200819",
+  "revision": "20200929",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1253,11 +1253,13 @@
           "description": "linux_isolation allows overriding the docker runtime used for containers started on Linux.",
           "enum": [
             "LINUX_ISOLATION_UNSPECIFIED",
-            "GVISOR"
+            "GVISOR",
+            "OFF"
           ],
           "enumDescriptions": [
             "Default value. Will be using Linux default runtime.",
-            "Use gVisor runsc runtime."
+            "Use gVisor runsc runtime.",
+            "Use stardard Linux runtime. This has the same behaviour as unspecified, but it can be used to revert back from gVisor."
           ],
           "type": "string"
         }
