@@ -984,6 +984,8 @@ export namespace adsense_v1_4 {
      *     accountId: 'placeholder-value',
      *     // Ad client to get the code for.
      *     adClientId: 'placeholder-value',
+     *     // Tag partner to include in the ad code snippet.
+     *     tagPartner: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1007,6 +1009,7 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account which contains the ad client.
      * @param {string} params.adClientId Ad client to get the code for.
+     * @param {string=} params.tagPartner Tag partner to include in the ad code snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1243,6 +1246,10 @@ export namespace adsense_v1_4 {
      * Ad client to get the code for.
      */
     adClientId?: string;
+    /**
+     * Tag partner to include in the ad code snippet.
+     */
+    tagPartner?: string;
   }
   export interface Params$Resource$Accounts$Adclients$List
     extends StandardParameters {
