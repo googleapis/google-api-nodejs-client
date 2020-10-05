@@ -290,7 +290,8 @@
             "https://www.googleapis.com/auth/admin.directory.user",
             "https://www.googleapis.com/auth/admin.directory.user.alias",
             "https://www.googleapis.com/auth/admin.directory.user.alias.readonly",
-            "https://www.googleapis.com/auth/admin.directory.user.readonly"
+            "https://www.googleapis.com/auth/admin.directory.user.readonly",
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -3213,6 +3214,31 @@
         }
       }
     },
+    "twoStepVerification": {
+      "methods": {
+        "turnOff": {
+          "description": "Turn off 2-Step Verification for user.",
+          "flatPath": "admin/directory/v1/users/{userKey}/twoStepVerification/turnOff",
+          "httpMethod": "POST",
+          "id": "directory.twoStepVerification.turnOff",
+          "parameterOrder": [
+            "userKey"
+          ],
+          "parameters": {
+            "userKey": {
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "admin/directory/v1/users/{userKey}/twoStepVerification/turnOff",
+          "scopes": [
+            "https://www.googleapis.com/auth/admin.directory.user.security"
+          ]
+        }
+      }
+    },
     "users": {
       "methods": {
         "delete": {
@@ -3492,6 +3518,27 @@
             "https://www.googleapis.com/auth/admin.directory.user"
           ]
         },
+        "signOut": {
+          "description": "Sign a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.",
+          "flatPath": "admin/directory/v1/users/{userKey}/signOut",
+          "httpMethod": "POST",
+          "id": "directory.users.signOut",
+          "parameterOrder": [
+            "userKey"
+          ],
+          "parameters": {
+            "userKey": {
+              "description": "Identifies the target user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "admin/directory/v1/users/{userKey}/signOut",
+          "scopes": [
+            "https://www.googleapis.com/auth/admin.directory.user.security"
+          ]
+        },
         "undelete": {
           "description": "Undelete a deleted user",
           "flatPath": "admin/directory/v1/users/{userKey}/undelete",
@@ -3550,6 +3597,11 @@
           "id": "directory.users.watch",
           "parameterOrder": [],
           "parameters": {
+            "customFieldMask": {
+              "description": "Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.",
+              "location": "query",
+              "type": "string"
+            },
             "customer": {
               "description": "Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.",
               "location": "query",
@@ -3580,6 +3632,94 @@
               ],
               "location": "query",
               "type": "string"
+            },
+            "maxResults": {
+              "default": "100",
+              "description": "Maximum number of results to return.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "500",
+              "minimum": "1",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Column to use for sorting results",
+              "enum": [
+                "orderByUnspecified",
+                "email",
+                "familyName",
+                "givenName"
+              ],
+              "enumDescriptions": [
+                "",
+                "Primary email of the user.",
+                "User's family name.",
+                "User's given name."
+              ],
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Token to specify next page in the list",
+              "location": "query",
+              "type": "string"
+            },
+            "projection": {
+              "default": "basic",
+              "description": "What subset of fields to fetch for this user.",
+              "enum": [
+                "projectionUnspecified",
+                "basic",
+                "custom",
+                "full"
+              ],
+              "enumDescriptions": [
+                "",
+                "Do not include any custom fields for the user.",
+                "Include custom fields from schemas mentioned in customFieldMask.",
+                "Include all fields associated with this user."
+              ],
+              "location": "query",
+              "type": "string"
+            },
+            "query": {
+              "description": "Query string search. Should be of the form \"\". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users",
+              "location": "query",
+              "type": "string"
+            },
+            "showDeleted": {
+              "description": "If set to true, retrieves the list of deleted users. (Default: false)",
+              "location": "query",
+              "type": "string"
+            },
+            "sortOrder": {
+              "description": "Whether to return results in ascending or descending order.",
+              "enum": [
+                "sortOrderUnspecified",
+                "ASCENDING",
+                "DESCENDING"
+              ],
+              "enumDescriptions": [
+                "",
+                "Ascending order.",
+                "Descending order."
+              ],
+              "location": "query",
+              "type": "string"
+            },
+            "viewType": {
+              "default": "admin_view",
+              "description": "Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.",
+              "enum": [
+                "admin_view",
+                "domain_public"
+              ],
+              "enumDescriptions": [
+                "Fetches the ADMIN_VIEW of the user.",
+                "Fetches the DOMAIN_PUBLIC view of the user."
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "admin/directory/v1/users/watch",
@@ -3591,7 +3731,8 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/admin.directory.user",
-            "https://www.googleapis.com/auth/admin.directory.user.readonly"
+            "https://www.googleapis.com/auth/admin.directory.user.readonly",
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       },
@@ -3906,7 +4047,7 @@
       }
     }
   },
-  "revision": "20200819",
+  "revision": "20200929",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6203,6 +6344,9 @@
       "type": "object"
     },
     "UserCustomProperties": {
+      "additionalProperties": {
+        "type": "any"
+      },
       "description": "JSON template for a set of custom properties (i.e. all fields in a particular schema)",
       "id": "UserCustomProperties",
       "type": "object"
