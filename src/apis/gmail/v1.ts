@@ -4106,7 +4106,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.import
-     * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message.
+     * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message. Note: This function doesn't trigger forwarding rules or filters set up by the user.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7767,7 +7767,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.filters.create
-     * @desc Creates a filter.
+     * @desc Creates a filter. Note: you can only create a maximum of 1,000 filters.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

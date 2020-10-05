@@ -945,7 +945,7 @@
               ]
             },
             "import": {
-              "description": "Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message.",
+              "description": "Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message. Note: This function doesn't trigger forwarding rules or filters set up by the user.",
               "flatPath": "gmail/v1/users/{userId}/messages/import",
               "httpMethod": "POST",
               "id": "gmail.users.messages.import",
@@ -1760,7 +1760,7 @@
             "filters": {
               "methods": {
                 "create": {
-                  "description": "Creates a filter.",
+                  "description": "Creates a filter. Note: you can only create a maximum of 1,000 filters.",
                   "flatPath": "gmail/v1/users/{userId}/settings/filters",
                   "httpMethod": "POST",
                   "id": "gmail.users.settings.filters.create",
@@ -2682,7 +2682,7 @@
       }
     }
   },
-  "revision": "20200817",
+  "revision": "20200919",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
