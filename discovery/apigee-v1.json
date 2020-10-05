@@ -141,7 +141,7 @@
     "organizations": {
       "methods": {
         "create": {
-          "description": "Creates an Apigee organization. See [Create an organization](https://docs.apigee.com/hybrid/latest/precog-provision).",
+          "description": "Creates an Apigee organization. See [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "flatPath": "v1/organizations",
           "httpMethod": "POST",
           "id": "apigee.organizations.create",
@@ -165,7 +165,7 @@
           ]
         },
         "get": {
-          "description": "Gets the profile for an Apigee organization. See [Organizations](https://docs.apigee.com/hybrid/latest/terminology#organizations).",
+          "description": "Gets the profile for an Apigee organization. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
           "flatPath": "v1/organizations/{organizationsId}",
           "httpMethod": "GET",
           "id": "apigee.organizations.get",
@@ -215,7 +215,7 @@
           ]
         },
         "getSyncAuthorization": {
-          "description": "Lists the service accounts with the permissions required to allow the Synchronizer to download environment data from the control plane. An ETag is returned in the response to `getSyncAuthorization`. Pass that ETag when calling [setSyncAuthorization](setSyncAuthorization) to ensure that you are updating the correct version. If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. For more information, see [Enable Synchronizer access](https://docs.apigee.com/hybrid/latest/synchronizer-access#enable-synchronizer-access). **Note**: Available to Apigee hybrid only.",
+          "description": "Lists the service accounts with the permissions required to allow the Synchronizer to download environment data from the control plane. An ETag is returned in the response to `getSyncAuthorization`. Pass that ETag when calling [setSyncAuthorization](setSyncAuthorization) to ensure that you are updating the correct version. If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. For more information, see [Configure the Synchronizer](https://cloud.google.com/apigee/docs/hybrid/latest/synchronizer-access). **Note**: Available to Apigee hybrid only.",
           "flatPath": "v1/organizations/{organizationsId}:getSyncAuthorization",
           "httpMethod": "POST",
           "id": "apigee.organizations.getSyncAuthorization",
@@ -243,7 +243,7 @@
           ]
         },
         "list": {
-          "description": "Lists the Apigee organizations and associated GCP projects that you have permission to access. See [Organizations](https://docs.apigee.com/hybrid/latest/terminology#organizations).",
+          "description": "Lists the Apigee organizations and associated GCP projects that you have permission to access. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
           "flatPath": "v1/organizations",
           "httpMethod": "GET",
           "id": "apigee.organizations.list",
@@ -268,7 +268,7 @@
           ]
         },
         "setSyncAuthorization": {
-          "description": "Sets the permissions required to allow the Synchronizer to download environment data from the control plane. You must call this API to enable proper functioning of hybrid. Pass the ETag when calling `setSyncAuthorization` to ensure that you are updating the correct version. To get an ETag, call [getSyncAuthorization](getSyncAuthorization). If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. For more information, see [Enable Synchronizer access](https://docs.apigee.com/hybrid/latest/synchronizer-access#enable-synchronizer-access). **Note**: Available to Apigee hybrid only.",
+          "description": "Sets the permissions required to allow the Synchronizer to download environment data from the control plane. You must call this API to enable proper functioning of hybrid. Pass the ETag when calling `setSyncAuthorization` to ensure that you are updating the correct version. To get an ETag, call [getSyncAuthorization](getSyncAuthorization). If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. For more information, see [Configure the Synchronizer](https://cloud.google.com/apigee/docs/hybrid/latest/synchronizer-access). **Note**: Available to Apigee hybrid only.",
           "flatPath": "v1/organizations/{organizationsId}:setSyncAuthorization",
           "httpMethod": "POST",
           "id": "apigee.organizations.setSyncAuthorization",
@@ -2435,7 +2435,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the organization in the following format: `organizations/{org}`.",
+                      "description": "Required. Name of the environment group in the following format: `organizations/{org}/envgroups/{envgroup}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                       "required": true,
@@ -2590,7 +2590,7 @@
               ]
             },
             "getIamPolicy": {
-              "description": "Gets the IAM policy on an environment. For more information, see [Manage users, roles, and permissions using the API](https://docs.apigee.com/hybrid/latest/manage-users-roles). You must have the `apigee.environments.getIamPolicy` permission to call this API.",
+              "description": "Gets the IAM policy on an environment. For more information, see [Manage users, roles, and permissions using the API](https://cloud.google.com/apigee/docs/api-platform/system-administration/manage-users-roles). You must have the `apigee.environments.getIamPolicy` permission to call this API.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}:getIamPolicy",
               "httpMethod": "GET",
               "id": "apigee.organizations.environments.getIamPolicy",
@@ -2621,7 +2621,7 @@
               ]
             },
             "setIamPolicy": {
-              "description": "Sets the IAM policy on an environment, if the policy already exists it will be replaced. For more information, see [Manage users, roles, and permissions using the API](https://docs.apigee.com/hybrid/latest/manage-users-roles). You must have the `apigee.environments.setIamPolicy` permission to call this API.",
+              "description": "Sets the IAM policy on an environment, if the policy already exists it will be replaced. For more information, see [Manage users, roles, and permissions using the API](https://cloud.google.com/apigee/docs/api-platform/system-administration/manage-users-roles). You must have the `apigee.environments.setIamPolicy` permission to call this API.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}:setIamPolicy",
               "httpMethod": "POST",
               "id": "apigee.organizations.environments.setIamPolicy",
@@ -2980,7 +2980,7 @@
                 "revisions": {
                   "methods": {
                     "deploy": {
-                      "description": "Deploys a revision of an API proxy. If an API proxy revision is currently deployed, to ensure seamless deployment with zero downtime set the `override` parameter to `true`. In this case, hybrid attempts to deploy the new revision fully before undeploying the existing revision. You cannot invoke an API proxy until it has been deployed to an environment. After you deploy an API proxy revision, you cannot edit it. To edit the API proxy, you must create and deploy a new revision. ",
+                      "description": "Deploys a revision of an API proxy. If another revision of the same API proxy revision is currently deployed, set the `override` parameter to `true` to have this revision replace the currently deployed revision. You cannot invoke an API proxy until it has been deployed to an environment. After you deploy an API proxy revision, you cannot edit it. To edit the API proxy, you must create and deploy a new revision. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.create` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.deploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}` ",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.apis.revisions.deploy",
@@ -3040,7 +3040,7 @@
                       ]
                     },
                     "undeploy": {
-                      "description": "Undeploys an API proxy revision from an environment. Because multiple revisions of the same API proxy can be deployed in the same environment if the base paths are different, you must specify the revision number of the API proxy.",
+                      "description": "Undeploys an API proxy revision from an environment. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.delete` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.undeploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}`",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments",
                       "httpMethod": "DELETE",
                       "id": "apigee.organizations.environments.apis.revisions.undeploy",
@@ -3229,7 +3229,7 @@
                     "deployments": {
                       "methods": {
                         "generateDeployChangeReport": {
-                          "description": "Generates a report for a dry run analysis of a DeployApiProxy request without committing the deployment. In addition to the standard validations performed when adding deployments, additional analysis will be done to detect possible traffic routing changes that would result from this deployment being created. Any potential routing conflicts or unsafe changes will be reported in the response. This routing analysis is not performed for a non-dry-run DeployApiProxy request.",
+                          "description": "Generates a report for a dry run analysis of a DeployApiProxy request without committing the deployment. In addition to the standard validations performed when adding deployments, additional analysis will be done to detect possible traffic routing changes that would result from this deployment being created. Any potential routing conflicts or unsafe changes will be reported in the response. This routing analysis is not performed for a non-dry-run DeployApiProxy request. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments:generateDeployChangeReport`, two permissions are required: * `apigee.deployments.create` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.deploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}`",
                           "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments:generateDeployChangeReport",
                           "httpMethod": "POST",
                           "id": "apigee.organizations.environments.apis.revisions.deployments.generateDeployChangeReport",
@@ -3237,11 +3237,6 @@
                             "name"
                           ],
                           "parameters": {
-                            "basepath": {
-                              "description": "Base path where the API proxy revision should be deployed. Defaults to '/' if not provided.",
-                              "location": "query",
-                              "type": "string"
-                            },
                             "name": {
                               "description": "Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
                               "location": "path",
@@ -3264,7 +3259,7 @@
                           ]
                         },
                         "generateUndeployChangeReport": {
-                          "description": "Generates a report for a dry run analysis of an UndeployApiProxy request without committing the undeploy. In addition to the standard validations performed when removing deployments, additional analysis will be done to detect possible traffic routing changes that would result from this deployment being removed. Any potential routing conflicts or unsafe changes will be reported in the response. This routing analysis is not performed for a non-dry-run UndeployApiProxy request.",
+                          "description": "Generates a report for a dry run analysis of an UndeployApiProxy request without committing the undeploy. In addition to the standard validations performed when removing deployments, additional analysis will be done to detect possible traffic routing changes that would result from this deployment being removed. Any potential routing conflicts or unsafe changes will be reported in the response. This routing analysis is not performed for a non-dry-run UndeployApiProxy request. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments:generateUndeployChangeReport`, two permissions are required: * `apigee.deployments.delete` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.undeploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}`",
                           "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments:generateUndeployChangeReport",
                           "httpMethod": "POST",
                           "id": "apigee.organizations.environments.apis.revisions.deployments.generateUndeployChangeReport",
@@ -4389,7 +4384,7 @@
                 "revisions": {
                   "methods": {
                     "deploy": {
-                      "description": "Deploys a revision of a shared flow. If a shared flow revision is currently deployed, to ensure seamless deployment with zero downtime set the `override` parameter to `true`. In this case, hybrid attempts to deply the new revision fully before undeploying the existing revision. You cannot use a shared flows until it has been deployed to an environment.",
+                      "description": "Deploys a revision of a shared flow. If another revision of the same shared flow is currently deployed, set the `override` parameter to `true` to have this revision replace the currently deployed revision. You cannot use a shared flow until it has been deployed to an environment. For a request path `organizations/{org}/environments/{env}/sharedflows/{sf}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.create` on the resource `organizations/{org}/environments/{env}` * `apigee.sharedflowrevisions.deploy` on the resource `organizations/{org}/sharedflows/{sf}/revisions/{rev}`",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/sharedflows/{sharedflowsId}/revisions/{revisionsId}/deployments",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.sharedflows.revisions.deploy",
@@ -4444,7 +4439,7 @@
                       ]
                     },
                     "undeploy": {
-                      "description": "Undeploys a shared flow revision from an environment.",
+                      "description": "Undeploys a shared flow revision from an environment. For a request path `organizations/{org}/environments/{env}/sharedflows/{sf}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.delete` on the resource `organizations/{org}/environments/{env}` * `apigee.sharedflowrevisions.undeploy` on the resource `organizations/{org}/sharedflows/{sf}/revisions/{rev}`",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/sharedflows/{sharedflowsId}/revisions/{revisionsId}/deployments",
                       "httpMethod": "DELETE",
                       "id": "apigee.organizations.environments.sharedflows.revisions.undeploy",
@@ -5510,7 +5505,7 @@
       }
     }
   },
-  "revision": "20200821",
+  "revision": "20200924",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6611,10 +6606,6 @@
           "description": "API proxy.",
           "type": "string"
         },
-        "basePath": {
-          "description": "Base path for the deployment.",
-          "type": "string"
-        },
         "deployStartTime": {
           "description": "Time the API proxy was marked `deployed` in the control plane in millisconds since epoch.",
           "format": "int64",
@@ -7166,6 +7157,10 @@
             "$ref": "GoogleCloudApigeeV1TargetServerConfig"
           },
           "type": "array"
+        },
+        "traceConfig": {
+          "$ref": "GoogleCloudApigeeV1RuntimeTraceConfig",
+          "description": "Trace configurations. Contains config for the environment and config overrides for specific API proxies."
         },
         "uid": {
           "description": "Unique ID for the environment configuration. The ID will only change if the environment is deleted and recreated.",
@@ -7929,6 +7924,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1Operation": {
+      "description": "Operation represents the pairing of REST resource path and the actions (verbs) allowed on the resource path.",
+      "id": "GoogleCloudApigeeV1Operation",
+      "properties": {
+        "methods": {
+          "description": "methods refers to the REST verbs as in https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html. When none specified, all verb types are allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "description": "Required. resource represents REST resource path associated with the proxy/remote service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1OperationConfig": {
       "description": "OperationConfig binds the resources in a proxy or remote service with the allowed REST methods and its associated quota enforcement.",
       "id": "GoogleCloudApigeeV1OperationConfig",
@@ -7944,23 +7957,16 @@
           },
           "type": "array"
         },
-        "methods": {
-          "description": "methods refers to the REST verbs as in https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html. When none specified, all verb types are allowed.",
+        "operations": {
+          "description": "operations is the list of resource/methods pair, belonging to proxy/remote service, upon which quota will applied on. Note that currently we allow only a single operation. The call will fail if more than one is provided.",
           "items": {
-            "type": "string"
+            "$ref": "GoogleCloudApigeeV1Operation"
           },
           "type": "array"
         },
         "quota": {
           "$ref": "GoogleCloudApigeeV1Quota",
           "description": "Quota parameters to be enforced for the resources, methods, api_source combination. If none specified, quota enforcement will not be done."
-        },
-        "resources": {
-          "description": "Required. resources represents a list of REST resource path associated with the proxy/remote service.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -7970,7 +7976,7 @@
       "id": "GoogleCloudApigeeV1OperationGroup",
       "properties": {
         "operationConfigType": {
-          "description": "Identfies whether the configuration is for Apigee proxy or a remote service. Possible values are \"proxy\" and \"remote_service\". If none specified, the default is \"proxy\". \"proxy\" is used when Apigee proxies are associated with the API product. \"remote_service\" is used when non-Apigee proxy like Envoy is used, and is associated with the API product.",
+          "description": "Identfies whether the configuration is for Apigee proxy or a remote service. Possible values are \"proxy\" and \"remoteservice\". If none specified, the default is \"proxy\". \"proxy\" is used when Apigee proxies are associated with the API product. \"remoteservice\" is used when non-Apigee proxy like Envoy is used, and is associated with the API product.",
           "type": "string"
         },
         "operationConfigs": {
@@ -8078,7 +8084,7 @@
       "id": "GoogleCloudApigeeV1Organization",
       "properties": {
         "analyticsRegion": {
-          "description": "Required. Primary GCP region for analytics data storage. For valid values, see [Create an organization](https://docs.apigee.com/hybrid/latest/precog-provision).",
+          "description": "Required. Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
         },
         "attributes": {
@@ -8089,7 +8095,7 @@
           "type": "array"
         },
         "authorizedNetwork": {
-          "description": "Compute Engine network used for ServiceNetworking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType] is set to CLOUD. The value can be updated only when there are no runtime instances. For example: \"default\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType] is set to CLOUD. The value can be updated only when there are no runtime instances. For example: \"default\". **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "caCertificate": {
@@ -8143,18 +8149,17 @@
           "description": "Properties defined in the Apigee organization profile."
         },
         "runtimeType": {
-          "description": "Output only. Runtime type of the Apigee organization based on the Apigee subscription purchased.",
+          "description": "Required. Runtime type of the Apigee organization based on the Apigee subscription purchased.",
           "enum": [
             "RUNTIME_TYPE_UNSPECIFIED",
             "CLOUD",
             "HYBRID"
           ],
           "enumDescriptions": [
-            "",
+            "Runtime type not specified.",
             "Google-managed Apigee runtime.",
             "User-managed Apigee hybrid runtime."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "subscriptionType": {
@@ -8165,7 +8170,7 @@
             "TRIAL"
           ],
           "enumDescriptions": [
-            "",
+            "Subscription type not specified.",
             "Full subscription to Apigee has been purchased.",
             "Subscription to Apigee is free, limited, and used for evaluation purposes only."
           ],
@@ -8682,6 +8687,164 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1RuntimeTraceConfig": {
+      "description": "NEXT ID: 8 RuntimeTraceConfig defines the configurations for distributed trace in an environment.",
+      "id": "GoogleCloudApigeeV1RuntimeTraceConfig",
+      "properties": {
+        "endpoint": {
+          "description": "Endpoint of the exporter.",
+          "type": "string"
+        },
+        "exporter": {
+          "description": "Exporter that is used to view the distributed trace captured using OpenCensus. An exporter sends traces to any backend that is capable of consuming them. Recorded spans can be exported by registered exporters.",
+          "enum": [
+            "EXPORTER_UNSPECIFIED",
+            "JAEGER",
+            "CLOUD_TRACE"
+          ],
+          "enumDescriptions": [
+            "Exporter unspecified",
+            "Jaeger exporter",
+            "Cloudtrace exporter"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the trace config in the following format: `organizations/{org}/environment/{env}/traceConfig`",
+          "type": "string"
+        },
+        "overrides": {
+          "description": "List of trace configuration overrides for spicific API proxies.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RuntimeTraceConfigOverride"
+          },
+          "type": "array"
+        },
+        "revisionCreateTime": {
+          "description": "The timestamp that the revision was created or updated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Revision number which can be used by the runtime to detect if the trace config has changed between two versions.",
+          "type": "string"
+        },
+        "samplingConfig": {
+          "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
+          "description": "Trace configuration for all API proxies in an environment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RuntimeTraceConfigOverride": {
+      "description": "NEXT ID: 7 Trace configuration override for a specific API proxy in an environment.",
+      "id": "GoogleCloudApigeeV1RuntimeTraceConfigOverride",
+      "properties": {
+        "apiProxy": {
+          "description": "Name of the API proxy that will have its trace configuration overridden following format: `organizations/{org}/apis/{api}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the trace config override in the following format: `organizations/{org}/environment/{env}/traceConfig/overrides/{override}`",
+          "type": "string"
+        },
+        "revisionCreateTime": {
+          "description": "The timestamp that the revision was created or updated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Revision number which can be used by the runtime to detect if the trace config override has changed between two versions.",
+          "type": "string"
+        },
+        "samplingConfig": {
+          "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
+          "description": "Trace configuration override for a specific API proxy in an environment."
+        },
+        "uid": {
+          "description": "Unique ID for the configuration override. The ID will only change if the override is deleted and recreated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RuntimeTraceSamplingConfig": {
+      "description": "NEXT ID: 6 RuntimeTraceSamplingConfig represents the detail settings of distributed tracing. Only the fields that are defined in the distributed trace configuration can be overridden using the distribute trace configuration override APIs.",
+      "id": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
+      "properties": {
+        "errorSources": {
+          "description": "Error sources from which to capture errors. If none are specified, error codes are captured from all sources.",
+          "items": {
+            "enum": [
+              "ERROR_SOURCE_UNSPECIFIED",
+              "APIGEE",
+              "TARGET"
+            ],
+            "enumDescriptions": [
+              "Error source is unspecified.",
+              "Only capture trace errors within the Apigee system.",
+              "Only capture trace errors from target server."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "responseCodeRanges": {
+          "description": "List of response code ranges.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange"
+          },
+          "type": "array"
+        },
+        "responseCodes": {
+          "description": "List of single response codes.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "sampler": {
+          "description": "Sampler of distributed tracing. OFF is the default value.",
+          "enum": [
+            "SAMPLER_UNSPECIFIED",
+            "OFF",
+            "ON",
+            "PROBABILITY"
+          ],
+          "enumDescriptions": [
+            "Sampler unspecified.",
+            "OFF means distributed trace is disabled, or the sampling probability is 0.",
+            "ON means distributed trace is enabled always for all api calls, and sampling probability is 0.5.",
+            "PROBABILITY means traces are captured on a probability that defined by sampling_rate. The sampling rate is limited to 0 to 0.5 when this is set."
+          ],
+          "type": "string"
+        },
+        "samplingRate": {
+          "description": "Field sampling rate. This value is only valid when is only applicable when sampling value is probabilistic(PROBABILITY). The supported values are > 0 and <= 0.5.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange": {
+      "description": "ResponseCodeRange represents a group of response codes to capture, from the first response code to the last response code. Each range is a close interval. For example, if an interval is [400, 403], then that means 400, 401, 402, 403 will be all captured.",
+      "id": "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange",
+      "properties": {
+        "firstResponseCode": {
+          "description": "The first response code to capture.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastResponseCode": {
+          "description": "The last response code to capture.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Schema": {
       "description": "Response for Schema call",
       "id": "GoogleCloudApigeeV1Schema",
@@ -8942,7 +9105,7 @@
           "type": "string"
         },
         "identities": {
-          "description": "Required. Array of service accounts to grant access to control plane resources, each specified using the following format: `serviceAccount:` service-account-name. The service-account-name is formatted like an email address. For example: `my-synchronizer-manager-service_account@my_project_id.iam.gserviceaccount.com` You might specify multiple service accounts, for example, if you have multiple environments and wish to assign a unique service account to each one. The service accounts must have **Apigee Synchronizer Manager** role. See also [Create service accounts](https://docs.apigee.com/hybrid/latest/sa-about#create-the-service-accounts).",
+          "description": "Required. Array of service accounts to grant access to control plane resources, each specified using the following format: `serviceAccount:` service-account-name. The service-account-name is formatted like an email address. For example: `my-synchronizer-manager-service_account@my_project_id.iam.gserviceaccount.com` You might specify multiple service accounts, for example, if you have multiple environments and wish to assign a unique service account to each one. The service accounts must have **Apigee Synchronizer Manager** role. See also [Create service accounts](https://cloud.google.com/apigee/docs/hybrid/latest/sa-about#create-the-service-accounts).",
           "items": {
             "type": "string"
           },

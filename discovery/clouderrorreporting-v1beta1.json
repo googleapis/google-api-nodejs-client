@@ -430,7 +430,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200923",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {
@@ -512,7 +512,7 @@
           ],
           "enumDescriptions": [
             "Status is unknown.",
-            "The error group is not being addressed. This is the default for new groups. It is also used for errors re-occuring after marked RESOLVED.",
+            "The error group is not being addressed. This is the default for new groups. It is also used for errors re-occurring after marked RESOLVED.",
             "Error Group manually acknowledged, it can have an issue link attached.",
             "Error Group manually resolved, more events for this group are not expected to occur.",
             "The error group is muted and excluded by default on group stats requests."

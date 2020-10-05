@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200927",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -956,11 +956,6 @@
         },
         "targetPlatforms": {
           "description": "Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.",
-          "enumDescriptions": [
-            "The target platform is unknown. Requests with this enum value will be rejected with INVALID_ARGUMENT error.",
-            "Google App Engine service.",
-            "Google Compute Engine service."
-          ],
           "items": {
             "enum": [
               "TARGET_PLATFORM_UNSPECIFIED",
@@ -1230,14 +1225,16 @@
             "INSUFFICIENT_CRAWL_RESULTS",
             "TOO_MANY_CRAWL_RESULTS",
             "TOO_MANY_FUZZ_TASKS",
-            "BLOCKED_BY_IAP"
+            "BLOCKED_BY_IAP",
+            "NO_STARTING_URL_FOUND_FOR_MANAGED_SCAN"
           ],
           "enumDescriptions": [
             "Default value is never used.",
             "Indicates that a scan discovered an unexpectedly low number of URLs. This is sometimes caused by complex navigation features or by using a single URL for numerous pages.",
             "Indicates that a scan discovered too many URLs to test, or excessive redundant URLs.",
             "Indicates that too many tests have been generated for the scan. Customer should try reducing the number of starting URLs, increasing the QPS rate, or narrowing down the scope of the scan using the excluded patterns.",
-            "Indicates that a scan is blocked by IAP."
+            "Indicates that a scan is blocked by IAP.",
+            "Indicates that no seed is found for a scan"
           ],
           "type": "string"
         }

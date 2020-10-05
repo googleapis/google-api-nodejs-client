@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200927",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -229,16 +229,6 @@
         },
         "profileType": {
           "description": "One or more profile types that the agent is capable of providing.",
-          "enumDescriptions": [
-            "Unspecified profile type.",
-            "Thread CPU time sampling.",
-            "Wallclock time sampling. More expensive as stops all threads.",
-            "In-use heap profile. Represents a snapshot of the allocations that are live at the time of the profiling.",
-            "Single-shot collection of all thread stacks.",
-            "Synchronization contention profile.",
-            "Peak heap profile.",
-            "Heap allocation profile. It represents the aggregation of all allocations made over the duration of the profile. All allocations are included, including those that might have been freed by the end of the profiling interval. The profile is in particular useful for garbage collecting languages to understand which parts of the code create most of the garbage collection pressure to see if those can be optimized."
-          ],
           "items": {
             "enum": [
               "PROFILE_TYPE_UNSPECIFIED",

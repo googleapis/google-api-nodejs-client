@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200927",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -910,11 +910,6 @@
         },
         "targetPlatforms": {
           "description": "Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.",
-          "enumDescriptions": [
-            "The target platform is unknown. Requests with this enum value will be rejected with INVALID_ARGUMENT error.",
-            "Google App Engine service.",
-            "Google Compute Engine service."
-          ],
           "items": {
             "enum": [
               "TARGET_PLATFORM_UNSPECIFIED",

@@ -25,14 +25,18 @@ import * as adsense from './adsense';
 import * as adsensehost from './adsensehost';
 import * as alertcenter from './alertcenter';
 import * as analytics from './analytics';
+import * as analyticsadmin from './analyticsadmin';
+import * as analyticsdata from './analyticsdata';
 import * as analyticsreporting from './analyticsreporting';
 import * as androiddeviceprovisioning from './androiddeviceprovisioning';
 import * as androidenterprise from './androidenterprise';
 import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
+import * as apigateway from './apigateway';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
 import * as artifactregistry from './artifactregistry';
+import * as assuredworkloads from './assuredworkloads';
 import * as bigquery from './bigquery';
 import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
@@ -165,19 +169,23 @@ import * as serviceusage from './serviceusage';
 import * as sheets from './sheets';
 import * as siteVerification from './siteVerification';
 import * as slides from './slides';
+import * as smartdevicemanagement from './smartdevicemanagement';
 import * as sourcerepo from './sourcerepo';
 import * as spanner from './spanner';
 import * as speech from './speech';
 import * as sql from './sql';
+import * as sqladmin from './sqladmin';
 import * as storage from './storage';
 import * as storagetransfer from './storagetransfer';
 import * as streetviewpublish from './streetviewpublish';
+import * as sts from './sts';
 import * as tagmanager from './tagmanager';
 import * as tasks from './tasks';
 import * as testing from './testing';
 import * as texttospeech from './texttospeech';
 import * as toolresults from './toolresults';
 import * as tpu from './tpu';
+import * as trafficdirector from './trafficdirector';
 import * as translate from './translate';
 import * as vault from './vault';
 import * as vectortile from './vectortile';
@@ -187,6 +195,8 @@ import * as vision from './vision';
 import * as webfonts from './webfonts';
 import * as webmasters from './webmasters';
 import * as websecurityscanner from './websecurityscanner';
+import * as workflowexecutions from './workflowexecutions';
+import * as workflows from './workflows';
 import * as youtube from './youtube';
 import * as youtubeAnalytics from './youtubeAnalytics';
 import * as youtubereporting from './youtubereporting';
@@ -210,14 +220,18 @@ export const APIS: APIList = {
   adsensehost: adsensehost.VERSIONS,
   alertcenter: alertcenter.VERSIONS,
   analytics: analytics.VERSIONS,
+  analyticsadmin: analyticsadmin.VERSIONS,
+  analyticsdata: analyticsdata.VERSIONS,
   analyticsreporting: analyticsreporting.VERSIONS,
   androiddeviceprovisioning: androiddeviceprovisioning.VERSIONS,
   androidenterprise: androidenterprise.VERSIONS,
   androidmanagement: androidmanagement.VERSIONS,
   androidpublisher: androidpublisher.VERSIONS,
+  apigateway: apigateway.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
   artifactregistry: artifactregistry.VERSIONS,
+  assuredworkloads: assuredworkloads.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigqueryconnection: bigqueryconnection.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
@@ -350,19 +364,23 @@ export const APIS: APIList = {
   sheets: sheets.VERSIONS,
   siteVerification: siteVerification.VERSIONS,
   slides: slides.VERSIONS,
+  smartdevicemanagement: smartdevicemanagement.VERSIONS,
   sourcerepo: sourcerepo.VERSIONS,
   spanner: spanner.VERSIONS,
   speech: speech.VERSIONS,
   sql: sql.VERSIONS,
+  sqladmin: sqladmin.VERSIONS,
   storage: storage.VERSIONS,
   storagetransfer: storagetransfer.VERSIONS,
   streetviewpublish: streetviewpublish.VERSIONS,
+  sts: sts.VERSIONS,
   tagmanager: tagmanager.VERSIONS,
   tasks: tasks.VERSIONS,
   testing: testing.VERSIONS,
   texttospeech: texttospeech.VERSIONS,
   toolresults: toolresults.VERSIONS,
   tpu: tpu.VERSIONS,
+  trafficdirector: trafficdirector.VERSIONS,
   translate: translate.VERSIONS,
   vault: vault.VERSIONS,
   vectortile: vectortile.VERSIONS,
@@ -372,6 +390,8 @@ export const APIS: APIList = {
   webfonts: webfonts.VERSIONS,
   webmasters: webmasters.VERSIONS,
   websecurityscanner: websecurityscanner.VERSIONS,
+  workflowexecutions: workflowexecutions.VERSIONS,
+  workflows: workflows.VERSIONS,
   youtube: youtube.VERSIONS,
   youtubeAnalytics: youtubeAnalytics.VERSIONS,
   youtubereporting: youtubereporting.VERSIONS,
@@ -391,15 +411,19 @@ export class GeneratedAPIs {
   adsensehost = adsensehost.adsensehost;
   alertcenter = alertcenter.alertcenter;
   analytics = analytics.analytics;
+  analyticsadmin = analyticsadmin.analyticsadmin;
+  analyticsdata = analyticsdata.analyticsdata;
   analyticsreporting = analyticsreporting.analyticsreporting;
   androiddeviceprovisioning =
     androiddeviceprovisioning.androiddeviceprovisioning;
   androidenterprise = androidenterprise.androidenterprise;
   androidmanagement = androidmanagement.androidmanagement;
   androidpublisher = androidpublisher.androidpublisher;
+  apigateway = apigateway.apigateway;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
   artifactregistry = artifactregistry.artifactregistry;
+  assuredworkloads = assuredworkloads.assuredworkloads;
   bigquery = bigquery.bigquery;
   bigqueryconnection = bigqueryconnection.bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
@@ -533,19 +557,23 @@ export class GeneratedAPIs {
   sheets = sheets.sheets;
   siteVerification = siteVerification.siteVerification;
   slides = slides.slides;
+  smartdevicemanagement = smartdevicemanagement.smartdevicemanagement;
   sourcerepo = sourcerepo.sourcerepo;
   spanner = spanner.spanner;
   speech = speech.speech;
   sql = sql.sql;
+  sqladmin = sqladmin.sqladmin;
   storage = storage.storage;
   storagetransfer = storagetransfer.storagetransfer;
   streetviewpublish = streetviewpublish.streetviewpublish;
+  sts = sts.sts;
   tagmanager = tagmanager.tagmanager;
   tasks = tasks.tasks;
   testing = testing.testing;
   texttospeech = texttospeech.texttospeech;
   toolresults = toolresults.toolresults;
   tpu = tpu.tpu;
+  trafficdirector = trafficdirector.trafficdirector;
   translate = translate.translate;
   vault = vault.vault;
   vectortile = vectortile.vectortile;
@@ -555,6 +583,8 @@ export class GeneratedAPIs {
   webfonts = webfonts.webfonts;
   webmasters = webmasters.webmasters;
   websecurityscanner = websecurityscanner.websecurityscanner;
+  workflowexecutions = workflowexecutions.workflowexecutions;
+  workflows = workflows.workflows;
   youtube = youtube.youtube;
   youtubeAnalytics = youtubeAnalytics.youtubeAnalytics;
   youtubereporting = youtubereporting.youtubereporting;
