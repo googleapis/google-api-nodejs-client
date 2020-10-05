@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20200925",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -658,6 +658,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "buildEnvironmentVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Build environment variables that shall be available during build time.",
+          "type": "object"
+        },
         "buildId": {
           "description": "Output only. The Cloud Build ID of the latest successful deployment of the function.",
           "readOnly": true,
@@ -710,7 +717,7 @@
           "type": "object"
         },
         "maxInstances": {
-          "description": "The limit on the maximum number of function instances that may coexist at a given time.",
+          "description": "The limit on the maximum number of function instances that may coexist at a given time. In some cases, such as rapid traffic surges, Cloud Functions may, for a short period of time, create more instances than the specified max instances limit. If your function cannot tolerate this temporary behavior, you may want to factor in a safety margin and set a lower max instances value than your function can tolerate. See the [Max Instances](https://cloud.google.com/functions/docs/max-instances) Guide for more details.",
           "format": "int32",
           "type": "integer"
         },
