@@ -782,6 +782,10 @@ export namespace androidpublisher_v3 {
      * The quantity associated with the purchase of the inapp product.
      */
     quantity?: number | null;
+    /**
+     * ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.
+     */
+    regionCode?: string | null;
   }
   /**
    * Request for the product.purchases.acknowledge API.
@@ -8920,7 +8924,8 @@ export namespace androidpublisher_v3 {
      *   //   "purchaseTimeMillis": "my_purchaseTimeMillis",
      *   //   "purchaseToken": "my_purchaseToken",
      *   //   "purchaseType": 0,
-     *   //   "quantity": 0
+     *   //   "quantity": 0,
+     *   //   "regionCode": "my_regionCode"
      *   // }
      * }
      *

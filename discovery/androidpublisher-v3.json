@@ -335,6 +335,10 @@
                 ],
                 "maxSize": "10737418240",
                 "protocols": {
+                  "resumable": {
+                    "multipart": true,
+                    "path": "/resumable/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks"
+                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks"
@@ -414,6 +418,10 @@
                 ],
                 "maxSize": "10737418240",
                 "protocols": {
+                  "resumable": {
+                    "multipart": true,
+                    "path": "/resumable/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles"
+                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles"
@@ -467,6 +475,10 @@
                 ],
                 "maxSize": "314572800",
                 "protocols": {
+                  "resumable": {
+                    "multipart": true,
+                    "path": "/resumable/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}"
+                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}"
@@ -817,6 +829,10 @@
                 ],
                 "maxSize": "2147483648",
                 "protocols": {
+                  "resumable": {
+                    "multipart": true,
+                    "path": "/resumable/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}"
+                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}"
@@ -915,7 +931,6 @@
                     "wearScreenshots",
                     "icon",
                     "featureGraphic",
-                    "promoGraphic",
                     "tvBanner"
                   ],
                   "enumDescriptions": [
@@ -927,7 +942,6 @@
                     "Wear screenshot.",
                     "Icon.",
                     "Feature graphic.",
-                    "Promo graphic.",
                     "TV banner."
                   ],
                   "location": "path",
@@ -981,7 +995,6 @@
                     "wearScreenshots",
                     "icon",
                     "featureGraphic",
-                    "promoGraphic",
                     "tvBanner"
                   ],
                   "enumDescriptions": [
@@ -993,7 +1006,6 @@
                     "Wear screenshot.",
                     "Icon.",
                     "Feature graphic.",
-                    "Promo graphic.",
                     "TV banner."
                   ],
                   "location": "path",
@@ -1050,7 +1062,6 @@
                     "wearScreenshots",
                     "icon",
                     "featureGraphic",
-                    "promoGraphic",
                     "tvBanner"
                   ],
                   "enumDescriptions": [
@@ -1062,7 +1073,6 @@
                     "Wear screenshot.",
                     "Icon.",
                     "Feature graphic.",
-                    "Promo graphic.",
                     "TV banner."
                   ],
                   "location": "path",
@@ -1101,6 +1111,10 @@
                 ],
                 "maxSize": "15728640",
                 "protocols": {
+                  "resumable": {
+                    "multipart": true,
+                    "path": "/resumable/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}"
+                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}"
@@ -1131,7 +1145,6 @@
                     "wearScreenshots",
                     "icon",
                     "featureGraphic",
-                    "promoGraphic",
                     "tvBanner"
                   ],
                   "enumDescriptions": [
@@ -1143,7 +1156,6 @@
                     "Wear screenshot.",
                     "Icon.",
                     "Feature graphic.",
-                    "Promo graphic.",
                     "TV banner."
                   ],
                   "location": "path",
@@ -1901,6 +1913,10 @@
             ],
             "maxSize": "1073741824",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk"
@@ -1938,6 +1954,10 @@
             ],
             "maxSize": "10737418240",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle"
@@ -2651,7 +2671,7 @@
       }
     }
   },
-  "revision": "20200824",
+  "revision": "20201003",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3465,6 +3485,10 @@
           "description": "The quantity associated with the purchase of the inapp product.",
           "format": "int32",
           "type": "integer"
+        },
+        "regionCode": {
+          "description": "ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.",
+          "type": "string"
         }
       },
       "type": "object"
