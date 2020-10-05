@@ -155,7 +155,7 @@ export namespace bigtableadmin_v2 {
     singleClusterRouting?: Schema$SingleClusterRouting;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -168,7 +168,7 @@ export namespace bigtableadmin_v2 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -193,7 +193,7 @@ export namespace bigtableadmin_v2 {
      */
     expireTime?: string | null;
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string | null;
     /**
@@ -205,7 +205,7 @@ export namespace bigtableadmin_v2 {
      */
     sourceTable?: string | null;
     /**
-     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received).  The row data in this backup will be no older than this timestamp.
+     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received). The row data in this backup will be no older than this timestamp.
      */
     startTime?: string | null;
     /**
@@ -239,11 +239,11 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -308,7 +308,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ColumnFamily {
     /**
-     * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes.  NOTE: Garbage collection executes opportunistically in the background, and so it&#39;s possible for reads to return a cell even if it matches the active GC expression for its family.
+     * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it&#39;s possible for reads to return a cell even if it matches the active GC expression for its family.
      */
     gcRule?: Schema$GcRule;
   }
@@ -350,7 +350,7 @@ export namespace bigtableadmin_v2 {
      */
     requestTime?: string | null;
     /**
-     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one.  Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
+     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
      */
     tables?: {[key: string]: Schema$TableProgress} | null;
   }
@@ -414,7 +414,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateTableRequest {
     /**
-     * The optional list of row keys that will be used to initially split the table into several tablets (tablets are similar to HBase regions). Given two split keys, `s1` and `s2`, three tablets will be created, spanning the key ranges: `[, s1), [s1, s2), [s2, )`.  Example:  * Row keys := `[&quot;a&quot;, &quot;apple&quot;, &quot;custom&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;,`                `&quot;other&quot;, &quot;zz&quot;]` * initial_split_keys := `[&quot;apple&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;, &quot;other&quot;]` * Key assignment:     - Tablet 1 `[, apple)                =&gt; {&quot;a&quot;}.`     - Tablet 2 `[apple, customer_1)      =&gt; {&quot;apple&quot;, &quot;custom&quot;}.`     - Tablet 3 `[customer_1, customer_2) =&gt; {&quot;customer_1&quot;}.`     - Tablet 4 `[customer_2, other)      =&gt; {&quot;customer_2&quot;}.`     - Tablet 5 `[other, )                =&gt; {&quot;other&quot;, &quot;zz&quot;}.`
+     * The optional list of row keys that will be used to initially split the table into several tablets (tablets are similar to HBase regions). Given two split keys, `s1` and `s2`, three tablets will be created, spanning the key ranges: `[, s1), [s1, s2), [s2, )`. Example: * Row keys := `[&quot;a&quot;, &quot;apple&quot;, &quot;custom&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;,` `&quot;other&quot;, &quot;zz&quot;]` * initial_split_keys := `[&quot;apple&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;, &quot;other&quot;]` * Key assignment: - Tablet 1 `[, apple) =&gt; {&quot;a&quot;}.` - Tablet 2 `[apple, customer_1) =&gt; {&quot;apple&quot;, &quot;custom&quot;}.` - Tablet 3 `[customer_1, customer_2) =&gt; {&quot;customer_1&quot;}.` - Tablet 4 `[customer_2, other) =&gt; {&quot;customer_2&quot;}.` - Tablet 5 `[other, ) =&gt; {&quot;other&quot;, &quot;zz&quot;}.`
      */
     initialSplits?: Schema$Split[];
     /**
@@ -440,11 +440,11 @@ export namespace bigtableadmin_v2 {
     rowKeyPrefix?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -463,6 +463,17 @@ export namespace bigtableadmin_v2 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Added to the error payload.
+   */
+  export interface Schema$FailureTrace {
+    frames?: Schema$Frame[];
+  }
+  export interface Schema$Frame {
+    targetName?: string | null;
+    workflowGuid?: string | null;
+    zoneId?: string | null;
   }
   /**
    * Rule for determining which cells to delete during garbage collection.
@@ -512,7 +523,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -525,7 +536,7 @@ export namespace bigtableadmin_v2 {
      */
     displayName?: string | null;
     /**
-     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -559,7 +570,7 @@ export namespace bigtableadmin_v2 {
      */
     appProfiles?: Schema$AppProfile[];
     /**
-     * Locations from which AppProfile information could not be retrieved, due to an outage or some other transient condition. AppProfiles from these locations may be missing from `app_profiles`. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
+     * Locations from which AppProfile information could not be retrieved, due to an outage or some other transient condition. AppProfiles from these locations may be missing from `app_profiles`. Values are of the form `projects//locations/`
      */
     failedLocations?: string[] | null;
     /**
@@ -589,7 +600,7 @@ export namespace bigtableadmin_v2 {
      */
     clusters?: Schema$Cluster[];
     /**
-     * Locations from which Cluster information could not be retrieved, due to an outage or some other transient condition. Clusters from these locations may be missing from `clusters`, or may only have partial information returned. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
+     * Locations from which Cluster information could not be retrieved, due to an outage or some other transient condition. Clusters from these locations may be missing from `clusters`, or may only have partial information returned. Values are of the form `projects//locations/`
      */
     failedLocations?: string[] | null;
     /**
@@ -602,7 +613,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * Locations from which Instance information could not be retrieved, due to an outage or some other transient condition. Instances whose Clusters are all in one of the failed locations may be missing from `instances`, and Instances with at least one Cluster in a failed location may only have partial information returned. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
+     * Locations from which Instance information could not be retrieved, due to an outage or some other transient condition. Instances whose Clusters are all in one of the failed locations may be missing from `instances`, and Instances with at least one Cluster in a failed location may only have partial information returned. Values are of the form `projects//locations/`
      */
     failedLocations?: string[] | null;
     /**
@@ -662,7 +673,7 @@ export namespace bigtableadmin_v2 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -725,7 +736,7 @@ export namespace bigtableadmin_v2 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -733,7 +744,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -781,7 +792,7 @@ export namespace bigtableadmin_v2 {
     updateMask?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -793,11 +804,11 @@ export namespace bigtableadmin_v2 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -841,11 +852,11 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$RestoreTableRequest {
     /**
-     * Name of the backup from which to restore.  Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;/backups/&lt;backup&gt;`.
+     * Name of the backup from which to restore. Values are of the form `projects//instances//clusters//backups/`.
      */
     backup?: string | null;
     /**
-     * Required. The id of the table to create and restore to. This table must not already exist. The `table_id` appended to `parent` forms the full table name of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table_id&gt;`.
+     * Required. The id of the table to create and restore to. This table must not already exist. The `table_id` appended to `parent` forms the full table name of the form `projects//instances//tables/`.
      */
     tableId?: string | null;
   }
@@ -858,7 +869,7 @@ export namespace bigtableadmin_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -885,7 +896,7 @@ export namespace bigtableadmin_v2 {
     key?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -893,7 +904,7 @@ export namespace bigtableadmin_v2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1016,7 +1027,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1284,7 +1295,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1463,7 +1474,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.operations.projects.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1696,8 +1707,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.create({
-     *     // Required. The unique name of the project in which to create the new instance.
-     *     // Values are of the form `projects/{project}`.
+     *     // Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1852,8 +1862,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.delete({
-     *     // Required. The unique name of the instance to be deleted.
-     *     // Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
      *     name: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1988,8 +1997,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.get({
-     *     // Required. The unique name of the requested instance. Values are of the form
-     *     // `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
      *     name: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2129,8 +2137,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -2284,8 +2291,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.list({
      *     // DEPRECATED: This field is unused and ignored.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the project for which a list of instances is requested.
-     *     // Values are of the form `projects/{project}`.
+     *     // Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2432,11 +2438,9 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.partialUpdateInstance({
-     *     // The unique name of the instance. Values are of the form
-     *     // `projects/{project}/instances/a-z+[a-z0-9]`.
+     *     // The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
-     *     // Required. The subset of Instance fields which should be replaced.
-     *     // Must be explicitly set.
+     *     // Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2592,8 +2596,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -2745,8 +2748,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -2901,8 +2903,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.update({
-     *     // The unique name of the instance. Values are of the form
-     *     // `projects/{project}/instances/a-z+[a-z0-9]`.
+     *     // The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -3164,15 +3165,11 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.create({
-     *     // Required. The ID to be used when referring to the new app profile within its
-     *     // instance, e.g., just `myprofile` rather than
-     *     // `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     *     // Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      *     appProfileId: 'placeholder-value',
      *     // If true, ignore safety checks when creating the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // Required. The unique name of the instance in which to create the new app profile.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -3332,8 +3329,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.appProfiles.delete({
      *     // Required. If true, ignore safety checks when deleting the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // Required. The unique name of the app profile to be deleted. Values are of the form
-     *     // `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     *     // Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *   });
      *   console.log(res.data);
@@ -3469,8 +3465,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.get({
-     *     // Required. The unique name of the requested app profile. Values are of the form
-     *     // `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     *     // Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *   });
      *   console.log(res.data);
@@ -3610,23 +3605,11 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.list({
-     *     // Maximum number of results per page.
-     *     //
-     *     // A page_size of zero lets the server choose the number of items to return.
-     *     // A page_size which is strictly positive will return at most that many items.
-     *     // A negative page_size will cause an error.
-     *     //
-     *     // Following the first request, subsequent paginated calls are not required
-     *     // to pass a page_size. If a page_size is set in subsequent calls, it must
-     *     // match the page_size given in the first request.
+     *     // Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      *     pageSize: 'placeholder-value',
      *     // The value of `next_page_token` returned by a previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which a list of app profiles is
-     *     // requested. Values are of the form
-     *     // `projects/{project}/instances/{instance}`.
-     *     // Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
-     *     // e.g., `projects/myproject/instances/-`.
+     *     // Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      *     parent: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -3648,7 +3631,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     * @param {integer=} params.pageSize Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
      * @param {string} params.parent Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3776,11 +3759,9 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.appProfiles.patch({
      *     // If true, ignore safety checks when updating the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // The unique name of the app profile. Values are of the form
-     *     // `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
+     *     // The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
-     *     // Required. The subset of app profile fields which should be replaced.
-     *     // If unset, all fields will be replaced.
+     *     // Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3943,7 +3924,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Appprofiles$List
     extends StandardParameters {
     /**
-     * Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     * Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      */
     pageSize?: number;
     /**
@@ -4020,13 +4001,9 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.create({
-     *     // Required. The ID to be used when referring to the new cluster within its instance,
-     *     // e.g., just `mycluster` rather than
-     *     // `projects/myproject/instances/myinstance/clusters/mycluster`.
+     *     // Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      *     clusterId: 'placeholder-value',
-     *     // Required. The unique name of the instance in which to create the new cluster.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -4183,8 +4160,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.delete({
-     *     // Required. The unique name of the cluster to be deleted. Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -4319,8 +4295,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.get({
-     *     // Required. The unique name of the requested cluster. Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -4463,10 +4438,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.clusters.list({
      *     // DEPRECATED: This field is unused and ignored.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which a list of clusters is requested.
-     *     // Values are of the form `projects/{project}/instances/{instance}`.
-     *     // Use `{instance} = '-'` to list Clusters for all Instances in a project,
-     *     // e.g., `projects/myproject/instances/-`.
+     *     // Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      *     parent: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -4613,8 +4585,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.update({
-     *     // The unique name of the cluster. Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/a-z*`.
+     *     // The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4796,7 +4767,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.clusters.backups.create
-     * @desc Starts creating a new Cloud Bigtable Backup.  The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
+     * @desc Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4827,16 +4798,9 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.create({
-     *     // Required. The id of the backup to be created. The `backup_id` along with
-     *     // the parent `parent` are combined as {parent}/backups/{backup_id} to create
-     *     // the full backup name, of the form:
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
-     *     // This string must be between 1 and 50 characters in length and match the
-     *     // regex _a-zA-Z0-9*.
+     *     // Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
      *     backupId: 'placeholder-value',
-     *     // Required. This must be one of the clusters in the instance in which this
-     *     // table is located. The backup will be stored in this cluster. Values are
-     *     // of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4994,9 +4958,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.delete({
-     *     // Required. Name of the backup to delete.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     // Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
@@ -5130,9 +5092,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.get({
-     *     // Required. Name of the backup.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     // Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
@@ -5275,8 +5235,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.getIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *
@@ -5428,72 +5387,15 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.list({
-     *     // A filter expression that filters backups listed in the response.
-     *     // The expression must specify the field name, a comparison operator,
-     *     // and the value that you want to use for filtering. The value must be a
-     *     // string, a number, or a boolean. The comparison operator must be
-     *     // <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
-     *     // roughly synonymous with equality. Filter rules are case insensitive.
-     *     //
-     *     // The fields eligible for filtering are:
-     *     //   * `name`
-     *     //   * `source_table`
-     *     //   * `state`
-     *     //   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *     //   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *     //   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *     //   * `size_bytes`
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within
-     *     // parentheses. By default, each expression is an AND expression. However,
-     *     // you can include AND, OR, and NOT expressions explicitly.
-     *     //
-     *     // Some examples of using filters are:
-     *     //
-     *     //   * `name:"exact"` --> The backup's name is the string "exact".
-     *     //   * `name:howl` --> The backup's name contains the string "howl".
-     *     //   * `source_table:prod`
-     *     //          --> The source_table's name contains the string "prod".
-     *     //   * `state:CREATING` --> The backup is pending creation.
-     *     //   * `state:READY` --> The backup is fully created and ready for use.
-     *     //   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-     *     //          --> The backup name contains the string "howl" and start_time
-     *     //              of the backup is before 2018-03-28T14:50:00Z.
-     *     //   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     *     // A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *     filter: 'placeholder-value',
-     *     // An expression for specifying the sort order of the results of the request.
-     *     // The string value should specify one or more fields in Backup. The full
-     *     // syntax is described at https://aip.dev/132#ordering.
-     *     //
-     *     // Fields supported are:
-     *     //    * name
-     *     //    * source_table
-     *     //    * expire_time
-     *     //    * start_time
-     *     //    * end_time
-     *     //    * size_bytes
-     *     //    * state
-     *     //
-     *     // For example, "start_time". The default sorting order is ascending.
-     *     // To specify descending order for the field, a suffix " desc" should
-     *     // be appended to the field name. For example, "start_time desc".
-     *     // Redundant space characters in the syntax are insigificant.
-     *     //
-     *     // If order_by is empty, results will be sorted by `start_time` in descending
-     *     // order starting from the most recently created backup.
+     *     // An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
      *     orderBy: 'placeholder-value',
-     *     // Number of backups to be returned in the response. If 0 or
-     *     // less, defaults to the server's maximum allowed page size.
+     *     // Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      *     pageSize: 'placeholder-value',
-     *     // If non-empty, `page_token` should contain a
-     *     // next_page_token from a
-     *     // previous ListBackupsResponse to the same `parent` and with the same
-     *     // `filter`.
+     *     // If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The cluster to list backups from.  Values are of the
-     *     // form `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     *     // Use `{cluster} = '-'` to list backups for all clusters in an instance,
-     *     // e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     *     // Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -5514,11 +5416,11 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `source_table`   * `state`   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:"exact"` --> The backup's name is the string "exact".   * `name:howl` --> The backup's name contains the string "howl".   * `source_table:prod`          --> The source_table's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and start_time              of the backup is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
-     * @param {string=} params.orderBy An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering.  Fields supported are:    * name    * source_table    * expire_time    * start_time    * end_time    * size_bytes    * state  For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant.  If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
+     * @param {string=} params.filter A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * @param {string=} params.orderBy An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
      * @param {integer=} params.pageSize Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
-     * @param {string} params.parent Required. The cluster to list backups from.  Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     * @param {string} params.parent Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5639,23 +5541,10 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.patch({
-     *     // A globally unique identifier for the backup which cannot be
-     *     // changed. Values are of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/
-     *     //    backups/_a-zA-Z0-9*`
-     *     // The final segment of the name must be between 1 and 50 characters
-     *     // in length.
-     *     //
-     *     // The backup is stored in the cluster identified by the prefix of the backup
-     *     // name of the form
-     *     // `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
-     *     // Required. A mask specifying which fields (e.g. `expire_time`) in the
-     *     // Backup resource should be updated. This mask is relative to the Backup
-     *     // resource, not to the request message. The field mask must always be
-     *     // specified; this prevents any future fields from being erased accidentally
-     *     // by clients that do not know about them.
+     *     // Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5695,7 +5584,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param {string} params.name A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param {string=} params.updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
      * @param {().Backup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5813,8 +5702,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *
@@ -5968,8 +5856,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *
@@ -6138,11 +6025,11 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$List
     extends StandardParameters {
     /**
-     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `source_table`   * `state`   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:"exact"` --> The backup's name is the string "exact".   * `name:howl` --> The backup's name contains the string "howl".   * `source_table:prod`          --> The source_table's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and start_time              of the backup is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      */
     filter?: string;
     /**
-     * An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering.  Fields supported are:    * name    * source_table    * expire_time    * start_time    * end_time    * size_bytes    * state  For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant.  If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
+     * An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
      */
     orderBy?: string;
     /**
@@ -6154,14 +6041,14 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The cluster to list backups from.  Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     * Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Patch
     extends StandardParameters {
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string;
     /**
@@ -6238,9 +6125,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.checkConsistency({
-     *     // Required. The unique name of the Table for which to check replication consistency.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -6394,8 +6279,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.create({
-     *     // Required. The unique name of the instance in which to create the table.
-     *     // Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -6548,9 +6432,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.delete({
-     *     // Required. The unique name of the table to be deleted.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *   });
      *   console.log(res.data);
@@ -6683,9 +6565,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.dropRowRange({
-     *     // Required. The unique name of the table on which to drop a range of rows.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -6832,9 +6712,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.generateConsistencyToken(
      *     {
-     *       // Required. The unique name of the Table for which to create a consistency token.
-     *       // Values are of the form
-     *       // `projects/{project}/instances/{instance}/tables/{table}`.
+     *       // Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *       // Request body metadata
@@ -6990,12 +6868,9 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.get({
-     *     // Required. The unique name of the requested table.
-     *     // Values are of the form
-     *     // `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
-     *     // The view to be applied to the returned table's fields.
-     *     // Defaults to `SCHEMA_VIEW` if unspecified.
+     *     // The view to be applied to the returned table's fields. Defaults to `SCHEMA_VIEW` if unspecified.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7135,8 +7010,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -7287,23 +7161,13 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.list({
-     *     // Maximum number of results per page.
-     *     //
-     *     // A page_size of zero lets the server choose the number of items to return.
-     *     // A page_size which is strictly positive will return at most that many items.
-     *     // A negative page_size will cause an error.
-     *     //
-     *     // Following the first request, subsequent paginated calls are not required
-     *     // to pass a page_size. If a page_size is set in subsequent calls, it must
-     *     // match the page_size given in the first request.
+     *     // Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      *     pageSize: 'placeholder-value',
      *     // The value of `next_page_token` returned by a previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which tables should be listed.
-     *     // Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
      *     parent: 'projects/my-project/instances/my-instance',
-     *     // The view to be applied to the returned tables' fields.
-     *     // Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     *     // The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7324,7 +7188,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     * @param {integer=} params.pageSize Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
      * @param {string} params.parent Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {string=} params.view The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
@@ -7449,9 +7313,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.modifyColumnFamilies(
      *     {
-     *       // Required. The unique name of the table whose families should be modified.
-     *       // Values are of the form
-     *       // `projects/{project}/instances/{instance}/tables/{table}`.
+     *       // Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *       // Request body metadata
@@ -7572,7 +7434,7 @@ export namespace bigtableadmin_v2 {
 
     /**
      * bigtableadmin.projects.instances.tables.restore
-     * @desc Create a new table by restoring from a completed backup. The new table must be in the same instance as the instance containing the backup.  The returned table long-running operation can be used to track the progress of the operation, and to cancel it.  The metadata field type is RestoreTableMetadata.  The response type is Table, if successful.
+     * @desc Create a new table by restoring from a completed backup. The new table must be in the same instance as the instance containing the backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7603,9 +7465,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.restore({
-     *     // Required. The name of the instance in which to create the restored
-     *     // table. This instance must be the parent of the source backup. Values are
-     *     // of the form `projects/<project>/instances/<instance>`.
+     *     // Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects//instances/`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -7638,7 +7498,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.parent Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects//instances/`.
      * @param {().RestoreTableRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7757,8 +7617,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -7909,8 +7768,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -8113,7 +7971,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$List
     extends StandardParameters {
     /**
-     * Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     * Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      */
     pageSize?: number;
     /**
@@ -8144,7 +8002,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Restore
     extends StandardParameters {
     /**
-     * Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects//instances/`.
      */
     parent?: string;
 
