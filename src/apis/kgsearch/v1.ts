@@ -178,14 +178,11 @@ export namespace kgsearch_v1 {
      *
      *   // Do the magic
      *   const res = await kgsearch.entities.search({
-     *     // The list of entity id to be used for search instead of query string.
-     *     // To specify multiple ids in the HTTP request, repeat the parameter in the
-     *     // URL as in ...?ids=A&ids=B
+     *     // The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B
      *     ids: 'placeholder-value',
      *     // Enables indenting of json results.
      *     indent: 'placeholder-value',
-     *     // The list of language codes (defined in ISO 693) to run the query with,
-     *     // e.g. 'en'.
+     *     // The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
      *     languages: 'placeholder-value',
      *     // Limits the number of entities to be returned.
      *     limit: 'placeholder-value',
@@ -193,9 +190,7 @@ export namespace kgsearch_v1 {
      *     prefix: 'placeholder-value',
      *     // The literal query string for search.
      *     query: 'placeholder-value',
-     *     // Restricts returned entities with these types, e.g. Person
-     *     // (as defined in http://schema.org/Person). If multiple types are specified,
-     *     // returned entities will contain one or more of these types.
+     *     // Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.
      *     types: 'placeholder-value',
      *   });
      *   console.log(res.data);
