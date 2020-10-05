@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20200814",
+  "revision": "20200909",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -964,6 +964,14 @@
           ],
           "type": "string"
         },
+        "symptoms": {
+          "description": "Output only. The Symptoms that have occurred to the TPU Node.",
+          "items": {
+            "$ref": "Symptom"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "tensorflowVersion": {
           "description": "The version of Tensorflow running in the Node. Required.",
           "type": "string"
@@ -1110,6 +1118,46 @@
       "description": "Request for StopNode.",
       "id": "StopNodeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Symptom": {
+      "description": "A Symptom instance.",
+      "id": "Symptom",
+      "properties": {
+        "createTime": {
+          "description": "Timestamp when the Symptom is created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "details": {
+          "description": "Detailed information of the current Symptom.",
+          "type": "string"
+        },
+        "symptomType": {
+          "description": "Type of the Symptom.",
+          "enum": [
+            "SYMPTOM_TYPE_UNSPECIFIED",
+            "LOW_MEMORY",
+            "OUT_OF_MEMORY",
+            "EXECUTE_TIMED_OUT",
+            "MESH_BUILD_FAIL",
+            "HBM_OUT_OF_MEMORY"
+          ],
+          "enumDescriptions": [
+            "Unspecified symptom.",
+            "TPU VM memory is low.",
+            "TPU runtime is out of memory.",
+            "TPU runtime execution has timed out.",
+            "TPU runtime fails to construct a mesh that recognizes each TPU device's neighbors.",
+            "TPU HBM is out of memory."
+          ],
+          "type": "string"
+        },
+        "workerId": {
+          "description": "A string used to uniquely distinguish a worker within a TPU node.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "TensorFlowVersion": {
