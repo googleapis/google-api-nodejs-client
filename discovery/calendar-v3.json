@@ -5,41 +5,8 @@
         "https://www.googleapis.com/auth/calendar": {
           "description": "See, edit, share, and permanently delete all the calendars you can access using Google Calendar"
         },
-        "https://www.googleapis.com/auth/calendar.acls": {
-          "description": "See and change the sharing permissions of Google calendars you own"
-        },
-        "https://www.googleapis.com/auth/calendar.acls.readonly": {
-          "description": "See the sharing permissions of Google calendars you own"
-        },
-        "https://www.googleapis.com/auth/calendar.app.created": {
-          "description": "Make secondary Google calendars, and see, create, change, and delete events on them"
-        },
-        "https://www.googleapis.com/auth/calendar.calendarlist": {
-          "description": "See, add, and remove Google calendars you’re subscribed to"
-        },
-        "https://www.googleapis.com/auth/calendar.calendarlist.readonly": {
-          "description": "See the list of Google calendars you’re subscribed to"
-        },
-        "https://www.googleapis.com/auth/calendar.calendars": {
-          "description": "See and change the properties of Google calendars you have access to, and create secondary calendars"
-        },
-        "https://www.googleapis.com/auth/calendar.calendars.readonly": {
-          "description": "See the title, description, default time zone, and other properties of Google calendars you have access to"
-        },
         "https://www.googleapis.com/auth/calendar.events": {
           "description": "View and edit events on all your calendars"
-        },
-        "https://www.googleapis.com/auth/calendar.events.freebusy": {
-          "description": "See the availability on Google calendars you have access to"
-        },
-        "https://www.googleapis.com/auth/calendar.events.owned": {
-          "description": "See, create, change, and delete events on Google calendars you own"
-        },
-        "https://www.googleapis.com/auth/calendar.events.owned.readonly": {
-          "description": "See the events on Google calendars you own"
-        },
-        "https://www.googleapis.com/auth/calendar.events.public.readonly": {
-          "description": "See the events on public calendars"
         },
         "https://www.googleapis.com/auth/calendar.events.readonly": {
           "description": "View events on all your calendars"
@@ -141,8 +108,7 @@
           },
           "path": "calendars/{calendarId}/acl/{ruleId}",
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "get": {
@@ -173,8 +139,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls",
-            "https://www.googleapis.com/auth/calendar.acls.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
         },
@@ -206,8 +170,7 @@
             "$ref": "AclRule"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "list": {
@@ -252,9 +215,7 @@
             "$ref": "Acl"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls",
-            "https://www.googleapis.com/auth/calendar.acls.readonly"
+            "https://www.googleapis.com/auth/calendar"
           ],
           "supportsSubscription": true
         },
@@ -293,8 +254,7 @@
             "$ref": "AclRule"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "update": {
@@ -332,8 +292,7 @@
             "$ref": "AclRule"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "watch": {
@@ -382,9 +341,7 @@
             "$ref": "Channel"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls",
-            "https://www.googleapis.com/auth/calendar.acls.readonly"
+            "https://www.googleapis.com/auth/calendar"
           ],
           "supportsSubscription": true
         }
@@ -409,9 +366,7 @@
           },
           "path": "users/me/calendarList/{calendarId}",
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "get": {
@@ -435,9 +390,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist",
-            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
         },
@@ -460,8 +412,7 @@
             "$ref": "CalendarListEntry"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.calendarlist"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "list": {
@@ -520,8 +471,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.calendarlist",
-            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ],
           "supportsSubscription": true
@@ -554,9 +503,7 @@
             "$ref": "CalendarListEntry"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "update": {
@@ -587,9 +534,7 @@
             "$ref": "CalendarListEntry"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "watch": {
@@ -652,8 +597,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.calendarlist",
-            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ],
           "supportsSubscription": true
@@ -679,8 +622,7 @@
           },
           "path": "calendars/{calendarId}/clear",
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.calendars"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "delete": {
@@ -700,9 +642,7 @@
           },
           "path": "calendars/{calendarId}",
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendars"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "get": {
@@ -726,9 +666,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendars",
-            "https://www.googleapis.com/auth/calendar.calendars.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
         },
@@ -744,8 +681,7 @@
             "$ref": "Calendar"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.calendars"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "patch": {
@@ -771,9 +707,7 @@
             "$ref": "Calendar"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendars"
+            "https://www.googleapis.com/auth/calendar"
           ]
         },
         "update": {
@@ -799,9 +733,7 @@
             "$ref": "Calendar"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendars"
+            "https://www.googleapis.com/auth/calendar"
           ]
         }
       }
@@ -819,16 +751,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.acls",
-            "https://www.googleapis.com/auth/calendar.acls.readonly",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist",
-            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
             "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly",
             "https://www.googleapis.com/auth/calendar.settings.readonly"
@@ -848,13 +771,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.calendarlist",
-            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
         }
@@ -907,9 +823,7 @@
           "path": "calendars/{calendarId}/events/{eventId}",
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "get": {
@@ -957,12 +871,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
             "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
@@ -1004,9 +913,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "insert": {
@@ -1073,9 +980,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "instances": {
@@ -1157,12 +1062,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
             "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ],
@@ -1292,12 +1192,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
             "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ],
@@ -1358,8 +1253,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "patch": {
@@ -1438,9 +1332,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "quickAdd": {
@@ -1491,9 +1383,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "update": {
@@ -1572,9 +1462,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
-            "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.owned"
+            "https://www.googleapis.com/auth/calendar.events"
           ]
         },
         "watch": {
@@ -1705,12 +1593,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.app.created",
             "https://www.googleapis.com/auth/calendar.events",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
-            "https://www.googleapis.com/auth/calendar.events.owned",
-            "https://www.googleapis.com/auth/calendar.events.owned.readonly",
-            "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly"
           ],
@@ -1733,7 +1616,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
-            "https://www.googleapis.com/auth/calendar.events.freebusy",
             "https://www.googleapis.com/auth/calendar.readonly"
           ]
         }
@@ -1841,7 +1723,7 @@
       }
     }
   },
-  "revision": "20200820",
+  "revision": "20200918",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2425,7 +2307,7 @@
           "type": "array"
         },
         "attendees": {
-          "description": "The attendees of the event. See the Events with attendees guide for more information on scheduling events with other calendar users.",
+          "description": "The attendees of the event. See the Events with attendees guide for more information on scheduling events with other calendar users. Service accounts need to use domain-wide delegation of authority to populate the attendee list.",
           "items": {
             "$ref": "EventAttendee"
           },
@@ -2519,23 +2401,23 @@
           "type": "object"
         },
         "gadget": {
-          "description": "A gadget that extends this event.",
+          "description": "A gadget that extends this event. Gadgets are deprecated; this structure is instead only used for returning birthday calendar metadata.",
           "properties": {
             "display": {
-              "description": "The gadget's display mode. Optional. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked.",
+              "description": "The gadget's display mode. Deprecated. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked.",
               "type": "string"
             },
             "height": {
-              "description": "The gadget's height in pixels. The height must be an integer greater than 0. Optional.",
+              "description": "The gadget's height in pixels. The height must be an integer greater than 0. Optional. Deprecated.",
               "format": "int32",
               "type": "integer"
             },
             "iconLink": {
-              "description": "The gadget's icon URL. The URL scheme must be HTTPS.",
+              "description": "The gadget's icon URL. The URL scheme must be HTTPS. Deprecated.",
               "type": "string"
             },
             "link": {
-              "description": "The gadget's URL. The URL scheme must be HTTPS.",
+              "description": "The gadget's URL. The URL scheme must be HTTPS. Deprecated.",
               "type": "string"
             },
             "preferences": {
@@ -2547,15 +2429,15 @@
               "type": "object"
             },
             "title": {
-              "description": "The gadget's title.",
+              "description": "The gadget's title. Deprecated.",
               "type": "string"
             },
             "type": {
-              "description": "The gadget's type.",
+              "description": "The gadget's type. Deprecated.",
               "type": "string"
             },
             "width": {
-              "description": "The gadget's width in pixels. The width must be an integer greater than 0. Optional.",
+              "description": "The gadget's width in pixels. The width must be an integer greater than 0. Optional. Deprecated.",
               "format": "int32",
               "type": "integer"
             }
