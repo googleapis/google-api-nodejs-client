@@ -929,7 +929,7 @@
       }
     }
   },
-  "revision": "20200817",
+  "revision": "20200928",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1133,15 +1133,6 @@
         },
         "delegatedScopes": {
           "description": "The scopes delegated to the app from Android Device Policy.",
-          "enumDescriptions": [
-            "No delegation scope specified.",
-            "Grants access to certificate installation and management.",
-            "Grants access to managed configurations management.",
-            "Grants access to blocking uninstallation.",
-            "Grants access to permission policy and permission grant state.",
-            "Grants access to package access state.",
-            "Grants access for enabling system apps."
-          ],
           "items": {
             "enum": [
               "DELEGATED_SCOPE_UNSPECIFIED",
@@ -1408,12 +1399,6 @@
         },
         "resetPasswordFlags": {
           "description": "For commands of type RESET_PASSWORD, optionally specifies flags.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "Don't allow other admins to change the password again until the user has entered it.",
-            "Don't ask for user credentials on device boot.",
-            "Lock the device after password reset."
-          ],
           "items": {
             "enum": [
               "RESET_PASSWORD_FLAG_UNSPECIFIED",
@@ -1443,7 +1428,7 @@
             "This value is disallowed.",
             "Lock the device, as if the lock screen timeout had expired.",
             "Reset the user's password.",
-            "Reboot the device. Only supported on API level 24+."
+            "Reboot the device. Only supported on fully managed devices running Android 7.0 (API level 24) or higher."
           ],
           "type": "string"
         },
@@ -1901,13 +1886,6 @@
         },
         "enabledNotificationTypes": {
           "description": "The types of Google Pub/Sub notifications enabled for the enterprise.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "A notification sent when a device enrolls.",
-            "Deprecated.",
-            "A notification sent when a device issues a status report.",
-            "A notification sent when a device command has completed."
-          ],
           "items": {
             "enum": [
               "NOTIFICATION_TYPE_UNSPECIFIED",
@@ -2869,7 +2847,7 @@
       "type": "object"
     },
     "PersonalApplicationPolicy": {
-      "description": "Policies for apps on the personal profile of a company-owned device with a work profile.",
+      "description": "Policies for apps in the personal profile of a company-owned device with a work profile.",
       "id": "PersonalApplicationPolicy",
       "properties": {
         "installType": {
@@ -2880,7 +2858,7 @@
           ],
           "enumDescriptions": [
             "Unspecified. The default behavior is that all installs are allowed.",
-            "The app is blocked and can't be installed."
+            "The app is blocked and can't be installed in the personal profile."
           ],
           "type": "string"
         },
@@ -2912,21 +2890,21 @@
           "type": "integer"
         },
         "personalApplications": {
-          "description": "Policy applied to applications on the personal profile.",
+          "description": "Policy applied to applications in the personal profile.",
           "items": {
             "$ref": "PersonalApplicationPolicy"
           },
           "type": "array"
         },
         "personalPlayStoreMode": {
-          "description": "Controls how apps on the personal profile are allowed or blocked.",
+          "description": "Used together with personal_applications to control how apps in the personal profile are allowed or blocked.",
           "enum": [
             "PLAY_STORE_MODE_UNSPECIFIED",
             "BLACKLIST"
           ],
           "enumDescriptions": [
             "Unspecified. Default behavior is to allow all installs.",
-            "All Play Store apps are available, except those whose install_type is BLOCKED in PersonalApplicationPolicy."
+            "All Play Store apps are available, except those whose install_type is BLOCKED in personal_applications."
           ],
           "type": "string"
         },
@@ -2966,11 +2944,6 @@
         },
         "androidDevicePolicyTracks": {
           "description": "The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "The production track, which provides the latest stable release.",
-            "The beta track, which provides the latest beta release."
-          ],
           "items": {
             "enum": [
               "APP_TRACK_UNSPECIFIED",
@@ -3136,19 +3109,6 @@
         },
         "keyguardDisabledFeatures": {
           "description": "Disabled keyguard customizations, such as widgets.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "Disable the camera on secure keyguard screens (e.g. PIN).",
-            "Disable showing all notifications on secure keyguard screens.",
-            "Disable unredacted notifications on secure keyguard screens.",
-            "Ignore trust agent state on secure keyguard screens.",
-            "Disable fingerprint sensor on secure keyguard screens.",
-            "Disable text entry into notifications on secure keyguard screens.",
-            "Disable face authentication on secure keyguard screens.",
-            "Disable iris authentication on secure keyguard screens.",
-            "Disable all biometric authentication on secure keyguard screens.",
-            "Disable all current and future keyguard customizations."
-          ],
           "items": {
             "enum": [
               "KEYGUARD_DISABLED_FEATURE_UNSPECIFIED",
@@ -3379,12 +3339,6 @@
         },
         "stayOnPluggedModes": {
           "description": "The battery plugged in modes for which the device stays on. When using this setting, it is recommended to clear maximum_time_to_lock so that the device doesn't lock itself while it stays on.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "Power source is an AC charger.",
-            "Power source is a USB port.",
-            "Power source is wireless."
-          ],
           "items": {
             "enum": [
               "BATTERY_PLUGGED_MODE_UNSPECIFIED",
@@ -3963,14 +3917,6 @@
       "properties": {
         "enabledFeatures": {
           "description": "The features to enable. Use this if you want to control exactly which feature(s) will be activated; leave empty to allow all features.Restrictions / things to note: - If no features are listed here, all features are enabled — this is the default behavior where you give access to all features to your admins. - This must not contain any FEATURE_UNSPECIFIED values. - Repeated values are ignored ",
-          "enumDescriptions": [
-            "Unspecified feature.",
-            "The Managed Play search apps page (https://developers.google.com/android/management/apps#search-apps).",
-            "The private apps page (https://developers.google.com/android/management/apps#private-apps).",
-            "The Web Apps page (https://developers.google.com/android/management/apps#web-apps).",
-            "The organize apps page (https://developers.google.com/android/management/apps#organize-apps).",
-            "The managed configurations page (https://developers.google.com/android/management/managed-configurations-iframe)."
-          ],
           "items": {
             "enum": [
               "FEATURE_UNSPECIFIED",
@@ -4002,10 +3948,6 @@
         },
         "permissions": {
           "description": "Permissions available to an admin in the embedded UI. An admin must have all of these permissions in order to view the UI. This field is deprecated.",
-          "enumDescriptions": [
-            "This value is ignored.",
-            "The permission to approve apps for the enterprise."
-          ],
           "items": {
             "enum": [
               "WEB_TOKEN_PERMISSION_UNSPECIFIED",

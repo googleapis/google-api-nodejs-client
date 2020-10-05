@@ -1246,7 +1246,7 @@ export namespace androidmanagement_v1 {
     receiverActivity?: string | null;
   }
   /**
-   * Policies for apps on the personal profile of a company-owned device with a work profile.
+   * Policies for apps in the personal profile of a company-owned device with a work profile.
    */
   export interface Schema$PersonalApplicationPolicy {
     /**
@@ -1275,11 +1275,11 @@ export namespace androidmanagement_v1 {
      */
     maxDaysWithWorkOff?: number | null;
     /**
-     * Policy applied to applications on the personal profile.
+     * Policy applied to applications in the personal profile.
      */
     personalApplications?: Schema$PersonalApplicationPolicy[];
     /**
-     * Controls how apps on the personal profile are allowed or blocked.
+     * Used together with personal_applications to control how apps in the personal profile are allowed or blocked.
      */
     personalPlayStoreMode?: string | null;
     /**
