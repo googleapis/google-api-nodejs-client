@@ -213,6 +213,10 @@ export namespace monitoring_v1 {
      */
     gridLayout?: Schema$GridLayout;
     /**
+     * The content is arranged as a grid of tiles, with each content widget occupying one or more grid blocks.
+     */
+    mosaicLayout?: Schema$MosaicLayout;
+    /**
      * Immutable. The resource name of the dashboard.
      */
     name?: string | null;
@@ -338,6 +342,19 @@ export namespace monitoring_v1 {
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * A mosaic layout divides the available space into a grid of blocks, and overlays the grid with tiles. Unlike GridLayout, tiles may span multiple grid blocks and can be placed at arbitrary locations in the grid.
+   */
+  export interface Schema$MosaicLayout {
+    /**
+     * The number of columns in the mosaic grid. The number of columns must be between 1 and 12, inclusive.
+     */
+    columns?: number | null;
+    /**
+     * The tiles to display.
+     */
+    tiles?: Schema$Tile[];
   }
   /**
    * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
@@ -502,6 +519,31 @@ export namespace monitoring_v1 {
      * The value of the threshold. The value should be defined in the native scale of the metric.
      */
     value?: number | null;
+  }
+  /**
+   * A single tile in the mosaic. The placement and size of the tile are configurable.
+   */
+  export interface Schema$Tile {
+    /**
+     * The height of the tile, measured in grid blocks. Tiles must have a minimum height of 1.
+     */
+    height?: number | null;
+    /**
+     * The informational widget contained in the tile. For example an XyChart.
+     */
+    widget?: Schema$Widget;
+    /**
+     * The width of the tile, measured in grid blocks. Tiles must have a minimum width of 1.
+     */
+    width?: number | null;
+    /**
+     * The zero-indexed position of the tile in grid blocks relative to the left edge of the grid. Tiles must be contained within the specified number of columns. x_pos cannot be negative.
+     */
+    xPos?: number | null;
+    /**
+     * The zero-indexed position of the tile in grid blocks relative to the top edge of the grid. y_pos cannot be negative.
+     */
+    yPos?: number | null;
   }
   /**
    * A filter that defines a subset of time series data that is displayed in a widget. Time series data is fetched using the ListTimeSeries (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) method.
@@ -715,6 +757,7 @@ export namespace monitoring_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
+     *       //   "mosaicLayout": {},
      *       //   "name": "my_name",
      *       //   "rowLayout": {}
      *       // }
@@ -728,6 +771,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
      *   // }
@@ -999,6 +1043,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
      *   // }
@@ -1283,6 +1328,7 @@ export namespace monitoring_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
+     *       //   "mosaicLayout": {},
      *       //   "name": "my_name",
      *       //   "rowLayout": {}
      *       // }
@@ -1296,6 +1342,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
      *   // }
