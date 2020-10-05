@@ -223,6 +223,15 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
+   * The response message for MembershipsService.CheckTransitiveMembership.
+   */
+  export interface Schema$CheckTransitiveMembershipResponse {
+    /**
+     * Response does not include the possible roles of a member since the behavior of this rpc is not all-or-nothing unlike the other rpcs. So, it may not be possible to list all the roles definitively, due to possible lack of authorization in some of the paths.
+     */
+    hasMembership?: boolean | null;
+  }
+  /**
    * Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users
    */
   export interface Schema$ClientState {
@@ -620,7 +629,7 @@ export namespace cloudidentity_v1beta1 {
      */
     etag?: string | null;
     /**
-     * The Health score of the resource
+     * The Health score of the resource. The Health score is the callers specification of the condition of the device from a usability point of view. For example, a third-party device management provider may specify a health score based on its compliance with organizational policies.
      */
     healthScore?: string | null;
     /**
@@ -640,7 +649,7 @@ export namespace cloudidentity_v1beta1 {
      */
     managed?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the &quot;BeyondCorp Alliance&quot;, this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization&#39;s customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter &#39;C&#39;. The customer ID to be used in this API is the string after the letter &#39;C&#39; (not including &#39;C&#39;)
      */
     name?: string | null;
     /**
@@ -670,7 +679,7 @@ export namespace cloudidentity_v1beta1 {
     stringValue?: string | null;
   }
   /**
-   * A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
+   *  A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1Device {
     /**
@@ -878,7 +887,7 @@ export namespace cloudidentity_v1beta1 {
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of &#39;cloudidentity.googleapis.com/groups.discussion_forum&#39; and an empty value. Existing Google Groups can have an additional label with a key of &#39;cloudidentity.googleapis.com/groups.security&#39; and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of &#39;system/groups/external&#39; and an empty value. Examples: {&quot;cloudidentity.googleapis.com/groups.discussion_forum&quot;: &quot;&quot;} or {&quot;system/groups/external&quot;: &quot;&quot;}.
+     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {&quot;cloudidentity.googleapis.com/groups.discussion_forum&quot;: &quot;&quot;} or {&quot;system/groups/external&quot;: &quot;&quot;}.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -893,6 +902,35 @@ export namespace cloudidentity_v1beta1 {
      * Output only. The time when the `Group` was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Message representing a transitive group of a user or a group.
+   */
+  export interface Schema$GroupRelation {
+    /**
+     * Display name for this group.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name for this group.
+     */
+    group?: string | null;
+    /**
+     * Entity key has an id and a namespace. In case of discussion forums, the id will be an email address without a namespace.
+     */
+    groupKey?: Schema$EntityKey;
+    /**
+     * Labels for Group resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The relation between the member and the transitive group.
+     */
+    relationType?: string | null;
+    /**
+     * Membership roles of the member for the group.
+     */
+    roles?: Schema$TransitiveMembershipRole[];
   }
   /**
    * Response message that is returned in LRO result of ListClientStates Operation.
@@ -993,6 +1031,27 @@ export namespace cloudidentity_v1beta1 {
      * Token to retrieve the next page of results. Empty if there are no more results.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Message representing a transitive membership of a group.
+   */
+  export interface Schema$MemberRelation {
+    /**
+     * Resource name for this member if member is a GROUP, otherwise it is empty.
+     */
+    member?: string | null;
+    /**
+     * Entity key has an id and a namespace. In case of discussion forums, the id will be an email address without a namespace.
+     */
+    preferredMemberKey?: Schema$EntityKey[];
+    /**
+     * The relation between the group and the transitive member.
+     */
+    relationType?: string | null;
+    /**
+     * The membership role details (i.e name of role and expiry time).
+     */
+    roles?: Schema$TransitiveMembershipRole[];
   }
   /**
    * A membership within the Cloud Identity Groups API. A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a &quot;member&quot;.
@@ -1118,6 +1177,32 @@ export namespace cloudidentity_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response message for MembershipsService.SearchTransitiveGroups.
+   */
+  export interface Schema$SearchTransitiveGroupsResponse {
+    /**
+     * List of transitive groups satisfying the query.
+     */
+    memberships?: Schema$GroupRelation[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results available for listing.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for MembershipsService.SearchTransitiveMemberships.
+   */
+  export interface Schema$SearchTransitiveMembershipsResponse {
+    /**
+     * List of transitive members satisfying the query.
+     */
+    memberships?: Schema$MemberRelation[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1133,6 +1218,15 @@ export namespace cloudidentity_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Message representing the role of a TransitiveMembership.
+   */
+  export interface Schema$TransitiveMembershipRole {
+    /**
+     * TransitiveMembershipRole in string format. Currently supported TransitiveMembershipRoles: `&quot;MEMBER&quot;`, `&quot;OWNER&quot;`, and `&quot;MANAGER&quot;`.
+     */
+    role?: string | null;
   }
   /**
    * The details of an update to a `MembershipRole`.
@@ -4909,6 +5003,154 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
+     * cloudidentity.groups.memberships.checkTransitiveMembership
+     * @desc Check a potential member for membership in a group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.checkTransitiveMembership({
+     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
+     *     parent: 'groups/my-group',
+     *     // Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasMembership": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.memberships.checkTransitiveMembership
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    checkTransitiveMembership(
+      params: Params$Resource$Groups$Memberships$Checktransitivemembership,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkTransitiveMembership(
+      params?: Params$Resource$Groups$Memberships$Checktransitivemembership,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckTransitiveMembershipResponse>;
+    checkTransitiveMembership(
+      params: Params$Resource$Groups$Memberships$Checktransitivemembership,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkTransitiveMembership(
+      params: Params$Resource$Groups$Memberships$Checktransitivemembership,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>,
+      callback: BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+    ): void;
+    checkTransitiveMembership(
+      params: Params$Resource$Groups$Memberships$Checktransitivemembership,
+      callback: BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+    ): void;
+    checkTransitiveMembership(
+      callback: BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+    ): void;
+    checkTransitiveMembership(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Checktransitivemembership
+        | BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckTransitiveMembershipResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckTransitiveMembershipResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Checktransitivemembership;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Checktransitivemembership;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/memberships:checkTransitiveMembership'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckTransitiveMembershipResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckTransitiveMembershipResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * cloudidentity.groups.memberships.create
      * @desc Creates a `Membership`.
      * @example
@@ -5334,6 +5576,148 @@ export namespace cloudidentity_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
+      }
+    }
+
+    /**
+     * cloudidentity.groups.memberships.getMembershipGraph
+     * @desc Get a membership graph of a member or member/group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.getMembershipGraph({
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
+     *     parent: 'groups/my-group',
+     *     // Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.memberships.getMembershipGraph
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getMembershipGraph(
+      params: Params$Resource$Groups$Memberships$Getmembershipgraph,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMembershipGraph(
+      params?: Params$Resource$Groups$Memberships$Getmembershipgraph,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    getMembershipGraph(
+      params: Params$Resource$Groups$Memberships$Getmembershipgraph,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getMembershipGraph(
+      params: Params$Resource$Groups$Memberships$Getmembershipgraph,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getMembershipGraph(
+      params: Params$Resource$Groups$Memberships$Getmembershipgraph,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getMembershipGraph(callback: BodyResponseCallback<Schema$Operation>): void;
+    getMembershipGraph(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Getmembershipgraph
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Getmembershipgraph;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Getmembershipgraph;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/memberships:getMembershipGraph'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -5793,8 +6177,327 @@ export namespace cloudidentity_v1beta1 {
         );
       }
     }
+
+    /**
+     * cloudidentity.groups.memberships.searchTransitiveGroups
+     * @desc Search transitive groups of a member.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.searchTransitiveGroups({
+     *     // The default page size is 200 (max 1000).
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.
+     *     parent: 'groups/my-group',
+     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.memberships.searchTransitiveGroups
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The default page size is 200 (max 1000).
+     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
+     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchTransitiveGroups(
+      params: Params$Resource$Groups$Memberships$Searchtransitivegroups,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchTransitiveGroups(
+      params?: Params$Resource$Groups$Memberships$Searchtransitivegroups,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchTransitiveGroupsResponse>;
+    searchTransitiveGroups(
+      params: Params$Resource$Groups$Memberships$Searchtransitivegroups,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchTransitiveGroups(
+      params: Params$Resource$Groups$Memberships$Searchtransitivegroups,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>,
+      callback: BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+    ): void;
+    searchTransitiveGroups(
+      params: Params$Resource$Groups$Memberships$Searchtransitivegroups,
+      callback: BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+    ): void;
+    searchTransitiveGroups(
+      callback: BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+    ): void;
+    searchTransitiveGroups(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Searchtransitivegroups
+        | BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchTransitiveGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchTransitiveGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Searchtransitivegroups;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Searchtransitivegroups;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/memberships:searchTransitiveGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchTransitiveGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchTransitiveGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudidentity.groups.memberships.searchTransitiveMemberships
+     * @desc Search transitive memberships of a group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.searchTransitiveMemberships(
+     *     {
+     *       // The default page size is 200 (max 1000).
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
+     *       parent: 'groups/my-group',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.memberships.searchTransitiveMemberships
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The default page size is 200 (max 1000).
+     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
+     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchTransitiveMemberships(
+      params: Params$Resource$Groups$Memberships$Searchtransitivememberships,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchTransitiveMemberships(
+      params?: Params$Resource$Groups$Memberships$Searchtransitivememberships,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchTransitiveMembershipsResponse>;
+    searchTransitiveMemberships(
+      params: Params$Resource$Groups$Memberships$Searchtransitivememberships,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchTransitiveMemberships(
+      params: Params$Resource$Groups$Memberships$Searchtransitivememberships,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+    ): void;
+    searchTransitiveMemberships(
+      params: Params$Resource$Groups$Memberships$Searchtransitivememberships,
+      callback: BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+    ): void;
+    searchTransitiveMemberships(
+      callback: BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+    ): void;
+    searchTransitiveMemberships(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Searchtransitivememberships
+        | BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchTransitiveMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchTransitiveMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Searchtransitivememberships;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Searchtransitivememberships;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/memberships:searchTransitiveMemberships'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchTransitiveMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchTransitiveMembershipsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Groups$Memberships$Checktransitivemembership
+    extends StandardParameters {
+    /**
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
+     */
+    parent?: string;
+    /**
+     * Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     */
+    query?: string;
+  }
   export interface Params$Resource$Groups$Memberships$Create
     extends StandardParameters {
     /**
@@ -5820,6 +6523,17 @@ export namespace cloudidentity_v1beta1 {
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Groups$Memberships$Getmembershipgraph
+    extends StandardParameters {
+    /**
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
+     */
+    parent?: string;
+    /**
+     * Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     */
+    query?: string;
   }
   export interface Params$Resource$Groups$Memberships$List
     extends StandardParameters {
@@ -5866,5 +6580,39 @@ export namespace cloudidentity_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ModifyMembershipRolesRequest;
+  }
+  export interface Params$Resource$Groups$Memberships$Searchtransitivegroups
+    extends StandardParameters {
+    /**
+     * The default page size is 200 (max 1000).
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.
+     */
+    parent?: string;
+    /**
+     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     */
+    query?: string;
+  }
+  export interface Params$Resource$Groups$Memberships$Searchtransitivememberships
+    extends StandardParameters {
+    /**
+     * The default page size is 200 (max 1000).
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
+     */
+    parent?: string;
   }
 }

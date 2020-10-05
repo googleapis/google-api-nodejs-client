@@ -872,6 +872,38 @@
       "resources": {
         "memberships": {
           "methods": {
+            "checkTransitiveMembership": {
+              "description": "Check a potential member for membership in a group.",
+              "flatPath": "v1beta1/groups/{groupsId}/memberships:checkTransitiveMembership",
+              "httpMethod": "GET",
+              "id": "cloudidentity.groups.memberships.checkTransitiveMembership",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "[Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.",
+                  "location": "path",
+                  "pattern": "^groups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/memberships:checkTransitiveMembership",
+              "response": {
+                "$ref": "CheckTransitiveMembershipResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.groups",
+                "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "create": {
               "description": "Creates a `Membership`.",
               "flatPath": "v1beta1/groups/{groupsId}/memberships",
@@ -947,6 +979,38 @@
               "path": "v1beta1/{+name}",
               "response": {
                 "$ref": "Membership"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.groups",
+                "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getMembershipGraph": {
+              "description": "Get a membership graph of a member or member/group.",
+              "flatPath": "v1beta1/groups/{groupsId}/memberships:getMembershipGraph",
+              "httpMethod": "GET",
+              "id": "cloudidentity.groups.memberships.getMembershipGraph",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id \"-\". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.",
+                  "location": "path",
+                  "pattern": "^groups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/memberships:getMembershipGraph",
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-identity.groups",
@@ -1070,13 +1134,94 @@
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "searchTransitiveGroups": {
+              "description": "Search transitive groups of a member.",
+              "flatPath": "v1beta1/groups/{groupsId}/memberships:searchTransitiveGroups",
+              "httpMethod": "GET",
+              "id": "cloudidentity.groups.memberships.searchTransitiveGroups",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The default page size is 200 (max 1000).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The next_page_token value returned from a previous list request, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "[Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.",
+                  "location": "path",
+                  "pattern": "^groups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/memberships:searchTransitiveGroups",
+              "response": {
+                "$ref": "SearchTransitiveGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.groups",
+                "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "searchTransitiveMemberships": {
+              "description": "Search transitive memberships of a group.",
+              "flatPath": "v1beta1/groups/{groupsId}/memberships:searchTransitiveMemberships",
+              "httpMethod": "GET",
+              "id": "cloudidentity.groups.memberships.searchTransitiveMemberships",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The default page size is 200 (max 1000).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The next_page_token value returned from a previous list request, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "[Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.",
+                  "location": "path",
+                  "pattern": "^groups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/memberships:searchTransitiveMemberships",
+              "response": {
+                "$ref": "SearchTransitiveMembershipsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.groups",
+                "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20200817",
+  "revision": "20200922",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1198,6 +1343,17 @@
         "deviceUser": {
           "$ref": "DeviceUser",
           "description": "Resultant DeviceUser object for the action."
+        }
+      },
+      "type": "object"
+    },
+    "CheckTransitiveMembershipResponse": {
+      "description": "The response message for MembershipsService.CheckTransitiveMembership.",
+      "id": "CheckTransitiveMembershipResponse",
+      "properties": {
+        "hasMembership": {
+          "description": "Response does not include the possible roles of a member since the behavior of this rpc is not all-or-nothing unlike the other rpcs. So, it may not be possible to list all the roles definitively, due to possible lack of authorization in some of the paths.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1900,7 +2056,7 @@
           "type": "string"
         },
         "healthScore": {
-          "description": "The Health score of the resource",
+          "description": "The Health score of the resource. The Health score is the callers specification of the condition of the device from a usability point of view. For example, a third-party device management provider may specify a health score based on its compliance with organizational policies.",
           "enum": [
             "HEALTH_SCORE_UNSPECIFIED",
             "VERY_POOR",
@@ -1947,7 +2103,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data.",
+          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the \"BeyondCorp Alliance\", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')",
           "readOnly": true,
           "type": "string"
         },
@@ -1994,7 +2150,7 @@
       "type": "object"
     },
     "GoogleAppsCloudidentityDevicesV1Device": {
-      "description": "A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.",
+      "description": " A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.",
       "id": "GoogleAppsCloudidentityDevicesV1Device",
       "properties": {
         "androidSpecificAttributes": {
@@ -2368,7 +2524,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of 'cloudidentity.googleapis.com/groups.discussion_forum' and an empty value. Existing Google Groups can have an additional label with a key of 'cloudidentity.googleapis.com/groups.security' and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of 'system/groups/external' and an empty value. Examples: {\"cloudidentity.googleapis.com/groups.discussion_forum\": \"\"} or {\"system/groups/external\": \"\"}.",
+          "description": "Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {\"cloudidentity.googleapis.com/groups.discussion_forum\": \"\"} or {\"system/groups/external\": \"\"}.",
           "type": "object"
         },
         "name": {
@@ -2385,6 +2541,55 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GroupRelation": {
+      "description": "Message representing a transitive group of a user or a group.",
+      "id": "GroupRelation",
+      "properties": {
+        "displayName": {
+          "description": "Display name for this group.",
+          "type": "string"
+        },
+        "group": {
+          "description": "Resource name for this group.",
+          "type": "string"
+        },
+        "groupKey": {
+          "$ref": "EntityKey",
+          "description": "Entity key has an id and a namespace. In case of discussion forums, the id will be an email address without a namespace."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels for Group resource.",
+          "type": "object"
+        },
+        "relationType": {
+          "description": "The relation between the member and the transitive group.",
+          "enum": [
+            "RELATION_TYPE_UNSPECIFIED",
+            "DIRECT",
+            "INDIRECT",
+            "DIRECT_AND_INDIRECT"
+          ],
+          "enumDescriptions": [
+            "The relation type is undefined or undetermined.",
+            "The two entities have only a direct membership with each other.",
+            "The two entities have only an indirect membership with each other.",
+            "The two entities have both a direct and an indirect membership with each other."
+          ],
+          "type": "string"
+        },
+        "roles": {
+          "description": "Membership roles of the member for the group.",
+          "items": {
+            "$ref": "TransitiveMembershipRole"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2520,6 +2725,47 @@
         "nextPageToken": {
           "description": "Token to retrieve the next page of results. Empty if there are no more results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MemberRelation": {
+      "description": "Message representing a transitive membership of a group.",
+      "id": "MemberRelation",
+      "properties": {
+        "member": {
+          "description": "Resource name for this member if member is a GROUP, otherwise it is empty.",
+          "type": "string"
+        },
+        "preferredMemberKey": {
+          "description": "Entity key has an id and a namespace. In case of discussion forums, the id will be an email address without a namespace.",
+          "items": {
+            "$ref": "EntityKey"
+          },
+          "type": "array"
+        },
+        "relationType": {
+          "description": "The relation between the group and the transitive member.",
+          "enum": [
+            "RELATION_TYPE_UNSPECIFIED",
+            "DIRECT",
+            "INDIRECT",
+            "DIRECT_AND_INDIRECT"
+          ],
+          "enumDescriptions": [
+            "The relation type is undefined or undetermined.",
+            "The two entities have only a direct membership with each other.",
+            "The two entities have only an indirect membership with each other.",
+            "The two entities have both a direct and an indirect membership with each other."
+          ],
+          "type": "string"
+        },
+        "roles": {
+          "description": "The membership role details (i.e name of role and expiry time).",
+          "items": {
+            "$ref": "TransitiveMembershipRole"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2707,6 +2953,42 @@
       },
       "type": "object"
     },
+    "SearchTransitiveGroupsResponse": {
+      "description": "The response message for MembershipsService.SearchTransitiveGroups.",
+      "id": "SearchTransitiveGroupsResponse",
+      "properties": {
+        "memberships": {
+          "description": "List of transitive groups satisfying the query.",
+          "items": {
+            "$ref": "GroupRelation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results available for listing.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchTransitiveMembershipsResponse": {
+      "description": "The response message for MembershipsService.SearchTransitiveMemberships.",
+      "id": "SearchTransitiveMembershipsResponse",
+      "properties": {
+        "memberships": {
+          "description": "List of transitive members satisfying the query.",
+          "items": {
+            "$ref": "MemberRelation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2729,6 +3011,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransitiveMembershipRole": {
+      "description": "Message representing the role of a TransitiveMembership.",
+      "id": "TransitiveMembershipRole",
+      "properties": {
+        "role": {
+          "description": "TransitiveMembershipRole in string format. Currently supported TransitiveMembershipRoles: `\"MEMBER\"`, `\"OWNER\"`, and `\"MANAGER\"`.",
           "type": "string"
         }
       },
