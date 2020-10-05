@@ -2,7 +2,7 @@
 
 # discovery
 
-> Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
+> Google API Discovery Service allows service consumers to list the discovery metadata of all public APIs managed by the API Platform.
 
 ## Installation
 
