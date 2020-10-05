@@ -1225,6 +1225,17 @@
                       "required": true,
                       "type": "string"
                     },
+                    "pageSize": {
+                      "description": "If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "projectId": {
                       "description": "A project id.",
                       "location": "path",
@@ -2431,7 +2442,7 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20200916",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3499,6 +3510,91 @@
       },
       "type": "object"
     },
+    "FlexTemplateRuntimeEnvironment": {
+      "description": "The environment values to be set at runtime for flex template.",
+      "id": "FlexTemplateRuntimeEnvironment",
+      "properties": {
+        "additionalExperiments": {
+          "description": "Additional experiment flags for the job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "additionalUserLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }.",
+          "type": "object"
+        },
+        "enableStreamingEngine": {
+          "description": "Whether to enable Streaming Engine for the job.",
+          "type": "boolean"
+        },
+        "ipConfiguration": {
+          "description": "Configuration for VM IPs.",
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ],
+          "enumDescriptions": [
+            "The configuration is unknown, or unspecified.",
+            "Workers should have public IP addresses.",
+            "Workers should have private IP addresses."
+          ],
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "The machine type to use for the job. Defaults to the value from the template if not specified.",
+          "type": "string"
+        },
+        "maxWorkers": {
+          "description": "The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "network": {
+          "description": "Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\".",
+          "type": "string"
+        },
+        "numWorkers": {
+          "description": "The initial number of Google Compute Engine instances for the job.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceAccountEmail": {
+          "description": "The email address of the service account to run the job as.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL.",
+          "type": "string"
+        },
+        "tempLocation": {
+          "description": "The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.",
+          "type": "string"
+        },
+        "workerRegion": {
+          "description": "The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.",
+          "type": "string"
+        },
+        "workerZone": {
+          "description": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FloatingPointList": {
       "description": "A metric value representing a list of floating point numbers.",
       "id": "FloatingPointList",
@@ -3921,6 +4017,10 @@
       "description": "Information about the execution of a job.",
       "id": "JobExecutionDetails",
       "properties": {
+        "nextPageToken": {
+          "description": "If present, this response does not contain all requested tasks. To obtain the next page of results, repeat the request with page_token set to this value.",
+          "type": "string"
+        },
         "stages": {
           "description": "The stages of the job execution.",
           "items": {
@@ -4128,6 +4228,10 @@
         "containerSpecGcsPath": {
           "description": "Gcs path to a file with json serialized ContainerSpec as content.",
           "type": "string"
+        },
+        "environment": {
+          "$ref": "FlexTemplateRuntimeEnvironment",
+          "description": "The runtime environment for the FlexTemplate job"
         },
         "jobName": {
           "description": "Required. The job name to use for the created job.",
@@ -5035,10 +5139,6 @@
       "properties": {
         "queryProperty": {
           "description": "Includes an entry for each satisfied QueryProperty.",
-          "enumDescriptions": [
-            "The query property is unknown or unspecified.",
-            "Indicates this query reads from >= 1 unbounded source."
-          ],
           "items": {
             "enum": [
               "QUERY_PROPERTY_UNSPECIFIED",
@@ -5188,7 +5288,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.",
+          "description": "Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }.",
           "type": "object"
         },
         "bypassTempDirValidation": {
@@ -5214,7 +5314,7 @@
           "type": "string"
         },
         "kmsKeyName": {
-          "description": "Optional. Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
+          "description": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
           "type": "string"
         },
         "machineType": {
@@ -5240,7 +5340,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "Subnetwork to which VMs will be assigned, if desired. Expected to be of the form \"regions/REGION/subnetworks/SUBNETWORK\".",
+          "description": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL.",
           "type": "string"
         },
         "tempLocation": {

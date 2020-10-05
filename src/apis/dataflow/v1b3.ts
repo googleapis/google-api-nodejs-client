@@ -883,6 +883,71 @@ export namespace dataflow_v1b3 {
     inputs?: Schema$InstructionInput[];
   }
   /**
+   * The environment values to be set at runtime for flex template.
+   */
+  export interface Schema$FlexTemplateRuntimeEnvironment {
+    /**
+     * Additional experiment flags for the job.
+     */
+    additionalExperiments?: string[] | null;
+    /**
+     * Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of &quot;key&quot;: value pairs. Example: { &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1kg&quot;, &quot;count&quot;: &quot;3&quot; }.
+     */
+    additionalUserLabels?: {[key: string]: string} | null;
+    /**
+     * Whether to enable Streaming Engine for the job.
+     */
+    enableStreamingEngine?: boolean | null;
+    /**
+     * Configuration for VM IPs.
+     */
+    ipConfiguration?: string | null;
+    /**
+     * Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/
+     */
+    kmsKeyName?: string | null;
+    /**
+     * The machine type to use for the job. Defaults to the value from the template if not specified.
+     */
+    machineType?: string | null;
+    /**
+     * The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.
+     */
+    maxWorkers?: number | null;
+    /**
+     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network &quot;default&quot;.
+     */
+    network?: string | null;
+    /**
+     * The initial number of Google Compute Engine instances for the job.
+     */
+    numWorkers?: number | null;
+    /**
+     * The email address of the service account to run the job as.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form &quot;https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK&quot; or &quot;regions/REGION/subnetworks/SUBNETWORK&quot;. If the subnetwork is located in a Shared VPC network, you must use the complete URL.
+     */
+    subnetwork?: string | null;
+    /**
+     * The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     */
+    tempLocation?: string | null;
+    /**
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     */
+    workerRegion?: string | null;
+    /**
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     */
+    workerZone?: string | null;
+    /**
+     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
+     */
+    zone?: string | null;
+  }
+  /**
    * A metric value representing a list of floating point numbers.
    */
   export interface Schema$FloatingPointList {
@@ -1164,6 +1229,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$JobExecutionDetails {
     /**
+     * If present, this response does not contain all requested tasks. To obtain the next page of results, repeat the request with page_token set to this value.
+     */
+    nextPageToken?: string | null;
+    /**
      * The stages of the job execution.
      */
     stages?: Schema$StageSummary[];
@@ -1307,6 +1376,10 @@ export namespace dataflow_v1b3 {
      * Gcs path to a file with json serialized ContainerSpec as content.
      */
     containerSpecGcsPath?: string | null;
+    /**
+     * The runtime environment for the FlexTemplate job
+     */
+    environment?: Schema$FlexTemplateRuntimeEnvironment;
     /**
      * Required. The job name to use for the created job.
      */
@@ -2062,7 +2135,7 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[] | null;
     /**
-     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
+     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of &quot;key&quot;: value pairs. Example: { &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1kg&quot;, &quot;count&quot;: &quot;3&quot; }.
      */
     additionalUserLabels?: {[key: string]: string} | null;
     /**
@@ -2078,7 +2151,7 @@ export namespace dataflow_v1b3 {
      */
     ipConfiguration?: string | null;
     /**
-     * Optional. Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/
+     * Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/
      */
     kmsKeyName?: string | null;
     /**
@@ -2102,7 +2175,7 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string | null;
     /**
-     * Subnetwork to which VMs will be assigned, if desired. Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
+     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form &quot;https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK&quot; or &quot;regions/REGION/subnetworks/SUBNETWORK&quot;. If the subnetwork is located in a Shared VPC network, you must use the complete URL.
      */
     subnetwork?: string | null;
     /**
@@ -7939,6 +8012,10 @@ export namespace dataflow_v1b3 {
      *     jobId: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      *     location: 'placeholder-value',
+     *     // If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+     *     pageSize: 'placeholder-value',
+     *     // If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+     *     pageToken: 'placeholder-value',
      *     // A project id.
      *     projectId: 'placeholder-value',
      *   });
@@ -7946,6 +8023,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
      *   //   "stages": []
      *   // }
      * }
@@ -7961,6 +8039,8 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job to get execution details for.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
+     * @param {integer=} params.pageSize If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+     * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
      * @param {string} params.projectId A project id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8761,6 +8841,14 @@ export namespace dataflow_v1b3 {
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
+    /**
+     * If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+     */
+    pageSize?: number;
+    /**
+     * If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+     */
+    pageToken?: string;
     /**
      * A project id.
      */
