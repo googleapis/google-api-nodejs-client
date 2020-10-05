@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/-cxFi5x9QP7nGEy7qxpdbRvhe9g\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/hzL4Pf5JdJer2F_gaxG6dg1Snv0\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1344,7 +1344,7 @@
           ]
         },
         "insert": {
-          "description": "Update the local inventory of a product in your Merchant Center account.",
+          "description": "Updates the local inventory of a product in your Merchant Center account.",
           "httpMethod": "POST",
           "id": "content.localinventory.insert",
           "parameterOrder": [
@@ -1688,10 +1688,12 @@
               "enum": [
                 "completed",
                 "new",
+                "pending",
                 "shipped",
                 "undeliverable"
               ],
               "enumDescriptions": [
+                "",
                 "",
                 "",
                 "",
@@ -3745,7 +3747,7 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20200922",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3838,7 +3840,7 @@
       "id": "AccountAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\").",
+          "description": "CLDR country code (e.g. \"US\"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.",
           "type": "string"
         },
         "locality": {
@@ -3987,7 +3989,7 @@
           "type": "string"
         },
         "destination": {
-          "description": "The destination the issue applies to.",
+          "description": "The destination the issue applies to. If this field is empty then the issue applies to all available destinations.",
           "type": "string"
         },
         "detail": {
@@ -7512,12 +7514,16 @@
       "id": "OrderreturnsRefundOperation",
       "properties": {
         "fullRefund": {
-          "description": "If true, the item will be fully refunded.",
+          "description": "If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer via FOP.",
           "type": "boolean"
         },
         "partialRefund": {
           "$ref": "OrderreturnsPartialRefund",
-          "description": "If this is set, the item will be partially refunded."
+          "description": "If this is set, the item will be partially refunded. Merchant can choose this refund option to specify the customized amount that to be refunded to the customer."
+        },
+        "paymentType": {
+          "description": "The payment way of issuing refund. Default value is ORIGINAL_FOP if not set.",
+          "type": "string"
         },
         "reasonText": {
           "description": "The explanation of the reason.",
@@ -9409,6 +9415,13 @@
           "$ref": "ProductShippingDimension",
           "description": "Width of the item for shipping."
         },
+        "shoppingAdsExcludedCountries": {
+          "description": "List of country codes (ISO 3166-1 alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in MC feed settings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "sizeSystem": {
           "description": "System in which the size is specified. Recommended for apparel items.",
           "type": "string"
@@ -9625,7 +9638,7 @@
     "ProductStatusDestinationStatus": {
       "id": "ProductStatusDestinationStatus",
       "properties": {
-        "approvedCountrys": {
+        "approvedCountries": {
           "description": "List of country codes (ISO 3166-1 alpha-2) where the offer is approved.",
           "items": {
             "type": "string"
@@ -9636,14 +9649,14 @@
           "description": "The name of the destination",
           "type": "string"
         },
-        "disapprovedCountrys": {
+        "disapprovedCountries": {
           "description": "List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
-        "pendingCountrys": {
+        "pendingCountries": {
           "description": "List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval.",
           "items": {
             "type": "string"
@@ -9660,7 +9673,7 @@
     "ProductStatusItemLevelIssue": {
       "id": "ProductStatusItemLevelIssue",
       "properties": {
-        "applicableCountrys": {
+        "applicableCountries": {
           "description": "List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer.",
           "items": {
             "type": "string"
