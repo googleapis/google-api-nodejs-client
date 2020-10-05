@@ -97,44 +97,44 @@
     "assetlinks": {
       "methods": {
         "check": {
-          "description": "Determines whether the specified (directional) relationship exists between\nthe specified source and target assets.\n\nThe relation describes the intent of the link between the two assets as\nclaimed by the source asset.  An example for such relationships is the\ndelegation of privileges or permissions.\n\nThis command is most often used by infrastructure systems to check\npreconditions for an action.  For example, a client may want to know if it\nis OK to send a web URL to a particular mobile app instead. The client can\ncheck for the relevant asset link from the website to the mobile app to\ndecide if the operation should be allowed.\n\nA note about security: if you specify a secure asset as the source, such as\nan HTTPS website or an Android app, the API will ensure that any\nstatements used to generate the response have been made in a secure way by\nthe owner of that asset.  Conversely, if the source asset is an insecure\nHTTP website (that is, the URL starts with `http://` instead of\n`https://`), the API cannot verify its statements securely, and it is not\npossible to ensure that the website's statements have not been altered by a\nthird party.  For more information, see the [Digital Asset Links technical\ndesign\nspecification](https://github.com/google/digitalassetlinks/blob/master/well-known/details.md).",
+          "description": "Determines whether the specified (directional) relationship exists between the specified source and target assets. The relation describes the intent of the link between the two assets as claimed by the source asset. An example for such relationships is the delegation of privileges or permissions. This command is most often used by infrastructure systems to check preconditions for an action. For example, a client may want to know if it is OK to send a web URL to a particular mobile app instead. The client can check for the relevant asset link from the website to the mobile app to decide if the operation should be allowed. A note about security: if you specify a secure asset as the source, such as an HTTPS website or an Android app, the API will ensure that any statements used to generate the response have been made in a secure way by the owner of that asset. Conversely, if the source asset is an insecure HTTP website (that is, the URL starts with `http://` instead of `https://`), the API cannot verify its statements securely, and it is not possible to ensure that the website's statements have not been altered by a third party. For more information, see the [Digital Asset Links technical design specification](https://github.com/google/digitalassetlinks/blob/master/well-known/details.md).",
           "flatPath": "v1/assetlinks:check",
           "httpMethod": "GET",
           "id": "digitalassetlinks.assetlinks.check",
           "parameterOrder": [],
           "parameters": {
             "relation": {
-              "description": "Query string for the relation.\n\nWe identify relations with strings of the format `<kind>/<detail>`, where\n`<kind>` must be one of a set of pre-defined purpose categories, and\n`<detail>` is a free-form lowercase alphanumeric string that describes the\nspecific use case of the statement.\n\nRefer to [our API documentation](/digital-asset-links/v1/relation-strings)\nfor the current list of supported relations.\n\nFor a query to match an asset link, both the query's and the asset link's\nrelation strings must match exactly.\n\nExample: A query with relation `delegate_permission/common.handle_all_urls`\nmatches an asset link with relation\n`delegate_permission/common.handle_all_urls`.",
+              "description": "Query string for the relation. We identify relations with strings of the format `/`, where `` must be one of a set of pre-defined purpose categories, and `` is a free-form lowercase alphanumeric string that describes the specific use case of the statement. Refer to [our API documentation](/digital-asset-links/v1/relation-strings) for the current list of supported relations. For a query to match an asset link, both the query's and the asset link's relation strings must match exactly. Example: A query with relation `delegate_permission/common.handle_all_urls` matches an asset link with relation `delegate_permission/common.handle_all_urls`.",
               "location": "query",
               "type": "string"
             },
             "source.androidApp.certificate.sha256Fingerprint": {
-              "description": "The uppercase SHA-265 fingerprint of the certificate.  From the PEM\n certificate, it can be acquired like this:\n\n    $ keytool -printcert -file $CERTFILE | grep SHA256:\n    SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\\n        42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nor like this:\n\n    $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256\n    SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\\n        16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nIn this example, the contents of this field would be `14:6D:E9:83:C5:73:\n06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:\n44:E5`.\n\nIf these tools are not available to you, you can convert the PEM\ncertificate into the DER format, compute the SHA-256 hash of that string\nand represent the result as a hexstring (that is, uppercase hexadecimal\nrepresentations of each octet, separated by colons).",
+              "description": "The uppercase SHA-265 fingerprint of the certificate. From the PEM certificate, it can be acquired like this: $ keytool -printcert -file $CERTFILE | grep SHA256: SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\ 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 or like this: $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256 SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\ 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 In this example, the contents of this field would be `14:6D:E9:83:C5:73: 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF: 44:E5`. If these tools are not available to you, you can convert the PEM certificate into the DER format, compute the SHA-256 hash of that string and represent the result as a hexstring (that is, uppercase hexadecimal representations of each octet, separated by colons).",
               "location": "query",
               "type": "string"
             },
             "source.androidApp.packageName": {
-              "description": "Android App assets are naturally identified by their Java package name.\nFor example, the Google Maps app uses the package name\n`com.google.android.apps.maps`.\nREQUIRED",
+              "description": "Android App assets are naturally identified by their Java package name. For example, the Google Maps app uses the package name `com.google.android.apps.maps`. REQUIRED",
               "location": "query",
               "type": "string"
             },
             "source.web.site": {
-              "description": "Web assets are identified by a URL that contains only the scheme, hostname\nand port parts.  The format is\n\n    http[s]://<hostname>[:<port>]\n\nHostnames must be fully qualified: they must end in a single period\n(\"`.`\").\n\nOnly the schemes \"http\" and \"https\" are currently allowed.\n\nPort numbers are given as a decimal number, and they must be omitted if the\nstandard port numbers are used: 80 for http and 443 for https.\n\nWe call this limited URL the \"site\".  All URLs that share the same scheme,\nhostname and port are considered to be a part of the site and thus belong\nto the web asset.\n\nExample: the asset with the site `https://www.google.com` contains all\nthese URLs:\n\n  *   `https://www.google.com/`\n  *   `https://www.google.com:443/`\n  *   `https://www.google.com/foo`\n  *   `https://www.google.com/foo?bar`\n  *   `https://www.google.com/foo#bar`\n  *   `https://user@password:www.google.com/`\n\nBut it does not contain these URLs:\n\n  *   `http://www.google.com/`       (wrong scheme)\n  *   `https://google.com/`          (hostname does not match)\n  *   `https://www.google.com:444/`  (port does not match)\nREQUIRED",
+              "description": "Web assets are identified by a URL that contains only the scheme, hostname and port parts. The format is http[s]://[:] Hostnames must be fully qualified: they must end in a single period (\"`.`\"). Only the schemes \"http\" and \"https\" are currently allowed. Port numbers are given as a decimal number, and they must be omitted if the standard port numbers are used: 80 for http and 443 for https. We call this limited URL the \"site\". All URLs that share the same scheme, hostname and port are considered to be a part of the site and thus belong to the web asset. Example: the asset with the site `https://www.google.com` contains all these URLs: * `https://www.google.com/` * `https://www.google.com:443/` * `https://www.google.com/foo` * `https://www.google.com/foo?bar` * `https://www.google.com/foo#bar` * `https://user@password:www.google.com/` But it does not contain these URLs: * `http://www.google.com/` (wrong scheme) * `https://google.com/` (hostname does not match) * `https://www.google.com:444/` (port does not match) REQUIRED",
               "location": "query",
               "type": "string"
             },
             "target.androidApp.certificate.sha256Fingerprint": {
-              "description": "The uppercase SHA-265 fingerprint of the certificate.  From the PEM\n certificate, it can be acquired like this:\n\n    $ keytool -printcert -file $CERTFILE | grep SHA256:\n    SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\\n        42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nor like this:\n\n    $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256\n    SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\\n        16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nIn this example, the contents of this field would be `14:6D:E9:83:C5:73:\n06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:\n44:E5`.\n\nIf these tools are not available to you, you can convert the PEM\ncertificate into the DER format, compute the SHA-256 hash of that string\nand represent the result as a hexstring (that is, uppercase hexadecimal\nrepresentations of each octet, separated by colons).",
+              "description": "The uppercase SHA-265 fingerprint of the certificate. From the PEM certificate, it can be acquired like this: $ keytool -printcert -file $CERTFILE | grep SHA256: SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\ 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 or like this: $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256 SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\ 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 In this example, the contents of this field would be `14:6D:E9:83:C5:73: 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF: 44:E5`. If these tools are not available to you, you can convert the PEM certificate into the DER format, compute the SHA-256 hash of that string and represent the result as a hexstring (that is, uppercase hexadecimal representations of each octet, separated by colons).",
               "location": "query",
               "type": "string"
             },
             "target.androidApp.packageName": {
-              "description": "Android App assets are naturally identified by their Java package name.\nFor example, the Google Maps app uses the package name\n`com.google.android.apps.maps`.\nREQUIRED",
+              "description": "Android App assets are naturally identified by their Java package name. For example, the Google Maps app uses the package name `com.google.android.apps.maps`. REQUIRED",
               "location": "query",
               "type": "string"
             },
             "target.web.site": {
-              "description": "Web assets are identified by a URL that contains only the scheme, hostname\nand port parts.  The format is\n\n    http[s]://<hostname>[:<port>]\n\nHostnames must be fully qualified: they must end in a single period\n(\"`.`\").\n\nOnly the schemes \"http\" and \"https\" are currently allowed.\n\nPort numbers are given as a decimal number, and they must be omitted if the\nstandard port numbers are used: 80 for http and 443 for https.\n\nWe call this limited URL the \"site\".  All URLs that share the same scheme,\nhostname and port are considered to be a part of the site and thus belong\nto the web asset.\n\nExample: the asset with the site `https://www.google.com` contains all\nthese URLs:\n\n  *   `https://www.google.com/`\n  *   `https://www.google.com:443/`\n  *   `https://www.google.com/foo`\n  *   `https://www.google.com/foo?bar`\n  *   `https://www.google.com/foo#bar`\n  *   `https://user@password:www.google.com/`\n\nBut it does not contain these URLs:\n\n  *   `http://www.google.com/`       (wrong scheme)\n  *   `https://google.com/`          (hostname does not match)\n  *   `https://www.google.com:444/`  (port does not match)\nREQUIRED",
+              "description": "Web assets are identified by a URL that contains only the scheme, hostname and port parts. The format is http[s]://[:] Hostnames must be fully qualified: they must end in a single period (\"`.`\"). Only the schemes \"http\" and \"https\" are currently allowed. Port numbers are given as a decimal number, and they must be omitted if the standard port numbers are used: 80 for http and 443 for https. We call this limited URL the \"site\". All URLs that share the same scheme, hostname and port are considered to be a part of the site and thus belong to the web asset. Example: the asset with the site `https://www.google.com` contains all these URLs: * `https://www.google.com/` * `https://www.google.com:443/` * `https://www.google.com/foo` * `https://www.google.com/foo?bar` * `https://www.google.com/foo#bar` * `https://user@password:www.google.com/` But it does not contain these URLs: * `http://www.google.com/` (wrong scheme) * `https://google.com/` (hostname does not match) * `https://www.google.com:444/` (port does not match) REQUIRED",
               "location": "query",
               "type": "string"
             }
@@ -149,29 +149,29 @@
     "statements": {
       "methods": {
         "list": {
-          "description": "Retrieves a list of all statements from a given source that match the\nspecified target and statement string.\n\nThe API guarantees that all statements with secure source assets, such as\nHTTPS websites or Android apps, have been made in a secure way by the owner\nof those assets, as described in the [Digital Asset Links technical design\nspecification](https://github.com/google/digitalassetlinks/blob/master/well-known/details.md).\nSpecifically, you should consider that for insecure websites (that is,\nwhere the URL starts with `http://` instead of `https://`), this guarantee\ncannot be made.\n\nThe `List` command is most useful in cases where the API client wants to\nknow all the ways in which two assets are related, or enumerate all the\nrelationships from a particular source asset.  Example: a feature that\nhelps users navigate to related items.  When a mobile app is running on a\ndevice, the feature would make it easy to navigate to the corresponding web\nsite or Google+ profile.",
+          "description": "Retrieves a list of all statements from a given source that match the specified target and statement string. The API guarantees that all statements with secure source assets, such as HTTPS websites or Android apps, have been made in a secure way by the owner of those assets, as described in the [Digital Asset Links technical design specification](https://github.com/google/digitalassetlinks/blob/master/well-known/details.md). Specifically, you should consider that for insecure websites (that is, where the URL starts with `http://` instead of `https://`), this guarantee cannot be made. The `List` command is most useful in cases where the API client wants to know all the ways in which two assets are related, or enumerate all the relationships from a particular source asset. Example: a feature that helps users navigate to related items. When a mobile app is running on a device, the feature would make it easy to navigate to the corresponding web site or Google+ profile.",
           "flatPath": "v1/statements:list",
           "httpMethod": "GET",
           "id": "digitalassetlinks.statements.list",
           "parameterOrder": [],
           "parameters": {
             "relation": {
-              "description": "Use only associations that match the specified relation.\n\nSee the [`Statement`](#Statement) message for a detailed definition of\nrelation strings.\n\nFor a query to match a statement, one of the following must be true:\n\n*    both the query's and the statement's relation strings match exactly,\n     or\n*    the query's relation string is empty or missing.\n\nExample: A query with relation `delegate_permission/common.handle_all_urls`\nmatches an asset link with relation\n`delegate_permission/common.handle_all_urls`.",
+              "description": "Use only associations that match the specified relation. See the [`Statement`](#Statement) message for a detailed definition of relation strings. For a query to match a statement, one of the following must be true: * both the query's and the statement's relation strings match exactly, or * the query's relation string is empty or missing. Example: A query with relation `delegate_permission/common.handle_all_urls` matches an asset link with relation `delegate_permission/common.handle_all_urls`.",
               "location": "query",
               "type": "string"
             },
             "source.androidApp.certificate.sha256Fingerprint": {
-              "description": "The uppercase SHA-265 fingerprint of the certificate.  From the PEM\n certificate, it can be acquired like this:\n\n    $ keytool -printcert -file $CERTFILE | grep SHA256:\n    SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\\n        42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nor like this:\n\n    $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256\n    SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\\n        16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nIn this example, the contents of this field would be `14:6D:E9:83:C5:73:\n06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:\n44:E5`.\n\nIf these tools are not available to you, you can convert the PEM\ncertificate into the DER format, compute the SHA-256 hash of that string\nand represent the result as a hexstring (that is, uppercase hexadecimal\nrepresentations of each octet, separated by colons).",
+              "description": "The uppercase SHA-265 fingerprint of the certificate. From the PEM certificate, it can be acquired like this: $ keytool -printcert -file $CERTFILE | grep SHA256: SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\ 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 or like this: $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256 SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\ 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 In this example, the contents of this field would be `14:6D:E9:83:C5:73: 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF: 44:E5`. If these tools are not available to you, you can convert the PEM certificate into the DER format, compute the SHA-256 hash of that string and represent the result as a hexstring (that is, uppercase hexadecimal representations of each octet, separated by colons).",
               "location": "query",
               "type": "string"
             },
             "source.androidApp.packageName": {
-              "description": "Android App assets are naturally identified by their Java package name.\nFor example, the Google Maps app uses the package name\n`com.google.android.apps.maps`.\nREQUIRED",
+              "description": "Android App assets are naturally identified by their Java package name. For example, the Google Maps app uses the package name `com.google.android.apps.maps`. REQUIRED",
               "location": "query",
               "type": "string"
             },
             "source.web.site": {
-              "description": "Web assets are identified by a URL that contains only the scheme, hostname\nand port parts.  The format is\n\n    http[s]://<hostname>[:<port>]\n\nHostnames must be fully qualified: they must end in a single period\n(\"`.`\").\n\nOnly the schemes \"http\" and \"https\" are currently allowed.\n\nPort numbers are given as a decimal number, and they must be omitted if the\nstandard port numbers are used: 80 for http and 443 for https.\n\nWe call this limited URL the \"site\".  All URLs that share the same scheme,\nhostname and port are considered to be a part of the site and thus belong\nto the web asset.\n\nExample: the asset with the site `https://www.google.com` contains all\nthese URLs:\n\n  *   `https://www.google.com/`\n  *   `https://www.google.com:443/`\n  *   `https://www.google.com/foo`\n  *   `https://www.google.com/foo?bar`\n  *   `https://www.google.com/foo#bar`\n  *   `https://user@password:www.google.com/`\n\nBut it does not contain these URLs:\n\n  *   `http://www.google.com/`       (wrong scheme)\n  *   `https://google.com/`          (hostname does not match)\n  *   `https://www.google.com:444/`  (port does not match)\nREQUIRED",
+              "description": "Web assets are identified by a URL that contains only the scheme, hostname and port parts. The format is http[s]://[:] Hostnames must be fully qualified: they must end in a single period (\"`.`\"). Only the schemes \"http\" and \"https\" are currently allowed. Port numbers are given as a decimal number, and they must be omitted if the standard port numbers are used: 80 for http and 443 for https. We call this limited URL the \"site\". All URLs that share the same scheme, hostname and port are considered to be a part of the site and thus belong to the web asset. Example: the asset with the site `https://www.google.com` contains all these URLs: * `https://www.google.com/` * `https://www.google.com:443/` * `https://www.google.com/foo` * `https://www.google.com/foo?bar` * `https://www.google.com/foo#bar` * `https://user@password:www.google.com/` But it does not contain these URLs: * `http://www.google.com/` (wrong scheme) * `https://google.com/` (hostname does not match) * `https://www.google.com:444/` (port does not match) REQUIRED",
               "location": "query",
               "type": "string"
             }
@@ -184,7 +184,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200929",
   "rootUrl": "https://digitalassetlinks.googleapis.com/",
   "schemas": {
     "AndroidAppAsset": {
@@ -193,17 +193,17 @@
       "properties": {
         "certificate": {
           "$ref": "CertificateInfo",
-          "description": "Because there is no global enforcement of package name uniqueness, we also\nrequire a signing certificate, which in combination with the package name\nuniquely identifies an app.\n\nSome apps' signing keys are rotated, so they may be signed by different\nkeys over time.  We treat these as distinct assets, since we use (package\nname, cert) as the unique ID.  This should not normally pose any problems\nas both versions of the app will make the same or similar statements.\nOther assets making statements about the app will have to be updated when a\nkey is rotated, however.\n\n(Note that the syntaxes for publishing and querying for statements contain\nsyntactic sugar to easily let you specify apps that are known by multiple\ncertificates.)\nREQUIRED"
+          "description": "Because there is no global enforcement of package name uniqueness, we also require a signing certificate, which in combination with the package name uniquely identifies an app. Some apps' signing keys are rotated, so they may be signed by different keys over time. We treat these as distinct assets, since we use (package name, cert) as the unique ID. This should not normally pose any problems as both versions of the app will make the same or similar statements. Other assets making statements about the app will have to be updated when a key is rotated, however. (Note that the syntaxes for publishing and querying for statements contain syntactic sugar to easily let you specify apps that are known by multiple certificates.) REQUIRED"
         },
         "packageName": {
-          "description": "Android App assets are naturally identified by their Java package name.\nFor example, the Google Maps app uses the package name\n`com.google.android.apps.maps`.\nREQUIRED",
+          "description": "Android App assets are naturally identified by their Java package name. For example, the Google Maps app uses the package name `com.google.android.apps.maps`. REQUIRED",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Asset": {
-      "description": "Uniquely identifies an asset.\n\nA digital asset is an identifiable and addressable online entity that\ntypically provides some service or content.  Examples of assets are websites,\nAndroid apps, Twitter feeds, and Plus Pages.",
+      "description": "Uniquely identifies an asset. A digital asset is an identifiable and addressable online entity that typically provides some service or content. Examples of assets are websites, Android apps, Twitter feeds, and Plus Pages.",
       "id": "Asset",
       "properties": {
         "androidApp": {
@@ -222,7 +222,7 @@
       "id": "CertificateInfo",
       "properties": {
         "sha256Fingerprint": {
-          "description": "The uppercase SHA-265 fingerprint of the certificate.  From the PEM\n certificate, it can be acquired like this:\n\n    $ keytool -printcert -file $CERTFILE | grep SHA256:\n    SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\\n        42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nor like this:\n\n    $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256\n    SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\\n        16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5\n\nIn this example, the contents of this field would be `14:6D:E9:83:C5:73:\n06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:\n44:E5`.\n\nIf these tools are not available to you, you can convert the PEM\ncertificate into the DER format, compute the SHA-256 hash of that string\nand represent the result as a hexstring (that is, uppercase hexadecimal\nrepresentations of each octet, separated by colons).",
+          "description": "The uppercase SHA-265 fingerprint of the certificate. From the PEM certificate, it can be acquired like this: $ keytool -printcert -file $CERTFILE | grep SHA256: SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \\ 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 or like this: $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256 SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \\ 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5 In this example, the contents of this field would be `14:6D:E9:83:C5:73: 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF: 44:E5`. If these tools are not available to you, you can convert the PEM certificate into the DER format, compute the SHA-256 hash of that string and represent the result as a hexstring (that is, uppercase hexadecimal representations of each octet, separated by colons).",
           "type": "string"
         }
       },
@@ -233,24 +233,11 @@
       "id": "CheckResponse",
       "properties": {
         "debugString": {
-          "description": "Human-readable message containing information intended to help end users\nunderstand, reproduce and debug the result.\n\n\nThe message will be in English and we are currently not planning to offer\nany translations.\n\nPlease note that no guarantees are made about the contents or format of\nthis string.  Any aspect of it may be subject to change without notice.\nYou should not attempt to programmatically parse this data.  For\nprogrammatic access, use the error_code field below.",
+          "description": "Human-readable message containing information intended to help end users understand, reproduce and debug the result. The message will be in English and we are currently not planning to offer any translations. Please note that no guarantees are made about the contents or format of this string. Any aspect of it may be subject to change without notice. You should not attempt to programmatically parse this data. For programmatic access, use the error_code field below.",
           "type": "string"
         },
         "errorCode": {
           "description": "Error codes that describe the result of the Check operation.",
-          "enumDescriptions": [
-            "",
-            "Unable to parse query.",
-            "Unable to fetch the asset links data.",
-            "Invalid HTTPS certificate .",
-            "HTTP redirects (e.g, 301) are not allowed.",
-            "Asset links data exceeds maximum size.",
-            "Can't parse HTTP response.",
-            "HTTP Content-type should be application/json.",
-            "JSON content is malformed.",
-            "A secure asset includes an insecure asset (security downgrade).",
-            "Too many includes (maybe a loop)."
-          ],
           "items": {
             "enum": [
               "ERROR_CODE_UNSPECIFIED",
@@ -265,16 +252,29 @@
               "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE",
               "ERROR_CODE_FETCH_BUDGET_EXHAUSTED"
             ],
+            "enumDescriptions": [
+              "",
+              "Unable to parse query.",
+              "Unable to fetch the asset links data.",
+              "Invalid HTTPS certificate .",
+              "HTTP redirects (e.g, 301) are not allowed.",
+              "Asset links data exceeds maximum size.",
+              "Can't parse HTTP response.",
+              "HTTP Content-type should be application/json.",
+              "JSON content is malformed.",
+              "A secure asset includes an insecure asset (security downgrade).",
+              "Too many includes (maybe a loop)."
+            ],
             "type": "string"
           },
           "type": "array"
         },
         "linked": {
-          "description": "Set to true if the assets specified in the request are linked by the\nrelation specified in the request.",
+          "description": "Set to true if the assets specified in the request are linked by the relation specified in the request.",
           "type": "boolean"
         },
         "maxAge": {
-          "description": "From serving time, how much longer the response should be considered valid\nbarring further updates.\nREQUIRED",
+          "description": "From serving time, how much longer the response should be considered valid barring further updates. REQUIRED",
           "format": "google-duration",
           "type": "string"
         }
@@ -286,24 +286,11 @@
       "id": "ListResponse",
       "properties": {
         "debugString": {
-          "description": "Human-readable message containing information intended to help end users\nunderstand, reproduce and debug the result.\n\n\nThe message will be in English and we are currently not planning to offer\nany translations.\n\nPlease note that no guarantees are made about the contents or format of\nthis string.  Any aspect of it may be subject to change without notice.\nYou should not attempt to programmatically parse this data.  For\nprogrammatic access, use the error_code field below.",
+          "description": "Human-readable message containing information intended to help end users understand, reproduce and debug the result. The message will be in English and we are currently not planning to offer any translations. Please note that no guarantees are made about the contents or format of this string. Any aspect of it may be subject to change without notice. You should not attempt to programmatically parse this data. For programmatic access, use the error_code field below.",
           "type": "string"
         },
         "errorCode": {
           "description": "Error codes that describe the result of the List operation.",
-          "enumDescriptions": [
-            "",
-            "Unable to parse query.",
-            "Unable to fetch the asset links data.",
-            "Invalid HTTPS certificate .",
-            "HTTP redirects (e.g, 301) are not allowed.",
-            "Asset links data exceeds maximum size.",
-            "Can't parse HTTP response.",
-            "HTTP Content-type should be application/json.",
-            "JSON content is malformed.",
-            "A secure asset includes an insecure asset (security downgrade).",
-            "Too many includes (maybe a loop)."
-          ],
           "items": {
             "enum": [
               "ERROR_CODE_UNSPECIFIED",
@@ -318,12 +305,25 @@
               "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE",
               "ERROR_CODE_FETCH_BUDGET_EXHAUSTED"
             ],
+            "enumDescriptions": [
+              "",
+              "Unable to parse query.",
+              "Unable to fetch the asset links data.",
+              "Invalid HTTPS certificate .",
+              "HTTP redirects (e.g, 301) are not allowed.",
+              "Asset links data exceeds maximum size.",
+              "Can't parse HTTP response.",
+              "HTTP Content-type should be application/json.",
+              "JSON content is malformed.",
+              "A secure asset includes an insecure asset (security downgrade).",
+              "Too many includes (maybe a loop)."
+            ],
             "type": "string"
           },
           "type": "array"
         },
         "maxAge": {
-          "description": "From serving time, how much longer the response should be considered valid\nbarring further updates.\nREQUIRED",
+          "description": "From serving time, how much longer the response should be considered valid barring further updates. REQUIRED",
           "format": "google-duration",
           "type": "string"
         },
@@ -338,20 +338,20 @@
       "type": "object"
     },
     "Statement": {
-      "description": "Describes a reliable statement that has been made about the relationship\nbetween a source asset and a target asset.\n\nStatements are always made by the source asset, either directly or by\ndelegating to a statement list that is stored elsewhere.\n\nFor more detailed definitions of statements and assets, please refer\nto our [API documentation landing\npage](/digital-asset-links/v1/getting-started).",
+      "description": "Describes a reliable statement that has been made about the relationship between a source asset and a target asset. Statements are always made by the source asset, either directly or by delegating to a statement list that is stored elsewhere. For more detailed definitions of statements and assets, please refer to our [API documentation landing page](/digital-asset-links/v1/getting-started).",
       "id": "Statement",
       "properties": {
         "relation": {
-          "description": "The relation identifies the use of the statement as intended by the source\nasset's owner (that is, the person or entity who issued the statement).\nEvery complete statement has a relation.\n\nWe identify relations with strings of the format `<kind>/<detail>`, where\n`<kind>` must be one of a set of pre-defined purpose categories, and\n`<detail>` is a free-form lowercase alphanumeric string that describes the\nspecific use case of the statement.\n\nRefer to [our API documentation](/digital-asset-links/v1/relation-strings)\nfor the current list of supported relations.\n\nExample: `delegate_permission/common.handle_all_urls`\nREQUIRED",
+          "description": "The relation identifies the use of the statement as intended by the source asset's owner (that is, the person or entity who issued the statement). Every complete statement has a relation. We identify relations with strings of the format `/`, where `` must be one of a set of pre-defined purpose categories, and `` is a free-form lowercase alphanumeric string that describes the specific use case of the statement. Refer to [our API documentation](/digital-asset-links/v1/relation-strings) for the current list of supported relations. Example: `delegate_permission/common.handle_all_urls` REQUIRED",
           "type": "string"
         },
         "source": {
           "$ref": "Asset",
-          "description": "Every statement has a source asset.\nREQUIRED"
+          "description": "Every statement has a source asset. REQUIRED"
         },
         "target": {
           "$ref": "Asset",
-          "description": "Every statement has a target asset.\nREQUIRED"
+          "description": "Every statement has a target asset. REQUIRED"
         }
       },
       "type": "object"
@@ -361,7 +361,7 @@
       "id": "WebAsset",
       "properties": {
         "site": {
-          "description": "Web assets are identified by a URL that contains only the scheme, hostname\nand port parts.  The format is\n\n    http[s]://<hostname>[:<port>]\n\nHostnames must be fully qualified: they must end in a single period\n(\"`.`\").\n\nOnly the schemes \"http\" and \"https\" are currently allowed.\n\nPort numbers are given as a decimal number, and they must be omitted if the\nstandard port numbers are used: 80 for http and 443 for https.\n\nWe call this limited URL the \"site\".  All URLs that share the same scheme,\nhostname and port are considered to be a part of the site and thus belong\nto the web asset.\n\nExample: the asset with the site `https://www.google.com` contains all\nthese URLs:\n\n  *   `https://www.google.com/`\n  *   `https://www.google.com:443/`\n  *   `https://www.google.com/foo`\n  *   `https://www.google.com/foo?bar`\n  *   `https://www.google.com/foo#bar`\n  *   `https://user@password:www.google.com/`\n\nBut it does not contain these URLs:\n\n  *   `http://www.google.com/`       (wrong scheme)\n  *   `https://google.com/`          (hostname does not match)\n  *   `https://www.google.com:444/`  (port does not match)\nREQUIRED",
+          "description": "Web assets are identified by a URL that contains only the scheme, hostname and port parts. The format is http[s]://[:] Hostnames must be fully qualified: they must end in a single period (\"`.`\"). Only the schemes \"http\" and \"https\" are currently allowed. Port numbers are given as a decimal number, and they must be omitted if the standard port numbers are used: 80 for http and 443 for https. We call this limited URL the \"site\". All URLs that share the same scheme, hostname and port are considered to be a part of the site and thus belong to the web asset. Example: the asset with the site `https://www.google.com` contains all these URLs: * `https://www.google.com/` * `https://www.google.com:443/` * `https://www.google.com/foo` * `https://www.google.com/foo?bar` * `https://www.google.com/foo#bar` * `https://user@password:www.google.com/` But it does not contain these URLs: * `http://www.google.com/` (wrong scheme) * `https://google.com/` (hostname does not match) * `https://www.google.com:444/` (port does not match) REQUIRED",
           "type": "string"
         }
       },
