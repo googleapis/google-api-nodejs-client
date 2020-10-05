@@ -296,7 +296,7 @@
       }
     }
   },
-  "revision": "20200822",
+  "revision": "20201002",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -489,6 +489,10 @@
       "description": "Information that is specific to TfLite models.",
       "id": "TfLiteModel",
       "properties": {
+        "automlModel": {
+          "description": "The AutoML model id referencing a model you created with the AutoML API. The name should have format 'projects//locations//models/' (This is the model resource name returned from the AutoML API)",
+          "type": "string"
+        },
         "gcsTfliteUri": {
           "description": "The TfLite file containing the model. (Stored in Google Cloud). The gcs_tflite_uri should have form: gs://some-bucket/some-model.tflite Note: If you update the file in the original location, it is necessary to call UpdateModel for ML to pick up and validate the updated file.",
           "type": "string"
