@@ -154,6 +154,23 @@ export namespace binaryauthorization_v1 {
     namePattern?: string | null;
   }
   /**
+   * Occurrence that represents a single &quot;attestation&quot;. The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for lookup (how to find this attestation if you already know the authority and artifact to be verified) and intent (for which authority this attestation was intended to sign.
+   */
+  export interface Schema$AttestationOccurrence {
+    /**
+     * One or more JWTs encoding a self-contained attestation. Each JWT encodes the payload that it verifies within the JWT itself. Verifier implementation SHOULD ignore the `serialized_payload` field when verifying these JWTs. If only JWTs are present on this AttestationOccurrence, then the `serialized_payload` SHOULD be left empty. Each JWT SHOULD encode a claim specific to the `resource_uri` of this Occurrence, but this is not validated by Grafeas metadata API implementations. The JWT itself is opaque to Grafeas.
+     */
+    jwts?: Schema$Jwt[];
+    /**
+     * Required. The serialized payload that is verified by one or more `signatures`.
+     */
+    serializedPayload?: string | null;
+    /**
+     * One or more signatures over `serialized_payload`. Verifier implementations should consider this attestation message verified if at least one `signature` verifies `serialized_payload`. See `Signature` in common.proto for more details on signature structure and verification.
+     */
+    signatures?: Schema$Signature[];
+  }
+  /**
    * An attestor that attests to container image artifacts. An existing attestor cannot be modified except where indicated.
    */
   export interface Schema$Attestor {
@@ -199,6 +216,10 @@ export namespace binaryauthorization_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -253,6 +274,12 @@ export namespace binaryauthorization_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  export interface Schema$Jwt {
+    /**
+     * The compact encoding of a JWS, which is always three base64 encoded strings joined by periods. For details, see: https://tools.ietf.org/html/rfc7515.html#section-3.1
+     */
+    compactJwt?: string | null;
   }
   /**
    * Response message for BinauthzManagementService.ListAttestors.
@@ -323,6 +350,19 @@ export namespace binaryauthorization_v1 {
     policy?: Schema$IamPolicy;
   }
   /**
+   * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be &quot;attached&quot; (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any &quot;attached&quot; payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
+   */
+  export interface Schema$Signature {
+    /**
+     * The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * &quot;openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA&quot; See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * &quot;ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU&quot; * &quot;nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5&quot;
+     */
+    publicKeyId?: string | null;
+    /**
+     * The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload.
+     */
+    signature?: string | null;
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -356,6 +396,36 @@ export namespace binaryauthorization_v1 {
      * Optional. Public keys that verify attestations signed by this attestor. This field may be updated. If this field is non-empty, one of the specified public keys must verify that an attestation was signed by this attestor for the image specified in the admission request. If this field is empty, this attestor always returns that no valid attestations exist.
      */
     publicKeys?: Schema$AttestorPublicKey[];
+  }
+  /**
+   * Request message for ValidationHelperV1.ValidateAttestationOccurrence.
+   */
+  export interface Schema$ValidateAttestationOccurrenceRequest {
+    /**
+     * Required. An AttestationOccurrence to be checked that it can be verified by the Attestor. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid AttestationOccurrence.
+     */
+    attestation?: Schema$AttestationOccurrence;
+    /**
+     * Required. The resource name of the Note to which the containing Occurrence is associated.
+     */
+    occurrenceNote?: string | null;
+    /**
+     * Required. The URI of the artifact (e.g. container image) that is the subject of the containing Occurrence.
+     */
+    occurrenceResourceUri?: string | null;
+  }
+  /**
+   * Response message for ValidationHelperV1.ValidateAttestationOccurrence.
+   */
+  export interface Schema$ValidateAttestationOccurrenceResponse {
+    /**
+     * The reason for denial if the Attestation couldn&#39;t be validated.
+     */
+    denialReason?: string | null;
+    /**
+     * The result of the Attestation validation.
+     */
+    result?: string | null;
   }
 
   export class Resource$Projects {
@@ -1804,6 +1874,166 @@ export namespace binaryauthorization_v1 {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
     }
+
+    /**
+     * binaryauthorization.projects.attestors.validateAttestationOccurrence
+     * @desc Returns whether the given Attestation for the given image URI was signed by the given Attestor
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.validateAttestationOccurrence(
+     *     {
+     *       // Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
+     *       attestor: 'projects/my-project/attestors/my-attestor',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attestation": {},
+     *         //   "occurrenceNote": "my_occurrenceNote",
+     *         //   "occurrenceResourceUri": "my_occurrenceResourceUri"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "denialReason": "my_denialReason",
+     *   //   "result": "my_result"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias binaryauthorization.projects.attestors.validateAttestationOccurrence
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.attestor Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
+     * @param {().ValidateAttestationOccurrenceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    validateAttestationOccurrence(
+      params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateAttestationOccurrence(
+      params?: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateAttestationOccurrenceResponse>;
+    validateAttestationOccurrence(
+      params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateAttestationOccurrence(
+      params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>,
+      callback: BodyResponseCallback<
+        Schema$ValidateAttestationOccurrenceResponse
+      >
+    ): void;
+    validateAttestationOccurrence(
+      params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
+      callback: BodyResponseCallback<
+        Schema$ValidateAttestationOccurrenceResponse
+      >
+    ): void;
+    validateAttestationOccurrence(
+      callback: BodyResponseCallback<
+        Schema$ValidateAttestationOccurrenceResponse
+      >
+    ): void;
+    validateAttestationOccurrence(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Validateattestationoccurrence
+        | BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateAttestationOccurrenceResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Validateattestationoccurrence;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Attestors$Validateattestationoccurrence;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+attestor}:validateAttestationOccurrence'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['attestor'],
+        pathParams: ['attestor'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateAttestationOccurrenceResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateAttestationOccurrenceResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Attestors$Create
@@ -1897,6 +2127,18 @@ export namespace binaryauthorization_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Attestor;
+  }
+  export interface Params$Resource$Projects$Attestors$Validateattestationoccurrence
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
+     */
+    attestor?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateAttestationOccurrenceRequest;
   }
 
   export class Resource$Projects$Policy {
