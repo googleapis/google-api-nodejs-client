@@ -2,7 +2,7 @@
 
 # deploymentmanager
 
-> The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
+> The Google Cloud Deployment Manager v2 API provides services for configuring, deploying, and viewing Google Cloud services and APIs via templates which specify deployments of Cloud resources.
 
 ## Installation
 
