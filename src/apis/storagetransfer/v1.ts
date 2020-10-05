@@ -641,7 +641,7 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string | null;
     /**
-     * Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status. An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT.
+     * Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status. An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT. Updating a job satus to DELETED requires `storagetransfer.jobs.delete` permissions.
      */
     transferJob?: Schema$TransferJob;
     /**
@@ -987,7 +987,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
-     *     // Required. The job to get.
+     *     // " Required. The job to get.
      *     jobName: 'transferJobs/.*',
      *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
      *     projectId: 'placeholder-value',
@@ -1018,7 +1018,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.jobName Required. The job to get.
+     * @param {string} params.jobName " Required. The job to get.
      * @param {string=} params.projectId Required. The ID of the Google Cloud Platform Console project that owns the job.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1400,7 +1400,7 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**
-     * Required. The job to get.
+     * " Required. The job to get.
      */
     jobName?: string;
     /**

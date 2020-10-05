@@ -162,7 +162,7 @@
           ],
           "parameters": {
             "jobName": {
-              "description": "Required. The job to get.",
+              "description": "\" Required. The job to get.",
               "location": "path",
               "pattern": "^transferJobs/.*$",
               "required": true,
@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20200924",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
@@ -641,12 +641,6 @@
       "properties": {
         "eventTypes": {
           "description": "Event types for which a notification is desired. If empty, send notifications for all event types.",
-          "enumDescriptions": [
-            "Illegal value, to avoid allowing a default.",
-            "`TransferOperation` completed with status SUCCESS.",
-            "`TransferOperation` completed with status FAILED.",
-            "`TransferOperation` completed with status ABORTED."
-          ],
           "items": {
             "enum": [
               "EVENT_TYPE_UNSPECIFIED",
@@ -1129,7 +1123,7 @@
         },
         "transferJob": {
           "$ref": "TransferJob",
-          "description": "Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status. An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT."
+          "description": "Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status. An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT. Updating a job satus to DELETED requires `storagetransfer.jobs.delete` permissions."
         },
         "updateTransferJobFieldMask": {
           "description": "The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields will be rejected with the error INVALID_ARGUMENT.",
