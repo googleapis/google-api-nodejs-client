@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace billingbudgets_v1beta1 {
+export namespace billingbudgets_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -105,12 +105,12 @@ export namespace billingbudgets_v1beta1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const billingbudgets = google.billingbudgets('v1beta1');
+   * const billingbudgets = google.billingbudgets('v1');
    *
    * @namespace billingbudgets
    * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Billingbudgets
    */
   export class Billingbudgets {
@@ -128,9 +128,97 @@ export namespace billingbudgets_v1beta1 {
   }
 
   /**
-   * AllUpdatesRule defines notifications that are sent based on budget spend and thresholds.
+   * A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). Currently all plans are monthly budgets so the usage period(s) tracked are implied (calendar months of usage back-to-back).
    */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1AllUpdatesRule {
+  export interface Schema$GoogleCloudBillingBudgetsV1Budget {
+    /**
+     * Required. Budgeted amount.
+     */
+    amount?: Schema$GoogleCloudBillingBudgetsV1BudgetAmount;
+    /**
+     * Optional. Filters that define which resources are used to compute the actual spend against the budget.
+     */
+    budgetFilter?: Schema$GoogleCloudBillingBudgetsV1Filter;
+    /**
+     * User data for display name in UI. The name must be less than or equal to 60 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
+     */
+    notificationsRule?: Schema$GoogleCloudBillingBudgetsV1NotificationsRule;
+    /**
+     * Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget.
+     */
+    thresholdRules?: Schema$GoogleCloudBillingBudgetsV1ThresholdRule[];
+  }
+  /**
+   * The budgeted amount for each usage period.
+   */
+  export interface Schema$GoogleCloudBillingBudgetsV1BudgetAmount {
+    /**
+     * Use the last period&#39;s actual spend as the budget for the present period.
+     */
+    lastPeriodAmount?: Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount;
+    /**
+     * A specified amount to use as the budget. `currency_code` is optional. If specified, it must match the currency of the billing account. The `currency_code` is provided on output.
+     */
+    specifiedAmount?: Schema$GoogleTypeMoney;
+  }
+  /**
+   * A filter for a budget, limiting the scope of the cost to calculate.
+   */
+  export interface Schema$GoogleCloudBillingBudgetsV1Filter {
+    /**
+     * Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.
+     */
+    creditTypesTreatment?: string | null;
+    /**
+     * Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.
+     */
+    labels?: {[key: string]: any[]} | null;
+    /**
+     * Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
+     */
+    projects?: string[] | null;
+    /**
+     * Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
+     */
+    services?: string[] | null;
+    /**
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist.
+     */
+    subaccounts?: string[] | null;
+  }
+  /**
+   * Describes a budget amount targeted to last period&#39;s spend. At this time, the amount is automatically 100% of last period&#39;s spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period&#39;s spend).
+   */
+  export interface Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount {}
+  /**
+   * Response for ListBudgets
+   */
+  export interface Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse {
+    /**
+     * List of the budgets owned by the requested billing account.
+     */
+    budgets?: Schema$GoogleCloudBillingBudgetsV1Budget[];
+    /**
+     * If not empty, indicates that there may be more budgets that match the request; this value should be passed in a new `ListBudgetsRequest`.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * NotificationsRule defines notifications that are sent based on budget spend and thresholds.
+   */
+  export interface Schema$GoogleCloudBillingBudgetsV1NotificationsRule {
     /**
      * Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account.
      */
@@ -149,106 +237,9 @@ export namespace billingbudgets_v1beta1 {
     schemaVersion?: string | null;
   }
   /**
-   * A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). Currently all plans are monthly budgets so the usage period(s) tracked are implied (calendar months of usage back-to-back).
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1Budget {
-    /**
-     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
-     */
-    allUpdatesRule?: Schema$GoogleCloudBillingBudgetsV1beta1AllUpdatesRule;
-    /**
-     * Required. Budgeted amount.
-     */
-    amount?: Schema$GoogleCloudBillingBudgetsV1beta1BudgetAmount;
-    /**
-     * Optional. Filters that define which resources are used to compute the actual spend against the budget.
-     */
-    budgetFilter?: Schema$GoogleCloudBillingBudgetsV1beta1Filter;
-    /**
-     * User data for display name in UI. Validation: &lt;= 60 chars.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes.
-     */
-    etag?: string | null;
-    /**
-     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
-     */
-    name?: string | null;
-    /**
-     * Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget.
-     */
-    thresholdRules?: Schema$GoogleCloudBillingBudgetsV1beta1ThresholdRule[];
-  }
-  /**
-   * The budgeted amount for each usage period.
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1BudgetAmount {
-    /**
-     * Use the last period&#39;s actual spend as the budget for the present period.
-     */
-    lastPeriodAmount?: Schema$GoogleCloudBillingBudgetsV1beta1LastPeriodAmount;
-    /**
-     * A specified amount to use as the budget. `currency_code` is optional. If specified, it must match the currency of the billing account. The `currency_code` is provided on output.
-     */
-    specifiedAmount?: Schema$GoogleTypeMoney;
-  }
-  /**
-   * Request for CreateBudget
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest {
-    /**
-     * Required. Budget to create.
-     */
-    budget?: Schema$GoogleCloudBillingBudgetsV1beta1Budget;
-  }
-  /**
-   * A filter for a budget, limiting the scope of the cost to calculate.
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1Filter {
-    /**
-     * Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.
-     */
-    creditTypesTreatment?: string | null;
-    /**
-     * Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.
-     */
-    labels?: {[key: string]: any[]} | null;
-    /**
-     * Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
-     */
-    projects?: string[] | null;
-    /**
-     * Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
-     */
-    services?: string[] | null;
-    /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If omitted, the report will include usage from the parent account and all subaccounts, if they exist.
-     */
-    subaccounts?: string[] | null;
-  }
-  /**
-   * Describes a budget amount targeted to last period&#39;s spend. At this time, the amount is automatically 100% of last period&#39;s spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period&#39;s spend).
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1LastPeriodAmount {}
-  /**
-   * Response for ListBudgets
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse {
-    /**
-     * List of the budgets owned by the requested billing account.
-     */
-    budgets?: Schema$GoogleCloudBillingBudgetsV1beta1Budget[];
-    /**
-     * If not empty, indicates that there may be more budgets that match the request; this value should be passed in a new `ListBudgetsRequest`.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * ThresholdRule contains a definition of a threshold which triggers an alert (a notification of a threshold being crossed) to be sent when spend goes above the specified amount. Alerts are automatically e-mailed to users with the Billing Account Administrator role or the Billing Account User role. The thresholds here have no effect on notifications sent to anything configured under `Budget.all_updates_rule`.
    */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1ThresholdRule {
+  export interface Schema$GoogleCloudBillingBudgetsV1ThresholdRule {
     /**
      * Optional. The type of basis used to determine if spend has passed the threshold. Behavior defaults to CURRENT_SPEND if not set.
      */
@@ -257,19 +248,6 @@ export namespace billingbudgets_v1beta1 {
      * Required. Send an alert when this threshold is exceeded. This is a 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number.
      */
     thresholdPercent?: number | null;
-  }
-  /**
-   * Request for UpdateBudget
-   */
-  export interface Schema$GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest {
-    /**
-     * Required. The updated budget object. The budget to update is specified by the budget name in the budget.
-     */
-    budget?: Schema$GoogleCloudBillingBudgetsV1beta1Budget;
-    /**
-     * Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
-     */
-    updateMask?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
@@ -310,7 +288,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.create
-     * @desc Creates a new budget. See Quotas and limits for more information on the limits of the number of budgets you can create.
+     * @desc Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -321,7 +299,7 @@ export namespace billingbudgets_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const billingbudgets = google.billingbudgets('v1beta1');
+     * const billingbudgets = google.billingbudgets('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -345,7 +323,13 @@ export namespace billingbudgets_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "budget": {}
+     *       //   "amount": {},
+     *       //   "budgetFilter": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "notificationsRule": {},
+     *       //   "thresholdRules": []
      *       // }
      *     },
      *   });
@@ -353,12 +337,12 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "allUpdatesRule": {},
      *   //   "amount": {},
      *   //   "budgetFilter": {},
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
+     *   //   "notificationsRule": {},
      *   //   "thresholdRules": []
      *   // }
      * }
@@ -373,7 +357,7 @@ export namespace billingbudgets_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.
-     * @param {().GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest} params.requestBody Request body data
+     * @param {().GoogleCloudBillingBudgetsV1Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -385,7 +369,7 @@ export namespace billingbudgets_v1beta1 {
     create(
       params?: Params$Resource$Billingaccounts$Budgets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>;
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -395,38 +379,32 @@ export namespace billingbudgets_v1beta1 {
       params: Params$Resource$Billingaccounts$Budgets$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Create
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Create;
@@ -448,7 +426,7 @@ export namespace billingbudgets_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/budgets').replace(
+            url: (rootUrl + '/v1/{+parent}/budgets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -462,12 +440,12 @@ export namespace billingbudgets_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters
         );
       }
@@ -486,7 +464,7 @@ export namespace billingbudgets_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const billingbudgets = google.billingbudgets('v1beta1');
+     * const billingbudgets = google.billingbudgets('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -586,7 +564,7 @@ export namespace billingbudgets_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -619,7 +597,7 @@ export namespace billingbudgets_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const billingbudgets = google.billingbudgets('v1beta1');
+     * const billingbudgets = google.billingbudgets('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -643,12 +621,12 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "allUpdatesRule": {},
      *   //   "amount": {},
      *   //   "budgetFilter": {},
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
+     *   //   "notificationsRule": {},
      *   //   "thresholdRules": []
      *   // }
      * }
@@ -674,7 +652,7 @@ export namespace billingbudgets_v1beta1 {
     get(
       params?: Params$Resource$Billingaccounts$Budgets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>;
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -684,38 +662,32 @@ export namespace billingbudgets_v1beta1 {
       params: Params$Resource$Billingaccounts$Budgets$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Get
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Get;
@@ -737,7 +709,7 @@ export namespace billingbudgets_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -748,12 +720,12 @@ export namespace billingbudgets_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters
         );
       }
@@ -772,7 +744,7 @@ export namespace billingbudgets_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const billingbudgets = google.billingbudgets('v1beta1');
+     * const billingbudgets = google.billingbudgets('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -828,9 +800,7 @@ export namespace billingbudgets_v1beta1 {
     list(
       params?: Params$Resource$Billingaccounts$Budgets$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>;
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -841,47 +811,45 @@ export namespace billingbudgets_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
           >,
       callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
       >
     ): void;
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
       callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
       >
     ): void;
     list(
       callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
       >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$List
         | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
           >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
         | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
           >
         | BodyResponseCallback<Readable>,
       callback?:
         | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
           >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$List;
@@ -903,7 +871,7 @@ export namespace billingbudgets_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/budgets').replace(
+            url: (rootUrl + '/v1/{+parent}/budgets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -917,12 +885,13 @@ export namespace billingbudgets_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<
-          Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+          Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
         >(parameters);
       }
     }
@@ -940,7 +909,7 @@ export namespace billingbudgets_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const billingbudgets = google.billingbudgets('v1beta1');
+     * const billingbudgets = google.billingbudgets('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -959,13 +928,20 @@ export namespace billingbudgets_v1beta1 {
      *   const res = await billingbudgets.billingAccounts.budgets.patch({
      *     // Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
+     *     // Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "budget": {},
-     *       //   "updateMask": "my_updateMask"
+     *       //   "amount": {},
+     *       //   "budgetFilter": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "notificationsRule": {},
+     *       //   "thresholdRules": []
      *       // }
      *     },
      *   });
@@ -973,12 +949,12 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "allUpdatesRule": {},
      *   //   "amount": {},
      *   //   "budgetFilter": {},
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
+     *   //   "notificationsRule": {},
      *   //   "thresholdRules": []
      *   // }
      * }
@@ -993,7 +969,8 @@ export namespace billingbudgets_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
-     * @param {().GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest} params.requestBody Request body data
+     * @param {string=} params.updateMask Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
+     * @param {().GoogleCloudBillingBudgetsV1Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1005,7 +982,7 @@ export namespace billingbudgets_v1beta1 {
     patch(
       params?: Params$Resource$Billingaccounts$Budgets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>;
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1015,38 +992,32 @@ export namespace billingbudgets_v1beta1 {
       params: Params$Resource$Billingaccounts$Budgets$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Patch
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1Budget>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1Budget>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Patch;
@@ -1068,7 +1039,7 @@ export namespace billingbudgets_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1079,12 +1050,12 @@ export namespace billingbudgets_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
+        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters
         );
       }
@@ -1101,7 +1072,7 @@ export namespace billingbudgets_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest;
+    requestBody?: Schema$GoogleCloudBillingBudgetsV1Budget;
   }
   export interface Params$Resource$Billingaccounts$Budgets$Delete
     extends StandardParameters {
@@ -1138,10 +1109,14 @@ export namespace billingbudgets_v1beta1 {
      * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      */
     name?: string;
+    /**
+     * Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest;
+    requestBody?: Schema$GoogleCloudBillingBudgetsV1Budget;
   }
 }
