@@ -177,6 +177,28 @@ export namespace sheets_v4 {
     rule?: Schema$ConditionalFormatRule;
   }
   /**
+   * Adds a data source. After the data source is added successfully, an associated DATA_SOURCE sheet is created and an execution is triggered to refresh the sheet to read data from the data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   */
+  export interface Schema$AddDataSourceRequest {
+    /**
+     * The data source to add.
+     */
+    dataSource?: Schema$DataSource;
+  }
+  /**
+   * The result of adding a data source.
+   */
+  export interface Schema$AddDataSourceResponse {
+    /**
+     * The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * The data source that was created.
+     */
+    dataSource?: Schema$DataSource;
+  }
+  /**
    * Creates a group over the specified range. If the requested range is a superset of the range of an existing group G, then the depth of G is incremented and this new group G&#39; has the depth of that group. For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range is a subset of the range of an existing group G, then the depth of the new group G&#39; becomes one greater than the depth of G. For example, a group [B:E, depth 1] + [C:D] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range starts before and ends within, or starts within and ends after, the range of an existing group G, then the range of the existing group G becomes the union of the ranges, and the new group G&#39; has depth one greater than the depth of G and range as the intersection of the ranges. For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D, depth 2].
    */
   export interface Schema$AddDimensionGroupRequest {
@@ -356,6 +378,10 @@ export namespace sheets_v4 {
    * Automatically resizes one or more dimensions based on the contents of the cells in that dimension.
    */
   export interface Schema$AutoResizeDimensionsRequest {
+    /**
+     * The dimensions on a data source sheet to automatically resize.
+     */
+    dataSourceSheetDimensions?: Schema$DataSourceSheetDimensionRange;
     /**
      * The dimensions to automatically resize.
      */
@@ -577,9 +603,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicFilter {
     /**
-     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column.
+     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.
      */
     criteria?: {[key: string]: Schema$FilterCriteria} | null;
+    /**
+     * The filter criteria per column. Both criteria and filter_specs are populated in responses. If both fields are specified in an update request, this field takes precedence.
+     */
+    filterSpecs?: Schema$FilterSpec[];
     /**
      * The range the filter covers.
      */
@@ -827,6 +857,49 @@ export namespace sheets_v4 {
     totalUpdatedSheets?: number | null;
   }
   /**
+   * The specification of a BigQuery data source that&#39;s connected to a sheet.
+   */
+  export interface Schema$BigQueryDataSourceSpec {
+    /**
+     * The ID of a BigQuery enabled GCP project with a billing account attached. For any queries executed against the data source, the project is charged.
+     */
+    projectId?: string | null;
+    /**
+     * A BigQueryQuerySpec.
+     */
+    querySpec?: Schema$BigQueryQuerySpec;
+    /**
+     * A BigQueryTableSpec.
+     */
+    tableSpec?: Schema$BigQueryTableSpec;
+  }
+  /**
+   * Specifies a custom BigQuery query.
+   */
+  export interface Schema$BigQueryQuerySpec {
+    /**
+     * The raw query string.
+     */
+    rawQuery?: string | null;
+  }
+  /**
+   * Specifies a BigQuery table definition. Only [native tables](https://cloud.google.com/bigquery/docs/tables-intro) is allowed.
+   */
+  export interface Schema$BigQueryTableSpec {
+    /**
+     * The BigQuery dataset id.
+     */
+    datasetId?: string | null;
+    /**
+     * The BigQuery table id.
+     */
+    tableId?: string | null;
+    /**
+     * The ID of a BigQuery project the table belongs to. If not specified, the project_id is assumed.
+     */
+    tableProjectId?: string | null;
+  }
+  /**
    * A condition that can evaluate to true or false. BooleanConditions are used by conditional formatting, data validation, and the criteria in filters.
    */
   export interface Schema$BooleanCondition {
@@ -1008,6 +1081,14 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellData {
     /**
+     * Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g `=SUM(DataSheet!Column)`.
+     */
+    dataSourceFormula?: Schema$DataSourceFormula;
+    /**
+     * A data source table anchored at this cell. The size of data source table itself is computed dynamically based on its configuration. Only the first cell of the data source table contains the data source table definition. The other cells will contain the display values of the data source table result in their effective_value fields.
+     */
+    dataSourceTable?: Schema$DataSourceTable;
+    /**
      * A data validation rule on the cell, if any. When writing, the new data validation rule will overwrite any prior rule.
      */
     dataValidation?: Schema$DataValidationRule;
@@ -1136,9 +1217,60 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartData {
     /**
+     * The aggregation type for the series of a data source chart. Not supported for regular charts.
+     */
+    aggregateType?: string | null;
+    /**
+     * The reference to the data source column that the data reads from.
+     */
+    columnReference?: Schema$DataSourceColumnReference;
+    /**
+     * The rule to group the data by if the ChartData backs the domain of a data source chart. Not supported for regular charts.
+     */
+    groupRule?: Schema$ChartGroupRule;
+    /**
      * The source ranges of the data.
      */
     sourceRange?: Schema$ChartSourceRange;
+  }
+  /**
+   * Allows you to organize the date-time values in a source data column into buckets based on selected parts of their date or time values.
+   */
+  export interface Schema$ChartDateTimeRule {
+    /**
+     * The type of date-time grouping to apply.
+     */
+    type?: string | null;
+  }
+  /**
+   * An optional setting on the ChartData of the domain of a data source chart that defines buckets for the values in the domain rather than breaking out each individual value. For example, when plotting a data source chart, you can specify a histogram rule on the domain (it should only contain numeric values), grouping its values into buckets. Any values of a chart series that fall into the same bucket are aggregated based on the aggregate_type.
+   */
+  export interface Schema$ChartGroupRule {
+    /**
+     * A ChartDateTimeRule.
+     */
+    dateTimeRule?: Schema$ChartDateTimeRule;
+    /**
+     * A ChartHistogramRule
+     */
+    histogramRule?: Schema$ChartHistogramRule;
+  }
+  /**
+   * Allows you to organize numeric values in a source data column into buckets of constant size.
+   */
+  export interface Schema$ChartHistogramRule {
+    /**
+     * The size of the buckets that are created. Must be positive.
+     */
+    intervalSize?: number | null;
+    /**
+     * The maximum value at which items are placed into buckets. Values greater than the maximum are grouped into a single bucket. If omitted, it is determined by the maximum item value.
+     */
+    maxValue?: number | null;
+    /**
+     * The minimum value at which items are placed into buckets. Values that are less than the minimum are grouped into a single bucket. If omitted, it is determined by the minimum item value.
+     */
+    minValue?: number | null;
   }
   /**
    * Source ranges for a chart.
@@ -1178,6 +1310,14 @@ export namespace sheets_v4 {
      */
     candlestickChart?: Schema$CandlestickChartSpec;
     /**
+     * If present, the field contains data source chart specific properties.
+     */
+    dataSourceChartProperties?: Schema$DataSourceChartProperties;
+    /**
+     * The filters applied to the source data of the chart. Only supported for data source charts.
+     */
+    filterSpecs?: Schema$FilterSpec[];
+    /**
      * The name of the font to use by default for all chart text (e.g. title, axis labels, legend). If a font is specified for a specific part of the chart it will override this font name.
      */
     fontName?: string | null;
@@ -1205,6 +1345,10 @@ export namespace sheets_v4 {
      * A scorecard chart specification.
      */
     scorecardChart?: Schema$ScorecardChartSpec;
+    /**
+     * The order to sort the chart data by. Only a single sort spec is supported. Only supported for data source charts.
+     */
+    sortSpecs?: Schema$SortSpec[];
     /**
      * The subtitle of the chart.
      */
@@ -1394,6 +1538,27 @@ export namespace sheets_v4 {
     source?: Schema$GridRange;
   }
   /**
+   * The data execution status. A data execution is created to sync a data source object with the latest data from a DataSource. It is usually scheduled to run at background, you can check its state to tell if an execution completes There are several scenarios where a data execution is triggered to run: * Adding a data source creates an associated data source sheet as well as a data execution to sync the data from the data source to the sheet. * Updating a data source creates a data execution to refresh the associated data source sheet similarly. * You can send refresh request to explicitly refresh one or multiple data source objects.
+   */
+  export interface Schema$DataExecutionStatus {
+    /**
+     * The error code.
+     */
+    errorCode?: string | null;
+    /**
+     * The error message, which may be empty.
+     */
+    errorMessage?: string | null;
+    /**
+     * Gets the time the data last successfully refreshed.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * The state of the data execution.
+     */
+    state?: string | null;
+  }
+  /**
    * Filter that describes what data should be selected or returned from a request.
    */
   export interface Schema$DataFilter {
@@ -1426,6 +1591,266 @@ export namespace sheets_v4 {
      * The data to be written. If the provided values exceed any of the ranges matched by the data filter then the request fails. If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
      */
     values?: any[][] | null;
+  }
+  /**
+   * Information about an external data source in the spreadsheet.
+   */
+  export interface Schema$DataSource {
+    /**
+     * All calculated columns in the data source.
+     */
+    calculatedColumns?: Schema$DataSourceColumn[];
+    /**
+     * The spreadsheet-scoped unique ID that identifies the data source. Example: 1080547365.
+     */
+    dataSourceId?: string | null;
+    /**
+     * The ID of the Sheet connected with the data source. The field cannot be changed once set. When creating a data source, an associated DATA_SOURCE sheet is also created, if the field is not specified, the ID of the created sheet will be randomly generated.
+     */
+    sheetId?: number | null;
+    /**
+     * The DataSourceSpec for the data source connected with this spreadsheet.
+     */
+    spec?: Schema$DataSourceSpec;
+  }
+  /**
+   * Properties of a data source chart.
+   */
+  export interface Schema$DataSourceChartProperties {
+    /**
+     * Output only. The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * ID of the data source that the chart is associated with.
+     */
+    dataSourceId?: string | null;
+  }
+  /**
+   * A column in a data source.
+   */
+  export interface Schema$DataSourceColumn {
+    /**
+     * The formula of the calculated column.
+     */
+    formula?: string | null;
+    /**
+     * The column reference.
+     */
+    reference?: Schema$DataSourceColumnReference;
+  }
+  /**
+   * An unique identifier that references a data source column.
+   */
+  export interface Schema$DataSourceColumnReference {
+    /**
+     * The display name of the column. It should be unique within a data source.
+     */
+    name?: string | null;
+  }
+  /**
+   * A data source formula.
+   */
+  export interface Schema$DataSourceFormula {
+    /**
+     * Output only. The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * The ID of the data source the formula is associated with.
+     */
+    dataSourceId?: string | null;
+  }
+  /**
+   * Reference to a data source object.
+   */
+  export interface Schema$DataSourceObjectReference {
+    /**
+     * References to a data source chart.
+     */
+    chartId?: number | null;
+    /**
+     * References to a cell containing DataSourceFormula.
+     */
+    dataSourceFormulaCell?: Schema$GridCoordinate;
+    /**
+     * References to a data source PivotTable anchored at the cell.
+     */
+    dataSourcePivotTableAnchorCell?: Schema$GridCoordinate;
+    /**
+     * References to a DataSourceTable anchored at the cell.
+     */
+    dataSourceTableAnchorCell?: Schema$GridCoordinate;
+    /**
+     * References to a DATA_SOURCE sheet.
+     */
+    sheetId?: string | null;
+  }
+  /**
+   * A list of references to data source objects.
+   */
+  export interface Schema$DataSourceObjectReferences {
+    /**
+     * The references.
+     */
+    references?: Schema$DataSourceObjectReference[];
+  }
+  /**
+   * A parameter in a data source&#39;s query. The parameter allows the user to pass in values from the spreadsheet into a query.
+   */
+  export interface Schema$DataSourceParameter {
+    /**
+     * Named parameter. Must be a legitimate identifier for the DataSource that supports it. For example, [BigQuery identifier](https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical#identifiers).
+     */
+    name?: string | null;
+    /**
+     * ID of a NamedRange. Its size must be 1x1.
+     */
+    namedRangeId?: string | null;
+    /**
+     * A range that contains the value of the parameter. Its size must be 1x1.
+     */
+    range?: Schema$GridRange;
+  }
+  /**
+   * A schedule for data to refresh every day in a given time interval.
+   */
+  export interface Schema$DataSourceRefreshDailySchedule {
+    /**
+     * The start time of a time interval in which a data source refresh is scheduled. Only `hours` part is used. The time interval size defaults to that in the Sheets editor.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * A monthly schedule for data to refresh on specific days in the month in a given time interval.
+   */
+  export interface Schema$DataSourceRefreshMonthlySchedule {
+    /**
+     * Days of the month to refresh. Only 1-28 are supported, mapping to the 1st to the 28th day. At lesat one day must be specified.
+     */
+    daysOfMonth?: number[] | null;
+    /**
+     * The start time of a time interval in which a data source refresh is scheduled. Only `hours` part is used. The time interval size defaults to that in the Sheets editor.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Schedule for refreshing the data source. Data sources in the spreadsheet are refreshed within a time interval. You can specify the start time by clicking the Scheduled Refresh button in the Sheets editor, but the interval is fixed at 4 hours. For example, if you specify a start time of 8am , the refresh will take place between 8am and 12pm every day.
+   */
+  export interface Schema$DataSourceRefreshSchedule {
+    /**
+     * Daily refresh schedule.
+     */
+    dailySchedule?: Schema$DataSourceRefreshDailySchedule;
+    /**
+     * True if the refresh schedule is enabled, or false otherwise.
+     */
+    enabled?: boolean | null;
+    /**
+     * Monthly refresh schedule.
+     */
+    monthlySchedule?: Schema$DataSourceRefreshMonthlySchedule;
+    /**
+     * Output only. The time interval of the next run.
+     */
+    nextRun?: Schema$Interval;
+    /**
+     * The scope of the refresh. Must be ALL_DATA_SOURCES.
+     */
+    refreshScope?: string | null;
+    /**
+     * Weekly refresh schedule.
+     */
+    weeklySchedule?: Schema$DataSourceRefreshWeeklySchedule;
+  }
+  /**
+   * A weekly schedule for data to refresh on specific days in a given time interval.
+   */
+  export interface Schema$DataSourceRefreshWeeklySchedule {
+    /**
+     * Days of the week to refresh. At least one day must be specified.
+     */
+    daysOfWeek?: string[] | null;
+    /**
+     * The start time of a time interval in which a data source refresh is scheduled. Only `hours` part is used. The time interval size defaults to that in the Sheets editor.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * A range along a single dimension on a DATA_SOURCE sheet.
+   */
+  export interface Schema$DataSourceSheetDimensionRange {
+    /**
+     * The columns on the data source sheet.
+     */
+    columnReferences?: Schema$DataSourceColumnReference[];
+    /**
+     * The ID of the data source sheet the range is on.
+     */
+    sheetId?: number | null;
+  }
+  /**
+   * Additional properties of a DATA_SOURCE sheet.
+   */
+  export interface Schema$DataSourceSheetProperties {
+    /**
+     * The columns displayed on the sheet, corresponding to the values in RowData.
+     */
+    columns?: Schema$DataSourceColumn[];
+    /**
+     * The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * ID of the DataSource the sheet is connected to.
+     */
+    dataSourceId?: string | null;
+  }
+  /**
+   * This specifies the details of the data source. For example, for BigQuery, this specifies information about the BigQuery source.
+   */
+  export interface Schema$DataSourceSpec {
+    /**
+     * A BigQueryDataSourceSpec.
+     */
+    bigQuery?: Schema$BigQueryDataSourceSpec;
+    /**
+     * The parameters of the data source, used when querying the data source.
+     */
+    parameters?: Schema$DataSourceParameter[];
+  }
+  /**
+   * A data source table, which allows the user to import a static table of data from the DataSource into Sheets. This is also known as &quot;Extract&quot; in the Sheets editor.
+   */
+  export interface Schema$DataSourceTable {
+    /**
+     * Columns selected for the data source table. The column_selection_type must be SELECTED.
+     */
+    columns?: Schema$DataSourceColumnReference[];
+    /**
+     * The type to select columns for the data source table. Defaults to SELECTED.
+     */
+    columnSelectionType?: string | null;
+    /**
+     * Output only. The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * The ID of the data source the data source table is associated with.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Filter specifications in the data source table.
+     */
+    filterSpecs?: Schema$FilterSpec[];
+    /**
+     * The limit of rows to return. If not set, a default limit is applied. Please refer to the Sheets editor for the default and max limit.
+     */
+    rowLimit?: number | null;
+    /**
+     * Sort specifications in the data source table. The result of the data source table is sorted based on the sort specifications in order.
+     */
+    sortSpecs?: Schema$SortSpec[];
   }
   /**
    * A data validation rule.
@@ -1487,6 +1912,15 @@ export namespace sheets_v4 {
      * The rule that was deleted.
      */
     rule?: Schema$ConditionalFormatRule;
+  }
+  /**
+   * Deletes a data source. The request also deletes the associated data source sheet, and unlinks all associated data source objects.
+   */
+  export interface Schema$DeleteDataSourceRequest {
+    /**
+     * The ID of the data source to delete.
+     */
+    dataSourceId?: string | null;
   }
   /**
    * A request to delete developer metadata.
@@ -1609,7 +2043,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DeleteSheetRequest {
     /**
-     * The ID of the sheet to delete.
+     * The ID of the sheet to delete. If the sheet is of SheetType.DATA_SOURCE type, the associated DataSource is also deleted.
      */
     sheetId?: number | null;
   }
@@ -1714,6 +2148,10 @@ export namespace sheets_v4 {
    */
   export interface Schema$DimensionProperties {
     /**
+     * Output only. If set, this is a column in a data source sheet.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
+    /**
      * The developer metadata associated with a single row or column.
      */
     developerMetadata?: Schema$DeveloperMetadata[];
@@ -1786,7 +2224,7 @@ export namespace sheets_v4 {
      */
     newSheetName?: string | null;
     /**
-     * The sheet to duplicate.
+     * The sheet to duplicate. If the source sheet is of DATA_SOURCE type, its backing DataSource is also duplicated and associated with the new copy of the sheet. No data execution is triggered, the grid data of this sheet is also copied over but only available after the batch request completes.
      */
     sourceSheetId?: number | null;
   }
@@ -1918,13 +2356,34 @@ export namespace sheets_v4 {
     visibleForegroundColorStyle?: Schema$ColorStyle;
   }
   /**
+   * The filter criteria associated with a specific column.
+   */
+  export interface Schema$FilterSpec {
+    /**
+     * The column index.
+     */
+    columnIndex?: number | null;
+    /**
+     * Reference to a data source column.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
+    /**
+     * The criteria for the column.
+     */
+    filterCriteria?: Schema$FilterCriteria;
+  }
+  /**
    * A filter view.
    */
   export interface Schema$FilterView {
     /**
-     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column.
+     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.
      */
     criteria?: {[key: string]: Schema$FilterCriteria} | null;
+    /**
+     * The filter criteria for showing/hiding values per column. Both criteria and filter_specs are populated in responses. If both fields are specified in an update request, this field takes precedence.
+     */
+    filterSpecs?: Schema$FilterSpec[];
     /**
      * The ID of the filter view.
      */
@@ -2249,6 +2708,19 @@ export namespace sheets_v4 {
     value?: string | null;
   }
   /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Settings to control how circular dependencies are resolved with iterative calculation.
    */
   export interface Schema$IterativeCalculationSettings {
@@ -2534,9 +3006,34 @@ export namespace sheets_v4 {
     visibleValues?: string[] | null;
   }
   /**
+   * The pivot table filter criteria associated with a specific source column offset.
+   */
+  export interface Schema$PivotFilterSpec {
+    /**
+     * The column offset of the source range.
+     */
+    columnOffsetIndex?: number | null;
+    /**
+     * The reference to the data source column.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
+    /**
+     * The criteria for the column.
+     */
+    filterCriteria?: Schema$PivotFilterCriteria;
+  }
+  /**
    * A single grouping (either row or column) in a pivot table.
    */
   export interface Schema$PivotGroup {
+    /**
+     * The reference to the data source column this grouping is based on.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
+    /**
+     * The count limit on rows or columns to apply to this pivot group.
+     */
+    groupLimit?: Schema$PivotGroupLimit;
     /**
      * The group rule to apply to this row/column group.
      */
@@ -2569,6 +3066,19 @@ export namespace sheets_v4 {
      * Metadata about values in the grouping.
      */
     valueMetadata?: Schema$PivotGroupValueMetadata[];
+  }
+  /**
+   * The count limit on rows or columns in the pivot group.
+   */
+  export interface Schema$PivotGroupLimit {
+    /**
+     * The order in which the group limit is applied to the pivot table. Pivot group limits are applied from lower to higher order number. Order numbers are normalized to consecutive integers from 0. For write request, to fully customize the applying orders, all pivot group limits should have this field set with an unique number. Otherwise, the order is determined by the index in the PivotTable.rows list and then the PivotTable.columns list.
+     */
+    applyOrder?: number | null;
+    /**
+     * The count limit.
+     */
+    countLimit?: number | null;
   }
   /**
    * An optional setting on a PivotGroup that defines buckets for the values in the source data column rather than breaking out each individual value. Only one PivotGroup with a group rule may be added for each column in the source data, though on any given column you may add both a PivotGroup that has a rule and a PivotGroup that does not.
@@ -2622,9 +3132,21 @@ export namespace sheets_v4 {
      */
     columns?: Schema$PivotGroup[];
     /**
-     * An optional mapping of filters per source column offset. The filters are applied before aggregating data into the pivot table. The map&#39;s key is the column offset of the source range that you want to filter, and the value is the criteria for that column. For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`.
+     * An optional mapping of filters per source column offset. The filters are applied before aggregating data into the pivot table. The map&#39;s key is the column offset of the source range that you want to filter, and the value is the criteria for that column. For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`. This field is deprecated in favor of filter_specs.
      */
     criteria?: {[key: string]: Schema$PivotFilterCriteria} | null;
+    /**
+     * Output only. The data execution status for data source pivot tables.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * The ID of the data source the pivot table is reading data from.
+     */
+    dataSourceId?: string | null;
+    /**
+     * The filters applied to the source columns before aggregating data for the pivot table. Both criteria and filter_specs are populated in responses. If both fields are specified in an update request, this field takes precedence.
+     */
+    filterSpecs?: Schema$PivotFilterSpec[];
     /**
      * Each row grouping in the pivot table.
      */
@@ -2647,9 +3169,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotValue {
     /**
-     * If specified, indicates that pivot values should be displayed as the result of a calculation with another pivot value. For example, if calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the pivot values are displayed as the percentage of the grand total. In the Sheets UI, this is referred to as &quot;Show As&quot; in the value section of a pivot table.
+     * If specified, indicates that pivot values should be displayed as the result of a calculation with another pivot value. For example, if calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the pivot values are displayed as the percentage of the grand total. In the Sheets editor, this is referred to as &quot;Show As&quot; in the value section of a pivot table.
      */
     calculatedDisplayType?: string | null;
+    /**
+     * The reference to the data source column that this value reads from.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
     /**
      * A custom formula to calculate the value. The formula must start with an `=` character.
      */
@@ -2714,6 +3240,49 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
+   * The execution status of refreshing one data source object.
+   */
+  export interface Schema$RefreshDataSourceObjectExecutionStatus {
+    /**
+     * The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * Reference to a data source object being refreshed.
+     */
+    reference?: Schema$DataSourceObjectReference;
+  }
+  /**
+   * Refreshes one or multiple data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope. If there are multiple refresh requests referencing the same data source objects in one batch, only the last refresh request is processed, and all those requests will have the same response accordingly.
+   */
+  export interface Schema$RefreshDataSourceRequest {
+    /**
+     * Reference to a DataSource. If specified, refreshes all associated data source objects for the data source.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Refreshes the data source objects regardless of the current state. If not set and a referenced data source object was in error state, the refresh will fail immediately.
+     */
+    force?: boolean | null;
+    /**
+     * Refreshes all existing data source objects in the spreadsheet.
+     */
+    isAll?: boolean | null;
+    /**
+     * References to data source objects to refresh.
+     */
+    references?: Schema$DataSourceObjectReferences;
+  }
+  /**
+   * The response from refreshing one or multiple data source objects.
+   */
+  export interface Schema$RefreshDataSourceResponse {
+    /**
+     * All the refresh status for the data source object references specified in the request. If is_all is specified, the field contains only those in failure status.
+     */
+    statuses?: Schema$RefreshDataSourceObjectExecutionStatus[];
+  }
+  /**
    * Updates all cells in the range to the values in the given Cell object. Only the fields listed in the fields field are updated; others are unchanged. If writing a cell with a formula, the formula&#39;s ranges will automatically increment for each field in the range. For example, if writing a cell with formula `=A1` into range B2:C4, B2 would be `=A1`, B3 would be `=A2`, B4 would be `=A3`, C2 would be `=B1`, C3 would be `=B2`, C4 would be `=B3`. To keep the formula&#39;s ranges static, use the `$` indicator. For example, use the formula `=$A$1` to prevent both the row and the column from incrementing.
    */
   export interface Schema$RepeatCellRequest {
@@ -2746,6 +3315,10 @@ export namespace sheets_v4 {
      * Adds a new conditional format rule.
      */
     addConditionalFormatRule?: Schema$AddConditionalFormatRuleRequest;
+    /**
+     * Adds a data source.
+     */
+    addDataSource?: Schema$AddDataSourceRequest;
     /**
      * Creates a group over the specified range.
      */
@@ -2810,6 +3383,10 @@ export namespace sheets_v4 {
      * Deletes an existing conditional format rule.
      */
     deleteConditionalFormatRule?: Schema$DeleteConditionalFormatRuleRequest;
+    /**
+     * Deletes a data source.
+     */
+    deleteDataSource?: Schema$DeleteDataSourceRequest;
     /**
      * Deletes developer metadata
      */
@@ -2887,6 +3464,10 @@ export namespace sheets_v4 {
      */
     randomizeRange?: Schema$RandomizeRangeRequest;
     /**
+     * Refreshs one or multiple data sources and associated dbobjects.
+     */
+    refreshDataSource?: Schema$RefreshDataSourceRequest;
+    /**
      * Repeats a single cell across a range.
      */
     repeatCell?: Schema$RepeatCellRequest;
@@ -2934,6 +3515,10 @@ export namespace sheets_v4 {
      * Updates an existing conditional format rule.
      */
     updateConditionalFormatRule?: Schema$UpdateConditionalFormatRuleRequest;
+    /**
+     * Updates a data source.
+     */
+    updateDataSource?: Schema$UpdateDataSourceRequest;
     /**
      * Updates an existing developer metadata entry
      */
@@ -2987,6 +3572,10 @@ export namespace sheets_v4 {
      * A reply from adding a chart.
      */
     addChart?: Schema$AddChartResponse;
+    /**
+     * A reply from adding a data source.
+     */
+    addDataSource?: Schema$AddDataSourceResponse;
     /**
      * A reply from adding a dimension group.
      */
@@ -3044,6 +3633,10 @@ export namespace sheets_v4 {
      */
     findReplace?: Schema$FindReplaceResponse;
     /**
+     * A reply from refreshing data source objects.
+     */
+    refreshDataSource?: Schema$RefreshDataSourceResponse;
+    /**
      * A reply from trimming whitespace.
      */
     trimWhitespace?: Schema$TrimWhitespaceResponse;
@@ -3051,6 +3644,10 @@ export namespace sheets_v4 {
      * A reply from updating a conditional format rule.
      */
     updateConditionalFormatRule?: Schema$UpdateConditionalFormatRuleResponse;
+    /**
+     * A reply from updating a data source.
+     */
+    updateDataSource?: Schema$UpdateDataSourceResponse;
     /**
      * A reply from updating a developer metadata entry.
      */
@@ -3074,7 +3671,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ScorecardChartSpec {
     /**
-     * The aggregation type for key and baseline chart data in scorecard chart. This field is optional.
+     * The aggregation type for key and baseline chart data in scorecard chart. This field is not supported for data source charts. Use the ChartData.aggregateType field of the key_value_data or baseline_value_data instead for data source charts. This field is optional.
      */
     aggregateType?: string | null;
     /**
@@ -3171,7 +3768,7 @@ export namespace sheets_v4 {
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
     /**
-     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
+     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D). For a DATA_SOURCE sheet, you can not request a specific range, the GridData contains all the values.
      */
     data?: Schema$GridData[];
     /**
@@ -3208,7 +3805,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$SheetProperties {
     /**
-     * Additional properties of the sheet if this sheet is a grid. (If the sheet is an object sheet, containing a chart or image, then this field will be absent.) When writing it is an error to set any grid properties on non-grid sheets.
+     * Output only. If present, the field contains DATA_SOURCE sheet specific properties.
+     */
+    dataSourceSheetProperties?: Schema$DataSourceSheetProperties;
+    /**
+     * Additional properties of the sheet if this sheet is a grid. (If the sheet is an object sheet, containing a chart or image, then this field will be absent.) When writing it is an error to set any grid properties on non-grid sheets. If this sheet is a DATA_SOURCE sheet, this field is output only but contains the properties that reflect how a data source sheet is rendered in the UI, e.g. row_count.
      */
     gridProperties?: Schema$GridProperties;
     /**
@@ -3328,6 +3929,10 @@ export namespace sheets_v4 {
      */
     backgroundColorStyle?: Schema$ColorStyle;
     /**
+     * Reference to a data source column.
+     */
+    dataSourceColumnReference?: Schema$DataSourceColumnReference;
+    /**
      * The dimension the sort should be applied to.
      */
     dimensionIndex?: number | null;
@@ -3365,6 +3970,14 @@ export namespace sheets_v4 {
    * Resource that represents a spreadsheet.
    */
   export interface Schema$Spreadsheet {
+    /**
+     * A list of external data sources connected with the spreadsheet.
+     */
+    dataSources?: Schema$DataSource[];
+    /**
+     * Output only. A list of data source refresh schedules.
+     */
+    dataSourceSchedules?: Schema$DataSourceRefreshSchedule[];
     /**
      * The developer metadata associated with a spreadsheet.
      */
@@ -3428,7 +4041,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SpreadsheetTheme {
     /**
-     * / Name of the primary font family.
+     * Name of the primary font family.
      */
     primaryFontFamily?: string | null;
     /**
@@ -3537,6 +4150,27 @@ export namespace sheets_v4 {
      * The type of the spreadsheet theme color.
      */
     colorType?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * A color scale for a treemap chart.
@@ -3782,6 +4416,32 @@ export namespace sheets_v4 {
     oldRule?: Schema$ConditionalFormatRule;
   }
   /**
+   * Updates a data source. After the data source is updated successfully, an execution is triggered to refresh the associated DATA_SOURCE sheet to read data from the updated data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   */
+  export interface Schema$UpdateDataSourceRequest {
+    /**
+     * The data source to update.
+     */
+    dataSource?: Schema$DataSource;
+    /**
+     * The fields that should be updated. At least one field must be specified. The root `dataSource` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+  }
+  /**
+   * The response from updating data source.
+   */
+  export interface Schema$UpdateDataSourceResponse {
+    /**
+     * The data execution status.
+     */
+    dataExecutionStatus?: Schema$DataExecutionStatus;
+    /**
+     * The updated data source.
+     */
+    dataSource?: Schema$DataSource;
+  }
+  /**
    * A request to update properties of developer metadata. Updates the properties of the developer metadata selected by the filters to the values provided in the DeveloperMetadata resource. Callers must specify the properties they wish to update in the fields parameter, as well as specify at least one DataFilter matching the metadata they wish to update.
    */
   export interface Schema$UpdateDeveloperMetadataRequest {
@@ -3824,6 +4484,10 @@ export namespace sheets_v4 {
    * Updates properties of dimensions within the specified range.
    */
   export interface Schema$UpdateDimensionPropertiesRequest {
+    /**
+     * The columns on a data source sheet to update.
+     */
+    dataSourceSheetRange?: Schema$DataSourceSheetDimensionRange;
     /**
      * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
@@ -4332,6 +4996,8 @@ export namespace sheets_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "dataSourceSchedules": [],
+     *       //   "dataSources": [],
      *       //   "developerMetadata": [],
      *       //   "namedRanges": [],
      *       //   "properties": {},
@@ -4345,6 +5011,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "dataSourceSchedules": [],
+     *   //   "dataSources": [],
      *   //   "developerMetadata": [],
      *   //   "namedRanges": [],
      *   //   "properties": {},
@@ -4488,6 +5156,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "dataSourceSchedules": [],
+     *   //   "dataSources": [],
      *   //   "developerMetadata": [],
      *   //   "namedRanges": [],
      *   //   "properties": {},
@@ -4638,6 +5308,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "dataSourceSchedules": [],
+     *   //   "dataSources": [],
      *   //   "developerMetadata": [],
      *   //   "namedRanges": [],
      *   //   "properties": {},
@@ -5170,6 +5842,7 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "dataSourceSheetProperties": {},
      *   //   "gridProperties": {},
      *   //   "hidden": false,
      *   //   "index": 0,
