@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20200821",
+  "revision": "20200925",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {
@@ -777,7 +777,7 @@
       "id": "DetectLanguageResponse",
       "properties": {
         "languages": {
-          "description": "A list of detected languages sorted by detection confidence in descending order. The most probable language first.",
+          "description": "The most probable language detected by the Translation API. For each request, the Translation API will always return only one result.",
           "items": {
             "$ref": "DetectedLanguage"
           },
