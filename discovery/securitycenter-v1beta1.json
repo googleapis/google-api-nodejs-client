@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20200820",
+  "revision": "20200925",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1174,7 +1174,7 @@
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1Resource": {
-      "description": " Information related to the Google Cloud resource.",
+      "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
       "properties": {
         "name": {
@@ -1186,7 +1186,7 @@
           "type": "string"
         },
         "parentDisplayName": {
-          "description": " The human readable name of resource's parent.",
+          "description": "The human readable name of resource's parent.",
           "type": "string"
         },
         "project": {
@@ -1194,7 +1194,7 @@
           "type": "string"
         },
         "projectDisplayName": {
-          "description": " The human readable name of project that the resource belongs to.",
+          "description": "The human readable name of project that the resource belongs to.",
           "type": "string"
         }
       },
@@ -1337,46 +1337,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudSecuritycenterV1p1beta1Asset": {
-      "description": "Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.",
-      "id": "GoogleCloudSecuritycenterV1p1beta1Asset",
-      "properties": {
-        "createTime": {
-          "description": "The time at which the asset was created in Security Command Center.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "iamPolicy": {
-          "$ref": "GoogleCloudSecuritycenterV1p1beta1IamPolicy",
-          "description": "Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user."
-        },
-        "name": {
-          "description": "The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/assets/{asset_id}\".",
-          "type": "string"
-        },
-        "resourceProperties": {
-          "additionalProperties": {
-            "type": "any"
-          },
-          "description": "Resource managed properties. These properties are managed and defined by the Google Cloud resource and cannot be modified by the user.",
-          "type": "object"
-        },
-        "securityCenterProperties": {
-          "$ref": "GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties",
-          "description": "Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user."
-        },
-        "securityMarks": {
-          "$ref": "GoogleCloudSecuritycenterV1p1beta1SecurityMarks",
-          "description": "User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset."
-        },
-        "updateTime": {
-          "description": "The time at which the asset was last updated, added, or deleted in Cloud SCC.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudSecuritycenterV1p1beta1Finding": {
       "description": "Security Command Center finding. A finding is a record of assessment data (security, risk, health or privacy) ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.",
       "id": "GoogleCloudSecuritycenterV1p1beta1Finding",
@@ -1417,7 +1377,7 @@
           "readOnly": true
         },
         "severity": {
-          "description": "The severity of the finding.",
+          "description": "The severity of the finding. This field is managed by the source that writes the finding.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "CRITICAL",
@@ -1458,17 +1418,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudSecuritycenterV1p1beta1IamPolicy": {
-      "description": "Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.",
-      "id": "GoogleCloudSecuritycenterV1p1beta1IamPolicy",
-      "properties": {
-        "policyBlob": {
-          "description": "The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for format details.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudSecuritycenterV1p1beta1NotificationMessage": {
       "description": "Security Command Center's Notification",
       "id": "GoogleCloudSecuritycenterV1p1beta1NotificationMessage",
@@ -1484,16 +1433,12 @@
         "resource": {
           "$ref": "GoogleCloudSecuritycenterV1p1beta1Resource",
           "description": "The Cloud resource tied to the notification."
-        },
-        "temporalAsset": {
-          "$ref": "GoogleCloudSecuritycenterV1p1beta1TemporalAsset",
-          "description": "If it's an asset based notification config, this field will be populated."
         }
       },
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1p1beta1Resource": {
-      "description": " Information related to the Google Cloud resource.",
+      "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1p1beta1Resource",
       "properties": {
         "name": {
@@ -1505,7 +1450,7 @@
           "type": "string"
         },
         "parentDisplayName": {
-          "description": " The human readable name of resource's parent.",
+          "description": "The human readable name of resource's parent.",
           "type": "string"
         },
         "project": {
@@ -1513,7 +1458,7 @@
           "type": "string"
         },
         "projectDisplayName": {
-          "description": " The human readable name of project that the resource belongs to.",
+          "description": "The human readable name of project that the resource belongs to.",
           "type": "string"
         }
       },
@@ -1547,48 +1492,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties": {
-      "description": "Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.",
-      "id": "GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties",
-      "properties": {
-        "resourceDisplayName": {
-          "description": "The user defined display name for this resource.",
-          "type": "string"
-        },
-        "resourceName": {
-          "description": "The full resource name of the Google Cloud resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
-          "type": "string"
-        },
-        "resourceOwners": {
-          "description": "Owners of the Google Cloud resource.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "resourceParent": {
-          "description": "The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
-          "type": "string"
-        },
-        "resourceParentDisplayName": {
-          "description": "The user defined display name for the parent of this resource.",
-          "type": "string"
-        },
-        "resourceProject": {
-          "description": "The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
-          "type": "string"
-        },
-        "resourceProjectDisplayName": {
-          "description": "The user defined display name for the project of this resource.",
-          "type": "string"
-        },
-        "resourceType": {
-          "description": "The type of the Google Cloud resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Security Command Center and/or the producer of the resource and is immutable after create time.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudSecuritycenterV1p1beta1SecurityMarks": {
       "description": "User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.",
       "id": "GoogleCloudSecuritycenterV1p1beta1SecurityMarks",
@@ -1602,33 +1505,6 @@
         },
         "name": {
           "description": "The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\".",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudSecuritycenterV1p1beta1TemporalAsset": {
-      "description": "Wrapper over asset object that also captures the state change for the asset e.g. if it was a newly created asset vs updated or deleted asset.",
-      "id": "GoogleCloudSecuritycenterV1p1beta1TemporalAsset",
-      "properties": {
-        "asset": {
-          "$ref": "GoogleCloudSecuritycenterV1p1beta1Asset",
-          "description": "Asset data that includes attributes, properties and marks about the asset."
-        },
-        "changeType": {
-          "description": "Represents if the asset was created/updated/deleted.",
-          "enum": [
-            "CHANGE_TYPE_UNSPECIFIED",
-            "CREATED",
-            "UPDATED",
-            "DELETED"
-          ],
-          "enumDescriptions": [
-            "Unspecified or default.",
-            "Newly created Asset",
-            "Asset was updated.",
-            "Asset was deleted."
-          ],
           "type": "string"
         }
       },
