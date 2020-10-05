@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20200802",
+  "revision": "20200928",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2391,11 +2391,12 @@
       "id": "Instance",
       "properties": {
         "appEngineRelease": {
-          "description": "App Engine release this instance is running on.@OutputOnly",
+          "description": "Output only. App Engine release this instance is running on.",
+          "readOnly": true,
           "type": "string"
         },
         "availability": {
-          "description": "Availability of the instance.@OutputOnly",
+          "description": "Output only. Availability of the instance.",
           "enum": [
             "UNSPECIFIED",
             "RESIDENT",
@@ -2406,68 +2407,104 @@
             "",
             ""
           ],
+          "readOnly": true,
           "type": "string"
         },
         "averageLatency": {
-          "description": "Average latency (ms) over the last minute.@OutputOnly",
+          "description": "Output only. Average latency (ms) over the last minute.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "errors": {
-          "description": "Number of errors since this instance was started.@OutputOnly",
+          "description": "Output only. Number of errors since this instance was started.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "id": {
-          "description": "Relative name of the instance within the version. Example: instance-1.@OutputOnly",
+          "description": "Output only. Relative name of the instance within the version. Example: instance-1.",
+          "readOnly": true,
           "type": "string"
         },
         "memoryUsage": {
-          "description": "Total memory in use (bytes).@OutputOnly",
+          "description": "Output only. Total memory in use (bytes).",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Full path to the Instance resource in the API. Example: apps/myapp/services/default/versions/v1/instances/instance-1.@OutputOnly",
+          "description": "Output only. Full path to the Instance resource in the API. Example: apps/myapp/services/default/versions/v1/instances/instance-1.",
+          "readOnly": true,
           "type": "string"
         },
         "qps": {
-          "description": "Average queries per second (QPS) over the last minute.@OutputOnly",
+          "description": "Output only. Average queries per second (QPS) over the last minute.",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         },
         "requests": {
-          "description": "Number of requests since this instance was started.@OutputOnly",
+          "description": "Output only. Number of requests since this instance was started.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "startTime": {
-          "description": "Time that this instance was started.@OutputOnly",
+          "description": "Output only. Time that this instance was started.@OutputOnly",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "vmDebugEnabled": {
-          "description": "Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
           "type": "boolean"
         },
         "vmId": {
-          "description": "Virtual machine ID of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. Virtual machine ID of this instance. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
           "type": "string"
         },
         "vmIp": {
-          "description": "The IP address of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. The IP address of this instance. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vmLiveness": {
+          "description": "Output only. The liveness health check of this instance. Only applicable for instances in App Engine flexible environment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UNKNOWN",
+            "HEALTHY",
+            "UNHEALTHY",
+            "DRAINING",
+            "TIMEOUT"
+          ],
+          "enumDescriptions": [
+            "There is no liveness health check for the instance. Only applicable for instances in App Engine standard environment.",
+            "The health checking system is aware of the instance but its health is not known at the moment.",
+            "The instance is reachable i.e. a connection to the application health checking endpoint can be established, and conforms to the requirements defined by the health check.",
+            "The instance is reachable, but does not conform to the requirements defined by the health check.",
+            "The instance is being drained. The existing connections to the instance have time to complete, but the new ones are being refused.",
+            "The instance is unreachable i.e. a connection to the application health checking endpoint cannot be established, or the server does not respond within the specified timeout."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "vmName": {
-          "description": "Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
           "type": "string"
         },
         "vmStatus": {
-          "description": "Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
           "type": "string"
         },
         "vmZoneName": {
-          "description": "Zone where the virtual machine is located. Only applicable for instances in App Engine flexible environment.@OutputOnly",
+          "description": "Output only. Zone where the virtual machine is located. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2815,6 +2852,29 @@
       },
       "type": "object"
     },
+    "NetworkSettings": {
+      "description": "A NetworkSettings resource is a container for ingress settings for a version or service.",
+      "id": "NetworkSettings",
+      "properties": {
+        "ingressTrafficAllowed": {
+          "description": "The ingress settings for version or service.",
+          "enum": [
+            "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED",
+            "INGRESS_TRAFFIC_ALLOWED_ALL",
+            "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY",
+            "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Allow HTTP traffic from public and private sources.",
+            "Allow HTTP traffic from only private VPC sources.",
+            "Allow HTTP traffic from private VPC sources and through load balancers."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkUtilization": {
       "description": "Target scaling by network usage. Only applicable in the App Engine flexible environment.",
       "id": "NetworkUtilization",
@@ -3154,6 +3214,10 @@
           "description": "Full path to the Service resource in the API. Example: apps/myapp/services/default.@OutputOnly",
           "type": "string"
         },
+        "networkSettings": {
+          "$ref": "NetworkSettings",
+          "description": "Ingress settings for this service. Will apply to all versions."
+        },
         "split": {
           "$ref": "TrafficSplit",
           "description": "Mapping that defines fractional HTTP traffic diversion to different versions within the service."
@@ -3430,7 +3494,7 @@
         },
         "automaticScaling": {
           "$ref": "AutomaticScaling",
-          "description": "Automatic scaling is based on request rate, response latencies, and other application metrics."
+          "description": "Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic."
         },
         "basicScaling": {
           "$ref": "BasicScaling",
@@ -3441,6 +3505,13 @@
             "type": "string"
           },
           "description": "Metadata settings that are supplied to this version to enable beta runtime features.",
+          "type": "object"
+        },
+        "buildEnvVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables available to the build environment.Only returned in GET requests if view=FULL is set.",
           "type": "object"
         },
         "createTime": {
@@ -3509,17 +3580,6 @@
         },
         "inboundServices": {
           "description": "Before an application can receive email or XMPP messages, the application must be configured to enable the service.",
-          "enumDescriptions": [
-            "Not specified.",
-            "Allows an application to receive mail.",
-            "Allows an application to receive email-bound notifications.",
-            "Allows an application to receive error stanzas.",
-            "Allows an application to receive instant messages.",
-            "Allows an application to receive user subscription POSTs.",
-            "Allows an application to receive a user's chat presence.",
-            "Registers an application for notifications when a client connects or disconnects from a channel.",
-            "Enables warmup requests."
-          ],
           "items": {
             "enum": [
               "INBOUND_SERVICE_UNSPECIFIED",
@@ -3564,7 +3624,7 @@
         },
         "manualScaling": {
           "$ref": "ManualScaling",
-          "description": "A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time."
+          "description": "A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time. Manually scaled versions are sometimes referred to as \"backends\"."
         },
         "name": {
           "description": "Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly",
