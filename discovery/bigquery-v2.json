@@ -1519,7 +1519,7 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20200925",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1693,15 +1693,6 @@
         },
         "seasonalPeriods": {
           "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
-          "enumDescriptions": [
-            "",
-            "No seasonality",
-            "Daily period, 24 hours.",
-            "Weekly period, 7 days.",
-            "Monthly period, 30 days or irregular.",
-            "Quarterly period, 90 days or irregular.",
-            "Yearly period, 365 days or irregular."
-          ],
           "items": {
             "enum": [
               "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
@@ -1757,15 +1748,6 @@
         },
         "seasonalPeriods": {
           "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
-          "enumDescriptions": [
-            "",
-            "No seasonality",
-            "Daily period, 24 hours.",
-            "Weekly period, 7 days.",
-            "Monthly period, 30 days or irregular.",
-            "Quarterly period, 90 days or irregular.",
-            "Yearly period, 365 days or irregular."
-          ],
           "items": {
             "enum": [
               "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
@@ -1831,15 +1813,6 @@
         },
         "seasonalPeriods": {
           "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
-          "enumDescriptions": [
-            "",
-            "No seasonality",
-            "Daily period, 24 hours.",
-            "Weekly period, 7 days.",
-            "Monthly period, 30 days or irregular.",
-            "Quarterly period, 90 days or irregular.",
-            "Yearly period, 365 days or irregular."
-          ],
           "items": {
             "enum": [
               "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
@@ -1884,15 +1857,6 @@
         },
         "seasonalPeriods": {
           "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
-          "enumDescriptions": [
-            "",
-            "No seasonality",
-            "Daily period, 24 hours.",
-            "Weekly period, 7 days.",
-            "Monthly period, 30 days or irregular.",
-            "Quarterly period, 90 days or irregular.",
-            "Yearly period, 365 days or irregular."
-          ],
           "items": {
             "enum": [
               "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
@@ -2552,6 +2516,10 @@
           "description": "The geographic location where the dataset should reside. The default value is US. See details at https://cloud.google.com/bigquery/docs/locations.",
           "type": "string"
         },
+        "satisfiesPZS": {
+          "description": "[Output-only] Reserved for future use.",
+          "type": "boolean"
+        },
         "selfLink": {
           "description": "[Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.",
           "type": "string"
@@ -3137,11 +3105,15 @@
       "id": "HivePartitioningOptions",
       "properties": {
         "mode": {
-          "description": "[Optional, Trusted Tester] When set, what mode of hive partitioning to use when reading data. Two modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.",
+          "description": "[Optional] When set, what mode of hive partitioning to use when reading data. The following modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. (3) CUSTOM: partition key schema is encoded in the source URI prefix. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.",
           "type": "string"
         },
+        "requirePartitionFilter": {
+          "description": "[Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. Note that this field should only be true when creating a permanent external table or querying a temporary external table. Hive-partitioned loads with requirePartitionFilter explicitly set to true will fail.",
+          "type": "boolean"
+        },
         "sourceUriPrefix": {
-          "description": "[Optional, Trusted Tester] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).",
+          "description": "[Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).",
           "type": "string"
         }
       },
@@ -3297,7 +3269,7 @@
           "type": "string"
         },
         "destinationFormat": {
-          "description": "[Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.",
+          "description": "[Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON, PARQUET or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.",
           "type": "string"
         },
         "destinationUri": {
@@ -3357,6 +3329,13 @@
         "createDisposition": {
           "description": "[Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
+        },
+        "decimalTargetTypes": {
+          "description": "[Trusted Tester] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. For example: suppose decimal_target_type = [\"NUMERIC\", \"BIGNUMERIC\"]. Then if (precision,scale) is: * (38,9) -> NUMERIC; * (39,9) -> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -> BIGNUMERIC; * (77,38) -> BIGNUMERIC (error if value exeeds supported range). For duplicated types in this field, only one will be considered and the rest will be ignored. The order of the types in this field is ignored. For example, [\"BIGNUMERIC\", \"NUMERIC\"] is the same as [\"NUMERIC\", \"BIGNUMERIC\"] and NUMERIC always takes precedence over BIGNUMERIC.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "destinationEncryptionConfiguration": {
           "$ref": "EncryptionConfiguration",
@@ -3806,6 +3785,10 @@
           "description": "[Output-only] Slot-milliseconds for the job.",
           "format": "int64",
           "type": "string"
+        },
+        "transactionInfoTemplate": {
+          "$ref": "TransactionInfo",
+          "description": "[Output-only] [Alpha] Information of the multi-statement transaction if this job is part of one."
         }
       },
       "type": "object"
@@ -4198,7 +4181,7 @@
             "Linear regression model.",
             "Logistic regression based classification model.",
             "K-means clustering model.",
-            "[Beta] Matrix factorization model.",
+            "Matrix factorization model.",
             "[Beta] DNN classifier model.",
             "[Beta] An imported TensorFlow model.",
             "[Beta] DNN regressor model.",
@@ -5576,7 +5559,7 @@
           "type": "boolean"
         },
         "type": {
-          "description": "[Required] The only type supported is DAY, which will generate one partition per day.",
+          "description": "[Required] The supported types are DAY, HOUR, MONTH, and YEAR, which will generate one partition per day, hour, month, and year, respectively. When the type is not specified, the default behavior is DAY.",
           "type": "string"
         }
       },
@@ -6055,6 +6038,16 @@
         "trainingOptions": {
           "$ref": "TrainingOptions",
           "description": "Options that were used for this training run, includes user specified and default options that were used."
+        }
+      },
+      "type": "object"
+    },
+    "TransactionInfo": {
+      "id": "TransactionInfo",
+      "properties": {
+        "transactionId": {
+          "description": "[Output-only] // [Alpha] Id of the transaction.",
+          "type": "string"
         }
       },
       "type": "object"
