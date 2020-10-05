@@ -466,6 +466,67 @@ export namespace classroom_v1 {
     courseId?: string | null;
   }
   /**
+   * Course work material created by a teacher for students of the course
+   */
+  export interface Schema$CourseWorkMaterial {
+    /**
+     * Absolute link to this course work material in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only.
+     */
+    alternateLink?: string | null;
+    /**
+     * Assignee mode of the course work material. If unspecified, the default value is `ALL_STUDENTS`.
+     */
+    assigneeMode?: string | null;
+    /**
+     * Identifier of the course. Read-only.
+     */
+    courseId?: string | null;
+    /**
+     * Timestamp when this course work material was created. Read-only.
+     */
+    creationTime?: string | null;
+    /**
+     * Identifier for the user that created the course work material. Read-only.
+     */
+    creatorUserId?: string | null;
+    /**
+     * Optional description of this course work material. The text must be a valid UTF-8 string containing no more than 30,000 characters.
+     */
+    description?: string | null;
+    /**
+     * Classroom-assigned identifier of this course work material, unique per course. Read-only.
+     */
+    id?: string | null;
+    /**
+     * Identifiers of students with access to the course work material. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field can see the course work material.
+     */
+    individualStudentsOptions?: Schema$IndividualStudentsOptions;
+    /**
+     * Additional materials. A course work material must have no more than 20 material items.
+     */
+    materials?: Schema$Material[];
+    /**
+     * Optional timestamp when this course work material is scheduled to be published.
+     */
+    scheduledTime?: string | null;
+    /**
+     * Status of this course work material. If unspecified, the default state is `DRAFT`.
+     */
+    state?: string | null;
+    /**
+     * Title of this course work material. The title must be a valid UTF-8 string containing between 1 and 3000 characters.
+     */
+    title?: string | null;
+    /**
+     * Identifier for the topic that this course work material is associated with. Must match an existing topic in the course.
+     */
+    topicId?: string | null;
+    /**
+     * Timestamp of the most recent change to this course work material. Read-only.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
@@ -723,6 +784,19 @@ export namespace classroom_v1 {
      * Courses that match the list request.
      */
     courses?: Schema$Course[];
+    /**
+     * Token identifying the next page of results to return. If empty, no further results are available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response when listing course work material.
+   */
+  export interface Schema$ListCourseWorkMaterialResponse {
+    /**
+     * Course work material items that match the request.
+     */
+    courseWorkMaterial?: Schema$CourseWorkMaterial[];
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
@@ -1230,6 +1304,7 @@ export namespace classroom_v1 {
     aliases: Resource$Courses$Aliases;
     announcements: Resource$Courses$Announcements;
     courseWork: Resource$Courses$Coursework;
+    courseWorkMaterials: Resource$Courses$Courseworkmaterials;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
     topics: Resource$Courses$Topics;
@@ -1238,6 +1313,9 @@ export namespace classroom_v1 {
       this.aliases = new Resource$Courses$Aliases(this.context);
       this.announcements = new Resource$Courses$Announcements(this.context);
       this.courseWork = new Resource$Courses$Coursework(this.context);
+      this.courseWorkMaterials = new Resource$Courses$Courseworkmaterials(
+        this.context
+      );
       this.students = new Resource$Courses$Students(this.context);
       this.teachers = new Resource$Courses$Teachers(this.context);
       this.topics = new Resource$Courses$Topics(this.context);
@@ -6076,6 +6154,885 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TurnInStudentSubmissionRequest;
+  }
+
+  export class Resource$Courses$Courseworkmaterials {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * classroom.courses.courseWorkMaterials.create
+     * @desc Creates a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work material in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed or if more than 20 * materials are provided. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error: * AttachmentNotVisible
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.courseWorkMaterials.create({
+     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     *     courseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "assigneeMode": "my_assigneeMode",
+     *       //   "courseId": "my_courseId",
+     *       //   "creationTime": "my_creationTime",
+     *       //   "creatorUserId": "my_creatorUserId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "individualStudentsOptions": {},
+     *       //   "materials": [],
+     *       //   "scheduledTime": "my_scheduledTime",
+     *       //   "state": "my_state",
+     *       //   "title": "my_title",
+     *       //   "topicId": "my_topicId",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "assigneeMode": "my_assigneeMode",
+     *   //   "courseId": "my_courseId",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "creatorUserId": "my_creatorUserId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "individualStudentsOptions": {},
+     *   //   "materials": [],
+     *   //   "scheduledTime": "my_scheduledTime",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "topicId": "my_topicId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias classroom.courses.courseWorkMaterials.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {().CourseWorkMaterial} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Courseworkmaterials$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWorkMaterial>,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Create,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CourseWorkMaterial>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Create
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CourseWorkMaterial>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Courseworkmaterials$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId'],
+        pathParams: ['courseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CourseWorkMaterial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
+      }
+    }
+
+    /**
+     * classroom.courses.courseWorkMaterials.delete
+     * @desc Deletes a course work material. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work material item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work material, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested course work material has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.courseWorkMaterials.delete({
+     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     *     courseId: 'placeholder-value',
+     *     // Identifier of the course work material to delete. This identifier is a Classroom-assigned identifier.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias classroom.courses.courseWorkMaterials.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the course work material to delete. This identifier is a Classroom-assigned identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Courseworkmaterials$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Courseworkmaterials$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'id'],
+        pathParams: ['courseId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * classroom.courses.courseWorkMaterials.get
+     * @desc Returns a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work material, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work material does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials',
+     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.courseWorkMaterials.get({
+     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     *     courseId: 'placeholder-value',
+     *     // Identifier of the course work material.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "assigneeMode": "my_assigneeMode",
+     *   //   "courseId": "my_courseId",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "creatorUserId": "my_creatorUserId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "individualStudentsOptions": {},
+     *   //   "materials": [],
+     *   //   "scheduledTime": "my_scheduledTime",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "topicId": "my_topicId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias classroom.courses.courseWorkMaterials.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the course work material.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Courseworkmaterials$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWorkMaterial>,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Get,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CourseWorkMaterial>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Get
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CourseWorkMaterial>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Courseworkmaterials$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'id'],
+        pathParams: ['courseId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CourseWorkMaterial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
+      }
+    }
+
+    /**
+     * classroom.courses.courseWorkMaterials.list
+     * @desc Returns a list of course work material that the requester is permitted to view. Course students may only view `PUBLISHED` course work material. Course teachers and domain administrators may view all course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials',
+     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.courseWorkMaterials.list({
+     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     *     courseId: 'placeholder-value',
+     *     // Restriction on the work status to return. Only course work material that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
+     *     courseWorkMaterialStates: 'placeholder-value',
+     *     // Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters.
+     *     materialDriveId: 'placeholder-value',
+     *     // Optional filtering for course work material with at least one link material whose URL partially matches the provided string.
+     *     materialLink: 'placeholder-value',
+     *     // Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     *     pageSize: 'placeholder-value',
+     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "courseWorkMaterial": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias classroom.courses.courseWorkMaterials.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string=} params.courseWorkMaterialStates Restriction on the work status to return. Only course work material that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
+     * @param {string=} params.materialDriveId Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters.
+     * @param {string=} params.materialLink Optional filtering for course work material with at least one link material whose URL partially matches the provided string.
+     * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Courseworkmaterials$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCourseWorkMaterialResponse>;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>,
+      callback: BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$List,
+      callback: BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$List
+        | BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCourseWorkMaterialResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCourseWorkMaterialResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Courseworkmaterials$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId'],
+        pathParams: ['courseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCourseWorkMaterialResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCourseWorkMaterialResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * classroom.courses.courseWorkMaterials.patch
+     * @desc Updates one or more fields of a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work material has already been deleted. * `NOT_FOUND` if the requested course or course work material does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.courseWorkMaterials.patch({
+     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     *     courseId: 'placeholder-value',
+     *     // Identifier of the course work material.
+     *     id: 'placeholder-value',
+     *     // Mask that identifies which fields on the course work material to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the course work material object. If a field that does not support empty values is included in the update mask and not set in the course work material object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `scheduled_time` * `topic_id`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateLink": "my_alternateLink",
+     *       //   "assigneeMode": "my_assigneeMode",
+     *       //   "courseId": "my_courseId",
+     *       //   "creationTime": "my_creationTime",
+     *       //   "creatorUserId": "my_creatorUserId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "individualStudentsOptions": {},
+     *       //   "materials": [],
+     *       //   "scheduledTime": "my_scheduledTime",
+     *       //   "state": "my_state",
+     *       //   "title": "my_title",
+     *       //   "topicId": "my_topicId",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateLink": "my_alternateLink",
+     *   //   "assigneeMode": "my_assigneeMode",
+     *   //   "courseId": "my_courseId",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "creatorUserId": "my_creatorUserId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "individualStudentsOptions": {},
+     *   //   "materials": [],
+     *   //   "scheduledTime": "my_scheduledTime",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "topicId": "my_topicId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias classroom.courses.courseWorkMaterials.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the course work material.
+     * @param {string=} params.updateMask Mask that identifies which fields on the course work material to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the course work material object. If a field that does not support empty values is included in the update mask and not set in the course work material object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `scheduled_time` * `topic_id`
+     * @param {().CourseWorkMaterial} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Courseworkmaterials$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWorkMaterial>;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWorkMaterial>,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Patch,
+      callback: BodyResponseCallback<Schema$CourseWorkMaterial>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CourseWorkMaterial>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Patch
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CourseWorkMaterial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CourseWorkMaterial>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Courseworkmaterials$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'id'],
+        pathParams: ['courseId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CourseWorkMaterial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Courseworkmaterials$Create
+    extends StandardParameters {
+    /**
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     */
+    courseId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CourseWorkMaterial;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Delete
+    extends StandardParameters {
+    /**
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the course work material to delete. This identifier is a Classroom-assigned identifier.
+     */
+    id?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Get
+    extends StandardParameters {
+    /**
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the course work material.
+     */
+    id?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$List
+    extends StandardParameters {
+    /**
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     */
+    courseId?: string;
+    /**
+     * Restriction on the work status to return. Only course work material that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
+     */
+    courseWorkMaterialStates?: string[];
+    /**
+     * Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters.
+     */
+    materialDriveId?: string;
+    /**
+     * Optional filtering for course work material with at least one link material whose URL partially matches the provided string.
+     */
+    materialLink?: string;
+    /**
+     * Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     */
+    pageSize?: number;
+    /**
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Patch
+    extends StandardParameters {
+    /**
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the course work material.
+     */
+    id?: string;
+    /**
+     * Mask that identifies which fields on the course work material to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the course work material object. If a field that does not support empty values is included in the update mask and not set in the course work material object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `scheduled_time` * `topic_id`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CourseWorkMaterial;
   }
 
   export class Resource$Courses$Students {
