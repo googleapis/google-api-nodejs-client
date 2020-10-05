@@ -131,6 +131,7 @@ export namespace admin_directory_v1 {
     roles: Resource$Roles;
     schemas: Resource$Schemas;
     tokens: Resource$Tokens;
+    twoStepVerification: Resource$Twostepverification;
     users: Resource$Users;
     verificationCodes: Resource$Verificationcodes;
 
@@ -156,6 +157,7 @@ export namespace admin_directory_v1 {
       this.roles = new Resource$Roles(this.context);
       this.schemas = new Resource$Schemas(this.context);
       this.tokens = new Resource$Tokens(this.context);
+      this.twoStepVerification = new Resource$Twostepverification(this.context);
       this.users = new Resource$Users(this.context);
       this.verificationCodes = new Resource$Verificationcodes(this.context);
     }
@@ -2717,6 +2719,7 @@ export namespace admin_directory_v1 {
      *       'https://www.googleapis.com/auth/admin.directory.user.alias',
      *       'https://www.googleapis.com/auth/admin.directory.user.alias.readonly',
      *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
      *     ],
      *   });
      *
@@ -16155,6 +16158,145 @@ export namespace admin_directory_v1 {
     userKey?: string;
   }
 
+  export class Resource$Twostepverification {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * directory.twoStepVerification.turnOff
+     * @desc Turn off 2-Step Verification for user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await directory.twoStepVerification.turnOff({
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias directory.twoStepVerification.turnOff
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    turnOff(
+      params: Params$Resource$Twostepverification$Turnoff,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    turnOff(
+      params?: Params$Resource$Twostepverification$Turnoff,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    turnOff(
+      params: Params$Resource$Twostepverification$Turnoff,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    turnOff(
+      params: Params$Resource$Twostepverification$Turnoff,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    turnOff(
+      params: Params$Resource$Twostepverification$Turnoff,
+      callback: BodyResponseCallback<void>
+    ): void;
+    turnOff(callback: BodyResponseCallback<void>): void;
+    turnOff(
+      paramsOrCallback?:
+        | Params$Resource$Twostepverification$Turnoff
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Twostepverification$Turnoff;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Twostepverification$Turnoff;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/admin/directory/v1/users/{userKey}/twoStepVerification/turnOff'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Twostepverification$Turnoff
+    extends StandardParameters {
+    /**
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+
   export class Resource$Users {
     context: APIRequestContext;
     aliases: Resource$Users$Aliases;
@@ -17229,6 +17371,128 @@ export namespace admin_directory_v1 {
     }
 
     /**
+     * directory.users.signOut
+     * @desc Sign a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.user.security'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await directory.users.signOut({
+     *     // Identifies the target user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias directory.users.signOut
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userKey Identifies the target user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    signOut(
+      params: Params$Resource$Users$Signout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signOut(
+      params?: Params$Resource$Users$Signout,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    signOut(
+      params: Params$Resource$Users$Signout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    signOut(
+      params: Params$Resource$Users$Signout,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    signOut(
+      params: Params$Resource$Users$Signout,
+      callback: BodyResponseCallback<void>
+    ): void;
+    signOut(callback: BodyResponseCallback<void>): void;
+    signOut(
+      paramsOrCallback?:
+        | Params$Resource$Users$Signout
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Signout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Signout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/admin/directory/v1/users/{userKey}/signOut'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * directory.users.undelete
      * @desc Undelete a deleted user
      * @example
@@ -17609,6 +17873,7 @@ export namespace admin_directory_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/admin.directory.user',
      *       'https://www.googleapis.com/auth/admin.directory.user.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
      *     ],
      *   });
      *
@@ -17620,10 +17885,28 @@ export namespace admin_directory_v1 {
      *   const res = await directory.users.watch({
      *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      *     customer: 'placeholder-value',
+     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     customFieldMask: 'placeholder-value',
      *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      *     domain: 'placeholder-value',
      *     // Event on which subscription is intended
      *     event: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Column to use for sorting results
+     *     orderBy: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *     // What subset of fields to fetch for this user.
+     *     projection: 'placeholder-value',
+     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     query: 'placeholder-value',
+     *     // If set to true, retrieves the list of deleted users. (Default: false)
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to return results in ascending or descending order.
+     *     sortOrder: 'placeholder-value',
+     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     viewType: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -17669,8 +17952,17 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      * @param {string=} params.event Event on which subscription is intended
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {string=} params.projection What subset of fields to fetch for this user.
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
+     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17853,6 +18145,12 @@ export namespace admin_directory_v1 {
      */
     requestBody?: Schema$User;
   }
+  export interface Params$Resource$Users$Signout extends StandardParameters {
+    /**
+     * Identifies the target user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
   export interface Params$Resource$Users$Undelete extends StandardParameters {
     /**
      * The immutable id of the user
@@ -17881,6 +18179,10 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
     /**
+     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     */
+    customFieldMask?: string;
+    /**
      * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      */
     domain?: string;
@@ -17888,6 +18190,38 @@ export namespace admin_directory_v1 {
      * Event on which subscription is intended
      */
     event?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * What subset of fields to fetch for this user.
+     */
+    projection?: string;
+    /**
+     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     */
+    query?: string;
+    /**
+     * If set to true, retrieves the list of deleted users. (Default: false)
+     */
+    showDeleted?: string;
+    /**
+     * Whether to return results in ascending or descending order.
+     */
+    sortOrder?: string;
+    /**
+     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     */
+    viewType?: string;
 
     /**
      * Request body metadata
