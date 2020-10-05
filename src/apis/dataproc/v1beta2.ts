@@ -214,6 +214,10 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$Binding {
     /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
+    /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
@@ -548,6 +552,14 @@ export namespace dataproc_v1beta2 {
      */
     networkUri?: string | null;
     /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     */
+    nodeGroupAffinity?: Schema$NodeGroupAffinity;
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Optional. Reservation Affinity for consuming Zonal reservation.
      */
     reservationAffinity?: Schema$ReservationAffinity;
@@ -753,7 +765,7 @@ export namespace dataproc_v1beta2 {
      */
     instanceId?: string | null;
     /**
-     * Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 100 characters.
+     * Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 1000 characters.
      */
     parameters?: {[key: string]: string} | null;
     /**
@@ -1118,11 +1130,11 @@ export namespace dataproc_v1beta2 {
     instanceTemplateName?: string | null;
   }
   /**
-   * Specifies the metastore configuration.
+   * Specifies a Metastore configuration.
    */
   export interface Schema$MetastoreConfig {
     /**
-     * Optional. Relative resource name of an existing Dataproc Metastore service.
+     * Required. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]
      */
     dataprocMetastoreService?: string | null;
   }
@@ -1138,6 +1150,15 @@ export namespace dataproc_v1beta2 {
      * Optional. The target GKE cluster to deploy to. Format: &#39;projects/{project}/locations/{location}/clusters/{cluster_id}&#39;
      */
     targetGkeCluster?: string | null;
+  }
+  /**
+   * Node Group Affinity for clusters using sole-tenant node groups.
+   */
+  export interface Schema$NodeGroupAffinity {
+    /**
+     * Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.
+     */
+    nodeGroupUri?: string | null;
   }
   /**
    * Specifies an executable to run on a fully configured node and a timeout period for executable completion.
@@ -1368,7 +1389,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$QueryList {
     /**
-     * Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: &quot;hiveJob&quot;: { &quot;queryList&quot;: { &quot;queries&quot;: [ &quot;query1&quot;, &quot;query2&quot;, &quot;query3;query4&quot;, ] } }
+     * Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: &quot;hiveJob&quot;: { &quot;queryList&quot;: { &quot;queries&quot;: [ &quot;query1&quot;, &quot;query2&quot;, &quot;query3;query4&quot;, ] } }
      */
     queries?: string[] | null;
   }
@@ -1736,7 +1757,7 @@ export namespace dataproc_v1beta2 {
      */
     createTime?: string | null;
     /**
-     * Optional. Timeout duration for the DAG of jobs. You can use &quot;s&quot;, &quot;m&quot;, &quot;h&quot;, and &quot;d&quot; suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (&quot;10m&quot;) to 24 hours (&quot;24h&quot; or &quot;1d&quot;). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is terminated, and if the workflow was running on a managed cluster, the cluster is deleted.
+     * Optional. Timeout duration for the DAG of jobs. You can use &quot;s&quot;, &quot;m&quot;, &quot;h&quot;, and &quot;d&quot; suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (&quot;10m&quot;) to 24 hours (&quot;24h&quot; or &quot;1d&quot;). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.
      */
     dagTimeout?: string | null;
     /**

@@ -214,6 +214,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$Binding {
     /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
+    /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
@@ -540,6 +544,14 @@ export namespace dataproc_v1 {
      */
     networkUri?: string | null;
     /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     */
+    nodeGroupAffinity?: Schema$NodeGroupAffinity;
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Optional. Reservation Affinity for consuming Zonal reservation.
      */
     reservationAffinity?: Schema$ReservationAffinity;
@@ -732,7 +744,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$InstantiateWorkflowTemplateRequest {
     /**
-     * Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 100 characters.
+     * Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 1000 characters.
      */
     parameters?: {[key: string]: string} | null;
     /**
@@ -877,7 +889,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$JobScheduling {
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as a result of driver terminating with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.
+     * Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.
      */
     maxFailuresPerHour?: number | null;
   }
@@ -1091,6 +1103,15 @@ export namespace dataproc_v1 {
      * Output only. The name of the Instance Template used for the Managed Instance Group.
      */
     instanceTemplateName?: string | null;
+  }
+  /**
+   * Node Group Affinity for clusters using sole-tenant node groups.
+   */
+  export interface Schema$NodeGroupAffinity {
+    /**
+     * Optional. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.
+     */
+    nodeGroupUri?: string | null;
   }
   /**
    * Specifies an executable to run on a fully configured node and a timeout period for executable completion.
@@ -1321,7 +1342,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$QueryList {
     /**
-     * Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: &quot;hiveJob&quot;: { &quot;queryList&quot;: { &quot;queries&quot;: [ &quot;query1&quot;, &quot;query2&quot;, &quot;query3;query4&quot;, ] } }
+     * Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: &quot;hiveJob&quot;: { &quot;queryList&quot;: { &quot;queries&quot;: [ &quot;query1&quot;, &quot;query2&quot;, &quot;query3;query4&quot;, ] } }
      */
     queries?: string[] | null;
   }

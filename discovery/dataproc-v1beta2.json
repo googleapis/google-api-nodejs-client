@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20200813",
+  "revision": "20200925",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2356,6 +2356,10 @@
       "description": "Associates members with a role.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -2823,6 +2827,26 @@
           "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default",
           "type": "string"
         },
+        "nodeGroupAffinity": {
+          "$ref": "NodeGroupAffinity",
+          "description": "Optional. Node Group Affinity for sole-tenant clusters."
+        },
+        "privateIpv6GoogleAccess": {
+          "description": "Optional. The type of IPv6 access for a cluster.",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "INHERIT_FROM_SUBNETWORK",
+            "OUTBOUND",
+            "BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "If unspecified, Compute Engine default behavior will apply, which is the same as INHERIT_FROM_SUBNETWORK.",
+            "Private access to and from Google Services configuration inherited from the subnetwork configuration. This is the default Compute Engine behavior.",
+            "Enables outbound private IPv6 access to Google Services from the Dataproc cluster.",
+            "Enables bidirectional private IPv6 access between Google Services and the Dataproc cluster."
+          ],
+          "type": "string"
+        },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "Optional. Reservation Affinity for consuming Zonal reservation."
@@ -3108,7 +3132,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 100 characters.",
+          "description": "Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 1000 characters.",
           "type": "object"
         },
         "requestId": {
@@ -3631,11 +3655,11 @@
       "type": "object"
     },
     "MetastoreConfig": {
-      "description": "Specifies the metastore configuration.",
+      "description": "Specifies a Metastore configuration.",
       "id": "MetastoreConfig",
       "properties": {
         "dataprocMetastoreService": {
-          "description": "Optional. Relative resource name of an existing Dataproc Metastore service.",
+          "description": "Required. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]",
           "type": "string"
         }
       },
@@ -3651,6 +3675,17 @@
         },
         "targetGkeCluster": {
           "description": "Optional. The target GKE cluster to deploy to. Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}'",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeGroupAffinity": {
+      "description": "Node Group Affinity for clusters using sole-tenant node groups.",
+      "id": "NodeGroupAffinity",
+      "properties": {
+        "nodeGroupUri": {
+          "description": "Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.",
           "type": "string"
         }
       },
@@ -3954,7 +3989,7 @@
       "id": "QueryList",
       "properties": {
         "queries": {
-          "description": "Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: \"hiveJob\": { \"queryList\": { \"queries\": [ \"query1\", \"query2\", \"query3;query4\", ] } } ",
+          "description": "Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: \"hiveJob\": { \"queryList\": { \"queries\": [ \"query1\", \"query2\", \"query3;query4\", ] } } ",
           "items": {
             "type": "string"
           },
@@ -4047,7 +4082,9 @@
             "enum": [
               "COMPONENT_UNSPECIFIED",
               "ANACONDA",
+              "DOCKER",
               "DRUID",
+              "FLINK",
               "HBASE",
               "HIVE_WEBHCAT",
               "JUPYTER",
@@ -4061,7 +4098,9 @@
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
               "The Anaconda python distribution.",
+              "Docker",
               "The Druid query engine.",
+              "Flink",
               "HBase.",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
               "The Jupyter Notebook.",
@@ -4537,7 +4576,7 @@
           "type": "string"
         },
         "dagTimeout": {
-          "description": "Optional. Timeout duration for the DAG of jobs. You can use \"s\", \"m\", \"h\", and \"d\" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (\"10m\") to 24 hours (\"24h\" or \"1d\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is terminated, and if the workflow was running on a managed cluster, the cluster is deleted.",
+          "description": "Optional. Timeout duration for the DAG of jobs. You can use \"s\", \"m\", \"h\", and \"d\" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (\"10m\") to 24 hours (\"24h\" or \"1d\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.",
           "format": "google-duration",
           "type": "string"
         },
