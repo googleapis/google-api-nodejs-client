@@ -2134,7 +2134,7 @@
       }
     }
   },
-  "revision": "20200917",
+  "revision": "20200925",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3524,7 +3524,7 @@
       "id": "NodeGroupAffinity",
       "properties": {
         "nodeGroupUri": {
-          "description": "Optional. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.",
+          "description": "Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.",
           "type": "string"
         }
       },

@@ -1109,7 +1109,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$NodeGroupAffinity {
     /**
-     * Optional. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.
+     * Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.
      */
     nodeGroupUri?: string | null;
   }
