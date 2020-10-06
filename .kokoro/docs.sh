@@ -16,7 +16,7 @@
 
 set -eo pipefail
 
-export NPM_CONFIG_PREFIX=/home/node/.npm-global
+export NPM_CONFIG_PREFIX=${HOME}/.npm-global
 
 cd $(dirname $0)/..
 

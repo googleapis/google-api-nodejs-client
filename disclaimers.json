@@ -1,7 +1,19 @@
 [
   {
+    "api": "notebooks",
+    "package": "@google-cloud/notebooks"
+  },
+  {
+    "api": "area120tables",
+    "package": "@google/area120-tables"
+  },
+  {
     "api": "cloudasset",
     "package": "@google-cloud/asset"
+  },
+  {
+    "api": "assuredworkloads",
+    "package": "@google-cloud/assured-workloads"
   },
   {
     "api": "automl",
@@ -22,6 +34,10 @@
   {
     "api": "cloudbuild",
     "package": "@google-cloud/cloudbuild"
+  },
+  {
+    "api": "privateca",
+    "package": "@google-cloud/security-private-ca"
   },
   {
     "api": "datacatalog",
@@ -52,6 +68,10 @@
     "package": "dialogflow"
   },
   {
+    "api": "dialogflow",
+    "package": "@google-cloud/dialogflow-cx"
+  },
+  {
     "api": "dns",
     "package": "@google-cloud/dns"
   },
@@ -78,6 +98,10 @@
   {
     "api": "analyticsadmin",
     "package": "@google-analytics/admin"
+  },
+  {
+    "api": "analyticsdata",
+    "package": "@google-analytics/data"
   },
   {
     "api": "bigquery",
@@ -262,5 +286,9 @@
   {
     "api": "webrisk",
     "package": "@google-cloud/web-risk"
+  },
+  {
+    "api": "workflows",
+    "package": "@google-cloud/workflows"
   }
 ]
