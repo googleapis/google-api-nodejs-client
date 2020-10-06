@@ -126,7 +126,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The unique ID for the user in format `users/{user}`.",
+              "description": "Required. The unique ID for the user in format `users/{user}`.",
               "location": "path",
               "pattern": "^users/[^/]+$",
               "required": true,
@@ -217,7 +217,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.",
+                  "description": "Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.",
                   "location": "path",
                   "pattern": "^users/[^/]+/projects/[^/]+$",
                   "required": true,
@@ -262,7 +262,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+                  "description": "Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
                   "location": "path",
                   "pattern": "^users/[^/]+/sshPublicKeys/[^/]+$",
                   "required": true,
@@ -288,7 +288,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+                  "description": "Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
                   "location": "path",
                   "pattern": "^users/[^/]+/sshPublicKeys/[^/]+$",
                   "required": true,
@@ -314,7 +314,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+                  "description": "Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
                   "location": "path",
                   "pattern": "^users/[^/]+/sshPublicKeys/[^/]+$",
                   "required": true,
@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200925",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -354,9 +354,13 @@
       "type": "object"
     },
     "ImportSshPublicKeyResponse": {
-      "description": "A response message from importing an SSH public key.",
+      "description": "A response message for importing an SSH public key.",
       "id": "ImportSshPublicKeyResponse",
       "properties": {
+        "details": {
+          "description": "Detailed information about import results.",
+          "type": "string"
+        },
         "loginProfile": {
           "$ref": "LoginProfile",
           "description": "The login profile information for the user."
@@ -369,7 +373,7 @@
       "id": "LoginProfile",
       "properties": {
         "name": {
-          "description": "A unique user ID.",
+          "description": "Required. A unique user ID.",
           "type": "string"
         },
         "posixAccounts": {

@@ -251,7 +251,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.",
+              "description": "Required. Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -276,7 +276,7 @@
         "tenancyUnits": {
           "methods": {
             "addProject": {
-              "description": "Add a new tenant project to the tenancy unit. There can be a maximum of 512 tenant projects in a tenancy unit. If there are previously failed `AddTenantProject` calls, you might need to call `RemoveTenantProject` first to resolve them before you can make another call to `AddTenantProject` with the same tag. Operation.",
+              "description": "Add a new tenant project to the tenancy unit. There can be a maximum of 1024 tenant projects in a tenancy unit. If there are previously failed `AddTenantProject` calls, you might need to call `RemoveTenantProject` first to resolve them before you can make another call to `AddTenantProject` with the same tag. Operation.",
               "flatPath": "v1/services/{servicesId}/{servicesId1}/{servicesId2}/tenancyUnits/{tenancyUnitsId}:addProject",
               "httpMethod": "POST",
               "id": "serviceconsumermanagement.services.tenancyUnits.addProject",
@@ -285,7 +285,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -313,7 +313,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -341,7 +341,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -369,7 +369,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.",
+                  "description": "Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+$",
                   "required": true,
@@ -397,7 +397,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit to be deleted.",
+                  "description": "Required. Name of the tenancy unit to be deleted.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -422,7 +422,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -450,23 +450,23 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Filter expression over tenancy resources field. Optional.",
+                  "description": "Optional. Filter expression over tenancy resources field. Optional.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results returned by this request.",
+                  "description": "Optional. The maximum number of results returned by this request.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.",
+                  "description": "Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.",
                   "location": "query",
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.",
+                  "description": "Required. Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+$",
                   "required": true,
@@ -491,7 +491,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -519,7 +519,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
+                  "description": "Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.",
                   "location": "path",
                   "pattern": "^services/[^/]+/[^/]+/[^/]+/tenancyUnits/[^/]+$",
                   "required": true,
@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20200824",
+  "revision": "20201003",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -554,7 +554,7 @@
           "description": "Configuration of the new tenant project to be added to tenancy unit resources."
         },
         "tag": {
-          "description": "Tag of the added project. Must be less than 128 characters. Required.",
+          "description": "Required. Tag of the added project. Must be less than 128 characters. Required.",
           "type": "string"
         }
       },
@@ -621,7 +621,7 @@
           "description": "Configuration that should be applied to the existing tenant project."
         },
         "tag": {
-          "description": "Tag of the project. Must be less than 128 characters. Required.",
+          "description": "Required. Tag of the project. Must be less than 128 characters. Required.",
           "type": "string"
         }
       },
@@ -640,7 +640,7 @@
           "type": "string"
         },
         "tag": {
-          "description": "Tag of the tenant resource after attachment. Must be less than 128 characters. Required.",
+          "description": "Required. Tag of the tenant resource after attachment. Must be less than 128 characters. Required.",
           "type": "string"
         }
       },
@@ -991,7 +991,7 @@
       "id": "DeleteTenantProjectRequest",
       "properties": {
         "tag": {
-          "description": "Tag of the resource within the tenancy unit.",
+          "description": "Required. Tag of the resource within the tenancy unit.",
           "type": "string"
         }
       },
@@ -1982,7 +1982,7 @@
       "id": "RemoveTenantProjectRequest",
       "properties": {
         "tag": {
-          "description": "Tag of the resource within the tenancy unit.",
+          "description": "Required. Tag of the resource within the tenancy unit.",
           "type": "string"
         }
       },
@@ -2295,12 +2295,14 @@
       "id": "TenancyUnit",
       "properties": {
         "consumer": {
-          "description": "@OutputOnly Cloud resource name of the consumer of this service. For example 'projects/123456'.",
+          "description": "Output only. @OutputOnly Cloud resource name of the consumer of this service. For example 'projects/123456'.",
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "@OutputOnly The time this tenancy unit was created.",
+          "description": "Output only. @OutputOnly The time this tenancy unit was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -2309,6 +2311,7 @@
         },
         "service": {
           "description": "Output only. Google Cloud API name of the managed service owning this tenancy unit. For example 'serviceconsumermanagement.googleapis.com'.",
+          "readOnly": true,
           "type": "string"
         },
         "tenantResources": {
@@ -2377,7 +2380,8 @@
       "id": "TenantResource",
       "properties": {
         "resource": {
-          "description": "@OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form 'projects/{number}'. For example 'projects/123456'.",
+          "description": "Output only. @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form 'projects/{number}'. For example 'projects/123456'.",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -2460,7 +2464,7 @@
       "id": "UndeleteTenantProjectRequest",
       "properties": {
         "tag": {
-          "description": "Tag of the resource within the tenancy unit.",
+          "description": "Required. Tag of the resource within the tenancy unit.",
           "type": "string"
         }
       },

@@ -348,7 +348,7 @@
       }
     }
   },
-  "revision": "20200824",
+  "revision": "20201001",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -399,6 +399,14 @@
         },
         "electionInfoUrl": {
           "description": "A URL provided by this administrative body for looking up general election information.",
+          "type": "string"
+        },
+        "electionNoticeText": {
+          "description": "A last minute or emergency notification text provided by this administrative body.",
+          "type": "string"
+        },
+        "electionNoticeUrl": {
+          "description": "A URL provided by this administrative body for additional information related to the last minute or emergency notification.",
           "type": "string"
         },
         "electionOfficials": {
@@ -1034,12 +1042,12 @@
           "type": "string"
         },
         "latitude": {
-          "description": "Latitude of the location, in degrees north of the equator. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.",
+          "description": "Latitude of the location, in degrees north of the equator. Note this field may not be available for some locations.",
           "format": "double",
           "type": "number"
         },
         "longitude": {
-          "description": "Longitude of the location, in degrees east of the Prime Meridian. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.",
+          "description": "Longitude of the location, in degrees east of the Prime Meridian. Note this field may not be available for some locations.",
           "format": "double",
           "type": "number"
         },

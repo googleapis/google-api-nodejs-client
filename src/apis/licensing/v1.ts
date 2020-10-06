@@ -53,9 +53,21 @@ export namespace licensing_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace licensing_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Licensing API
+   * Enterprise License Manager API
    *
-   * Licensing API to view and manage licenses for your domain
+   * The Google Enterprise License Manager API&#39;s allows you to license apps for all the users of a domain managed by you.
    *
    * @example
    * const {google} = require('googleapis');
@@ -157,9 +173,6 @@ export namespace licensing_v1 {
      */
     userId?: string | null;
   }
-  /**
-   * LicesnseAssignment List for a given product/sku for a customer.
-   */
   export interface Schema$LicenseAssignmentList {
     /**
      * ETag of the resource.
@@ -216,9 +229,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests.
-     *     // Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes.
-     *     // If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -348,9 +359,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests.
-     *     // Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes.
-     *     // If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -646,8 +655,7 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProduct({
-     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field.
-     *     // If the customer is suspended, the server returns an error.
+     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
      *     // The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
@@ -796,8 +804,7 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProductAndSku({
-     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field.
-     *     // If the customer is suspended, the server returns an error.
+     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
      *     // The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
@@ -925,7 +932,7 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.patch
-     * @desc Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.
+     * @desc Patch a Licensing info via Apiary Patch Orchestration
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -954,9 +961,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests.
-     *     // Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes.
-     *     // If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1119,9 +1124,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests.
-     *     // Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes.
-     *     // If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *
      *     // Request body metadata

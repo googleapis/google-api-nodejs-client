@@ -27,8 +27,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/tagmanager/v2",
+  "baseUrl": "https://tagmanager.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Tag Manager",
   "description": "This API allows clients to access and modify container and tag configuration.",
   "discoveryVersion": "v1",
@@ -39,7 +39,7 @@
   },
   "id": "tagmanager:v2",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://tagmanager.mtls.googleapis.com/",
   "name": "tagmanager",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -3125,8 +3125,8 @@
       }
     }
   },
-  "revision": "20200803",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200930",
+  "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
       "description": "Represents a Google Tag Manager Account.",
@@ -3609,15 +3609,6 @@
             ]
           },
           "description": "List of Usage Contexts for the Container. Valid values include: web, android, or ios. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
           "items": {
             "enum": [
               "usageContextUnspecified",
@@ -3626,9 +3617,11 @@
               "ios",
               "androidSdk5",
               "iosSdk5",
-              "amp"
+              "amp",
+              "server"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",

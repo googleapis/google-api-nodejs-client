@@ -1,0 +1,178 @@
+{
+  "basePath": "",
+  "baseUrl": "https://sts.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Cloud Security Token",
+  "description": "The Security Token Service exchanges Google or third-party credentials for a short-lived access token to Google Cloud resources.",
+  "discoveryVersion": "v1",
+  "documentationLink": "http://cloud.google.com/iam/docs/workload-identity-federation",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "sts:v1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://sts.mtls.googleapis.com/",
+  "name": "sts",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "v1": {
+      "methods": {
+        "token": {
+          "description": "Exchanges a credential for a Google OAuth 2.0 access token.",
+          "flatPath": "v1/token",
+          "httpMethod": "POST",
+          "id": "sts.token",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/token",
+          "request": {
+            "$ref": "GoogleIdentityStsV1ExchangeTokenRequest"
+          },
+          "response": {
+            "$ref": "GoogleIdentityStsV1ExchangeTokenResponse"
+          }
+        }
+      }
+    }
+  },
+  "revision": "20200927",
+  "rootUrl": "https://sts.googleapis.com/",
+  "schemas": {
+    "GoogleIdentityStsV1ExchangeTokenRequest": {
+      "description": "Request message for ExchangeToken.",
+      "id": "GoogleIdentityStsV1ExchangeTokenRequest",
+      "properties": {
+        "grantType": {
+          "description": "Required. The grant type. Must be `urn:ietf:params:oauth:grant-type:token-exchange`, which indicates a token exchange is requested.",
+          "type": "string"
+        },
+        "options": {
+          "description": "A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options.",
+          "type": "string"
+        },
+        "requestedTokenType": {
+          "description": "Required. An identifier for the type of requested security token. Must be `urn:ietf:params:oauth:token-type:access_token`.",
+          "type": "string"
+        },
+        "subjectToken": {
+          "description": "Required. Input subject token. You can use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as an AccessBoundary. Applying additional security attributes on access tokens that already contain security attributes is not allowed.",
+          "type": "string"
+        },
+        "subjectTokenType": {
+          "description": "Required. An identifier that indicates the type of the security token in the `subject_token` parameter. Must be `urn:ietf:params:oauth:token-type:access_token`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityStsV1ExchangeTokenResponse": {
+      "description": "Response message for ExchangeToken.",
+      "id": "GoogleIdentityStsV1ExchangeTokenResponse",
+      "properties": {
+        "access_token": {
+          "description": "An OAuth 2.0 security token, issued by Google, in response to the token exchange request.",
+          "type": "string"
+        },
+        "expires_in": {
+          "description": "The expiration time of `access_token` in seconds, measured from the time of issuance. This field is absent when the `subject_token` in the request is a Google-issued, short-lived access token. In this case, the expiration time of the `access_token` is the same as the `subject_token`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "issued_token_type": {
+          "description": "The token type. Always matches the value of `requested_token_type` from the request.",
+          "type": "string"
+        },
+        "token_type": {
+          "description": "The type of `access_token`. Always has the value `Bearer`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Security Token Service API",
+  "version": "v1",
+  "version_module": true
+}

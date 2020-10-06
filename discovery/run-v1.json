@@ -105,164 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "api": {
-      "resources": {
-        "v1": {
-          "resources": {
-            "namespaces": {
-              "methods": {
-                "get": {
-                  "description": "Rpc to get information about a namespace.",
-                  "flatPath": "api/v1/namespaces/{namespacesId}",
-                  "httpMethod": "GET",
-                  "id": "run.api.v1.namespaces.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "api/v1/{+name}",
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Rpc to update a namespace.",
-                  "flatPath": "api/v1/namespaces/{namespacesId}",
-                  "httpMethod": "PATCH",
-                  "id": "run.api.v1.namespaces.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Indicates which fields in the provided namespace to update. This field is currently unused.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "api/v1/{+name}",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
-              "resources": {
-                "secrets": {
-                  "methods": {
-                    "create": {
-                      "description": "Creates a new secret.",
-                      "flatPath": "api/v1/namespaces/{namespacesId}/secrets",
-                      "httpMethod": "POST",
-                      "id": "run.api.v1.namespaces.secrets.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The project ID or project number in which this secret should be created.",
-                          "location": "path",
-                          "pattern": "^namespaces/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "api/v1/{+parent}/secrets",
-                      "request": {
-                        "$ref": "Secret"
-                      },
-                      "response": {
-                        "$ref": "Secret"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Rpc to get information about a secret.",
-                      "flatPath": "api/v1/namespaces/{namespacesId}/secrets/{secretsId}",
-                      "httpMethod": "GET",
-                      "id": "run.api.v1.namespaces.secrets.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.",
-                          "location": "path",
-                          "pattern": "^namespaces/[^/]+/secrets/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "api/v1/{+name}",
-                      "response": {
-                        "$ref": "Secret"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "replaceSecret": {
-                      "description": "Rpc to replace a secret. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.",
-                      "flatPath": "api/v1/namespaces/{namespacesId}/secrets/{secretsId}",
-                      "httpMethod": "PUT",
-                      "id": "run.api.v1.namespaces.secrets.replaceSecret",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.",
-                          "location": "path",
-                          "pattern": "^namespaces/[^/]+/secrets/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "api/v1/{+name}",
-                      "request": {
-                        "$ref": "Secret"
-                      },
-                      "response": {
-                        "$ref": "Secret"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "namespaces": {
       "resources": {
         "authorizeddomains": {
@@ -1336,69 +1178,6 @@
                 }
               }
             },
-            "namespaces": {
-              "methods": {
-                "get": {
-                  "description": "Rpc to get information about a namespace.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "GET",
-                  "id": "run.projects.locations.namespaces.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Rpc to update a namespace.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "PATCH",
-                  "id": "run.projects.locations.namespaces.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Indicates which fields in the provided namespace to update. This field is currently unused.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "revisions": {
               "methods": {
                 "delete": {
@@ -1612,91 +1391,6 @@
                   "path": "v1/{+parent}/routes",
                   "response": {
                     "$ref": "ListRoutesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
-            "secrets": {
-              "methods": {
-                "create": {
-                  "description": "Creates a new secret.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/secrets",
-                  "httpMethod": "POST",
-                  "id": "run.projects.locations.secrets.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The project ID or project number in which this secret should be created.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/secrets",
-                  "request": {
-                    "$ref": "Secret"
-                  },
-                  "response": {
-                    "$ref": "Secret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Rpc to get information about a secret.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/secrets/{secretsId}",
-                  "httpMethod": "GET",
-                  "id": "run.projects.locations.secrets.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/secrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "Secret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "replaceSecret": {
-                  "description": "Rpc to replace a secret. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/secrets/{secretsId}",
-                  "httpMethod": "PUT",
-                  "id": "run.projects.locations.secrets.replaceSecret",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/secrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "request": {
-                    "$ref": "Secret"
-                  },
-                  "response": {
-                    "$ref": "Secret"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1982,7 +1676,7 @@
       }
     }
   },
-  "revision": "20200814",
+  "revision": "20200925",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2182,7 +1876,7 @@
       "properties": {
         "template": {
           "$ref": "RevisionTemplate",
-          "description": "Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. To set minimum instances for this revision, use the \"autoscaling.knative.dev/minScale\" annotation key. (Cloud Run for Anthos only). To set maximum instances for this revision, use the \"autoscaling.knative.dev/maxScale\" annotation key. To set Cloud SQL connections for the revision, use the \"run.googleapis.com/cloudsql-instances\" annotation key. Values should be comma separated."
+          "description": "Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. To set minimum instances for this revision, use the \"autoscaling.knative.dev/minScale\" annotation key. To set maximum instances for this revision, use the \"autoscaling.knative.dev/maxScale\" annotation key. To set Cloud SQL connections for the revision, use the \"run.googleapis.com/cloudsql-instances\" annotation key. To set a Serverless VPC Access connector for the revision, use the \"run.googleapis.com/vpc-access-connector\" annotation key. Values should be comma separated."
         }
       },
       "type": "object"
@@ -2860,50 +2554,6 @@
       },
       "type": "object"
     },
-    "Namespace": {
-      "description": "Cloud Run fully managed: not supported Cloud Run on GKE: supported Namespace provides a scope for Names. Use of multiple namespaces is optional.",
-      "id": "Namespace",
-      "properties": {
-        "metadata": {
-          "$ref": "ObjectMeta",
-          "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata"
-        },
-        "spec": {
-          "$ref": "NamespaceSpec",
-          "description": "Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
-        },
-        "status": {
-          "$ref": "NamespaceStatus",
-          "description": "Status describes the current status of a Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
-        }
-      },
-      "type": "object"
-    },
-    "NamespaceSpec": {
-      "description": "Cloud Run fully managed: not supported Cloud Run on GKE: supported NamespaceSpec describes the attributes on a Namespace.",
-      "id": "NamespaceSpec",
-      "properties": {
-        "finalizers": {
-          "description": "Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "NamespaceStatus": {
-      "description": "Cloud Run fully managed: not supported Cloud Run on GKE: supported NamespaceStatus is information about the current status of a Namespace.",
-      "id": "NamespaceStatus",
-      "properties": {
-        "phase": {
-          "description": "Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ObjectMeta": {
       "description": "k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
       "id": "ObjectMeta",
@@ -3132,14 +2782,14 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "(Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported value for CPU is '1'. Cloud Run for Anthos: supported Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
+          "description": "(Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are '1' and '2'. Cloud Run for Anthos: supported Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
           "type": "object"
         },
         "requests": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "(Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported value for CPU is '1'. Cloud Run for Anthos: supported Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
+          "description": "(Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are '1' and '2'. Cloud Run for Anthos: supported Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
           "type": "object"
         }
       },
@@ -3322,36 +2972,6 @@
         },
         "url": {
           "description": "URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form: https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Secret": {
-      "description": "Cloud Run fully managed: not supported Cloud Run on GKE: supported Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes.",
-      "id": "Secret",
-      "properties": {
-        "data": {
-          "additionalProperties": {
-            "format": "byte",
-            "type": "string"
-          },
-          "description": "Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4",
-          "type": "object"
-        },
-        "metadata": {
-          "$ref": "ObjectMeta",
-          "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata"
-        },
-        "stringData": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "stringData allows specifying non-binary secret data in string form. It is provided as a write-only convenience method. All keys and values are merged into the data field on write, overwriting any existing values. It is never output when reading from the API. +k8s:conversion-gen=false",
-          "type": "object"
-        },
-        "type": {
-          "description": "Used to facilitate programmatic handling of secret data.",
           "type": "string"
         }
       },

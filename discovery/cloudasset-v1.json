@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20200810",
+  "revision": "20200928",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -586,6 +586,14 @@
         },
         "force": {
           "description": "If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.",
+          "type": "boolean"
+        },
+        "partitionSpec": {
+          "$ref": "PartitionSpec",
+          "description": "[partition_spec] determines whether to export to partitioned table(s) and how to partition the data. If [partition_spec] is unset or [partition_spec.partion_key] is unset or `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to non-partitioned table(s). [force] will decide whether to overwrite existing table(s). If [partition_spec] is specified. First, the snapshot results will be written to partitioned table(s) with two additional timestamp columns, readTime and requestTime, one of which will be the partition key. Secondly, in the case when any destination table already exists, it will first try to update existing table's schema as necessary by appending additional columns. Then, if [force] is `TRUE`, the corresponding partition will be overwritten by the snapshot results (data in different partitions will remain intact); if [force] is unset or `FALSE`, it will append the data. An error will be returned if the schema update or data appension fails."
+        },
+        "separateTablesPerAssetType": {
+          "description": "If this flag is `TRUE`, the snapshot results will be written to one or multiple tables, each of which contains results of one asset type. The [force] and [partition_spec] fields will apply to each of them. Field [table] will be concatenated with \"_\" and the asset type names (see https://cloud.google.com/asset-inventory/docs/supported-asset-types for supported asset types) to construct per-asset-type table names, in which all non-alphanumeric characters like \".\" and \"/\" will be substituted by \"_\". Example: if field [table] is \"mytable\" and snapshot results contain \"storage.googleapis.com/Bucket\" assets, the corresponding table name will be \"mytable_storage_googleapis_com_Bucket\". If any of these tables does not exist, a new table with the concatenated name will be created. When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of each table will include RECORD-type columns mapped to the nested fields in the Asset.resource.data field of that asset type (up to the 15 nested level BigQuery supports (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The fields in >15 nested levels will be stored in JSON format string as a child column of its parent RECORD column. If error occurs when exporting to any table, the whole export call will return an error but the export results that already succeed will persist. Example: if exporting to table_type_A succeeds when exporting to table_type_B fails during one export call, the results in table_type_A will persist and there will not be partial results persisting in a table.",
           "type": "boolean"
         },
         "table": {
@@ -1027,12 +1035,6 @@
       "properties": {
         "allowedDeviceManagementLevels": {
           "description": "Allowed device management levels, an empty list allows all management levels.",
-          "enumDescriptions": [
-            "The device's management level is not specified or not known.",
-            "The device is not managed.",
-            "Basic management is enabled, which is generally limited to monitoring and wiping the corporate account.",
-            "Complete device management. This includes more thorough monitoring and the ability to directly manage the device (such as remote wiping). This can be enabled through the Android Enterprise Platform."
-          ],
           "items": {
             "enum": [
               "MANAGEMENT_UNSPECIFIED",
@@ -1052,12 +1054,6 @@
         },
         "allowedEncryptionStatuses": {
           "description": "Allowed encryptions statuses, an empty list allows all statuses.",
-          "enumDescriptions": [
-            "The encryption status of the device is not specified or not known.",
-            "The device does not support encryption.",
-            "The device supports encryption, but is currently unencrypted.",
-            "The device is encrypted."
-          ],
           "items": {
             "enum": [
               "ENCRYPTION_UNSPECIFIED",
@@ -1309,6 +1305,27 @@
         "gcsDestination": {
           "$ref": "GcsDestination",
           "description": "Destination on Cloud Storage."
+        }
+      },
+      "type": "object"
+    },
+    "PartitionSpec": {
+      "description": "Specifications of BigQuery partitioned table as export destination.",
+      "id": "PartitionSpec",
+      "properties": {
+        "partitionKey": {
+          "description": "The partition key for BigQuery partitioned table.",
+          "enum": [
+            "PARTITION_KEY_UNSPECIFIED",
+            "READ_TIME",
+            "REQUEST_TIME"
+          ],
+          "enumDescriptions": [
+            "Unspecified partition key. If used, it means using non-partitioned table.",
+            "The time when the snapshot is taken. If specified as partition key, the result table(s) is partitoned by the additional timestamp column, readTime. If [read_time] in ExportAssetsRequest is specified, the readTime column's value will be the same as it. Otherwise, its value will be the current time that is used to take the snapshot.",
+            "The time when the request is received and started to be processed. If specified as partition key, the result table(s) is partitoned by the requestTime column, an additional timestamp column representing when the request was received."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

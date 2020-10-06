@@ -15,18 +15,30 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {documentai_v1beta2} from './v1beta2';
+import {documentai_v1beta3} from './v1beta3';
 
 export const VERSIONS = {
   v1beta2: documentai_v1beta2.Documentai,
+  v1beta3: documentai_v1beta3.Documentai,
 };
 
 export function documentai(version: 'v1beta2'): documentai_v1beta2.Documentai;
 export function documentai(
   options: documentai_v1beta2.Options
 ): documentai_v1beta2.Documentai;
-export function documentai<T = documentai_v1beta2.Documentai>(
+export function documentai(version: 'v1beta3'): documentai_v1beta3.Documentai;
+export function documentai(
+  options: documentai_v1beta3.Options
+): documentai_v1beta3.Documentai;
+export function documentai<
+  T = documentai_v1beta2.Documentai | documentai_v1beta3.Documentai
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta2' | documentai_v1beta2.Options
+  versionOrOptions:
+    | 'v1beta2'
+    | documentai_v1beta2.Options
+    | 'v1beta3'
+    | documentai_v1beta3.Options
 ) {
   return getAPI<T>('documentai', versionOrOptions, VERSIONS, this);
 }

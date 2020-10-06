@@ -2,7 +2,7 @@
 
 # appsactivity
 
-> Provides a historical view of activity.
+> 
 
 ## Installation
 

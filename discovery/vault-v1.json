@@ -165,7 +165,7 @@
           ]
         },
         "create": {
-          "description": "Creates a new matter with the given name and description. The initial state\nis open, and the owner is the method caller. Returns the created matter\nwith default view.",
+          "description": "Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.",
           "flatPath": "v1/matters",
           "httpMethod": "POST",
           "id": "vault.matters.create",
@@ -228,6 +228,11 @@
                 "BASIC",
                 "FULL"
               ],
+              "enumDescriptions": [
+                "There is no specified view.",
+                "Response includes the matter_id, name, description, and state. Default choice.",
+                "Full representation of matter is returned. Everything above and including MatterPermissions list."
+              ],
               "location": "query",
               "type": "string"
             }
@@ -249,7 +254,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "The number of matters to return in the response.\nDefault and maximum are 100.",
+              "description": "The number of matters to return in the response. Default and maximum are 100.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -260,12 +265,18 @@
               "type": "string"
             },
             "state": {
-              "description": "If set, list only matters with that specific state. The default is listing\nmatters of all states.",
+              "description": "If set, list only matters with that specific state. The default is listing matters of all states.",
               "enum": [
                 "STATE_UNSPECIFIED",
                 "OPEN",
                 "CLOSED",
                 "DELETED"
+              ],
+              "enumDescriptions": [
+                "The matter has no specified state.",
+                "This matter is open.",
+                "This matter is closed.",
+                "This matter is deleted."
               ],
               "location": "query",
               "type": "string"
@@ -276,6 +287,11 @@
                 "VIEW_UNSPECIFIED",
                 "BASIC",
                 "FULL"
+              ],
+              "enumDescriptions": [
+                "There is no specified view.",
+                "Response includes the matter_id, name, description, and state. Default choice.",
+                "Full representation of matter is returned. Everything above and including MatterPermissions list."
               ],
               "location": "query",
               "type": "string"
@@ -372,7 +388,7 @@
           ]
         },
         "update": {
-          "description": "Updates the specified matter.\nThis updates only the name and description of the matter, identified by\nmatter ID. Changes to any other fields are ignored.\nReturns the default view of the matter.",
+          "description": "Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter.",
           "flatPath": "v1/matters/{matterId}",
           "httpMethod": "PUT",
           "id": "vault.matters.update",
@@ -533,7 +549,7 @@
         "holds": {
           "methods": {
             "addHeldAccounts": {
-              "description": "Adds HeldAccounts to a hold. Returns a list of accounts that have been\nsuccessfully added. Accounts can only be added to an existing account-based\nhold.",
+              "description": "Adds HeldAccounts to a hold. Returns a list of accounts that have been successfully added. Accounts can only be added to an existing account-based hold.",
               "flatPath": "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
               "httpMethod": "POST",
               "id": "vault.matters.holds.addHeldAccounts",
@@ -653,6 +669,11 @@
                     "BASIC_HOLD",
                     "FULL_HOLD"
                   ],
+                  "enumDescriptions": [
+                    "There is no specified view. Defaults to FULL_HOLD.",
+                    "Response includes the id, name, update time, corpus, and query.",
+                    "Full representation of a Hold. Response includes all fields of 'BASIC' and the entities the Hold applies to, such as accounts, or OU."
+                  ],
                   "location": "query",
                   "type": "string"
                 }
@@ -667,7 +688,7 @@
               ]
             },
             "list": {
-              "description": "Lists holds within a matter. An empty page token in ListHoldsResponse\ndenotes no more holds to list.",
+              "description": "Lists holds within a matter. An empty page token in ListHoldsResponse denotes no more holds to list.",
               "flatPath": "v1/matters/{matterId}/holds",
               "httpMethod": "GET",
               "id": "vault.matters.holds.list",
@@ -682,13 +703,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The number of holds to return in the response, between 0 and 100 inclusive.\nLeaving this empty, or as 0, is the same as page_size = 100.",
+                  "description": "The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The pagination token as returned in the response.\nAn empty token means start from the beginning.",
+                  "description": "The pagination token as returned in the response. An empty token means start from the beginning.",
                   "location": "query",
                   "type": "string"
                 },
@@ -698,6 +719,11 @@
                     "HOLD_VIEW_UNSPECIFIED",
                     "BASIC_HOLD",
                     "FULL_HOLD"
+                  ],
+                  "enumDescriptions": [
+                    "There is no specified view. Defaults to FULL_HOLD.",
+                    "Response includes the id, name, update time, corpus, and query.",
+                    "Full representation of a Hold. Response includes all fields of 'BASIC' and the entities the Hold applies to, such as accounts, or OU."
                   ],
                   "location": "query",
                   "type": "string"
@@ -713,7 +739,7 @@
               ]
             },
             "removeHeldAccounts": {
-              "description": "Removes HeldAccounts from a hold. Returns a list of statuses in the same\norder as the request. If this request leaves the hold with no held\naccounts, the hold will not apply to any accounts.",
+              "description": "Removes HeldAccounts from a hold. Returns a list of statuses in the same order as the request. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.",
               "flatPath": "v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts",
               "httpMethod": "POST",
               "id": "vault.matters.holds.removeHeldAccounts",
@@ -747,7 +773,7 @@
               ]
             },
             "update": {
-              "description": "Updates the OU and/or query parameters of a hold. You cannot add accounts\nto a hold that covers an OU, nor can you add OUs to a hold that covers\nindividual accounts. Accounts listed in the hold will be ignored.",
+              "description": "Updates the OU and/or query parameters of a hold. You cannot add accounts to a hold that covers an OU, nor can you add OUs to a hold that covers individual accounts. Accounts listed in the hold will be ignored.",
               "flatPath": "v1/matters/{matterId}/holds/{holdId}",
               "httpMethod": "PUT",
               "id": "vault.matters.holds.update",
@@ -785,7 +811,7 @@
             "accounts": {
               "methods": {
                 "create": {
-                  "description": "Adds a HeldAccount to a hold. Accounts can only be added to a hold that\nhas no held_org_unit set. Attempting to add an account to an OU-based\nhold will result in an error.",
+                  "description": "Adds a HeldAccount to a hold. Accounts can only be added to a hold that has no held_org_unit set. Attempting to add an account to an OU-based hold will result in an error.",
                   "flatPath": "v1/matters/{matterId}/holds/{holdId}/accounts",
                   "httpMethod": "POST",
                   "id": "vault.matters.holds.accounts.create",
@@ -819,7 +845,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Removes a HeldAccount from a hold. If this request leaves the hold with\nno held accounts, the hold will not apply to any accounts.",
+                  "description": "Removes a HeldAccount from a hold. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.",
                   "flatPath": "v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}",
                   "httpMethod": "DELETE",
                   "id": "vault.matters.holds.accounts.delete",
@@ -857,7 +883,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists HeldAccounts for a hold. This will only list individually specified\nheld accounts. If the hold is on an OU, then use\n<a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>\nto enumerate its members.",
+                  "description": "Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use Admin SDK to enumerate its members.",
                   "flatPath": "v1/matters/{matterId}/holds/{holdId}/accounts",
                   "httpMethod": "GET",
                   "id": "vault.matters.holds.accounts.list",
@@ -904,7 +930,7 @@
               ],
               "parameters": {
                 "matterId": {
-                  "description": "The matter ID of the parent matter for which the saved query is to be\ncreated.",
+                  "description": "The matter ID of the parent matter for which the saved query is to be created.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -932,7 +958,7 @@
               ],
               "parameters": {
                 "matterId": {
-                  "description": "The matter ID of the parent matter for which the saved query is to be\ndeleted.",
+                  "description": "The matter ID of the parent matter for which the saved query is to be deleted.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -963,7 +989,7 @@
               ],
               "parameters": {
                 "matterId": {
-                  "description": "The matter ID of the parent matter for which the saved query is to be\nretrieved.",
+                  "description": "The matter ID of the parent matter for which the saved query is to be retrieved.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -985,7 +1011,7 @@
               ]
             },
             "list": {
-              "description": "Lists saved queries within a matter. An empty page token in\nListSavedQueriesResponse denotes no more saved queries to list.",
+              "description": "Lists saved queries within a matter. An empty page token in ListSavedQueriesResponse denotes no more saved queries to list.",
               "flatPath": "v1/matters/{matterId}/savedQueries",
               "httpMethod": "GET",
               "id": "vault.matters.savedQueries.list",
@@ -994,7 +1020,7 @@
               ],
               "parameters": {
                 "matterId": {
-                  "description": "The matter ID of the parent matter for which the saved queries are to be\nretrieved.",
+                  "description": "The matter ID of the parent matter for which the saved queries are to be retrieved.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1006,7 +1032,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The pagination token as returned in the previous response.\nAn empty token means start from the beginning.",
+                  "description": "The pagination token as returned in the previous response. An empty token means start from the beginning.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1027,7 +1053,7 @@
     "operations": {
       "methods": {
         "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
           "flatPath": "v1/operations/{operationsId}",
           "httpMethod": "DELETE",
           "id": "vault.operations.delete",
@@ -1051,7 +1077,7 @@
       }
     }
   },
-  "revision": "20200501",
+  "revision": "20200917",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountInfo": {
@@ -1069,7 +1095,7 @@
       "type": "object"
     },
     "AddHeldAccountResult": {
-      "description": "A status detailing the status of each account creation, and the\nHeldAccount, if successful.",
+      "description": "A status detailing the status of each account creation, and the HeldAccount, if successful.",
       "id": "AddHeldAccountResult",
       "properties": {
         "account": {
@@ -1088,14 +1114,14 @@
       "id": "AddHeldAccountsRequest",
       "properties": {
         "accountIds": {
-          "description": "Account IDs to identify which accounts to add. Only account_ids or only\nemails should be specified, but not both.",
+          "description": "Account IDs to identify which accounts to add. Only account_ids or only emails should be specified, but not both.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "emails": {
-          "description": "Emails to identify which accounts to add. Only emails or only account_ids\nshould be specified, but not both.",
+          "description": "Emails to identify which accounts to add. Only emails or only account_ids should be specified, but not both.",
           "items": {
             "type": "string"
           },
@@ -1119,11 +1145,11 @@
       "type": "object"
     },
     "AddMatterPermissionsRequest": {
-      "description": "Add an account with the permission specified. The role cannot be owner.\nIf an account already has a role in the matter, it will be\noverwritten.",
+      "description": "Add an account with the permission specified. The role cannot be owner. If an account already has a role in the matter, it will be overwritten.",
       "id": "AddMatterPermissionsRequest",
       "properties": {
         "ccMe": {
-          "description": "Only relevant if send_emails is true.\nTrue to CC requestor in the email message.\nFalse to not CC requestor.",
+          "description": "Only relevant if send_emails is true. True to CC requestor in the email message. False to not CC requestor.",
           "type": "boolean"
         },
         "matterPermission": {
@@ -1131,7 +1157,7 @@
           "description": "The MatterPermission to add."
         },
         "sendEmails": {
-          "description": "True to send notification email to the added account.\nFalse to not send notification email.",
+          "description": "True to send notification email to the added account. False to not send notification email.",
           "type": "boolean"
         }
       },
@@ -1159,7 +1185,7 @@
       "id": "CloudStorageFile",
       "properties": {
         "bucketName": {
-          "description": "The cloud storage bucket name of this export file.\nCan be used in cloud storage JSON/XML API, but not to list the bucket\ncontents. Instead, you can <a\nhref=\"https://cloud.google.com/storage/docs/json_api/v1/objects/get\">\nget individual export files</a> by object name.",
+          "description": "The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can get individual export files by object name.",
           "type": "string"
         },
         "md5Hash": {
@@ -1167,7 +1193,7 @@
           "type": "string"
         },
         "objectName": {
-          "description": "The cloud storage object name of this export file.\nCan be used in cloud storage JSON/XML API.",
+          "description": "The cloud storage object name of this export file. Can be used in cloud storage JSON/XML API.",
           "type": "string"
         },
         "size": {
@@ -1206,7 +1232,7 @@
         },
         "hangoutsChatQuery": {
           "$ref": "HeldHangoutsChatQuery",
-          "description": "Details pertaining to Hangouts Chat holds. If set, corpus must be\nHangouts Chat."
+          "description": "Details pertaining to Hangouts Chat holds. If set, corpus must be Hangouts Chat."
         },
         "mailQuery": {
           "$ref": "HeldMailQuery",
@@ -1220,7 +1246,7 @@
       "id": "DriveExportOptions",
       "properties": {
         "includeAccessInfo": {
-          "description": "Set to true to include access level information for users\nwith <a\nhref=\"https://support.google.com/vault/answer/6099459#metadata\">indirect\naccess</a> to files.",
+          "description": "Set to true to include access level information for users with indirect access to files.",
           "type": "boolean"
         }
       },
@@ -1239,7 +1265,7 @@
           "type": "boolean"
         },
         "versionDate": {
-          "description": "Search the versions of the Drive file\nas of the reference date. These timestamps are in GMT and\nrounded down to the given date.",
+          "description": "Search the versions of the Drive file as of the reference date. These timestamps are in GMT and rounded down to the given date.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1247,7 +1273,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1441,15 +1467,15 @@
       "type": "object"
     },
     "HeldAccount": {
-      "description": "An account being held in a particular hold. This structure is immutable.\nThis can be either a single user or a google group, depending on the corpus.",
+      "description": "An account being held in a particular hold. This structure is immutable. This can be either a single user or a google group, depending on the corpus.",
       "id": "HeldAccount",
       "properties": {
         "accountId": {
-          "description": "The account's ID as provided by the\n<a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>.",
+          "description": "The account's ID as provided by the Admin SDK.",
           "type": "string"
         },
         "email": {
-          "description": "The primary email address of the account. If used as an input, this takes\nprecedence over account ID.",
+          "description": "The primary email address of the account. If used as an input, this takes precedence over account ID.",
           "type": "string"
         },
         "firstName": {
@@ -1488,12 +1514,12 @@
       "id": "HeldGroupsQuery",
       "properties": {
         "endTime": {
-          "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
         "startTime": {
-          "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1520,12 +1546,12 @@
       "id": "HeldMailQuery",
       "properties": {
         "endTime": {
-          "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
         "startTime": {
-          "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1537,7 +1563,7 @@
       "type": "object"
     },
     "HeldOrgUnit": {
-      "description": "A organizational unit being held in a particular hold.\nThis structure is immutable.",
+      "description": "A organizational unit being held in a particular hold. This structure is immutable.",
       "id": "HeldOrgUnit",
       "properties": {
         "holdTime": {
@@ -1553,11 +1579,11 @@
       "type": "object"
     },
     "Hold": {
-      "description": "Represents a hold within Vault. A hold restricts purging of\nartifacts based on the combination of the query and accounts restrictions.\nA hold can be configured to either apply to an explicitly configured set\nof accounts, or can be applied to all members of an organizational unit.",
+      "description": "Represents a hold within Vault. A hold restricts purging of artifacts based on the combination of the query and accounts restrictions. A hold can be configured to either apply to an explicitly configured set of accounts, or can be applied to all members of an organizational unit.",
       "id": "Hold",
       "properties": {
         "accounts": {
-          "description": "If set, the hold applies to the enumerated accounts and org_unit must be\nempty.",
+          "description": "If set, the hold applies to the enumerated accounts and org_unit must be empty.",
           "items": {
             "$ref": "HeldAccount"
           },
@@ -1591,11 +1617,11 @@
         },
         "orgUnit": {
           "$ref": "HeldOrgUnit",
-          "description": "If set, the hold applies to all members of the organizational unit and\naccounts must be empty. This property is mutable. For groups holds,\nset the accounts field."
+          "description": "If set, the hold applies to all members of the organizational unit and accounts must be empty. This property is mutable. For groups holds, set the accounts field."
         },
         "query": {
           "$ref": "CorpusQuery",
-          "description": "The corpus-specific query. If set, the corpusQuery must match corpus\ntype."
+          "description": "The corpus-specific query. If set, the corpusQuery must match corpus type."
         },
         "updateTime": {
           "description": "The last time this hold was modified.",
@@ -1649,7 +1675,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Page token to retrieve the next page of results in the list.\nIf this is empty, then there are no more holds to list.",
+          "description": "Page token to retrieve the next page of results in the list. If this is empty, then there are no more holds to list.",
           "type": "string"
         }
       },
@@ -1678,7 +1704,7 @@
       "id": "ListSavedQueriesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Page token to retrieve the next page of results in the list.\nIf this is empty, then there are no more saved queries to list.",
+          "description": "Page token to retrieve the next page of results in the list. If this is empty, then there are no more saved queries to list.",
           "type": "string"
         },
         "savedQueries": {
@@ -1736,11 +1762,11 @@
           "type": "string"
         },
         "matterId": {
-          "description": "The matter ID which is generated by the server.\nShould be blank when creating a new matter.",
+          "description": "The matter ID which is generated by the server. Should be blank when creating a new matter.",
           "type": "string"
         },
         "matterPermissions": {
-          "description": "List of users and access to the matter. Currently there is no programmer\ndefined limit on the number of permissions a matter can have.",
+          "description": "List of users and access to the matter. Currently there is no programmer defined limit on the number of permissions a matter can have.",
           "items": {
             "$ref": "MatterPermission"
           },
@@ -1770,11 +1796,11 @@
       "type": "object"
     },
     "MatterPermission": {
-      "description": "Currently each matter only has one owner, and all others are collaborators.\nWhen an account is purged, its corresponding MatterPermission resources\ncease to exist.",
+      "description": "Currently each matter only has one owner, and all others are collaborators. When an account is purged, its corresponding MatterPermission resources cease to exist.",
       "id": "MatterPermission",
       "properties": {
         "accountId": {
-          "description": "The account ID, as provided by <a\nhref=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>.",
+          "description": "The account ID, as provided by Admin SDK.",
           "type": "string"
         },
         "role": {
@@ -1799,7 +1825,7 @@
       "id": "OrgUnitInfo",
       "properties": {
         "orgUnitId": {
-          "description": "Org unit to search, as provided by the\n<a href=\"https://developers.google.com/admin-sdk/directory/\">Admin SDK\nDirectory API</a>.",
+          "description": "Org unit to search, as provided by the Admin SDK Directory API.",
           "type": "string"
         }
       },
@@ -1811,7 +1837,7 @@
       "properties": {
         "accountInfo": {
           "$ref": "AccountInfo",
-          "description": "When 'ACCOUNT' is chosen as search method,\naccount_info needs to be specified."
+          "description": "When 'ACCOUNT' is chosen as search method, account_info needs to be specified."
         },
         "corpus": {
           "description": "The corpus to search.",
@@ -1852,13 +1878,13 @@
           "description": "For Drive search, specify more options in this field."
         },
         "endTime": {
-          "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
         "hangoutsChatInfo": {
           "$ref": "HangoutsChatInfo",
-          "description": "When 'ROOM' is chosen as search method, hangout_chats_info needs to be\nspecified. (read-only)"
+          "description": "When 'ROOM' is chosen as search method, hangout_chats_info needs to be specified. (read-only)"
         },
         "hangoutsChatOptions": {
           "$ref": "HangoutsChatOptions",
@@ -1869,7 +1895,7 @@
           "description": "For mail search, specify more options in this field."
         },
         "method": {
-          "description": "The search method to use. This field is similar to the search_method field\nbut is introduced to support shared drives. It supports all\nsearch method types. In case the search_method is TEAM_DRIVE the response\nof this field will be SHARED_DRIVE only.",
+          "description": "The search method to use. This field is similar to the search_method field but is introduced to support shared drives. It supports all search method types. In case the search_method is TEAM_DRIVE the response of this field will be SHARED_DRIVE only.",
           "enum": [
             "SEARCH_METHOD_UNSPECIFIED",
             "ACCOUNT",
@@ -1880,19 +1906,19 @@
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
-            "A search method must be specified. If a request does not specify a\nsearch method, it will be rejected.",
+            "A search method must be specified. If a request does not specify a search method, it will be rejected.",
             "Will search all accounts provided in account_info.",
             "Will search all accounts in the OU specified in org_unit_info.",
-            "Will search for all accounts in the Team Drive specified in\nteam_drive_info.",
-            "Will search for all accounts in the organization.\nNo need to set account_info or org_unit_info.",
-            "Will search in the Room specified in\nhangout_chats_info. (read-only)",
-            "Will search for all accounts in the shared drive specified in\nshared_drive_info."
+            "Will search for all accounts in the Team Drive specified in team_drive_info.",
+            "Will search for all accounts in the organization. No need to set account_info or org_unit_info.",
+            "Will search in the Room specified in hangout_chats_info. (read-only)",
+            "Will search for all accounts in the shared drive specified in shared_drive_info."
           ],
           "type": "string"
         },
         "orgUnitInfo": {
           "$ref": "OrgUnitInfo",
-          "description": "When 'ORG_UNIT' is chosen as as search method, org_unit_info needs\nto be specified."
+          "description": "When 'ORG_UNIT' is chosen as as search method, org_unit_info needs to be specified."
         },
         "searchMethod": {
           "description": "The search method to use.",
@@ -1906,35 +1932,35 @@
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
-            "A search method must be specified. If a request does not specify a\nsearch method, it will be rejected.",
+            "A search method must be specified. If a request does not specify a search method, it will be rejected.",
             "Will search all accounts provided in account_info.",
             "Will search all accounts in the OU specified in org_unit_info.",
-            "Will search for all accounts in the Team Drive specified in\nteam_drive_info.",
-            "Will search for all accounts in the organization.\nNo need to set account_info or org_unit_info.",
-            "Will search in the Room specified in\nhangout_chats_info. (read-only)",
-            "Will search for all accounts in the shared drive specified in\nshared_drive_info."
+            "Will search for all accounts in the Team Drive specified in team_drive_info.",
+            "Will search for all accounts in the organization. No need to set account_info or org_unit_info.",
+            "Will search in the Room specified in hangout_chats_info. (read-only)",
+            "Will search for all accounts in the shared drive specified in shared_drive_info."
           ],
           "type": "string"
         },
         "sharedDriveInfo": {
           "$ref": "SharedDriveInfo",
-          "description": "When 'SHARED_DRIVE' is chosen as search method, shared_drive_info needs\nto be specified."
+          "description": "When 'SHARED_DRIVE' is chosen as search method, shared_drive_info needs to be specified."
         },
         "startTime": {
-          "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+          "description": "The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.",
           "format": "google-datetime",
           "type": "string"
         },
         "teamDriveInfo": {
           "$ref": "TeamDriveInfo",
-          "description": "When 'TEAM_DRIVE' is chosen as search method, team_drive_info needs to be\nspecified."
+          "description": "When 'TEAM_DRIVE' is chosen as search method, team_drive_info needs to be specified."
         },
         "terms": {
-          "description": "The corpus-specific\n<a href=\"https://support.google.com/vault/answer/2474474\">search\noperators</a> used to generate search results.",
+          "description": "The corpus-specific search operators used to generate search results.",
           "type": "string"
         },
         "timeZone": {
-          "description": "The time zone name.\nIt should be an IANA TZ name, such as \"America/Los_Angeles\".\nFor more information, see\n<a href=\"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones\">Time\nZone</a>.",
+          "description": "The time zone name. It should be an IANA TZ name, such as \"America/Los_Angeles\". For more information, see Time Zone.",
           "type": "string"
         }
       },
@@ -1959,7 +1985,7 @@
       "id": "RemoveHeldAccountsResponse",
       "properties": {
         "statuses": {
-          "description": "A list of statuses for deleted accounts. Results have the\nsame order as the request.",
+          "description": "A list of statuses for deleted accounts. Results have the same order as the request.",
           "items": {
             "$ref": "Status"
           },
@@ -2001,7 +2027,7 @@
       "id": "SavedQuery",
       "properties": {
         "createTime": {
-          "description": "Output only. The server generated timestamp at which saved query was\ncreated.",
+          "description": "Output only. The server generated timestamp at which saved query was created.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2010,12 +2036,12 @@
           "type": "string"
         },
         "matterId": {
-          "description": "Output only. The matter ID of the associated matter.\nThe server does not look at this field during create and always uses matter\nid in the URL.",
+          "description": "Output only. The matter ID of the associated matter. The server does not look at this field during create and always uses matter id in the URL.",
           "type": "string"
         },
         "query": {
           "$ref": "Query",
-          "description": "The underlying Query object which contains all the information of the saved\nquery."
+          "description": "The underlying Query object which contains all the information of the saved query."
         },
         "savedQueryId": {
           "description": "A unique identifier for the saved query.",
@@ -2029,7 +2055,7 @@
       "id": "SharedDriveInfo",
       "properties": {
         "sharedDriveIds": {
-          "description": "List of Shared drive IDs, as provided by <a\nhref=\"https://developers.google.com/drive\">Drive API</a>.",
+          "description": "List of Shared drive IDs, as provided by Drive API.",
           "items": {
             "type": "string"
           },
@@ -2039,7 +2065,7 @@
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -2048,7 +2074,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -2059,7 +2085,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
@@ -2070,7 +2096,7 @@
       "id": "TeamDriveInfo",
       "properties": {
         "teamDriveIds": {
-          "description": "List of Team Drive IDs, as provided by <a\nhref=\"https://developers.google.com/drive\">Drive API</a>.",
+          "description": "List of Team Drive IDs, as provided by Drive API.",
           "items": {
             "type": "string"
           },

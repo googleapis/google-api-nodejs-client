@@ -203,6 +203,18 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
+     *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     */
+    bootDiskKmsKey?: string | null;
+    /**
+     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
+     */
+    diskSizeGb?: number | null;
+    /**
+     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or &#39;pd-ssd&#39;) If unspecified, the default disk type is &#39;pd-standard&#39;
+     */
+    diskType?: string | null;
+    /**
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
@@ -218,6 +230,10 @@ export namespace container_v1beta1 {
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
      */
     serviceAccount?: string | null;
+    /**
+     * Shielded Instance options.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * Upgrade settings control disruption and speed of the upgrade.
      */
@@ -318,6 +334,10 @@ export namespace container_v1beta1 {
      * Whether Cloud Run addon is enabled for this cluster.
      */
     disabled?: boolean | null;
+    /**
+     * Which load balancer type is installed for Cloud Run.
+     */
+    loadBalancerType?: string | null;
   }
   /**
    * A Google Kubernetes Engine cluster.
@@ -351,6 +371,10 @@ export namespace container_v1beta1 {
      * Which conditions caused the current cluster state.
      */
     conditions?: Schema$StatusCondition[];
+    /**
+     * Configuration of Confidential Nodes
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * [Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -723,6 +747,15 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
+   */
+  export interface Schema$ConfidentialNodes {
+    /**
+     * Whether Confidential Nodes feature is enabled for all nodes in this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Configuration options for the Config Connector add-on.
@@ -1220,11 +1253,11 @@ export namespace container_v1beta1 {
     clientKey?: string | null;
     clusterCaCertificate?: string | null;
     /**
-     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty.
+     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty. Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      */
     password?: string | null;
     /**
-     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string).
+     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string). Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      */
     username?: string | null;
   }
@@ -1416,7 +1449,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NodeKubeletConfig {
     /**
-     * Enable CPU CFS quota enforcement for containers that specify CPU limits. If this option is enabled, kubelet uses CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is &#39;true&#39; if unspecified.
+     * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is &#39;true&#39; if unspecified.
      */
     cpuCfsQuota?: boolean | null;
     /**
@@ -1424,7 +1457,7 @@ export namespace container_v1beta1 {
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
-     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - &quot;none&quot;: the default, which represents the existing scheduling behavior. - &quot;static&quot;: allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node.
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - &quot;none&quot;: the default, which represents the existing scheduling behavior. - &quot;static&quot;: allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is &#39;none&#39; if unspecified.
      */
     cpuManagerPolicy?: string | null;
   }
@@ -3567,6 +3600,7 @@ export namespace container_v1beta1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "clusterTelemetry": {},
      *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -9204,6 +9238,7 @@ export namespace container_v1beta1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "clusterTelemetry": {},
      *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,

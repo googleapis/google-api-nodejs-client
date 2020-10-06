@@ -536,15 +536,6 @@ export namespace servicemanagement_v1 {
     message?: string | null;
   }
   /**
-   * Request message for DisableService method.
-   */
-  export interface Schema$DisableServiceRequest {
-    /**
-     * Required. The identity of consumer resource which service disablement will be applied to. The Google Service Management implementation accepts the following forms: - &quot;project:&quot; Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
-     */
-    consumerId?: string | null;
-  }
-  /**
    * Operation payload for DisableService method.
    */
   export interface Schema$DisableServiceResponse {}
@@ -1122,7 +1113,7 @@ export namespace servicemanagement_v1 {
     selector?: string | null;
   }
   /**
-   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v1/{resource=**}:getAcl&quot;; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = &quot;/v2/{resource=**}&quot;; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/{resource=**}:getAcl&quot;; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/acls/{resource=**}:getAcl&quot;; } ... }
+   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v1/{resource=**}:getAcl&quot;; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = &quot;/v2/{resource=**}&quot;; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/{resource=**}:getAcl&quot;; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/acls/{resource=**}:getAcl&quot;; } ... }
    */
   export interface Schema$Mixin {
     /**
@@ -2341,153 +2332,6 @@ export namespace servicemanagement_v1 {
               '$1'
             ),
             method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * servicemanagement.services.disable
-     * @desc Disables a service for a project, so it can no longer be be used for the project. It prevents accidental usage that may cause unexpected billing charges or security leaks. Operation
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicemanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicemanagement = google.servicemanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicemanagement.services.disable({
-     *     // Required. Name of the service to disable. Specifying an unknown service name will cause the request to fail.
-     *     serviceName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerId": "my_consumerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias servicemanagement.services.disable
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName Required. Name of the service to disable. Specifying an unknown service name will cause the request to fail.
-     * @param {().DisableServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    disable(
-      params: Params$Resource$Services$Disable,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    disable(
-      params?: Params$Resource$Services$Disable,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    disable(
-      params: Params$Resource$Services$Disable,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    disable(
-      params: Params$Resource$Services$Disable,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    disable(
-      params: Params$Resource$Services$Disable,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    disable(callback: BodyResponseCallback<Schema$Operation>): void;
-    disable(
-      paramsOrCallback?:
-        | Params$Resource$Services$Disable
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Services$Disable;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Disable;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://servicemanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/services/{serviceName}:disable').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
           },
           options
         ),
@@ -3861,17 +3705,6 @@ export namespace servicemanagement_v1 {
      * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
-  }
-  export interface Params$Resource$Services$Disable extends StandardParameters {
-    /**
-     * Required. Name of the service to disable. Specifying an unknown service name will cause the request to fail.
-     */
-    serviceName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DisableServiceRequest;
   }
   export interface Params$Resource$Services$Enable extends StandardParameters {
     /**

@@ -232,7 +232,7 @@ export namespace realtimebidding_v1 {
      */
     impressionTrackingUrls?: string[] | null;
     /**
-     * Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string | null;
     /**
@@ -1801,7 +1801,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Name of the creative to update. See creative.name.
+     *     // Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Field mask to use for partial in-place updates.
      *     updateMask: 'placeholder-value',
@@ -1869,7 +1869,7 @@ export namespace realtimebidding_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the creative to update. See creative.name.
+     * @param {string} params.name Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      * @param {string=} params.updateMask Field mask to use for partial in-place updates.
      * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2003,7 +2003,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$Patch
     extends StandardParameters {
     /**
-     * Name of the creative to update. See creative.name.
+     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string;
     /**

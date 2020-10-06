@@ -138,7 +138,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     projectConfig?: Schema$TenantProjectConfig;
     /**
-     * Tag of the added project. Must be less than 128 characters. Required.
+     * Required. Tag of the added project. Must be less than 128 characters. Required.
      */
     tag?: string | null;
   }
@@ -184,7 +184,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     projectConfig?: Schema$TenantProjectConfig;
     /**
-     * Tag of the project. Must be less than 128 characters. Required.
+     * Required. Tag of the project. Must be less than 128 characters. Required.
      */
     tag?: string | null;
   }
@@ -201,7 +201,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     reservedResource?: string | null;
     /**
-     * Tag of the tenant resource after attachment. Must be less than 128 characters. Required.
+     * Required. Tag of the tenant resource after attachment. Must be less than 128 characters. Required.
      */
     tag?: string | null;
   }
@@ -459,7 +459,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$DeleteTenantProjectRequest {
     /**
-     * Tag of the resource within the tenancy unit.
+     * Required. Tag of the resource within the tenancy unit.
      */
     tag?: string | null;
   }
@@ -1110,7 +1110,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$RemoveTenantProjectRequest {
     /**
-     * Tag of the resource within the tenancy unit.
+     * Required. Tag of the resource within the tenancy unit.
      */
     tag?: string | null;
   }
@@ -1349,11 +1349,11 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$TenancyUnit {
     /**
-     * @OutputOnly Cloud resource name of the consumer of this service. For example &#39;projects/123456&#39;.
+     * Output only. @OutputOnly Cloud resource name of the consumer of this service. For example &#39;projects/123456&#39;.
      */
     consumer?: string | null;
     /**
-     * @OutputOnly The time this tenancy unit was created.
+     * Output only. @OutputOnly The time this tenancy unit was created.
      */
     createTime?: string | null;
     /**
@@ -1412,7 +1412,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$TenantResource {
     /**
-     * @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form &#39;projects/{number}&#39;. For example &#39;projects/123456&#39;.
+     * Output only. @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form &#39;projects/{number}&#39;. For example &#39;projects/123456&#39;.
      */
     resource?: string | null;
     /**
@@ -1458,7 +1458,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$UndeleteTenantProjectRequest {
     /**
-     * Tag of the resource within the tenancy unit.
+     * Required. Tag of the resource within the tenancy unit.
      */
     tag?: string | null;
   }
@@ -2352,7 +2352,7 @@ export namespace serviceconsumermanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
-     *     // Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
+     *     // Required. Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
      *     parent: 'services/my-service',
      *     // Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`. For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`. Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
      *     query: 'placeholder-value',
@@ -2377,7 +2377,7 @@ export namespace serviceconsumermanagement_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.
      * @param {string=} params.pageToken Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
+     * @param {string} params.parent Required. Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
      * @param {string=} params.query Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`. For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`. Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2480,7 +2480,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
+     * Required. Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
      */
     parent?: string;
     /**
@@ -2497,7 +2497,7 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.addProject
-     * @desc Add a new tenant project to the tenancy unit. There can be a maximum of 512 tenant projects in a tenancy unit. If there are previously failed `AddTenantProject` calls, you might need to call `RemoveTenantProject` first to resolve them before you can make another call to `AddTenantProject` with the same tag. Operation.
+     * @desc Add a new tenant project to the tenancy unit. There can be a maximum of 1024 tenant projects in a tenancy unit. If there are previously failed `AddTenantProject` calls, you might need to call `RemoveTenantProject` first to resolve them before you can make another call to `AddTenantProject` with the same tag. Operation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2522,7 +2522,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.addProject({
-     *     // Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *     // Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *     parent: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *     // Request body metadata
@@ -2555,7 +2555,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.parent Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().AddTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2669,7 +2669,7 @@ export namespace serviceconsumermanagement_v1 {
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.applyProjectConfig(
      *     {
-     *       // Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       // Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *       // Request body metadata
@@ -2703,7 +2703,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().ApplyTenantProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2817,7 +2817,7 @@ export namespace serviceconsumermanagement_v1 {
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.attachProject(
      *     {
-     *       // Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       // Required. Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *       // Request body metadata
@@ -2852,7 +2852,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Required. Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().AttachTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2965,7 +2965,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.create({
-     *     // services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
+     *     // Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      *     parent: 'services/my-service/[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -2997,7 +2997,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
+     * @param {string} params.parent Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      * @param {().CreateTenancyUnitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3110,7 +3110,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.delete({
-     *     // Name of the tenancy unit to be deleted.
+     *     // Required. Name of the tenancy unit to be deleted.
      *     name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *   });
      *   console.log(res.data);
@@ -3134,7 +3134,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit to be deleted.
+     * @param {string} params.name Required. Name of the tenancy unit to be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3244,7 +3244,7 @@ export namespace serviceconsumermanagement_v1 {
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.deleteProject(
      *     {
-     *       // Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       // Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *       // Request body metadata
@@ -3277,7 +3277,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().DeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3390,13 +3390,13 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.list({
-     *     // Filter expression over tenancy resources field. Optional.
+     *     // Optional. Filter expression over tenancy resources field. Optional.
      *     filter: 'placeholder-value',
-     *     // The maximum number of results returned by this request.
+     *     // Optional. The maximum number of results returned by this request.
      *     pageSize: 'placeholder-value',
-     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+     *     // Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
-     *     // Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
+     *     // Required. Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
      *     parent: 'services/my-service/[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -3417,10 +3417,10 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter expression over tenancy resources field. Optional.
-     * @param {integer=} params.pageSize The maximum number of results returned by this request.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.parent Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
+     * @param {string=} params.filter Optional. Filter expression over tenancy resources field. Optional.
+     * @param {integer=} params.pageSize Optional. The maximum number of results returned by this request.
+     * @param {string=} params.pageToken Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+     * @param {string} params.parent Required. Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3538,7 +3538,7 @@ export namespace serviceconsumermanagement_v1 {
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.removeProject(
      *     {
-     *       // Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       // Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *       // Request body metadata
@@ -3571,7 +3571,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().RemoveTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3685,7 +3685,7 @@ export namespace serviceconsumermanagement_v1 {
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.undeleteProject(
      *     {
-     *       // Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       // Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
      *
      *       // Request body metadata
@@ -3718,7 +3718,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().UndeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3808,7 +3808,7 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Addproject
     extends StandardParameters {
     /**
-     * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     parent?: string;
 
@@ -3820,7 +3820,7 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
     extends StandardParameters {
     /**
-     * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
 
@@ -3832,7 +3832,7 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Attachproject
     extends StandardParameters {
     /**
-     * Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
 
@@ -3844,7 +3844,7 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Create
     extends StandardParameters {
     /**
-     * services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
+     * Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      */
     parent?: string;
 
@@ -3856,14 +3856,14 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Delete
     extends StandardParameters {
     /**
-     * Name of the tenancy unit to be deleted.
+     * Required. Name of the tenancy unit to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$Deleteproject
     extends StandardParameters {
     /**
-     * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
 
@@ -3875,26 +3875,26 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$List
     extends StandardParameters {
     /**
-     * Filter expression over tenancy resources field. Optional.
+     * Optional. Filter expression over tenancy resources field. Optional.
      */
     filter?: string;
     /**
-     * The maximum number of results returned by this request.
+     * Optional. The maximum number of results returned by this request.
      */
     pageSize?: number;
     /**
-     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+     * Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
     /**
-     * Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
+     * Required. Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
      */
     parent?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$Removeproject
     extends StandardParameters {
     /**
-     * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
 
@@ -3906,7 +3906,7 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Undeleteproject
     extends StandardParameters {
     /**
-     * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * Required. Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
 

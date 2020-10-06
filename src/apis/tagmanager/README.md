@@ -2,7 +2,7 @@
 
 # tagmanager
 
-> Accesses Tag Manager accounts and containers.
+> This API allows clients to access and modify container and tag configuration.
 
 ## Installation
 

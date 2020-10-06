@@ -132,7 +132,11 @@ export namespace billingbudgets_v1beta1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1beta1AllUpdatesRule {
     /**
-     * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
+     * Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account.
+     */
+    disableDefaultIamRecipients?: boolean | null;
+    /**
+     * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
      */
     monitoringNotificationChannels?: string[] | null;
     /**
@@ -322,7 +326,10 @@ export namespace billingbudgets_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -484,7 +491,10 @@ export namespace billingbudgets_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -614,7 +624,10 @@ export namespace billingbudgets_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -764,7 +777,10 @@ export namespace billingbudgets_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -929,7 +945,10 @@ export namespace billingbudgets_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

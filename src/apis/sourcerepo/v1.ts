@@ -128,7 +128,7 @@ export namespace sourcerepo_v1 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -141,7 +141,7 @@ export namespace sourcerepo_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -158,11 +158,11 @@ export namespace sourcerepo_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -171,11 +171,11 @@ export namespace sourcerepo_v1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -196,7 +196,7 @@ export namespace sourcerepo_v1 {
     title?: string | null;
   }
   /**
-   * Response for ListRepos.  The size is not set in the returned repositories.
+   * Response for ListRepos. The size is not set in the returned repositories.
    */
   export interface Schema$ListReposResponse {
     /**
@@ -238,7 +238,7 @@ export namespace sourcerepo_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -246,12 +246,12 @@ export namespace sourcerepo_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -263,11 +263,11 @@ export namespace sourcerepo_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -280,7 +280,7 @@ export namespace sourcerepo_v1 {
      */
     enablePrivateKeyCheck?: boolean | null;
     /**
-     * The name of the project. Values are of the form `projects/&lt;project&gt;`.
+     * The name of the project. Values are of the form `projects/`.
      */
     name?: string | null;
     /**
@@ -301,7 +301,7 @@ export namespace sourcerepo_v1 {
      */
     serviceAccountEmail?: string | null;
     /**
-     * A topic of Cloud Pub/Sub. Values are of the form `projects/&lt;project&gt;/topics/&lt;topic&gt;`. The project needs to be the same project as this config is in.
+     * A topic of Cloud Pub/Sub. Values are of the form `projects//topics/`. The project needs to be the same project as this config is in.
      */
     topic?: string | null;
   }
@@ -314,7 +314,7 @@ export namespace sourcerepo_v1 {
      */
     mirrorConfig?: Schema$MirrorConfig;
     /**
-     * Resource name of the repository, of the form `projects/&lt;project&gt;/repos/&lt;repo&gt;`.  The repo name may contain slashes. eg, `projects/myproject/repos/name/with/slash`
+     * Resource name of the repository, of the form `projects//repos/`. The repo name may contain slashes. eg, `projects/myproject/repos/name/with/slash`
      */
     name?: string | null;
     /**
@@ -339,12 +339,12 @@ export namespace sourcerepo_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -352,7 +352,7 @@ export namespace sourcerepo_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -361,11 +361,11 @@ export namespace sourcerepo_v1 {
     message?: string | null;
   }
   /**
-   * Metadata of SyncRepo.  This message is in the metadata field of Operation.
+   * Metadata of SyncRepo. This message is in the metadata field of Operation.
    */
   export interface Schema$SyncRepoMetadata {
     /**
-     * The name of the repo being synchronized. Values are of the form `projects/&lt;project&gt;/repos/&lt;repo&gt;`.
+     * The name of the repo being synchronized. Values are of the form `projects//repos/`.
      */
     name?: string | null;
     /**
@@ -465,8 +465,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.getConfig({
-     *     // The name of the requested project. Values are of the form
-     *     // `projects/<project>`.
+     *     // The name of the requested project. Values are of the form `projects/`.
      *     name: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -488,7 +487,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the requested project. Values are of the form `projects/<project>`.
+     * @param {string} params.name The name of the requested project. Values are of the form `projects/`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -596,8 +595,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.updateConfig({
-     *     // The name of the requested project. Values are of the form
-     *     // `projects/<project>`.
+     *     // The name of the requested project. Values are of the form `projects/`.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -628,7 +626,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the requested project. Values are of the form `projects/<project>`.
+     * @param {string} params.name The name of the requested project. Values are of the form `projects/`.
      * @param {().UpdateProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -714,14 +712,14 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Getconfig
     extends StandardParameters {
     /**
-     * The name of the requested project. Values are of the form `projects/<project>`.
+     * The name of the requested project. Values are of the form `projects/`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updateconfig
     extends StandardParameters {
     /**
-     * The name of the requested project. Values are of the form `projects/<project>`.
+     * The name of the requested project. Values are of the form `projects/`.
      */
     name?: string;
 
@@ -739,7 +737,7 @@ export namespace sourcerepo_v1 {
 
     /**
      * sourcerepo.projects.repos.create
-     * @desc Creates a repo in the given project with the given name.  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
+     * @desc Creates a repo in the given project with the given name. If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -767,8 +765,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.create({
-     *     // The project in which to create the repo. Values are of the form
-     *     // `projects/<project>`.
+     *     // The project in which to create the repo. Values are of the form `projects/`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -804,7 +801,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
+     * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/`.
      * @param {().Repo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -919,8 +916,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.delete({
-     *     // The name of the repo to delete. Values are of the form
-     *     // `projects/<project>/repos/<repo>`.
+     *     // The name of the repo to delete. Values are of the form `projects//repos/`.
      *     name: 'projects/my-project/repos/.*',
      *   });
      *   console.log(res.data);
@@ -938,7 +934,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
+     * @param {string} params.name The name of the repo to delete. Values are of the form `projects//repos/`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1051,8 +1047,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.get({
-     *     // The name of the requested repository. Values are of the form
-     *     // `projects/<project>/repos/<repo>`.
+     *     // The name of the requested repository. Values are of the form `projects//repos/`.
      *     name: 'projects/my-project/repos/.*',
      *   });
      *   console.log(res.data);
@@ -1076,7 +1071,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
+     * @param {string} params.name The name of the requested repository. Values are of the form `projects//repos/`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1189,21 +1184,9 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/repos/.*',
      *   });
      *   console.log(res.data);
@@ -1226,7 +1209,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1313,7 +1296,7 @@ export namespace sourcerepo_v1 {
 
     /**
      * sourcerepo.projects.repos.list
-     * @desc Returns all repos belonging to a project. The sizes of the repos are not set by ListRepos.  To get the size of a repo, use GetRepo.
+     * @desc Returns all repos belonging to a project. The sizes of the repos are not set by ListRepos. To get the size of a repo, use GetRepo.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1343,15 +1326,11 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.list({
-     *     // The project ID whose repos should be listed. Values are of the form
-     *     // `projects/<project>`.
+     *     // The project ID whose repos should be listed. Values are of the form `projects/`.
      *     name: 'projects/my-project',
-     *     // Maximum number of repositories to return; between 1 and 500.
-     *     // If not set or zero, defaults to 100 at the server.
+     *     // Maximum number of repositories to return; between 1 and 500. If not set or zero, defaults to 100 at the server.
      *     pageSize: 'placeholder-value',
-     *     // Resume listing repositories where a prior ListReposResponse
-     *     // left off. This is an opaque token that must be obtained from
-     *     // a recent, prior ListReposResponse's next_page_token field.
+     *     // Resume listing repositories where a prior ListReposResponse left off. This is an opaque token that must be obtained from a recent, prior ListReposResponse's next_page_token field.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1372,7 +1351,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The project ID whose repos should be listed. Values are of the form `projects/<project>`.
+     * @param {string} params.name The project ID whose repos should be listed. Values are of the form `projects/`.
      * @param {integer=} params.pageSize Maximum number of repositories to return; between 1 and 500. If not set or zero, defaults to 100 at the server.
      * @param {string=} params.pageToken Resume listing repositories where a prior ListReposResponse left off. This is an opaque token that must be obtained from a recent, prior ListReposResponse's next_page_token field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1485,8 +1464,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.patch({
-     *     // The name of the requested repository. Values are of the form
-     *     // `projects/<project>/repos/<repo>`.
+     *     // The name of the requested repository. Values are of the form `projects//repos/`.
      *     name: 'projects/my-project/repos/.*',
      *
      *     // Request body metadata
@@ -1519,7 +1497,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
+     * @param {string} params.name The name of the requested repository. Values are of the form `projects//repos/`.
      * @param {().UpdateRepoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1631,8 +1609,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/repos/.*',
      *
      *     // Request body metadata
@@ -1751,7 +1728,7 @@ export namespace sourcerepo_v1 {
 
     /**
      * sourcerepo.projects.repos.sync
-     * @desc Synchronize a connected repo.  The response contains SyncRepoMetadata in the metadata field.
+     * @desc Synchronize a connected repo. The response contains SyncRepoMetadata in the metadata field.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1776,8 +1753,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.sync({
-     *     // The name of the repo to synchronize. Values are of the form
-     *     // `projects/<project>/repos/<repo>`.
+     *     // The name of the repo to synchronize. Values are of the form `projects//repos/`.
      *     name: 'projects/my-project/repos/.*',
      *
      *     // Request body metadata
@@ -1807,7 +1783,7 @@ export namespace sourcerepo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the repo to synchronize. Values are of the form `projects/<project>/repos/<repo>`.
+     * @param {string} params.name The name of the repo to synchronize. Values are of the form `projects//repos/`.
      * @param {().SyncRepoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1921,8 +1897,7 @@ export namespace sourcerepo_v1 {
      *
      *   // Do the magic
      *   const res = await sourcerepo.projects.repos.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/repos/.*',
      *
      *     // Request body metadata
@@ -2046,7 +2021,7 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Create
     extends StandardParameters {
     /**
-     * The project in which to create the repo. Values are of the form `projects/<project>`.
+     * The project in which to create the repo. Values are of the form `projects/`.
      */
     parent?: string;
 
@@ -2058,21 +2033,21 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Delete
     extends StandardParameters {
     /**
-     * The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
+     * The name of the repo to delete. Values are of the form `projects//repos/`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Repos$Get
     extends StandardParameters {
     /**
-     * The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
+     * The name of the requested repository. Values are of the form `projects//repos/`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Repos$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2083,7 +2058,7 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$List
     extends StandardParameters {
     /**
-     * The project ID whose repos should be listed. Values are of the form `projects/<project>`.
+     * The project ID whose repos should be listed. Values are of the form `projects/`.
      */
     name?: string;
     /**
@@ -2098,7 +2073,7 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Patch
     extends StandardParameters {
     /**
-     * The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
+     * The name of the requested repository. Values are of the form `projects//repos/`.
      */
     name?: string;
 
@@ -2122,7 +2097,7 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Sync
     extends StandardParameters {
     /**
-     * The name of the repo to synchronize. Values are of the form `projects/<project>/repos/<repo>`.
+     * The name of the repo to synchronize. Values are of the form `projects//repos/`.
      */
     name?: string;
 

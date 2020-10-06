@@ -214,7 +214,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * CLDR country code (e.g. &quot;US&quot;). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
      */
     country?: string | null;
     /**
@@ -492,7 +492,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The destination the issue applies to.
+     * The destination the issue applies to. If this field is empty then the issue applies to all available destinations.
      */
     destination?: string | null;
     /**
@@ -2784,13 +2784,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsRefundOperation {
     /**
-     * If true, the item will be fully refunded.
+     * If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer via FOP.
      */
     fullRefund?: boolean | null;
     /**
-     * If this is set, the item will be partially refunded.
+     * If this is set, the item will be partially refunded. Merchant can choose this refund option to specify the customized amount that to be refunded to the customer.
      */
     partialRefund?: Schema$OrderreturnsPartialRefund;
+    /**
+     * The payment way of issuing refund. Default value is ORIGINAL_FOP if not set.
+     */
+    paymentType?: string | null;
     /**
      * The explanation of the reason.
      */
@@ -4141,6 +4145,10 @@ export namespace content_v2_1 {
      */
     shippingWidth?: Schema$ProductShippingDimension;
     /**
+     * List of country codes (ISO 3166-1 alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in MC feed settings.
+     */
+    shoppingAdsExcludedCountries?: string[] | null;
+    /**
      * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value (see size definition).
      */
     sizes?: string[] | null;
@@ -4389,7 +4397,7 @@ export namespace content_v2_1 {
     /**
      * List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
      */
-    approvedCountrys?: string[] | null;
+    approvedCountries?: string[] | null;
     /**
      * The name of the destination
      */
@@ -4397,11 +4405,11 @@ export namespace content_v2_1 {
     /**
      * List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved.
      */
-    disapprovedCountrys?: string[] | null;
+    disapprovedCountries?: string[] | null;
     /**
      * List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval.
      */
-    pendingCountrys?: string[] | null;
+    pendingCountries?: string[] | null;
     /**
      * Destination approval status in `targetCountry` of the offer.
      */
@@ -4485,7 +4493,7 @@ export namespace content_v2_1 {
     /**
      * List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer.
      */
-    applicableCountrys?: string[] | null;
+    applicableCountries?: string[] | null;
     /**
      * The attribute&#39;s name, if the issue is caused by a single attribute.
      */
@@ -11988,7 +11996,7 @@ export namespace content_v2_1 {
 
     /**
      * content.localinventory.insert
-     * @desc Update the local inventory of a product in your Merchant Center account.
+     * @desc Updates the local inventory of a product in your Merchant Center account.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18726,6 +18734,7 @@ export namespace content_v2_1 {
      *   //   "shippingLength": {},
      *   //   "shippingWeight": {},
      *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
      *   //   "sizeSystem": "my_sizeSystem",
      *   //   "sizeType": "my_sizeType",
      *   //   "sizes": [],
@@ -18936,6 +18945,7 @@ export namespace content_v2_1 {
      *       //   "shippingLength": {},
      *       //   "shippingWeight": {},
      *       //   "shippingWidth": {},
+     *       //   "shoppingAdsExcludedCountries": [],
      *       //   "sizeSystem": "my_sizeSystem",
      *       //   "sizeType": "my_sizeType",
      *       //   "sizes": [],
@@ -19022,6 +19032,7 @@ export namespace content_v2_1 {
      *   //   "shippingLength": {},
      *   //   "shippingWeight": {},
      *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
      *   //   "sizeSystem": "my_sizeSystem",
      *   //   "sizeType": "my_sizeType",
      *   //   "sizes": [],

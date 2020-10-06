@@ -169,6 +169,68 @@ export namespace firebasehosting_v1beta1 {
     token?: string | null;
   }
   /**
+   * A `Channel` represents a stream of releases for a site. All sites have a default `live` channel that serves content to the live Firebase-provided domains and any connected custom domains.
+   */
+  export interface Schema$Channel {
+    /**
+     * Output only. The time at which the channel was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time at which the channel will be automatically deleted. If null, the channel will not be automatically deleted. This field is present in output whether set directly or via the `ttl` field.
+     */
+    expireTime?: string | null;
+    /**
+     * Text labels used for extra metadata and/or filtering.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The fully-qualified identifier of the Channel.
+     */
+    name?: string | null;
+    /**
+     * Output only. The current release for the channel, if any.
+     */
+    release?: Schema$Release;
+    /**
+     * The number of previous releases to retain on the channel for rollback or other purposes. Must be a number between 1-100. Defaults to 10 for new channels.
+     */
+    retainedReleaseCount?: number | null;
+    /**
+     * Input only. A time-to-live for this channel. Sets `expire_time` to the provided duration past the time of the request.
+     */
+    ttl?: string | null;
+    /**
+     * Output only. The time at which the channel was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The URL at which the channel can be viewed. For the `live` channel, the content of the current release may also be visible at other URLs.
+     */
+    url?: string | null;
+  }
+  /**
+   * The request sent to CloneVersion.
+   */
+  export interface Schema$CloneVersionRequest {
+    /**
+     * If provided, only paths that do not match any of the regexes in this list will be included in the new version.
+     */
+    exclude?: Schema$PathFilter;
+    /**
+     * If true, immediately finalize the version after cloning is complete.
+     */
+    finalize?: boolean | null;
+    /**
+     * If provided, only paths that match one or more regexes in this list will be included in the new version.
+     */
+    include?: Schema$PathFilter;
+    /**
+     * Required. The name of the version to be cloned, in the format: `sites/{site}/versions/{version}`
+     */
+    sourceVersion?: string | null;
+  }
+  /**
    * A configured rewrite that directs requests to a Cloud Run service. If the Cloud Run service does not exist when setting or updating your Firebase Hosting configuration, then the request fails. Any errors from the Cloud Run service are passed to the end user (for example, if you delete a service, any requests directed to that service receive a `404` error).
    */
   export interface Schema$CloudRunRewrite {
@@ -291,6 +353,19 @@ export namespace firebasehosting_v1beta1 {
     root?: string | null;
   }
   /**
+   * The response returned by ListChannels.
+   */
+  export interface Schema$ListChannelsResponse {
+    /**
+     * The list of channels.
+     */
+    channels?: Schema$Channel[];
+    /**
+     * If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.channels/list) call to continue with the next set of releases.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response to listing Domains.
    */
   export interface Schema$ListDomainsResponse {
@@ -357,6 +432,15 @@ export namespace firebasehosting_v1beta1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * A representation of filter path.
+   */
+  export interface Schema$PathFilter {
+    /**
+     * An array of regexes to filter by.
+     */
+    regexes?: string[] | null;
   }
   /**
    * The request to populate a Version&#39;s Files.
@@ -1100,6 +1184,812 @@ export namespace firebasehosting_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * firebasehosting.projects.sites.channels.create
+     * @desc Creates a new channel in the specified site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.create({
+     *     // Required. Immutable. A unique id within the site to identify the channel.
+     *     channelId: 'placeholder-value',
+     *     // Required. The site in which this channel should be created.
+     *     parent: 'projects/my-project/sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "release": {},
+     *       //   "retainedReleaseCount": 0,
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.channels.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.channelId Required. Immutable. A unique id within the site to identify the channel.
+     * @param {string} params.parent Required. The site in which this channel should be created.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Sites$Channels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Create,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Channel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Create
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.delete
+     * @desc Deletes a channel of a site. The `live` channel cannot be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.delete({
+     *     // Required. The fully-qualified identifier for the site.
+     *     name: 'projects/my-project/sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.channels.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The fully-qualified identifier for the site.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Sites$Channels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Sites$Channels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sites$Channels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Channels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Channels$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.get
+     * @desc Retrieves information for the specified channel of a site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.get({
+     *     // Required. The fully-qualified identifier for the channel.
+     *     name: 'projects/my-project/sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.channels.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The fully-qualified identifier for the channel.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Channels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Get,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Channel>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Get
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.list
+     * @desc Lists the channels for the specified site. All sites have a default "live" channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.list({
+     *     // The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The site from which to list channels.
+     *     parent: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.channels.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
+     * @param {string} params.parent Required. The site from which to list channels.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Sites$Channels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Sites$Channels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>,
+      callback: BodyResponseCallback<Schema$ListChannelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$List,
+      callback: BodyResponseCallback<Schema$ListChannelsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListChannelsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$List
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListChannelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListChannelsResponse>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.patch
+     * @desc Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.patch({
+     *     // The fully-qualified identifier of the Channel.
+     *     name: 'projects/my-project/sites/my-site/channels/my-channel',
+     *     // A comma-separated list of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "release": {},
+     *       //   "retainedReleaseCount": 0,
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.channels.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The fully-qualified identifier of the Channel.
+     * @param {string=} params.updateMask A comma-separated list of fields to be updated in this request.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Sites$Channels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Sites$Channels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    patch(
+      params: Params$Resource$Projects$Sites$Channels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Channels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Channels$Patch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Channel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Patch
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sites$Channels$Create
+    extends StandardParameters {
+    /**
+     * Required. Immutable. A unique id within the site to identify the channel.
+     */
+    channelId?: string;
+    /**
+     * Required. The site in which this channel should be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$Delete
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified identifier for the site.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified identifier for the channel.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$List
+    extends StandardParameters {
+    /**
+     * The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token from a previous request, if provided.
+     */
+    pageToken?: string;
+    /**
+     * Required. The site from which to list channels.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$Patch
+    extends StandardParameters {
+    /**
+     * The fully-qualified identifier of the Channel.
+     */
+    name?: string;
+    /**
+     * A comma-separated list of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
   export class Resource$Projects$Sites$Channels$Releases {
@@ -2583,6 +3473,157 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * firebasehosting.projects.sites.versions.clone
+     * @desc Creates a new version on the target site using the content of the specified version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.clone({
+     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     *     parent: 'projects/my-project/sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exclude": {},
+     *       //   "finalize": false,
+     *       //   "include": {},
+     *       //   "sourceVersion": "my_sourceVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.projects.sites.versions.clone
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     * @param {().CloneVersionRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    clone(
+      params: Params$Resource$Projects$Sites$Versions$Clone,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clone(
+      params?: Params$Resource$Projects$Sites$Versions$Clone,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    clone(
+      params: Params$Resource$Projects$Sites$Versions$Clone,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clone(
+      params: Params$Resource$Projects$Sites$Versions$Clone,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(
+      params: Params$Resource$Projects$Sites$Versions$Clone,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(callback: BodyResponseCallback<Schema$Operation>): void;
+    clone(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Versions$Clone
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Versions$Clone;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Versions$Clone;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions:clone').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * firebasehosting.projects.sites.versions.create
      * @desc Creates a new version for a site.
      * @example
@@ -2616,7 +3657,7 @@ export namespace firebasehosting_v1beta1 {
      *     parent: 'projects/my-project/sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
-     *     // A unique id for the new version. This is only specified for legacy version creations.
+     *     // A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      *     versionId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2670,7 +3711,7 @@ export namespace firebasehosting_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent to create the version for, in the format: sites/ site-name
      * @param {string=} params.sizeBytes The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
-     * @param {string=} params.versionId A unique id for the new version. This is only specified for legacy version creations.
+     * @param {string=} params.versionId A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3361,6 +4402,18 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Sites$Versions$Clone
+    extends StandardParameters {
+    /**
+     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CloneVersionRequest;
+  }
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
@@ -3372,7 +4425,7 @@ export namespace firebasehosting_v1beta1 {
      */
     sizeBytes?: string;
     /**
-     * A unique id for the new version. This is only specified for legacy version creations.
+     * A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      */
     versionId?: string;
 
@@ -3940,6 +4993,812 @@ export namespace firebasehosting_v1beta1 {
       this.context = context;
       this.releases = new Resource$Sites$Channels$Releases(this.context);
     }
+
+    /**
+     * firebasehosting.sites.channels.create
+     * @desc Creates a new channel in the specified site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.create({
+     *     // Required. Immutable. A unique id within the site to identify the channel.
+     *     channelId: 'placeholder-value',
+     *     // Required. The site in which this channel should be created.
+     *     parent: 'sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "release": {},
+     *       //   "retainedReleaseCount": 0,
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.channels.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.channelId Required. Immutable. A unique id within the site to identify the channel.
+     * @param {string} params.parent Required. The site in which this channel should be created.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Sites$Channels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Sites$Channels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    create(
+      params: Params$Resource$Sites$Channels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Sites$Channels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(
+      params: Params$Resource$Sites$Channels$Create,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Channel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Create
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.sites.channels.delete
+     * @desc Deletes a channel of a site. The `live` channel cannot be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.delete({
+     *     // Required. The fully-qualified identifier for the site.
+     *     name: 'sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.channels.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The fully-qualified identifier for the site.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Sites$Channels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Sites$Channels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Sites$Channels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Sites$Channels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Sites$Channels$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.sites.channels.get
+     * @desc Retrieves information for the specified channel of a site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.get({
+     *     // Required. The fully-qualified identifier for the channel.
+     *     name: 'sites/my-site/channels/my-channel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.channels.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The fully-qualified identifier for the channel.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Sites$Channels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sites$Channels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    get(
+      params: Params$Resource$Sites$Channels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Channels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Channels$Get,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Channel>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Get
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.sites.channels.list
+     * @desc Lists the channels for the specified site. All sites have a default "live" channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.list({
+     *     // The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token from a previous request, if provided.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The site from which to list channels.
+     *     parent: 'sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.channels.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
+     * @param {string} params.parent Required. The site from which to list channels.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Sites$Channels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Sites$Channels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    list(
+      params: Params$Resource$Sites$Channels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Sites$Channels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>,
+      callback: BodyResponseCallback<Schema$ListChannelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$Channels$List,
+      callback: BodyResponseCallback<Schema$ListChannelsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListChannelsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$List
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListChannelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListChannelsResponse>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.sites.channels.patch
+     * @desc Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.patch({
+     *     // The fully-qualified identifier of the Channel.
+     *     name: 'sites/my-site/channels/my-channel',
+     *     // A comma-separated list of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "release": {},
+     *       //   "retainedReleaseCount": 0,
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "release": {},
+     *   //   "retainedReleaseCount": 0,
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.channels.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The fully-qualified identifier of the Channel.
+     * @param {string=} params.updateMask A comma-separated list of fields to be updated in this request.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Sites$Channels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Sites$Channels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    patch(
+      params: Params$Resource$Sites$Channels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Sites$Channels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(
+      params: Params$Resource$Sites$Channels$Patch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Channel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Patch
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Sites$Channels$Create
+    extends StandardParameters {
+    /**
+     * Required. Immutable. A unique id within the site to identify the channel.
+     */
+    channelId?: string;
+    /**
+     * Required. The site in which this channel should be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
+  export interface Params$Resource$Sites$Channels$Delete
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified identifier for the site.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Sites$Channels$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified identifier for the channel.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Sites$Channels$List
+    extends StandardParameters {
+    /**
+     * The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token from a previous request, if provided.
+     */
+    pageToken?: string;
+    /**
+     * Required. The site from which to list channels.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Sites$Channels$Patch
+    extends StandardParameters {
+    /**
+     * The fully-qualified identifier of the Channel.
+     */
+    name?: string;
+    /**
+     * A comma-separated list of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
   export class Resource$Sites$Channels$Releases {
@@ -5423,6 +7282,157 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * firebasehosting.sites.versions.clone
+     * @desc Creates a new version on the target site using the content of the specified version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.clone({
+     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     *     parent: 'sites/my-site',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exclude": {},
+     *       //   "finalize": false,
+     *       //   "include": {},
+     *       //   "sourceVersion": "my_sourceVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firebasehosting.sites.versions.clone
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     * @param {().CloneVersionRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clone(
+      params?: Params$Resource$Sites$Versions$Clone,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(callback: BodyResponseCallback<Schema$Operation>): void;
+    clone(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Clone
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Clone;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Versions$Clone;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions:clone').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * firebasehosting.sites.versions.create
      * @desc Creates a new version for a site.
      * @example
@@ -5456,7 +7466,7 @@ export namespace firebasehosting_v1beta1 {
      *     parent: 'sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
-     *     // A unique id for the new version. This is only specified for legacy version creations.
+     *     // A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      *     versionId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5510,7 +7520,7 @@ export namespace firebasehosting_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent to create the version for, in the format: sites/ site-name
      * @param {string=} params.sizeBytes The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
-     * @param {string=} params.versionId A unique id for the new version. This is only specified for legacy version creations.
+     * @param {string=} params.versionId A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6201,6 +8211,18 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Sites$Versions$Clone
+    extends StandardParameters {
+    /**
+     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CloneVersionRequest;
+  }
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**
@@ -6212,7 +8234,7 @@ export namespace firebasehosting_v1beta1 {
      */
     sizeBytes?: string;
     /**
-     * A unique id for the new version. This is only specified for legacy version creations.
+     * A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
      */
     versionId?: string;
 

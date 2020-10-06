@@ -476,7 +476,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     frequency?: string | null;
     /**
-     * Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
+     * Deprecated. This field has no effect.
      */
     nextRunMinuteOfDay?: number | null;
     /**
@@ -794,7 +794,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -939,7 +940,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1114,7 +1116,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1238,7 +1241,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1374,7 +1378,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1514,7 +1519,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1652,7 +1658,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1854,7 +1861,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2019,7 +2027,8 @@ export namespace doubleclickbidmanager_v1_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://doubleclickbidmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

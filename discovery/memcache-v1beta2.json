@@ -180,7 +180,7 @@
             "instances": {
               "methods": {
                 "applyParameters": {
-                  "description": "ApplyParameters will update current set of Parameters to the set of specified nodes of the Memcached Instance.",
+                  "description": "ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:applyParameters",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.instances.applyParameters",
@@ -208,7 +208,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a new Instance in a given project and location.",
+                  "description": "Creates a new Instance in a given location.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.instances.create",
@@ -217,7 +217,7 @@
                   ],
                   "parameters": {
                     "instanceId": {
-                      "description": "Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location",
+                      "description": "Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.",
                       "location": "query",
                       "type": "string"
                     },
@@ -291,7 +291,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Instances in a given project and location.",
+                  "description": "Lists Instances in a given location.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "GET",
                   "id": "memcache.projects.locations.instances.list",
@@ -528,7 +528,7 @@
       }
     }
   },
-  "revision": "20200817",
+  "revision": "20200928",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1219,50 +1219,6 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadata": {
-      "description": "Represents the metadata of a long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "createTime": {
-          "description": "Output only. Time when the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. Time when the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "statusDetail": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"

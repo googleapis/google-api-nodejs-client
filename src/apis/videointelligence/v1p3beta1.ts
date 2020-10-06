@@ -223,6 +223,15 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
@@ -312,7 +321,7 @@ export namespace videointelligence_v1p3beta1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly {
     /**
@@ -376,6 +385,19 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1beta2_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative {
@@ -397,7 +419,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative[];
     /**
@@ -536,6 +558,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
@@ -551,6 +577,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -718,6 +748,15 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation {
@@ -807,7 +846,7 @@ export namespace videointelligence_v1p3beta1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly {
     /**
@@ -871,6 +910,19 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p1beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
@@ -892,7 +944,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
     /**
@@ -1031,6 +1083,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
@@ -1046,6 +1102,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -1213,6 +1273,15 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation {
@@ -1302,7 +1371,7 @@ export namespace videointelligence_v1p3beta1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly {
     /**
@@ -1366,6 +1435,19 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p2beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative {
@@ -1387,7 +1469,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative[];
     /**
@@ -1526,6 +1608,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
@@ -1541,6 +1627,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -1793,14 +1883,6 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
     /**
-     * The thumbnail of a person&#39;s face.
-     */
-    thumbnail?: string | null;
-    /**
-     * The face tracks with attributes.
-     */
-    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
-    /**
      * Feature version.
      */
     version?: string | null;
@@ -1937,7 +2019,7 @@ export namespace videointelligence_v1p3beta1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly {
     /**
@@ -2092,7 +2174,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative[];
     /**
@@ -2201,7 +2283,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_TextDetectionConfig {
     /**
-     * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format.  Automatic language detection is performed if no hint is provided.
+     * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format. Automatic language detection is performed if no hint is provided.
      */
     languageHints?: string[] | null;
     /**
@@ -2558,6 +2640,15 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation {
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
@@ -2647,7 +2738,7 @@ export namespace videointelligence_v1p3beta1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingPoly {
     /**
@@ -2711,6 +2802,19 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative {
@@ -2732,7 +2836,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechTranscription {
     /**
-     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`).  These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative[];
     /**
@@ -2871,6 +2975,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
@@ -2886,6 +2994,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -2970,7 +3082,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     error?: Schema$GoogleRpc_Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -2978,12 +3090,12 @@ export namespace videointelligence_v1p3beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpc_Status {
     /**
@@ -2991,7 +3103,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**

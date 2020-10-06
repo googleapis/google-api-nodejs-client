@@ -521,7 +521,7 @@
       }
     }
   },
-  "revision": "20200821",
+  "revision": "20201003",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {
@@ -623,7 +623,8 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`.",
+          "description": "Output only. The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`.",
+          "readOnly": true,
           "type": "string"
         },
         "open": {

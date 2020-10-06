@@ -137,7 +137,7 @@ export namespace bigtableadmin_v1 {
      */
     expireTime?: string | null;
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string | null;
     /**
@@ -149,7 +149,7 @@ export namespace bigtableadmin_v1 {
      */
     sourceTable?: string | null;
     /**
-     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received).  The row data in this backup will be no older than this timestamp.
+     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received). The row data in this backup will be no older than this timestamp.
      */
     startTime?: string | null;
     /**
@@ -241,7 +241,7 @@ export namespace bigtableadmin_v1 {
      */
     requestTime?: string | null;
     /**
-     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one.  Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
+     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
      */
     tables?: {[key: string]: Schema$TableProgress} | null;
   }
@@ -301,6 +301,17 @@ export namespace bigtableadmin_v1 {
     parent?: string | null;
   }
   /**
+   * Added to the error payload.
+   */
+  export interface Schema$FailureTrace {
+    frames?: Schema$Frame[];
+  }
+  export interface Schema$Frame {
+    targetName?: string | null;
+    workflowGuid?: string | null;
+    zoneId?: string | null;
+  }
+  /**
    * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
    */
   export interface Schema$Instance {
@@ -309,7 +320,7 @@ export namespace bigtableadmin_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**

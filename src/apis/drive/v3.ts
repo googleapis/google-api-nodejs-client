@@ -4694,6 +4694,8 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.delete({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
@@ -4713,6 +4715,7 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
@@ -4822,7 +4825,10 @@ export namespace drive_v3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await drive.files.emptyTrash({});
+     *   const res = await drive.files.emptyTrash({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
+     *   });
      *   console.log(res.data);
      * }
      *
@@ -4835,6 +4841,7 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6136,6 +6143,10 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     */
+    enforceSingleParent?: boolean;
+    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -6148,8 +6159,12 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Emptytrash
-    extends StandardParameters {}
+  export interface Params$Resource$Files$Emptytrash extends StandardParameters {
+    /**
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     */
+    enforceSingleParent?: boolean;
+  }
   export interface Params$Resource$Files$Export extends StandardParameters {
     /**
      * The ID of the file.

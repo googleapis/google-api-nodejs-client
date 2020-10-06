@@ -128,6 +128,23 @@ export namespace healthcare_v1beta1 {
   }
 
   /**
+   * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given consent is in the `ACTIVE` state, no new revision is committed.
+   */
+  export interface Schema$ActivateConsentRequest {
+    /**
+     * Required. The resource name of the consent artifact that contains proof of the end user&#39;s consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consentArtifacts/{consent_artifact_id}`. If the draft consent had a consent artifact, this consent artifact overwrites it.
+     */
+    consentArtifact?: string | null;
+    /**
+     * Timestamp in UTC of when this consent is considered expired.
+     */
+    expireTime?: string | null;
+    /**
+     * The time to live for this consent from when it is marked as active.
+     */
+    ttl?: string | null;
+  }
+  /**
    * An annotation record.
    */
   export interface Schema$Annotation {
@@ -188,6 +205,56 @@ export namespace healthcare_v1beta1 {
     labels?: {[key: string]: string} | null;
     /**
      * Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Archives the specified User data mapping.
+   */
+  export interface Schema$ArchiveUserDataMappingRequest {}
+  /**
+   * Archives the specified User data mapping.
+   */
+  export interface Schema$ArchiveUserDataMappingResponse {}
+  /**
+   * An attribute value for a consent or data mapping. Each Attribute must have a corresponding AttributeDefinition in the consent store that defines the default and allowed values.
+   */
+  export interface Schema$Attribute {
+    /**
+     * Indicates the name of an attribute defined at the consent store.
+     */
+    attributeDefinitionId?: string | null;
+    /**
+     * The value of the attribute. Must be an acceptable value as defined in the consent store. For example, if the consent store defines &quot;data type&quot; with acceptable values &quot;questionnaire&quot; and &quot;step-count&quot;, when the attribute name is data type, this field must contain one of those values.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * A client-defined consent attribute.
+   */
+  export interface Schema$AttributeDefinition {
+    /**
+     * Required. Possible values for the attribute. An empty list is invalid. The list can only be expanded after creation.
+     */
+    allowedValues?: string[] | null;
+    /**
+     * Required. The category of the attribute. The value of this field cannot be changed after creation.
+     */
+    category?: string | null;
+    /**
+     * Default values of the attribute in consents. If no default values are specified, it defaults to an empty value.
+     */
+    consentDefaultValues?: string[] | null;
+    /**
+     * Default value of the attribute in user data mappings. If no default value is specified, it defaults to an empty value. This field is only applicable to attributes of the category `RESOURCE`.
+     */
+    dataMappingDefaultValue?: string | null;
+    /**
+     * A description of the attribute.
+     */
+    description?: string | null;
+    /**
+     * Resource name of the attribute definition, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/attributeDefinitions/{attribute_definition_id}`.
      */
     name?: string | null;
   }
@@ -261,11 +328,162 @@ export namespace healthcare_v1beta1 {
     maskingCharacter?: string | null;
   }
   /**
+   * Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+   */
+  export interface Schema$CheckDataAccessRequest {
+    /**
+     * The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here.
+     */
+    consentList?: Schema$ConsentList;
+    /**
+     * The unique identifier of the data to check access for. It must exist in the given `consent_store`.
+     */
+    dataId?: string | null;
+    /**
+     * The values of request attributes associated with this access request.
+     */
+    requestAttributes?: {[key: string]: string} | null;
+    /**
+     * The view for CheckDataAccessResponse.
+     */
+    responseView?: string | null;
+  }
+  /**
+   * Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+   */
+  export interface Schema$CheckDataAccessResponse {
+    /**
+     * The resource names of all evaluated Consents mapped to their evaluation.
+     */
+    consentDetails?: {[key: string]: Schema$ConsentEvaluation} | null;
+    /**
+     * Whether the requested data is consented for the given use.
+     */
+    consented?: boolean | null;
+  }
+  /**
    * Cloud Healthcare API resource.
    */
   export interface Schema$CloudHealthcareSource {
     /**
      * Full path of a Cloud Healthcare API resource.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an end user&#39;s consent.
+   */
+  export interface Schema$Consent {
+    /**
+     * Required. The resource name of the consent artifact that contains proof of the end user&#39;s consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consentArtifacts/{consent_artifact_id}`.
+     */
+    consentArtifact?: string | null;
+    /**
+     * Timestamp in UTC of when this consent is considered expired.
+     */
+    expireTime?: string | null;
+    /**
+     * Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.
+     */
+    name?: string | null;
+    /**
+     * Represents an end user&#39;s consent in terms of the resources that can be accessed and under what conditions.
+     */
+    policies?: Schema$GoogleCloudHealthcareV1beta1ConsentPolicy[];
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    revisionCreateTime?: string | null;
+    /**
+     * Output only. The revision ID of the consent. The format is an 8-character hexadecimal string. Refer to a specific revision of a Consent by appending `@{revision_id}` to the Consent&#39;s resource name.
+     */
+    revisionId?: string | null;
+    /**
+     * Indicates the current state of this consent.
+     */
+    state?: string | null;
+    /**
+     * Input only. The time to live for this consent from when it is created.
+     */
+    ttl?: string | null;
+    /**
+     * Required. User&#39;s UUID provided by the client.
+     */
+    userId?: string | null;
+  }
+  /**
+   * Proof of an end user&#39;s consent.
+   */
+  export interface Schema$ConsentArtifact {
+    /**
+     * Screenshots of the consent content.
+     */
+    consentContentScreenshots?: Schema$Image[];
+    /**
+     * An string indicating the version of the consent content.
+     */
+    consentContentVersion?: string | null;
+    /**
+     * A signature from guardian.
+     */
+    guardianSignature?: Schema$Signature;
+    /**
+     * Metadata associated with the consent artifact. For example, the consent locale or user agent version.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Resource name of the Consent artifact, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consentArtifacts/{consent_artifact_id}`.
+     */
+    name?: string | null;
+    /**
+     * Required. User&#39;s UUID provided by the client.
+     */
+    userId?: string | null;
+    /**
+     * User&#39;s signature.
+     */
+    userSignature?: Schema$Signature;
+    /**
+     * A signature from a witness.
+     */
+    witnessSignature?: Schema$Signature;
+  }
+  /**
+   * The detailed evaluation of a particular Consent.
+   */
+  export interface Schema$ConsentEvaluation {
+    /**
+     * The evaluation result.
+     */
+    evaluationResult?: string | null;
+  }
+  /**
+   * List of resource names of Consent resources.
+   */
+  export interface Schema$ConsentList {
+    /**
+     * The resource names of the Consents to evaluate against, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.
+     */
+    consents?: string[] | null;
+  }
+  /**
+   * Represents a Consent store.
+   */
+  export interface Schema$ConsentStore {
+    /**
+     * Default time to live for consents in this store. Must be at least 24 hours. Updating this field will not affect the expiration time of existing consents.
+     */
+    defaultConsentTtl?: string | null;
+    /**
+     * If true, UpdateConsent creates the consent if it does not already exist.
+     */
+    enableConsentCreateOnUpdate?: boolean | null;
+    /**
+     * User-supplied key-value pairs used to organize Consent stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Resource name of the Consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
      */
     name?: string | null;
   }
@@ -365,27 +583,6 @@ export namespace healthcare_v1beta1 {
     filterConfig?: Schema$DicomFilterConfig;
   }
   /**
-   * Deprecated. Contains the status of the Deidentify operation.
-   */
-  export interface Schema$DeidentifyErrorDetails {
-    /**
-     * Number of resources that failed to process.
-     */
-    failureResourceCount?: string | null;
-    /**
-     * Number of stores that failed to process.
-     */
-    failureStoreCount?: string | null;
-    /**
-     * Number of resources successfully processed.
-     */
-    successResourceCount?: string | null;
-    /**
-     * Number of stores successfully processed.
-     */
-    successStoreCount?: string | null;
-  }
-  /**
    * Creates a new FHIR store with sensitive information de-identified.
    */
   export interface Schema$DeidentifyFhirStoreRequest {
@@ -405,20 +602,7 @@ export namespace healthcare_v1beta1 {
   /**
    * Contains a detailed summary of the Deidentify operation.
    */
-  export interface Schema$DeidentifySummary {
-    /**
-     * Number of resources that failed to process. The failures might be caused by: * Invalid user input data * Transient errors that could be skipped
-     */
-    failureResourceCount?: string | null;
-    /**
-     * Number of resources successfully processed.
-     */
-    successResourceCount?: string | null;
-    /**
-     * Number of stores successfully processed.
-     */
-    successStoreCount?: string | null;
-  }
+  export interface Schema$DeidentifySummary {}
   /**
    * Contains multiple sensitive information findings for each resource slice.
    */
@@ -514,48 +698,56 @@ export namespace healthcare_v1beta1 {
      */
     goldenStore?: string | null;
     infoTypeConfig?: Schema$InfoTypeConfig;
-    /**
-     * The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    name?: string | null;
   }
   /**
    * Response for successful Annotation store evaluation operations. This structure is included in the response upon operation completion.
    */
-  export interface Schema$EvaluateAnnotationStoreResponse {
+  export interface Schema$EvaluateAnnotationStoreResponse {}
+  /**
+   * Evaluate an end user&#39;s Consents for all matching User data mappings.
+   */
+  export interface Schema$EvaluateUserConsentsRequest {
     /**
-     * The evaluated Annotation store, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * The resource names of the consents to evaluate against. Consents must be in the current `consent_store` and belong to the current `user_id`. Consents can be either active or draft. If this field is empty, the default behavior is to use all active consents that belong to `user_id`. A maximum of 100 consents can be provided here.
      */
-    evalStore?: string | null;
+    consentList?: Schema$ConsentList;
     /**
-     * The number of Annotations in the ground truth Annotation store successfully processed.
+     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
      */
-    goldenCount?: string | null;
+    pageSize?: number | null;
     /**
-     * The ground truth Annotation store, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * Token to retrieve the next page of results to get the first page.
      */
-    goldenStore?: string | null;
+    pageToken?: string | null;
     /**
-     * The number of Annotations in the eval store that match with corresponding annotations in the ground truth Annotation store. Two matched annotations both annotate the same resource defined in AnnotationSource.
+     * The values of request attributes associated with this access request.
      */
-    matchedCount?: string | null;
+    requestAttributes?: {[key: string]: string} | null;
+    /**
+     * The values of resources attributes associated with the type of data being requested. If no values are specified, then all data types are queried.
+     */
+    resourceAttributes?: {[key: string]: string} | null;
+    /**
+     * The view for EvaluateUserConsentsResponse.
+     */
+    responseView?: string | null;
+    /**
+     * Required. User ID to evaluate consents for.
+     */
+    userId?: string | null;
   }
   /**
-   * Deprecated. Response for failed annotation export operations. This structure is included in error details upon operation completion.
+   * Evaluate an end user&#39;s Consents for all matching User data mappings.
    */
-  export interface Schema$ExportAnnotationsErrorDetails {
+  export interface Schema$EvaluateUserConsentsResponse {
     /**
-     * The annotation_store used for the export operation, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * Token to retrieve the next page of results or empty if there are no more results in the list. This token is valid for 72 hours after it is created.
      */
-    annotationStore?: string | null;
+    nextPageToken?: string | null;
     /**
-     * The number of annotations that had error.
+     * The consent evaluation result for each `data_id`.
      */
-    errorCount?: string | null;
-    /**
-     * The number of annotations successfully exported.
-     */
-    successCount?: string | null;
+    results?: Schema$Result[];
   }
   /**
    * Request to export Annotations. The export operation is not atomic. If a failure occurs, any annotations already exported are not removed.
@@ -569,24 +761,11 @@ export namespace healthcare_v1beta1 {
      * The Cloud Storage destination, which requires the `roles/storage.objectAdmin` Cloud IAM role.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsDestination;
-    /**
-     * The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    name?: string | null;
   }
   /**
    * Response for successful annotation export operations. This structure is included in response upon operation completion.
    */
-  export interface Schema$ExportAnnotationsResponse {
-    /**
-     * The annotation_store used for the export operation, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    annotationStore?: string | null;
-    /**
-     * The total number of annotations successfully exported.
-     */
-    successCount?: string | null;
-  }
+  export interface Schema$ExportAnnotationsResponse {}
   /**
    * Exports data from the specified DICOM store. If a given resource, such as a DICOM object with the same SOPInstance UID, already exists in the output, it is overwritten with the version in the source dataset. Exported DICOM data persists when the DICOM store from which it was exported is deleted.
    */
@@ -605,7 +784,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataResponse {}
   /**
-   *  Request to export resources.
+   * Request to export resources.
    */
   export interface Schema$ExportResourcesRequest {
     /**
@@ -615,7 +794,7 @@ export namespace healthcare_v1beta1 {
     /**
      * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
-    gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination;
+    gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -776,7 +955,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination {
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table is overwritten by the contents of the input store. If the flag is not set and the destination table already exists, the export call returns an error.
+     * Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
@@ -787,6 +966,10 @@ export namespace healthcare_v1beta1 {
      * BigQuery URI to a table, up to 2000 characters long, must be of the form bq://projectId.bqDatasetId.tableId.
      */
     tableUri?: string | null;
+    /**
+     * Determines whether existing tables in the destination dataset are overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.
+     */
+    writeDisposition?: string | null;
   }
   /**
    * The Cloud Storage location for export.
@@ -807,39 +990,51 @@ export namespace healthcare_v1beta1 {
     uri?: string | null;
   }
   /**
+   * The Cloud Storage location for export.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1ConsentGcsDestination {
+    /**
+     * URI for a Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket and directory referenced in `uri_prefix`.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
+   * Represents an end user&#39;s consent in terms of the resources that can be accessed and under what conditions.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1ConsentPolicy {
+    /**
+     * The request conditions to meet to grant access.
+     */
+    authorizationRule?: Schema$Expr;
+    /**
+     * The data resources that this policy applies to. A data resource is a match if it matches all the attributes listed here.
+     */
+    resourceAttributes?: Schema$Attribute[];
+  }
+  /**
    * Contains a summary of the DeidentifyDicomStore operation.
    */
-  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyDeidentifyDicomStoreSummary {
-    /**
-     * Number of objects that processing failed for.
-     */
-    failureResourceCount?: string | null;
-    /**
-     * Number of objects successfully processed.
-     */
-    successResourceCount?: string | null;
-  }
+  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyDeidentifyDicomStoreSummary {}
   /**
    * Contains a summary of the DeidentifyFhirStore operation.
    */
-  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyDeidentifyFhirStoreSummary {
-    /**
-     * Number of resources successfully processed.
-     */
-    successResourceCount?: string | null;
-  }
+  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyDeidentifyFhirStoreSummary {}
   /**
    * The BigQuery table where the server writes output.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination {
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table is overwritten by the contents of the DICOM store. If the flag is not set and the destination table already exists, the export call returns an error.
+     * Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
      * BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`
      */
     tableUri?: string | null;
+    /**
+     * Determines whether the existing table in the destination is to be overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.
+     */
+    writeDisposition?: string | null;
   }
   /**
    * The Cloud Storage location where the server writes the output and the export configuration.
@@ -881,14 +1076,44 @@ export namespace healthcare_v1beta1 {
      */
     datasetUri?: string | null;
     /**
-     * If this flag is `TRUE`, all tables will be deleted from the dataset before the new exported tables are written. If the flag is not set and the destination dataset contains tables, the export call returns an error. This option is not used for the streaming export.
+     * Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
      * The configuration for the exported BigQuery schema.
      */
     schemaConfig?: Schema$SchemaConfig;
+    /**
+     * Determines whether existing tables in the destination dataset are overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.
+     */
+    writeDisposition?: string | null;
   }
+  /**
+   * Response when all resources export successfully. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1FhirExportResourcesResponse {}
+  /**
+   * The configuration for exporting to Cloud Storage.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination {
+    /**
+     * URI for a Cloud Storage directory where result files should be written (in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service appends one when composing the object path. The Cloud Storage bucket referenced in `uri_prefix` must exist or an error occurs.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
+   * Specifies the configuration for importing data from Cloud Storage.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1FhirGcsSource {
+    /**
+     * Points to a Cloud Storage URI containing file(s) to import. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: * `*` to match 0 or more non-separator characters * `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. * `?` to match 1 character Files matching the wildcard are expected to contain content only, no metadata.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Final response of importing resources. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1FhirImportResourcesResponse {}
   /**
    *  Response when errors occur while exporting resources. This structure is included in the error details to describe the detailed outcome. It is only included when the operation finishes with errors.
    */
@@ -922,24 +1147,6 @@ export namespace healthcare_v1beta1 {
      * The total number of resources exported from the requested FHIR store.
      */
     resourceCount?: string | null;
-  }
-  /**
-   *  The configuration for exporting to Cloud Storage.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination {
-    /**
-     * URI for a Cloud Storage directory where result files should be written (in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
-     */
-    uriPrefix?: string | null;
-  }
-  /**
-   *  Specifies the configuration for importing data from Cloud Storage.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource {
-    /**
-     * Points to a Cloud Storage URI containing file(s) to import. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: * `*` to match 0 or more non-separator characters * `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. * `?` to match 1 character Files matching the wildcard are expected to contain content only, no metadata.
-     */
-    uri?: string | null;
   }
   /**
    *  Error response of importing resources. This structure is included in the error details to describe the detailed error after the operation finishes with some failure.
@@ -1068,6 +1275,19 @@ export namespace healthcare_v1beta1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
+   * An image.
+   */
+  export interface Schema$Image {
+    /**
+     * Input only. Points to a Cloud Storage URI containing the image. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The image at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to image fetching requests return the image in raw_bytes.
+     */
+    gcsUri?: string | null;
+    /**
+     * Image content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.
+     */
+    rawBytes?: string | null;
+  }
+  /**
    * Image annotation.
    */
   export interface Schema$ImageAnnotation {
@@ -1090,45 +1310,15 @@ export namespace healthcare_v1beta1 {
     textRedactionMode?: string | null;
   }
   /**
-   * Deprecated. Final response of importing Annotations in partial or total failure case. This structure is included in the error details. It is only included when the operation finishes.
-   */
-  export interface Schema$ImportAnnotationsErrorDetails {
-    /**
-     * The annotation_store that the annotations were imported to. The name is in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    annotationStore?: string | null;
-    /**
-     * The number of annotations that had errors.
-     */
-    errorCount?: string | null;
-    /**
-     * The number of annotations that have been imported.
-     */
-    successCount?: string | null;
-  }
-  /**
    * Request to import Annotations. The Annotations to be imported must have client-supplied resource names which indicate the annotation resource. The import operation is not atomic. If a failure occurs, any annotations already imported are not removed.
    */
   export interface Schema$ImportAnnotationsRequest {
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsSource;
-    /**
-     * The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    name?: string | null;
   }
   /**
    * Final response of importing Annotations in successful case. This structure is included in the response. It is only included when the operation finishes.
    */
-  export interface Schema$ImportAnnotationsResponse {
-    /**
-     * The annotation_store that the annotations were imported to, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    annotationStore?: string | null;
-    /**
-     * The number of the input annotations. All input have been imported successfully.
-     */
-    successCount?: string | null;
-  }
+  export interface Schema$ImportAnnotationsResponse {}
   /**
    * Deprecated. Error details are in [Cloud Logging](/healthcare/docs/how-tos/logging). Returns the errors encountered during DICOM store import.
    */
@@ -1165,7 +1355,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportMessagesResponse {}
   /**
-   *  Request to import resources.
+   * Request to import resources.
    */
   export interface Schema$ImportResourcesRequest {
     /**
@@ -1173,9 +1363,9 @@ export namespace healthcare_v1beta1 {
      */
     contentStructure?: string | null;
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role. Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
+     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
      */
-    gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource;
+    gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirGcsSource;
   }
   /**
    * Specifies how to use infoTypes for evaluation. For example, a user might only want to evaluate `PERSON`, `LOCATION`, and `AGE`.
@@ -1260,6 +1450,71 @@ export namespace healthcare_v1beta1 {
      * The returned Annotation stores. Won&#39;t be more Annotation stores than the value of page_size in the request.
      */
     annotationStores?: Schema$AnnotationStore[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the Attribute definitions in the given Consent store.
+   */
+  export interface Schema$ListAttributeDefinitionsResponse {
+    /**
+     * The returned attribute definitions. The maximum number of attributes returned is determined by the value of page_size in the ListAttributeDefinitionsRequest.
+     */
+    attributeDefinitions?: Schema$AttributeDefinition[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the Consent artifacts in the given Consent store.
+   */
+  export interface Schema$ListConsentArtifactsResponse {
+    /**
+     * The returned consent artifacts. The maximum number of artifacts returned is determined by the value of page_size in the ListConsentArtifactsRequest.
+     */
+    consentArtifacts?: Schema$ConsentArtifact[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the revisions of the given Consent in reverse chronological order.
+   */
+  export interface Schema$ListConsentRevisionsResponse {
+    /**
+     * The returned consent revisions. The maximum number of revisions returned is determined by the value of `page_size` in the ListConsentRevisionsRequest.
+     */
+    consents?: Schema$Consent[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the Consents in the given Consent store.
+   */
+  export interface Schema$ListConsentsResponse {
+    /**
+     * The returned consents. The maximum number of consents returned is determined by the value of page_size in the ListConsentsRequest.
+     */
+    consents?: Schema$Consent[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the Consent stores in the given dataset.
+   */
+  export interface Schema$ListConsentStoresResponse {
+    /**
+     * The returned Consent stores. The maximum number of stores returned is determined by the value of page_size in the ListConsentStoresRequest.
+     */
+    consentStores?: Schema$ConsentStore[];
     /**
      * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
@@ -1357,6 +1612,19 @@ export namespace healthcare_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Lists the User data mappings in the given Consent store.
+   */
+  export interface Schema$ListUserDataMappingsResponse {
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The returned user data mappings. The maximum number of user data mappings returned is determined by the value of page_size in the ListUserDataMappingsRequest.
+     */
+    userDataMappings?: Schema$UserDataMapping[];
+  }
+  /**
    * A resource that represents Google Cloud Platform location.
    */
   export interface Schema$Location {
@@ -1431,7 +1699,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$NotificationConfig {
     /**
-     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data contains the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail. If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). If the number of errors exceeds a certain rate, some aren&#39;t submitted.
+     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data contains the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. Cloud Healthcare API service account must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail. If a notification can&#39;t be published to Cloud Pub/Sub, errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). If the number of errors exceeds a certain rate, some aren&#39;t submitted. Note that not all operations trigger notifications, see [Configuring Pub/Sub notifications](https://cloud.google.com/healthcare/docs/how-tos/pubsub) for specific details.
      */
     pubsubTopic?: string | null;
   }
@@ -1508,6 +1776,10 @@ export namespace healthcare_v1beta1 {
      * Byte(s) to use as the segment terminator. If this is unset, &#39;\r&#39; is used as segment terminator, matching the HL7 version 2 specification.
      */
     segmentTerminator?: string | null;
+    /**
+     * Immutable. Determines the version of the unschematized parser to be used when `schema` is not given. This field is immutable after store creation.
+     */
+    version?: string | null;
   }
   /**
    * A patient identifier and associated type.
@@ -1561,9 +1833,35 @@ export namespace healthcare_v1beta1 {
     success?: string | null;
   }
   /**
+   * Queries all data_ids that are consented for a given use in the given Consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (/healthcare/docs/how-tos/logging) and [QueryAccessibleData] for a sample log entry).
+   */
+  export interface Schema$QueryAccessibleDataRequest {
+    /**
+     * The Cloud Storage destination. The Cloud Healthcare API service account must have the `roles/storage.objectAdmin` Cloud IAM role for this Cloud Storage location.
+     */
+    gcsDestination?: Schema$GoogleCloudHealthcareV1beta1ConsentGcsDestination;
+    /**
+     * The values of request attributes associated with this access request.
+     */
+    requestAttributes?: {[key: string]: string} | null;
+    /**
+     * The values of resources attributes associated with the type of data being requested. If no values are specified, then all data types are included in the output.
+     */
+    resourceAttributes?: {[key: string]: string} | null;
+  }
+  /**
    * Define how to redact sensitive values. Default behaviour is erase. For example, &quot;My name is Jane.&quot; becomes &quot;My name is .&quot;
    */
   export interface Schema$RedactConfig {}
+  /**
+   * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given consent is in the `REJECTED` state, no new revision is committed.
+   */
+  export interface Schema$RejectConsentRequest {
+    /**
+     * The resource name of the consent artifact that contains proof of the end user&#39;s rejection of the draft consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consentArtifacts/{consent_artifact_id}`. If the draft consent had a consent artifact, this consent artifact overwrites it.
+     */
+    consentArtifact?: string | null;
+  }
   /**
    * When using the INSPECT_AND_TRANSFORM action, each match is replaced with the name of the info_type. For example, &quot;My name is Jane&quot; becomes &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to redacting.
    */
@@ -1585,6 +1883,32 @@ export namespace healthcare_v1beta1 {
      * List of resources IDs. For example, &quot;Patient/1234&quot;.
      */
     resources?: string[] | null;
+  }
+  /**
+   * The consent evaluation result for a single `data_id`.
+   */
+  export interface Schema$Result {
+    /**
+     * The resource names of all evaluated Consents mapped to their evaluation.
+     */
+    consentDetails?: {[key: string]: Schema$ConsentEvaluation} | null;
+    /**
+     * Whether the requested data is consented for the given use.
+     */
+    consented?: boolean | null;
+    /**
+     * The unique identifier of the data the consents were checked for.
+     */
+    dataId?: string | null;
+  }
+  /**
+   * Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the given consent is in the `REVOKED` state, no new revision is committed.
+   */
+  export interface Schema$RevokeConsentRequest {
+    /**
+     * The resource name of the consent artifact that contains proof of the end user&#39;s revocation of the consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consentArtifacts/{consent_artifact_id}`.
+     */
+    consentArtifact?: string | null;
   }
   /**
    * Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.
@@ -1728,6 +2052,27 @@ export namespace healthcare_v1beta1 {
     updateMask?: string | null;
   }
   /**
+   * User signature.
+   */
+  export interface Schema$Signature {
+    /**
+     * An image of the user&#39;s signature.
+     */
+    image?: Schema$Image;
+    /**
+     * Metadata associated with the user&#39;s signature. For example, the user&#39;s name or the user&#39;s title.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Timestamp of the signature.
+     */
+    signatureTime?: string | null;
+    /**
+     * User&#39;s UUID provided by the client.
+     */
+    userId?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1806,6 +2151,35 @@ export namespace healthcare_v1beta1 {
      * If this is a primitive type then this field is the type of the primitive For example, STRING. Leave unspecified for composite types.
      */
     primitive?: string | null;
+  }
+  /**
+   * Maps a user data entry to its end user and Attributes.
+   */
+  export interface Schema$UserDataMapping {
+    /**
+     * Output only. Indicates whether this data mapping is archived.
+     */
+    archived?: boolean | null;
+    /**
+     * Output only. Indicates the time when this data mapping was archived.
+     */
+    archiveTime?: string | null;
+    /**
+     * Required. A unique identifier for the mapped data.
+     */
+    dataId?: string | null;
+    /**
+     * Resource name of the User data mapping, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/userDataMappings/{user_data_mapping_id}`.
+     */
+    name?: string | null;
+    /**
+     * Attributes of end user data. Each attribute can have exactly one value specified. Only explicitly set attributes are displayed here. Attribute definitions with defaults set implicitly apply to these User data mappings. Attributes listed here must be single valued, that is, exactly one value is specified for the field &quot;values&quot; in each Attribute.
+     */
+    resourceAttributes?: Schema$Attribute[];
+    /**
+     * Required. User&#39;s UUID provided by the client.
+     */
+    userId?: string | null;
   }
   /**
    * Describes a selector for extracting and matching an MSH field to a value.
@@ -2160,6 +2534,7 @@ export namespace healthcare_v1beta1 {
   export class Resource$Projects$Locations$Datasets {
     context: APIRequestContext;
     annotationStores: Resource$Projects$Locations$Datasets$Annotationstores;
+    consentStores: Resource$Projects$Locations$Datasets$Consentstores;
     dicomStores: Resource$Projects$Locations$Datasets$Dicomstores;
     fhirStores: Resource$Projects$Locations$Datasets$Fhirstores;
     hl7V2Stores: Resource$Projects$Locations$Datasets$Hl7v2stores;
@@ -2167,6 +2542,9 @@ export namespace healthcare_v1beta1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.annotationStores = new Resource$Projects$Locations$Datasets$Annotationstores(
+        this.context
+      );
+      this.consentStores = new Resource$Projects$Locations$Datasets$Consentstores(
         this.context
       );
       this.dicomStores = new Resource$Projects$Locations$Datasets$Dicomstores(
@@ -2185,7 +2563,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.create
-     * @desc Creates a new health dataset. Results are returned through the Operation interface which returns either an `Operation.response` which contains a Dataset or `Operation.error`. The metadata field type is OperationMetadata. A Google Cloud Platform project can contain up to 500 datasets across all regions.
+     * @desc Creates a new health dataset. Results are returned through the Operation interface which returns either an `Operation.response` which contains a Dataset or `Operation.error`. The metadata field type is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3870,7 +4248,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.annotationStores.evaluate(
      *     {
      *       // The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     *       evalStore:
+     *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
      *       // Request body metadata
@@ -3881,8 +4259,7 @@ export namespace healthcare_v1beta1 {
      *         //   "evalInfoTypeMapping": {},
      *         //   "goldenInfoTypeMapping": {},
      *         //   "goldenStore": "my_goldenStore",
-     *         //   "infoTypeConfig": {},
-     *         //   "name": "my_name"
+     *         //   "infoTypeConfig": {}
      *         // }
      *       },
      *     }
@@ -3908,7 +4285,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.evalStore The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {string} params.name The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      * @param {().EvaluateAnnotationStoreRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3970,7 +4347,7 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+evalStore}:evaluate').replace(
+            url: (rootUrl + '/v1beta1/{+name}:evaluate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3979,8 +4356,8 @@ export namespace healthcare_v1beta1 {
           options
         ),
         params,
-        requiredParams: ['evalStore'],
-        pathParams: ['evalStore'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -4022,7 +4399,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.annotationStores.export(
      *     {
      *       // The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     *       annotationStore:
+     *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
      *       // Request body metadata
@@ -4030,8 +4407,7 @@ export namespace healthcare_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "bigqueryDestination": {},
-     *         //   "gcsDestination": {},
-     *         //   "name": "my_name"
+     *         //   "gcsDestination": {}
      *         // }
      *       },
      *     }
@@ -4057,7 +4433,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationStore The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {string} params.name The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      * @param {().ExportAnnotationsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4119,7 +4495,7 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+annotationStore}:export').replace(
+            url: (rootUrl + '/v1beta1/{+name}:export').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4128,8 +4504,8 @@ export namespace healthcare_v1beta1 {
           options
         ),
         params,
-        requiredParams: ['annotationStore'],
-        pathParams: ['annotationStore'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -4443,15 +4819,14 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.annotationStores.import(
      *     {
      *       // The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     *       annotationStore:
+     *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "gcsSource": {},
-     *         //   "name": "my_name"
+     *         //   "gcsSource": {}
      *         // }
      *       },
      *     }
@@ -4477,7 +4852,7 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationStore The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {string} params.name The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      * @param {().ImportAnnotationsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4539,7 +4914,7 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+annotationStore}:import').replace(
+            url: (rootUrl + '/v1beta1/{+name}:import').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4548,8 +4923,8 @@ export namespace healthcare_v1beta1 {
           options
         ),
         params,
-        requiredParams: ['annotationStore'],
-        pathParams: ['annotationStore'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -5185,7 +5560,7 @@ export namespace healthcare_v1beta1 {
     /**
      * The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      */
-    evalStore?: string;
+    name?: string;
 
     /**
      * Request body metadata
@@ -5197,7 +5572,7 @@ export namespace healthcare_v1beta1 {
     /**
      * The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      */
-    annotationStore?: string;
+    name?: string;
 
     /**
      * Request body metadata
@@ -5227,7 +5602,7 @@ export namespace healthcare_v1beta1 {
     /**
      * The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      */
-    annotationStore?: string;
+    name?: string;
 
     /**
      * Request body metadata
@@ -6088,6 +6463,5768 @@ export namespace healthcare_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Annotation;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Consentstores {
+    context: APIRequestContext;
+    attributeDefinitions: Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions;
+    consentArtifacts: Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts;
+    consents: Resource$Projects$Locations$Datasets$Consentstores$Consents;
+    userDataMappings: Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attributeDefinitions = new Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions(
+        this.context
+      );
+      this.consentArtifacts = new Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts(
+        this.context
+      );
+      this.consents = new Resource$Projects$Locations$Datasets$Consentstores$Consents(
+        this.context
+      );
+      this.userDataMappings = new Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings(
+        this.context
+      );
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.checkDataAccess
+     * @desc Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.checkDataAccess(
+     *     {
+     *       // Name of the Consent store where the requested data_id is stored, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     *       consentStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentList": {},
+     *         //   "dataId": "my_dataId",
+     *         //   "requestAttributes": {},
+     *         //   "responseView": "my_responseView"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentDetails": {},
+     *   //   "consented": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.checkDataAccess
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.consentStore Name of the Consent store where the requested data_id is stored, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     * @param {().CheckDataAccessRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    checkDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkDataAccess(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckDataAccessResponse>;
+    checkDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckDataAccessResponse>,
+      callback: BodyResponseCallback<Schema$CheckDataAccessResponse>
+    ): void;
+    checkDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess,
+      callback: BodyResponseCallback<Schema$CheckDataAccessResponse>
+    ): void;
+    checkDataAccess(
+      callback: BodyResponseCallback<Schema$CheckDataAccessResponse>
+    ): void;
+    checkDataAccess(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess
+        | BodyResponseCallback<Schema$CheckDataAccessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckDataAccessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckDataAccessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckDataAccessResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+consentStore}:checkDataAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['consentStore'],
+        pathParams: ['consentStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckDataAccessResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckDataAccessResponse>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.create
+     * @desc Creates a new Consent store in the parent dataset. Attempting to create a consent store with the same ID as an existing store fails with an ALREADY_EXISTS error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.create(
+     *     {
+     *       // The ID of the consent store to create. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *       consentStoreId: 'placeholder-value',
+     *       // Required. The name of the dataset this Consent store belongs to.
+     *       parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "defaultConsentTtl": "my_defaultConsentTtl",
+     *         //   "enableConsentCreateOnUpdate": false,
+     *         //   "labels": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultConsentTtl": "my_defaultConsentTtl",
+     *   //   "enableConsentCreateOnUpdate": false,
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.consentStoreId The ID of the consent store to create. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     * @param {string} params.parent Required. The name of the dataset this Consent store belongs to.
+     * @param {().ConsentStore} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsentStore>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsentStore>,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Create,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ConsentStore>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Create
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consentStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsentStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsentStore>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.delete
+     * @desc Deletes the specified Consent store and removes all consent data in the specified consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.delete(
+     *     {
+     *       // Required. The resource name of the Consent store to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the Consent store to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.evaluateUserConsents
+     * @desc Evaluates the end user's Consents for all matching User data mappings. Note: User data mappings are indexed asynchronously, so there might be a slight delay between the time a mapping is created or updated and when it is included in the results of EvaluateUserConsents.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.evaluateUserConsents(
+     *     {
+     *       // Name of the Consent store to retrieve user data mappings from.
+     *       consentStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentList": {},
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken",
+     *         //   "requestAttributes": {},
+     *         //   "resourceAttributes": {},
+     *         //   "responseView": "my_responseView",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.evaluateUserConsents
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.consentStore Name of the Consent store to retrieve user data mappings from.
+     * @param {().EvaluateUserConsentsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    evaluateUserConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    evaluateUserConsents(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EvaluateUserConsentsResponse>;
+    evaluateUserConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    evaluateUserConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EvaluateUserConsentsResponse>,
+      callback: BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+    ): void;
+    evaluateUserConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents,
+      callback: BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+    ): void;
+    evaluateUserConsents(
+      callback: BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+    ): void;
+    evaluateUserConsents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents
+        | BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EvaluateUserConsentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EvaluateUserConsentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+consentStore}:evaluateUserConsents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['consentStore'],
+        pathParams: ['consentStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EvaluateUserConsentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$EvaluateUserConsentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.get
+     * @desc Gets the specified Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.get({
+     *     // Required. The resource name of the Consent store to get.
+     *     name:
+     *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultConsentTtl": "my_defaultConsentTtl",
+     *   //   "enableConsentCreateOnUpdate": false,
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the Consent store to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsentStore>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsentStore>,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Get,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConsentStore>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Get
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsentStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsentStore>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.list
+     * @desc Lists the Consent stores in the given dataset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.list({
+     *     // Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
+     *     filter: 'placeholder-value',
+     *     // Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     *     pageSize: 'placeholder-value',
+     *     // Token to retrieve the next page of results or empty to get the first page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the dataset.
+     *     parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
+     * @param {integer=} params.pageSize Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken Token to retrieve the next page of results or empty to get the first page.
+     * @param {string} params.parent Required. Name of the dataset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsentStoresResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsentStoresResponse>,
+      callback: BodyResponseCallback<Schema$ListConsentStoresResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$List,
+      callback: BodyResponseCallback<Schema$ListConsentStoresResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConsentStoresResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$List
+        | BodyResponseCallback<Schema$ListConsentStoresResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConsentStoresResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConsentStoresResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConsentStoresResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consentStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsentStoresResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsentStoresResponse>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.patch
+     * @desc Updates the specified Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.patch({
+     *     // Resource name of the Consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     *     name:
+     *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `labels` field is allowed to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultConsentTtl": "my_defaultConsentTtl",
+     *       //   "enableConsentCreateOnUpdate": false,
+     *       //   "labels": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultConsentTtl": "my_defaultConsentTtl",
+     *   //   "enableConsentCreateOnUpdate": false,
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     * @param {string=} params.updateMask The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `labels` field is allowed to be updated.
+     * @param {().ConsentStore} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsentStore>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsentStore>,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Patch,
+      callback: BodyResponseCallback<Schema$ConsentStore>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ConsentStore>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Patch
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsentStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsentStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsentStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsentStore>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.queryAccessibleData
+     * @desc Queries all data_ids that are consented for a given use in the given Consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (/healthcare/docs/how-tos/logging)). For example, the following sample log entry shows a `failed to evaluate consent policy` error that occurred during a QueryAccessibleData call to consent store `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`. ```json jsonPayload: { @type: "type.googleapis.com/google.cloud.healthcare.logging.QueryAccessibleDataLogEntry" error: { code: 9 message: "failed to evaluate consent policy" } resourceName: "projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}" } logName: "projects/{project_id}/logs/healthcare.googleapis.com%2Fquery_accessible_data" operation: { id: "projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/operations/{operation_id}" producer: "healthcare.googleapis.com/QueryAccessibleData" } receiveTimestamp: "TIMESTAMP" resource: { labels: { consent_store_id: "{consent_store_id}" dataset_id: "{dataset_id}" location: "{location_id}" project_id: "{project_id}" } type: "healthcare_consent_store" } severity: "ERROR" timestamp: "TIMESTAMP" ```
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.queryAccessibleData(
+     *     {
+     *       // Name of the Consent store to retrieve user data mappings from.
+     *       consentStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsDestination": {},
+     *         //   "requestAttributes": {},
+     *         //   "resourceAttributes": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.queryAccessibleData
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.consentStore Name of the Consent store to retrieve user data mappings from.
+     * @param {().QueryAccessibleDataRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    queryAccessibleData(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryAccessibleData(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    queryAccessibleData(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryAccessibleData(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    queryAccessibleData(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    queryAccessibleData(callback: BodyResponseCallback<Schema$Operation>): void;
+    queryAccessibleData(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+consentStore}:queryAccessibleData'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['consentStore'],
+        pathParams: ['consentStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess
+    extends StandardParameters {
+    /**
+     * Name of the Consent store where the requested data_id is stored, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     */
+    consentStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckDataAccessRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Create
+    extends StandardParameters {
+    /**
+     * The ID of the consent store to create. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     */
+    consentStoreId?: string;
+    /**
+     * Required. The name of the dataset this Consent store belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConsentStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Consent store to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents
+    extends StandardParameters {
+    /**
+     * Name of the Consent store to retrieve user data mappings from.
+     */
+    consentStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EvaluateUserConsentsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Consent store to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$List
+    extends StandardParameters {
+    /**
+     * Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
+     */
+    filter?: string;
+    /**
+     * Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * Token to retrieve the next page of results or empty to get the first page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the dataset.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the Consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `labels` field is allowed to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConsentStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata
+    extends StandardParameters {
+    /**
+     * Name of the Consent store to retrieve user data mappings from.
+     */
+    consentStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryAccessibleDataRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.attributeDefinitions.create
+     * @desc Creates a new Attribute definition in the parent Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.create(
+     *     {
+     *       // Required. The ID of the Attribute definition to create. The string must match the following regex: `_a-zA-Z{0,255}` and must not be a reserved keyword within the Common Expression Language as listed on https://github.com/google/cel-spec/blob/master/doc/langdef.md.
+     *       attributeDefinitionId: 'placeholder-value',
+     *       // Required. The name of the consent store that this Attribute definition belongs to.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowedValues": [],
+     *         //   "category": "my_category",
+     *         //   "consentDefaultValues": [],
+     *         //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *         //   "description": "my_description",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedValues": [],
+     *   //   "category": "my_category",
+     *   //   "consentDefaultValues": [],
+     *   //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.attributeDefinitions.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.attributeDefinitionId Required. The ID of the Attribute definition to create. The string must match the following regex: `_a-zA-Z{0,255}` and must not be a reserved keyword within the Common Expression Language as listed on https://github.com/google/cel-spec/blob/master/doc/langdef.md.
+     * @param {string} params.parent Required. The name of the consent store that this Attribute definition belongs to.
+     * @param {().AttributeDefinition} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AttributeDefinition>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AttributeDefinition>,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AttributeDefinition>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AttributeDefinition>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/attributeDefinitions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AttributeDefinition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AttributeDefinition>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete
+     * @desc Deletes the specified Attribute definition. Fails if it is referenced by the latest revision of any Consent or User data mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete(
+     *     {
+     *       // Required. The resource name of the Attribute definition to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the Attribute definition to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.attributeDefinitions.get
+     * @desc Gets the specified Attribute definition.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.get(
+     *     {
+     *       // Required. The resource name of the Attribute definition to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedValues": [],
+     *   //   "category": "my_category",
+     *   //   "consentDefaultValues": [],
+     *   //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.attributeDefinitions.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the Attribute definition to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AttributeDefinition>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AttributeDefinition>,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AttributeDefinition>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AttributeDefinition>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AttributeDefinition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AttributeDefinition>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list
+     * @desc Lists the Attribute definitions in the given Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list(
+     *     {
+     *       // Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // Token to retrieve the next page of results or empty to get the first page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the Consent store to retrieve attribute definitions from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeDefinitions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
+     * @param {integer=} params.pageSize Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken Token to retrieve the next page of results or empty to get the first page.
+     * @param {string} params.parent Required. Name of the Consent store to retrieve attribute definitions from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttributeDefinitionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List,
+      callback: BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List
+        | BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttributeDefinitionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttributeDefinitionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/attributeDefinitions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttributeDefinitionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttributeDefinitionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch
+     * @desc Updates the specified Attribute definition.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch(
+     *     {
+     *       // Resource name of the attribute definition, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/attributeDefinitions/{attribute_definition_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *       // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `description`, `allowed_values`, `consent_default_values`, and `data_mapping_default_value` fields are allowed to be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowedValues": [],
+     *         //   "category": "my_category",
+     *         //   "consentDefaultValues": [],
+     *         //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *         //   "description": "my_description",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedValues": [],
+     *   //   "category": "my_category",
+     *   //   "consentDefaultValues": [],
+     *   //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the attribute definition, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/attributeDefinitions/{attribute_definition_id}`.
+     * @param {string=} params.updateMask The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `description`, `allowed_values`, `consent_default_values`, and `data_mapping_default_value` fields are allowed to be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     * @param {().AttributeDefinition} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AttributeDefinition>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AttributeDefinition>,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch,
+      callback: BodyResponseCallback<Schema$AttributeDefinition>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AttributeDefinition>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AttributeDefinition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AttributeDefinition>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AttributeDefinition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AttributeDefinition>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the Attribute definition to create. The string must match the following regex: `_a-zA-Z{0,255}` and must not be a reserved keyword within the Common Expression Language as listed on https://github.com/google/cel-spec/blob/master/doc/langdef.md.
+     */
+    attributeDefinitionId?: string;
+    /**
+     * Required. The name of the consent store that this Attribute definition belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AttributeDefinition;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Attribute definition to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Attribute definition to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List
+    extends StandardParameters {
+    /**
+     * Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
+     */
+    filter?: string;
+    /**
+     * Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * Token to retrieve the next page of results or empty to get the first page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Consent store to retrieve attribute definitions from.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the attribute definition, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/attributeDefinitions/{attribute_definition_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `description`, `allowed_values`, `consent_default_values`, and `data_mapping_default_value` fields are allowed to be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AttributeDefinition;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consentArtifacts.create
+     * @desc Creates a new Consent artifact in the parent Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.create(
+     *     {
+     *       // Required. The name of the Consent store this consent artifact belongs to.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentContentScreenshots": [],
+     *         //   "consentContentVersion": "my_consentContentVersion",
+     *         //   "guardianSignature": {},
+     *         //   "metadata": {},
+     *         //   "name": "my_name",
+     *         //   "userId": "my_userId",
+     *         //   "userSignature": {},
+     *         //   "witnessSignature": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentContentScreenshots": [],
+     *   //   "consentContentVersion": "my_consentContentVersion",
+     *   //   "guardianSignature": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId",
+     *   //   "userSignature": {},
+     *   //   "witnessSignature": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consentArtifacts.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the Consent store this consent artifact belongs to.
+     * @param {().ConsentArtifact} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsentArtifact>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsentArtifact>,
+      callback: BodyResponseCallback<Schema$ConsentArtifact>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create,
+      callback: BodyResponseCallback<Schema$ConsentArtifact>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ConsentArtifact>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsentArtifact> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consentArtifacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsentArtifact>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsentArtifact>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete
+     * @desc Deletes the specified Consent artifact. Fails if it is referenced by the latest revision of any Consent.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete(
+     *     {
+     *       // Required. The resource name of the consent artifact to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent artifact to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consentArtifacts.get
+     * @desc Gets the specified Consent artifact.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.get(
+     *     {
+     *       // Required. The resource name of the consent artifact to retrieve.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentContentScreenshots": [],
+     *   //   "consentContentVersion": "my_consentContentVersion",
+     *   //   "guardianSignature": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId",
+     *   //   "userSignature": {},
+     *   //   "witnessSignature": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consentArtifacts.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent artifact to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsentArtifact>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsentArtifact>,
+      callback: BodyResponseCallback<Schema$ConsentArtifact>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get,
+      callback: BodyResponseCallback<Schema$ConsentArtifact>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConsentArtifact>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsentArtifact>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsentArtifact> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsentArtifact>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsentArtifact>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consentArtifacts.list
+     * @desc Lists the Consent artifacts in the given Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.list(
+     *     {
+     *       // Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from the previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the Consent store to retrieve consent artifacts from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consentArtifacts.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
+     * @param {integer=} params.pageSize Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Required. Name of the Consent store to retrieve consent artifacts from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsentArtifactsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsentArtifactsResponse>,
+      callback: BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List,
+      callback: BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List
+        | BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConsentArtifactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConsentArtifactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consentArtifacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsentArtifactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsentArtifactsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the Consent store this consent artifact belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConsentArtifact;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent artifact to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent artifact to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List
+    extends StandardParameters {
+    /**
+     * Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
+     */
+    filter?: string;
+    /**
+     * Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from the previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Consent store to retrieve consent artifacts from.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Consentstores$Consents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.activate
+     * @desc Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.activate(
+     *     {
+     *       // Required. The resource name of the consent to activate, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentArtifact": "my_consentArtifact",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "ttl": "my_ttl"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.activate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent to activate, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * @param {().ActivateConsentRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    activate(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    activate(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$Consent>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:activate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.create
+     * @desc Creates a new Consent in the parent Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.create(
+     *     {
+     *       // Required. Name of the consent store.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentArtifact": "my_consentArtifact",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "name": "my_name",
+     *         //   "policies": [],
+     *         //   "revisionCreateTime": "my_revisionCreateTime",
+     *         //   "revisionId": "my_revisionId",
+     *         //   "state": "my_state",
+     *         //   "ttl": "my_ttl",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. Name of the consent store.
+     * @param {().Consent} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Consent>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.delete
+     * @desc Deletes the Consent and its revisions. To keep a record of the Consent but mark it inactive, see [RevokeConsent]. To delete a revision of a Consent, see [DeleteConsentRevision]. This operation does not delete the related consent artifact.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.delete(
+     *     {
+     *       // Required. The resource name of the consent to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.deleteRevision
+     * @desc Deletes the specified revision of a Consent. An INVALID_ARGUMENT error occurs if the specified revision is the latest revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.deleteRevision(
+     *     {
+     *       // Required. The resource name of the consent revision to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.deleteRevision
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent revision to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteRevision(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteRevision(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteRevision(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteRevision(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteRevision(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteRevision(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteRevision(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:deleteRevision').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.get
+     * @desc Gets the specified revision of a Consent, or the latest revision if `revision_id` is not specified in the resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.get(
+     *     {
+     *       // Required. The resource name of the consent to retrieve, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. In order to retrieve a previous revision of the consent, also provide the revision ID: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent to retrieve, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. In order to retrieve a previous revision of the consent, also provide the revision ID: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Consent>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.list
+     * @desc Lists the Consent in the given Consent store, returning each consent's latest revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.list(
+     *     {
+     *       // Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from the previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the Consent store to retrieve consents from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     * @param {integer=} params.pageSize Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Required. Name of the Consent store to retrieve consents from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsentsResponse>,
+      callback: BodyResponseCallback<Schema$ListConsentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List,
+      callback: BodyResponseCallback<Schema$ListConsentsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListConsentsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List
+        | BodyResponseCallback<Schema$ListConsentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConsentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConsentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConsentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsentsResponse>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.listRevisions
+     * @desc Lists the revisions of the given Consent in reverse chronological order.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.listRevisions(
+     *     {
+     *       // Restricts the revisions returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Fields/functions available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     *       filter: 'placeholder-value',
+     *       // Required. The resource name of the consent to retrieve revisions for.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       // Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // Token to retrieve the next page of results or empty if there are no more results in the list.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.listRevisions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the revisions returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Fields/functions available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     * @param {string} params.name Required. The resource name of the consent to retrieve revisions for.
+     * @param {integer=} params.pageSize Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken Token to retrieve the next page of results or empty if there are no more results in the list.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRevisions(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsentRevisionsResponse>;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsentRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions,
+      callback: BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+    ): void;
+    listRevisions(
+      callback: BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+    ): void;
+    listRevisions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions
+        | BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConsentRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConsentRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:listRevisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsentRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsentRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.patch
+     * @desc Updates the latest revision of the specified Consent by committing a new revision with the changes. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.patch(
+     *     {
+     *       // Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       // The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `user_id`, `policies`, and `consent_artifact` fields can be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentArtifact": "my_consentArtifact",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "name": "my_name",
+     *         //   "policies": [],
+     *         //   "revisionCreateTime": "my_revisionCreateTime",
+     *         //   "revisionId": "my_revisionId",
+     *         //   "state": "my_state",
+     *         //   "ttl": "my_ttl",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.
+     * @param {string=} params.updateMask The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `user_id`, `policies`, and `consent_artifact` fields can be updated.
+     * @param {().Consent} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Consent>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.reject
+     * @desc Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given consent is in the `REJECTED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `ACTIVE` or `REVOKED` state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.reject(
+     *     {
+     *       // Required. The resource name of the consent to reject, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentArtifact": "my_consentArtifact"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.reject
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent to reject, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * @param {().RejectConsentRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reject(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reject(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    reject(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    reject(callback: BodyResponseCallback<Schema$Consent>): void;
+    reject(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:reject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.consents.revoke
+     * @desc Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the given consent is in the `REVOKED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in `DRAFT` or `REJECTED` state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.revoke(
+     *     {
+     *       // Required. The resource name of the consent to revoke, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consentArtifact": "my_consentArtifact"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consentArtifact": "my_consentArtifact",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policies": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.consents.revoke
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the consent to revoke, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * @param {().RevokeConsentRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    revoke(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revoke(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Consent>;
+    revoke(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revoke(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
+      options: MethodOptions | BodyResponseCallback<Schema$Consent>,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    revoke(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke,
+      callback: BodyResponseCallback<Schema$Consent>
+    ): void;
+    revoke(callback: BodyResponseCallback<Schema$Consent>): void;
+    revoke(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Consent>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Consent> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:revoke').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Consent>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Consent>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent to activate, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateConsentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create
+    extends StandardParameters {
+    /**
+     * Required. Name of the consent store.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Consent;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent revision to delete, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent to retrieve, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. In order to retrieve a previous revision of the consent, also provide the revision ID: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}@{revision_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List
+    extends StandardParameters {
+    /**
+     * Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     */
+    filter?: string;
+    /**
+     * Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from the previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Consent store to retrieve consents from.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions
+    extends StandardParameters {
+    /**
+     * Restricts the revisions returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Fields/functions available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     */
+    filter?: string;
+    /**
+     * Required. The resource name of the consent to retrieve revisions for.
+     */
+    name?: string;
+    /**
+     * Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `user_id`, `policies`, and `consent_artifact` fields can be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Consent;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent to reject, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RejectConsentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the consent to revoke, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RevokeConsentRequest;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.archive
+     * @desc Archives the specified User data mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.archive(
+     *     {
+     *       // The resource name of the user data mapping to archive.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.archive
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the user data mapping to archive.
+     * @param {().ArchiveUserDataMappingRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    archive(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    archive(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ArchiveUserDataMappingResponse>;
+    archive(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archive(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>,
+      callback: BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+    ): void;
+    archive(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive,
+      callback: BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+    ): void;
+    archive(
+      callback: BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+    ): void;
+    archive(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive
+        | BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ArchiveUserDataMappingResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ArchiveUserDataMappingResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:archive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ArchiveUserDataMappingResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ArchiveUserDataMappingResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.create
+     * @desc Creates a new User data mapping in the parent Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.create(
+     *     {
+     *       // Required. Name of the consent store.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "archiveTime": "my_archiveTime",
+     *         //   "archived": false,
+     *         //   "dataId": "my_dataId",
+     *         //   "name": "my_name",
+     *         //   "resourceAttributes": [],
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archiveTime": "my_archiveTime",
+     *   //   "archived": false,
+     *   //   "dataId": "my_dataId",
+     *   //   "name": "my_name",
+     *   //   "resourceAttributes": [],
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. Name of the consent store.
+     * @param {().UserDataMapping} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserDataMapping>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UserDataMapping>,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserDataMapping>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/userDataMappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserDataMapping>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$UserDataMapping>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.delete
+     * @desc Deletes the specified User data mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.delete(
+     *     {
+     *       // Required. The resource name of the user data mapping to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the user data mapping to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.get
+     * @desc Gets the specified User data mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.get(
+     *     {
+     *       // Required. The resource name of the user data mapping to retrieve.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archiveTime": "my_archiveTime",
+     *   //   "archived": false,
+     *   //   "dataId": "my_dataId",
+     *   //   "name": "my_name",
+     *   //   "resourceAttributes": [],
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the user data mapping to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserDataMapping>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserDataMapping>,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserDataMapping>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserDataMapping>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$UserDataMapping>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.list
+     * @desc Lists the User data mappings in the given Consent store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.list(
+     *     {
+     *       // Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // Token to retrieve the next page of results or empty to get the first page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the Consent store to retrieve user data mappings from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userDataMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
+     * @param {integer=} params.pageSize Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken Token to retrieve the next page of results or empty to get the first page.
+     * @param {string} params.parent Required. Name of the Consent store to retrieve user data mappings from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserDataMappingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserDataMappingsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List,
+      callback: BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List
+        | BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserDataMappingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserDataMappingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/userDataMappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserDataMappingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserDataMappingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.consentStores.userDataMappings.patch
+     * @desc Updates the specified User data mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.patch(
+     *     {
+     *       // Resource name of the User data mapping, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/userDataMappings/{user_data_mapping_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *       // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "archiveTime": "my_archiveTime",
+     *         //   "archived": false,
+     *         //   "dataId": "my_dataId",
+     *         //   "name": "my_name",
+     *         //   "resourceAttributes": [],
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archiveTime": "my_archiveTime",
+     *   //   "archived": false,
+     *   //   "dataId": "my_dataId",
+     *   //   "name": "my_name",
+     *   //   "resourceAttributes": [],
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.consentStores.userDataMappings.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the User data mapping, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/userDataMappings/{user_data_mapping_id}`.
+     * @param {string=} params.updateMask The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param {().UserDataMapping} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserDataMapping>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UserDataMapping>,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch,
+      callback: BodyResponseCallback<Schema$UserDataMapping>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UserDataMapping>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserDataMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserDataMapping> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserDataMapping>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$UserDataMapping>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive
+    extends StandardParameters {
+    /**
+     * The resource name of the user data mapping to archive.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ArchiveUserDataMappingRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create
+    extends StandardParameters {
+    /**
+     * Required. Name of the consent store.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserDataMapping;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the user data mapping to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the user data mapping to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List
+    extends StandardParameters {
+    /**
+     * Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
+     */
+    filter?: string;
+    /**
+     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * Token to retrieve the next page of results or empty to get the first page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Consent store to retrieve user data mappings from.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the User data mapping, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/userDataMappings/{user_data_mapping_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserDataMapping;
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores {
@@ -7383,7 +13520,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7521,7 +13658,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7659,7 +13796,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForStudies
-     * @desc SearchForStudies returns a list of matching studies. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForStudies returns a list of matching studies. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForStudies, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForStudies, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7944,7 +14081,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5).
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Storing DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#storing_dicom_data).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8440,7 +14577,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.delete
-     * @desc DeleteStudy deletes all instances within the given study. Delete requests are equivalent to the GET requests specified in the Retrieve transaction.
+     * @desc DeleteStudyAsync deletes all instances within the given study using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a study while a delete operation is running for that study could result in the new instances not appearing in search results until the deletion operation finishes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8476,7 +14613,13 @@ export namespace healthcare_v1beta1 {
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
      * }
      *
      * main().catch(e => {
@@ -8501,7 +14644,7 @@ export namespace healthcare_v1beta1 {
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8509,28 +14652,28 @@ export namespace healthcare_v1beta1 {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8563,18 +14706,18 @@ export namespace healthcare_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata
-     * @desc RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudyMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudyMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8712,7 +14855,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy
-     * @desc RetrieveStudy returns all instances within the given study. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveStudy returns all instances within the given study. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudy, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudy, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8850,7 +14993,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8988,7 +15131,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9126,7 +15269,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5).
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Storing DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#storing_dicom_data).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9358,7 +15501,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.delete
-     * @desc DeleteSeries deletes all instances within the given study and series. Delete requests are equivalent to the GET requests specified in the Retrieve transaction.
+     * @desc DeleteSeriesAsync deletes all instances within the given study and series using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a series while a delete operation is running for that series could result in the new instances not appearing in search results until the deletion operation finishes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9394,7 +15537,13 @@ export namespace healthcare_v1beta1 {
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
      * }
      *
      * main().catch(e => {
@@ -9419,7 +15568,7 @@ export namespace healthcare_v1beta1 {
     delete(
       params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9427,28 +15576,28 @@ export namespace healthcare_v1beta1 {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9481,18 +15630,18 @@ export namespace healthcare_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata
-     * @desc RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeriesMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeriesMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9630,7 +15779,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries
-     * @desc RetrieveSeries returns all instances within the given study and series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveSeries returns all instances within the given study and series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeries, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeries, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9768,7 +15917,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9962,7 +16111,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete
-     * @desc DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. Study and series search results can take a few seconds to be updated after an instance is deleted using DeleteInstance.
+     * @desc DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. Study and series search results can take a few seconds to be updated after an instance is deleted using DeleteInstance. For samples that show how to call DeleteInstance, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10096,7 +16245,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance
-     * @desc RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstance, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) and [DICOM instances](https://cloud.google.com/healthcare/docs/dicom#dicom_instances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstance, see [Retrieving an instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_an_instance).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10234,7 +16383,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata
-     * @desc RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstanceMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstanceMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10373,7 +16522,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered
-     * @desc RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedInstance, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedInstance, see [Retrieving consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_consumer_image_formats).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10564,7 +16713,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames
-     * @desc RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveFrames, see [DICOM frames](https://cloud.google.com/healthcare/docs/dicom#dicom_frames) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveFrames, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10703,7 +16852,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered
-     * @desc RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4).
+     * @desc RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedFrames, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedFrames, see [Retrieving consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_consumer_image_formats).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11311,7 +17460,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.export
-     * @desc  Export resources from the FHIR store to the specified destination. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc Export resources from the FHIR store to the specified destination. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11734,7 +17883,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.import
-     * @desc  Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data. Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store. The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity. The import process does not trigger Cloud Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store. If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once. The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients. If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back. The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data. Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store. The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity. The import process does not trigger Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store. If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once. The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients. If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back. The location and format of the input data are specified by the parameters in ImportResourcesRequest. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

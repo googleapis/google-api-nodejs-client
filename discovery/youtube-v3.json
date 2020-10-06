@@ -28,7 +28,7 @@
   },
   "basePath": "",
   "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/youtube",
+  "batchPath": "batch/youtube/v3",
   "canonicalName": "YouTube",
   "description": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
   "discoveryVersion": "v1",
@@ -315,6 +315,10 @@
             ],
             "maxSize": "104857600",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/captions"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/captions"
@@ -423,6 +427,10 @@
             ],
             "maxSize": "104857600",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/captions"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/captions"
@@ -486,6 +494,10 @@
             ],
             "maxSize": "6291456",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/channelBanners/insert"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/channelBanners/insert"
@@ -879,10 +891,10 @@
                 "rejected"
               ],
               "enumDescriptions": [
+                "The comment is available for public display.",
+                "The comment is awaiting review by a moderator.",
                 "",
-                "",
-                "",
-                ""
+                "The comment is unfit for display."
               ],
               "location": "query",
               "type": "string"
@@ -896,8 +908,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Order by time.",
+                "Order by relevance."
               ],
               "location": "query",
               "type": "string"
@@ -929,8 +941,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Returns the comments in HTML format. This is the default value.",
+                "Returns the comments in plain text format."
               ],
               "location": "query",
               "type": "string"
@@ -1078,8 +1090,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Returns the comments in HTML format. This is the default value.",
+                "Returns the comments in plain text format."
               ],
               "location": "query",
               "type": "string"
@@ -1147,10 +1159,10 @@
                 "rejected"
               ],
               "enumDescriptions": [
+                "The comment is available for public display.",
+                "The comment is awaiting review by a moderator.",
                 "",
-                "",
-                "",
-                ""
+                "The comment is unfit for display."
               ],
               "location": "query",
               "required": true,
@@ -1188,139 +1200,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/youtube.force-ssl"
-          ]
-        }
-      }
-    },
-    "endscreens": {
-      "methods": {
-        "get": {
-          "description": "Retrieves endscreen for a given video.",
-          "flatPath": "youtube/v3/endscreen",
-          "httpMethod": "GET",
-          "id": "youtube.endscreens.get",
-          "parameterOrder": [
-            "videoId",
-            "part"
-          ],
-          "parameters": {
-            "onBehalfOfContentOwner": {
-              "description": "Content owner of the video.",
-              "location": "query",
-              "type": "string"
-            },
-            "part": {
-              "description": "The properties to return.",
-              "location": "query",
-              "repeated": true,
-              "required": true,
-              "type": "string"
-            },
-            "videoId": {
-              "description": "Encrypted id of the video.",
-              "location": "query",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "youtube/v3/endscreen",
-          "response": {
-            "$ref": "EndscreenGetResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.force-ssl",
-            "https://www.googleapis.com/auth/youtubepartner"
-          ]
-        },
-        "update": {
-          "description": "Updates endscreen for a given video. Note: * If the element id is not provided, a new element will be created. * If the element id is provided, that element will be updated. * Existing elements will be discarded if they're not included in the request.",
-          "flatPath": "youtube/v3/endscreen",
-          "httpMethod": "POST",
-          "id": "youtube.endscreens.update",
-          "parameterOrder": [
-            "videoId",
-            "part"
-          ],
-          "parameters": {
-            "onBehalfOfContentOwner": {
-              "description": "Content owner of the video.",
-              "location": "query",
-              "type": "string"
-            },
-            "part": {
-              "description": "The properties to return.",
-              "location": "query",
-              "repeated": true,
-              "required": true,
-              "type": "string"
-            },
-            "videoId": {
-              "description": "Encrypted id of the video this endscreen corresponds to.",
-              "location": "query",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "youtube/v3/endscreen",
-          "request": {
-            "$ref": "Endscreen"
-          },
-          "response": {
-            "$ref": "Endscreen"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.force-ssl",
-            "https://www.googleapis.com/auth/youtubepartner"
-          ]
-        }
-      }
-    },
-    "guideCategories": {
-      "methods": {
-        "list": {
-          "description": "Retrieves a list of guide categories.",
-          "flatPath": "youtube/v3/guideCategories",
-          "httpMethod": "GET",
-          "id": "youtube.guideCategories.list",
-          "parameterOrder": [
-            "part"
-          ],
-          "parameters": {
-            "hl": {
-              "default": "en-US",
-              "location": "query",
-              "type": "string"
-            },
-            "id": {
-              "description": "Return the guide categories with the given IDs.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "part": {
-              "description": "The *part* parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.",
-              "location": "query",
-              "repeated": true,
-              "required": true,
-              "type": "string"
-            },
-            "regionCode": {
-              "description": "Return all categories in the given region code.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "youtube/v3/guideCategories",
-          "response": {
-            "$ref": "GuideCategoryListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.force-ssl",
-            "https://www.googleapis.com/auth/youtube.readonly",
-            "https://www.googleapis.com/auth/youtubepartner"
           ]
         }
       }
@@ -1600,10 +1479,10 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                "",
-                ""
+                "Return all broadcasts.",
+                "Return current live broadcasts.",
+                "Return broadcasts that have not yet started.",
+                "Return broadcasts that have already ended."
               ],
               "location": "query",
               "type": "string"
@@ -1619,9 +1498,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "Return all broadcasts.",
+                "Return only scheduled event broadcasts.",
+                "Return only persistent broadcasts."
               ],
               "location": "query",
               "type": "string"
@@ -1659,7 +1538,7 @@
               "type": "string"
             },
             "part": {
-              "description": "The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.",
+              "description": "The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, status and statistics.",
               "location": "query",
               "repeated": true,
               "required": true,
@@ -1697,9 +1576,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "Start testing the broadcast. YouTube transmits video to the broadcast's monitor stream. Note that you can only transition a broadcast to the testing state if its contentDetails.monitorStream.enableMonitorStream property is set to true.\",",
+                "Return only persistent broadcasts.",
+                "The broadcast is over. YouTube stops transmitting video."
               ],
               "location": "query",
               "required": true,
@@ -2254,8 +2133,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Return only members that joined after the first call with this mode was made.",
+                "Return all current members, from newest to oldest."
               ],
               "location": "query",
               "type": "string"
@@ -2683,8 +2562,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Return all channels.",
+                "Only retrieve shows."
               ],
               "location": "query",
               "type": "string"
@@ -2699,9 +2578,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "The live broadcast is upcoming.",
+                "The live broadcast is active.",
+                "The live broadcast has been completed."
               ],
               "location": "query",
               "type": "string"
@@ -2757,12 +2636,12 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
+                "Resources are sorted in reverse chronological order based on the date they were created.",
+                "Resources are sorted from highest to lowest rating.",
+                "Resources are sorted from highest to lowest number of views.",
+                "Resources are sorted based on their relevance to the search query. This is the default value for this parameter.",
+                "Resources are sorted alphabetically by title.",
+                "Channels are sorted in descending order of their number of uploaded videos."
               ],
               "location": "query",
               "type": "string"
@@ -2822,9 +2701,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "YouTube will not filter the search result set.",
+                "YouTube will filter some content from search results and, at the least, will filter content that is restricted in your locale. Based on their content, search results could be removed from search results or demoted in search results. This is the default parameter value.",
+                "YouTube will try to exclude all restricted content from the search result set. Based on their content, search results could be removed from search results or demoted in search results."
               ],
               "location": "query",
               "type": "string"
@@ -2851,9 +2730,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "Do not filter results based on caption availability.",
+                "Only include videos that have captions.",
+                "Only include videos that do not have captions."
               ],
               "location": "query",
               "type": "string"
@@ -2871,9 +2750,9 @@
                 "high"
               ],
               "enumDescriptions": [
-                "",
-                "",
-                ""
+                "Return all videos, regardless of their resolution.",
+                "Only retrieve videos in standard definition.",
+                "Only retrieve HD videos."
               ],
               "location": "query",
               "type": "string"
@@ -2887,8 +2766,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "2d",
-                "3d"
+                "Restrict search results to exclude 3D videos.",
+                "Restrict search results to only include 3D videos."
               ],
               "location": "query",
               "type": "string"
@@ -2904,10 +2783,10 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                "",
-                ""
+                "Do not filter video search results based on their duration. This is the default value.",
+                "Only include videos that are less than four minutes long.",
+                "Only include videos that are between four and 20 minutes long (inclusive).",
+                "Only include videos longer than 20 minutes."
               ],
               "location": "query",
               "type": "string"
@@ -2921,8 +2800,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Return all videos, embeddable or not.",
+                "Only retrieve embeddable videos."
               ],
               "location": "query",
               "type": "string"
@@ -2935,9 +2814,9 @@
                 "creativeCommon"
               ],
               "enumDescriptions": [
-                "",
-                "",
-                ""
+                "Return all videos, regardless of which license they have, that match the query parameters.",
+                "Only return videos that have the standard YouTube license.",
+                "Only return videos that have a Creative Commons license. Users can reuse videos with this license in other videos that they create. Learn more."
               ],
               "location": "query",
               "type": "string"
@@ -2951,8 +2830,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Return all videos, syndicated or not.",
+                "Only retrieve syndicated videos."
               ],
               "location": "query",
               "type": "string"
@@ -2967,9 +2846,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "Return all videos.",
+                "Only retrieve movies.",
+                "Only retrieve episodes of shows."
               ],
               "location": "query",
               "type": "string"
@@ -3009,8 +2888,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "Return the most recent sponsors, from newest to oldest.",
+                "Return all sponsors, from newest to oldest."
               ],
               "location": "query",
               "type": "string"
@@ -3168,9 +3047,9 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                "",
-                ""
+                "Sort by relevance.",
+                "Sort by order of activity.",
+                "Sort alphabetically."
               ],
               "location": "query",
               "type": "string"
@@ -3428,6 +3307,10 @@
             ],
             "maxSize": "2097152",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/thumbnails/set"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/thumbnails/set"
@@ -3619,6 +3502,10 @@
             ],
             "maxSize": "137438953472",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/videos"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/videos"
@@ -3695,7 +3582,7 @@
               ],
               "enumDescriptions": [
                 "",
-                ""
+                "Return the most popular videos for the specified content region and video category."
               ],
               "location": "query",
               "type": "string"
@@ -3742,8 +3629,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "The entity is liked.",
+                "The entity is disliked."
               ],
               "location": "query",
               "type": "string"
@@ -3811,8 +3698,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "",
-                ""
+                "The entity is liked.",
+                "The entity is disliked."
               ],
               "location": "query",
               "required": true,
@@ -3901,6 +3788,10 @@
             ],
             "maxSize": "10485760",
             "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/watermarks/set"
+              },
               "simple": {
                 "multipart": true,
                 "path": "/upload/youtube/v3/watermarks/set"
@@ -3962,100 +3853,9 @@
           ]
         }
       }
-    },
-    "youtube": {
-      "resources": {
-        "v3": {
-          "methods": {
-            "infocards": {
-              "description": "Updates infocards for a given video. Note: * If the card id is not provided, a new card will be created. * If the card id is provided, that card will be updated. * Existing cards will be discarded if they're not included in the request.",
-              "flatPath": "youtube/v3/infocards",
-              "httpMethod": "POST",
-              "id": "youtube.youtube.v3.infocards",
-              "parameterOrder": [
-                "part"
-              ],
-              "parameters": {
-                "onBehalfOfContentOwner": {
-                  "description": "Content owner of the video.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "part": {
-                  "description": "The properties to update.",
-                  "location": "query",
-                  "repeated": true,
-                  "required": true,
-                  "type": "string"
-                },
-                "videoId": {
-                  "description": "Encrypted id of the video.",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "youtube/v3/infocards",
-              "request": {
-                "$ref": "InfoCards"
-              },
-              "response": {
-                "$ref": "InfoCards"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/youtube",
-                "https://www.googleapis.com/auth/youtube.force-ssl",
-                "https://www.googleapis.com/auth/youtubepartner"
-              ]
-            }
-          },
-          "resources": {
-            "infocards": {
-              "methods": {
-                "list": {
-                  "description": "Retrieves all infocards for a given video.",
-                  "flatPath": "youtube/v3/infocards",
-                  "httpMethod": "GET",
-                  "id": "youtube.youtube.v3.infocards.list",
-                  "parameterOrder": [
-                    "part"
-                  ],
-                  "parameters": {
-                    "onBehalfOfContentOwner": {
-                      "description": "Content owner of the video.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "part": {
-                      "description": "The properties to return.",
-                      "location": "query",
-                      "repeated": true,
-                      "required": true,
-                      "type": "string"
-                    },
-                    "videoId": {
-                      "description": "Encrypted id of the video.",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "youtube/v3/infocards",
-                  "response": {
-                    "$ref": "InfocardListResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/youtube",
-                    "https://www.googleapis.com/auth/youtube.force-ssl",
-                    "https://www.googleapis.com/auth/youtubepartner"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
-  "revision": "20200824",
+  "revision": "20200930",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4792,10 +4592,6 @@
           "description": "The ID that YouTube uses to uniquely identify the channel.",
           "type": "string"
         },
-        "invideoPromotion": {
-          "$ref": "InvideoPromotion",
-          "description": "The invideoPromotion object encapsulates information about promotion campaign associated with the channel."
-        },
         "kind": {
           "default": "youtube#channel",
           "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#channel\".",
@@ -4891,20 +4687,6 @@
       },
       "type": "object"
     },
-    "ChannelCard": {
-      "id": "ChannelCard",
-      "properties": {
-        "channelId": {
-          "description": "External channel ID. Required.",
-          "type": "string"
-        },
-        "customMessage": {
-          "description": "Each card can have a custom message. Required.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ChannelContentDetails": {
       "description": "Details about the content of a channel.",
       "id": "ChannelContentDetails",
@@ -4987,20 +4769,6 @@
             "$ref": "ChannelConversionPing"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ChannelElement": {
-      "id": "ChannelElement",
-      "properties": {
-        "channelId": {
-          "description": "External channel ID. Required.",
-          "type": "string"
-        },
-        "customMessage": {
-          "description": "Customized message for the element. Required.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -5622,10 +5390,10 @@
             "rejected"
           ],
           "enumDescriptions": [
+            "The comment is available for public display.",
+            "The comment is awaiting review by a moderator.",
             "",
-            "",
-            "",
-            ""
+            "The comment is unfit for display."
           ],
           "type": "string"
         },
@@ -5662,8 +5430,8 @@
           ],
           "enumDescriptions": [
             "",
-            "",
-            ""
+            "The entity is liked.",
+            "The entity is disliked."
           ],
           "type": "string"
         }
@@ -7534,115 +7302,6 @@
       },
       "type": "object"
     },
-    "Endscreen": {
-      "id": "Endscreen",
-      "properties": {
-        "elements": {
-          "description": "A list of endscreen elements.",
-          "items": {
-            "$ref": "EndscreenElement"
-          },
-          "type": "array"
-        },
-        "startOffset": {
-          "description": "The time we start the endscreen in milliseconds.",
-          "format": "google-duration",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "EndscreenElement": {
-      "id": "EndscreenElement",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "id": {
-          "description": "UUID for this element.",
-          "type": "string"
-        },
-        "kind": {
-          "default": "youtube#endscreen",
-          "description": "Identifies what kind of resource this is.",
-          "type": "string"
-        },
-        "snippet": {
-          "$ref": "EndscreenElementSnippet",
-          "description": "The snippet object contains basic details about the element."
-        }
-      },
-      "type": "object"
-    },
-    "EndscreenElementSnippet": {
-      "id": "EndscreenElementSnippet",
-      "properties": {
-        "channelElement": {
-          "$ref": "ChannelElement"
-        },
-        "duration": {
-          "description": "Duration of the element in milliseconds. Required.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "left": {
-          "description": "Fraction of video width.",
-          "format": "float",
-          "type": "number"
-        },
-        "linkElement": {
-          "$ref": "LinkElement"
-        },
-        "merchandiseElement": {
-          "$ref": "MerchandiseElement"
-        },
-        "playlistElement": {
-          "$ref": "PlaylistElement"
-        },
-        "startOffset": {
-          "description": "Start of the element in milliseconds. Required.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "subscribeElement": {
-          "$ref": "SubscribeElement"
-        },
-        "top": {
-          "description": "Fraction of video height.",
-          "format": "float",
-          "type": "number"
-        },
-        "videoElement": {
-          "$ref": "VideoElement"
-        },
-        "width": {
-          "description": "Fraction of video width.",
-          "format": "float",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "EndscreenGetResponse": {
-      "id": "EndscreenGetResponse",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "kind": {
-          "default": "youtube#endscreenGetResponse",
-          "description": "Identifies what kind of resource this is.",
-          "type": "string"
-        },
-        "resource": {
-          "$ref": "Endscreen",
-          "description": "Endscreen resource."
-        }
-      },
-      "type": "object"
-    },
     "Entity": {
       "id": "Entity",
       "properties": {
@@ -7676,88 +7335,6 @@
           "description": "Longitude in degrees.",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GuideCategory": {
-      "description": "A *guideCategory* resource identifies a category that YouTube algorithmically assigns based on a channel's content or other indicators, such as the channel's popularity. The list is similar to video categories, with the difference being that a video's uploader can assign a video category but only YouTube can assign a channel category.",
-      "id": "GuideCategory",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "id": {
-          "description": "The ID that YouTube uses to uniquely identify the guide category.",
-          "type": "string"
-        },
-        "kind": {
-          "default": "youtube#guideCategory",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#guideCategory\".",
-          "type": "string"
-        },
-        "snippet": {
-          "$ref": "GuideCategorySnippet",
-          "description": "The snippet object contains basic details about the category, such as its title."
-        }
-      },
-      "type": "object"
-    },
-    "GuideCategoryListResponse": {
-      "id": "GuideCategoryListResponse",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "eventId": {
-          "description": "Serialized EventId of the request which produced this response.",
-          "type": "string"
-        },
-        "items": {
-          "description": "A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding guideCategory resource.",
-          "items": {
-            "$ref": "GuideCategory"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "default": "youtube#guideCategoryListResponse",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#guideCategoryListResponse\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.",
-          "type": "string"
-        },
-        "pageInfo": {
-          "$ref": "PageInfo"
-        },
-        "prevPageToken": {
-          "description": "The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.",
-          "type": "string"
-        },
-        "tokenPagination": {
-          "$ref": "TokenPagination"
-        },
-        "visitorId": {
-          "description": "The visitorId identifies the visitor.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GuideCategorySnippet": {
-      "description": "Basic details about a guide category.",
-      "id": "GuideCategorySnippet",
-      "properties": {
-        "channelId": {
-          "type": "string"
-        },
-        "title": {
-          "description": "Description of the guide category.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -7994,101 +7571,6 @@
       },
       "type": "object"
     },
-    "InfoCard": {
-      "id": "InfoCard",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "id": {
-          "description": "UUID for this infocard.",
-          "type": "string"
-        },
-        "kind": {
-          "default": "youtube#infocard",
-          "description": "Identifies what kind of resource this is.",
-          "type": "string"
-        },
-        "snippet": {
-          "$ref": "InfoCardSnippet",
-          "description": "The snippet object contains basic details about the infocard."
-        }
-      },
-      "type": "object"
-    },
-    "InfoCardSnippet": {
-      "id": "InfoCardSnippet",
-      "properties": {
-        "channelInfocard": {
-          "$ref": "ChannelCard"
-        },
-        "linkInfocard": {
-          "$ref": "LinkCard"
-        },
-        "playlistInfocard": {
-          "$ref": "PlaylistCard"
-        },
-        "teaser": {
-          "$ref": "InfoCardSnippetTeaser",
-          "description": "Each card can have a teaser. Required."
-        },
-        "videoInfocard": {
-          "$ref": "VideoCard"
-        }
-      },
-      "type": "object"
-    },
-    "InfoCardSnippetTeaser": {
-      "id": "InfoCardSnippetTeaser",
-      "properties": {
-        "teaserStartOffset": {
-          "description": "The offset from the video start at which the teaser should be displayed (activated), in milliseconds. Required.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "teaserText": {
-          "description": "The teaser text to show at the top of the player for the info-card. Required for channel and link type cards. Optional for video and playlist type cards.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InfoCards": {
-      "id": "InfoCards",
-      "properties": {
-        "items": {
-          "description": "A list of infocards.",
-          "items": {
-            "$ref": "InfoCard"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "InfocardListResponse": {
-      "id": "InfocardListResponse",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "items": {
-          "description": "A list of infocards.",
-          "items": {
-            "$ref": "InfoCard"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "default": "youtube#infocardListResponse",
-          "description": "Identifies what kind of resource this is.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "IngestionInfo": {
       "description": "Describes information necessary for ingesting an RTMP or an HTTP stream.",
       "id": "IngestionInfo",
@@ -8177,32 +7659,6 @@
       },
       "type": "object"
     },
-    "InvideoPromotion": {
-      "description": "Describes an invideo promotion campaign consisting of multiple promoted items. A campaign belongs to a single channel_id.",
-      "id": "InvideoPromotion",
-      "properties": {
-        "defaultTiming": {
-          "$ref": "InvideoTiming",
-          "description": "The default temporal position within the video where the promoted item will be displayed. Can be overridden by more specific timing in the item."
-        },
-        "items": {
-          "description": "List of promoted items in decreasing priority.",
-          "items": {
-            "$ref": "PromotedItem"
-          },
-          "type": "array"
-        },
-        "position": {
-          "$ref": "InvideoPosition",
-          "description": "The spatial position within the video where the promoted item will be displayed."
-        },
-        "useSmartTiming": {
-          "description": "Indicates whether the channel's promotional campaign uses \"smart timing.\" This feature attempts to show promotions at a point in the video when they are more likely to be clicked and less likely to disrupt the viewing experience. This feature also picks up a single promotion to show on each video.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "InvideoTiming": {
       "description": "Describes a temporal position of a visual widget inside a video.",
       "id": "InvideoTiming",
@@ -8246,126 +7702,6 @@
       "properties": {
         "displayName": {
           "description": "The name that should be used when referring to this level.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LinkCard": {
-      "id": "LinkCard",
-      "properties": {
-        "customLinkText": {
-          "description": "Custom text to show as the website link. Required.",
-          "type": "string"
-        },
-        "externalImageUrl": {
-          "description": "URL to an externally hosted image.",
-          "type": "string"
-        },
-        "targetUrl": {
-          "description": "The URL to which this card points. Required.",
-          "type": "string"
-        },
-        "title": {
-          "description": "The title to show on the card. Required.",
-          "type": "string"
-        },
-        "uploadedImage": {
-          "$ref": "LinkCardUploadedImage",
-          "description": "Previously uploaded image."
-        }
-      },
-      "type": "object"
-    },
-    "LinkCardUploadedImage": {
-      "id": "LinkCardUploadedImage",
-      "properties": {
-        "imageFile": {
-          "description": "Image reference on the thumbnail service.",
-          "type": "string"
-        },
-        "version": {
-          "description": "The version in the thumbnail service.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LinkElement": {
-      "id": "LinkElement",
-      "properties": {
-        "callToActionType": {
-          "enum": [
-            "unknownLinkText",
-            "learnMore",
-            "visit",
-            "signUp",
-            "shop",
-            "download",
-            "support",
-            "order",
-            "buy"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "customLinkText": {
-          "description": "Custom text to show as the website link.",
-          "type": "string"
-        },
-        "externalImageUrl": {
-          "description": "URL to an externally hosted image.",
-          "type": "string"
-        },
-        "targetUrl": {
-          "description": "The URL to which this card points. Required.",
-          "type": "string"
-        },
-        "uploadedImage": {
-          "$ref": "LinkElementUploadedImage",
-          "description": "Previously uploaded image."
-        },
-        "websiteType": {
-          "enum": [
-            "unknownWebsite",
-            "associated",
-            "crowdfunding",
-            "merch",
-            "other"
-          ],
-          "enumDescriptions": [
-            "",
-            "The website associated with the creator's channel.",
-            "White-listed crowdfunding sites, such as Patreon.",
-            "White-listed merchandise sites.",
-            "Website type that does not match any of the other types. Only certain users are allowed to link to arbitrary external websites."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LinkElementUploadedImage": {
-      "id": "LinkElementUploadedImage",
-      "properties": {
-        "imageFile": {
-          "description": "Image reference on the thumbnail service.",
-          "type": "string"
-        },
-        "version": {
-          "description": "The version in the thumbnail service.",
-          "format": "int64",
           "type": "string"
         }
       },
@@ -9736,11 +9072,6 @@
       },
       "type": "object"
     },
-    "MerchandiseElement": {
-      "id": "MerchandiseElement",
-      "properties": {},
-      "type": "object"
-    },
     "MonitorStreamInfo": {
       "description": "Settings and Info of the monitor stream",
       "id": "MonitorStreamInfo",
@@ -9831,24 +9162,6 @@
       },
       "type": "object"
     },
-    "PlaylistCard": {
-      "id": "PlaylistCard",
-      "properties": {
-        "customMessage": {
-          "description": "Each card can have a custom message. Optional.",
-          "type": "string"
-        },
-        "playlistId": {
-          "description": "External playlist ID. Required.",
-          "type": "string"
-        },
-        "startVideoId": {
-          "description": "Starting video, if not the first. Optional.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PlaylistContentDetails": {
       "id": "PlaylistContentDetails",
       "properties": {
@@ -9856,16 +9169,6 @@
           "description": "The number of videos in the playlist.",
           "format": "uint32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "PlaylistElement": {
-      "id": "PlaylistElement",
-      "properties": {
-        "playlistId": {
-          "description": "External playlist ID. Required.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -10173,62 +9476,6 @@
       },
       "type": "object"
     },
-    "PromotedItem": {
-      "description": "Describes a single promoted item.",
-      "id": "PromotedItem",
-      "properties": {
-        "customMessage": {
-          "description": "A custom message to display for this promotion. This field is currently ignored unless the promoted item is a website.",
-          "type": "string"
-        },
-        "id": {
-          "$ref": "PromotedItemId",
-          "description": "Identifies the promoted item."
-        },
-        "promotedByContentOwner": {
-          "description": "If true, the content owner's name will be used when displaying the promotion. This field can only be set when the update is made on behalf of the content owner.",
-          "type": "boolean"
-        },
-        "timing": {
-          "$ref": "InvideoTiming",
-          "description": "The temporal position within the video where the promoted item will be displayed. If present, it overrides the default timing."
-        }
-      },
-      "type": "object"
-    },
-    "PromotedItemId": {
-      "description": "Describes a single promoted item id. It is a union of various possible types.",
-      "id": "PromotedItemId",
-      "properties": {
-        "recentlyUploadedBy": {
-          "description": "If type is recentUpload, this field identifies the channel from which to take the recent upload. If missing, the channel is assumed to be the same channel for which the invideoPromotion is set.",
-          "type": "string"
-        },
-        "type": {
-          "description": "Describes the type of the promoted item.",
-          "enum": [
-            "video",
-            "website",
-            "recentUpload"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "videoId": {
-          "description": "If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if type has the value video.",
-          "type": "string"
-        },
-        "websiteUrl": {
-          "description": "If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if type has the value website.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PropertyValue": {
       "description": "A pair Property / Value.",
       "id": "PropertyValue",
@@ -10374,9 +9621,9 @@
           ],
           "enumDescriptions": [
             "",
-            "",
-            "",
-            ""
+            "The live broadcast is upcoming.",
+            "The live broadcast is active.",
+            "The live broadcast has been completed."
           ],
           "type": "string"
         },
@@ -10476,11 +9723,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "SubscribeElement": {
-      "id": "SubscribeElement",
-      "properties": {},
       "type": "object"
     },
     "Subscription": {
@@ -11186,25 +10428,6 @@
       },
       "type": "object"
     },
-    "VideoCard": {
-      "id": "VideoCard",
-      "properties": {
-        "customMessage": {
-          "description": "Each card can have a custom message. Optional.",
-          "type": "string"
-        },
-        "playbackStartOffset": {
-          "description": "Playback start time offset in milliseconds. Optional.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "videoId": {
-          "description": "Encrypted Video ID. Required.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VideoCategory": {
       "description": "A *videoCategory* resource identifies a category that has been or could be associated with uploaded videos.",
       "id": "VideoCategory",
@@ -11381,36 +10604,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "VideoElement": {
-      "id": "VideoElement",
-      "properties": {
-        "playbackStartOffset": {
-          "description": "Playback start time offset in milliseconds. Optional.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "videoId": {
-          "description": "Encrypted Video ID. Required.",
-          "type": "string"
-        },
-        "videoType": {
-          "enum": [
-            "videoTypeUnknown",
-            "fixed",
-            "recentUpload",
-            "bestForViewer"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -11802,8 +10995,8 @@
           ],
           "enumDescriptions": [
             "",
-            "",
-            ""
+            "The entity is liked.",
+            "The entity is disliked."
           ],
           "type": "string"
         },
@@ -11901,9 +11094,9 @@
           ],
           "enumDescriptions": [
             "",
-            "",
-            "",
-            ""
+            "The live broadcast is upcoming.",
+            "The live broadcast is active.",
+            "The live broadcast has been completed."
           ],
           "type": "string"
         },

@@ -1188,7 +1188,7 @@
       }
     }
   },
-  "revision": "20200811",
+  "revision": "20200924",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1527,10 +1527,6 @@
         },
         "enabledFeatures": {
           "description": "A list of features that have been enabled for the application.",
-          "enumDescriptions": [
-            "Safe default, don't use.",
-            "Saved Games (snapshots)."
-          ],
           "items": {
             "enum": [
               "APPLICATION_FEATURE_UNSPECIFIED",
@@ -2769,12 +2765,6 @@
       "properties": {
         "beatenScoreTimeSpans": {
           "description": "The time spans where the submitted score is better than the existing score for that time span.",
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "The score is an all-time score.",
-            "The score is a weekly score.",
-            "The score is a daily score."
-          ],
           "items": {
             "enum": [
               "SCORE_TIME_SPAN_UNSPECIFIED",
