@@ -635,7 +635,7 @@ export namespace people_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token.
+     * A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token. When the response is paginated, only the last page will contain `nextSyncToken`.
      */
     nextSyncToken?: string | null;
     /**
@@ -4704,7 +4704,7 @@ export namespace people_v1 {
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
-     *     // Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     *     // Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      *     requestSyncToken: 'placeholder-value',
      *     // Required. The resource name to return connections for. Only `people/me` is valid.
      *     resourceName: 'people/[^/]+',
@@ -4740,7 +4740,7 @@ export namespace people_v1 {
      * @param {string=} params.pageToken Optional. A page token, received from a previous `ListConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnections` must match the call that provided the page token.
      * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      * @param {string} params.resourceName Required. The resource name to return connections for. Only `people/me` is valid.
      * @param {string=} params.sortOrder Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
@@ -4853,7 +4853,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      */
     requestSyncToken?: boolean;
     /**
