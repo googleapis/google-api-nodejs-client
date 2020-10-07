@@ -3139,6 +3139,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "programmablesearchelement:v1",
+      "name": "programmablesearchelement",
+      "version": "v1",
+      "title": "Programmable Search Element Paid API",
+      "description": "Used for quota management and billing of Programmable Search Element queries",
+      "discoveryRestUrl": "https://programmablesearchelement.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/custom-search/v1/introduction",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "pubsub:v1beta1a",
       "name": "pubsub",
       "version": "v1beta1a",
