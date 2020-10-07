@@ -1743,7 +1743,7 @@ export namespace cloudsearch_v1 {
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     facetOptions?: Schema$FacetOptions[];
     /**
-     * Maximum number of search results to return in one page. Valid values are between 1 and 100, inclusive. Default value is 10.
+     * Maximum number of search results to return in one page. Valid values are between 1 and 100, inclusive. Default value is 10. Minimum value is 50 when results beyond 2000 are requested.
      */
     pageSize?: number | null;
     /**
