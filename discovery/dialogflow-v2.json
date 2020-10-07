@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201006",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata": {
@@ -3188,6 +3188,20 @@
         "agentUri": {
           "description": "The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with \"gs://\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ImportDocumentsResponse": {
+      "description": "Response message for Documents.ImportDocuments.",
+      "id": "GoogleCloudDialogflowV2ImportDocumentsResponse",
+      "properties": {
+        "warnings": {
+          "description": "Includes details about skipped documents or any other warnings.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4617,7 +4631,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SentimentAnalysisResult": {
-      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
+      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
       "id": "GoogleCloudDialogflowV2SentimentAnalysisResult",
       "properties": {
         "queryTextSentiment": {
@@ -5118,6 +5132,20 @@
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ImportDocumentsResponse": {
+      "description": "Response message for Documents.ImportDocuments.",
+      "id": "GoogleCloudDialogflowV2beta1ImportDocumentsResponse",
+      "properties": {
+        "warnings": {
+          "description": "Includes details about skipped documents or any other warnings.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6545,7 +6573,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1SentimentAnalysisResult": {
-      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
+      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
       "id": "GoogleCloudDialogflowV2beta1SentimentAnalysisResult",
       "properties": {
         "queryTextSentiment": {
@@ -6724,17 +6752,6 @@
         },
         "source": {
           "description": "Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata": {
-      "description": "Metadata associated with the long running operation for Versions.CreateVersion.",
-      "id": "GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata",
-      "properties": {
-        "version": {
-          "description": "Name of the created version. Format: `projects//locations//agents//flows//versions/`.",
           "type": "string"
         }
       },
