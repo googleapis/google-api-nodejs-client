@@ -1054,6 +1054,15 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Instructs the speech recognizer on how to process the audio content.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1InputAudioConfig {
@@ -2344,7 +2353,7 @@ export namespace dialogflow_v2beta1 {
     analyzeQueryTextSentiment?: boolean | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     /**
@@ -2681,6 +2690,15 @@ export namespace dialogflow_v2beta1 {
      * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`.
      */
     agentUri?: string | null;
+  }
+  /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
   }
   /**
    * An intent categorizes an end-user&#39;s intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
@@ -3465,7 +3483,7 @@ export namespace dialogflow_v2beta1 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -3543,15 +3561,6 @@ export namespace dialogflow_v2beta1 {
      * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
-  }
-  /**
-   * Metadata associated with the long running operation for Versions.CreateVersion.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata {
-    /**
-     * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
-     */
-    version?: string | null;
   }
   /**
    * The response message for Agents.ExportAgent.
@@ -11330,6 +11339,8 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.list({
+     *     // The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -11355,6 +11366,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
      * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 10 and at most 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The project to list of knowledge bases for. Format: `projects/`.
@@ -11664,6 +11676,10 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Params$Resource$Projects$Agent$Knowledgebases$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -12190,6 +12206,8 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.list({
+     *     // The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -12215,6 +12233,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
      * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 10 and at most 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The knowledge base to list all documents for. Format: `projects//knowledgeBases/`.
@@ -12670,6 +12689,10 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -15224,6 +15247,8 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.list({
+     *     // The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -15249,6 +15274,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
      * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 10 and at most 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The project to list of knowledge bases for. Format: `projects/`.
@@ -15558,6 +15584,10 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Params$Resource$Projects$Knowledgebases$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -16084,6 +16114,8 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.list({
+     *     // The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -16109,6 +16141,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
      * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 10 and at most 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The knowledge base to list all documents for. Format: `projects//knowledgeBases/`.
@@ -16564,6 +16597,10 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Params$Resource$Projects$Knowledgebases$Documents$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
