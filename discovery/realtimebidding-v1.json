@@ -593,28 +593,9 @@
       }
     }
   },
-  "revision": "20200930",
+  "revision": "20201006",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
-    "AdTechnologyProviders": {
-      "description": "Detected ad technology provider information.",
-      "id": "AdTechnologyProviders",
-      "properties": {
-        "detectedProviderIds": {
-          "description": "The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider. If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the [Google bid protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto), and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "hasUnidentifiedProvider": {
-          "description": "Whether the creative contains an unidentified ad technology provider. If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "AdvertiserAndBrand": {
       "description": "Detected advertiser and brand information.",
       "id": "AdvertiserAndBrand",
@@ -877,10 +858,6 @@
       "description": "Top level status and detected attributes of a creative.",
       "id": "CreativeServingDecision",
       "properties": {
-        "adTechnologyProviders": {
-          "$ref": "AdTechnologyProviders",
-          "description": "The detected ad technology providers."
-        },
         "chinaServingStatus": {
           "$ref": "ServingStatus",
           "description": "The serving status of this creative in China. When approved or disapproved, this status applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction."
