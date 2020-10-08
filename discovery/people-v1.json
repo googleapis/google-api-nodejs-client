@@ -997,7 +997,7 @@
       }
     }
   },
-  "revision": "20201004",
+  "revision": "20201006",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -2391,7 +2391,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Google+ Page.](http://www.google.com/+/brands/)"
+            "[Currents Page.](https://gsuite.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2500,7 +2500,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Google+ Page.](http://www.google.com/+/brands/)"
+            "[Currents Page.](https://gsuite.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2517,7 +2517,7 @@
             "enumDescriptions": [
               "The user type is not known.",
               "The user is a Google user.",
-              "The user is a Google+ user.",
+              "The user is a Currents user.",
               "The user is a G Suite user."
             ],
             "type": "string"
@@ -2835,7 +2835,7 @@
           "description": "Metadata about the URL."
         },
         "type": {
-          "description": "The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Google+ application. * `other`",
+          "description": "The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Currents application. * `other`",
           "type": "string"
         },
         "value": {
