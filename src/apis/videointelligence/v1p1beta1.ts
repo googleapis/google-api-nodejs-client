@@ -223,6 +223,23 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceAnnotation {
+    /**
+     * All video frames where a face was detected.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1beta2_FaceFrame[];
+    /**
+     * All video segments where a face was detected.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1beta2_FaceSegment[];
+    /**
+     * Thumbnail of a representative face view (in JPEG format).
+     */
+    thumbnail?: string | null;
+  }
+  /**
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation {
@@ -230,6 +247,28 @@ export namespace videointelligence_v1p1beta1 {
      * Feature version.
      */
     version?: string | null;
+  }
+  /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceFrame {
+    /**
+     * Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.
+     */
+    normalizedBoundingBoxes?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox[];
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * Video segment level annotation results for face detection.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceSegment {
+    /**
+     * Video segment where a face was detected.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
   }
   /**
    * Label annotation.
@@ -558,6 +597,10 @@ export namespace videointelligence_v1p1beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation;
     /**
+     * Deprecated. Please use `face_detection_annotations` instead.
+     */
+    faceAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_FaceAnnotation[];
+    /**
      * Face detection annotations.
      */
     faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation[];
@@ -786,6 +829,23 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation {
+    /**
+     * All video frames where a face was detected.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceFrame[];
+    /**
+     * All video segments where a face was detected.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment[];
+    /**
+     * Thumbnail of a representative face view (in JPEG format).
+     */
+    thumbnail?: string | null;
+  }
+  /**
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
@@ -810,6 +870,28 @@ export namespace videointelligence_v1p1beta1 {
      * Model to use for face detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
     model?: string | null;
+  }
+  /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceFrame {
+    /**
+     * Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.
+     */
+    normalizedBoundingBoxes?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox[];
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * Video segment level annotation results for face detection.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment {
+    /**
+     * Video segment where a face was detected.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -1261,6 +1343,10 @@ export namespace videointelligence_v1p1beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
     /**
+     * Deprecated. Please use `face_detection_annotations` instead.
+     */
+    faceAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation[];
+    /**
      * Face detection annotations.
      */
     faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
@@ -1492,6 +1578,23 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation {
+    /**
+     * All video frames where a face was detected.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceFrame[];
+    /**
+     * All video segments where a face was detected.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceSegment[];
+    /**
+     * Thumbnail of a representative face view (in JPEG format).
+     */
+    thumbnail?: string | null;
+  }
+  /**
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation {
@@ -1499,6 +1602,28 @@ export namespace videointelligence_v1p1beta1 {
      * Feature version.
      */
     version?: string | null;
+  }
+  /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceFrame {
+    /**
+     * Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.
+     */
+    normalizedBoundingBoxes?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox[];
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * Video segment level annotation results for face detection.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceSegment {
+    /**
+     * Video segment where a face was detected.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -1827,6 +1952,10 @@ export namespace videointelligence_v1p1beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation;
     /**
+     * Deprecated. Please use `face_detection_annotations` instead.
+     */
+    faceAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation[];
+    /**
      * Face detection annotations.
      */
     faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation[];
@@ -2060,6 +2189,23 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation {
+    /**
+     * All video frames where a face was detected.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceFrame[];
+    /**
+     * All video segments where a face was detected.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceSegment[];
+    /**
+     * Thumbnail of a representative face view (in JPEG format).
+     */
+    thumbnail?: string | null;
+  }
+  /**
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
@@ -2067,6 +2213,28 @@ export namespace videointelligence_v1p1beta1 {
      * Feature version.
      */
     version?: string | null;
+  }
+  /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceFrame {
+    /**
+     * Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.
+     */
+    normalizedBoundingBoxes?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox[];
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * Video segment level annotation results for face detection.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceSegment {
+    /**
+     * Video segment where a face was detected.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -2295,13 +2463,17 @@ export namespace videointelligence_v1p1beta1 {
     error?: Schema$GoogleRpc_Status;
   }
   /**
-   * Streaming annotation results corresponding to a portion of the video that is currently being processed.
+   * Streaming annotation results corresponding to a portion of the video that is currently being processed. Only ONE type of annotation will be specified in the response.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults {
     /**
      * Explicit content annotation results.
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation;
+    /**
+     * Timestamp of the processed frame in microseconds.
+     */
+    frameTimestamp?: string | null;
     /**
      * Label annotation results.
      */
@@ -2449,6 +2621,10 @@ export namespace videointelligence_v1p1beta1 {
      * Explicit content annotation.
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation;
+    /**
+     * Deprecated. Please use `face_detection_annotations` instead.
+     */
+    faceAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation[];
     /**
      * Face detection annotations.
      */
@@ -2640,6 +2816,23 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceAnnotation {
+    /**
+     * All video frames where a face was detected.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1_FaceFrame[];
+    /**
+     * All video segments where a face was detected.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1_FaceSegment[];
+    /**
+     * Thumbnail of a representative face view (in JPEG format).
+     */
+    thumbnail?: string | null;
+  }
+  /**
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation {
@@ -2647,6 +2840,28 @@ export namespace videointelligence_v1p1beta1 {
      * Feature version.
      */
     version?: string | null;
+  }
+  /**
+   * Deprecated. No effect.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceFrame {
+    /**
+     * Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.
+     */
+    normalizedBoundingBoxes?: Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingBox[];
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * Video segment level annotation results for face detection.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_FaceSegment {
+    /**
+     * Video segment where a face was detected.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -2974,6 +3189,10 @@ export namespace videointelligence_v1p1beta1 {
      * Explicit content annotation.
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation;
+    /**
+     * Deprecated. Please use `face_detection_annotations` instead.
+     */
+    faceAnnotations?: Schema$GoogleCloudVideointelligenceV1_FaceAnnotation[];
     /**
      * Face detection annotations.
      */

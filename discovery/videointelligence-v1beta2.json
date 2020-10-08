@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20200921",
+  "revision": "20201002",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -268,6 +268,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudVideointelligenceV1_FaceAnnotation": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1_FaceAnnotation",
+      "properties": {
+        "frames": {
+          "description": "All video frames where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1_FaceFrame"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "All video segments where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1_FaceSegment"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "description": "Thumbnail of a representative face view (in JPEG format).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudVideointelligenceV1_FaceDetectionAnnotation": {
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1_FaceDetectionAnnotation",
@@ -275,6 +301,36 @@
         "version": {
           "description": "Feature version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1_FaceFrame": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1_FaceFrame",
+      "properties": {
+        "normalizedBoundingBoxes": {
+          "description": "Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1_NormalizedBoundingBox"
+          },
+          "type": "array"
+        },
+        "timeOffset": {
+          "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1_FaceSegment": {
+      "description": "Video segment level annotation results for face detection.",
+      "id": "GoogleCloudVideointelligenceV1_FaceSegment",
+      "properties": {
+        "segment": {
+          "$ref": "GoogleCloudVideointelligenceV1_VideoSegment",
+          "description": "Video segment where a face was detected."
         }
       },
       "type": "object"
@@ -736,6 +792,13 @@
           "$ref": "GoogleCloudVideointelligenceV1_ExplicitContentAnnotation",
           "description": "Explicit content annotation."
         },
+        "faceAnnotations": {
+          "description": "Deprecated. Please use `face_detection_annotations` instead.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1_FaceAnnotation"
+          },
+          "type": "array"
+        },
         "faceDetectionAnnotations": {
           "description": "Face detection annotations.",
           "items": {
@@ -1088,6 +1151,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudVideointelligenceV1beta2_FaceAnnotation": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation",
+      "properties": {
+        "frames": {
+          "description": "All video frames where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1beta2_FaceFrame"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "All video segments where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1beta2_FaceSegment"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "description": "Thumbnail of a representative face view (in JPEG format).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation": {
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation",
@@ -1114,6 +1203,36 @@
         "model": {
           "description": "Model to use for face detection. Supported values: \"builtin/stable\" (the default if unset) and \"builtin/latest\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1beta2_FaceFrame": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1beta2_FaceFrame",
+      "properties": {
+        "normalizedBoundingBoxes": {
+          "description": "Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox"
+          },
+          "type": "array"
+        },
+        "timeOffset": {
+          "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1beta2_FaceSegment": {
+      "description": "Video segment level annotation results for face detection.",
+      "id": "GoogleCloudVideointelligenceV1beta2_FaceSegment",
+      "properties": {
+        "segment": {
+          "$ref": "GoogleCloudVideointelligenceV1beta2_VideoSegment",
+          "description": "Video segment where a face was detected."
         }
       },
       "type": "object"
@@ -1741,6 +1860,13 @@
           "$ref": "GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation",
           "description": "Explicit content annotation."
         },
+        "faceAnnotations": {
+          "description": "Deprecated. Please use `face_detection_annotations` instead.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation"
+          },
+          "type": "array"
+        },
         "faceDetectionAnnotations": {
           "description": "Face detection annotations.",
           "items": {
@@ -2069,6 +2195,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation",
+      "properties": {
+        "frames": {
+          "description": "All video frames where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p1beta1_FaceFrame"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "All video segments where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p1beta1_FaceSegment"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "description": "Thumbnail of a representative face view (in JPEG format).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation": {
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation",
@@ -2076,6 +2228,36 @@
         "version": {
           "description": "Feature version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p1beta1_FaceFrame": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p1beta1_FaceFrame",
+      "properties": {
+        "normalizedBoundingBoxes": {
+          "description": "Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox"
+          },
+          "type": "array"
+        },
+        "timeOffset": {
+          "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p1beta1_FaceSegment": {
+      "description": "Video segment level annotation results for face detection.",
+      "id": "GoogleCloudVideointelligenceV1p1beta1_FaceSegment",
+      "properties": {
+        "segment": {
+          "$ref": "GoogleCloudVideointelligenceV1p1beta1_VideoSegment",
+          "description": "Video segment where a face was detected."
         }
       },
       "type": "object"
@@ -2537,6 +2719,13 @@
           "$ref": "GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation",
           "description": "Explicit content annotation."
         },
+        "faceAnnotations": {
+          "description": "Deprecated. Please use `face_detection_annotations` instead.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation"
+          },
+          "type": "array"
+        },
         "faceDetectionAnnotations": {
           "description": "Face detection annotations.",
           "items": {
@@ -2819,6 +3008,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation",
+      "properties": {
+        "frames": {
+          "description": "All video frames where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p2beta1_FaceFrame"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "All video segments where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p2beta1_FaceSegment"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "description": "Thumbnail of a representative face view (in JPEG format).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation": {
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation",
@@ -2826,6 +3041,36 @@
         "version": {
           "description": "Feature version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p2beta1_FaceFrame": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p2beta1_FaceFrame",
+      "properties": {
+        "normalizedBoundingBoxes": {
+          "description": "Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox"
+          },
+          "type": "array"
+        },
+        "timeOffset": {
+          "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p2beta1_FaceSegment": {
+      "description": "Video segment level annotation results for face detection.",
+      "id": "GoogleCloudVideointelligenceV1p2beta1_FaceSegment",
+      "properties": {
+        "segment": {
+          "$ref": "GoogleCloudVideointelligenceV1p2beta1_VideoSegment",
+          "description": "Video segment where a face was detected."
         }
       },
       "type": "object"
@@ -3287,6 +3532,13 @@
           "$ref": "GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation",
           "description": "Explicit content annotation."
         },
+        "faceAnnotations": {
+          "description": "Deprecated. Please use `face_detection_annotations` instead.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation"
+          },
+          "type": "array"
+        },
         "faceDetectionAnnotations": {
           "description": "Face detection annotations.",
           "items": {
@@ -3624,6 +3876,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation",
+      "properties": {
+        "frames": {
+          "description": "All video frames where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p3beta1_FaceFrame"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "All video segments where a face was detected.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p3beta1_FaceSegment"
+          },
+          "type": "array"
+        },
+        "thumbnail": {
+          "description": "Thumbnail of a representative face view (in JPEG format).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation": {
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation",
@@ -3631,6 +3909,36 @@
         "version": {
           "description": "Feature version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p3beta1_FaceFrame": {
+      "description": "Deprecated. No effect.",
+      "id": "GoogleCloudVideointelligenceV1p3beta1_FaceFrame",
+      "properties": {
+        "normalizedBoundingBoxes": {
+          "description": "Normalized Bounding boxes in a frame. There can be more than one boxes if the same face is detected in multiple locations within the current frame.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox"
+          },
+          "type": "array"
+        },
+        "timeOffset": {
+          "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p3beta1_FaceSegment": {
+      "description": "Video segment level annotation results for face detection.",
+      "id": "GoogleCloudVideointelligenceV1p3beta1_FaceSegment",
+      "properties": {
+        "segment": {
+          "$ref": "GoogleCloudVideointelligenceV1p3beta1_VideoSegment",
+          "description": "Video segment where a face was detected."
         }
       },
       "type": "object"
@@ -3937,12 +4245,17 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults": {
-      "description": "Streaming annotation results corresponding to a portion of the video that is currently being processed.",
+      "description": "Streaming annotation results corresponding to a portion of the video that is currently being processed. Only ONE type of annotation will be specified in the response.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults",
       "properties": {
         "explicitAnnotation": {
           "$ref": "GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation",
           "description": "Explicit content annotation results."
+        },
+        "frameTimestamp": {
+          "description": "Timestamp of the processed frame in microseconds.",
+          "format": "google-duration",
+          "type": "string"
         },
         "labelAnnotations": {
           "description": "Label annotation results.",
@@ -4164,6 +4477,13 @@
         "explicitAnnotation": {
           "$ref": "GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation",
           "description": "Explicit content annotation."
+        },
+        "faceAnnotations": {
+          "description": "Deprecated. Please use `face_detection_annotations` instead.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation"
+          },
+          "type": "array"
         },
         "faceDetectionAnnotations": {
           "description": "Face detection annotations.",
