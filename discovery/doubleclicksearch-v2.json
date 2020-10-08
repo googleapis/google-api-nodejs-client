@@ -9,8 +9,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/doubleclicksearch/v2",
+  "baseUrl": "https://doubleclicksearch.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Doubleclicksearch",
   "description": "The Search Ads 360 API allows developers to automate uploading conversions and downloading reports from Search Ads 360.",
   "discoveryVersion": "v1",
@@ -21,7 +21,7 @@
   },
   "id": "doubleclicksearch:v2",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://doubleclicksearch.mtls.googleapis.com/",
   "name": "doubleclicksearch",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -399,8 +399,8 @@
       }
     }
   },
-  "revision": "20200721",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200929",
+  "rootUrl": "https://doubleclicksearch.googleapis.com/",
   "schemas": {
     "Availability": {
       "description": "A message containing availability data relevant to DoubleClick Search.",

@@ -15,7 +15,7 @@
   "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/ad-exchange/buyer-rest",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/jeeKbeKt3C57J6G4NBTg4KfprYo\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/jgvyhwo-2198NR_j9usHx-LJ-6E\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
     "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
@@ -1255,7 +1255,7 @@
       }
     }
   },
-  "revision": "20191204",
+  "revision": "20201004",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1601,7 +1601,7 @@
               "adexchangebuyer.creatives.insert"
             ]
           },
-          "description": "The name of the company being advertised in the creative. The value provided must exist in the advertisers.txt file.",
+          "description": "The name of the company being advertised in the creative. A list of advertisers is provided in the advertisers.txt file.",
           "type": "string"
         },
         "agencyId": {
@@ -2534,6 +2534,9 @@
           "format": "int64",
           "type": "string"
         },
+        "makegoodRequestedReason": {
+          "type": "string"
+        },
         "name": {
           "description": "The name of the deal. (updatable)",
           "type": "string"
@@ -2656,6 +2659,18 @@
         "timestampMs": {
           "description": "The timestamp (ms since epoch) that this note was created. (readonly)",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MobileApplication": {
+      "id": "MobileApplication",
+      "properties": {
+        "appStore": {
+          "type": "string"
+        },
+        "externalAppId": {
           "type": "string"
         }
       },
@@ -3425,6 +3440,21 @@
           "description": "Programmatic contact for the publisher profile.",
           "type": "string"
         },
+        "publisherAppIds": {
+          "description": "The list of app IDs represented in this pubisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "publisherApps": {
+          "description": "The list of apps represented in this pubisher profile. Empty if this is a parent profile.",
+          "items": {
+            "$ref": "MobileApplication"
+          },
+          "type": "array"
+        },
         "publisherDomains": {
           "description": "The list of domains represented in this publisher profile. Empty if this is a parent profile.",
           "items": {
@@ -3550,6 +3580,9 @@
           "format": "int64",
           "type": "string"
         },
+        "requestPlatformTargetingValue": {
+          "$ref": "TargetingValueRequestPlatformTargeting"
+        },
         "stringValue": {
           "description": "The string value to exclude/include.",
           "type": "string"
@@ -3650,6 +3683,18 @@
       "id": "TargetingValueDemogGenderCriteria",
       "properties": {
         "demogGenderCriteriaIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TargetingValueRequestPlatformTargeting": {
+      "id": "TargetingValueRequestPlatformTargeting",
+      "properties": {
+        "requestPlatforms": {
           "items": {
             "type": "string"
           },

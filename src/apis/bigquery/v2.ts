@@ -739,6 +739,10 @@ export namespace bigquery_v2 {
      */
     location?: string | null;
     /**
+     * [Output-only] Reserved for future use.
+     */
+    satisfiesPZS?: boolean | null;
+    /**
      * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
     selfLink?: string | null;
@@ -1181,11 +1185,15 @@ export namespace bigquery_v2 {
   }
   export interface Schema$HivePartitioningOptions {
     /**
-     * [Optional, Trusted Tester] When set, what mode of hive partitioning to use when reading data. Two modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.
+     * [Optional] When set, what mode of hive partitioning to use when reading data. The following modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. (3) CUSTOM: partition key schema is encoded in the source URI prefix. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.
      */
     mode?: string | null;
     /**
-     * [Optional, Trusted Tester] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
+     * [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. Note that this field should only be true when creating a permanent external table or querying a temporary external table. Hive-partitioned loads with requirePartitionFilter explicitly set to true will fail.
+     */
+    requirePartitionFilter?: boolean | null;
+    /**
+     * [Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
      */
     sourceUriPrefix?: string | null;
   }
@@ -1307,7 +1315,7 @@ export namespace bigquery_v2 {
      */
     compression?: string | null;
     /**
-     * [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.
+     * [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON, PARQUET or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.
      */
     destinationFormat?: string | null;
     /**
@@ -1360,6 +1368,10 @@ export namespace bigquery_v2 {
      * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
+    /**
+     * [Trusted Tester] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. For example: suppose decimal_target_type = [&quot;NUMERIC&quot;, &quot;BIGNUMERIC&quot;]. Then if (precision,scale) is: * (38,9) -&gt; NUMERIC; * (39,9) -&gt; BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -&gt; BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -&gt; BIGNUMERIC; * (77,38) -&gt; BIGNUMERIC (error if value exeeds supported range). For duplicated types in this field, only one will be considered and the rest will be ignored. The order of the types in this field is ignored. For example, [&quot;BIGNUMERIC&quot;, &quot;NUMERIC&quot;] is the same as [&quot;NUMERIC&quot;, &quot;BIGNUMERIC&quot;] and NUMERIC always takes precedence over BIGNUMERIC.
+     */
+    decimalTargetTypes?: string[] | null;
     /**
      * Custom encryption configuration (e.g., Cloud KMS keys).
      */
@@ -1684,6 +1696,10 @@ export namespace bigquery_v2 {
      * [Output-only] Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
+    /**
+     * [Output-only] [Alpha] Information of the multi-statement transaction if this job is part of one.
+     */
+    transactionInfoTemplate?: Schema$TransactionInfo;
   }
   export interface Schema$JobStatistics2 {
     /**
@@ -2777,7 +2793,7 @@ export namespace bigquery_v2 {
     field?: string | null;
     requirePartitionFilter?: boolean | null;
     /**
-     * [Required] The only type supported is DAY, which will generate one partition per day.
+     * [Required] The supported types are DAY, HOUR, MONTH, and YEAR, which will generate one partition per day, hour, month, and year, respectively. When the type is not specified, the default behavior is DAY.
      */
     type?: string | null;
   }
@@ -2979,6 +2995,12 @@ export namespace bigquery_v2 {
      * Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
+  }
+  export interface Schema$TransactionInfo {
+    /**
+     * [Output-only] // [Alpha] Id of the transaction.
+     */
+    transactionId?: string | null;
   }
   /**
    * This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of Standard SQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
@@ -3200,6 +3222,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink"
      *   // }
      * }
@@ -3347,6 +3370,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink"
      *       // }
      *     },
@@ -3369,6 +3393,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink"
      *   // }
      * }
@@ -3667,6 +3692,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink"
      *       // }
      *     },
@@ -3689,6 +3715,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink"
      *   // }
      * }
@@ -3839,6 +3866,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink"
      *       // }
      *     },
@@ -3861,6 +3889,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink"
      *   // }
      * }

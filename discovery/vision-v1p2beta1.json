@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200921",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -1673,7 +1673,9 @@
             "FOREHEAD_GLABELLA",
             "CHIN_GNATHION",
             "CHIN_LEFT_GONION",
-            "CHIN_RIGHT_GONION"
+            "CHIN_RIGHT_GONION",
+            "LEFT_CHEEK_CENTER",
+            "RIGHT_CHEEK_CENTER"
           ],
           "enumDescriptions": [
             "Unknown face landmark detected. Should not be filled.",
@@ -1710,7 +1712,9 @@
             "Forehead glabella.",
             "Chin gnathion.",
             "Chin left gonion.",
-            "Chin right gonion."
+            "Chin right gonion.",
+            "Left cheek center.",
+            "Right cheek center."
           ],
           "type": "string"
         }
@@ -3279,7 +3283,9 @@
             "FOREHEAD_GLABELLA",
             "CHIN_GNATHION",
             "CHIN_LEFT_GONION",
-            "CHIN_RIGHT_GONION"
+            "CHIN_RIGHT_GONION",
+            "LEFT_CHEEK_CENTER",
+            "RIGHT_CHEEK_CENTER"
           ],
           "enumDescriptions": [
             "Unknown face landmark detected. Should not be filled.",
@@ -3316,7 +3322,9 @@
             "Forehead glabella.",
             "Chin gnathion.",
             "Chin left gonion.",
-            "Chin right gonion."
+            "Chin right gonion.",
+            "Left cheek center.",
+            "Right cheek center."
           ],
           "type": "string"
         }
@@ -4886,7 +4894,9 @@
             "FOREHEAD_GLABELLA",
             "CHIN_GNATHION",
             "CHIN_LEFT_GONION",
-            "CHIN_RIGHT_GONION"
+            "CHIN_RIGHT_GONION",
+            "LEFT_CHEEK_CENTER",
+            "RIGHT_CHEEK_CENTER"
           ],
           "enumDescriptions": [
             "Unknown face landmark detected. Should not be filled.",
@@ -4923,7 +4933,9 @@
             "Forehead glabella.",
             "Chin gnathion.",
             "Chin left gonion.",
-            "Chin right gonion."
+            "Chin right gonion.",
+            "Left cheek center.",
+            "Right cheek center."
           ],
           "type": "string"
         }
@@ -6424,7 +6436,9 @@
             "FOREHEAD_GLABELLA",
             "CHIN_GNATHION",
             "CHIN_LEFT_GONION",
-            "CHIN_RIGHT_GONION"
+            "CHIN_RIGHT_GONION",
+            "LEFT_CHEEK_CENTER",
+            "RIGHT_CHEEK_CENTER"
           ],
           "enumDescriptions": [
             "Unknown face landmark detected. Should not be filled.",
@@ -6461,7 +6475,9 @@
             "Forehead glabella.",
             "Chin gnathion.",
             "Chin left gonion.",
-            "Chin right gonion."
+            "Chin right gonion.",
+            "Left cheek center.",
+            "Right cheek center."
           ],
           "type": "string"
         }
@@ -7490,7 +7506,9 @@
             "FOREHEAD_GLABELLA",
             "CHIN_GNATHION",
             "CHIN_LEFT_GONION",
-            "CHIN_RIGHT_GONION"
+            "CHIN_RIGHT_GONION",
+            "LEFT_CHEEK_CENTER",
+            "RIGHT_CHEEK_CENTER"
           ],
           "enumDescriptions": [
             "Unknown face landmark detected. Should not be filled.",
@@ -7527,7 +7545,9 @@
             "Forehead glabella.",
             "Chin gnathion.",
             "Chin left gonion.",
-            "Chin right gonion."
+            "Chin right gonion.",
+            "Left cheek center.",
+            "Right cheek center."
           ],
           "type": "string"
         }

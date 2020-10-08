@@ -159,6 +159,11 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
+                },
+                "tagPartner": {
+                  "description": "Tag partner to include in the ad code snippet.",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "accounts/{accountId}/adclients/{adClientId}/adcode",
@@ -1654,7 +1659,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20201002",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {

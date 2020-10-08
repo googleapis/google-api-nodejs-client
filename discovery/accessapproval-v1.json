@@ -167,7 +167,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the settings. Format is one of: 1. \"projects/{project_id}/accessApprovalSettings\" 2. \"folders/{folder_id}/accessApprovalSettings\" 3. \"organizations/{organization_id}/accessApprovalSettings\" ",
+              "description": "The resource name of the settings. Format is one of: * \"projects/{project}/accessApprovalSettings\" * \"folders/{folder}/accessApprovalSettings\" * \"organizations/{organization}/accessApprovalSettings\"",
               "location": "path",
               "pattern": "^folders/[^/]+/accessApprovalSettings$",
               "required": true,
@@ -286,7 +286,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests. ",
+                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.",
                   "location": "query",
                   "type": "string"
                 },
@@ -302,7 +302,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent resource. This may be \"projects/{project_id}\", \"folders/{folder_id}\", or \"organizations/{organization_id}\".",
+                  "description": "The parent resource. This may be \"projects/{project}\", \"folders/{folder}\", or \"organizations/{organization}\".",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -383,7 +383,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the settings. Format is one of: 1. \"projects/{project_id}/accessApprovalSettings\" 2. \"folders/{folder_id}/accessApprovalSettings\" 3. \"organizations/{organization_id}/accessApprovalSettings\" ",
+              "description": "The resource name of the settings. Format is one of: * \"projects/{project}/accessApprovalSettings\" * \"folders/{folder}/accessApprovalSettings\" * \"organizations/{organization}/accessApprovalSettings\"",
               "location": "path",
               "pattern": "^organizations/[^/]+/accessApprovalSettings$",
               "required": true,
@@ -502,7 +502,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests. ",
+                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.",
                   "location": "query",
                   "type": "string"
                 },
@@ -518,7 +518,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent resource. This may be \"projects/{project_id}\", \"folders/{folder_id}\", or \"organizations/{organization_id}\".",
+                  "description": "The parent resource. This may be \"projects/{project}\", \"folders/{folder}\", or \"organizations/{organization}\".",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -599,7 +599,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the settings. Format is one of: 1. \"projects/{project_id}/accessApprovalSettings\" 2. \"folders/{folder_id}/accessApprovalSettings\" 3. \"organizations/{organization_id}/accessApprovalSettings\" ",
+              "description": "The resource name of the settings. Format is one of: * \"projects/{project}/accessApprovalSettings\" * \"folders/{folder}/accessApprovalSettings\" * \"organizations/{organization}/accessApprovalSettings\"",
               "location": "path",
               "pattern": "^projects/[^/]+/accessApprovalSettings$",
               "required": true,
@@ -718,7 +718,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: 1. [not set]: Requests that are pending or have active approvals. 2. ALL: All requests. 3. PENDING: Only pending requests. 4. ACTIVE: Only active (i.e. currently approved) requests. 5. DISMISSED: Only dismissed (including expired) requests. 6. HISTORY: Active and dismissed (including expired) requests. ",
+                  "description": "A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.",
                   "location": "query",
                   "type": "string"
                 },
@@ -734,7 +734,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent resource. This may be \"projects/{project_id}\", \"folders/{folder_id}\", or \"organizations/{organization_id}\".",
+                  "description": "The parent resource. This may be \"projects/{project}\", \"folders/{folder}\", or \"organizations/{organization}\".",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -754,7 +754,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20200930",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalSettings": {
@@ -774,7 +774,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The resource name of the settings. Format is one of: 1. \"projects/{project_id}/accessApprovalSettings\" 2. \"folders/{folder_id}/accessApprovalSettings\" 3. \"organizations/{organization_id}/accessApprovalSettings\" ",
+          "description": "The resource name of the settings. Format is one of: * \"projects/{project}/accessApprovalSettings\" * \"folders/{folder}/accessApprovalSettings\" * \"organizations/{organization}/accessApprovalSettings\"",
           "type": "string"
         },
         "notificationEmails": {
@@ -792,11 +792,11 @@
       "id": "AccessLocations",
       "properties": {
         "principalOfficeCountry": {
-          "description": "The \"home office\" location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as \"US\", \"DE\" or \"GB\" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: 1. ASI: Asia 2. EUR: Europe 3. OCE: Oceania 4. AFR: Africa 5. NAM: North America 6. SAM: South America 7. ANT: Antarctica 8. ANY: Any location ",
+          "description": "The \"home office\" location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as \"US\", \"DE\" or \"GB\" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location",
           "type": "string"
         },
         "principalPhysicalLocationCountry": {
-          "description": "Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as \"US\", \"DE\" or \"GB\" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: 1. ASI: Asia 2. EUR: Europe 3. OCE: Oceania 4. AFR: Africa 5. NAM: North America 6. SAM: South America 7. ANT: Antarctica 8. ANY: Any location ",
+          "description": "Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as \"US\", \"DE\" or \"GB\" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location",
           "type": "string"
         }
       },
@@ -819,7 +819,7 @@
           ],
           "enumDescriptions": [
             "Default value for proto, shouldn't be used.",
-            "Customer made a request or raised an issue that required the principal to access customer data. `detail` is of the form (\"#####\" is the issue ID): 1. \"Feedback Report: #####\" 2. \"Case Number: #####\" 3. \"Case ID: #####\" 4. \"E-PIN Reference: #####\" 5. \"Google-#####\" 6. \"T-#####\" ",
+            "Customer made a request or raised an issue that required the principal to access customer data. `detail` is of the form (\"#####\" is the issue ID): * \"Feedback Report: #####\" * \"Case Number: #####\" * \"Case ID: #####\" * \"E-PIN Reference: #####\" * \"Google-#####\" * \"T-#####\"",
             "The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage. Often this access is used to confirm that customers are not affected by a suspected service issue or to remediate a reversible system issue.",
             "Google initiated service for security, fraud, abuse, or compliance purposes."
           ],
@@ -841,7 +841,7 @@
           "description": "The request was dismissed."
         },
         "name": {
-          "description": "The resource name of the request. Format is \"{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}\".",
+          "description": "The resource name of the request. Format is \"{projects|folders|organizations}/{id}/approvalRequests/{approval_request}\".",
           "type": "string"
         },
         "requestTime": {
@@ -935,7 +935,7 @@
       "id": "EnrolledService",
       "properties": {
         "cloudProduct": {
-          "description": "The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): 1. all 2. appengine.googleapis.com 3. bigquery.googleapis.com 4. bigtable.googleapis.com 5. cloudkms.googleapis.com 6. compute.googleapis.com 7. dataflow.googleapis.com 8. iam.googleapis.com 9. pubsub.googleapis.com 10. storage.googleapis.com ",
+          "description": "The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * GA * App Engine * BigQuery * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Dataflow * Cloud Identity and Access Management * Cloud Pub/Sub * Cloud Storage * Persistent Disk Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * ga-only * appengine.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * cloudkms.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * iam.googleapis.com * pubsub.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all', 'ga-only', or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'GA', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. 'ga-only'/'GA' will only enroll the resource in products supported at 'GA' level. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services",
           "type": "string"
         },
         "enrollmentLevel": {

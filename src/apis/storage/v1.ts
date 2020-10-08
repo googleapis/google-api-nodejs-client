@@ -271,10 +271,6 @@ export namespace storage_v1 {
      * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won&#39;t be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
      */
     zoneAffinity?: string[] | null;
-    /**
-     * If set, objects placed in this bucket are required to be separated by disaster domain.
-     */
-    zoneSeparation?: boolean | null;
   }
   /**
    * An access-control entry.
@@ -647,7 +643,7 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
+     * Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
      */
     kmsKeyName?: string | null;
     /**
@@ -2197,8 +2193,7 @@ export namespace storage_v1 {
      *   //   "updated": "my_updated",
      *   //   "versioning": {},
      *   //   "website": {},
-     *   //   "zoneAffinity": [],
-     *   //   "zoneSeparation": false
+     *   //   "zoneAffinity": []
      *   // }
      * }
      *
@@ -2520,8 +2515,7 @@ export namespace storage_v1 {
      *       //   "updated": "my_updated",
      *       //   "versioning": {},
      *       //   "website": {},
-     *       //   "zoneAffinity": [],
-     *       //   "zoneSeparation": false
+     *       //   "zoneAffinity": []
      *       // }
      *     },
      *   });
@@ -2555,8 +2549,7 @@ export namespace storage_v1 {
      *   //   "updated": "my_updated",
      *   //   "versioning": {},
      *   //   "website": {},
-     *   //   "zoneAffinity": [],
-     *   //   "zoneSeparation": false
+     *   //   "zoneAffinity": []
      *   // }
      * }
      *
@@ -2878,8 +2871,7 @@ export namespace storage_v1 {
      *   //   "updated": "my_updated",
      *   //   "versioning": {},
      *   //   "website": {},
-     *   //   "zoneAffinity": [],
-     *   //   "zoneSeparation": false
+     *   //   "zoneAffinity": []
      *   // }
      * }
      *
@@ -3055,8 +3047,7 @@ export namespace storage_v1 {
      *       //   "updated": "my_updated",
      *       //   "versioning": {},
      *       //   "website": {},
-     *       //   "zoneAffinity": [],
-     *       //   "zoneSeparation": false
+     *       //   "zoneAffinity": []
      *       // }
      *     },
      *   });
@@ -3090,8 +3081,7 @@ export namespace storage_v1 {
      *   //   "updated": "my_updated",
      *   //   "versioning": {},
      *   //   "website": {},
-     *   //   "zoneAffinity": [],
-     *   //   "zoneSeparation": false
+     *   //   "zoneAffinity": []
      *   // }
      * }
      *
@@ -3582,8 +3572,7 @@ export namespace storage_v1 {
      *       //   "updated": "my_updated",
      *       //   "versioning": {},
      *       //   "website": {},
-     *       //   "zoneAffinity": [],
-     *       //   "zoneSeparation": false
+     *       //   "zoneAffinity": []
      *       // }
      *     },
      *   });
@@ -3617,8 +3606,7 @@ export namespace storage_v1 {
      *   //   "updated": "my_updated",
      *   //   "versioning": {},
      *   //   "website": {},
-     *   //   "zoneAffinity": [],
-     *   //   "zoneSeparation": false
+     *   //   "zoneAffinity": []
      *   // }
      * }
      *
@@ -7168,7 +7156,7 @@ export namespace storage_v1 {
      *     ifGenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
      *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      *     kmsKeyName: 'placeholder-value',
      *     // The project to be billed for this request if the target bucket is requester-pays bucket.
      *     provisionalUserProject: 'placeholder-value',
@@ -7238,7 +7226,7 @@ export namespace storage_v1 {
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.kmsKeyName Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ComposeRequest} params.requestBody Request body data
@@ -9765,7 +9753,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationMatch?: string;
     /**
-     * Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
+     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      */
     kmsKeyName?: string;
     /**

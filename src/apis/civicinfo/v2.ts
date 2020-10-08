@@ -177,6 +177,14 @@ export namespace civicinfo_v2 {
      */
     electionInfoUrl?: string | null;
     /**
+     * A last minute or emergency notification text provided by this administrative body.
+     */
+    electionNoticeText?: string | null;
+    /**
+     * A URL provided by this administrative body for additional information related to the last minute or emergency notification.
+     */
+    electionNoticeUrl?: string | null;
+    /**
      * The election officials for this election administrative body.
      */
     electionOfficials?: Schema$ElectionOfficial[];
@@ -575,11 +583,11 @@ export namespace civicinfo_v2 {
      */
     id?: string | null;
     /**
-     * Latitude of the location, in degrees north of the equator. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.
+     * Latitude of the location, in degrees north of the equator. Note this field may not be available for some locations.
      */
     latitude?: number | null;
     /**
-     * Longitude of the location, in degrees east of the Prime Meridian. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.
+     * Longitude of the location, in degrees east of the Prime Meridian. Note this field may not be available for some locations.
      */
     longitude?: number | null;
     /**

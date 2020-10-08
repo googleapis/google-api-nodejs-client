@@ -301,7 +301,7 @@
       }
     }
   },
-  "revision": "20200804",
+  "revision": "20200930",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -348,16 +348,6 @@
         },
         "flags": {
           "description": "The set of flags to apply to this action.",
-          "enumDescriptions": [
-            "Unspecified flag.",
-            "Normally, a non-zero exit status causes the pipeline to fail. This flag allows execution of other actions to continue instead.",
-            "This flag allows an action to continue running in the background while executing subsequent actions. This is useful to provide services to other actions (or to provide debugging support tools like SSH servers).",
-            "By default, after an action fails, no further actions are run. This flag indicates that this action must be run even if the pipeline has already failed. This is useful for actions that copy output files off of the VM or for debugging. Note that no actions will be run if image prefetching fails.",
-            "Enable access to the FUSE device for this action. Filesystems can then be mounted into disks shared with other actions. The other actions do not need the `ENABLE_FUSE` flag to access the mounted filesystem. This has the effect of causing the container to be executed with `CAP_SYS_ADMIN` and exposes `/dev/fuse` to the container, so use it only for containers you trust.",
-            "Exposes all ports specified by `EXPOSE` statements in the container. To discover the host side port numbers, consult the `ACTION_STARTED` event in the operation metadata.",
-            "All container images are typically downloaded before any actions are executed. This helps prevent typos in URIs or issues like lack of disk space from wasting large amounts of compute resources. If set, this flag prevents the worker from downloading the image until just before the action is executed.",
-            "A small portion of the container's standard error stream is typically captured and returned inside the `ContainerStoppedEvent`. Setting this flag disables this functionality."
-          ],
           "items": {
             "enum": [
               "FLAG_UNSPECIFIED",
@@ -662,6 +652,17 @@
       },
       "type": "object"
     },
+    "ExistingDisk": {
+      "description": "Configuration for an existing disk to be attached to the VM.",
+      "id": "ExistingDisk",
+      "properties": {
+        "disk": {
+          "description": "If `disk` contains slashes, the Cloud Life Sciences API assumes that it is a complete URL for the disk. If `disk` does not contain slashes, the Cloud Life Sciences API assumes that the disk is a zonal disk and a URL will be generated of the form `zones//disks/`, where `` is the zone in which the instance is allocated. The disk must be ext4 formatted. If all `Mount` references to this disk have the `read_only` flag set to true, the disk will be attached in `read-only` mode and can be shared with other instances. Otherwise, the disk will be available for writing but cannot be shared.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FailedEvent": {
       "description": "An event generated when the execution of a pipeline has failed. Note that other events can continue to occur after this event.",
       "id": "FailedEvent",
@@ -922,6 +923,26 @@
         "startTime": {
           "description": "The time at which the job began to run.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PersistentDisk": {
+      "description": "Configuration for a persistent disk to be attached to the VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.",
+      "id": "PersistentDisk",
+      "properties": {
+        "sizeGb": {
+          "description": "The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance. If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceImage": {
+          "description": "An image to put on the disk before attaching it to the VM.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The Compute Engine disk type. If unspecified, `pd-standard` is used.",
           "type": "string"
         }
       },
@@ -1208,6 +1229,32 @@
         "serviceAccount": {
           "$ref": "ServiceAccount",
           "description": "The service account to install on the VM. This account does not need any permissions other than those required by the pipeline."
+        },
+        "volumes": {
+          "description": "The list of disks and other storage to create or attach to the VM.",
+          "items": {
+            "$ref": "Volume"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Volume": {
+      "description": "Carries information about storage that can be attached to a VM.",
+      "id": "Volume",
+      "properties": {
+        "existingDisk": {
+          "$ref": "ExistingDisk",
+          "description": "Configuration for a existing disk."
+        },
+        "persistentDisk": {
+          "$ref": "PersistentDisk",
+          "description": "Configuration for a persistent disk."
+        },
+        "volume": {
+          "description": "A user-supplied name for the volume. Used when mounting the volume into `Actions`. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.",
+          "type": "string"
         }
       },
       "type": "object"

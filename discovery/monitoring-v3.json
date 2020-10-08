@@ -1143,7 +1143,7 @@
               ],
               "parameters": {
                 "aggregation.alignmentPeriod": {
-                  "description": "The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds, at most 104 weeks. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 2 years, or 104 weeks.",
+                  "description": "The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.",
                   "format": "google-duration",
                   "location": "query",
                   "type": "string"
@@ -1594,7 +1594,7 @@
           ],
           "parameters": {
             "filter": {
-              "description": "A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = \"CUSTOM\" would match all services with a value for the custom field. Valid options are \"CUSTOM\", \"APP_ENGINE\", \"CLOUD_ENDPOINTS\", \"MESH_ISTIO\", and \"CLUSTER_ISTIO\" (deprecated),",
+              "description": "A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` (reserved for future use) - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = \"CUSTOM\" would match all services with a value for the custom field. Valid options are \"CUSTOM\", \"APP_ENGINE\", \"MESH_ISTIO\", plus \"CLUSTER_ISTIO\" (deprecated) and \"CLOUD_ENDPOINTS\" (reserved for future use).",
               "location": "query",
               "type": "string"
             },
@@ -1899,7 +1899,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200927",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1907,7 +1907,7 @@
       "id": "Aggregation",
       "properties": {
         "alignmentPeriod": {
-          "description": "The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds, at most 104 weeks. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 2 years, or 104 weeks.",
+          "description": "The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2234,7 +2234,7 @@
           "type": "string"
         },
         "values": {
-          "description": "The measured values during this time interval. Each value must have a different dataSourceName.",
+          "description": "The measured values during this time interval. Each value must have a different data_source_name.",
           "items": {
             "$ref": "CollectdValue"
           },
@@ -2271,7 +2271,7 @@
       "id": "CollectdValue",
       "properties": {
         "dataSourceName": {
-          "description": "The data source for the collectd value. For example there are two data sources for network measurements: \"rx\" and \"tx\".",
+          "description": "The data source for the collectd value. For example, there are two data sources for network measurements: \"rx\" and \"tx\".",
           "type": "string"
         },
         "dataSourceType": {
@@ -2489,7 +2489,7 @@
           "description": "If specified, contains the range of the population values. The field must not be present if the count is zero. This field is presently ignored by the Cloud Monitoring API v3."
         },
         "sumOfSquaredDeviation": {
-          "description": "The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, \"The Art of Computer Programming\", Vol. 2, page 323, 3rd edition describes Welford's method for accumulating this sum in one pass.If count is zero then this field must be zero.",
+          "description": "The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, \"The Art of Computer Programming\", Vol. 2, page 232, 3rd edition describes Welford's method for accumulating this sum in one pass.If count is zero then this field must be zero.",
           "format": "double",
           "type": "number"
         }
@@ -3311,7 +3311,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.The following are specific rules for service defined Monitoring metric descriptors: type, metric_kind, value_type and description fields are all required. The unit field must be specified if the value_type is any of DOUBLE, INT64, DISTRIBUTION. Maximum of default 500 metric descriptors per service is allowed. Maximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -3323,7 +3323,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "The set of labels that can be used to describe a specific instance of this metric type.The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.",
+          "description": "The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -3385,7 +3385,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The metric type, including its DNS name prefix. The type is not URL-encoded.All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must follow: Only upper and lower-case letters, digits, '/' and underscores '_' are allowed. The maximum number of characters allowed for the relative_metric_name is 100.All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.Metric types should use a natural hierarchical grouping. For example: \"custom.googleapis.com/invoice/paid/amount\" \"external.googleapis.com/prometheus/up\" \"appengine.googleapis.com/http/server/response_latencies\" ",
+          "description": "The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: \"custom.googleapis.com/invoice/paid/amount\" \"external.googleapis.com/prometheus/up\" \"appengine.googleapis.com/http/server/response_latencies\" ",
           "type": "string"
         },
         "unit": {
@@ -3557,7 +3557,7 @@
       "type": "object"
     },
     "MonitoredResourceDescriptor": {
-      "description": "An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of \"gce_instance\" and specifies the use of the labels \"instance_id\" and \"zone\" to identify particular VM instances.Different services can support different monitored resource types.The following are specific rules to service defined monitored resources for Monitoring and Logging: The type, display_name, description, labels and launch_stage fields are all required. The first label of the monitored resource descriptor must be resource_container. There are legacy monitored resource descritptors start with project_id. It must include a location label. Maximum of default 5 service defined monitored resource descriptors is allowed per service. Maximum of default 10 labels per monitored resource is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
+      "description": "An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of \"gce_instance\" and specifies the use of the labels \"instance_id\" and \"zone\" to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API.",
       "id": "MonitoredResourceDescriptor",
       "properties": {
         "description": {
@@ -3569,7 +3569,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, an individual Google Cloud SQL database is identified by values for the labels database_id and location.",
+          "description": "Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels \"database_id\" and \"zone\".",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -3604,7 +3604,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type cloudsql_database represents databases in Google Cloud SQL.All service defined monitored resource types must be prefixed with the service name, in the format of {service name}/{relative resource name}. The relative resource name must follow: Only upper and lower-case letters and digits are allowed. It must start with upper case character and is recommended to use Upper Camel Case style. The maximum number of characters allowed for the relative_resource_name is 100.Note there are legacy service monitored resources not following this rule.",
+          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL.",
           "type": "string"
         }
       },
@@ -3843,7 +3843,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Required. The query in the monitoring query language format. The default time zone is in UTC.",
+          "description": "Required. The query in the Monitoring Query Language (https://cloud.google.com/monitoring/mql/reference) format. The default time zone is in UTC.",
           "type": "string"
         }
       },
@@ -4125,7 +4125,7 @@
       "type": "object"
     },
     "TimeInterval": {
-      "description": "A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For GAUGE metrics, the startTime value is technically optional; if no value is specified, the start time defaults to the value of the end time, and the interval represents a single point in time. If both start and end times are specified, they must be identical. Such an interval is valid only for GAUGE metrics, which are point-in-time measurements. The end time of a new interval must be at least a millisecond after the end time of the previous interval. For DELTA metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For DELTA metrics, the start time of the next interval must be at least a millisecond after the end time of the previous interval. For CUMULATIVE metrics, the start time and end time must specify a a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. The new start time must be at least a millisecond after the end time of the previous interval. The start time of a new interval must be at least a millisecond after the end time of the previous interval because intervals are closed. If the start time of a new interval is the same as the end time of the previous interval, then data written at the new start time could overwrite data written at the previous end time.",
+      "description": "A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. The end time must not be earlier than the start time. When writing data points, the start time must not be more than 25 hours in the past and the end time must not be more than five minutes in the future. For GAUGE metrics, the startTime value is technically optional; if no value is specified, the start time defaults to the value of the end time, and the interval represents a single point in time. If both start and end times are specified, they must be identical. Such an interval is valid only for GAUGE metrics, which are point-in-time measurements. The end time of a new interval must be at least a millisecond after the end time of the previous interval. For DELTA metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For DELTA metrics, the start time of the next interval must be at least a millisecond after the end time of the previous interval. For CUMULATIVE metrics, the start time and end time must specify a a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. The new start time must be at least a millisecond after the end time of the previous interval. The start time of a new interval must be at least a millisecond after the end time of the previous interval because intervals are closed. If the start time of a new interval is the same as the end time of the previous interval, then data written at the new start time could overwrite data written at the previous end time.",
       "id": "TimeInterval",
       "properties": {
         "endTime": {
@@ -4413,13 +4413,6 @@
         },
         "selectedRegions": {
           "description": "The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions must be provided to include a minimum of 3 locations. Not specifying this field will result in Uptime checks running from all available regions.",
-          "enumDescriptions": [
-            "Default value if no region is specified. Will result in Uptime checks running from all regions.",
-            "Allows checks to run from locations within the United States of America.",
-            "Allows checks to run from locations within the continent of Europe.",
-            "Allows checks to run from locations within the continent of South America.",
-            "Allows checks to run from locations within the Asia Pacific area (ex: Singapore)."
-          ],
           "items": {
             "enum": [
               "REGION_UNSPECIFIED",

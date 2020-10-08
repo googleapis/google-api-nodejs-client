@@ -3459,8 +3459,6 @@ export namespace dfareporting_v3_4 {
      * The timestamp in milliseconds since epoch when this file was last modified.
      */
     lastModifiedTime?: string | null;
-    mediaRequestInfo?: Schema$MediaRequestInfo;
-    mediaResponseInfo?: Schema$MediaResponseInfo;
     /**
      * The ID of the report this file was generated from.
      */
@@ -4239,72 +4237,6 @@ export namespace dfareporting_v3_4 {
      * Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
      */
     postImpressionActivitiesDuration?: number | null;
-  }
-  /**
-   * Extra information added to operations that support Scotty media requests.
-   */
-  export interface Schema$MediaRequestInfo {
-    /**
-     * The number of current bytes uploaded or downloaded.
-     */
-    currentBytes?: string | null;
-    /**
-     * Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
-     */
-    customData?: string | null;
-    /**
-     * Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary&#39;s mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.
-     */
-    diffObjectVersion?: string | null;
-    /**
-     * The type of notification received from Scotty.
-     */
-    notificationType?: string | null;
-    /**
-     * The Scotty request ID.
-     */
-    requestId?: string | null;
-    /**
-     * The total size of the file.
-     */
-    totalBytes?: string | null;
-    /**
-     * Whether the total bytes field contains an estimated data.
-     */
-    totalBytesIsEstimated?: boolean | null;
-  }
-  /**
-   * This message is for backends to pass their scotty media specific fields to ESF. Backend will include this in their response message to ESF. Example: ExportFile is an rpc defined for upload using scotty from ESF. rpc ExportFile(ExportFileRequest) returns (ExportFileResponse) Message ExportFileResponse will include apiserving.MediaResponseInfo to tell ESF about data like dynamic_dropzone it needs to pass to Scotty. message ExportFileResponse { optional gdata.Media blob = 1; optional apiserving.MediaResponseInfo media_response_info = 2 }
-   */
-  export interface Schema$MediaResponseInfo {
-    /**
-     * Data to copy from backend response to the next backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
-     */
-    customData?: string | null;
-    /**
-     * Specifies any transformation to be applied to data before persisting it or retrieving from storage. E.g., encryption options for blobstore2. This should be of the form uploader_service.DataStorageTransform.
-     */
-    dataStorageTransform?: string | null;
-    /**
-     * Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.
-     */
-    dynamicDropTarget?: string | null;
-    /**
-     * Specifies the Scotty dropzone to use for uploads.
-     */
-    dynamicDropzone?: string | null;
-    /**
-     * Request class to use for all Blobstore operations for this request.
-     */
-    requestClass?: string | null;
-    /**
-     * Specifies the TrafficClass that Scotty should use for any RPCs to fetch the response bytes. Will override the traffic class GTOS of the incoming http request. This is a temporary field to facilitate whitelisting and experimentation by the bigstore agent only. For instance, this does not apply to RTMP reads. WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.
-     */
-    trafficClassField?: string | null;
-    /**
-     * Tells Scotty to verify hashes on the agent&#39;s behalf by parsing out the X-Goog-Hash header.
-     */
-    verifyHashFromHeader?: boolean | null;
   }
   /**
    * Represents a metric.
@@ -8162,7 +8094,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Account ID.
+     * @param {string} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8232,7 +8164,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -9079,7 +9011,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id AccountUserProfile ID.
+     * @param {string} params.id AccountUserProfile ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AccountUserProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9154,7 +9086,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -10160,7 +10092,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Ad ID.
+     * @param {string} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Ad} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10230,7 +10162,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -11244,7 +11176,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id AdvertiserGroup ID.
+     * @param {string} params.id AdvertiserGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AdvertiserGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11316,7 +11248,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -12110,7 +12042,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id LandingPage ID.
+     * @param {string} params.id LandingPage ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().LandingPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12182,7 +12114,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -13027,7 +12959,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Advertiser ID.
+     * @param {string} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Advertiser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13099,7 +13031,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -14539,7 +14471,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Campaign ID.
+     * @param {string} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14609,7 +14541,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -16413,7 +16345,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id ContentCategory ID.
+     * @param {string} params.id ContentCategory ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().ContentCategory} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16485,7 +16417,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -18247,7 +18179,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id CreativeField ID.
+     * @param {string} params.id CreativeField ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18319,7 +18251,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -19239,7 +19171,7 @@ export namespace dfareporting_v3_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId CreativeField ID.
-     * @param {string=} params.id CreativeFieldValue ID.
+     * @param {string} params.id CreativeFieldValue ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeFieldValue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19314,7 +19246,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'creativeFieldId'],
+        requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: this.context,
       };
@@ -20133,7 +20065,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id CreativeGroup ID.
+     * @param {string} params.id CreativeGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20205,7 +20137,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -21303,7 +21235,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Creative ID.
+     * @param {string} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21373,7 +21305,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -23885,7 +23817,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id EventTag ID.
+     * @param {string} params.id EventTag ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().EventTag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23955,7 +23887,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -24295,8 +24227,6 @@ export namespace dfareporting_v3_4 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
-     *   //   "mediaRequestInfo": {},
-     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -25522,7 +25452,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id FloodlightActivity ID.
+     * @param {string} params.id FloodlightActivity ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25597,7 +25527,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -26523,7 +26453,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id FloodlightActivityGroup ID.
+     * @param {string} params.id FloodlightActivityGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivityGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26600,7 +26530,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -27282,7 +27212,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id FloodlightConfiguration ID.
+     * @param {string} params.id FloodlightConfiguration ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightConfiguration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27359,7 +27289,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -30975,7 +30905,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id PlacementGroup ID.
+     * @param {string} params.id PlacementGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31047,7 +30977,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -32274,7 +32204,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Placement ID.
+     * @param {string} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Placement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32344,7 +32274,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -33386,7 +33316,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id PlacementStrategy ID.
+     * @param {string} params.id PlacementStrategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementStrategy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33461,7 +33391,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -35390,7 +35320,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id RemarketingList ID.
+     * @param {string} params.id RemarketingList ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35462,7 +35392,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -35907,12 +35837,10 @@ export namespace dfareporting_v3_4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.patch({
-     *     // RemarketingListShare ID.
+     *     // RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // RemarketingList ID.
-     *     remarketingListId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -35945,9 +35873,8 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id RemarketingListShare ID.
+     * @param {string} params.id RemarketingList ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.remarketingListId RemarketingList ID.
      * @param {().RemarketingListShare} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -36016,15 +35943,15 @@ export namespace dfareporting_v3_4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists/{remarketingListId}/remarketingListShares'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
         ),
         params,
-        requiredParams: ['profileId', 'remarketingListId'],
-        pathParams: ['profileId', 'remarketingListId'],
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['profileId'],
         context: this.context,
       };
       if (callback) {
@@ -36203,17 +36130,13 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Remarketinglistshares$Patch
     extends StandardParameters {
     /**
-     * RemarketingListShare ID.
+     * RemarketingList ID.
      */
     id?: string;
     /**
      * User profile ID associated with this request.
      */
     profileId?: string;
-    /**
-     * RemarketingList ID.
-     */
-    remarketingListId?: string;
 
     /**
      * Request body metadata
@@ -37071,8 +36994,6 @@ export namespace dfareporting_v3_4 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
-     *   //   "mediaRequestInfo": {},
-     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -37693,8 +37614,6 @@ export namespace dfareporting_v3_4 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
-     *   //   "mediaRequestInfo": {},
-     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -38561,7 +38480,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Site ID.
+     * @param {string} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Site} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38631,7 +38550,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -39911,7 +39830,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id Subaccount ID.
+     * @param {string} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Subaccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39983,7 +39902,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -41166,7 +41085,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id TargetingTemplate ID.
+     * @param {string} params.id TargetingTemplate ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().TargetingTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41241,7 +41160,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -43083,7 +43002,7 @@ export namespace dfareporting_v3_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.id UserRole ID.
+     * @param {string} params.id UserRole ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().UserRole} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43153,7 +43072,7 @@ export namespace dfareporting_v3_4 {
           options
         ),
         params,
-        requiredParams: ['profileId'],
+        requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: this.context,
       };

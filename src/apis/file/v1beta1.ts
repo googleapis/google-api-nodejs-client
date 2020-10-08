@@ -223,7 +223,7 @@ export namespace file_v1beta1 {
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
-     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.
      */
     maintenanceSchedules?: {
       [

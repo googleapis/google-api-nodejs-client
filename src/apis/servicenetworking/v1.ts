@@ -231,10 +231,6 @@ export namespace servicenetworking_v1 {
      */
     ipPrefixLength?: number | null;
     /**
-     * Optional. The private IPv6 google access type for the VMs in this subnet. For information about the access types that can be set using this field, see [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
-     */
-    privateIpv6GoogleAccess?: string | null;
-    /**
      * Required. The name of a [region](/compute/docs/regions-zones) for the subnet, such `europe-west1`.
      */
     region?: string | null;
@@ -2388,7 +2384,6 @@ export namespace servicenetworking_v1 {
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "description": "my_description",
      *       //   "ipPrefixLength": 0,
-     *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",
      *       //   "subnetwork": "my_subnetwork",

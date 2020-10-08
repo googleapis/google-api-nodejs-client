@@ -129,6 +129,9 @@ export namespace tasks_v1 {
     }
   }
 
+  /**
+   * LINT.IfChange
+   */
   export interface Schema$Task {
     /**
      * Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
@@ -356,7 +359,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -494,7 +497,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -639,7 +642,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -778,7 +781,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -927,7 +930,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1076,7 +1079,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1257,7 +1260,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1383,7 +1386,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1533,7 +1536,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1706,7 +1709,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1775,7 +1778,7 @@ export namespace tasks_v1 {
      *     maxResults: 'placeholder-value',
      *     // Token specifying the result page to return. Optional.
      *     pageToken: 'placeholder-value',
-     *     // Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     *     // Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.
      *     showCompleted: 'placeholder-value',
      *     // Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
      *     showDeleted: 'placeholder-value',
@@ -1812,7 +1815,7 @@ export namespace tasks_v1 {
      * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
-     * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.
      * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
      * @param {boolean=} params.showHidden Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      * @param {string} params.tasklist Task list identifier.
@@ -1872,7 +1875,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2025,7 +2028,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2194,7 +2197,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2364,7 +2367,7 @@ export namespace tasks_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://tasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2463,7 +2466,7 @@ export namespace tasks_v1 {
      */
     pageToken?: string;
     /**
-     * Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     * Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.
      */
     showCompleted?: boolean;
     /**

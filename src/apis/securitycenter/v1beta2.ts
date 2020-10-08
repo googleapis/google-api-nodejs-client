@@ -283,39 +283,6 @@ export namespace securitycenter_v1beta2 {
     resource?: Schema$GoogleCloudSecuritycenterV1Resource;
   }
   /**
-   * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don&#39;t affect the referenced Google Cloud resource.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
-    /**
-     * The time at which the asset was created in Security Command Center.
-     */
-    createTime?: string | null;
-    /**
-     * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
-     */
-    iamPolicy?: Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy;
-    /**
-     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/assets/{asset_id}&quot;.
-     */
-    name?: string | null;
-    /**
-     * Resource managed properties. These properties are managed and defined by the Google Cloud resource and cannot be modified by the user.
-     */
-    resourceProperties?: {[key: string]: any} | null;
-    /**
-     * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
-     */
-    securityCenterProperties?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties;
-    /**
-     * User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset.
-     */
-    securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
-    /**
-     * The time at which the asset was last updated, added, or deleted in Cloud SCC.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Security Command Center finding. A finding is a record of assessment data (security, risk, health or privacy) ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
@@ -352,7 +319,7 @@ export namespace securitycenter_v1beta2 {
      */
     securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
     /**
-     * The severity of the finding.
+     * The severity of the finding. This field is managed by the source that writes the finding.
      */
     severity?: string | null;
     /**
@@ -363,15 +330,6 @@ export namespace securitycenter_v1beta2 {
      * The state of the finding.
      */
     state?: string | null;
-  }
-  /**
-   * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy {
-    /**
-     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for format details.
-     */
-    policyBlob?: string | null;
   }
   /**
    * Security Command Center&#39;s Notification
@@ -389,13 +347,9 @@ export namespace securitycenter_v1beta2 {
      * The Cloud resource tied to the notification.
      */
     resource?: Schema$GoogleCloudSecuritycenterV1p1beta1Resource;
-    /**
-     * If it&#39;s an asset based notification config, this field will be populated.
-     */
-    temporalAsset?: Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset;
   }
   /**
-   *  Information related to the Google Cloud resource.
+   * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Resource {
     /**
@@ -407,7 +361,7 @@ export namespace securitycenter_v1beta2 {
      */
     parent?: string | null;
     /**
-     *  The human readable name of resource&#39;s parent.
+     * The human readable name of resource&#39;s parent.
      */
     parentDisplayName?: string | null;
     /**
@@ -415,7 +369,7 @@ export namespace securitycenter_v1beta2 {
      */
     project?: string | null;
     /**
-     *  The human readable name of project that the resource belongs to.
+     * The human readable name of project that the resource belongs to.
      */
     projectDisplayName?: string | null;
   }
@@ -433,43 +387,6 @@ export namespace securitycenter_v1beta2 {
     state?: string | null;
   }
   /**
-   * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties {
-    /**
-     * The user defined display name for this resource.
-     */
-    resourceDisplayName?: string | null;
-    /**
-     * The full resource name of the Google Cloud resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resourceName?: string | null;
-    /**
-     * Owners of the Google Cloud resource.
-     */
-    resourceOwners?: string[] | null;
-    /**
-     * The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resourceParent?: string | null;
-    /**
-     * The user defined display name for the parent of this resource.
-     */
-    resourceParentDisplayName?: string | null;
-    /**
-     * The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resourceProject?: string | null;
-    /**
-     * The user defined display name for the project of this resource.
-     */
-    resourceProjectDisplayName?: string | null;
-    /**
-     * The type of the Google Cloud resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Security Command Center and/or the producer of the resource and is immutable after create time.
-     */
-    resourceType?: string | null;
-  }
-  /**
    * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
@@ -483,20 +400,7 @@ export namespace securitycenter_v1beta2 {
     name?: string | null;
   }
   /**
-   * Wrapper over asset object that also captures the state change for the asset e.g. if it was a newly created asset vs updated or deleted asset.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset {
-    /**
-     * Asset data that includes attributes, properties and marks about the asset.
-     */
-    asset?: Schema$GoogleCloudSecuritycenterV1p1beta1Asset;
-    /**
-     * Represents if the asset was created/updated/deleted.
-     */
-    changeType?: string | null;
-  }
-  /**
-   *  Information related to the Google Cloud resource.
+   * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
@@ -508,7 +412,7 @@ export namespace securitycenter_v1beta2 {
      */
     parent?: string | null;
     /**
-     *  The human readable name of resource&#39;s parent.
+     * The human readable name of resource&#39;s parent.
      */
     parentDisplayName?: string | null;
     /**
@@ -516,7 +420,7 @@ export namespace securitycenter_v1beta2 {
      */
     project?: string | null;
     /**
-     *  The human readable name of project that the resource belongs to.
+     * The human readable name of project that the resource belongs to.
      */
     projectDisplayName?: string | null;
   }

@@ -194,7 +194,7 @@ export namespace content_v2 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * CLDR country code (e.g. &quot;US&quot;). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
      */
     country?: string | null;
     /**
@@ -450,7 +450,7 @@ export namespace content_v2 {
      */
     country?: string | null;
     /**
-     * The destination the issue applies to.
+     * The destination the issue applies to. If this field is empty then the issue applies to all available destinations.
      */
     destination?: string | null;
     /**

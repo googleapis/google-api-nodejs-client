@@ -317,7 +317,7 @@
           ]
         },
         "delete": {
-          "description": "Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject and ListProjects methods. The caller must have modify permissions for this Project.",
+          "description": "Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject and ListProjects methods. The caller must have delete permissions for this Project.",
           "flatPath": "v1beta1/projects/{projectId}",
           "httpMethod": "DELETE",
           "id": "cloudresourcemanager.projects.delete",
@@ -326,7 +326,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "The Project ID (for example, `foo-bar-123`). Required.",
+              "description": "The Project ID (for example, `foo-bar-123`).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -350,7 +350,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "The Project ID (for example, `my-project-123`). Required.",
+              "description": "Required. The Project ID (for example, `my-project-123`).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -375,7 +375,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "The Project ID (for example, `my-project-123`). Required.",
+              "description": "Required. The Project ID (for example, `my-project-123`).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -429,7 +429,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` Some examples of using labels as filters: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with \"how\". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big |The project's label `color` has the value `red` and its label `size` has the value `big`. | If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: \"parent.type:folder parent.id:123\"). In this case an alternate search index is used which provides more consistent results. Optional.",
+              "description": "An expression for filtering the results of the request. Filter rules are case insensitive. If multiple fields are included in a filter query, the query will return results that match any of the fields. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` Some examples of using labels as filters: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with \"how\". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big |The project's label `color` has the value `red` and its label `size` has the value `big`. | If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: \"parent.type:folder parent.id:123\"). In this case an alternate search index is used which provides more consistent results. Optional.",
               "location": "query",
               "type": "string"
             },
@@ -510,7 +510,7 @@
           ]
         },
         "undelete": {
-          "description": "Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have modify permissions for this Project.",
+          "description": "Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have undelete permissions for this Project.",
           "flatPath": "v1beta1/projects/{projectId}:undelete",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.undelete",
@@ -519,7 +519,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "The project ID (for example, `foo-bar-123`). Required.",
+              "description": "Required. The project ID (for example, `foo-bar-123`).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -546,7 +546,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "The project ID (for example, `my-project-123`). Required.",
+              "description": "The project ID (for example, `my-project-123`).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20200812",
+  "revision": "20200930",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -632,6 +632,10 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -923,7 +927,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this Project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}. Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty. No more than 256 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: \"environment\" : \"dev\" Read-write.",
+          "description": "The labels associated with this Project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}. Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty. No more than 256 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: `\"environment\" : \"dev\"` Read-write.",
           "type": "object"
         },
         "lifecycleState": {
@@ -943,7 +947,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: My Project Read-write.",
+          "description": "The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project` Read-write.",
           "type": "string"
         },
         "parent": {
@@ -951,11 +955,11 @@
           "description": "An optional reference to a parent Resource. Supported parent types include \"organization\" and \"folder\". Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent. Read-write."
         },
         "projectId": {
-          "description": "The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: tokyo-rain-123 Read-only after creation.",
+          "description": "The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `tokyo-rain-123` Read-only after creation.",
           "type": "string"
         },
         "projectNumber": {
-          "description": "The number uniquely identifying the project. Example: 415104041262 Read-only.",
+          "description": "The number uniquely identifying the project. Example: `415104041262` Read-only.",
           "format": "int64",
           "type": "string"
         }

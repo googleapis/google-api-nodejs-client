@@ -2,6 +2,7 @@
   "basePath": "",
   "baseUrl": "https://customsearch.googleapis.com/",
   "batchPath": "batch",
+  "canonicalName": "CustomSearch API",
   "description": "Searches over a website or collection of websites",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/custom-search/v1/introduction",
@@ -673,7 +674,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20201003",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {

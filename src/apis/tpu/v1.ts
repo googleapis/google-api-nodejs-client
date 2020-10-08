@@ -321,6 +321,10 @@ export namespace tpu_v1 {
      */
     state?: string | null;
     /**
+     * Output only. The Symptoms that have occurred to the TPU Node.
+     */
+    symptoms?: Schema$Symptom[];
+    /**
      * The version of Tensorflow running in the Node. Required.
      */
     tensorflowVersion?: string | null;
@@ -434,6 +438,27 @@ export namespace tpu_v1 {
    * Request for StopNode.
    */
   export interface Schema$StopNodeRequest {}
+  /**
+   * A Symptom instance.
+   */
+  export interface Schema$Symptom {
+    /**
+     * Timestamp when the Symptom is created.
+     */
+    createTime?: string | null;
+    /**
+     * Detailed information of the current Symptom.
+     */
+    details?: string | null;
+    /**
+     * Type of the Symptom.
+     */
+    symptomType?: string | null;
+    /**
+     * A string used to uniquely distinguish a worker within a TPU node.
+     */
+    workerId?: string | null;
+  }
   /**
    * A tensorflow version that a Node can be configured with.
    */
@@ -1162,6 +1187,7 @@ export namespace tpu_v1 {
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state",
+     *       //   "symptoms": [],
      *       //   "tensorflowVersion": "my_tensorflowVersion",
      *       //   "useServiceNetworking": false
      *       // }
@@ -1455,6 +1481,7 @@ export namespace tpu_v1 {
      *   //   "schedulingConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state",
+     *   //   "symptoms": [],
      *   //   "tensorflowVersion": "my_tensorflowVersion",
      *   //   "useServiceNetworking": false
      *   // }

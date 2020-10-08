@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20200808",
+  "revision": "20201003",
   "rootUrl": "https://playablelocations.googleapis.com/",
   "schemas": {
     "GoogleMapsPlayablelocationsV3Impression": {
@@ -253,14 +253,6 @@
         },
         "reasons": {
           "description": "Required. One or more reasons why this playable location is considered bad.",
-          "enumDescriptions": [
-            "Unspecified reason. Do not use.",
-            "The reason isn't one of the reasons in this enumeration.",
-            "The playable location isn't accessible to pedestrians. For example, if it's in the middle of a highway.",
-            "The playable location isn't open to the public. For example, a private office building.",
-            "The playable location is permanently closed. For example, when a business has been shut down.",
-            "The playable location is temporarily inaccessible. For example, when a business has closed for renovations."
-          ],
           "items": {
             "enum": [
               "BAD_LOCATION_REASON_UNSPECIFIED",

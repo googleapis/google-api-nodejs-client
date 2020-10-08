@@ -2,7 +2,7 @@
 
 # androidenterprise
 
-> Manages the deployment of apps to Android for Work users.
+> Manages the deployment of apps to Android Enterprise devices.
 
 ## Installation
 

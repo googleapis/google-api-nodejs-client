@@ -101,7 +101,7 @@ export namespace admob_v1 {
   /**
    * AdMob API
    *
-   * The Google AdMob API lets you programmatically get reports on earnings.
+   * The AdMob API allows publishers to programmatically get information about their AdMob account.
    *
    * @example
    * const {google} = require('googleapis');
@@ -256,7 +256,7 @@ export namespace admob_v1 {
      */
     localizationSettings?: Schema$LocalizationSettings;
     /**
-     * Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Any other values are treated as 100000.
+     * Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error.
      */
     maxReportRows?: number | null;
     /**
@@ -323,7 +323,7 @@ export namespace admob_v1 {
      */
     localizationSettings?: Schema$LocalizationSettings;
     /**
-     * Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Any other values are treated as 100000.
+     * Maximum number of report data rows to return. If the value is not set, the API returns as many rows as possible, up to 100000. Acceptable values are 1-100000, inclusive. Values larger than 100000 return an error.
      */
     maxReportRows?: number | null;
     /**
@@ -516,7 +516,7 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -646,7 +646,7 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -810,7 +810,7 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -981,7 +981,7 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

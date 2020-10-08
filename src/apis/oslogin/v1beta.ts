@@ -136,6 +136,10 @@ export namespace oslogin_v1beta {
    */
   export interface Schema$ImportSshPublicKeyResponse {
     /**
+     * Detailed information about import results.
+     */
+    details?: string | null;
+    /**
      * The login profile information for the user.
      */
     loginProfile?: Schema$LoginProfile;
@@ -432,6 +436,7 @@ export namespace oslogin_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "details": "my_details",
      *   //   "loginProfile": {}
      *   // }
      * }

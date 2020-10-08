@@ -807,7 +807,7 @@
     "media": {
       "methods": {
         "upload": {
-          "description": "Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the resource name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.",
+          "description": "Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.",
           "flatPath": "v1/media/{mediaId}",
           "httpMethod": "POST",
           "id": "cloudsearch.media.upload",
@@ -880,6 +880,58 @@
             "https://www.googleapis.com/auth/cloud_search.settings.indexing",
             "https://www.googleapis.com/auth/cloud_search.settings.query"
           ]
+        }
+      },
+      "resources": {
+        "lro": {
+          "methods": {
+            "list": {
+              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+              "flatPath": "v1/operations/{operationsId}/lro",
+              "httpMethod": "GET",
+              "id": "cloudsearch.operations.lro.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The standard list filter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the operation's parent resource.",
+                  "location": "path",
+                  "pattern": "^operations/.*$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The standard list page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The standard list page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}/lro",
+              "response": {
+                "$ref": "ListOperationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud_search",
+                "https://www.googleapis.com/auth/cloud_search.debug",
+                "https://www.googleapis.com/auth/cloud_search.indexing",
+                "https://www.googleapis.com/auth/cloud_search.settings",
+                "https://www.googleapis.com/auth/cloud_search.settings.indexing",
+                "https://www.googleapis.com/auth/cloud_search.settings.query"
+              ]
+            }
+          }
         }
       }
     },
@@ -1818,7 +1870,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20200929",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
@@ -3163,6 +3215,24 @@
       },
       "type": "object"
     },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListQuerySourcesResponse": {
       "description": "List sources response.",
       "id": "ListQuerySourcesResponse",
@@ -3543,13 +3613,6 @@
         },
         "statusCodes": {
           "description": "Limit the items polled to the ones with these statuses.",
-          "enumDescriptions": [
-            "Input-only value. Used with Items.list to list all items in the queue, regardless of status.",
-            "Error encountered by Cloud Search while processing this item. Details of the error are in repositoryError.",
-            "Item has been modified in the repository, and is out of date with the version previously accepted into Cloud Search.",
-            "Item is known to exist in the repository, but is not yet accepted by Cloud Search. An item can be in this state when Items.push has been called for an item of this name that did not exist previously.",
-            "API has accepted the up-to-date data of this item."
-          ],
           "items": {
             "enum": [
               "CODE_UNSPECIFIED",
@@ -4393,7 +4456,7 @@
           "type": "array"
         },
         "pageSize": {
-          "description": "Maximum number of search results to return in one page. Valid values are between 1 and 100, inclusive. Default value is 10.",
+          "description": "Maximum number of search results to return in one page. Valid values are between 1 and 100, inclusive. Default value is 10. Minimum value is 50 when results beyond 2000 are requested.",
           "format": "int32",
           "type": "integer"
         },

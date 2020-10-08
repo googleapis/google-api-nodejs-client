@@ -150,6 +150,15 @@ export namespace dialogflow_v2 {
     agentUri?: string | null;
   }
   /**
+   * The response message for Agents.ImportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportAgentResponse {
+    /**
+     * The unique identifier of the new agent. Format: `projects//locations//agents/`.
+     */
+    agent?: string | null;
+  }
+  /**
    * Represents page information communicated to and from the webhook.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfo {
@@ -285,6 +294,10 @@ export namespace dialogflow_v2 {
    * A text or ssml response that is preferentially used for TTS output audio synthesis, as described in the comment on the ResponseMessage message.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText {
+    /**
+     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
     /**
      * The SSML text to be synthesized. For more information, see [SSML](/speech/text-to-speech/docs/ssml).
      */
@@ -708,6 +721,15 @@ export namespace dialogflow_v2 {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
   /**
+   * Response message for [Documents.BatchUpdateSmartMessagingEntries]
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateSmartMessagingEntriesResponse {
+    /**
+     * List of updated smart message entries.
+     */
+    smartMessagingEntries?: Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntry[];
+  }
+  /**
    * Dialogflow contexts are similar to natural language context. If a person says to you &quot;they are orange&quot;, you need context in order to understand what &quot;they&quot; is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
@@ -716,7 +738,7 @@ export namespace dialogflow_v2 {
      */
     lifespanCount?: number | null;
     /**
-     * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * Required. The unique identifier of the context. Supported formats: - `projects//agent/sessions//contexts/`, - `projects//locations//agent/sessions//contexts/`, - `projects//agent/environments//users//sessions//contexts/`, - `projects//locations//agent/environments//users//sessions//contexts/`, The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
     name?: string | null;
     /**
@@ -749,7 +771,7 @@ export namespace dialogflow_v2 {
      */
     kind?: string | null;
     /**
-     * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects//agent/entityTypes/`.
+     * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Supported formats: - `projects//agent/entityTypes/` - `projects//locations//agent/entityTypes/`
      */
     name?: string | null;
   }
@@ -797,6 +819,15 @@ export namespace dialogflow_v2 {
     agentUri?: string | null;
   }
   /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * An intent categorizes an end-user&#39;s intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
@@ -825,7 +856,7 @@ export namespace dialogflow_v2 {
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
     /**
-     * Optional. The list of context names required for this intent to be triggered. Format: `projects//agent/sessions/-/contexts/`.
+     * Optional. The list of context names required for this intent to be triggered. Formats: - `projects//agent/sessions/-/contexts/` - `projects//locations//agent/sessions/-/contexts/`
      */
     inputContextNames?: string[] | null;
     /**
@@ -845,7 +876,7 @@ export namespace dialogflow_v2 {
      */
     mlEnabled?: boolean | null;
     /**
-     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects//agent/intents/`.
+     * Optional. The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Supported formats: - `projects//agent/intents/` - `projects//locations//agent/intents/`
      */
     name?: string | null;
     /**
@@ -1711,7 +1742,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Standard Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -1806,7 +1837,7 @@ export namespace dialogflow_v2 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     /**
@@ -1827,9 +1858,43 @@ export namespace dialogflow_v2 {
      */
     entityOverrideMode?: string | null;
     /**
-     * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Supported formats: - `projects//agent/sessions//entityTypes/` - `projects//locations//agent/sessions//entityTypes/` - `projects//agent/environments//users//sessions//entityTypes/` - `projects//locations//agent/environments/ /users//sessions//entityTypes/` If `Location ID` is not specified we assume default &#39;us&#39; location. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
+  }
+  /**
+   * Smart Messaging Entry resource.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntry {
+    /**
+     * Output only. Metadata of the message entry
+     */
+    messageInfo?: Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntryInfo;
+    /**
+     * The unique identifier of this message entry. Required for [Documents.GetSmartMessagingEntry], [Documents.CreateSmartMessagingEntry], [Documents.UpdateSmartMessagingEntry], and [Documents.DeleteSmartMessagingEntry]. Format: `projects//knowledgeBases//documents//smartMessagingEntries/`
+     */
+    name?: string | null;
+    /**
+     * Required. The raw text of the message.
+     */
+    rawText?: string | null;
+    /**
+     * Required. Smart Messaging Entry&#39;s enabled/disabled state.
+     */
+    state?: string | null;
+  }
+  /**
+   * Smart messaging entry info.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntryInfo {
+    /**
+     * Output only. Method of how the smart messaging entry was created. When the smart messaging entry was generated from GenerateDocument, the value is AUTOMATIC; when the entry was manually added through CreateSmartMessagingEntry, the value is MANUAL.
+     */
+    creationMethod?: string | null;
+    /**
+     * The number of times an entry&#39;s message text has been uttered
+     */
+    occurrenceCount?: number | null;
   }
   /**
    * The request message for a webhook call.
@@ -1852,7 +1917,7 @@ export namespace dialogflow_v2 {
      */
     responseId?: string | null;
     /**
-     * The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: `projects//agent/sessions/`, or `projects//agent/environments//users//sessions/`.
+     * The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Supported formats: - `projects//agent/sessions/, - `projects//locations//agent/sessions/`, - `projects//agent/environments//users//sessions/`, - `projects//locations//agent/environments//users//sessions/`,
      */
     session?: string | null;
   }
@@ -2167,6 +2232,15 @@ export namespace dialogflow_v2 {
      * The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with &quot;gs://&quot;.
      */
     agentUri?: string | null;
+  }
+  /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
   }
   /**
    * Instructs the speech recognizer how to process the audio content.
@@ -2975,7 +3049,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Standard Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -3168,7 +3242,7 @@ export namespace dialogflow_v2 {
     analyzeQueryTextSentiment?: boolean | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.AnalyzeContent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingAnalyzeContent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -3342,15 +3416,6 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
-   * Metadata associated with the long running operation for Versions.CreateVersion.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata {
-    /**
-     * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
-     */
-    version?: string | null;
-  }
-  /**
    * The response message for Agents.ExportAgent.
    */
   export interface Schema$GoogleCloudDialogflowV3alpha1ExportAgentResponse {
@@ -3362,6 +3427,45 @@ export namespace dialogflow_v2 {
      * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+  }
+  /**
+   * Metadata returned for the TestCases.ExportTestCases long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ExportTestCasesMetadata {}
+  /**
+   * The response message for TestCases.ExportTestCases.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ExportTestCasesResponse {
+    /**
+     * Uncompressed raw byte content for test cases.
+     */
+    content?: string | null;
+    /**
+     * The URI to a file containing the exported test cases. This field is populated only if `gcs_uri` is specified in ExportTestCasesRequest.
+     */
+    gcsUri?: string | null;
+  }
+  /**
+   * The response message for Agents.ImportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ImportAgentResponse {
+    /**
+     * The unique identifier of the new agent. Format: `projects//locations//agents/`.
+     */
+    agent?: string | null;
+  }
+  /**
+   * Metadata returned for the TestCases.ImportTestCases long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ImportTestCasesMetadata {}
+  /**
+   * The response message for TestCases.ImportTestCases.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ImportTestCasesResponse {
+    /**
+     * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
+     */
+    names?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.

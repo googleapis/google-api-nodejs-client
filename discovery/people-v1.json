@@ -625,7 +625,7 @@
               "type": "string"
             },
             "resourceNames": {
-              "description": "Required. The resource names of the people to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 50 resource names in one request.",
+              "description": "Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1>&resourceNames=<name2>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 50 resource names in one request.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -931,7 +931,7 @@
                   "type": "string"
                 },
                 "requestSyncToken": {
-                  "description": "Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.",
+                  "description": "Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -997,7 +997,7 @@
       }
     }
   },
-  "revision": "20200813",
+  "revision": "20201004",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1643,7 +1643,7 @@
           "type": "string"
         },
         "nextSyncToken": {
-          "description": "A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token.",
+          "description": "A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token. When the response is paginated, only the last page will contain `nextSyncToken`.",
           "type": "string"
         },
         "totalItems": {

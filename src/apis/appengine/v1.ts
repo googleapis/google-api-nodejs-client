@@ -669,67 +669,67 @@ export namespace appengine_v1 {
    */
   export interface Schema$Instance {
     /**
-     * App Engine release this instance is running on.@OutputOnly
+     * Output only. App Engine release this instance is running on.
      */
     appEngineRelease?: string | null;
     /**
-     * Availability of the instance.@OutputOnly
+     * Output only. Availability of the instance.
      */
     availability?: string | null;
     /**
-     * Average latency (ms) over the last minute.@OutputOnly
+     * Output only. Average latency (ms) over the last minute.
      */
     averageLatency?: number | null;
     /**
-     * Number of errors since this instance was started.@OutputOnly
+     * Output only. Number of errors since this instance was started.
      */
     errors?: number | null;
     /**
-     * Relative name of the instance within the version. Example: instance-1.@OutputOnly
+     * Output only. Relative name of the instance within the version. Example: instance-1.
      */
     id?: string | null;
     /**
-     * Total memory in use (bytes).@OutputOnly
+     * Output only. Total memory in use (bytes).
      */
     memoryUsage?: string | null;
     /**
-     * Full path to the Instance resource in the API. Example: apps/myapp/services/default/versions/v1/instances/instance-1.@OutputOnly
+     * Output only. Full path to the Instance resource in the API. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     name?: string | null;
     /**
-     * Average queries per second (QPS) over the last minute.@OutputOnly
+     * Output only. Average queries per second (QPS) over the last minute.
      */
     qps?: number | null;
     /**
-     * Number of requests since this instance was started.@OutputOnly
+     * Output only. Number of requests since this instance was started.
      */
     requests?: number | null;
     /**
-     * Time that this instance was started.@OutputOnly
+     * Output only. Time that this instance was started.@OutputOnly
      */
     startTime?: string | null;
     /**
-     * Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment.
      */
     vmDebugEnabled?: boolean | null;
     /**
-     * Virtual machine ID of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. Virtual machine ID of this instance. Only applicable for instances in App Engine flexible environment.
      */
     vmId?: string | null;
     /**
-     * The IP address of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. The IP address of this instance. Only applicable for instances in App Engine flexible environment.
      */
     vmIp?: string | null;
     /**
-     * Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.
      */
     vmName?: string | null;
     /**
-     * Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.
      */
     vmStatus?: string | null;
     /**
-     * Zone where the virtual machine is located. Only applicable for instances in App Engine flexible environment.@OutputOnly
+     * Output only. Zone where the virtual machine is located. Only applicable for instances in App Engine flexible environment.
      */
     vmZoneName?: string | null;
   }
@@ -980,6 +980,15 @@ export namespace appengine_v1 {
      * Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.If a subnetwork name is specified, a network name will also be required unless it is for the default network. If the network that the instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range. If the network that the instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetwork_name) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network. If the network that the instance is being created in is a custom Subnet Mode Network, then the subnetwork_name must be specified and the IP address is created from the IPCidrRange of the subnetwork.If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
      */
     subnetworkName?: string | null;
+  }
+  /**
+   * A NetworkSettings resource is a container for ingress settings for a version or service.
+   */
+  export interface Schema$NetworkSettings {
+    /**
+     * The ingress settings for version or service.
+     */
+    ingressTrafficAllowed?: string | null;
   }
   /**
    * Target scaling by network usage. Only applicable in the App Engine flexible environment.
@@ -1243,6 +1252,10 @@ export namespace appengine_v1 {
      */
     name?: string | null;
     /**
+     * Ingress settings for this service. Will apply to all versions.
+     */
+    networkSettings?: Schema$NetworkSettings;
+    /**
      * Mapping that defines fractional HTTP traffic diversion to different versions within the service.
      */
     split?: Schema$TrafficSplit;
@@ -1411,7 +1424,7 @@ export namespace appengine_v1 {
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
-     * Automatic scaling is based on request rate, response latencies, and other application metrics.
+     * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
     automaticScaling?: Schema$AutomaticScaling;
     /**
@@ -1422,6 +1435,10 @@ export namespace appengine_v1 {
      * Metadata settings that are supplied to this version to enable beta runtime features.
      */
     betaSettings?: {[key: string]: string} | null;
+    /**
+     * Environment variables available to the build environment.Only returned in GET requests if view=FULL is set.
+     */
+    buildEnvVariables?: {[key: string]: string} | null;
     /**
      * Email address of the user who created this version.@OutputOnly
      */
@@ -1491,7 +1508,7 @@ export namespace appengine_v1 {
      */
     livenessCheck?: Schema$LivenessCheck;
     /**
-     * A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time.
+     * A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time. Manually scaled versions are sometimes referred to as &quot;backends&quot;.
      */
     manualScaling?: Schema$ManualScaling;
     /**
@@ -5902,6 +5919,7 @@ export namespace appengine_v1 {
      *   // {
      *   //   "id": "my_id",
      *   //   "name": "my_name",
+     *   //   "networkSettings": {},
      *   //   "split": {}
      *   // }
      * }
@@ -6189,6 +6207,7 @@ export namespace appengine_v1 {
      *       // {
      *       //   "id": "my_id",
      *       //   "name": "my_name",
+     *       //   "networkSettings": {},
      *       //   "split": {}
      *       // }
      *     },
@@ -6415,6 +6434,7 @@ export namespace appengine_v1 {
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
+     *       //   "buildEnvVariables": {},
      *       //   "createTime": "my_createTime",
      *       //   "createdBy": "my_createdBy",
      *       //   "defaultExpiration": "my_defaultExpiration",
@@ -6746,6 +6766,7 @@ export namespace appengine_v1 {
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
+     *   //   "buildEnvVariables": {},
      *   //   "createTime": "my_createTime",
      *   //   "createdBy": "my_createdBy",
      *   //   "defaultExpiration": "my_defaultExpiration",
@@ -7074,6 +7095,7 @@ export namespace appengine_v1 {
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
+     *       //   "buildEnvVariables": {},
      *       //   "createTime": "my_createTime",
      *       //   "createdBy": "my_createdBy",
      *       //   "defaultExpiration": "my_defaultExpiration",

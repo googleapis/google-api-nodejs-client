@@ -2,7 +2,7 @@
 
 # plus
 
-> Builds on top of the Google+ platform.
+> 
 
 ## Installation
 

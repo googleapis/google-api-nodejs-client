@@ -216,6 +216,170 @@
           },
           "resources": {
             "channels": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new channel in the specified site.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels",
+                  "httpMethod": "POST",
+                  "id": "firebasehosting.projects.sites.channels.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "channelId": {
+                      "description": "Required. Immutable. A unique id within the site to identify the channel.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The site in which this channel should be created.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/channels",
+                  "request": {
+                    "$ref": "Channel"
+                  },
+                  "response": {
+                    "$ref": "Channel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a channel of a site. The `live` channel cannot be deleted.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels/{channelsId}",
+                  "httpMethod": "DELETE",
+                  "id": "firebasehosting.projects.sites.channels.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully-qualified identifier for the site.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves information for the specified channel of a site.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels/{channelsId}",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.channels.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully-qualified identifier for the channel.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Channel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the channels for the specified site. All sites have a default \"live\" channel.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.channels.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token from a previous request, if provided.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The site from which to list channels.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/channels",
+                  "response": {
+                    "$ref": "ListChannelsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels/{channelsId}",
+                  "httpMethod": "PATCH",
+                  "id": "firebasehosting.projects.sites.channels.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The fully-qualified identifier of the Channel.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "A comma-separated list of fields to be updated in this request.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "Channel"
+                  },
+                  "response": {
+                    "$ref": "Channel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                }
+              },
               "resources": {
                 "releases": {
                   "methods": {
@@ -530,6 +694,35 @@
             },
             "versions": {
               "methods": {
+                "clone": {
+                  "description": "Creates a new version on the target site using the content of the specified version.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions:clone",
+                  "httpMethod": "POST",
+                  "id": "firebasehosting.projects.sites.versions.clone",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The target site where the cloned version will reside, in the format: `sites/{site}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/versions:clone",
+                  "request": {
+                    "$ref": "CloneVersionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new version for a site.",
                   "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions",
@@ -553,7 +746,7 @@
                       "type": "string"
                     },
                     "versionId": {
-                      "description": "A unique id for the new version. This is only specified for legacy version creations.",
+                      "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                       "location": "query",
                       "type": "string"
                     }
@@ -838,6 +1031,170 @@
       },
       "resources": {
         "channels": {
+          "methods": {
+            "create": {
+              "description": "Creates a new channel in the specified site.",
+              "flatPath": "v1beta1/sites/{sitesId}/channels",
+              "httpMethod": "POST",
+              "id": "firebasehosting.sites.channels.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "channelId": {
+                  "description": "Required. Immutable. A unique id within the site to identify the channel.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The site in which this channel should be created.",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/channels",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a channel of a site. The `live` channel cannot be deleted.",
+              "flatPath": "v1beta1/sites/{sitesId}/channels/{channelsId}",
+              "httpMethod": "DELETE",
+              "id": "firebasehosting.sites.channels.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified identifier for the site.",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+/channels/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "get": {
+              "description": "Retrieves information for the specified channel of a site.",
+              "flatPath": "v1beta1/sites/{sitesId}/channels/{channelsId}",
+              "httpMethod": "GET",
+              "id": "firebasehosting.sites.channels.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified identifier for the channel.",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+/channels/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists the channels for the specified site. All sites have a default \"live\" channel.",
+              "flatPath": "v1beta1/sites/{sitesId}/channels",
+              "httpMethod": "GET",
+              "id": "firebasehosting.sites.channels.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The next_page_token from a previous request, if provided.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The site from which to list channels.",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/channels",
+              "response": {
+                "$ref": "ListChannelsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.",
+              "flatPath": "v1beta1/sites/{sitesId}/channels/{channelsId}",
+              "httpMethod": "PATCH",
+              "id": "firebasehosting.sites.channels.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The fully-qualified identifier of the Channel.",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+/channels/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "A comma-separated list of fields to be updated in this request.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            }
+          },
           "resources": {
             "releases": {
               "methods": {
@@ -1152,6 +1509,35 @@
         },
         "versions": {
           "methods": {
+            "clone": {
+              "description": "Creates a new version on the target site using the content of the specified version.",
+              "flatPath": "v1beta1/sites/{sitesId}/versions:clone",
+              "httpMethod": "POST",
+              "id": "firebasehosting.sites.versions.clone",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The target site where the cloned version will reside, in the format: `sites/{site}`",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/versions:clone",
+              "request": {
+                "$ref": "CloneVersionRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
             "create": {
               "description": "Creates a new version for a site.",
               "flatPath": "v1beta1/sites/{sitesId}/versions",
@@ -1175,7 +1561,7 @@
                   "type": "string"
                 },
                 "versionId": {
-                  "description": "A unique id for the new version. This is only specified for legacy version creations.",
+                  "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1391,7 +1777,7 @@
       }
     }
   },
-  "revision": "20200811",
+  "revision": "20200920",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1434,6 +1820,84 @@
         },
         "token": {
           "description": "The token to serve at the specified URL path to satisfy the certificate challenge.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Channel": {
+      "description": "A `Channel` represents a stream of releases for a site. All sites have a default `live` channel that serves content to the live Firebase-provided domains and any connected custom domains.",
+      "id": "Channel",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the channel was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "The time at which the channel will be automatically deleted. If null, the channel will not be automatically deleted. This field is present in output whether set directly or via the `ttl` field.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Text labels used for extra metadata and/or filtering.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The fully-qualified identifier of the Channel.",
+          "type": "string"
+        },
+        "release": {
+          "$ref": "Release",
+          "description": "Output only. The current release for the channel, if any.",
+          "readOnly": true
+        },
+        "retainedReleaseCount": {
+          "description": "The number of previous releases to retain on the channel for rollback or other purposes. Must be a number between 1-100. Defaults to 10 for new channels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ttl": {
+          "description": "Input only. A time-to-live for this channel. Sets `expire_time` to the provided duration past the time of the request.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the channel was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "description": "Output only. The URL at which the channel can be viewed. For the `live` channel, the content of the current release may also be visible at other URLs.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloneVersionRequest": {
+      "description": "The request sent to CloneVersion.",
+      "id": "CloneVersionRequest",
+      "properties": {
+        "exclude": {
+          "$ref": "PathFilter",
+          "description": "If provided, only paths that do not match any of the regexes in this list will be included in the new version."
+        },
+        "finalize": {
+          "description": "If true, immediately finalize the version after cloning is complete.",
+          "type": "boolean"
+        },
+        "include": {
+          "$ref": "PathFilter",
+          "description": "If provided, only paths that match one or more regexes in this list will be included in the new version."
+        },
+        "sourceVersion": {
+          "description": "Required. The name of the version to be cloned, in the format: `sites/{site}/versions/{version}`",
           "type": "string"
         }
       },
@@ -1645,6 +2109,24 @@
       },
       "type": "object"
     },
+    "ListChannelsResponse": {
+      "description": "The response returned by ListChannels.",
+      "id": "ListChannelsResponse",
+      "properties": {
+        "channels": {
+          "description": "The list of channels.",
+          "items": {
+            "$ref": "Channel"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.channels/list) call to continue with the next set of releases.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDomainsResponse": {
       "description": "The response to listing Domains.",
       "id": "ListDomainsResponse",
@@ -1745,6 +2227,20 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PathFilter": {
+      "description": "A representation of filter path.",
+      "id": "PathFilter",
+      "properties": {
+        "regexes": {
+          "description": "An array of regexes to filter by.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2063,7 +2559,8 @@
             "FINALIZED",
             "DELETED",
             "ABANDONED",
-            "EXPIRED"
+            "EXPIRED",
+            "CLONING"
           ],
           "enumDescriptions": [
             "The default status; should not be intentionally used.",
@@ -2071,7 +2568,8 @@
             "All content has been added to the version, and the version can no longer be changed.",
             "The version has been deleted.",
             "The version was not updated to `FINALIZED` within 12 hours and was automatically deleted.",
-            "The version is outside the site-configured limit for the number of retained versions, so the version's content is scheduled for deletion."
+            "The version is outside the site-configured limit for the number of retained versions, so the version's content is scheduled for deletion.",
+            "The version is being cloned from another version. All content is still being copied over."
           ],
           "type": "string"
         },

@@ -329,6 +329,10 @@ export namespace documentai_v1beta2 {
      */
     pages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPage[];
     /**
+     * Revision history of this document.
+     */
+    revisions?: Schema$GoogleCloudDocumentaiV1beta1DocumentRevision[];
+    /**
      * Information about the sharding if this document is sharded part of a larger document. If the document is not sharded, this message is not specified.
      */
     shardInfo?: Schema$GoogleCloudDocumentaiV1beta1DocumentShardInfo;
@@ -336,6 +340,10 @@ export namespace documentai_v1beta2 {
      * UTF-8 encoded text in reading order from the document.
      */
     text?: string | null;
+    /**
+     * A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     */
+    textChanges?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextChange[];
     /**
      * Styles for the Document.text.
      */
@@ -358,6 +366,10 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
+     * Optional. Canonical id. This will be a unique value in the entity list for this document.
+     */
+    id?: string | null;
+    /**
      * Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
@@ -369,6 +381,18 @@ export namespace documentai_v1beta2 {
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue;
+    /**
+     * Optional. Represents the provenance of this entity wrt. the location on the page where it was found.
+     */
+    pageAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchor;
+    /**
+     * Optional. Entities can be nested to form a hierarchical data structure representing the content in the document.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntity[];
+    /**
+     * Optional. The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
     /**
      * Optional. Whether the entity will be redacted for de-identification purposes.
      */
@@ -386,6 +410,10 @@ export namespace documentai_v1beta2 {
    * Parsed and normalized entity value.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue {
+    /**
+     * Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto
+     */
+    addressValue?: Schema$GoogleTypePostalAddress;
     /**
      * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
      */
@@ -441,6 +469,10 @@ export namespace documentai_v1beta2 {
      */
     formFields?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageFormField[];
     /**
+     * Rendered image for this page. This image is preprocessed to remove any skew, rotation, and distortions such that the annotation bounding boxes can be upright and axis-aligned.
+     */
+    image?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageImage;
+    /**
      * Layout for the page.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
@@ -465,9 +497,43 @@ export namespace documentai_v1beta2 {
      */
     tokens?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageToken[];
     /**
+     * Transformation matrices that were applied to the original document image to produce Page.image.
+     */
+    transforms?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageMatrix[];
+    /**
      * A list of detected non-text visual elements e.g. checkbox, signature etc. on the page.
      */
     visualElements?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageVisualElement[];
+  }
+  /**
+   * Referencing the visual context of the entity in the Document.pages. Page anchors can be cross-page, consist of multiple bounding polygons and optionally reference specific layout element types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchor {
+    /**
+     * One or more references to visual page elements
+     */
+    pageRefs?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef[];
+  }
+  /**
+   * Represents a weak reference to a page element within a document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef {
+    /**
+     * Optional. Identifies the bounding polygon of a layout element on the page.
+     */
+    boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
+    /**
+     * Optional. Deprecated. Use PageRef.bounding_poly instead.
+     */
+    layoutId?: string | null;
+    /**
+     * Optional. The type of the layout element that is being referenced if any.
+     */
+    layoutType?: string | null;
+    /**
+     * Required. Index into the Document.pages element
+     */
+    page?: string | null;
   }
   /**
    * A block has a set of lines (collected into paragraphs) that have a common line-spacing and orientation.
@@ -481,6 +547,10 @@ export namespace documentai_v1beta2 {
      * Layout for Block.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
   }
   /**
    * Detected language for a structural component.
@@ -532,6 +602,31 @@ export namespace documentai_v1beta2 {
      * A list of detected languages for value together with confidence.
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
+    /**
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - &quot;unfilled_checkbox&quot; - &quot;filled_checkbox&quot;
+     */
+    valueType?: string | null;
+  }
+  /**
+   * Rendered image contents for this page.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageImage {
+    /**
+     * Raw byte content of the image.
+     */
+    content?: string | null;
+    /**
+     * Height of the image in pixels.
+     */
+    height?: number | null;
+    /**
+     * Encoding mime type for the image.
+     */
+    mimeType?: string | null;
+    /**
+     * Width of the image in pixels.
+     */
+    width?: number | null;
   }
   /**
    * Visual element describing a layout unit on a page.
@@ -566,6 +661,31 @@ export namespace documentai_v1beta2 {
      * Layout for Line.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+  }
+  /**
+   * Representation for transformation matrix, intended to be compatible and used with OpenCV format for image manipulation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageMatrix {
+    /**
+     * Number of columns in the matrix.
+     */
+    cols?: number | null;
+    /**
+     * The matrix data.
+     */
+    data?: string | null;
+    /**
+     * Number of rows in the matrix.
+     */
+    rows?: number | null;
+    /**
+     * This encodes information about what data type the matrix uses. For example, 0 (CV_8U) is an unsigned 8-bit image. For the full list of OpenCV primitive data types, please refer to https://docs.opencv.org/4.3.0/d1/d1b/group__core__hal__interface.html
+     */
+    type?: number | null;
   }
   /**
    * A collection of lines that a human would perceive as a paragraph.
@@ -579,6 +699,10 @@ export namespace documentai_v1beta2 {
      * Layout for Paragraph.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -647,6 +771,10 @@ export namespace documentai_v1beta2 {
      * Layout for Token.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
   }
   /**
    * Detected break at the end of a Token.
@@ -673,6 +801,82 @@ export namespace documentai_v1beta2 {
      * Type of the VisualElement.
      */
     type?: string | null;
+  }
+  /**
+   * Structure to identify provenance relationships between annotations in different revisions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance {
+    /**
+     * The Id of this operation. Needs to be unique within the scope of the revision.
+     */
+    id?: number | null;
+    /**
+     * References to the original elements that are replaced.
+     */
+    parents?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenanceParent[];
+    /**
+     * The index of the revision that produced this element.
+     */
+    revision?: number | null;
+    /**
+     * The type of provenance operation.
+     */
+    type?: string | null;
+  }
+  /**
+   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentProvenanceParent {
+    /**
+     * The id of the parent provenance.
+     */
+    id?: number | null;
+    /**
+     * The index of the [Document.revisions] identifying the parent revision.
+     */
+    revision?: number | null;
+  }
+  /**
+   * Contains past or forward revisions of this document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentRevision {
+    /**
+     * If the change was made by a person specify the name or id of that person.
+     */
+    agent?: string | null;
+    /**
+     * The time that the revision was created.
+     */
+    createTime?: string | null;
+    /**
+     * Human Review information of this revision.
+     */
+    humanReview?: Schema$GoogleCloudDocumentaiV1beta1DocumentRevisionHumanReview;
+    /**
+     * Id of the revision. Unique within the context of the document.
+     */
+    id?: string | null;
+    /**
+     * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
+     */
+    parent?: number[] | null;
+    /**
+     * If the annotation was made by processor identify the processor by its resource name.
+     */
+    processor?: string | null;
+  }
+  /**
+   * Human Review information of the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentRevisionHumanReview {
+    /**
+     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the rejection reason when the state is `rejected`.
+     */
+    stateMessage?: string | null;
   }
   /**
    * For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.
@@ -742,6 +946,10 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor {
     /**
+     * Contains the content of the text span so that users do not have to look it up in the text_segments.
+     */
+    content?: string | null;
+    /**
      * The text segments from the Document.text.
      */
     textSegments?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment[];
@@ -760,6 +968,23 @@ export namespace documentai_v1beta2 {
     startIndex?: string | null;
   }
   /**
+   * This message is used for text changes aka. OCR corrections.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTextChange {
+    /**
+     * The text that replaces the text identified in the `text_anchor`.
+     */
+    changedText?: string | null;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance[];
+    /**
+     * Provenance of the correction. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
+     */
+    textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
+  }
+  /**
    * A translation of the text segment.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTranslation {
@@ -767,6 +992,10 @@ export namespace documentai_v1beta2 {
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance[];
     /**
      * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
      */
@@ -947,6 +1176,10 @@ export namespace documentai_v1beta2 {
      */
     pages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPage[];
     /**
+     * Revision history of this document.
+     */
+    revisions?: Schema$GoogleCloudDocumentaiV1beta2DocumentRevision[];
+    /**
      * Information about the sharding if this document is sharded part of a larger document. If the document is not sharded, this message is not specified.
      */
     shardInfo?: Schema$GoogleCloudDocumentaiV1beta2DocumentShardInfo;
@@ -954,6 +1187,10 @@ export namespace documentai_v1beta2 {
      * UTF-8 encoded text in reading order from the document.
      */
     text?: string | null;
+    /**
+     * A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     */
+    textChanges?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextChange[];
     /**
      * Styles for the Document.text.
      */
@@ -976,6 +1213,10 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
+     * Optional. Canonical id. This will be a unique value in the entity list for this document.
+     */
+    id?: string | null;
+    /**
      * Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
@@ -987,6 +1228,18 @@ export namespace documentai_v1beta2 {
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue;
+    /**
+     * Optional. Represents the provenance of this entity wrt. the location on the page where it was found.
+     */
+    pageAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchor;
+    /**
+     * Optional. Entities can be nested to form a hierarchical data structure representing the content in the document.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntity[];
+    /**
+     * Optional. The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
     /**
      * Optional. Whether the entity will be redacted for de-identification purposes.
      */
@@ -1004,6 +1257,10 @@ export namespace documentai_v1beta2 {
    * Parsed and normalized entity value.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue {
+    /**
+     * Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto
+     */
+    addressValue?: Schema$GoogleTypePostalAddress;
     /**
      * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
      */
@@ -1076,6 +1333,10 @@ export namespace documentai_v1beta2 {
      */
     formFields?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageFormField[];
     /**
+     * Rendered image for this page. This image is preprocessed to remove any skew, rotation, and distortions such that the annotation bounding boxes can be upright and axis-aligned.
+     */
+    image?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageImage;
+    /**
      * Layout for the page.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
@@ -1100,9 +1361,43 @@ export namespace documentai_v1beta2 {
      */
     tokens?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageToken[];
     /**
+     * Transformation matrices that were applied to the original document image to produce Page.image.
+     */
+    transforms?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageMatrix[];
+    /**
      * A list of detected non-text visual elements e.g. checkbox, signature etc. on the page.
      */
     visualElements?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageVisualElement[];
+  }
+  /**
+   * Referencing the visual context of the entity in the Document.pages. Page anchors can be cross-page, consist of multiple bounding polygons and optionally reference specific layout element types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchor {
+    /**
+     * One or more references to visual page elements
+     */
+    pageRefs?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef[];
+  }
+  /**
+   * Represents a weak reference to a page element within a document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef {
+    /**
+     * Optional. Identifies the bounding polygon of a layout element on the page.
+     */
+    boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
+    /**
+     * Optional. Deprecated. Use PageRef.bounding_poly instead.
+     */
+    layoutId?: string | null;
+    /**
+     * Optional. The type of the layout element that is being referenced if any.
+     */
+    layoutType?: string | null;
+    /**
+     * Required. Index into the Document.pages element
+     */
+    page?: string | null;
   }
   /**
    * A block has a set of lines (collected into paragraphs) that have a common line-spacing and orientation.
@@ -1116,6 +1411,10 @@ export namespace documentai_v1beta2 {
      * Layout for Block.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
   }
   /**
    * Detected language for a structural component.
@@ -1173,6 +1472,27 @@ export namespace documentai_v1beta2 {
     valueType?: string | null;
   }
   /**
+   * Rendered image contents for this page.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageImage {
+    /**
+     * Raw byte content of the image.
+     */
+    content?: string | null;
+    /**
+     * Height of the image in pixels.
+     */
+    height?: number | null;
+    /**
+     * Encoding mime type for the image.
+     */
+    mimeType?: string | null;
+    /**
+     * Width of the image in pixels.
+     */
+    width?: number | null;
+  }
+  /**
    * Visual element describing a layout unit on a page.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout {
@@ -1205,6 +1525,31 @@ export namespace documentai_v1beta2 {
      * Layout for Line.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+  }
+  /**
+   * Representation for transformation matrix, intended to be compatible and used with OpenCV format for image manipulation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageMatrix {
+    /**
+     * Number of columns in the matrix.
+     */
+    cols?: number | null;
+    /**
+     * The matrix data.
+     */
+    data?: string | null;
+    /**
+     * Number of rows in the matrix.
+     */
+    rows?: number | null;
+    /**
+     * This encodes information about what data type the matrix uses. For example, 0 (CV_8U) is an unsigned 8-bit image. For the full list of OpenCV primitive data types, please refer to https://docs.opencv.org/4.3.0/d1/d1b/group__core__hal__interface.html
+     */
+    type?: number | null;
   }
   /**
    * A collection of lines that a human would perceive as a paragraph.
@@ -1218,6 +1563,10 @@ export namespace documentai_v1beta2 {
      * Layout for Paragraph.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -1286,6 +1635,10 @@ export namespace documentai_v1beta2 {
      * Layout for Token.
      */
     layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
   }
   /**
    * Detected break at the end of a Token.
@@ -1312,6 +1665,82 @@ export namespace documentai_v1beta2 {
      * Type of the VisualElement.
      */
     type?: string | null;
+  }
+  /**
+   * Structure to identify provenance relationships between annotations in different revisions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance {
+    /**
+     * The Id of this operation. Needs to be unique within the scope of the revision.
+     */
+    id?: number | null;
+    /**
+     * References to the original elements that are replaced.
+     */
+    parents?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenanceParent[];
+    /**
+     * The index of the revision that produced this element.
+     */
+    revision?: number | null;
+    /**
+     * The type of provenance operation.
+     */
+    type?: string | null;
+  }
+  /**
+   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentProvenanceParent {
+    /**
+     * The id of the parent provenance.
+     */
+    id?: number | null;
+    /**
+     * The index of the [Document.revisions] identifying the parent revision.
+     */
+    revision?: number | null;
+  }
+  /**
+   * Contains past or forward revisions of this document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentRevision {
+    /**
+     * If the change was made by a person specify the name or id of that person.
+     */
+    agent?: string | null;
+    /**
+     * The time that the revision was created.
+     */
+    createTime?: string | null;
+    /**
+     * Human Review information of this revision.
+     */
+    humanReview?: Schema$GoogleCloudDocumentaiV1beta2DocumentRevisionHumanReview;
+    /**
+     * Id of the revision. Unique within the context of the document.
+     */
+    id?: string | null;
+    /**
+     * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
+     */
+    parent?: number[] | null;
+    /**
+     * If the annotation was made by processor identify the processor by its resource name.
+     */
+    processor?: string | null;
+  }
+  /**
+   * Human Review information of the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentRevisionHumanReview {
+    /**
+     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the rejection reason when the state is `rejected`.
+     */
+    stateMessage?: string | null;
   }
   /**
    * For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.
@@ -1381,6 +1810,10 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor {
     /**
+     * Contains the content of the text span so that users do not have to look it up in the text_segments.
+     */
+    content?: string | null;
+    /**
      * The text segments from the Document.text.
      */
     textSegments?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment[];
@@ -1399,6 +1832,23 @@ export namespace documentai_v1beta2 {
     startIndex?: string | null;
   }
   /**
+   * This message is used for text changes aka. OCR corrections.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTextChange {
+    /**
+     * The text that replaces the text identified in the `text_anchor`.
+     */
+    changedText?: string | null;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance[];
+    /**
+     * Provenance of the correction. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
+     */
+    textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
+  }
+  /**
    * A translation of the text segment.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTranslation {
@@ -1406,6 +1856,10 @@ export namespace documentai_v1beta2 {
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance[];
     /**
      * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
      */
@@ -1674,6 +2128,10 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus {
     /**
+     * The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.
+     */
+    humanReviewOperation?: string | null;
+    /**
      * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
      */
     inputGcsSource?: string | null;
@@ -1690,6 +2148,36 @@ export namespace documentai_v1beta2 {
    * Response message for batch process document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessResponse {}
+  /**
+   * The long running operation metadata for review document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * Used only when Operation.done is false.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for review document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
+    /**
+     * The Cloud Storage uri for the human reviewed document.
+     */
+    gcsDestination?: string | null;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -1831,6 +2319,55 @@ export namespace documentai_v1beta2 {
      * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an i18n-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
+   */
+  export interface Schema$GoogleTypePostalAddress {
+    /**
+     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. &quot;Austin, TX&quot;), it is important that the line order is clear. The order of address lines should be &quot;envelope order&quot; for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. &quot;ja&quot; for large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     */
+    addressLines?: string[] | null;
+    /**
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. &quot;Barcelona&quot; and not &quot;Catalonia&quot;). Many countries don&#39;t use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.
+     */
+    administrativeArea?: string | null;
+    /**
+     * Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address&#39; country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: &quot;zh-Hant&quot;, &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.
+     */
+    locality?: string | null;
+    /**
+     * Optional. The name of the organization at the address.
+     */
+    organization?: string | null;
+    /**
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (e.g. state/zip validation in the U.S.A.).
+     */
+    postalCode?: string | null;
+    /**
+     * Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain &quot;care of&quot; information.
+     */
+    recipients?: string[] | null;
+    /**
+     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: &quot;CH&quot; for Switzerland.
+     */
+    regionCode?: string | null;
+    /**
+     * The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions.
+     */
+    revision?: number | null;
+    /**
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like &quot;CEDEX&quot;, optionally followed by a number (e.g. &quot;CEDEX 7&quot;), or just a number alone, representing the &quot;sector code&quot; (Jamaica), &quot;delivery area indicator&quot; (Malawi) or &quot;post office indicator&quot; (e.g. Côte d&#39;Ivoire).
+     */
+    sortingCode?: string | null;
+    /**
+     * Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.
+     */
+    sublocality?: string | null;
   }
   /**
    * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
@@ -2072,8 +2609,10 @@ export namespace documentai_v1beta2 {
      *   //   "labels": [],
      *   //   "mimeType": "my_mimeType",
      *   //   "pages": [],
+     *   //   "revisions": [],
      *   //   "shardInfo": {},
      *   //   "text": "my_text",
+     *   //   "textChanges": [],
      *   //   "textStyles": [],
      *   //   "translations": [],
      *   //   "uri": "my_uri"
@@ -2441,8 +2980,10 @@ export namespace documentai_v1beta2 {
      *   //   "labels": [],
      *   //   "mimeType": "my_mimeType",
      *   //   "pages": [],
+     *   //   "revisions": [],
      *   //   "shardInfo": {},
      *   //   "text": "my_text",
+     *   //   "textChanges": [],
      *   //   "textStyles": [],
      *   //   "translations": [],
      *   //   "uri": "my_uri"

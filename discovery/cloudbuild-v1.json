@@ -209,6 +209,11 @@
                 "projectId"
               ],
               "parameters": {
+                "parent": {
+                  "description": "The parent resource where this build will be created. Format: `projects/{project}/locations/{location}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Required. ID of the project.",
                   "location": "path",
@@ -241,6 +246,11 @@
                   "description": "Required. ID of the build.",
                   "location": "path",
                   "required": true,
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+                  "location": "query",
                   "type": "string"
                 },
                 "projectId": {
@@ -280,6 +290,11 @@
                 },
                 "pageToken": {
                   "description": "Token to provide to skip to a particular spot in the list.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`",
                   "location": "query",
                   "type": "string"
                 },
@@ -336,6 +351,180 @@
         },
         "locations": {
           "resources": {
+            "builds": {
+              "methods": {
+                "cancel": {
+                  "description": "Cancels a build in progress.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.builds.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/builds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelBuildRequest"
+                  },
+                  "response": {
+                    "$ref": "Build"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.builds.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "The parent resource where this build will be created. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/builds",
+                  "request": {
+                    "$ref": "Build"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.builds.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "id": {
+                      "description": "Required. ID of the build.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/builds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Build"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.builds.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The raw filter text to constrain the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Number of results to return in the list.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to provide to skip to a particular spot in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/builds",
+                  "response": {
+                    "$ref": "ListBuildsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "retry": {
+                  "description": "Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}:retry",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.builds.retry",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `Build` to retry. Format: `projects/{project}/locations/{location}/builds/{build}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/builds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:retry",
+                  "request": {
+                    "$ref": "RetryBuildRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -594,7 +783,7 @@
       }
     }
   },
-  "revision": "20200817",
+  "revision": "20201001",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -700,6 +889,11 @@
         },
         "logsBucket": {
           "description": "Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The 'Build' name with format: `projects/{project}/locations/{location}/builds/{build}`, where {build} is a unique identifier generated by the service.",
+          "readOnly": true,
           "type": "string"
         },
         "options": {
@@ -916,11 +1110,6 @@
         },
         "sourceProvenanceHash": {
           "description": "Requested hash for SourceProvenance.",
-          "enumDescriptions": [
-            "No hash requested.",
-            "Use a sha256 hash.",
-            "Use a md5 hash."
-          ],
           "items": {
             "enum": [
               "NONE",
@@ -1119,7 +1308,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.The keys cannot conflict with the keys in bindings.",
+          "description": "Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.",
           "type": "object"
         },
         "tags": {
@@ -1159,7 +1348,20 @@
     "CancelBuildRequest": {
       "description": "Request to cancel an ongoing build.",
       "id": "CancelBuildRequest",
-      "properties": {},
+      "properties": {
+        "id": {
+          "description": "Required. ID of the build.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. ID of the project.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CancelOperationRequest": {
@@ -1449,11 +1651,13 @@
           "description": "Configure builds to run whether a repository owner or collaborator need to comment `/gcbrun`.",
           "enum": [
             "COMMENTS_DISABLED",
-            "COMMENTS_ENABLED"
+            "COMMENTS_ENABLED",
+            "COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY"
           ],
           "enumDescriptions": [
             "Do not require comments on Pull Requests before builds are triggered.",
-            "Enforce that repository owners or collaborators must comment on Pull Requests before builds are triggered."
+            "Enforce that repository owners or collaborators must comment on Pull Requests before builds are triggered.",
+            "Enforce that repository owners or collaborators must comment on external contributors' Pull Requests before builds are triggered."
           ],
           "type": "string"
         },
@@ -1570,7 +1774,20 @@
     "RetryBuildRequest": {
       "description": "Specifies a build to retry.",
       "id": "RetryBuildRequest",
-      "properties": {},
+      "properties": {
+        "id": {
+          "description": "Required. Build ID of the original build.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the `Build` to retry. Format: `projects/{project}/locations/{location}/builds/{build}`",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. ID of the project.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SMTPDelivery": {

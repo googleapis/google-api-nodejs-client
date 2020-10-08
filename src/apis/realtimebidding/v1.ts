@@ -130,19 +130,6 @@ export namespace realtimebidding_v1 {
   }
 
   /**
-   * Detected ad technology provider information.
-   */
-  export interface Schema$AdTechnologyProviders {
-    /**
-     * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider. If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the [Google bid protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto), and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
-     */
-    detectedProviderIds?: string[] | null;
-    /**
-     * Whether the creative contains an unidentified ad technology provider. If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
-     */
-    hasUnidentifiedProvider?: boolean | null;
-  }
-  /**
    * Detected advertiser and brand information.
    */
   export interface Schema$AdvertiserAndBrand {
@@ -232,7 +219,7 @@ export namespace realtimebidding_v1 {
      */
     impressionTrackingUrls?: string[] | null;
     /**
-     * Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string | null;
     /**
@@ -256,10 +243,6 @@ export namespace realtimebidding_v1 {
    * Top level status and detected attributes of a creative.
    */
   export interface Schema$CreativeServingDecision {
-    /**
-     * The detected ad technology providers.
-     */
-    adTechnologyProviders?: Schema$AdTechnologyProviders;
     /**
      * The serving status of this creative in China. When approved or disapproved, this status applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
      */
@@ -1801,7 +1784,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Name of the creative to update. See creative.name.
+     *     // Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Field mask to use for partial in-place updates.
      *     updateMask: 'placeholder-value',
@@ -1869,7 +1852,7 @@ export namespace realtimebidding_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the creative to update. See creative.name.
+     * @param {string} params.name Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      * @param {string=} params.updateMask Field mask to use for partial in-place updates.
      * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2003,7 +1986,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$Patch
     extends StandardParameters {
     /**
-     * Name of the creative to update. See creative.name.
+     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string;
     /**

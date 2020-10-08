@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20200819",
+  "revision": "20200929",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -681,15 +681,6 @@
         },
         "digestFunction": {
           "description": "All the digest functions supported by the remote cache. Remote cache may support multiple digest functions simultaneously.",
-          "enumDescriptions": [
-            "It is an error for the server to return this value.",
-            "The SHA-256 digest function.",
-            "The SHA-1 digest function.",
-            "The MD5 digest function.",
-            "The Microsoft \"VSO-Hash\" paged SHA256 digest function. See https://github.com/microsoft/BuildXL/blob/master/Documentation/Specs/PagedHash.md .",
-            "The SHA-384 digest function.",
-            "The SHA-512 digest function."
-          ],
           "items": {
             "enum": [
               "UNKNOWN",
@@ -1791,11 +1782,13 @@
           "description": "linux_isolation allows overriding the docker runtime used for containers started on Linux.",
           "enum": [
             "LINUX_ISOLATION_UNSPECIFIED",
-            "GVISOR"
+            "GVISOR",
+            "OFF"
           ],
           "enumDescriptions": [
             "Default value. Will be using Linux default runtime.",
-            "Use gVisor runsc runtime."
+            "Use gVisor runsc runtime.",
+            "Use stardard Linux runtime. This has the same behaviour as unspecified, but it can be used to revert back from gVisor."
           ],
           "type": "string"
         }

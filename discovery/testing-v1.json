@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20200820",
+  "revision": "20200918",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -553,7 +553,7 @@
       "type": "object"
     },
     "AndroidRoboTest": {
-      "description": "A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes.",
+      "description": "A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. Next tag: 29",
       "id": "AndroidRoboTest",
       "properties": {
         "appApk": {

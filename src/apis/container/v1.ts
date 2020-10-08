@@ -191,9 +191,25 @@ export namespace container_v1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
+     * The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     */
+    bootDiskKmsKey?: string | null;
+    /**
+     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
+     */
+    diskSizeGb?: number | null;
+    /**
+     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or &#39;pd-ssd&#39;) If unspecified, the default disk type is &#39;pd-standard&#39;
+     */
+    diskType?: string | null;
+    /**
      * Specifies the node management options for NAP created node-pools.
      */
     management?: Schema$NodeManagement;
+    /**
+     * Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Scopes that are used by NAP when creating node pools.
      */
@@ -202,6 +218,10 @@ export namespace container_v1 {
      * The Google Cloud Platform Service Account to be used by the node VMs.
      */
     serviceAccount?: string | null;
+    /**
+     * Shielded Instance options.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * Specifies the upgrade settings for NAP created node pools
      */
@@ -289,6 +309,10 @@ export namespace container_v1 {
      * Whether Cloud Run addon is enabled for this cluster.
      */
     disabled?: boolean | null;
+    /**
+     * Which load balancer type is installed for Cloud Run.
+     */
+    loadBalancerType?: string | null;
   }
   /**
    * A Google Kubernetes Engine cluster.
@@ -1051,11 +1075,11 @@ export namespace container_v1 {
      */
     clusterCaCertificate?: string | null;
     /**
-     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty.
+     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty. Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      */
     password?: string | null;
     /**
-     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string).
+     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string). Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      */
     username?: string | null;
   }

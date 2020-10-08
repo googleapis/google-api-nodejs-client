@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/g_FXgEBUU2zytdB3NoOSx8Gl_nI\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/GB_1RM82OKxTSfzeb_5bvCbmQ40\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1230,6 +1230,12 @@
             "fileId"
           ],
           "parameters": {
+            "enforceSingleParent": {
+              "default": "false",
+              "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
+              "location": "query",
+              "type": "boolean"
+            },
             "fileId": {
               "description": "The ID of the file to delete.",
               "location": "path",
@@ -1260,6 +1266,14 @@
           "description": "Permanently deletes all of the user's trashed files.",
           "httpMethod": "DELETE",
           "id": "drive.files.emptyTrash",
+          "parameters": {
+            "enforceSingleParent": {
+              "default": "false",
+              "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
           "path": "files/trash",
           "scopes": [
             "https://www.googleapis.com/auth/drive"
@@ -3507,7 +3521,7 @@
       }
     }
   },
-  "revision": "20200811",
+  "revision": "20200922",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {

@@ -178,11 +178,29 @@ export namespace secretmanager_v1 {
   /**
    * A replication policy that replicates the Secret payload without any restrictions.
    */
-  export interface Schema$Automatic {}
+  export interface Schema$Automatic {
+    /**
+     * Optional. The customer-managed encryption configuration of the Secret. If no configuration is provided, Google-managed default encryption is used. Updates to the Secret encryption configuration only apply to SecretVersions added afterwards. They do not apply retroactively to existing SecretVersions.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryption;
+  }
+  /**
+   * The replication status of a SecretVersion using automatic replication. Only populated if the parent Secret has an automatic replication policy.
+   */
+  export interface Schema$AutomaticStatus {
+    /**
+     * Output only. The customer-managed encryption status of the SecretVersion. Only populated if customer-managed encryption is used.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryptionStatus;
+  }
   /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -195,6 +213,24 @@ export namespace secretmanager_v1 {
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Configuration for encrypting secret payloads using customer-managed encryption keys (CMEK).
+   */
+  export interface Schema$CustomerManagedEncryption {
+    /**
+     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt secret payloads. For secrets using the UserManaged replication policy type, Cloud KMS CryptoKeys must reside in the same location as the replica location. For secrets using the Automatic replication policy type, Cloud KMS CryptoKeys must reside in `global`. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
+   * Describes the status of customer-managed encryption.
+   */
+  export interface Schema$CustomerManagedEncryptionStatus {
+    /**
+     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to encrypt the secret payload, in the following format: `projects/x/locations/x/keyRings/x/cryptoKeys/x/versions/x.
+     */
+    kmsKeyVersionName?: string | null;
   }
   /**
    * Request message for SecretManagerService.DestroySecretVersion.
@@ -331,12 +367,29 @@ export namespace secretmanager_v1 {
    */
   export interface Schema$Replica {
     /**
+     * Optional. The customer-managed encryption configuration of the User-Managed Replica. If no configuration is provided, Google-managed default encryption is used. Updates to the Secret encryption configuration only apply to SecretVersions added afterwards. They do not apply retroactively to existing SecretVersions.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryption;
+    /**
      * The canonical IDs of the location to replicate data. For example: `&quot;us-east1&quot;`.
      */
     location?: string | null;
   }
   /**
-   * A policy that defines the replication configuration of data.
+   * Describes the status of a user-managed replica for the SecretVersion.
+   */
+  export interface Schema$ReplicaStatus {
+    /**
+     * Output only. The customer-managed encryption status of the SecretVersion. Only populated if customer-managed encryption is used.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryptionStatus;
+    /**
+     * Output only. The canonical ID of the replica location. For example: `&quot;us-east1&quot;`.
+     */
+    location?: string | null;
+  }
+  /**
+   * A policy that defines the replication and encryption configuration of data.
    */
   export interface Schema$Replication {
     /**
@@ -347,6 +400,19 @@ export namespace secretmanager_v1 {
      * The Secret will only be replicated into the locations specified.
      */
     userManaged?: Schema$UserManaged;
+  }
+  /**
+   * The replication status of a SecretVersion.
+   */
+  export interface Schema$ReplicationStatus {
+    /**
+     * Describes the replication status of a SecretVersion with automatic replication. Only populated if the parent Secret has an automatic replication policy.
+     */
+    automatic?: Schema$AutomaticStatus;
+    /**
+     * Describes the replication status of a SecretVersion with user-managed replication. Only populated if the parent Secret has a user-managed replication policy.
+     */
+    userManaged?: Schema$UserManagedStatus;
   }
   /**
    * A Secret is a logical secret whose value and versions can be accessed. A Secret is made up of zero or more SecretVersions that represent the secret data.
@@ -395,6 +461,10 @@ export namespace secretmanager_v1 {
      */
     name?: string | null;
     /**
+     * The replication status of the SecretVersion.
+     */
+    replicationStatus?: Schema$ReplicationStatus;
+    /**
      * Output only. The current state of the SecretVersion.
      */
     state?: string | null;
@@ -438,6 +508,15 @@ export namespace secretmanager_v1 {
      * Required. The list of Replicas for this Secret. Cannot be empty.
      */
     replicas?: Schema$Replica[];
+  }
+  /**
+   * The replication status of a SecretVersion using user-managed replication. Only populated if the parent Secret has a user-managed replication policy.
+   */
+  export interface Schema$UserManagedStatus {
+    /**
+     * Output only. The list of replica statuses for the SecretVersion.
+     */
+    replicas?: Schema$ReplicaStatus[];
   }
 
   export class Resource$Projects {
@@ -818,6 +897,7 @@ export namespace secretmanager_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2343,6 +2423,7 @@ export namespace secretmanager_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2485,6 +2566,7 @@ export namespace secretmanager_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2627,6 +2709,7 @@ export namespace secretmanager_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2760,6 +2843,7 @@ export namespace secretmanager_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
      *   //   "state": "my_state"
      *   // }
      * }

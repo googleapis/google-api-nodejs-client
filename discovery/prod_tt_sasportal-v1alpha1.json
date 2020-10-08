@@ -195,6 +195,141 @@
         }
       },
       "resources": {
+        "deployments": {
+          "methods": {
+            "move": {
+              "description": "Moves a deployment under another node or customer.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}:move",
+              "httpMethod": "POST",
+              "id": "prod_tt_sasportal.customers.deployments.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment to move.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}:move",
+              "request": {
+                "$ref": "SasPortalMoveDeploymentRequest"
+              },
+              "response": {
+                "$ref": "SasPortalOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            }
+          },
+          "resources": {
+            "devices": {
+              "methods": {
+                "create": {
+                  "description": "Creates a device under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}/devices",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.customers.deployments.devices.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "request": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "createSigned": {
+                  "description": "Creates a signed device under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}/devices:createSigned",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.customers.deployments.devices.createSigned",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices:createSigned",
+                  "request": {
+                    "$ref": "SasPortalCreateSignedDeviceRequest"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "list": {
+                  "description": "Lists devices under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}/devices",
+                  "httpMethod": "GET",
+                  "id": "prod_tt_sasportal.customers.deployments.devices.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "response": {
+                    "$ref": "SasPortalListDevicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "devices": {
           "methods": {
             "bulk": {
@@ -744,6 +879,182 @@
         }
       }
     },
+    "deployments": {
+      "resources": {
+        "devices": {
+          "methods": {
+            "delete": {
+              "description": "Deletes a device.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}",
+              "httpMethod": "DELETE",
+              "id": "prod_tt_sasportal.deployments.devices.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the device.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "get": {
+              "description": "Gets details about a device.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}",
+              "httpMethod": "GET",
+              "id": "prod_tt_sasportal.deployments.devices.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the device.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalDevice"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "move": {
+              "description": "Moves a device under another node or customer.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}:move",
+              "httpMethod": "POST",
+              "id": "prod_tt_sasportal.deployments.devices.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the device to move.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}:move",
+              "request": {
+                "$ref": "SasPortalMoveDeviceRequest"
+              },
+              "response": {
+                "$ref": "SasPortalOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "patch": {
+              "description": "Updates a device.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}",
+              "httpMethod": "PATCH",
+              "id": "prod_tt_sasportal.deployments.devices.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource path name.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "request": {
+                "$ref": "SasPortalDevice"
+              },
+              "response": {
+                "$ref": "SasPortalDevice"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "signDevice": {
+              "description": "Signs a device.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}:signDevice",
+              "httpMethod": "POST",
+              "id": "prod_tt_sasportal.deployments.devices.signDevice",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource path name.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}:signDevice",
+              "request": {
+                "$ref": "SasPortalSignDeviceRequest"
+              },
+              "response": {
+                "$ref": "SasPortalEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "updateSigned": {
+              "description": "Updates a signed device.",
+              "flatPath": "v1alpha1/deployments/{deploymentsId}/devices/{devicesId}:updateSigned",
+              "httpMethod": "PATCH",
+              "id": "prod_tt_sasportal.deployments.devices.updateSigned",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the device to update.",
+                  "location": "path",
+                  "pattern": "^deployments/[^/]+/devices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}:updateSigned",
+              "request": {
+                "$ref": "SasPortalUpdateSignedDeviceRequest"
+              },
+              "response": {
+                "$ref": "SasPortalDevice"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            }
+          }
+        }
+      }
+    },
     "installer": {
       "methods": {
         "generateSecret": {
@@ -813,6 +1124,141 @@
         }
       },
       "resources": {
+        "deployments": {
+          "methods": {
+            "move": {
+              "description": "Moves a deployment under another node or customer.",
+              "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}:move",
+              "httpMethod": "POST",
+              "id": "prod_tt_sasportal.nodes.deployments.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment to move.",
+                  "location": "path",
+                  "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}:move",
+              "request": {
+                "$ref": "SasPortalMoveDeploymentRequest"
+              },
+              "response": {
+                "$ref": "SasPortalOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            }
+          },
+          "resources": {
+            "devices": {
+              "methods": {
+                "create": {
+                  "description": "Creates a device under a node or customer.",
+                  "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}/devices",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.nodes.deployments.devices.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "request": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "createSigned": {
+                  "description": "Creates a signed device under a node or customer.",
+                  "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}/devices:createSigned",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.nodes.deployments.devices.createSigned",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices:createSigned",
+                  "request": {
+                    "$ref": "SasPortalCreateSignedDeviceRequest"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "list": {
+                  "description": "Lists devices under a node or customer.",
+                  "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}/devices",
+                  "httpMethod": "GET",
+                  "id": "prod_tt_sasportal.nodes.deployments.devices.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "response": {
+                    "$ref": "SasPortalListDevicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "devices": {
           "methods": {
             "bulk": {
@@ -1550,7 +1996,7 @@
       }
     }
   },
-  "revision": "20200824",
+  "revision": "20201001",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2114,6 +2560,17 @@
             "$ref": "SasPortalNode"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalMoveDeploymentRequest": {
+      "description": "Request for MoveDeployment method.",
+      "id": "SasPortalMoveDeploymentRequest",
+      "properties": {
+        "destination": {
+          "description": "Required. The name of the new parent resource Node or Customer to reparent the deployment under.",
+          "type": "string"
         }
       },
       "type": "object"

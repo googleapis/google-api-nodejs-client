@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This file is not used any more, but we keep this file for making it
+# easy to roll back.
+# TODO: Remove this file from the template.
+
 set -eo pipefail
 
 # Always run the cleanup script, regardless of the success of bouncing into

@@ -112,7 +112,7 @@
             "operations": {
               "methods": {
                 "get": {
-                  "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "speech.projects.locations.operations.get",
@@ -137,7 +137,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "speech.projects.locations.operations.list",
@@ -184,7 +184,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200923",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ListOperationsResponse": {
@@ -206,51 +206,55 @@
       "type": "object"
     },
     "LongRunningRecognizeMetadata": {
-      "description": "Describes the progress of a long-running `LongRunningRecognize` call. It is\nincluded in the `metadata` field of the `Operation` returned by the\n`GetOperation` call of the `google::longrunning::Operations` service.",
+      "description": "Describes the progress of a long-running `LongRunningRecognize` call. It is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.",
       "id": "LongRunningRecognizeMetadata",
       "properties": {
         "lastUpdateTime": {
           "description": "Output only. Time of the most recent processing update.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "progressPercent": {
-          "description": "Output only. Approximate percentage of audio processed thus far. Guaranteed to be 100\nwhen the audio is fully processed and the results are available.",
+          "description": "Output only. Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "startTime": {
           "description": "Output only. Time when the request was received.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the audio file being transcribed. Empty if the audio was sent\nas byte content.",
+          "description": "The URI of the audio file being transcribed. Empty if the audio was sent as byte content.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "LongRunningRecognizeResponse": {
-      "description": "The only message returned to the client by the `LongRunningRecognize` method.\nIt contains the result as zero or more sequential SpeechRecognitionResult\nmessages. It is included in the `result.response` field of the `Operation`\nreturned by the `GetOperation` call of the `google::longrunning::Operations`\nservice.",
+      "description": "The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential SpeechRecognitionResult messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.",
       "id": "LongRunningRecognizeResponse",
       "properties": {
         "results": {
-          "description": "Output only. Sequential list of transcription results corresponding to\nsequential portions of audio.",
+          "description": "Output only. Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {
             "$ref": "SpeechRecognitionResult"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
       "type": "object"
     },
     "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -262,11 +266,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -274,7 +278,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -285,19 +289,22 @@
       "id": "SpeechRecognitionAlternative",
       "properties": {
         "confidence": {
-          "description": "Output only. The confidence estimate between 0.0 and 1.0. A higher number\nindicates an estimated greater likelihood that the recognized words are\ncorrect. This field is set only for the top alternative of a non-streaming\nresult or, of a streaming result where `is_final=true`.\nThis field is not guaranteed to be accurate and users should not rely on it\nto be always provided.\nThe default of 0.0 is a sentinel value indicating `confidence` was not set.",
+          "description": "Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         },
         "transcript": {
           "description": "Output only. Transcript text representing the words that the user spoke.",
+          "readOnly": true,
           "type": "string"
         },
         "words": {
-          "description": "Output only. A list of word-specific information for each recognized word.\nNote: When `enable_speaker_diarization` is true, you will see all the words\nfrom the beginning of the audio.",
+          "description": "Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.",
           "items": {
             "$ref": "WordInfo"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -308,26 +315,29 @@
       "id": "SpeechRecognitionResult",
       "properties": {
         "alternatives": {
-          "description": "Output only. May contain one or more recognition hypotheses (up to the\nmaximum specified in `max_alternatives`).\nThese alternatives are ordered in terms of accuracy, with the top (first)\nalternative being the most probable, as ranked by the recognizer.",
+          "description": "Output only. May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.",
           "items": {
             "$ref": "SpeechRecognitionAlternative"
           },
+          "readOnly": true,
           "type": "array"
         },
         "channelTag": {
-          "description": "Output only. For multi-channel audio, this is the channel number corresponding to the\nrecognized result for the audio from that channel.\nFor `audio_channel_count` = N, its output values can range from `1` to `N`.",
+          "description": "Output only. For multi-channel audio, this is the channel number corresponding to the recognized result for the audio from that channel. For `audio_channel_count` = N, its output values can range from `1` to `N`.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "languageCode": {
-          "description": "Output only. The\n[BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the\nlanguage in this result. This language code was detected to have the most\nlikelihood of being spoken in the audio.",
+          "description": "Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.",
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -336,7 +346,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -347,7 +357,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
@@ -358,27 +368,32 @@
       "id": "WordInfo",
       "properties": {
         "confidence": {
-          "description": "Output only. The confidence estimate between 0.0 and 1.0. A higher number\nindicates an estimated greater likelihood that the recognized words are\ncorrect. This field is set only for the top alternative of a non-streaming\nresult or, of a streaming result where `is_final=true`.\nThis field is not guaranteed to be accurate and users should not rely on it\nto be always provided.\nThe default of 0.0 is a sentinel value indicating `confidence` was not set.",
+          "description": "Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         },
         "endOffset": {
-          "description": "Output only. Time offset relative to the beginning of the audio,\nand corresponding to the end of the spoken word.\nThis field is only set if `enable_word_time_offsets=true` and only\nin the top hypothesis.\nThis is an experimental feature and the accuracy of the time offset can\nvary.",
+          "description": "Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {
-          "description": "Output only. A distinct integer value is assigned for every speaker within\nthe audio. This field specifies which one of those speakers was detected to\nhave spoken this word. Value ranges from `1` to\n`diarization_config.max_speaker_count` . `speaker_tag` is set if\n`diarization_config.enable_speaker_diarization` = `true` and only in the\ntop alternative.",
+          "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from `1` to `diarization_config.max_speaker_count` . `speaker_tag` is set if `diarization_config.enable_speaker_diarization` = `true` and only in the top alternative.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "startOffset": {
-          "description": "Output only. Time offset relative to the beginning of the audio,\nand corresponding to the start of the spoken word.\nThis field is only set if `enable_word_time_offsets=true` and only\nin the top hypothesis.\nThis is an experimental feature and the accuracy of the time offset can\nvary.",
+          "description": "Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "word": {
           "description": "Output only. The word corresponding to this set of information.",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -132,9 +132,13 @@ export namespace oslogin_v1alpha {
    */
   export interface Schema$Empty {}
   /**
-   * A response message from importing an SSH public key.
+   * A response message for importing an SSH public key.
    */
   export interface Schema$ImportSshPublicKeyResponse {
+    /**
+     * Detailed information about import results.
+     */
+    details?: string | null;
     /**
      * The login profile information for the user.
      */
@@ -145,7 +149,7 @@ export namespace oslogin_v1alpha {
    */
   export interface Schema$LoginProfile {
     /**
-     * A unique user ID.
+     * Required. A unique user ID.
      */
     name?: string | null;
     /**
@@ -270,7 +274,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Do the magic
      *   const res = await oslogin.users.getLoginProfile({
-     *     // The unique ID for the user in format `users/{user}`.
+     *     // Required. The unique ID for the user in format `users/{user}`.
      *     name: 'users/my-user',
      *     // The type of operating system associated with the account.
      *     operatingSystemType: 'placeholder-value',
@@ -298,7 +302,7 @@ export namespace oslogin_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique ID for the user in format `users/{user}`.
+     * @param {string} params.name Required. The unique ID for the user in format `users/{user}`.
      * @param {string=} params.operatingSystemType The type of operating system associated with the account.
      * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
      * @param {string=} params.systemId A system ID for filtering the results of the request.
@@ -435,6 +439,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "details": "my_details",
      *   //   "loginProfile": {}
      *   // }
      * }
@@ -545,7 +550,7 @@ export namespace oslogin_v1alpha {
   export interface Params$Resource$Users$Getloginprofile
     extends StandardParameters {
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      */
     name?: string;
     /**
@@ -614,7 +619,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Do the magic
      *   const res = await oslogin.users.projects.delete({
-     *     // A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     *     // Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      *     name: 'users/my-user/projects/my-project',
      *     // The type of operating system associated with the account.
      *     operatingSystemType: 'placeholder-value',
@@ -634,7 +639,7 @@ export namespace oslogin_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     * @param {string} params.name Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      * @param {string=} params.operatingSystemType The type of operating system associated with the account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -720,7 +725,7 @@ export namespace oslogin_v1alpha {
   export interface Params$Resource$Users$Projects$Delete
     extends StandardParameters {
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      */
     name?: string;
     /**
@@ -765,7 +770,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.delete({
-     *     // The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *   });
      *   console.log(res.data);
@@ -783,7 +788,7 @@ export namespace oslogin_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -894,7 +899,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.get({
-     *     // The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *   });
      *   console.log(res.data);
@@ -917,7 +922,7 @@ export namespace oslogin_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1028,7 +1033,7 @@ export namespace oslogin_v1alpha {
      *
      *   // Do the magic
      *   const res = await oslogin.users.sshPublicKeys.patch({
-     *     // The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
      *     // Mask to control which fields get updated. Updates all if not present.
      *     updateMask: 'placeholder-value',
@@ -1064,7 +1069,7 @@ export namespace oslogin_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
      * @param {().SshPublicKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1151,21 +1156,21 @@ export namespace oslogin_v1alpha {
   export interface Params$Resource$Users$Sshpublickeys$Delete
     extends StandardParameters {
     /**
-     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Get
     extends StandardParameters {
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Patch
     extends StandardParameters {
     /**
-     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
     /**
