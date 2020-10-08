@@ -1456,7 +1456,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Google+ application. * `other`
+     * The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Currents application. * `other`
      */
     type?: string | null;
     /**
