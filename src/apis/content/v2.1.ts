@@ -53,9 +53,21 @@ export namespace content_v2_1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace content_v2_1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Content API for Shopping
    *
-   * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
+   * Manage your product listings and accounts for Google Shopping
    *
    * @example
    * const {google} = require('googleapis');
@@ -102,6 +118,7 @@ export namespace content_v2_1 {
     accounts: Resource$Accounts;
     accountstatuses: Resource$Accountstatuses;
     accounttax: Resource$Accounttax;
+    csses: Resource$Csses;
     datafeeds: Resource$Datafeeds;
     datafeedstatuses: Resource$Datafeedstatuses;
     liasettings: Resource$Liasettings;
@@ -115,6 +132,7 @@ export namespace content_v2_1 {
     productstatuses: Resource$Productstatuses;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
     regionalinventory: Resource$Regionalinventory;
+    repricingrules: Resource$Repricingrules;
     returnaddress: Resource$Returnaddress;
     returnpolicy: Resource$Returnpolicy;
     settlementreports: Resource$Settlementreports;
@@ -130,6 +148,7 @@ export namespace content_v2_1 {
       this.accounts = new Resource$Accounts(this.context);
       this.accountstatuses = new Resource$Accountstatuses(this.context);
       this.accounttax = new Resource$Accounttax(this.context);
+      this.csses = new Resource$Csses(this.context);
       this.datafeeds = new Resource$Datafeeds(this.context);
       this.datafeedstatuses = new Resource$Datafeedstatuses(this.context);
       this.liasettings = new Resource$Liasettings(this.context);
@@ -145,6 +164,7 @@ export namespace content_v2_1 {
         this.context
       );
       this.regionalinventory = new Resource$Regionalinventory(this.context);
+      this.repricingrules = new Resource$Repricingrules(this.context);
       this.returnaddress = new Resource$Returnaddress(this.context);
       this.returnpolicy = new Resource$Returnpolicy(this.context);
       this.settlementreports = new Resource$Settlementreports(this.context);
@@ -240,7 +260,7 @@ export namespace content_v2_1 {
      */
     adsId?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in Google Ads or `pending` if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`pending`&quot;
+     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in Google Ads or `pending` if it&#39;s pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending. Acceptable values are: - &quot;`active`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
   }
@@ -282,7 +302,7 @@ export namespace content_v2_1 {
      */
     gmbEmail?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the GMB account.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`pending`&quot;
+     * Status of the link between this Merchant Center account and the GMB account. Acceptable values are: - &quot;`active`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
   }
@@ -295,6 +315,27 @@ export namespace content_v2_1 {
      * The merchant account ID, set for individual accounts and subaccounts.
      */
     merchantId?: string | null;
+  }
+  /**
+   * Label assigned by CSS domain or CSS group to one of its sub-accounts.
+   */
+  export interface Schema$AccountLabel {
+    /**
+     * Output only. Immutable. The ID of account this label belongs to.
+     */
+    accountId?: string | null;
+    /**
+     * Description for this label.
+     */
+    description?: string | null;
+    /**
+     * Output only. Immutable. The ID of the label.
+     */
+    labelId?: string | null;
+    /**
+     * The display name of this label.
+     */
+    name?: string | null;
   }
   export interface Schema$AccountsAuthInfoResponse {
     /**
@@ -351,7 +392,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`claimWebsite`&quot;  - &quot;`delete`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;  - &quot;`link`&quot;  - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`claimWebsite`&quot; - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`link`&quot; - &quot;`update`&quot;
      */
     method?: string | null;
     /**
@@ -365,7 +406,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
-     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants.  Acceptable values are:   - &quot;`approve`&quot;  - &quot;`remove`&quot;  - &quot;`request`&quot;
+     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants. Acceptable values are: - &quot;`approve`&quot; - &quot;`remove`&quot; - &quot;`request`&quot;
      */
     action?: string | null;
     /**
@@ -373,7 +414,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts.  Acceptable values are:   - &quot;`channelPartner`&quot;  - &quot;`eCommercePlatform`&quot;
+     * Type of the link between the two accounts. Acceptable values are: - &quot;`channelPartner`&quot; - &quot;`eCommercePlatform`&quot;
      */
     linkType?: string | null;
     /**
@@ -414,7 +455,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsLinkRequest {
     /**
-     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants.  Acceptable values are:   - &quot;`approve`&quot;  - &quot;`remove`&quot;  - &quot;`request`&quot;
+     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants. Acceptable values are: - &quot;`approve`&quot; - &quot;`remove`&quot; - &quot;`request`&quot;
      */
     action?: string | null;
     /**
@@ -422,7 +463,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts.  Acceptable values are:   - &quot;`channelPartner`&quot;  - &quot;`eCommercePlatform`&quot;
+     * Type of the link between the two accounts. Acceptable values are: - &quot;`channelPartner`&quot; - &quot;`eCommercePlatform`&quot;
      */
     linkType?: string | null;
     /**
@@ -508,7 +549,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Severity of the issue.  Acceptable values are:   - &quot;`critical`&quot;  - &quot;`error`&quot;  - &quot;`suggestion`&quot;
+     * Severity of the issue. Acceptable values are: - &quot;`critical`&quot; - &quot;`error`&quot; - &quot;`suggestion`&quot;
      */
     severity?: string | null;
     /**
@@ -543,7 +584,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
      */
     method?: string | null;
   }
@@ -621,7 +662,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountStatusProducts {
     /**
-     * The channel the data applies to.  Acceptable values are:   - &quot;`local`&quot;  - &quot;`online`&quot;
+     * The channel the data applies to. Acceptable values are: - &quot;`local`&quot; - &quot;`online`&quot;
      */
     channel?: string | null;
     /**
@@ -715,7 +756,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;  - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`update`&quot;
      */
     method?: string | null;
   }
@@ -814,7 +855,7 @@ export namespace content_v2_1 {
      */
     channelId?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in YT Creator Studio or `pending` if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
+     * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in YT Creator Studio or `pending` if it&#39;s pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
     status?: string | null;
   }
@@ -874,6 +915,35 @@ export namespace content_v2_1 {
      */
     services?: string[] | null;
   }
+  /**
+   * Information about CSS domain.
+   */
+  export interface Schema$Css {
+    /**
+     * Output only. Immutable. The CSS domain ID.
+     */
+    cssDomainId?: string | null;
+    /**
+     * Output only. Immutable. The ID of the CSS group this CSS domain is affiliated with. Only populated for CSS group users.
+     */
+    cssGroupId?: string | null;
+    /**
+     * Output only. Immutable. The CSS domain&#39;s display name, used when space is constrained.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Immutable. The CSS domain&#39;s full name.
+     */
+    fullName?: string | null;
+    /**
+     * Output only. Immutable. The CSS domain&#39;s homepage.
+     */
+    homepageUri?: string | null;
+    /**
+     * A list of label IDs that are assigned to this CSS domain by its CSS group. Only populated for CSS group users.
+     */
+    labelIds?: string[] | null;
+  }
   export interface Schema$CustomAttribute {
     /**
      * Subattributes within this attribute group. Exactly one of value or groupValues must be provided.
@@ -894,7 +964,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the return reason.  Acceptable values are:   - &quot;`betterPriceFound`&quot;  - &quot;`changedMind`&quot;  - &quot;`damagedOrDefectiveItem`&quot;  - &quot;`didNotMatchDescription`&quot;  - &quot;`doesNotFit`&quot;  - &quot;`expiredItem`&quot;  - &quot;`incorrectItemReceived`&quot;  - &quot;`noLongerNeeded`&quot;  - &quot;`notSpecified`&quot;  - &quot;`orderedWrongItem`&quot;  - &quot;`other`&quot;  - &quot;`qualityNotExpected`&quot;  - &quot;`receivedTooLate`&quot;  - &quot;`undeliverable`&quot;
+     * Code of the return reason. Acceptable values are: - &quot;`betterPriceFound`&quot; - &quot;`changedMind`&quot; - &quot;`damagedOrDefectiveItem`&quot; - &quot;`didNotMatchDescription`&quot; - &quot;`doesNotFit`&quot; - &quot;`expiredItem`&quot; - &quot;`incorrectItemReceived`&quot; - &quot;`noLongerNeeded`&quot; - &quot;`notSpecified`&quot; - &quot;`orderedWrongItem`&quot; - &quot;`other`&quot; - &quot;`qualityNotExpected`&quot; - &quot;`receivedTooLate`&quot; - &quot;`undeliverable`&quot;
      */
     reasonCode?: string | null;
   }
@@ -908,7 +978,7 @@ export namespace content_v2_1 {
      */
     minute?: number | null;
     /**
-     * Timezone identifier for the cutoff time. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
+     * Timezone identifier for the cutoff time. A list of identifiers can be found in the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
     timezone?: string | null;
   }
@@ -921,7 +991,7 @@ export namespace content_v2_1 {
      */
     attributeLanguage?: string | null;
     /**
-     * Required. The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.  Acceptable values are:   - &quot;`local products`&quot;  - &quot;`product inventory`&quot;  - &quot;`products`&quot;
+     * Required. The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported. Acceptable values are: - &quot;`local products`&quot; - &quot;`product inventory`&quot; - &quot;`products`&quot;
      */
     contentType?: string | null;
     /**
@@ -990,21 +1060,21 @@ export namespace content_v2_1 {
      */
     username?: string | null;
     /**
-     * The day of the week the feed file should be fetched.  Acceptable values are:   - &quot;`monday`&quot;  - &quot;`tuesday`&quot;  - &quot;`wednesday`&quot;  - &quot;`thursday`&quot;  - &quot;`friday`&quot;  - &quot;`saturday`&quot;  - &quot;`sunday`&quot;
+     * The day of the week the feed file should be fetched. Acceptable values are: - &quot;`monday`&quot; - &quot;`tuesday`&quot; - &quot;`wednesday`&quot; - &quot;`thursday`&quot; - &quot;`friday`&quot; - &quot;`saturday`&quot; - &quot;`sunday`&quot;
      */
     weekday?: string | null;
   }
   export interface Schema$DatafeedFormat {
     /**
-     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds.  Acceptable values are:   - &quot;`pipe`&quot;  - &quot;`tab`&quot;  - &quot;`tilde`&quot;
+     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - &quot;`pipe`&quot; - &quot;`tab`&quot; - &quot;`tilde`&quot;
      */
     columnDelimiter?: string | null;
     /**
-     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.  Acceptable values are:   - &quot;`latin-1`&quot;  - &quot;`utf-16be`&quot;  - &quot;`utf-16le`&quot;  - &quot;`utf-8`&quot;  - &quot;`windows-1252`&quot;
+     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected. Acceptable values are: - &quot;`latin-1`&quot; - &quot;`utf-16be`&quot; - &quot;`utf-16le`&quot; - &quot;`utf-8`&quot; - &quot;`windows-1252`&quot;
      */
     fileEncoding?: string | null;
     /**
-     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.  Acceptable values are:   - &quot;`normal character`&quot;  - &quot;`value quoting`&quot;
+     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - &quot;`normal character`&quot; - &quot;`value quoting`&quot;
      */
     quotingMode?: string | null;
   }
@@ -1035,7 +1105,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`delete`&quot;  - &quot;`fetchNow`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;  - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`fetchNow`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`update`&quot;
      */
     method?: string | null;
   }
@@ -1088,7 +1158,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$DatafeedStatus {
     /**
-     * The country for which the status is reported, represented as a  CLDR territory code.
+     * The country for which the status is reported, represented as a CLDR territory code.
      */
     country?: string | null;
     /**
@@ -1120,7 +1190,7 @@ export namespace content_v2_1 {
      */
     lastUploadDate?: string | null;
     /**
-     * The processing status of the feed.  Acceptable values are:   - &quot;`&quot;`failure`&quot;: The feed could not be processed or all items had errors.`&quot;  - &quot;`in progress`&quot;: The feed is being processed.  - &quot;`none`&quot;: The feed has not yet been processed. For example, a feed that has never been uploaded will have this processing status.  - &quot;`success`&quot;: The feed was processed successfully, though some items might have had errors.
+     * The processing status of the feed. Acceptable values are: - &quot;`&quot;`failure`&quot;: The feed could not be processed or all items had errors.`&quot; - &quot;`in progress`&quot;: The feed is being processed. - &quot;`none`&quot;: The feed has not yet been processed. For example, a feed that has never been uploaded will have this processing status. - &quot;`success`&quot;: The feed was processed successfully, though some items might have had errors.
      */
     processingStatus?: string | null;
     /**
@@ -1180,7 +1250,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
      */
     method?: string | null;
   }
@@ -1241,7 +1311,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedTarget {
     /**
-     * The country where the items in the feed will be included in the search index, represented as a  CLDR territory code.
+     * The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
      */
     country?: string | null;
     /**
@@ -1249,7 +1319,7 @@ export namespace content_v2_1 {
      */
     excludedDestinations?: string[] | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.  List of supported destinations (if available to the account):   - DisplayAds  - Shopping  - ShoppingActions  - SurfacesAcrossGoogle
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. List of supported destinations (if available to the account): - DisplayAds - Shopping - ShoppingActions - SurfacesAcrossGoogle
      */
     includedDestinations?: string[] | null;
     /**
@@ -1366,7 +1436,7 @@ export namespace content_v2_1 {
      */
     locations?: Schema$LocationIdSet[];
     /**
-     * A list of inclusive number of items upper bounds. The last value can be `&quot;infinity&quot;`. For example `[&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;]` represents the headers &quot;&lt;= 10 items&quot;, &quot; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive number of items upper bounds. The last value can be `&quot;infinity&quot;`. For example `[&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;]` represents the headers &quot;&lt;= 10 items&quot;, &quot;&lt;= 50 items&quot;, and &quot;&gt; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
      */
     numberOfItems?: string[] | null;
     /**
@@ -1374,11 +1444,11 @@ export namespace content_v2_1 {
      */
     postalCodeGroupNames?: string[] | null;
     /**
-     * A list of inclusive order price upper bounds. The last price&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}]` represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive order price upper bounds. The last price&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}]` represents the headers &quot;&lt;= $10&quot;, &quot;&lt;= $500&quot;, and &quot;&gt; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
      */
     prices?: Schema$Price[];
     /**
-     * A list of inclusive order weight upper bounds. The last weight&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}]` represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive order weight upper bounds. The last weight&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}]` represents the headers &quot;&lt;= 10kg&quot;, &quot;&lt;= 50kg&quot;, and &quot;&gt; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
      */
     weights?: Schema$Weight[];
   }
@@ -1392,7 +1462,7 @@ export namespace content_v2_1 {
      */
     deadlineHour?: number | null;
     /**
-     * Timezone identifier for the deadline hour. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
+     * Timezone identifier for the deadline hour. A list of identifiers can be found in the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
     deadlineTimezone?: string | null;
     /**
@@ -1426,7 +1496,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * The holiday type. Always present.  Acceptable values are:   - &quot;`Christmas`&quot;  - &quot;`Easter`&quot;  - &quot;`Father&#39;s Day`&quot;  - &quot;`Halloween`&quot;  - &quot;`Independence Day (USA)`&quot;  - &quot;`Mother&#39;s Day`&quot;  - &quot;`Thanksgiving`&quot;  - &quot;`Valentine&#39;s Day`&quot;
+     * The holiday type. Always present. Acceptable values are: - &quot;`Christmas`&quot; - &quot;`Easter`&quot; - &quot;`Father&#39;s Day`&quot; - &quot;`Halloween`&quot; - &quot;`Independence Day (USA)`&quot; - &quot;`Mother&#39;s Day`&quot; - &quot;`Thanksgiving`&quot; - &quot;`Valentine&#39;s Day`&quot;
      */
     type?: string | null;
   }
@@ -1456,13 +1526,22 @@ export namespace content_v2_1 {
      */
     totalAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge.  Acceptable values are:   - &quot;`shipping`&quot;
+     * [required] Type of the additional charge. Acceptable values are: - &quot;`shipping`&quot;
      */
     type?: string | null;
   }
+  /**
+   * The IDs of labels that should be assigned to the CSS domain.
+   */
+  export interface Schema$LabelIds {
+    /**
+     * The list of label IDs.
+     */
+    labelIds?: string[] | null;
+  }
   export interface Schema$LiaAboutPageSettings {
     /**
-     * The status of the verification process for the About page.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`inactive`&quot;  - &quot;`pending`&quot;
+     * The status of the verification process for the About page. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
     /**
@@ -1510,11 +1589,11 @@ export namespace content_v2_1 {
      */
     inventoryVerificationContactName?: string | null;
     /**
-     * The status of the verification contact.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`inactive`&quot;  - &quot;`pending`&quot;
+     * The status of the verification contact. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
      */
     inventoryVerificationContactStatus?: string | null;
     /**
-     * The status of the inventory verification process.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`inactive`&quot;  - &quot;`pending`&quot;
+     * The status of the inventory verification process. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
   }
@@ -1524,7 +1603,7 @@ export namespace content_v2_1 {
      */
     shippingCostPolicyUrl?: string | null;
     /**
-     * The status of the ?On display to order? feature.  Acceptable values are:   - &quot;`active`&quot;  - &quot;`inactive`&quot;  - &quot;`pending`&quot;
+     * The status of the ?On display to order? feature. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
   }
@@ -1595,7 +1674,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;  - &quot;`getAccessibleGmbAccounts`&quot;  - &quot;`requestGmbAccess`&quot;  - &quot;`requestInventoryVerification`&quot;  - &quot;`setInventoryVerificationContact`&quot;  - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`getAccessibleGmbAccounts`&quot; - &quot;`requestGmbAccess`&quot; - &quot;`requestInventoryVerification`&quot; - &quot;`setInventoryVerificationContact`&quot; - &quot;`update`&quot;
      */
     method?: string | null;
     /**
@@ -1714,13 +1793,52 @@ export namespace content_v2_1 {
   }
   export interface Schema$LinkService {
     /**
-     * Service provided to or by the linked account.  Acceptable values are:   - &quot;`shoppingActionsOrderManagement`&quot;  - &quot;`shoppingActionsProductManagement`&quot;  - &quot;`shoppingAdsProductManagement`&quot;
+     * Service provided to or by the linked account. Acceptable values are: - &quot;`shoppingActionsOrderManagement`&quot; - &quot;`shoppingActionsProductManagement`&quot; - &quot;`shoppingAdsProductManagement`&quot;
      */
     service?: string | null;
     /**
-     * Status of the link  Acceptable values are:   - &quot;`active`&quot;  - &quot;`inactive`&quot;  - &quot;`pending`&quot;
+     * Status of the link Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
      */
     status?: string | null;
+  }
+  /**
+   * Response message for the `ListAccountLabels` method.
+   */
+  export interface Schema$ListAccountLabelsResponse {
+    /**
+     * The labels from the specified account.
+     */
+    accountLabels?: Schema$AccountLabel[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for the `ListCsses` method
+   */
+  export interface Schema$ListCssesResponse {
+    /**
+     * The CSS domains affiliated with the specified CSS group.
+     */
+    csses?: Schema$Css[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for the `ListRepricingRules` method.
+   */
+  export interface Schema$ListRepricingRulesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The rules from the specified merchant.
+     */
+    repricingRules?: Schema$RepricingRule[];
   }
   /**
    * Local inventory resource. For accepted attribute values, see the local product inventory feed specification.
@@ -1790,7 +1908,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry.  Acceptable values are:   - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - &quot;`insert`&quot;
      */
     method?: string | null;
     /**
@@ -1920,7 +2038,7 @@ export namespace content_v2_1 {
      */
     shipmentUnitId?: string | null;
     /**
-     * State of the item.  Acceptable values are:   - &quot;`canceled`&quot;  - &quot;`new`&quot;  - &quot;`received`&quot;  - &quot;`refunded`&quot;  - &quot;`rejected`&quot;
+     * State of the item. Acceptable values are: - &quot;`canceled`&quot; - &quot;`new`&quot; - &quot;`received`&quot; - &quot;`refunded`&quot; - &quot;`rejected`&quot;
      */
     state?: string | null;
   }
@@ -1961,7 +2079,7 @@ export namespace content_v2_1 {
     taxAmount?: Schema$Price;
   }
   /**
-   * Order. Production access (all methods) requires the order manager role. Sandbox access does not. (== resource_for v2.orders ==) (== resource_for v2.1.orders ==)
+   * Order. Production access (all methods) requires the order manager role. Sandbox access does not.
    */
   export interface Schema$Order {
     /**
@@ -2010,7 +2128,7 @@ export namespace content_v2_1 {
      */
     netTaxAmount?: Schema$Price;
     /**
-     * The status of the payment.  Acceptable values are:   - &quot;`paymentCaptured`&quot;  - &quot;`paymentRejected`&quot;  - &quot;`paymentSecured`&quot;  - &quot;`pendingAuthorization`&quot;
+     * The status of the payment. Acceptable values are: - &quot;`paymentCaptured`&quot; - &quot;`paymentRejected`&quot; - &quot;`paymentSecured`&quot; - &quot;`pendingAuthorization`&quot;
      */
     paymentStatus?: string | null;
     /**
@@ -2022,7 +2140,7 @@ export namespace content_v2_1 {
      */
     placedDate?: string | null;
     /**
-     * Promotions associated with the order.  To determine which promotions apply to which products, check the `Promotions[].appliedItems[].lineItemId` field against the `LineItems[].id` field for each promotion. If a promotion is applied to more than 1 offerId, divide the discount value by the number of affected offers to determine how much discount to apply to each offerId.  Examples:   - To calculate price paid by the customer for a single line item including the discount: For each promotion, subtract the `LineItems[].adjustments[].priceAdjustment.value` amount from the `LineItems[].Price.value`.  - To calculate price paid by the customer for a single line item including the discount in case of multiple quantity: For each promotion, divide the `LineItems[].adjustments[].priceAdjustment.value` by the quantity of products then subtract the resulting value from the `LineItems[].Product.Price.value` for each quantity item.    Only 1 promotion can be applied to an offerId in a given order. To refund an item which had a promotion applied to it, make sure to refund the amount after first subtracting the promotion discount from the item price.  More details about the program are here.
+     * Promotions associated with the order. To determine which promotions apply to which products, check the `Promotions[].appliedItems[].lineItemId` field against the `LineItems[].id` field for each promotion. If a promotion is applied to more than 1 offerId, divide the discount value by the number of affected offers to determine how much discount to apply to each offerId. Examples: 1. To calculate price paid by the customer for a single line item including the discount: For each promotion, subtract the `LineItems[].adjustments[].priceAdjustment.value` amount from the `LineItems[].Price.value`. 2. To calculate price paid by the customer for a single line item including the discount in case of multiple quantity: For each promotion, divide the `LineItems[].adjustments[].priceAdjustment.value` by the quantity of products then subtract the resulting value from the `LineItems[].Product.Price.value` for each quantity item. Only 1 promotion can be applied to an offerId in a given order. To refund an item which had a promotion applied to it, make sure to refund the amount after first subtracting the promotion discount from the item price. More details about the program are here.
      */
     promotions?: Schema$OrderPromotion[];
     /**
@@ -2042,11 +2160,11 @@ export namespace content_v2_1 {
      */
     shippingCostTax?: Schema$Price;
     /**
-     * The status of the order.  Acceptable values are:   - &quot;`canceled`&quot;  - &quot;`delivered`&quot;  - &quot;`inProgress`&quot;  - &quot;`partiallyDelivered`&quot;  - &quot;`partiallyReturned`&quot;  - &quot;`partiallyShipped`&quot;  - &quot;`pendingShipment`&quot;  - &quot;`returned`&quot;  - &quot;`shipped`&quot;
+     * The status of the order. Acceptable values are: - &quot;`canceled`&quot; - &quot;`delivered`&quot; - &quot;`inProgress`&quot; - &quot;`partiallyDelivered`&quot; - &quot;`partiallyReturned`&quot; - &quot;`partiallyShipped`&quot; - &quot;`pendingShipment`&quot; - &quot;`returned`&quot; - &quot;`shipped`&quot;
      */
     status?: string | null;
     /**
-     * The party responsible for collecting and remitting taxes.  Acceptable values are:   - &quot;`marketplaceFacilitator`&quot;  - &quot;`merchant`&quot;
+     * The party responsible for collecting and remitting taxes. Acceptable values are: - &quot;`marketplaceFacilitator`&quot; - &quot;`merchant`&quot;
      */
     taxCollector?: string | null;
   }
@@ -2086,7 +2204,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCancellation {
     /**
-     * The actor that created the cancellation.  Acceptable values are:   - &quot;`customer`&quot;  - &quot;`googleBot`&quot;  - &quot;`googleCustomerService`&quot;  - &quot;`googlePayments`&quot;  - &quot;`googleSabre`&quot;  - &quot;`merchant`&quot;
+     * The actor that created the cancellation. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
      */
     actor?: string | null;
     /**
@@ -2098,7 +2216,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads.  Acceptable values are:   - &quot;`autoPostInternal`&quot;  - &quot;`autoPostInvalidBillingAddress`&quot;  - &quot;`autoPostNoInventory`&quot;  - &quot;`autoPostPriceError`&quot;  - &quot;`autoPostUndeliverableShippingAddress`&quot;  - &quot;`couponAbuse`&quot;  - &quot;`customerCanceled`&quot;  - &quot;`customerInitiatedCancel`&quot;  - &quot;`customerSupportRequested`&quot;  - &quot;`failToPushOrderGoogleError`&quot;  - &quot;`failToPushOrderMerchantError`&quot;  - &quot;`failToPushOrderMerchantFulfillmentError`&quot;  - &quot;`failToPushOrderToMerchant`&quot;  - &quot;`failToPushOrderToMerchantOutOfStock`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`merchantDidNotShipOnTime`&quot;  - &quot;`noInventory`&quot;  - &quot;`orderTimeout`&quot;  - &quot;`other`&quot;  - &quot;`paymentAbuse`&quot;  - &quot;`paymentDeclined`&quot;  - &quot;`priceError`&quot;  - &quot;`returnRefundAbuse`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerInitiatedCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceError`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
      */
     reason?: string | null;
     /**
@@ -2112,7 +2230,7 @@ export namespace content_v2_1 {
      */
     fullName?: string | null;
     /**
-     * Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see  About automated VAT invoicing for Shopping Actions.
+     * Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Shopping Actions.
      */
     invoiceReceivingEmail?: string | null;
     /**
@@ -2136,7 +2254,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCustomerMarketingRightsInfo {
     /**
-     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected `granted` in their most recent order, they can be subscribed to marketing emails. Customers who have chosen `denied` must not be subscribed, or must be unsubscribed if already opted-in.  Acceptable values are:   - &quot;`denied`&quot;  - &quot;`granted`&quot;
+     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected `granted` in their most recent order, they can be subscribed to marketing emails. Customers who have chosen `denied` must not be subscribed, or must be unsubscribed if already opted-in. Acceptable values are: - &quot;`denied`&quot; - &quot;`granted`&quot;
      */
     explicitMarketingPreference?: string | null;
     /**
@@ -2182,7 +2300,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2214,7 +2332,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2228,7 +2346,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the refund.  Acceptable values are:   - &quot;`adjustment`&quot;  - &quot;`autoPostInternal`&quot;  - &quot;`autoPostInvalidBillingAddress`&quot;  - &quot;`autoPostNoInventory`&quot;  - &quot;`autoPostPriceError`&quot;  - &quot;`autoPostUndeliverableShippingAddress`&quot;  - &quot;`couponAbuse`&quot;  - &quot;`courtesyAdjustment`&quot;  - &quot;`customerCanceled`&quot;  - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`customerSupportRequested`&quot;  - &quot;`deliveredLateByCarrier`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`failToPushOrderGoogleError`&quot;  - &quot;`failToPushOrderMerchantError`&quot;  - &quot;`failToPushOrderMerchantFulfillmentError`&quot;  - &quot;`failToPushOrderToMerchant`&quot;  - &quot;`failToPushOrderToMerchantOutOfStock`&quot;  - &quot;`feeAdjustment`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`lateShipmentCredit`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`merchantDidNotShipOnTime`&quot;  - &quot;`noInventory`&quot;  - &quot;`orderTimeout`&quot;  - &quot;`other`&quot;  - &quot;`paymentAbuse`&quot;  - &quot;`paymentDeclined`&quot;  - &quot;`priceAdjustment`&quot;  - &quot;`priceError`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`promoReallocation`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`returnRefundAbuse`&quot;  - &quot;`shippingCostAdjustment`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxAdjustment`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * [required] Reason for the refund. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
   }
@@ -2238,7 +2356,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the return.  Acceptable values are:   - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`other`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * [required] Reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
   }
@@ -2326,7 +2444,7 @@ export namespace content_v2_1 {
      */
     taxAdjustment?: Schema$Price;
     /**
-     * Type of this adjustment.  Acceptable values are:   - &quot;`promotion`&quot;
+     * Type of this adjustment. Acceptable values are: - &quot;`promotion`&quot;
      */
     type?: string | null;
   }
@@ -2336,7 +2454,7 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Condition or state of the item.  Acceptable values are:   - &quot;`new`&quot;  - &quot;`refurbished`&quot;  - &quot;`used`&quot;
+     * Condition or state of the item. Acceptable values are: - &quot;`new`&quot; - &quot;`refurbished`&quot; - &quot;`used`&quot;
      */
     condition?: string | null;
     /**
@@ -2380,7 +2498,7 @@ export namespace content_v2_1 {
      */
     shownImage?: string | null;
     /**
-     * The CLDR territory code of the target country of the product.
+     * The CLDR territory // code of the target country of the product.
      */
     targetCountry?: string | null;
     /**
@@ -2444,7 +2562,7 @@ export namespace content_v2_1 {
      */
     shipByDate?: string | null;
     /**
-     * Type of shipment. Indicates whether `deliveryDetails` or `pickupDetails` is applicable for this shipment.  Acceptable values are:   - &quot;`delivery`&quot;  - &quot;`pickup`&quot;
+     * Type of shipment. Indicates whether `deliveryDetails` or `pickupDetails` is applicable for this shipment. Acceptable values are: - &quot;`delivery`&quot; - &quot;`pickup`&quot;
      */
     type?: string | null;
   }
@@ -2500,7 +2618,7 @@ export namespace content_v2_1 {
      */
     locationId?: string | null;
     /**
-     * The pickup type of this order.  Acceptable values are:   - &quot;`merchantStore`&quot;  - &quot;`merchantStoreCurbside`&quot;  - &quot;`merchantStoreLocker`&quot;  - &quot;`thirdPartyPickupPoint`&quot;  - &quot;`thirdPartyLocker`&quot;
+     * The pickup type of this order. Acceptable values are: - &quot;`merchantStore`&quot; - &quot;`merchantStoreCurbside`&quot; - &quot;`merchantStoreLocker`&quot; - &quot;`thirdPartyPickupPoint`&quot; - &quot;`thirdPartyLocker`&quot;
      */
     pickupType?: string | null;
   }
@@ -2528,7 +2646,7 @@ export namespace content_v2_1 {
      */
     endTime?: string | null;
     /**
-     * Required. The party funding the promotion. Only `merchant` is supported for `orders.createtestorder`.  Acceptable values are:   - &quot;`google`&quot;  - &quot;`merchant`&quot;
+     * Required. The party funding the promotion. Only `merchant` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`google`&quot; - &quot;`merchant`&quot;
      */
     funder?: string | null;
     /**
@@ -2548,7 +2666,7 @@ export namespace content_v2_1 {
      */
     startTime?: string | null;
     /**
-     * Required. The category of the promotion. Only `moneyOff` is supported for `orders.createtestorder`.  Acceptable values are:   - &quot;`buyMGetMoneyOff`&quot;  - &quot;`buyMGetNMoneyOff`&quot;  - &quot;`buyMGetNPercentOff`&quot;  - &quot;`buyMGetPercentOff`&quot;  - &quot;`freeGift`&quot;  - &quot;`freeGiftWithItemId`&quot;  - &quot;`freeGiftWithValue`&quot;  - &quot;`freeShippingOvernight`&quot;  - &quot;`freeShippingStandard`&quot;  - &quot;`freeShippingTwoDay`&quot;  - &quot;`moneyOff`&quot;  - &quot;`percentOff`&quot;  - &quot;`rewardPoints`&quot;  - &quot;`salePrice`&quot;
+     * Required. The category of the promotion. Only `moneyOff` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`buyMGetMoneyOff`&quot; - &quot;`buyMGetNMoneyOff`&quot; - &quot;`buyMGetNPercentOff`&quot; - &quot;`buyMGetPercentOff`&quot; - &quot;`freeGift`&quot; - &quot;`freeGiftWithItemId`&quot; - &quot;`freeGiftWithValue`&quot; - &quot;`freeShippingOvernight`&quot; - &quot;`freeShippingStandard`&quot; - &quot;`freeShippingTwoDay`&quot; - &quot;`moneyOff`&quot; - &quot;`percentOff`&quot; - &quot;`rewardPoints`&quot; - &quot;`salePrice`&quot;
      */
     subtype?: string | null;
     /**
@@ -2560,7 +2678,7 @@ export namespace content_v2_1 {
      */
     title?: string | null;
     /**
-     * Required. The scope of the promotion. Only `product` is supported for `orders.createtestorder`.  Acceptable values are:   - &quot;`product`&quot;  - &quot;`shipping`&quot;
+     * Required. The scope of the promotion. Only `product` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`product`&quot; - &quot;`shipping`&quot;
      */
     type?: string | null;
   }
@@ -2584,7 +2702,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderRefund {
     /**
-     * The actor that created the refund.  Acceptable values are:   - &quot;`customer`&quot;  - &quot;`googleBot`&quot;  - &quot;`googleCustomerService`&quot;  - &quot;`googlePayments`&quot;  - &quot;`googleSabre`&quot;  - &quot;`merchant`&quot;
+     * The actor that created the refund. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
      */
     actor?: string | null;
     /**
@@ -2596,7 +2714,7 @@ export namespace content_v2_1 {
      */
     creationDate?: string | null;
     /**
-     * The reason for the refund.  Acceptable values are:   - &quot;`adjustment`&quot;  - &quot;`autoPostInternal`&quot;  - &quot;`autoPostInvalidBillingAddress`&quot;  - &quot;`autoPostNoInventory`&quot;  - &quot;`autoPostPriceError`&quot;  - &quot;`autoPostUndeliverableShippingAddress`&quot;  - &quot;`couponAbuse`&quot;  - &quot;`courtesyAdjustment`&quot;  - &quot;`customerCanceled`&quot;  - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`customerSupportRequested`&quot;  - &quot;`deliveredLateByCarrier`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`failToPushOrderGoogleError`&quot;  - &quot;`failToPushOrderMerchantError`&quot;  - &quot;`failToPushOrderMerchantFulfillmentError`&quot;  - &quot;`failToPushOrderToMerchant`&quot;  - &quot;`failToPushOrderToMerchantOutOfStock`&quot;  - &quot;`feeAdjustment`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`lateShipmentCredit`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`merchantDidNotShipOnTime`&quot;  - &quot;`noInventory`&quot;  - &quot;`orderTimeout`&quot;  - &quot;`other`&quot;  - &quot;`paymentAbuse`&quot;  - &quot;`paymentDeclined`&quot;  - &quot;`priceAdjustment`&quot;  - &quot;`priceError`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`promoReallocation`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`returnRefundAbuse`&quot;  - &quot;`shippingCostAdjustment`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxAdjustment`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * The reason for the refund. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
     /**
@@ -2605,7 +2723,7 @@ export namespace content_v2_1 {
     reasonText?: string | null;
   }
   /**
-   * Order disbursement. All methods require the payment analyst role. (== resource_for v2.orderreports ==) (== resource_for v2.1.orderreports ==)
+   * Order disbursement. All methods require the payment analyst role.
    */
   export interface Schema$OrderReportDisbursement {
     /**
@@ -2697,7 +2815,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderReturn {
     /**
-     * The actor that created the refund.  Acceptable values are:   - &quot;`customer`&quot;  - &quot;`googleBot`&quot;  - &quot;`googleCustomerService`&quot;  - &quot;`googlePayments`&quot;  - &quot;`googleSabre`&quot;  - &quot;`merchant`&quot;
+     * The actor that created the refund. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
      */
     actor?: string | null;
     /**
@@ -2709,7 +2827,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.  Acceptable values are:   - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`other`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
     /**
@@ -2725,7 +2843,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsAcknowledgeResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2774,7 +2892,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsProcessResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2836,7 +2954,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersAcknowledgeResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2868,7 +2986,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation.  Acceptable values are:   - &quot;`customerInitiatedCancel`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`noInventory`&quot;  - &quot;`other`&quot;  - &quot;`priceError`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Acceptable values are: - &quot;`customerInitiatedCancel`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`noInventory`&quot; - &quot;`other`&quot; - &quot;`priceError`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
      */
     reason?: string | null;
     /**
@@ -2878,7 +2996,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelLineItemResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2892,7 +3010,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the cancellation.  Acceptable values are:   - &quot;`customerInitiatedCancel`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`noInventory`&quot;  - &quot;`other`&quot;  - &quot;`priceError`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Acceptable values are: - &quot;`customerInitiatedCancel`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`noInventory`&quot; - &quot;`other`&quot; - &quot;`priceError`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
      */
     reason?: string | null;
     /**
@@ -2902,7 +3020,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2912,7 +3030,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelTestOrderByCustomerRequest {
     /**
-     * The reason for the cancellation.  Acceptable values are:   - &quot;`changedMind`&quot;  - &quot;`orderedWrongItem`&quot;  - &quot;`other`&quot;
+     * The reason for the cancellation. Acceptable values are: - &quot;`changedMind`&quot; - &quot;`orderedWrongItem`&quot; - &quot;`other`&quot;
      */
     reason?: string | null;
   }
@@ -2924,11 +3042,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
-     * The  CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`.  Acceptable values are:   - &quot;`US`&quot;  - &quot;`FR`&quot;  Defaults to `US`.
+     * The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`. Acceptable values are: - &quot;`US`&quot; - &quot;`FR`&quot; Defaults to `US`.
      */
     country?: string | null;
     /**
-     * The test order template to use. Specify as an alternative to `testOrder` as a shortcut for retrieving a template and then creating an order using that template.  Acceptable values are:   - &quot;`template1`&quot;  - &quot;`template1a`&quot;  - &quot;`template1b`&quot;  - &quot;`template2`&quot;  - &quot;`template3`&quot;
+     * The test order template to use. Specify as an alternative to `testOrder` as a shortcut for retrieving a template and then creating an order using that template. Acceptable values are: - &quot;`template1`&quot; - &quot;`template1a`&quot; - &quot;`template1b`&quot; - &quot;`template2`&quot; - &quot;`template3`&quot;
      */
     templateName?: string | null;
     /**
@@ -3006,7 +3124,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo {
     /**
-     * The carrier handling the shipment. See `shipments[].carrier` in the  Orders resource representation for a list of acceptable values.
+     * The carrier handling the shipment. See `shipments[].carrier` in the Orders resource representation for a list of acceptable values.
      */
     carrier?: string | null;
     /**
@@ -3040,7 +3158,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates.  Supported carriers for US are:   - &quot;`ups`&quot; (United Parcel Service) automatic status updates  - &quot;`usps`&quot; (United States Postal Service) automatic status updates  - &quot;`fedex`&quot; (FedEx) automatic status updates   - &quot;`dhl`&quot; (DHL eCommerce) automatic status updates (US only)  - &quot;`ontrac`&quot; (OnTrac) automatic status updates   - &quot;`dhl express`&quot; (DHL Express) - &quot;`deliv`&quot; (Deliv)  - &quot;`dynamex`&quot; (TForce)  - &quot;`lasership`&quot; (LaserShip)  - &quot;`mpx`&quot; (Military Parcel Xpress)  - &quot;`uds`&quot; (United Delivery Service)  - &quot;`efw`&quot; (Estes Forwarding Worldwide)  - &quot;`jd logistics`&quot; (JD Logistics)  - &quot;`yunexpress`&quot; (YunExpress)  - &quot;`china post`&quot; (China Post)  - &quot;`china ems`&quot; (China Post Express Mail Service)  - &quot;`singapore post`&quot; (Singapore Post)  - &quot;`pos malaysia`&quot; (Pos Malaysia)  - &quot;`postnl`&quot; (PostNL)  - &quot;`ptt`&quot; (PTT Turkish Post)  - &quot;`eub`&quot; (ePacket)  - &quot;`chukou1`&quot; (Chukou1 Logistics)  - &quot;`bestex`&quot; (Best Express)  - &quot;`canada post`&quot; (Canada Post)  - &quot;`purolator`&quot; (Purolator)  - &quot;`canpar`&quot; (Canpar)  - &quot;`india post`&quot; (India Post)  - &quot;`blue dart`&quot; (Blue Dart)  - &quot;`delhivery`&quot; (Delhivery)  - &quot;`dtdc`&quot; (DTDC)  - &quot;`tpc india`&quot; (TPC India)   Supported carriers for FR are:   - &quot;`la poste`&quot; (La Poste) automatic status updates   - &quot;`colissimo`&quot; (Colissimo by La Poste) automatic status updates  - &quot;`ups`&quot; (United Parcel Service) automatic status updates   - &quot;`chronopost`&quot; (Chronopost by La Poste)  - &quot;`gls`&quot; (General Logistics Systems France)  - &quot;`dpd`&quot; (DPD Group by GeoPost)  - &quot;`bpost`&quot; (Belgian Post Group)  - &quot;`colis prive`&quot; (Colis Privé)  - &quot;`boxtal`&quot; (Boxtal)  - &quot;`geodis`&quot; (GEODIS)  - &quot;`tnt`&quot; (TNT)  - &quot;`db schenker`&quot; (DB Schenker)  - &quot;`aramex`&quot; (Aramex)
+     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - &quot;`ups`&quot; (United Parcel Service) *automatic status updates* - &quot;`usps`&quot; (United States Postal Service) *automatic status updates* - &quot;`fedex`&quot; (FedEx) *automatic status updates * - &quot;`dhl`&quot; (DHL eCommerce) *automatic status updates* (US only) - &quot;`ontrac`&quot; (OnTrac) *automatic status updates * - &quot;`dhl express`&quot; (DHL Express) - &quot;`deliv`&quot; (Deliv) - &quot;`dynamex`&quot; (TForce) - &quot;`lasership`&quot; (LaserShip) - &quot;`mpx`&quot; (Military Parcel Xpress) - &quot;`uds`&quot; (United Delivery Service) - &quot;`efw`&quot; (Estes Forwarding Worldwide) - &quot;`jd logistics`&quot; (JD Logistics) - &quot;`yunexpress`&quot; (YunExpress) - &quot;`china post`&quot; (China Post) - &quot;`china ems`&quot; (China Post Express Mail Service) - &quot;`singapore post`&quot; (Singapore Post) - &quot;`pos malaysia`&quot; (Pos Malaysia) - &quot;`postnl`&quot; (PostNL) - &quot;`ptt`&quot; (PTT Turkish Post) - &quot;`eub`&quot; (ePacket) - &quot;`chukou1`&quot; (Chukou1 Logistics) - &quot;`bestex`&quot; (Best Express) - &quot;`canada post`&quot; (Canada Post) - &quot;`purolator`&quot; (Purolator) - &quot;`canpar`&quot; (Canpar) - &quot;`india post`&quot; (India Post) - &quot;`blue dart`&quot; (Blue Dart) - &quot;`delhivery`&quot; (Delhivery) - &quot;`dtdc`&quot; (DTDC) - &quot;`tpc india`&quot; (TPC India) Supported carriers for FR are: - &quot;`la poste`&quot; (La Poste) *automatic status updates * - &quot;`colissimo`&quot; (Colissimo by La Poste) *automatic status updates* - &quot;`ups`&quot; (United Parcel Service) *automatic status updates * - &quot;`chronopost`&quot; (Chronopost by La Poste) - &quot;`gls`&quot; (General Logistics Systems France) - &quot;`dpd`&quot; (DPD Group by GeoPost) - &quot;`bpost`&quot; (Belgian Post Group) - &quot;`colis prive`&quot; (Colis Privé) - &quot;`boxtal`&quot; (Boxtal) - &quot;`geodis`&quot; (GEODIS) - &quot;`tnt`&quot; (TNT) - &quot;`db schenker`&quot; (DB Schenker) - &quot;`aramex`&quot; (Aramex)
      */
     carrier?: string | null;
     /**
@@ -3068,7 +3186,7 @@ export namespace content_v2_1 {
      */
     shipmentGroupId?: string | null;
     /**
-     * The status of the shipment.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`readyForPickup`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
+     * The status of the shipment. Acceptable values are: - &quot;`delivered`&quot; - &quot;`readyForPickup`&quot; - &quot;`shipped`&quot; - &quot;`undeliverable`&quot;
      */
     status?: string | null;
     /**
@@ -3122,7 +3240,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.  Acceptable values are:   - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`other`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
     /**
@@ -3136,7 +3254,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersInStoreRefundLineItemResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3165,7 +3283,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the refund.  Acceptable values are:   - &quot;`shippingCostAdjustment`&quot;  - &quot;`priceAdjustment`&quot;  - &quot;`taxAdjustment`&quot;  - &quot;`feeAdjustment`&quot;  - &quot;`courtesyAdjustment`&quot;  - &quot;`adjustment`&quot;  - &quot;`customerCancelled`&quot;  - &quot;`noInventory`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`wrongProductShipped`&quot;  - &quot;`lateShipmentCredit`&quot;  - &quot;`deliveredLateByCarrier`&quot;  - &quot;`productArrivedDamaged`&quot;
+     * The reason for the refund. Acceptable values are: - &quot;`shippingCostAdjustment`&quot; - &quot;`priceAdjustment`&quot; - &quot;`taxAdjustment`&quot; - &quot;`feeAdjustment`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`adjustment`&quot; - &quot;`customerCancelled`&quot; - &quot;`noInventory`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`wrongProductShipped`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`productArrivedDamaged`&quot;
      */
     reason?: string | null;
     /**
@@ -3179,7 +3297,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRefundItemResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3201,7 +3319,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the refund.  Acceptable values are:   - &quot;`courtesyAdjustment`&quot;  - &quot;`other`&quot;
+     * The reason for the refund. Acceptable values are: - &quot;`courtesyAdjustment`&quot; - &quot;`other`&quot;
      */
     reason?: string | null;
     /**
@@ -3211,7 +3329,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRefundOrderResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3237,7 +3355,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.  Acceptable values are:   - &quot;`damagedOrUsed`&quot;  - &quot;`missingComponent`&quot;  - &quot;`notEligible`&quot;  - &quot;`other`&quot;  - &quot;`outOfReturnWindow`&quot;
+     * The reason for the return. Acceptable values are: - &quot;`damagedOrUsed`&quot; - &quot;`missingComponent`&quot; - &quot;`notEligible`&quot; - &quot;`other`&quot; - &quot;`outOfReturnWindow`&quot;
      */
     reason?: string | null;
     /**
@@ -3247,7 +3365,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRejectReturnLineItemResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3277,7 +3395,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.  Acceptable values are:   - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`other`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reason?: string | null;
     /**
@@ -3291,7 +3409,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersReturnRefundLineItemResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3316,7 +3434,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersSetLineItemMetadataResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3344,7 +3462,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersShipLineItemsResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3354,7 +3472,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsRequest {
     /**
-     * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
+     * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.
      */
     deliverByDate?: string | null;
     /**
@@ -3370,13 +3488,13 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
-     * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
+     * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.
      */
     shipByDate?: string | null;
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3396,7 +3514,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateMerchantOrderIdResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3406,7 +3524,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateShipmentRequest {
     /**
-     * The carrier handling the shipment. Not updated if missing. See `shipments[].carrier` in the  Orders resource representation for a list of acceptable values.
+     * The carrier handling the shipment. Not updated if missing. See `shipments[].carrier` in the Orders resource representation for a list of acceptable values.
      */
     carrier?: string | null;
     /**
@@ -3430,7 +3548,7 @@ export namespace content_v2_1 {
      */
     shipmentId?: string | null;
     /**
-     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`undeliverable`&quot;  - &quot;`readyForPickup`&quot;
+     * New status for the shipment. Not updated if missing. Acceptable values are: - &quot;`delivered`&quot; - &quot;`undeliverable`&quot; - &quot;`readyForPickup`&quot;
      */
     status?: string | null;
     /**
@@ -3444,7 +3562,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateShipmentResponse {
     /**
-     * The status of the execution.  Acceptable values are:   - &quot;`duplicate`&quot;  - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3496,7 +3614,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`delete`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;  - &quot;`inventory`&quot;  - &quot;`sale`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`inventory`&quot; - &quot;`sale`&quot;
      */
     method?: string | null;
     /**
@@ -3873,7 +3991,7 @@ export namespace content_v2_1 {
     value?: string | null;
   }
   /**
-   * Required product attributes are primarily defined by the products data specification. See the  Products Data Specification Help Center article for information.  Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page.    Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
+   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -3917,7 +4035,7 @@ export namespace content_v2_1 {
      */
     canonicalLink?: string | null;
     /**
-     * Required. The item&#39;s channel (online or local).  Acceptable values are:   - &quot;`local`&quot;  - &quot;`online`&quot;
+     * Required. The item&#39;s channel (online or local). Acceptable values are: - &quot;`local`&quot; - &quot;`online`&quot;
      */
     channel?: string | null;
     /**
@@ -4009,7 +4127,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * The REST ID of the product. Content API methods that operate on products take this as their `productId` parameter. The REST ID for a product is of the form channel:contentLanguage:targetCountry: offerId.
+     * The REST ID of the product. Content API methods that operate on products take this as their `productId` parameter. The REST ID for a product is of the form channel:contentLanguage: targetCountry: offerId.
      */
     id?: string | null;
     /**
@@ -4081,7 +4199,7 @@ export namespace content_v2_1 {
      */
     multipack?: string | null;
     /**
-     * Required. A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST ID of the product, not this identifier.
+     * Required. A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. *Note:* Content API methods that operate on products take the REST ID of the product, *not* this identifier.
      */
     offerId?: string | null;
     /**
@@ -4113,7 +4231,7 @@ export namespace content_v2_1 {
      */
     salePrice?: Schema$Price;
     /**
-     * Date range during which the item is on sale (see products data specification).
+     * Date range during which the item is on sale (see products data specification ).
      */
     salePriceEffectiveDate?: string | null;
     /**
@@ -4161,7 +4279,7 @@ export namespace content_v2_1 {
      */
     sizeType?: string | null;
     /**
-     * The source of the offer, i.e., how the offer was created.  Acceptable values are:   - &quot;`api`&quot;  - &quot;`crawl`&quot;  - &quot;`feed`&quot;
+     * The source of the offer, i.e., how the offer was created. Acceptable values are: - &quot;`api`&quot; - &quot;`crawl`&quot; - &quot;`feed`&quot;
      */
     source?: string | null;
     /**
@@ -4248,7 +4366,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`delete`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
      */
     method?: string | null;
     /**
@@ -4439,7 +4557,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
      */
     method?: string | null;
     /**
@@ -4588,7 +4706,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   * Settings for Pub/Sub notifications, all methods require that the caller is a direct user of the merchant center account. (== resource_for v2.1.pubsubnotificationsettings ==)
+   * Settings for Pub/Sub notifications, all methods require that the caller is a direct user of the merchant center account.
    */
   export interface Schema$PubsubNotificationSettings {
     /**
@@ -4600,7 +4718,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * List of event types.  Acceptable values are:   - &quot;`orderPendingShipment`&quot;
+     * List of event types. Acceptable values are: - &quot;`orderPendingShipment`&quot;
      */
     registeredEvents?: string[] | null;
   }
@@ -4636,7 +4754,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the refund reason.  Acceptable values are:   - &quot;`adjustment`&quot;  - &quot;`autoPostInternal`&quot;  - &quot;`autoPostInvalidBillingAddress`&quot;  - &quot;`autoPostNoInventory`&quot;  - &quot;`autoPostPriceError`&quot;  - &quot;`autoPostUndeliverableShippingAddress`&quot;  - &quot;`couponAbuse`&quot;  - &quot;`courtesyAdjustment`&quot;  - &quot;`customerCanceled`&quot;  - &quot;`customerDiscretionaryReturn`&quot;  - &quot;`customerInitiatedMerchantCancel`&quot;  - &quot;`customerSupportRequested`&quot;  - &quot;`deliveredLateByCarrier`&quot;  - &quot;`deliveredTooLate`&quot;  - &quot;`expiredItem`&quot;  - &quot;`failToPushOrderGoogleError`&quot;  - &quot;`failToPushOrderMerchantError`&quot;  - &quot;`failToPushOrderMerchantFulfillmentError`&quot;  - &quot;`failToPushOrderToMerchant`&quot;  - &quot;`failToPushOrderToMerchantOutOfStock`&quot;  - &quot;`feeAdjustment`&quot;  - &quot;`invalidCoupon`&quot;  - &quot;`lateShipmentCredit`&quot;  - &quot;`malformedShippingAddress`&quot;  - &quot;`merchantDidNotShipOnTime`&quot;  - &quot;`noInventory`&quot;  - &quot;`orderTimeout`&quot;  - &quot;`other`&quot;  - &quot;`paymentAbuse`&quot;  - &quot;`paymentDeclined`&quot;  - &quot;`priceAdjustment`&quot;  - &quot;`priceError`&quot;  - &quot;`productArrivedDamaged`&quot;  - &quot;`productNotAsDescribed`&quot;  - &quot;`promoReallocation`&quot;  - &quot;`qualityNotAsExpected`&quot;  - &quot;`returnRefundAbuse`&quot;  - &quot;`shippingCostAdjustment`&quot;  - &quot;`shippingPriceError`&quot;  - &quot;`taxAdjustment`&quot;  - &quot;`taxError`&quot;  - &quot;`undeliverableShippingAddress`&quot;  - &quot;`unsupportedPoBoxAddress`&quot;  - &quot;`wrongProductShipped`&quot;
+     * Code of the refund reason. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
      */
     reasonCode?: string | null;
   }
@@ -4692,7 +4810,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry.  Acceptable values are:   - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - &quot;`insert`&quot;
      */
     method?: string | null;
     /**
@@ -4734,6 +4852,126 @@ export namespace content_v2_1 {
      * Price and availability of the product.
      */
     regionalInventory?: Schema$RegionalInventory;
+  }
+  /**
+   * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24
+   */
+  export interface Schema$RepricingRule {
+    /**
+     * Required. Immutable. CLDR country code (e.g. &quot;US&quot;).
+     */
+    countryCode?: string | null;
+    /**
+     * Required. Time period when the rule should take effect.
+     */
+    effectiveTimePeriod?: Schema$RepricingRuleEffectiveTime;
+    /**
+     * Required. Match criteria for the eligible offers.
+     */
+    eligibleOfferMatcher?: Schema$RepricingRuleEligibleOfferMatcher;
+    /**
+     * Required. Immutable. The two-letter ISO 639-1 language code associated with the repricing rule.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. Immutable. Merchant that owns the repricing rule.
+     */
+    merchantId?: string | null;
+    /**
+     * Represents whether a rule is paused. A paused rule will behave like a non-paused rule within CRUD operations, with the major difference that a paused rule will not be evaluated and will have no effect on offers.
+     */
+    paused?: boolean | null;
+    /**
+     * Required. Restriction of the rule appliance.
+     */
+    restriction?: Schema$RepricingRuleRestriction;
+    /**
+     * Output only. Immutable. The ID to uniquely identify each repricing rule.
+     */
+    ruleId?: string | null;
+    /**
+     * The title for the rule.
+     */
+    title?: string | null;
+    /**
+     * Required. Immutable. The type of the rule.
+     */
+    type?: string | null;
+  }
+  export interface Schema$RepricingRuleEffectiveTime {
+    /**
+     * A list of fixed time periods combined with OR. The maximum number of entries is limited to 5.
+     */
+    fixedTimePeriods?: Schema$RepricingRuleEffectiveTimeFixedTimePeriod[];
+  }
+  /**
+   * Definition of a fixed time period.
+   */
+  export interface Schema$RepricingRuleEffectiveTimeFixedTimePeriod {
+    /**
+     * The end time (exclusive) of the period. It can only be hour granularity.
+     */
+    endTime?: string | null;
+    /**
+     * The start time (inclusive) of the period. It can only be hour granularity.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Matcher that specifies eligible offers. When the USE_FEED_ATTRIBUTE option is selected, only the repricing_rule_id attribute on the product feed is used to specify offer-rule mapping. When the CUSTOM_FILTER option is selected, only the *_matcher fields are used to filter the offers for offer-rule mapping. If the CUSTOM_FILTER option is selected, an offer needs to satisfy each custom filter matcher to be eligible for a rule. Size limit: the sum of the number of entries in all the matchers should not exceed 20. For example, there can be 15 product ids and 5 brands, but not 10 product ids and 11 brands.
+   */
+  export interface Schema$RepricingRuleEligibleOfferMatcher {
+    /**
+     * Filter by the brand.
+     */
+    brandMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+    /**
+     * Filter by the item group id.
+     */
+    itemGroupIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+    /**
+     * Determines whether to use the custom matchers or the product feed attribute &quot;repricing_rule_id&quot; to specify offer-rule mapping.
+     */
+    matcherOption?: string | null;
+    /**
+     * Filter by the offer id.
+     */
+    offerIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+  }
+  /**
+   * Matcher by string attributes.
+   */
+  export interface Schema$RepricingRuleEligibleOfferMatcherStringMatcher {
+    /**
+     * String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regex.
+     */
+    strAttributes?: string[] | null;
+  }
+  /**
+   * Definition of a rule restriction. At least one of the following needs to be true: (1) use_auto_pricing_min_price is true (2) floor.price_delta exists (3) floor.percentage_delta exists If floor.price_delta and floor.percentage_delta are both set on a rule, the highest value will be chosen by the Repricer. In other words, for a product with a price of $50, if the `floor.percentage_delta` is &quot;-10&quot; and the floor.price_delta is &quot;-12&quot;, the offer price will only be lowered $5 (10% lower than the original offer price).
+   */
+  export interface Schema$RepricingRuleRestriction {
+    /**
+     * The inclusive floor lower bound. The repricing rule only applies when new price &gt;= floor.
+     */
+    floor?: Schema$RepricingRuleRestrictionBoundary;
+    /**
+     * If true, use the AUTO_PRICING_MIN_PRICE offer attribute as the lower bound of the rule. If use_auto_pricing_min_price is true, then only offers with `AUTO_PRICING_MIN_PRICE` existing on the offer will get Repricer treatment, even if a floor value is set on the rule. Also, if use_auto_pricing_min_price is true, the floor restriction will be ignored.
+     */
+    useAutoPricingMinPrice?: boolean | null;
+  }
+  /**
+   * Definition of a boundary.
+   */
+  export interface Schema$RepricingRuleRestrictionBoundary {
+    /**
+     * The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be &gt; -100. If an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is &gt;= $7.
+     */
+    percentageDelta?: number | null;
+    /**
+     * The price micros relative to the offer selling price. This field is signed. It must be negative in floor. If an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is &gt;= $8.
+     */
+    priceDelta?: string | null;
   }
   /**
    * Return address resource.
@@ -4806,7 +5044,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry.  Acceptable values are:   - &quot;`delete`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
      */
     method?: string | null;
     /**
@@ -4910,7 +5148,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry.  Acceptable values are:   - &quot;`delete`&quot;  - &quot;`get`&quot;  - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
      */
     method?: string | null;
     /**
@@ -4967,7 +5205,7 @@ export namespace content_v2_1 {
      */
     numberOfDays?: string | null;
     /**
-     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items.  Acceptable values are:   - &quot;`lastReturnDate`&quot;  - &quot;`lifetimeReturns`&quot;  - &quot;`noReturns`&quot;  - &quot;`numberOfDaysAfterDelivery`&quot;
+     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items. Acceptable values are: - &quot;`lastReturnDate`&quot; - &quot;`lifetimeReturns`&quot; - &quot;`noReturns`&quot; - &quot;`numberOfDaysAfterDelivery`&quot;
      */
     type?: string | null;
   }
@@ -5021,7 +5259,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method.  Acceptable values are:   - &quot;`byMail`&quot;  - &quot;`contactCustomerSupport`&quot;  - &quot;`returnless`&quot;
+     * Type of the return method. Acceptable values are: - &quot;`byMail`&quot; - &quot;`contactCustomerSupport`&quot; - &quot;`returnless`&quot;
      */
     returnMethodType?: string | null;
     /**
@@ -5037,7 +5275,7 @@ export namespace content_v2_1 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;  - &quot;`pending`&quot;
+     * State of the shipment. Acceptable values are: - &quot;`completed`&quot; - &quot;`new`&quot; - &quot;`shipped`&quot; - &quot;`undeliverable`&quot; - &quot;`pending`&quot;
      */
     state?: string | null;
   }
@@ -5065,7 +5303,7 @@ export namespace content_v2_1 {
      */
     deliveryTime?: Schema$DeliveryTime;
     /**
-     * Eligibility for this service.  Acceptable values are:   - &quot;`All scenarios`&quot;  - &quot;`All scenarios except Shopping Actions`&quot;  - &quot;`Shopping Actions`&quot;
+     * Eligibility for this service. Acceptable values are: - &quot;`All scenarios`&quot; - &quot;`All scenarios except Shopping Actions`&quot; - &quot;`Shopping Actions`&quot;
      */
     eligibility?: string | null;
     /**
@@ -5089,12 +5327,12 @@ export namespace content_v2_1 {
      */
     rateGroups?: Schema$RateGroup[];
     /**
-     * Type of locations this service ships orders to.  Acceptable values are:   - &quot;`delivery`&quot;  - &quot;`pickup`&quot;
+     * Type of locations this service ships orders to. Acceptable values are: - &quot;`delivery`&quot; - &quot;`pickup`&quot;
      */
     shipmentType?: string | null;
   }
   /**
-   * Settlement reports detail order-level and item-level credits and debits between you and Google.
+   *  Settlement reports detail order-level and item-level credits and debits between you and Google.
    */
   export interface Schema$SettlementReport {
     /**
@@ -5142,7 +5380,7 @@ export namespace content_v2_1 {
     resources?: Schema$SettlementReport[];
   }
   /**
-   * Settlement transactions give a detailed breakdown of the  settlement report. (== resource_for v2.1.settlementtransactions ==)
+   * Settlement transactions give a detailed breakdown of the settlement report.
    */
   export interface Schema$SettlementTransaction {
     /**
@@ -5165,7 +5403,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event.  Acceptable values are:   - &quot;`taxWithhold`&quot;  - &quot;`principal`&quot;  - &quot;`principalAdjustment`&quot;  - &quot;`shippingFee`&quot;  - &quot;`merchantRemittedSalesTax`&quot;  - &quot;`googleRemittedSalesTax`&quot;  - &quot;`merchantCoupon`&quot;  - &quot;`merchantCouponTax`&quot;  - &quot;`merchantRemittedDisposalTax`&quot;  - &quot;`googleRemittedDisposalTax`&quot;  - &quot;`merchantRemittedRedemptionFee`&quot;  - &quot;`googleRemittedRedemptionFee`&quot;  - &quot;`eeeEcoFee`&quot;  - &quot;`furnitureEcoFee`&quot;  - &quot;`copyPrivateFee`&quot;  - &quot;`eeeEcoFeeCommission`&quot;  - &quot;`furnitureEcoFeeCommission`&quot;  - &quot;`copyPrivateFeeCommission`&quot;  - &quot;`principalRefund`&quot;  - &quot;`principalRefundTax`&quot;  - &quot;`itemCommission`&quot;  - &quot;`adjustmentCommission`&quot;  - &quot;`shippingFeeCommission`&quot;  - &quot;`commissionRefund`&quot;  - &quot;`damaged`&quot;  - &quot;`damagedOrDefectiveItem`&quot;  - &quot;`expiredItem`&quot;  - &quot;`faultyItem`&quot;  - &quot;`incorrectItemReceived`&quot;  - &quot;`itemMissing`&quot;  - &quot;`qualityNotExpected`&quot;  - &quot;`receivedTooLate`&quot;  - &quot;`storePackageMissing`&quot;  - &quot;`transitPackageMissing`&quot;  - &quot;`unsuccessfulDeliveryUndeliverable`&quot;  - &quot;`wrongChargeInStore`&quot;  - &quot;`wrongItem`&quot;  - &quot;`returns`&quot;  - &quot;`undeliverable`&quot;  - &quot;`refundFromMerchant`&quot;  - &quot;`returnLabelShippingFee`&quot;
+     * The description of the event. Acceptable values are: - &quot;`taxWithhold`&quot; - &quot;`principal`&quot; - &quot;`principalAdjustment`&quot; - &quot;`shippingFee`&quot; - &quot;`merchantRemittedSalesTax`&quot; - &quot;`googleRemittedSalesTax`&quot; - &quot;`merchantCoupon`&quot; - &quot;`merchantCouponTax`&quot; - &quot;`merchantRemittedDisposalTax`&quot; - &quot;`googleRemittedDisposalTax`&quot; - &quot;`merchantRemittedRedemptionFee`&quot; - &quot;`googleRemittedRedemptionFee`&quot; - &quot;`eeeEcoFee`&quot; - &quot;`furnitureEcoFee`&quot; - &quot;`copyPrivateFee`&quot; - &quot;`eeeEcoFeeCommission`&quot; - &quot;`furnitureEcoFeeCommission`&quot; - &quot;`copyPrivateFeeCommission`&quot; - &quot;`principalRefund`&quot; - &quot;`principalRefundTax`&quot; - &quot;`itemCommission`&quot; - &quot;`adjustmentCommission`&quot; - &quot;`shippingFeeCommission`&quot; - &quot;`commissionRefund`&quot; - &quot;`damaged`&quot; - &quot;`damagedOrDefectiveItem`&quot; - &quot;`expiredItem`&quot; - &quot;`faultyItem`&quot; - &quot;`incorrectItemReceived`&quot; - &quot;`itemMissing`&quot; - &quot;`qualityNotExpected`&quot; - &quot;`receivedTooLate`&quot; - &quot;`storePackageMissing`&quot; - &quot;`transitPackageMissing`&quot; - &quot;`unsuccessfulDeliveryUndeliverable`&quot; - &quot;`wrongChargeInStore`&quot; - &quot;`wrongItem`&quot; - &quot;`returns`&quot; - &quot;`undeliverable`&quot; - &quot;`refundFromMerchant`&quot; - &quot;`returnLabelShippingFee`&quot;
      */
     description?: string | null;
     /**
@@ -5173,13 +5411,13 @@ export namespace content_v2_1 {
      */
     transactionAmount?: Schema$Price;
     /**
-     * The type of the amount.  Acceptable values are:   - &quot;`itemPrice`&quot;  - &quot;`orderPrice`&quot;  - &quot;`refund`&quot;  - &quot;`earlyRefund`&quot;  - &quot;`courtesyRefund`&quot;  - &quot;`returnRefund`&quot;  - &quot;`returnLabelShippingFeeAmount`&quot;
+     * The type of the amount. Acceptable values are: - &quot;`itemPrice`&quot; - &quot;`orderPrice`&quot; - &quot;`refund`&quot; - &quot;`earlyRefund`&quot; - &quot;`courtesyRefund`&quot; - &quot;`returnRefund`&quot; - &quot;`returnLabelShippingFeeAmount`&quot;
      */
     type?: string | null;
   }
   export interface Schema$SettlementTransactionAmountCommission {
     /**
-     * The category of the commission.  Acceptable values are:   - &quot;`animalsAndPetSupplies`&quot;  - &quot;`dogCatFoodAndCatLitter`&quot;  - &quot;`apparelAndAccessories`&quot;  - &quot;`shoesHandbagsAndSunglasses`&quot;  - &quot;`costumesAndAccessories`&quot;  - &quot;`jewelry`&quot;  - &quot;`watches`&quot;  - &quot;`hobbiesArtsAndCrafts`&quot;  - &quot;`homeAndGarden`&quot;  - &quot;`entertainmentCollectibles`&quot;  - &quot;`collectibleCoins`&quot;  - &quot;`sportsCollectibles`&quot;  - &quot;`sportingGoods`&quot;  - &quot;`toysAndGames`&quot;  - &quot;`musicalInstruments`&quot;  - &quot;`giftCards`&quot;  - &quot;`babyAndToddler`&quot;  - &quot;`babyFoodWipesAndDiapers`&quot;  - &quot;`businessAndIndustrial`&quot;  - &quot;`camerasOpticsAndPhotography`&quot;  - &quot;`consumerElectronics`&quot;  - &quot;`electronicsAccessories`&quot;  - &quot;`personalComputers`&quot;  - &quot;`videoGameConsoles`&quot;  - &quot;`foodAndGrocery`&quot;  - &quot;`beverages`&quot;  - &quot;`tobaccoProducts`&quot;  - &quot;`furniture`&quot;  - &quot;`hardware`&quot;  - &quot;`buildingMaterials`&quot;  - &quot;`tools`&quot;  - &quot;`healthAndPersonalCare`&quot;  - &quot;`beauty`&quot;  - &quot;`householdSupplies`&quot;  - &quot;`kitchenAndDining`&quot;  - &quot;`majorAppliances`&quot;  - &quot;`luggageAndBags`&quot;  - &quot;`media`&quot;  - &quot;`officeSupplies`&quot;  - &quot;`softwareAndVideoGames`&quot;  - &quot;`vehiclePartsAndAccessories`&quot;  - &quot;`vehicleTiresAndWheels`&quot;  - &quot;`vehicles`&quot;  - &quot;`everythingElse`&quot;
+     * The category of the commission. Acceptable values are: - &quot;`animalsAndPetSupplies`&quot; - &quot;`dogCatFoodAndCatLitter`&quot; - &quot;`apparelAndAccessories`&quot; - &quot;`shoesHandbagsAndSunglasses`&quot; - &quot;`costumesAndAccessories`&quot; - &quot;`jewelry`&quot; - &quot;`watches`&quot; - &quot;`hobbiesArtsAndCrafts`&quot; - &quot;`homeAndGarden`&quot; - &quot;`entertainmentCollectibles`&quot; - &quot;`collectibleCoins`&quot; - &quot;`sportsCollectibles`&quot; - &quot;`sportingGoods`&quot; - &quot;`toysAndGames`&quot; - &quot;`musicalInstruments`&quot; - &quot;`giftCards`&quot; - &quot;`babyAndToddler`&quot; - &quot;`babyFoodWipesAndDiapers`&quot; - &quot;`businessAndIndustrial`&quot; - &quot;`camerasOpticsAndPhotography`&quot; - &quot;`consumerElectronics`&quot; - &quot;`electronicsAccessories`&quot; - &quot;`personalComputers`&quot; - &quot;`videoGameConsoles`&quot; - &quot;`foodAndGrocery`&quot; - &quot;`beverages`&quot; - &quot;`tobaccoProducts`&quot; - &quot;`furniture`&quot; - &quot;`hardware`&quot; - &quot;`buildingMaterials`&quot; - &quot;`tools`&quot; - &quot;`healthAndPersonalCare`&quot; - &quot;`beauty`&quot; - &quot;`householdSupplies`&quot; - &quot;`kitchenAndDining`&quot; - &quot;`majorAppliances`&quot; - &quot;`luggageAndBags`&quot; - &quot;`media`&quot; - &quot;`officeSupplies`&quot; - &quot;`softwareAndVideoGames`&quot; - &quot;`vehiclePartsAndAccessories`&quot; - &quot;`vehicleTiresAndWheels`&quot; - &quot;`vehicles`&quot; - &quot;`everythingElse`&quot;
      */
     category?: string | null;
     /**
@@ -5230,7 +5468,7 @@ export namespace content_v2_1 {
      */
     postDate?: string | null;
     /**
-     * The type of the transaction that occurred.  Acceptable values are:   - &quot;`order`&quot;  - &quot;`reversal`&quot;  - &quot;`orderRefund`&quot;  - &quot;`reversalRefund`&quot;  - &quot;`issueRelatedRefundAndReplacement`&quot;  - &quot;`returnLabelShippingFeeTransaction`&quot;  - &quot;`reversalIssueRelatedRefundAndReplacement`&quot;  - &quot;`reversalReturnLabelShippingFeeTransaction`&quot;
+     * The type of the transaction that occurred. Acceptable values are: - &quot;`order`&quot; - &quot;`reversal`&quot; - &quot;`orderRefund`&quot; - &quot;`reversalRefund`&quot; - &quot;`issueRelatedRefundAndReplacement`&quot; - &quot;`returnLabelShippingFeeTransaction`&quot; - &quot;`reversalIssueRelatedRefundAndReplacement`&quot; - &quot;`reversalReturnLabelShippingFeeTransaction`&quot;
      */
     type?: string | null;
   }
@@ -5268,7 +5506,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ShipmentTrackingInfo {
     /**
-     * The shipping carrier that handles the package.  Acceptable values are:   - &quot;`boxtal`&quot;  - &quot;`bpost`&quot;  - &quot;`chronopost`&quot;  - &quot;`colisPrive`&quot;  - &quot;`colissimo`&quot;  - &quot;`cxt`&quot;  - &quot;`deliv`&quot;  - &quot;`dhl`&quot;  - &quot;`dpd`&quot;  - &quot;`dynamex`&quot;  - &quot;`eCourier`&quot;  - &quot;`easypost`&quot;  - &quot;`efw`&quot;  - &quot;`fedex`&quot;  - &quot;`fedexSmartpost`&quot;  - &quot;`geodis`&quot;  - &quot;`gls`&quot;  - &quot;`googleCourier`&quot;  - &quot;`gsx`&quot;  - &quot;`jdLogistics`&quot;  - &quot;`laPoste`&quot;  - &quot;`lasership`&quot;  - &quot;`manual`&quot;  - &quot;`mpx`&quot;  - &quot;`onTrac`&quot;  - &quot;`other`&quot;  - &quot;`tnt`&quot;  - &quot;`uds`&quot;  - &quot;`ups`&quot;  - &quot;`usps`&quot;
+     * The shipping carrier that handles the package. Acceptable values are: - &quot;`boxtal`&quot; - &quot;`bpost`&quot; - &quot;`chronopost`&quot; - &quot;`colisPrive`&quot; - &quot;`colissimo`&quot; - &quot;`cxt`&quot; - &quot;`deliv`&quot; - &quot;`dhl`&quot; - &quot;`dpd`&quot; - &quot;`dynamex`&quot; - &quot;`eCourier`&quot; - &quot;`easypost`&quot; - &quot;`efw`&quot; - &quot;`fedex`&quot; - &quot;`fedexSmartpost`&quot; - &quot;`geodis`&quot; - &quot;`gls`&quot; - &quot;`googleCourier`&quot; - &quot;`gsx`&quot; - &quot;`jdLogistics`&quot; - &quot;`laPoste`&quot; - &quot;`lasership`&quot; - &quot;`manual`&quot; - &quot;`mpx`&quot; - &quot;`onTrac`&quot; - &quot;`other`&quot; - &quot;`tnt`&quot; - &quot;`uds`&quot; - &quot;`ups`&quot; - &quot;`usps`&quot;
      */
     carrier?: string | null;
     /**
@@ -5316,7 +5554,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.  Acceptable values are:   - &quot;`get`&quot;  - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`update`&quot;
      */
     method?: string | null;
     /**
@@ -5440,19 +5678,19 @@ export namespace content_v2_1 {
      */
     pickupDetails?: Schema$TestOrderPickupDetails;
     /**
-     * Required. The billing address.  Acceptable values are:   - &quot;`dwight`&quot;  - &quot;`jim`&quot;  - &quot;`pam`&quot;
+     * Required. The billing address. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
      */
     predefinedBillingAddress?: string | null;
     /**
-     * Required. Identifier of one of the predefined delivery addresses for the delivery.  Acceptable values are:   - &quot;`dwight`&quot;  - &quot;`jim`&quot;  - &quot;`pam`&quot;
+     * Required. Identifier of one of the predefined delivery addresses for the delivery. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
      */
     predefinedDeliveryAddress?: string | null;
     /**
-     * Required. Email address of the customer.  Acceptable values are:   - &quot;`pog.dwight.schrute@gmail.com`&quot;  - &quot;`pog.jim.halpert@gmail.com`&quot;  - &quot;`penpog.pam.beesly@gmail.comding`&quot;
+     * Required. Email address of the customer. Acceptable values are: - &quot;`pog.dwight.schrute@gmail.com`&quot; - &quot;`pog.jim.halpert@gmail.com`&quot; - &quot;`penpog.pam.beesly@gmail.comding`&quot;
      */
     predefinedEmail?: string | null;
     /**
-     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type `pickup`.  Acceptable values are:   - &quot;`dwight`&quot;  - &quot;`jim`&quot;  - &quot;`pam`&quot;
+     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type `pickup`. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
      */
     predefinedPickupDetails?: string | null;
     /**
@@ -5464,7 +5702,7 @@ export namespace content_v2_1 {
      */
     shippingCost?: Schema$Price;
     /**
-     * Required. The requested shipping option.  Acceptable values are:   - &quot;`economy`&quot;  - &quot;`expedited`&quot;  - &quot;`oneDay`&quot;  - &quot;`sameDay`&quot;  - &quot;`standard`&quot;  - &quot;`twoDay`&quot;
+     * Required. The requested shipping option. Acceptable values are: - &quot;`economy`&quot; - &quot;`expedited`&quot; - &quot;`oneDay`&quot; - &quot;`sameDay`&quot; - &quot;`standard`&quot; - &quot;`twoDay`&quot;
      */
     shippingOption?: string | null;
   }
@@ -5536,11 +5774,11 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Required. Condition or state of the item.  Acceptable values are:   - &quot;`new`&quot;
+     * Required. Condition or state of the item. Acceptable values are: - &quot;`new`&quot;
      */
     condition?: string | null;
     /**
-     * Required. The two-letter ISO 639-1 language code for the item.  Acceptable values are:   - &quot;`en`&quot;  - &quot;`fr`&quot;
+     * Required. The two-letter ISO 639-1 language code for the item. Acceptable values are: - &quot;`en`&quot; - &quot;`fr`&quot;
      */
     contentLanguage?: string | null;
     /**
@@ -5572,7 +5810,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * Required. The CLDR territory code of the target country of the product.
+     * Required. The CLDR territory // code of the target country of the product.
      */
     targetCountry?: string | null;
     /**
@@ -5594,7 +5832,7 @@ export namespace content_v2_1 {
      */
     pickupLocationAddress?: Schema$TestOrderAddress;
     /**
-     * Pickup location type.  Acceptable values are:   - &quot;`locker`&quot;  - &quot;`store`&quot;  - &quot;`curbside`&quot;
+     * Pickup location type. Acceptable values are: - &quot;`locker`&quot; - &quot;`store`&quot; - &quot;`curbside`&quot;
      */
     pickupLocationType?: string | null;
     /**
@@ -5656,7 +5894,7 @@ export namespace content_v2_1 {
      */
     additionalChargeAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge.  Acceptable values are:   - &quot;`shipping`&quot;
+     * [required] Type of the additional charge. Acceptable values are: - &quot;`shipping`&quot;
      */
     type?: string | null;
   }
@@ -5670,7 +5908,7 @@ export namespace content_v2_1 {
      */
     taxName?: string | null;
     /**
-     * [required] Type of the tax.  Acceptable values are:   - &quot;`otherFee`&quot;  - &quot;`otherFeeTax`&quot;  - &quot;`sales`&quot;
+     * [required] Type of the tax. Acceptable values are: - &quot;`otherFee`&quot; - &quot;`otherFeeTax`&quot; - &quot;`sales`&quot;
      */
     taxType?: string | null;
   }
@@ -5701,7 +5939,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$Weight {
     /**
-     * Required. The weight unit.  Acceptable values are:   - &quot;`kg`&quot;  - &quot;`lb`&quot;
+     * Required. The weight unit. Acceptable values are: - &quot;`kg`&quot; - &quot;`lb`&quot;
      */
     unit?: string | null;
     /**
@@ -5712,8 +5950,10 @@ export namespace content_v2_1 {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    labels: Resource$Accounts$Labels;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.labels = new Resource$Accounts$Labels(this.context);
     }
 
     /**
@@ -5760,7 +6000,7 @@ export namespace content_v2_1 {
      * @alias content.accounts.authinfo
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5824,7 +6064,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5968,7 +6209,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6114,7 +6356,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6243,7 +6486,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6390,7 +6634,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6552,7 +6797,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6702,7 +6948,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6850,7 +7097,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6999,7 +7247,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7165,7 +7414,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7314,7 +7564,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7495,6 +7746,635 @@ export namespace content_v2_1 {
     requestBody?: Schema$AccountsUpdateLabelsRequest;
   }
 
+  export class Resource$Accounts$Labels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.accounts.labels.create
+     * @desc Creates a new label, not assigned to any account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.create({
+     *     // Required. The id of the account this label belongs to.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "description": "my_description",
+     *       //   "labelId": "my_labelId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "description": "my_description",
+     *   //   "labelId": "my_labelId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.accounts.labels.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Required. The id of the account this label belongs to.
+     * @param {().AccountLabel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Accounts$Labels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Labels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountLabel>;
+    create(
+      params: Params$Resource$Accounts$Labels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Labels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountLabel>,
+      callback: BodyResponseCallback<Schema$AccountLabel>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Labels$Create,
+      callback: BodyResponseCallback<Schema$AccountLabel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AccountLabel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Labels$Create
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Labels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Labels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/labels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountLabel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountLabel>(parameters);
+      }
+    }
+
+    /**
+     * content.accounts.labels.delete
+     * @desc Deletes a label and removes it from all accounts to which it was assigned.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.delete({
+     *     // Required. The id of the account that owns the label.
+     *     accountId: 'placeholder-value',
+     *     // Required. The id of the label to delete.
+     *     labelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.accounts.labels.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Required. The id of the account that owns the label.
+     * @param {string} params.labelId Required. The id of the label to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Accounts$Labels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Labels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Labels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Labels$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Labels$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Labels$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Labels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Labels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'labelId'],
+        pathParams: ['accountId', 'labelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * content.accounts.labels.list
+     * @desc Lists the labels assigned to an account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.list({
+     *     // Required. The account id for whose labels are to be listed.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountLabels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.accounts.labels.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Required. The account id for whose labels are to be listed.
+     * @param {integer=} params.pageSize The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * @param {string=} params.pageToken A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Accounts$Labels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Labels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountLabelsResponse>;
+    list(
+      params: Params$Resource$Accounts$Labels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Labels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountLabelsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountLabelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Labels$List,
+      callback: BodyResponseCallback<Schema$ListAccountLabelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccountLabelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Labels$List
+        | BodyResponseCallback<Schema$ListAccountLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountLabelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Labels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Labels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/labels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccountLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccountLabelsResponse>(parameters);
+      }
+    }
+
+    /**
+     * content.accounts.labels.patch
+     * @desc Updates a label.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.patch({
+     *     // Required. The id of the account this label belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Required. The id of the label to update.
+     *     labelId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "description": "my_description",
+     *       //   "labelId": "my_labelId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "description": "my_description",
+     *   //   "labelId": "my_labelId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.accounts.labels.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Required. The id of the account this label belongs to.
+     * @param {string} params.labelId Required. The id of the label to update.
+     * @param {().AccountLabel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Accounts$Labels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Labels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountLabel>;
+    patch(
+      params: Params$Resource$Accounts$Labels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Labels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountLabel>,
+      callback: BodyResponseCallback<Schema$AccountLabel>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Labels$Patch,
+      callback: BodyResponseCallback<Schema$AccountLabel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AccountLabel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Labels$Patch
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountLabel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Labels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Labels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'labelId'],
+        pathParams: ['accountId', 'labelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountLabel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountLabel>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Labels$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the account this label belongs to.
+     */
+    accountId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountLabel;
+  }
+  export interface Params$Resource$Accounts$Labels$Delete
+    extends StandardParameters {
+    /**
+     * Required. The id of the account that owns the label.
+     */
+    accountId?: string;
+    /**
+     * Required. The id of the label to delete.
+     */
+    labelId?: string;
+  }
+  export interface Params$Resource$Accounts$Labels$List
+    extends StandardParameters {
+    /**
+     * Required. The account id for whose labels are to be listed.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Accounts$Labels$Patch
+    extends StandardParameters {
+    /**
+     * Required. The id of the account this label belongs to.
+     */
+    accountId?: string;
+    /**
+     * Required. The id of the label to update.
+     */
+    labelId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountLabel;
+  }
+
   export class Resource$Accountstatuses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7618,7 +8498,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7761,7 +8642,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7909,7 +8791,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8101,7 +8984,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8238,7 +9122,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8380,7 +9265,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8527,7 +9413,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8600,6 +9487,482 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountTax;
+  }
+
+  export class Resource$Csses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.csses.get
+     * @desc Retrieves a single CSS domain by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.get({
+     *     // Required. The ID of the CSS domain to return.
+     *     cssDomainId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
+     *     cssGroupId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cssDomainId": "my_cssDomainId",
+     *   //   "cssGroupId": "my_cssGroupId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fullName": "my_fullName",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "labelIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.csses.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.cssDomainId Required. The ID of the CSS domain to return.
+     * @param {string} params.cssGroupId Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Csses$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Csses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Css>;
+    get(
+      params: Params$Resource$Csses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Csses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Css>,
+      callback: BodyResponseCallback<Schema$Css>
+    ): void;
+    get(
+      params: Params$Resource$Csses$Get,
+      callback: BodyResponseCallback<Schema$Css>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Css>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Csses$Get
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Css> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Csses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Csses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{cssGroupId}/csses/{cssDomainId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['cssGroupId', 'cssDomainId'],
+        pathParams: ['cssDomainId', 'cssGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Css>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Css>(parameters);
+      }
+    }
+
+    /**
+     * content.csses.list
+     * @desc Lists CSS domains affiliated with a CSS group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.list({
+     *     // Required. The CSS group ID of CSS domains to be listed.
+     *     cssGroupId: 'placeholder-value',
+     *     // The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "csses": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.csses.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.cssGroupId Required. The CSS group ID of CSS domains to be listed.
+     * @param {integer=} params.pageSize The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * @param {string=} params.pageToken A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Csses$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Csses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCssesResponse>;
+    list(
+      params: Params$Resource$Csses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Csses$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListCssesResponse>,
+      callback: BodyResponseCallback<Schema$ListCssesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Csses$List,
+      callback: BodyResponseCallback<Schema$ListCssesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListCssesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Csses$List
+        | BodyResponseCallback<Schema$ListCssesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCssesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCssesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCssesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Csses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Csses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{cssGroupId}/csses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['cssGroupId'],
+        pathParams: ['cssGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCssesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCssesResponse>(parameters);
+      }
+    }
+
+    /**
+     * content.csses.updatelabels
+     * @desc Updates labels that are assigned to a CSS domain by its CSS group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.updatelabels({
+     *     // Required. The ID of the updated CSS domain.
+     *     cssDomainId: 'placeholder-value',
+     *     // Required. The CSS group ID of the updated CSS domain.
+     *     cssGroupId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cssDomainId": "my_cssDomainId",
+     *   //   "cssGroupId": "my_cssGroupId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fullName": "my_fullName",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "labelIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.csses.updatelabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.cssDomainId Required. The ID of the updated CSS domain.
+     * @param {string} params.cssGroupId Required. The CSS group ID of the updated CSS domain.
+     * @param {().LabelIds} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updatelabels(
+      params: Params$Resource$Csses$Updatelabels,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatelabels(
+      params?: Params$Resource$Csses$Updatelabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Css>;
+    updatelabels(
+      params: Params$Resource$Csses$Updatelabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updatelabels(
+      params: Params$Resource$Csses$Updatelabels,
+      options: MethodOptions | BodyResponseCallback<Schema$Css>,
+      callback: BodyResponseCallback<Schema$Css>
+    ): void;
+    updatelabels(
+      params: Params$Resource$Csses$Updatelabels,
+      callback: BodyResponseCallback<Schema$Css>
+    ): void;
+    updatelabels(callback: BodyResponseCallback<Schema$Css>): void;
+    updatelabels(
+      paramsOrCallback?:
+        | Params$Resource$Csses$Updatelabels
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Css>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Css> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Csses$Updatelabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Csses$Updatelabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{cssGroupId}/csses/{cssDomainId}/updatelabels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['cssGroupId', 'cssDomainId'],
+        pathParams: ['cssDomainId', 'cssGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Css>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Css>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Csses$Get extends StandardParameters {
+    /**
+     * Required. The ID of the CSS domain to return.
+     */
+    cssDomainId?: string;
+    /**
+     * Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
+     */
+    cssGroupId?: string;
+  }
+  export interface Params$Resource$Csses$List extends StandardParameters {
+    /**
+     * Required. The CSS group ID of CSS domains to be listed.
+     */
+    cssGroupId?: string;
+    /**
+     * The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Csses$Updatelabels
+    extends StandardParameters {
+    /**
+     * Required. The ID of the updated CSS domain.
+     */
+    cssDomainId?: string;
+    /**
+     * Required. The CSS group ID of the updated CSS domain.
+     */
+    cssGroupId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LabelIds;
   }
 
   export class Resource$Datafeeds {
@@ -8725,7 +10088,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8853,7 +10217,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8993,7 +10358,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9134,7 +10500,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9288,7 +10655,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9431,7 +10799,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9589,7 +10958,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9818,7 +11188,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9969,7 +11340,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10115,7 +11487,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10309,7 +11682,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10446,7 +11820,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10602,7 +11977,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10747,7 +12123,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10818,7 +12195,7 @@ export namespace content_v2_1 {
      * @alias content.liasettings.listposdataproviders
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10888,7 +12265,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10968,7 +12346,7 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which GMB access is requested.
-     * @param {string} params.gmbEmail The email of the Google My Business account.
+     * @param {string=} params.gmbEmail The email of the Google My Business account.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11033,7 +12411,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11046,7 +12425,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
+        requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
@@ -11193,7 +12572,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11279,10 +12659,10 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.contactEmail The email of the inventory verification contact.
-     * @param {string} params.contactName The name of the inventory verification contact.
-     * @param {string} params.country The country for which inventory verification is requested.
-     * @param {string} params.language The language for which inventory verification is requested.
+     * @param {string=} params.contactEmail The email of the inventory verification contact.
+     * @param {string=} params.contactName The name of the inventory verification contact.
+     * @param {string=} params.country The country for which inventory verification is requested.
+     * @param {string=} params.language The language for which inventory verification is requested.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11361,7 +12741,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11374,14 +12755,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: [
-          'merchantId',
-          'accountId',
-          'contactEmail',
-          'contactName',
-          'country',
-          'language',
-        ],
+        requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
@@ -11452,7 +12826,7 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
-     * @param {string} params.country The country for which the POS data provider is selected.
+     * @param {string=} params.country The country for which the POS data provider is selected.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      * @param {string=} params.posDataProviderId The ID of POS data provider.
      * @param {string=} params.posExternalAccountId The account ID by which this merchant is known to the POS data provider.
@@ -11525,7 +12899,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11538,7 +12913,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'accountId', 'country'],
+        requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
@@ -11674,7 +13049,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11965,7 +13341,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12128,7 +13505,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12320,7 +13698,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12483,7 +13862,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12610,7 +13990,7 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.disbursementEndDate The last date which disbursements occurred. In ISO 8601 format. Default: current date.
-     * @param {string} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
+     * @param {string=} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
      * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
@@ -12683,7 +14063,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12695,7 +14076,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'disbursementStartDate'],
+        requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: this.context,
       };
@@ -12775,7 +14156,7 @@ export namespace content_v2_1 {
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.transactionEndDate The last date in which transaction occurred. In ISO 8601 format. Default: current date.
-     * @param {string} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
+     * @param {string=} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12845,7 +14226,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12858,11 +14240,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: [
-          'merchantId',
-          'disbursementId',
-          'transactionStartDate',
-        ],
+        requiredParams: ['merchantId', 'disbursementId'],
         pathParams: ['disbursementId', 'merchantId'],
         context: this.context,
       };
@@ -13060,7 +14438,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13204,7 +14583,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13257,15 +14637,13 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.orderreturns.list({
-     *     // Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status.
-     *     // We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
+     *     // Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
      *     acknowledged: 'placeholder-value',
      *     // Obtains order returns created before this date (inclusively), in ISO 8601 format.
      *     createdEndDate: 'placeholder-value',
      *     // Obtains order returns created after this date (inclusively), in ISO 8601 format.
      *     createdStartDate: 'placeholder-value',
-     *     // Obtains order returns with the specified order ids. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set.
-     *     // Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
+     *     // Obtains order returns with the specified order ids. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
      *     googleOrderIds: 'placeholder-value',
      *     // The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
      *     maxResults: 'placeholder-value',
@@ -13279,8 +14657,7 @@ export namespace content_v2_1 {
      *     shipmentStates: 'placeholder-value',
      *     // Obtains order returns that match any shipment status provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment statuses.
      *     shipmentStatus: 'placeholder-value',
-     *     // Obtains order returns with the specified tracking numbers. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set.
-     *     // Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
+     *     // Obtains order returns with the specified tracking numbers. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
      *     shipmentTrackingNumbers: 'placeholder-value',
      *     // Obtains order returns that match any shipment type provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment types.
      *     shipmentTypes: 'placeholder-value',
@@ -13377,7 +14754,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13531,7 +14909,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13783,7 +15162,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13924,7 +15304,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14076,7 +15457,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14231,7 +15613,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14389,7 +15772,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14541,7 +15925,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14694,7 +16079,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14849,7 +16235,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14990,7 +16377,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15137,7 +16525,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15297,7 +16686,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15353,18 +16743,13 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.orders.list({
-     *     // Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged.
-     *     // We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
+     *     // Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
      *     acknowledged: 'placeholder-value',
      *     // The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
      *     maxResults: 'placeholder-value',
      *     // The ID of the account that manages the order. This cannot be a multi-client account.
      *     merchantId: 'placeholder-value',
-     *     // Order results by placement date in descending or ascending order.
-     *     //
-     *     // Acceptable values are:
-     *     // - placedDateAsc
-     *     // - placedDateDesc
+     *     // Order results by placement date in descending or ascending order. Acceptable values are: - placedDateAsc - placedDateDesc
      *     orderBy: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -15397,7 +16782,7 @@ export namespace content_v2_1 {
      * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
      * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.orderBy Order results by placement date in descending or ascending order.  Acceptable values are: - placedDateAsc - placedDateDesc
+     * @param {string=} params.orderBy Order results by placement date in descending or ascending order. Acceptable values are: - placedDateAsc - placedDateDesc
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
      * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
@@ -15460,7 +16845,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15615,7 +17001,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15769,7 +17156,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15925,7 +17313,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16085,7 +17474,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16241,7 +17631,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16397,7 +17788,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16566,7 +17958,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16720,7 +18113,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16881,7 +18275,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17079,7 +18474,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Order results by placement date in descending or ascending order.  Acceptable values are: - placedDateAsc - placedDateDesc
+     * Order results by placement date in descending or ascending order. Acceptable values are: - placedDateAsc - placedDateDesc
      */
     orderBy?: string;
     /**
@@ -17366,7 +18761,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17495,7 +18891,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17633,7 +19030,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17779,7 +19177,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17943,7 +19342,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18077,7 +19477,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18236,7 +19637,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18476,7 +19878,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18605,7 +20008,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18816,7 +20220,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19115,7 +20520,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19258,7 +20664,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19470,7 +20877,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19617,7 +21025,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19765,7 +21174,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19953,7 +21363,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20103,7 +21514,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20279,7 +21691,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20439,7 +21852,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20489,6 +21903,834 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RegionalInventory;
+  }
+
+  export class Resource$Repricingrules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.repricingrules.create
+     * @desc Creates a repricing rule for your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.create({
+     *     // Required. The id of the merchant who owns the repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the rule to create.
+     *     ruleId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countryCode": "my_countryCode",
+     *       //   "effectiveTimePeriod": {},
+     *       //   "eligibleOfferMatcher": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "merchantId": "my_merchantId",
+     *       //   "paused": false,
+     *       //   "restriction": {},
+     *       //   "ruleId": "my_ruleId",
+     *       //   "title": "my_title",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "effectiveTimePeriod": {},
+     *   //   "eligibleOfferMatcher": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "paused": false,
+     *   //   "restriction": {},
+     *   //   "ruleId": "my_ruleId",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.repricingrules.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
+     * @param {string=} params.ruleId Required. The id of the rule to create.
+     * @param {().RepricingRule} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Repricingrules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Repricingrules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepricingRule>;
+    create(
+      params: Params$Resource$Repricingrules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Repricingrules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$RepricingRule>,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    create(
+      params: Params$Resource$Repricingrules$Create,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$RepricingRule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Create
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RepricingRule> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/repricingrules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RepricingRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$RepricingRule>(parameters);
+      }
+    }
+
+    /**
+     * content.repricingrules.delete
+     * @desc Deletes a repricing rule in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.delete({
+     *     // Required. The id of the merchant who owns the repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the rule to Delete.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.repricingrules.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
+     * @param {string} params.ruleId Required. The id of the rule to Delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Repricingrules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Repricingrules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Repricingrules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Repricingrules$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Repricingrules$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/repricingrules/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'ruleId'],
+        pathParams: ['merchantId', 'ruleId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * content.repricingrules.get
+     * @desc Retrieves a repricing rule from your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.get({
+     *     // Required. The id of the merchant who owns the repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the rule to retrieve.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "effectiveTimePeriod": {},
+     *   //   "eligibleOfferMatcher": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "paused": false,
+     *   //   "restriction": {},
+     *   //   "ruleId": "my_ruleId",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.repricingrules.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
+     * @param {string} params.ruleId Required. The id of the rule to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Repricingrules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Repricingrules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepricingRule>;
+    get(
+      params: Params$Resource$Repricingrules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Repricingrules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RepricingRule>,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    get(
+      params: Params$Resource$Repricingrules$Get,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RepricingRule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Get
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RepricingRule> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/repricingrules/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'ruleId'],
+        pathParams: ['merchantId', 'ruleId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RepricingRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$RepricingRule>(parameters);
+      }
+    }
+
+    /**
+     * content.repricingrules.list
+     * @desc Lists the repricing rules in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.list({
+     *     // CLDR country code (e.g. "US"), used as a filter on repricing rules.
+     *     countryCode: 'placeholder-value',
+     *     // The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The id of the merchant who owns the repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of repricing rules to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRepricingRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepricingRules` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repricingRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.repricingrules.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.countryCode CLDR country code (e.g. "US"), used as a filter on repricing rules.
+     * @param {string=} params.languageCode The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
+     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
+     * @param {integer=} params.pageSize The maximum number of repricing rules to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * @param {string=} params.pageToken A page token, received from a previous `ListRepricingRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepricingRules` must match the call that provided the page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Repricingrules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Repricingrules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepricingRulesResponse>;
+    list(
+      params: Params$Resource$Repricingrules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListRepricingRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$List,
+      callback: BodyResponseCallback<Schema$ListRepricingRulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRepricingRulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$List
+        | BodyResponseCallback<Schema$ListRepricingRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepricingRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepricingRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/repricingrules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepricingRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepricingRulesResponse>(parameters);
+      }
+    }
+
+    /**
+     * content.repricingrules.patch
+     * @desc Updates a repricing rule in your Merchant Center account. All mutable fields will be overwritten in each update request. In each update, you must provide all required mutable fields, or an error will be thrown. If you do not provide an optional field in the update request, if that field currently exists, it will be deleted from the rule.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.patch({
+     *     // Required. The id of the merchant who owns the repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the rule to update.
+     *     ruleId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countryCode": "my_countryCode",
+     *       //   "effectiveTimePeriod": {},
+     *       //   "eligibleOfferMatcher": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "merchantId": "my_merchantId",
+     *       //   "paused": false,
+     *       //   "restriction": {},
+     *       //   "ruleId": "my_ruleId",
+     *       //   "title": "my_title",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "effectiveTimePeriod": {},
+     *   //   "eligibleOfferMatcher": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "paused": false,
+     *   //   "restriction": {},
+     *   //   "ruleId": "my_ruleId",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.repricingrules.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
+     * @param {string} params.ruleId Required. The id of the rule to update.
+     * @param {().RepricingRule} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Repricingrules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Repricingrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepricingRule>;
+    patch(
+      params: Params$Resource$Repricingrules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Repricingrules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$RepricingRule>,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    patch(
+      params: Params$Resource$Repricingrules$Patch,
+      callback: BodyResponseCallback<Schema$RepricingRule>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$RepricingRule>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Patch
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepricingRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RepricingRule> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/repricingrules/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'ruleId'],
+        pathParams: ['merchantId', 'ruleId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RepricingRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$RepricingRule>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Repricingrules$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant who owns the repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the rule to create.
+     */
+    ruleId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RepricingRule;
+  }
+  export interface Params$Resource$Repricingrules$Delete
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant who owns the repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the rule to Delete.
+     */
+    ruleId?: string;
+  }
+  export interface Params$Resource$Repricingrules$Get
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant who owns the repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the rule to retrieve.
+     */
+    ruleId?: string;
+  }
+  export interface Params$Resource$Repricingrules$List
+    extends StandardParameters {
+    /**
+     * CLDR country code (e.g. "US"), used as a filter on repricing rules.
+     */
+    countryCode?: string;
+    /**
+     * The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
+     */
+    languageCode?: string;
+    /**
+     * Required. The id of the merchant who owns the repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of repricing rules to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListRepricingRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepricingRules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Repricingrules$Patch
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant who owns the repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the rule to update.
+     */
+    ruleId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RepricingRule;
   }
 
   export class Resource$Returnaddress {
@@ -20614,7 +22856,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20743,7 +22986,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20882,7 +23126,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21032,7 +23277,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21181,7 +23427,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21393,7 +23640,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21522,7 +23770,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21662,7 +23911,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21816,7 +24066,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21953,7 +24204,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22149,7 +24401,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22301,7 +24554,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22496,7 +24750,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22673,7 +24928,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22811,7 +25067,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22964,7 +25221,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23118,7 +25376,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23272,7 +25531,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23418,7 +25678,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23566,7 +25827,8 @@ export namespace content_v2_1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
