@@ -4411,7 +4411,7 @@
       "name": "workflows",
       "version": "v1beta",
       "title": "Workflows API",
-      "description": "",
+      "description": "Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.",
       "discoveryRestUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
