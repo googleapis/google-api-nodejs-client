@@ -182,6 +182,10 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$BackupConfiguration {
     /**
+     * Backup retention settings.
+     */
+    backupRetentionSettings?: Schema$BackupRetentionSettings;
+    /**
      * (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.
      */
     binaryLogEnabled?: boolean | null;
@@ -209,6 +213,23 @@ export namespace sqladmin_v1beta4 {
      * Start time for the daily backup configuration in UTC timezone in the 24 hour format - *HH:MM*.
      */
     startTime?: string | null;
+    /**
+     * The number of days of transaction logs we retain for point in time restore, from 1-7.
+     */
+    transactionLogRetentionDays?: number | null;
+  }
+  /**
+   * We currently only support backup retention by specifying the number of backups we will retain.
+   */
+  export interface Schema$BackupRetentionSettings {
+    /**
+     * Depending on the value of retention_unit, this is used to determine if a backup needs to be deleted. If retention_unit is &#39;COUNT&#39;, we will retain this many backups.
+     */
+    retainedBackups?: number | null;
+    /**
+     * The unit that &#39;retained_backups&#39; represents.
+     */
+    retentionUnit?: string | null;
   }
   /**
    * A BackupRun resource.
@@ -502,7 +523,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. *RUNNABLE*: The instance is running, or is ready to run when accessed. *SUSPENDED*: The instance is not available, for example due to problems with billing. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed. *UNKNOWN_STATE*: The state of the instance is unknown.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it&#39;s ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
      */
     state?: string | null;
     /**
