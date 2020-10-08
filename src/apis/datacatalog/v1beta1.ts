@@ -596,7 +596,7 @@ export namespace datacatalog_v1beta1 {
      */
     results?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResult[];
     /**
-     * Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.include_locations`.
+     * Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.restricted_locations`.
      */
     unreachable?: string[] | null;
   }
