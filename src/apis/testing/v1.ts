@@ -722,6 +722,23 @@ export namespace testing_v1 {
     xcodeVersions?: Schema$XcodeVersion[];
   }
   /**
+   * A file or directory to install on the device before the test starts.
+   */
+  export interface Schema$IosDeviceFile {
+    /**
+     * The bundle id of the app where this file lives. iOS apps sandbox their own filesystem, so app files must specify which app installed on the device.
+     */
+    bundleId?: string | null;
+    /**
+     * The source file
+     */
+    content?: Schema$FileReference;
+    /**
+     * Location of the file on the device, inside the app&#39;s sandboxed filesystem
+     */
+    devicePath?: string | null;
+  }
+  /**
    * A list of iOS device configurations in which the test is to be executed.
    */
   export interface Schema$IosDeviceList {
@@ -813,6 +830,14 @@ export namespace testing_v1 {
      * The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string | null;
+    /**
+     * List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (e.g. /private/var/mobile/Media) or within an accessible directory inside the app&#39;s filesystem (e.g. /Documents) by specifying the bundle id.
+     */
+    pullDirectories?: Schema$IosDeviceFile[];
+    /**
+     * List of files to push to the device before starting the test.
+     */
+    pushFiles?: Schema$IosDeviceFile[];
   }
   /**
    * An iOS version.
