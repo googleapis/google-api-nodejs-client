@@ -905,6 +905,10 @@ export namespace remotebuildexecution_v2 {
      */
     dockerCacheHit?: boolean | null;
     /**
+     * Docker Image name.
+     */
+    dockerImageName?: string | null;
+    /**
      * The input cache miss ratio.
      */
     inputCacheMiss?: number | null;
