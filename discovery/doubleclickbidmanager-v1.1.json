@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20200930",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -2697,7 +2697,7 @@
       "type": "object"
     },
     "PathQueryOptionsFilter": {
-      "description": "Dimension Filter for a Path Filter.",
+      "description": "Dimension Filter on path events.",
       "id": "PathQueryOptionsFilter",
       "properties": {
         "filter": {
