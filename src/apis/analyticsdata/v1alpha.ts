@@ -115,6 +115,7 @@ export namespace analyticsdata_v1alpha {
    */
   export class Analyticsdata {
     context: APIRequestContext;
+    properties: Resource$Properties;
     v1alpha: Resource$V1alpha;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -123,6 +124,7 @@ export namespace analyticsdata_v1alpha {
         google,
       };
 
+      this.properties = new Resource$Properties(this.context);
       this.v1alpha = new Resource$V1alpha(this.context);
     }
   }
@@ -445,6 +447,23 @@ export namespace analyticsdata_v1alpha {
      * The list of string values. Must be non-empty.
      */
     values?: string[] | null;
+  }
+  /**
+   * The dimensions and metrics currently accepted in reporting methods.
+   */
+  export interface Schema$Metadata {
+    /**
+     * The dimensions descriptions.
+     */
+    dimensions?: Schema$DimensionMetadata[];
+    /**
+     * The metric descriptions.
+     */
+    metrics?: Schema$MetricMetadata[];
+    /**
+     * Resource name of this metadata.
+     */
+    name?: string | null;
   }
   /**
    * The quantitative measurements of a report. For example, the metric eventCount is the total number of events. Requests are allowed up to 10 metrics.
@@ -912,6 +931,155 @@ export namespace analyticsdata_v1alpha {
      * The metric descriptions.
      */
     metrics?: Schema$MetricMetadata[];
+  }
+
+  export class Resource$Properties {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * analyticsdata.properties.getMetadata
+     * @desc Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics App + Web Property Identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsdata = google.analyticsdata('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsdata.properties.getMetadata({
+     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics App + Web Property identifier. Example: properties/1234/metadata
+     *     name: 'properties/my-propertie/metadata',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensions": [],
+     *   //   "metrics": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias analyticsdata.properties.getMetadata
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics App + Web Property identifier. Example: properties/1234/metadata
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getMetadata(
+      params: Params$Resource$Properties$Getmetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetadata(
+      params?: Params$Resource$Properties$Getmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Metadata>;
+    getMetadata(
+      params: Params$Resource$Properties$Getmetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getMetadata(
+      params: Params$Resource$Properties$Getmetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
+      callback: BodyResponseCallback<Schema$Metadata>
+    ): void;
+    getMetadata(
+      params: Params$Resource$Properties$Getmetadata,
+      callback: BodyResponseCallback<Schema$Metadata>
+    ): void;
+    getMetadata(callback: BodyResponseCallback<Schema$Metadata>): void;
+    getMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Getmetadata
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Getmetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Getmetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Metadata>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Getmetadata
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics App + Web Property identifier. Example: properties/1234/metadata
+     */
+    name?: string;
   }
 
   export class Resource$V1alpha {
