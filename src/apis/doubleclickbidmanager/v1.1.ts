@@ -361,7 +361,7 @@ export namespace doubleclickbidmanager_v1_1 {
     pathFilters?: Schema$PathFilter[];
   }
   /**
-   * Dimension Filter for a Path Filter.
+   * Dimension Filter on path events.
    */
   export interface Schema$PathQueryOptionsFilter {
     /**
