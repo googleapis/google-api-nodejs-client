@@ -432,7 +432,7 @@
       }
     }
   },
-  "revision": "20200929",
+  "revision": "20201006",
   "rootUrl": "https://admin-remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1089,6 +1089,10 @@
         "dockerCacheHit": {
           "description": "Indicates whether we are using a cached Docker image (true) or had to pull the Docker image (false) for this command.",
           "type": "boolean"
+        },
+        "dockerImageName": {
+          "description": "Docker Image name.",
+          "type": "string"
         },
         "inputCacheMiss": {
           "description": "The input cache miss ratio.",
