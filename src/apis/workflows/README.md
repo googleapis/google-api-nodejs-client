@@ -2,7 +2,7 @@
 
 # workflows
 
-> 
+> Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
