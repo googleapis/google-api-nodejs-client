@@ -140,10 +140,6 @@ export namespace civicinfo_v2 {
      */
     electionAdministrationBody?: Schema$AdministrativeBody;
     /**
-     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
-     */
-    id?: string | null;
-    /**
      * The city or county that provides election information for this voter. This object can have the same elements as state.
      */
     local_jurisdiction?: Schema$AdministrationRegion;
@@ -295,10 +291,6 @@ export namespace civicinfo_v2 {
      * A description of any additional eligibility requirements for voting in this contest.
      */
     electorateSpecifications?: string | null;
-    /**
-     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
-     */
-    id?: string | null;
     /**
      * The levels of government of the office for this contest. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
      */
@@ -578,10 +570,6 @@ export namespace civicinfo_v2 {
      * The last date that this early vote site or drop off location may be used. This field is not populated for polling locations.
      */
     endDate?: string | null;
-    /**
-     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
-     */
-    id?: string | null;
     /**
      * Latitude of the location, in degrees north of the equator. Note this field may not be available for some locations.
      */
