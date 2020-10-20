@@ -289,7 +289,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Token to provide to skip to a particular spot in the list.",
+                  "description": "The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.",
                   "location": "query",
                   "type": "string"
                 },
@@ -470,7 +470,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Token to provide to skip to a particular spot in the list.",
+                      "description": "The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.",
                       "location": "query",
                       "type": "string"
                     },
@@ -783,7 +783,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201015",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1485,7 +1485,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to receive the next page of results.",
+          "description": "Token to receive the next page of results. This will be absent if the end of the response list has been reached.",
           "type": "string"
         }
       },
