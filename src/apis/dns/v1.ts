@@ -664,6 +664,10 @@ export namespace dns_v1 {
      */
     name?: string | null;
     /**
+     * Configures dynamic query responses based on geo location of querying user or a weighted round robin based routing policy. A ResourceRecordSet should only have either rrdata (static) or routing_policy(dynamic). An error is returned otherwise.
+     */
+    routingPolicy?: Schema$RRSetRoutingPolicy;
+    /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
     rrdatas?: string[] | null;
@@ -704,6 +708,53 @@ export namespace dns_v1 {
      */
     operationId?: string | null;
   }
+  /**
+   * A RRSetRoutingPolicy represents ResourceRecordSet data that will be returned dynamically with the response varying based on configured properties such as geolocation or by weighted random selection.
+   */
+  export interface Schema$RRSetRoutingPolicy {
+    geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
+    kind?: string | null;
+    wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicy {
+    /**
+     * If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won&#39;t be healthchecked - we&#39;ll return the primarily configured rrdata irrespective of whether it is healthy or not.
+     */
+    failovers?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    /**
+     * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
+     */
+    items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
+    kind?: string | null;
+    /**
+     * The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g &quot;us-east1&quot;, &quot;southamerica-east1&quot;, &quot;asia-east1&quot;, etc.
+     */
+    location?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above geo_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicy {
+    items?: Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
+    kind?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above wrr_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+    /**
+     * The weight corresponding to this subset of rrdata. When multiple WeightedRoundRobinPolicyItems are configured, the probability of returning an rrset is proportional to its weight relative to the sum of weights configured for all items. This weight should be a decimal in the range [0,1].
+     */
+    weight?: number | null;
+  }
 
   export class Resource$Changes {
     context: APIRequestContext;
@@ -743,7 +794,7 @@ export namespace dns_v1 {
      *   const res = await dns.changes.create({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -786,7 +837,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {().Change} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -907,7 +958,7 @@ export namespace dns_v1 {
      *     changeId: 'placeholder-value',
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -937,7 +988,7 @@ export namespace dns_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1053,7 +1104,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.changes.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -1086,7 +1137,7 @@ export namespace dns_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      * @param {string} params.project Identifies the project addressed by this request.
@@ -1184,7 +1235,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1207,7 +1258,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1217,7 +1268,7 @@ export namespace dns_v1 {
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1286,7 +1337,7 @@ export namespace dns_v1 {
      *     digestType: 'placeholder-value',
      *     // The identifier of the requested DnsKey.
      *     dnsKeyId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1321,7 +1372,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      * @param {string} params.dnsKeyId The identifier of the requested DnsKey.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1439,7 +1490,7 @@ export namespace dns_v1 {
      *   const res = await dns.dnsKeys.list({
      *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      *     digestType: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -1469,7 +1520,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      * @param {string} params.project Identifies the project addressed by this request.
@@ -1573,7 +1624,7 @@ export namespace dns_v1 {
      */
     dnsKeyId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1587,7 +1638,7 @@ export namespace dns_v1 {
      */
     digestType?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -2178,7 +2229,7 @@ export namespace dns_v1 {
      *   const res = await dns.managedZones.delete({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2196,7 +2247,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2312,7 +2363,7 @@ export namespace dns_v1 {
      *   const res = await dns.managedZones.get({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2349,7 +2400,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2617,7 +2668,7 @@ export namespace dns_v1 {
      *   const res = await dns.managedZones.patch({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2669,7 +2720,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2786,7 +2837,7 @@ export namespace dns_v1 {
      *   const res = await dns.managedZones.update({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2838,7 +2889,7 @@ export namespace dns_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {string} params.project Identifies the project addressed by this request.
      * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2947,7 +2998,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -2961,7 +3012,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -2995,7 +3046,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -3015,7 +3066,7 @@ export namespace dns_v1 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -4235,7 +4286,7 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.resourceRecordSets.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -4268,7 +4319,7 @@ export namespace dns_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      * @param {string=} params.name Restricts the list to return only records with this fully qualified domain name.
      * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
@@ -4370,7 +4421,7 @@ export namespace dns_v1 {
   export interface Params$Resource$Resourcerecordsets$List
     extends StandardParameters {
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
