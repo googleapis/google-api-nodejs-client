@@ -547,7 +547,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.",
+                      "description": "If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response. The limit is applied from the end of the time range. That is, if pageToken is absent, the limit most recent data points will be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -861,7 +861,7 @@
       }
     }
   },
-  "revision": "20201006",
+  "revision": "20201016",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
