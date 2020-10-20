@@ -3432,9 +3432,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export class Resource$Customers$Nodes {
     context: APIRequestContext;
+    devices: Resource$Customers$Nodes$Devices;
     nodes: Resource$Customers$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.devices = new Resource$Customers$Nodes$Devices(this.context);
       this.nodes = new Resource$Customers$Nodes$Nodes(this.context);
     }
 
@@ -4349,6 +4351,515 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$SasPortalNode;
+  }
+
+  export class Resource$Customers$Nodes$Devices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * prod_tt_sasportal.customers.nodes.devices.create
+     * @desc Creates a device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias prod_tt_sasportal.customers.nodes.devices.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {().SasPortalDevice} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Customers$Nodes$Devices$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$Create
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.customers.nodes.devices.createSigned
+     * @desc Creates a signed device under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias prod_tt_sasportal.customers.nodes.devices.createSigned
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSigned(
+      params?: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    createSigned(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$Createsigned
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$Createsigned;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$Createsigned;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices:createSigned').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.customers.nodes.devices.list
+     * @desc Lists devices under a node or customer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias prod_tt_sasportal.customers.nodes.devices.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Nodes$Devices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$List
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Nodes$Devices$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDevice;
+  }
+  export interface Params$Resource$Customers$Nodes$Devices$Createsigned
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
+  }
+  export interface Params$Resource$Customers$Nodes$Devices$List
+    extends StandardParameters {
+    /**
+     * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     */
+    filter?: string;
+    /**
+     * The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
   }
 
   export class Resource$Customers$Nodes$Nodes {
