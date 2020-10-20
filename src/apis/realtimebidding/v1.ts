@@ -219,7 +219,7 @@ export namespace realtimebidding_v1 {
      */
     impressionTrackingUrls?: string[] | null;
     /**
-     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string | null;
     /**
@@ -244,13 +244,13 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$CreativeServingDecision {
     /**
-     * The serving status of this creative in China. When approved or disapproved, this status applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
+     * The policy compliance of this creative in China. When approved or disapproved, this applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
      */
-    chinaServingStatus?: Schema$ServingStatus;
+    chinaPolicyCompliance?: Schema$PolicyCompliance;
     /**
-     * Status of this creative when bidding on PG and PD deals (outside of Russia and China).
+     * Policy compliance of this creative when bidding on Programmatic Guaranteed and Preferred Deals (outside of Russia and China).
      */
-    dealsServingStatus?: Schema$ServingStatus;
+    dealsPolicyCompliance?: Schema$PolicyCompliance;
     /**
      * Detected advertisers and brands.
      */
@@ -288,28 +288,32 @@ export namespace realtimebidding_v1 {
      */
     lastStatusUpdate?: string | null;
     /**
-     * Status of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China).
+     * Policy compliance of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China).
      */
-    openAuctionServingStatus?: Schema$ServingStatus;
+    networkPolicyCompliance?: Schema$PolicyCompliance;
     /**
-     * The serving status of this creative in Russia. When approved or disapproved, this status applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction.
+     * Policy compliance of this creative when bidding in Open Bidding (outside of Russia and China). For the list of platform policies, see: https://support.google.com/platformspolicy/answer/3013851.
      */
-    russiaServingStatus?: Schema$ServingStatus;
+    platformPolicyCompliance?: Schema$PolicyCompliance;
+    /**
+     * The policy compliance of this creative in Russia. When approved or disapproved, this applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction.
+     */
+    russiaPolicyCompliance?: Schema$PolicyCompliance;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#39;t significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
@@ -577,6 +581,19 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$OpenUserListRequest {}
   /**
+   * Policy compliance of the creative for a transaction type or a region.
+   */
+  export interface Schema$PolicyCompliance {
+    /**
+     * Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.
+     */
+    status?: string | null;
+    /**
+     * Topics related to the policy compliance for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.
+     */
+    topics?: Schema$PolicyTopicEntry[];
+  }
+  /**
    * Each policy topic entry will represent a violation of a policy topic for a creative, with the policy topic information and optional evidence for the policy violation.
    */
   export interface Schema$PolicyTopicEntry {
@@ -625,19 +642,6 @@ export namespace realtimebidding_v1 {
      * Evidence for HTTP cookie-related policy violations.
      */
     httpCookie?: Schema$HttpCookieEvidence;
-  }
-  /**
-   * Serving status of the creative for a transaction type or a region.
-   */
-  export interface Schema$ServingStatus {
-    /**
-     * Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.
-     */
-    status?: string | null;
-    /**
-     * Policy topics related to the serving decision for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.
-     */
-    topics?: Schema$PolicyTopicEntry[];
   }
   /**
    * The URL-level breakdown for the download size.
@@ -1784,7 +1788,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     *     // Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Field mask to use for partial in-place updates.
      *     updateMask: 'placeholder-value',
@@ -1852,7 +1856,7 @@ export namespace realtimebidding_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * @param {string} params.name Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      * @param {string=} params.updateMask Field mask to use for partial in-place updates.
      * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1986,7 +1990,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$Patch
     extends StandardParameters {
     /**
-     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string;
     /**
