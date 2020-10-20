@@ -9237,6 +9237,8 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.purchases.subscriptions.cancel({
      *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
+     *     // The purchased subscription ID (for example, 'monthly001').
+     *     subscriptionId: 'placeholder-value',
      *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *   });
@@ -9253,6 +9255,7 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
      * @param {string} params.token The token provided to the user's device when the subscription was purchased.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9315,15 +9318,15 @@ export namespace androidpublisher_v3 {
           {
             url: (
               rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/tokens/{token}:cancel'
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['packageName', 'token'],
-        pathParams: ['packageName', 'token'],
+        requiredParams: ['packageName', 'subscriptionId', 'token'],
+        pathParams: ['packageName', 'subscriptionId', 'token'],
         context: this.context,
       };
       if (callback) {
@@ -9952,6 +9955,10 @@ export namespace androidpublisher_v3 {
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
+    /**
+     * The purchased subscription ID (for example, 'monthly001').
+     */
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was purchased.
      */
