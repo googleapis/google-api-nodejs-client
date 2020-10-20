@@ -1917,6 +1917,34 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "createorderreturn": {
+          "description": "Create return in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/orderreturns/createOrderReturn",
+          "httpMethod": "POST",
+          "id": "content.orderreturns.createorderreturn",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The ID of the account that manages the order. This cannot be a multi-client account.",
+              "format": "uint64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/orderreturns/createOrderReturn",
+          "request": {
+            "$ref": "OrderreturnsCreateOrderReturnRequest"
+          },
+          "response": {
+            "$ref": "OrderreturnsCreateOrderReturnResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "get": {
           "description": "Retrieves an order return from your Merchant Center account.",
           "flatPath": "content/v2.1/{merchantId}/orderreturns/{returnId}",
@@ -4328,7 +4356,7 @@
       }
     }
   },
-  "revision": "20200930",
+  "revision": "20201014",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6615,7 +6643,7 @@
       "id": "LocalInventory",
       "properties": {
         "availability": {
-          "description": "Availability of the product.",
+          "description": "Availability of the product. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "instoreProductLocation": {
@@ -6627,11 +6655,11 @@
           "type": "string"
         },
         "pickupMethod": {
-          "description": "Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`.",
+          "description": "Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.",
           "type": "string"
         },
         "pickupSla": {
-          "description": "Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`.",
+          "description": "Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "price": {
@@ -7985,6 +8013,64 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"content#orderreturnsAcknowledgeResponse\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderreturnsCreateOrderReturnRequest": {
+      "id": "OrderreturnsCreateOrderReturnRequest",
+      "properties": {
+        "lineItems": {
+          "description": "The list of line items to return.",
+          "items": {
+            "$ref": "OrderreturnsLineItem"
+          },
+          "type": "array"
+        },
+        "operationId": {
+          "description": "The ID of the operation. Unique across all operations for a given order.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The ID of the order.",
+          "type": "string"
+        },
+        "returnMethodType": {
+          "description": "The way of the package being returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderreturnsCreateOrderReturnResponse": {
+      "id": "OrderreturnsCreateOrderReturnResponse",
+      "properties": {
+        "executionStatus": {
+          "description": "The status of the execution. Acceptable values are: - \"`duplicate`\" - \"`executed`\" ",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"content#orderreturnsCreateOrderReturnResponse\".",
+          "type": "string"
+        },
+        "orderReturn": {
+          "$ref": "MerchantOrderReturn",
+          "description": "Created order return."
+        }
+      },
+      "type": "object"
+    },
+    "OrderreturnsLineItem": {
+      "id": "OrderreturnsLineItem",
+      "properties": {
+        "lineItemId": {
+          "description": "The ID of the line item. This value is assigned by Google when an order is created.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The quantity of this line item.",
+          "format": "uint32",
+          "type": "integer"
         }
       },
       "type": "object"
