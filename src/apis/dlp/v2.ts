@@ -2868,15 +2868,15 @@ export namespace dlp_v2 {
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
-     * Exclude files or rows newer than this value. If set to zero, no upper time limit is applied.
+     * Exclude files, tables, or rows newer than this value. If not set, no upper time limit is applied.
      */
     endTime?: string | null;
     /**
-     * Exclude files or rows older than this value.
+     * Exclude files, tables, or rows older than this value. If not set, no lower time limit is applied.
      */
     startTime?: string | null;
     /**
-     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. For BigQuery: Required to filter out rows based on the given start and end times. If not specified and the table was modified between the given start and end times, the entire table will be scanned. The valid data types of the timestamp field are: `INTEGER`, `DATE`, `TIMESTAMP`, or `DATETIME` BigQuery column. For Datastore. Valid data types of the timestamp field are: `TIMESTAMP`. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
+     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. For BigQuery: If this value is not specified and the table was modified between the given start and end times, the entire table will be scanned. If this value is specified, then rows are filtered based on the given start and end times. Rows with a `NULL` value in the provided BigQuery column are skipped. Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`, `TIMESTAMP`, and `DATETIME`. For Datastore: If this value is specified, then entities are filtered based on the given start and end times. If an entity does not contain the provided timestamp property or contains empty or invalid values, then it is included. Valid data types of the provided timestamp property are: `TIMESTAMP`.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
