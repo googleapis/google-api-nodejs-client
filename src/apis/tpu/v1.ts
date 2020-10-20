@@ -264,7 +264,7 @@ export namespace tpu_v1 {
    */
   export interface Schema$Node {
     /**
-     * The type of hardware accelerators associated with this node. Required.
+     * Required. The type of hardware accelerators associated with this node.
      */
     acceleratorType?: string | null;
     /**
@@ -296,7 +296,7 @@ export namespace tpu_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The immutable name of the TPU
+     * Output only. Immutable. The name of the TPU
      */
     name?: string | null;
     /**
@@ -311,6 +311,9 @@ export namespace tpu_v1 {
      * Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances.
      */
     port?: string | null;
+    /**
+     * The scheduling options for this node.
+     */
     schedulingConfig?: Schema$SchedulingConfig;
     /**
      * Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
@@ -325,7 +328,7 @@ export namespace tpu_v1 {
      */
     symptoms?: Schema$Symptom[];
     /**
-     * The version of Tensorflow running in the Node. Required.
+     * Required. The version of Tensorflow running in the Node.
      */
     tensorflowVersion?: string | null;
     /**
@@ -841,7 +844,7 @@ export namespace tpu_v1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.acceleratorTypes.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name:
      *       'projects/my-project/locations/my-location/acceleratorTypes/my-acceleratorType',
      *   });
@@ -863,7 +866,7 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. The resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -979,7 +982,7 @@ export namespace tpu_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1005,7 +1008,7 @@ export namespace tpu_v1 {
      * @param {string=} params.orderBy Sort results.
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
+     * @param {string} params.parent Required. The parent resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1102,7 +1105,7 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -1125,7 +1128,7 @@ export namespace tpu_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }
@@ -1165,7 +1168,7 @@ export namespace tpu_v1 {
      *   const res = await tpu.projects.locations.nodes.create({
      *     // The unqualified resource name.
      *     nodeId: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1215,7 +1218,7 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.nodeId The unqualified resource name.
-     * @param {string} params.parent The parent resource name.
+     * @param {string} params.parent Required. The parent resource name.
      * @param {().Node} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1327,7 +1330,7 @@ export namespace tpu_v1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.delete({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *   });
      *   console.log(res.data);
@@ -1351,7 +1354,7 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. The resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1459,7 +1462,7 @@ export namespace tpu_v1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *   });
      *   console.log(res.data);
@@ -1496,7 +1499,7 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. The resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1608,7 +1611,7 @@ export namespace tpu_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1632,7 +1635,7 @@ export namespace tpu_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
+     * @param {string} params.parent Required. The parent resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2149,7 +2152,7 @@ export namespace tpu_v1 {
      */
     nodeId?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
 
@@ -2161,14 +2164,14 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Delete
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -2183,7 +2186,7 @@ export namespace tpu_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }
@@ -2835,7 +2838,7 @@ export namespace tpu_v1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.tensorflowVersions.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name:
      *       'projects/my-project/locations/my-location/tensorflowVersions/my-tensorflowVersion',
      *   });
@@ -2857,7 +2860,7 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. The resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2976,7 +2979,7 @@ export namespace tpu_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3002,7 +3005,7 @@ export namespace tpu_v1 {
      * @param {string=} params.orderBy Sort results.
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
+     * @param {string} params.parent Required. The parent resource name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3099,7 +3102,7 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -3122,7 +3125,7 @@ export namespace tpu_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }
