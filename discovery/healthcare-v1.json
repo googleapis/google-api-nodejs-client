@@ -2769,7 +2769,7 @@
       }
     }
   },
-  "revision": "20200924",
+  "revision": "20201006",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3073,11 +3073,11 @@
       "properties": {
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1DicomBigQueryDestination",
-          "description": "The BigQuery output destination. You can only export to a BigQuery dataset that's in the same project as the DICOM store you're exporting from. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`."
+          "description": "The BigQuery output destination. You can only export to a BigQuery dataset that's in the same project as the DICOM store you're exporting from. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`."
         },
         "gcsDestination": {
           "$ref": "GoogleCloudHealthcareV1DicomGcsDestination",
-          "description": "The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role."
+          "description": "The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location."
         }
       },
       "type": "object"
@@ -3094,7 +3094,7 @@
       "properties": {
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirBigQueryDestination",
-          "description": "The BigQuery output destination. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type."
+          "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type."
         },
         "gcsDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirGcsDestination",
@@ -3170,7 +3170,7 @@
           "type": "boolean"
         },
         "enableUpdateCreate": {
-          "description": "Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.",
+          "description": "Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Be careful with the audit logs if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.",
           "type": "boolean"
         },
         "labels": {
@@ -3442,7 +3442,7 @@
       "properties": {
         "gcsSource": {
           "$ref": "GoogleCloudHealthcareV1DicomGcsSource",
-          "description": "Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role."
+          "description": "Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location."
         }
       },
       "type": "object"

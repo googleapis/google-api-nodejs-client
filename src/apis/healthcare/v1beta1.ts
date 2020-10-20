@@ -234,7 +234,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$AttributeDefinition {
     /**
-     * Required. Possible values for the attribute. An empty list is invalid. The list can only be expanded after creation.
+     * Required. Possible values for the attribute. The number of allowed values must not exceed 100. An empty list is invalid. The list can only be expanded after creation.
      */
     allowedValues?: string[] | null;
     /**
@@ -771,11 +771,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
     /**
-     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
+     * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination;
   }
@@ -788,11 +788,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
+     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
-     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
+     * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
   }
@@ -852,7 +852,7 @@ export namespace healthcare_v1beta1 {
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Be careful with the audit logs if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -1003,7 +1003,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1ConsentPolicy {
     /**
-     * The request conditions to meet to grant access.
+     * The request conditions to meet to grant access. In addition to any supported comparison operators, authorization rules may have `IN` operator as well as at most 10 logical operators that are limited to `AND` (`&amp;&amp;`), `OR` (`||`).
      */
     authorizationRule?: Schema$Expr;
     /**
@@ -1333,7 +1333,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
   }
@@ -1346,7 +1346,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportMessagesRequest {
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GcsSource;
   }
@@ -1363,7 +1363,7 @@ export namespace healthcare_v1beta1 {
      */
     contentStructure?: string | null;
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirGcsSource;
   }
