@@ -521,7 +521,7 @@
       }
     }
   },
-  "revision": "20201003",
+  "revision": "20201017",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {
@@ -810,7 +810,7 @@
       "id": "Money",
       "properties": {
         "currencyCode": {
-          "description": "The 3-letter currency code defined in ISO 4217.",
+          "description": "The three-letter currency code defined in ISO 4217.",
           "type": "string"
         },
         "nanos": {
