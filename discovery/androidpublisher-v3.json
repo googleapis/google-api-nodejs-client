@@ -2147,16 +2147,23 @@
             },
             "cancel": {
               "description": "Cancels a user's subscription purchase. The subscription remains valid until its expiration time.",
-              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/tokens/{token}:cancel",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.cancel",
               "parameterOrder": [
                 "packageName",
+                "subscriptionId",
                 "token"
               ],
               "parameters": {
                 "packageName": {
                   "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2168,7 +2175,7 @@
                   "type": "string"
                 }
               },
-              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/tokens/{token}:cancel",
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
               "scopes": [
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
@@ -2664,7 +2671,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201020",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
