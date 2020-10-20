@@ -106,19 +106,19 @@
           "parameterOrder": [],
           "parameters": {
             "endDate.day": {
-              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "endDate.month": {
-              "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "endDate.year": {
-              "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -140,19 +140,19 @@
               "type": "string"
             },
             "startDate.day": {
-              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "startDate.month": {
-              "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "startDate.year": {
-              "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -175,19 +175,19 @@
           "parameterOrder": [],
           "parameters": {
             "endDate.day": {
-              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "endDate.month": {
-              "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "endDate.year": {
-              "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -209,19 +209,19 @@
               "type": "string"
             },
             "startDate.day": {
-              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "startDate.month": {
-              "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "startDate.year": {
-              "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -235,7 +235,7 @@
       }
     }
   },
-  "revision": "20200824",
+  "revision": "20201016",
   "rootUrl": "https://localservices.googleapis.com/",
   "schemas": {
     "GoogleAdsHomeservicesLocalservicesV1AccountReport": {
@@ -246,6 +246,10 @@
           "description": "Unique identifier of the GLS account.",
           "format": "int64",
           "type": "string"
+        },
+        "aggregatorInfo": {
+          "$ref": "GoogleAdsHomeservicesLocalservicesV1AggregatorInfo",
+          "description": "Aggregator specific information related to the account."
         },
         "averageFiveStarRating": {
           "description": "Average review rating score from 1-5 stars.",
