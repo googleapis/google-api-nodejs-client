@@ -356,6 +356,15 @@ export namespace lifesciences_v2beta {
     workerReleased?: Schema$WorkerReleasedEvent;
   }
   /**
+   * Configuration for an existing disk to be attached to the VM.
+   */
+  export interface Schema$ExistingDisk {
+    /**
+     * If `disk` contains slashes, the Cloud Life Sciences API assumes that it is a complete URL for the disk. If `disk` does not contain slashes, the Cloud Life Sciences API assumes that the disk is a zonal disk and a URL will be generated of the form `zones//disks/`, where `` is the zone in which the instance is allocated. The disk must be ext4 formatted. If all `Mount` references to this disk have the `read_only` flag set to true, the disk will be attached in `read-only` mode and can be shared with other instances. Otherwise, the disk will be available for writing but cannot be shared.
+     */
+    disk?: string | null;
+  }
+  /**
    * An event generated when the execution of a pipeline has failed. Note that other events can continue to occur after this event.
    */
   export interface Schema$FailedEvent {
@@ -506,6 +515,23 @@ export namespace lifesciences_v2beta {
      * An Empty object.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Configuration for a persistent disk to be attached to the VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   */
+  export interface Schema$PersistentDisk {
+    /**
+     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance. If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
+     */
+    sizeGb?: number | null;
+    /**
+     * An image to put on the disk before attaching it to the VM.
+     */
+    sourceImage?: string | null;
+    /**
+     * The Compute Engine disk type. If unspecified, `pd-standard` is used.
+     */
+    type?: string | null;
   }
   /**
    * Specifies a series of actions to execute, expressed as Docker containers.
@@ -692,6 +718,27 @@ export namespace lifesciences_v2beta {
      * The service account to install on the VM. This account does not need any permissions other than those required by the pipeline.
      */
     serviceAccount?: Schema$ServiceAccount;
+    /**
+     * The list of disks and other storage to create or attach to the VM.
+     */
+    volumes?: Schema$Volume[];
+  }
+  /**
+   * Carries information about storage that can be attached to a VM.
+   */
+  export interface Schema$Volume {
+    /**
+     * Configuration for a existing disk.
+     */
+    existingDisk?: Schema$ExistingDisk;
+    /**
+     * Configuration for a persistent disk.
+     */
+    persistentDisk?: Schema$PersistentDisk;
+    /**
+     * A user-supplied name for the volume. Used when mounting the volume into `Actions`. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
+     */
+    volume?: string | null;
   }
   /**
    * An event generated after a worker VM has been assigned to run the pipeline.
