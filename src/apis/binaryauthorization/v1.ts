@@ -149,7 +149,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$AdmissionWhitelistPattern {
     /**
-     * An image name pattern to whitelist, in the form `registry/path/to/image`. This supports a trailing `*` as a wildcard, but this is allowed only in text after the `registry/` part.
+     * An image name pattern to allowlist, in the form `registry/path/to/image`. This supports a trailing `*` as a wildcard, but this is allowed only in text after the `registry/` part.
      */
     namePattern?: string | null;
   }
@@ -312,7 +312,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$Policy {
     /**
-     * Optional. Admission policy whitelisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies.
+     * Optional. Admission policy allowlisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies.
      */
     admissionWhitelistPatterns?: Schema$AdmissionWhitelistPattern[];
     /**
