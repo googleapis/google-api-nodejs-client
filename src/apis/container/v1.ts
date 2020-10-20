@@ -415,7 +415,7 @@ export namespace container_v1 {
      */
     location?: string | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located.
+     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. This field provides a default value if [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
@@ -577,7 +577,7 @@ export namespace container_v1 {
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed. This list must always include the cluster&#39;s primary zone.
+     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. This list must always include the cluster&#39;s primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
      */
     desiredLocations?: string[] | null;
     /**
@@ -1206,7 +1206,7 @@ export namespace container_v1 {
      */
     machineType?: string | null;
     /**
-     * The metadata key/value pairs assigned to instances in the cluster. Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys: - &quot;cluster-location&quot; - &quot;cluster-name&quot; - &quot;cluster-uid&quot; - &quot;configure-sh&quot; - &quot;containerd-configure-sh&quot; - &quot;enable-os-login&quot; - &quot;gci-ensure-gke-docker&quot; - &quot;gci-metrics-enabled&quot; - &quot;gci-update-strategy&quot; - &quot;instance-template&quot; - &quot;kube-env&quot; - &quot;startup-script&quot; - &quot;user-data&quot; - &quot;disable-address-manager&quot; - &quot;windows-startup-script-ps1&quot; - &quot;common-psm1&quot; - &quot;k8s-node-setup-psm1&quot; - &quot;install-ssh-psm1&quot; - &quot;user-profile-psm1&quot; - &quot;serial-port-logging-enable&quot; Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB. The total size of all keys and values must be less than 512 KB.
+     * The metadata key/value pairs assigned to instances in the cluster. Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys: - &quot;cluster-location&quot; - &quot;cluster-name&quot; - &quot;cluster-uid&quot; - &quot;configure-sh&quot; - &quot;containerd-configure-sh&quot; - &quot;enable-os-login&quot; - &quot;gci-ensure-gke-docker&quot; - &quot;gci-metrics-enabled&quot; - &quot;gci-update-strategy&quot; - &quot;instance-template&quot; - &quot;kube-env&quot; - &quot;startup-script&quot; - &quot;user-data&quot; - &quot;disable-address-manager&quot; - &quot;windows-startup-script-ps1&quot; - &quot;common-psm1&quot; - &quot;k8s-node-setup-psm1&quot; - &quot;install-ssh-psm1&quot; - &quot;user-profile-psm1&quot; The following keys are reserved for Windows nodes: - &quot;serial-port-logging-enable&quot; Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB. The total size of all keys and values must be less than 512 KB.
      */
     metadata?: {[key: string]: string} | null;
     /**
@@ -1296,7 +1296,7 @@ export namespace container_v1 {
      */
     instanceGroupUrls?: string[] | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located.
+     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
