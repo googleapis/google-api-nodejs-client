@@ -118,6 +118,7 @@ export namespace admin_directory_v1 {
     asps: Resource$Asps;
     channels: Resource$Channels;
     chromeosdevices: Resource$Chromeosdevices;
+    customer: Resource$Customer;
     customers: Resource$Customers;
     domainAliases: Resource$Domainaliases;
     domains: Resource$Domains;
@@ -144,6 +145,7 @@ export namespace admin_directory_v1 {
       this.asps = new Resource$Asps(this.context);
       this.channels = new Resource$Channels(this.context);
       this.chromeosdevices = new Resource$Chromeosdevices(this.context);
+      this.customer = new Resource$Customer(this.context);
       this.customers = new Resource$Customers(this.context);
       this.domainAliases = new Resource$Domainaliases(this.context);
       this.domains = new Resource$Domains(this.context);
@@ -758,6 +760,78 @@ export namespace admin_directory_v1 {
      * Name of the region. An example of a region value is NY for the state of New York.
      */
     region?: string | null;
+  }
+  /**
+   * Information regarding a command that was issued to a device.
+   */
+  export interface Schema$DirectoryChromeosdevicesCommand {
+    /**
+     * The time at which the command will expire. If the device doesn&#39;t execute the command within this time the command will become expired.
+     */
+    commandExpireTime?: string | null;
+    /**
+     * Unique ID of a device command.
+     */
+    commandId?: string | null;
+    /**
+     * The result of the command execution.
+     */
+    commandResult?: Schema$DirectoryChromeosdevicesCommandResult;
+    /**
+     * The timestamp when the command was issued by the admin.
+     */
+    issueTime?: string | null;
+    /**
+     * The payload that the command specified, if any.
+     */
+    payload?: string | null;
+    /**
+     * Indicates the command state.
+     */
+    state?: string | null;
+    /**
+     * The type of the command.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of executing a command.
+   */
+  export interface Schema$DirectoryChromeosdevicesCommandResult {
+    /**
+     * The error message with a short explanation as to why the command failed. Only present if the command failed.
+     */
+    errorMessage?: string | null;
+    /**
+     * The time at which the command was executed or failed to execute.
+     */
+    executeTime?: string | null;
+    /**
+     * The result of the command.
+     */
+    result?: string | null;
+  }
+  /**
+   * A request for issuing a command.
+   */
+  export interface Schema$DirectoryChromeosdevicesIssueCommandRequest {
+    /**
+     * The type of command.
+     */
+    commandType?: string | null;
+    /**
+     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a JSON object in the form: { &quot;volume&quot;: 50 }. The volume has to be an integer in the range [0,100].
+     */
+    payload?: string | null;
+  }
+  /**
+   * A response for issuing a command.
+   */
+  export interface Schema$DirectoryChromeosdevicesIssueCommandResponse {
+    /**
+     * The unique ID of the issued command, used to retrieve the command status.
+     */
+    commandId?: string | null;
   }
   export interface Schema$DomainAlias {
     /**
@@ -4013,6 +4087,397 @@ export namespace admin_directory_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ChromeOsDevice;
+  }
+
+  export class Resource$Customer {
+    context: APIRequestContext;
+    devices: Resource$Customer$Devices;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.devices = new Resource$Customer$Devices(this.context);
+    }
+  }
+
+  export class Resource$Customer$Devices {
+    context: APIRequestContext;
+    chromeos: Resource$Customer$Devices$Chromeos;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.chromeos = new Resource$Customer$Devices$Chromeos(this.context);
+    }
+  }
+
+  export class Resource$Customer$Devices$Chromeos {
+    context: APIRequestContext;
+    commands: Resource$Customer$Devices$Chromeos$Commands;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.commands = new Resource$Customer$Devices$Chromeos$Commands(
+        this.context
+      );
+    }
+
+    /**
+     * admin.customer.devices.chromeos.issueCommand
+     * @desc Issues a command for the device to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.directory.device.chromeos'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admin.customer.devices.chromeos.issueCommand({
+     *     // Immutable. Immutable ID of the G Suite account.
+     *     customerId: 'placeholder-value',
+     *     // Immutable. Immutable ID of Chrome OS Device.
+     *     deviceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commandType": "my_commandType",
+     *       //   "payload": "my_payload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commandId": "my_commandId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias admin.customer.devices.chromeos.issueCommand
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable. Immutable ID of the G Suite account.
+     * @param {string} params.deviceId Immutable. Immutable ID of Chrome OS Device.
+     * @param {().DirectoryChromeosdevicesIssueCommandRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    issueCommand(
+      params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    issueCommand(
+      params?: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectoryChromeosdevicesIssueCommandResponse>;
+    issueCommand(
+      params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    issueCommand(
+      params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
+    ): void;
+    issueCommand(
+      params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
+    ): void;
+    issueCommand(
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
+    ): void;
+    issueCommand(
+      paramsOrCallback?:
+        | Params$Resource$Customer$Devices$Chromeos$Issuecommand
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customer$Devices$Chromeos$Issuecommand;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customer$Devices$Chromeos$Issuecommand;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DirectoryChromeosdevicesIssueCommandResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$DirectoryChromeosdevicesIssueCommandResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand
+    extends StandardParameters {
+    /**
+     * Immutable. Immutable ID of the G Suite account.
+     */
+    customerId?: string;
+    /**
+     * Immutable. Immutable ID of Chrome OS Device.
+     */
+    deviceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DirectoryChromeosdevicesIssueCommandRequest;
+  }
+
+  export class Resource$Customer$Devices$Chromeos$Commands {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * admin.customer.devices.chromeos.commands.get
+     * @desc Gets command data a specific command issued to the device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos',
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admin.customer.devices.chromeos.commands.get({
+     *     // Immutable. Immutable ID of Chrome OS Device Command.
+     *     commandId: 'placeholder-value',
+     *     // Immutable. Immutable ID of the G Suite account.
+     *     customerId: 'placeholder-value',
+     *     // Immutable. Immutable ID of Chrome OS Device.
+     *     deviceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commandExpireTime": "my_commandExpireTime",
+     *   //   "commandId": "my_commandId",
+     *   //   "commandResult": {},
+     *   //   "issueTime": "my_issueTime",
+     *   //   "payload": "my_payload",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias admin.customer.devices.chromeos.commands.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.commandId Immutable. Immutable ID of Chrome OS Device Command.
+     * @param {string} params.customerId Immutable. Immutable ID of the G Suite account.
+     * @param {string} params.deviceId Immutable. Immutable ID of Chrome OS Device.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectoryChromeosdevicesCommand>;
+    get(
+      params: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>,
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+    ): void;
+    get(
+      params: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customer$Devices$Chromeos$Commands$Get
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesCommand>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DirectoryChromeosdevicesCommand>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customer$Devices$Chromeos$Commands$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customer$Devices$Chromeos$Commands$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}/commands/{commandId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customerId', 'deviceId', 'commandId'],
+        pathParams: ['commandId', 'customerId', 'deviceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customer$Devices$Chromeos$Commands$Get
+    extends StandardParameters {
+    /**
+     * Immutable. Immutable ID of Chrome OS Device Command.
+     */
+    commandId?: string;
+    /**
+     * Immutable. Immutable ID of the G Suite account.
+     */
+    customerId?: string;
+    /**
+     * Immutable. Immutable ID of Chrome OS Device.
+     */
+    deviceId?: string;
   }
 
   export class Resource$Customers {

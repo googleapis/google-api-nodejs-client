@@ -610,6 +610,98 @@
         }
       }
     },
+    "customer": {
+      "resources": {
+        "devices": {
+          "resources": {
+            "chromeos": {
+              "methods": {
+                "issueCommand": {
+                  "description": "Issues a command for the device to execute.",
+                  "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand",
+                  "httpMethod": "POST",
+                  "id": "admin.customer.devices.chromeos.issueCommand",
+                  "parameterOrder": [
+                    "customerId",
+                    "deviceId"
+                  ],
+                  "parameters": {
+                    "customerId": {
+                      "description": "Immutable. Immutable ID of the G Suite account.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "deviceId": {
+                      "description": "Immutable. Immutable ID of Chrome OS Device.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand",
+                  "request": {
+                    "$ref": "DirectoryChromeosdevicesIssueCommandRequest"
+                  },
+                  "response": {
+                    "$ref": "DirectoryChromeosdevicesIssueCommandResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.directory.device.chromeos"
+                  ]
+                }
+              },
+              "resources": {
+                "commands": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets command data a specific command issued to the device.",
+                      "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}/commands/{commandId}",
+                      "httpMethod": "GET",
+                      "id": "admin.customer.devices.chromeos.commands.get",
+                      "parameterOrder": [
+                        "customerId",
+                        "deviceId",
+                        "commandId"
+                      ],
+                      "parameters": {
+                        "commandId": {
+                          "description": "Immutable. Immutable ID of Chrome OS Device Command.",
+                          "format": "int64",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "customerId": {
+                          "description": "Immutable. Immutable ID of the G Suite account.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "deviceId": {
+                          "description": "Immutable. Immutable ID of Chrome OS Device.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}/commands/{commandId}",
+                      "response": {
+                        "$ref": "DirectoryChromeosdevicesCommand"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/admin.directory.device.chromeos",
+                        "https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "customers": {
       "methods": {
         "get": {
@@ -4047,7 +4139,7 @@
       }
     }
   },
-  "revision": "20200929",
+  "revision": "20201013",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4911,6 +5003,153 @@
         },
         "region": {
           "description": "Name of the region. An example of a region value is NY for the state of New York.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectoryChromeosdevicesCommand": {
+      "description": "Information regarding a command that was issued to a device.",
+      "id": "DirectoryChromeosdevicesCommand",
+      "properties": {
+        "commandExpireTime": {
+          "description": "The time at which the command will expire. If the device doesn't execute the command within this time the command will become expired.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "commandId": {
+          "description": "Unique ID of a device command.",
+          "format": "int64",
+          "type": "string"
+        },
+        "commandResult": {
+          "$ref": "DirectoryChromeosdevicesCommandResult",
+          "description": "The result of the command execution."
+        },
+        "issueTime": {
+          "description": "The timestamp when the command was issued by the admin.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "payload": {
+          "description": "The payload that the command specified, if any.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Indicates the command state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "EXPIRED",
+            "CANCELLED",
+            "SENT_TO_CLIENT",
+            "ACKED_BY_CLIENT",
+            "EXECUTED_BY_CLIENT"
+          ],
+          "enumDescriptions": [
+            "The command status was unspecified.",
+            "An unexpired command not yet sent to the client.",
+            "The command didn't get executed by the client within the expected time.",
+            "The command is cancelled by admin while in PENDING.",
+            "The command has been sent to the client.",
+            "The client has responded that it received the command.",
+            "The client has (un)successfully executed the command."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the command.",
+          "enum": [
+            "COMMAND_TYPE_UNSPECIFIED",
+            "REBOOT",
+            "TAKE_A_SCREENSHOT",
+            "SET_VOLUME",
+            "WIPE_USERS",
+            "REMOTE_POWERWASH"
+          ],
+          "enumDescriptions": [
+            "The command type was unspecified.",
+            "Reboot the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
+            "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectoryChromeosdevicesCommandResult": {
+      "description": "The result of executing a command.",
+      "id": "DirectoryChromeosdevicesCommandResult",
+      "properties": {
+        "errorMessage": {
+          "description": "The error message with a short explanation as to why the command failed. Only present if the command failed.",
+          "type": "string"
+        },
+        "executeTime": {
+          "description": "The time at which the command was executed or failed to execute.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "result": {
+          "description": "The result of the command.",
+          "enum": [
+            "COMMAND_RESULT_TYPE_UNSPECIFIED",
+            "IGNORED",
+            "FAILURE",
+            "SUCCESS"
+          ],
+          "enumDescriptions": [
+            "The command result was unspecified.",
+            "The command was ignored as obsolete.",
+            "The command could not be executed successfully.",
+            "The command was successfully executed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectoryChromeosdevicesIssueCommandRequest": {
+      "description": "A request for issuing a command.",
+      "id": "DirectoryChromeosdevicesIssueCommandRequest",
+      "properties": {
+        "commandType": {
+          "description": "The type of command.",
+          "enum": [
+            "COMMAND_TYPE_UNSPECIFIED",
+            "REBOOT",
+            "TAKE_A_SCREENSHOT",
+            "SET_VOLUME",
+            "WIPE_USERS",
+            "REMOTE_POWERWASH"
+          ],
+          "enumDescriptions": [
+            "The command type was unspecified.",
+            "Reboot the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
+            "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectoryChromeosdevicesIssueCommandResponse": {
+      "description": "A response for issuing a command.",
+      "id": "DirectoryChromeosdevicesIssueCommandResponse",
+      "properties": {
+        "commandId": {
+          "description": "The unique ID of the issued command, used to retrieve the command status.",
+          "format": "int64",
           "type": "string"
         }
       },
