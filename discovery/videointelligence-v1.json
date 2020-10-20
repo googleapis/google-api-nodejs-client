@@ -200,72 +200,6 @@
       "resources": {
         "locations": {
           "resources": {
-            "corpora": {
-              "resources": {
-                "operations": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/corpora/{corporaId}/operations/{operationsId}",
-                      "httpMethod": "GET",
-                      "id": "videointelligence.projects.locations.corpora.operations.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/corpora/[^/]+/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunning_Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "corpura": {
-              "resources": {
-                "operations": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/corpura/{corpuraId}/operations/{operationsId}",
-                      "httpMethod": "GET",
-                      "id": "videointelligence.projects.locations.corpura.operations.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/corpura/[^/]+/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunning_Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -416,7 +350,7 @@
       }
     }
   },
-  "revision": "20201002",
+  "revision": "20201016",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
