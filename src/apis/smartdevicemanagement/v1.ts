@@ -132,10 +132,6 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Device {
     /**
-     * Output only. The name of the structure/room where the device is assigned to. For example: &quot;enterprises/XYZ/structures/ABC&quot; or &quot;enterprises/XYZ/structures/ABC/rooms/123&quot;
-     */
-    assignee?: string | null;
-    /**
      * Required. The resource name of the device. For example: &quot;enterprises/XYZ/devices/123&quot;.
      */
     name?: string | null;
@@ -192,7 +188,7 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse {
     /**
-     * The pagination token to retrieve the next page of results.
+     * The pagination token to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -205,7 +201,7 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse {
     /**
-     * The pagination token to retrieve the next page of results.
+     * The pagination token to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -489,7 +485,6 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "assignee": "my_assignee",
      *   //   "name": "my_name",
      *   //   "parentRelations": [],
      *   //   "traits": {},
@@ -632,8 +627,6 @@ export namespace smartdevicemanagement_v1 {
      *     pageToken: 'placeholder-value',
      *     // The parent enterprise to list devices under. E.g. "enterprises/XYZ".
      *     parent: 'enterprises/my-enterprise',
-     *     // Additional details that need to be provided for the device.
-     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -657,7 +650,6 @@ export namespace smartdevicemanagement_v1 {
      * @param {integer=} params.pageSize Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken Optional token of the page to retrieve.
      * @param {string} params.parent The parent enterprise to list devices under. E.g. "enterprises/XYZ".
-     * @param {string=} params.view Additional details that need to be provided for the device.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -803,10 +795,6 @@ export namespace smartdevicemanagement_v1 {
      * The parent enterprise to list devices under. E.g. "enterprises/XYZ".
      */
     parent?: string;
-    /**
-     * Additional details that need to be provided for the device.
-     */
-    view?: string;
   }
 
   export class Resource$Enterprises$Structures {
