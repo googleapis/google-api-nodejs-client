@@ -101,7 +101,7 @@ export namespace poly_v1 {
   /**
    * Poly API
    *
-   * The Poly API provides read access to assets hosted on &lt;a href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; to all, and upload access to &lt;a href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; for whitelisted accounts.
+   * The Poly API provides read access to assets hosted on poly.google.com to all, and upload access to poly.google.com for whitelisted accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -245,7 +245,7 @@ export namespace poly_v1 {
      */
     resources?: Schema$File[];
     /**
-     * The root of the file hierarchy. This will always be populated. For some format_types - such as `TILT`, which are self-contained - this is all of the data.  Other types - such as `OBJ` - often reference other data elements. These are contained in the resources field.
+     * The root of the file hierarchy. This will always be populated. For some format_types - such as `TILT`, which are self-contained - this is all of the data. Other types - such as `OBJ` - often reference other data elements. These are contained in the resources field.
      */
     root?: Schema$File;
   }
@@ -360,7 +360,7 @@ export namespace poly_v1 {
    */
   export interface Schema$PresentationParams {
     /**
-     * A background color which could be used for displaying the 3D asset in a &#39;thumbnail&#39; or &#39;palette&#39; style view. Authors have the option to set this background color when publishing or editing their asset.  This is represented as a six-digit hexademical triplet specifying the RGB components of the background color, e.g. #FF0000 for Red.
+     * A background color which could be used for displaying the 3D asset in a &#39;thumbnail&#39; or &#39;palette&#39; style view. Authors have the option to set this background color when publishing or editing their asset. This is represented as a six-digit hexademical triplet specifying the RGB components of the background color, e.g. #FF0000 for Red.
      */
     backgroundColor?: string | null;
     /**
@@ -368,7 +368,7 @@ export namespace poly_v1 {
      */
     colorSpace?: string | null;
     /**
-     * A rotation that should be applied to the object root to make it upright. More precisely, this quaternion transforms from &quot;object space&quot; (the space in which the object is defined) to &quot;presentation space&quot;, a coordinate system where +Y is up, +X is right, -Z is forward. For example, if the object is the Eiffel Tower, in its local coordinate system the object might be laid out such that the base of the tower is on the YZ plane and the tip of the tower is towards positive X. In this case this quaternion would specify a rotation (of 90 degrees about the Z axis) such that in the presentation space the base of the tower is aligned with the XZ plane, and the tip of the tower lies towards +Y.  This rotation is unrelated to the object&#39;s pose in the web preview, which is just a camera position setting and is *not* reflected in this rotation.  Please note: this is applicable only to the gLTF.
+     * A rotation that should be applied to the object root to make it upright. More precisely, this quaternion transforms from &quot;object space&quot; (the space in which the object is defined) to &quot;presentation space&quot;, a coordinate system where +Y is up, +X is right, -Z is forward. For example, if the object is the Eiffel Tower, in its local coordinate system the object might be laid out such that the base of the tower is on the YZ plane and the tip of the tower is towards positive X. In this case this quaternion would specify a rotation (of 90 degrees about the Z axis) such that in the presentation space the base of the tower is aligned with the XZ plane, and the tip of the tower lies towards +Y. This rotation is unrelated to the object&#39;s pose in the web preview, which is just a camera position setting and is *not* reflected in this rotation. Please note: this is applicable only to the gLTF.
      */
     orientingRotation?: Schema$Quaternion;
   }
@@ -441,7 +441,7 @@ export namespace poly_v1 {
 
     /**
      * poly.assets.get
-     * @desc Returns detailed information about an asset given its name. PRIVATE assets are returned only if  the currently authenticated user (via OAuth token) is the author of the  asset.
+     * @desc Returns detailed information about an asset given its name. PRIVATE assets are returned only if the currently authenticated user (via OAuth token) is the author of the asset.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -606,36 +606,21 @@ export namespace poly_v1 {
      *
      *   // Do the magic
      *   const res = await poly.assets.list({
-     *     // Filter assets based on the specified category. Supported values are:
-     *     // `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`,
-     *     // `scenes`, `technology`, and `transport`.
+     *     // Filter assets based on the specified category. Supported values are: `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and `transport`.
      *     category: 'placeholder-value',
      *     // Return only assets that have been curated by the Poly team.
      *     curated: 'placeholder-value',
-     *     // Return only assets with the matching format. Acceptable values are:
-     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
+     *     // Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
      *     format: 'placeholder-value',
-     *     // One or more search terms to be matched against all text that Poly has
-     *     // indexed for assets, which includes display_name,
-     *     // description, and tags. Multiple keywords should be
-     *     // separated by spaces.
+     *     // One or more search terms to be matched against all text that Poly has indexed for assets, which includes display_name, description, and tags. Multiple keywords should be separated by spaces.
      *     keywords: 'placeholder-value',
-     *     // Returns assets that are of the specified complexity or less. Defaults to
-     *     // COMPLEX. For example, a request for
-     *     // MEDIUM assets also includes
-     *     // SIMPLE assets.
+     *     // Returns assets that are of the specified complexity or less. Defaults to COMPLEX. For example, a request for MEDIUM assets also includes SIMPLE assets.
      *     maxComplexity: 'placeholder-value',
-     *     // Specifies an ordering for assets. Acceptable values are:
-     *     // `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets
-     *     // based on a combination of popularity and other features.
+     *     // Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of assets to be returned. This value must be between `1`
-     *     // and `100`. Defaults to `20`.
+     *     // The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
      *     pageSize: 'placeholder-value',
-     *     // Specifies a continuation token from a previous search whose results were
-     *     // split into multiple pages. To get the next page, submit the same request
-     *     // specifying the value from
-     *     // next_page_token.
+     *     // Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -833,29 +818,17 @@ export namespace poly_v1 {
      *
      *   // Do the magic
      *   const res = await poly.users.assets.list({
-     *     // Return only assets with the matching format. Acceptable values are:
-     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
+     *     // Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
      *     format: 'placeholder-value',
-     *     // A valid user id. Currently, only the special value 'me', representing the
-     *     // currently-authenticated user is supported. To use 'me', you must pass
-     *     // an OAuth token with the request.
+     *     // A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
      *     name: 'users/my-user',
-     *     // Specifies an ordering for assets. Acceptable values are:
-     *     // `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets
-     *     // based on a combination of popularity and other features.
+     *     // Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of assets to be returned. This value must be between `1`
-     *     // and `100`. Defaults to `20`.
+     *     // The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
      *     pageSize: 'placeholder-value',
-     *     // Specifies a continuation token from a previous search whose results were
-     *     // split into multiple pages. To get the next page, submit the same request
-     *     // specifying the value from
-     *     // next_page_token.
+     *     // Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
      *     pageToken: 'placeholder-value',
-     *     // The visibility of the assets to be returned.
-     *     // Defaults to
-     *     // VISIBILITY_UNSPECIFIED
-     *     // which returns all assets.
+     *     // The visibility of the assets to be returned. Defaults to VISIBILITY_UNSPECIFIED which returns all assets.
      *     visibility: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1030,24 +1003,15 @@ export namespace poly_v1 {
      *
      *   // Do the magic
      *   const res = await poly.users.likedassets.list({
-     *     // Return only assets with the matching format. Acceptable values are:
-     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
+     *     // Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
      *     format: 'placeholder-value',
-     *     // A valid user id. Currently, only the special value 'me', representing the
-     *     // currently-authenticated user is supported. To use 'me', you must pass
-     *     // an OAuth token with the request.
+     *     // A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
      *     name: 'users/my-user',
-     *     // Specifies an ordering for assets. Acceptable values are:
-     *     // `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which
-     *     // ranks assets based on how recently they were liked.
+     *     // Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which ranks assets based on how recently they were liked.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of assets to be returned. This value must be between `1`
-     *     // and `100`. Defaults to `20`.
+     *     // The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
      *     pageSize: 'placeholder-value',
-     *     // Specifies a continuation token from a previous search whose results were
-     *     // split into multiple pages. To get the next page, submit the same request
-     *     // specifying the value from
-     *     // next_page_token.
+     *     // Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
