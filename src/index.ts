@@ -149,6 +149,8 @@ export {dns_v2beta1} from './apis/dns/v2beta1';
 export {docs_v1} from './apis/docs/v1';
 export {documentai_v1beta2} from './apis/documentai/v1beta2';
 export {documentai_v1beta3} from './apis/documentai/v1beta3';
+export {domains_v1alpha2} from './apis/domains/v1alpha2';
+export {domains_v1beta1} from './apis/domains/v1beta1';
 export {domainsrdap_v1} from './apis/domainsrdap/v1';
 export {doubleclickbidmanager_v1_1} from './apis/doubleclickbidmanager/v1.1';
 export {doubleclickbidmanager_v1} from './apis/doubleclickbidmanager/v1';
