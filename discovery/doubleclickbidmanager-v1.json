@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201006",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "DownloadLineItemsRequest": {
@@ -425,7 +425,7 @@
           "type": "string"
         },
         "version": {
-          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.",
+          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.2.",
           "type": "string"
         }
       },
