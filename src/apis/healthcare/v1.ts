@@ -351,11 +351,11 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1DicomBigQueryDestination;
     /**
-     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
+     * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1DicomGcsDestination;
   }
@@ -368,7 +368,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
+     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1FhirBigQueryDestination;
     /**
@@ -432,7 +432,7 @@ export namespace healthcare_v1 {
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Be careful with the audit logs if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -616,7 +616,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1DicomGcsSource;
   }
