@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/cNZJIvChrKSyaKAQmna6G6W8g4Q\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/pNe3pcORsOJbWIaKfhC0AYT-Cww\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -8968,7 +8968,7 @@
           ]
         },
         "listReferrers": {
-          "description": "Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed instance group, the referrers list includes the managed instance group. For more information, read Viewing Referrers to VM Instances.",
+          "description": "Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed or unmanaged instance group, the referrers list includes the instance group. For more information, read Viewing referrers to VM instances.",
           "httpMethod": "GET",
           "id": "compute.instances.listReferrers",
           "parameterOrder": [
@@ -28643,7 +28643,7 @@
       }
     }
   },
-  "revision": "20200901",
+  "revision": "20200910",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -30456,7 +30456,7 @@
       "id": "AutoscalingPolicyCpuUtilization",
       "properties": {
         "predictiveMethod": {
-          "description": "Indicates which method of prediction is used for CPU utilization metric, if any. Current set of possible values: * NONE: No predictions are made based on the scaling metric when calculating the number of VM instances. * OPTIMIZE_AVAILABILITY: Standard predictive autoscaling predicts the future values of the scaling metric and then scales a MIG to ensure that new VM instances are ready in time to cover the predicted peak. New values might be added in the future. Some of the values might not be available in all API versions.",
+          "description": "Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are:\n\n* NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. * OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand.",
           "enum": [
             "NONE",
             "OPTIMIZE_AVAILABILITY",
@@ -30495,7 +30495,7 @@
           "type": "number"
         },
         "utilizationTarget": {
-          "description": "The target value of the metric that autoscaler should maintain. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.\n\nFor example, a good metric to use as a utilization_target is compute.googleapis.com/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.",
+          "description": "The target value of the metric that autoscaler should maintain. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.\n\nFor example, a good metric to use as a utilization_target is https://www.googleapis.com/compute/v1/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.",
           "format": "double",
           "type": "number"
         },
@@ -30698,6 +30698,7 @@
           "type": "array"
         },
         "cacheMode": {
+          "description": "Specifies the cache setting for all responses from this backend. The possible values are:\n\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.\n\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\", \"no-store\" or \"no-cache\" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.\n\nCACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.",
           "enum": [
             "CACHE_ALL_STATIC",
             "FORCE_CACHE_ALL",
@@ -31259,6 +31260,7 @@
           "description": "The CacheKeyPolicy for this CdnPolicy."
         },
         "cacheMode": {
+          "description": "Specifies the cache setting for all responses from this backend. The possible values are:\n\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.\n\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\", \"no-store\" or \"no-cache\" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.\n\nCACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.",
           "enum": [
             "CACHE_ALL_STATIC",
             "FORCE_CACHE_ALL",
@@ -34727,7 +34729,7 @@
           "type": "string"
         },
         "target": {
-          "description": "The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only targetHttpProxy and targetGrpcProxy are valid, not targetHttpsProxy.",
+          "description": "The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must be in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For more information, see the \"Target\" column in [Port specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).",
           "type": "string"
         }
       },
@@ -37376,6 +37378,18 @@
           "description": "Labels to apply to this instance. These can be later modified by the setLabels method.",
           "type": "object"
         },
+        "lastStartTimestamp": {
+          "description": "[Output Only] Last start timestamp in RFC3339 text format.",
+          "type": "string"
+        },
+        "lastStopTimestamp": {
+          "description": "[Output Only] Last stop timestamp in RFC3339 text format.",
+          "type": "string"
+        },
+        "lastSuspendedTimestamp": {
+          "description": "[Output Only] Last suspended timestamp in RFC3339 text format.",
+          "type": "string"
+        },
         "machineType": {
           "annotations": {
             "required": [
@@ -37477,7 +37491,7 @@
           "type": "boolean"
         },
         "status": {
-          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED.",
+          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. For more information about the status of the instance, see  Instance life cycle.",
           "enum": [
             "DEPROVISIONING",
             "PROVISIONING",
@@ -44165,7 +44179,7 @@
       "id": "NodeGroupAutoscalingPolicy",
       "properties": {
         "maxNodes": {
-          "description": "The maximum number of nodes that the group should have.",
+          "description": "The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.",
           "format": "int32",
           "type": "integer"
         },
@@ -52067,7 +52081,7 @@
           "type": "boolean"
         },
         "chainName": {
-          "description": "Chain name should conform to RFC1035.",
+          "description": "Creates the new snapshot in the snapshot chain labeled with the specified name. The chain name must be 1-63 characters long and comply with RFC1035. This is an uncommon option only for advanced service owners who needs to create separate snapshot chains, for example, for chargeback tracking. When you describe your snapshot resource, this field is visible only if it has a non-empty value.",
           "type": "string"
         },
         "creationTimestamp": {
@@ -54587,6 +54601,13 @@
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
           "type": "string"
+        },
+        "httpFilters": {
+          "description": "URLs to networkservices.HttpFilter resources enabled for xDS clients using this configuration. For example, https://networkservices.googleapis.com/beta/projects/project/locations/locationhttpFilters/httpFilter Only filters that handle outbound connection and stream events may be specified. These filters work in conjunction with a default set of HTTP filters that may already be configured by Traffic Director. Traffic Director will determine the final location of these filters within xDS configuration based on the name of the HTTP filter. If Traffic Director positions multiple filters at the same location, those filters will be in the same order as specified in this list.\nhttpFilters only applies for loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "id": {
           "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
