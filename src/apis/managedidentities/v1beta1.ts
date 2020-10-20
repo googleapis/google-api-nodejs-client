@@ -179,10 +179,6 @@ export namespace managedidentities_v1beta1 {
      */
     admin?: string | null;
     /**
-     * Optional. Configuration for audit logs. True if audit logs are enabled, else false. Default is audit logs disabled.
-     */
-    auditLogsEnabled?: boolean | null;
-    /**
      * Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.
      */
     authorizedNetworks?: string[] | null;
@@ -357,7 +353,7 @@ export namespace managedidentities_v1beta1 {
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
-     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.
      */
     maintenanceSchedules?: {
       [
@@ -564,6 +560,23 @@ export namespace managedidentities_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
+   * ListSQLIntegrationsResponse is the response message for ListSQLIntegrations method.
+   */
+  export interface Schema$ListSQLIntegrationsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of SQLIntegrations of a domain.
+     */
+    sqlIntegrations?: Schema$SQLIntegration[];
+    /**
+     * A list of locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * A resource that represents Google Cloud Platform location.
    */
   export interface Schema$Location {
@@ -697,6 +710,31 @@ export namespace managedidentities_v1beta1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * Represents the SQL instance integrated with AD.
+   */
+  export interface Schema$SQLIntegration {
+    /**
+     * Output only. The time sql integration was created. Synthetic field is populated automatically by CCFE.
+     */
+    createTime?: string | null;
+    /**
+     * The unique name of the sql integration in the form of `projects/{project_id}/locations/global/domains/{domain_name}/sqlIntegrations/{sql_integration}`
+     */
+    name?: string | null;
+    /**
+     * The full resource name of an integrated sql instance TODO(b/161918255) Add resource type annotation post CloudSQL API fix.
+     */
+    sqlInstance?: string | null;
+    /**
+     * Output only. The current state of the sql integration.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time sql integration was updated. Synthetic field is populated automatically by CCFE.
+     */
+    updateTime?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -971,8 +1009,6 @@ export namespace managedidentities_v1beta1 {
      *   const res = await managedidentities.projects.locations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
-     *     // If true, the returned list will include locations which are not yet revealed.
-     *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
      *     // The standard list page size.
@@ -999,7 +1035,6 @@ export namespace managedidentities_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
      * @param {string} params.name The resource that owns the locations collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -1107,10 +1142,6 @@ export namespace managedidentities_v1beta1 {
      */
     filter?: string;
     /**
-     * If true, the returned list will include locations which are not yet revealed.
-     */
-    includeUnrevealedLocations?: boolean;
-    /**
      * The resource that owns the locations collection, if applicable.
      */
     name?: string;
@@ -1141,8 +1172,12 @@ export namespace managedidentities_v1beta1 {
 
   export class Resource$Projects$Locations$Global$Domains {
     context: APIRequestContext;
+    sqlIntegrations: Resource$Projects$Locations$Global$Domains$Sqlintegrations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sqlIntegrations = new Resource$Projects$Locations$Global$Domains$Sqlintegrations(
+        this.context
+      );
     }
 
     /**
@@ -1329,7 +1364,6 @@ export namespace managedidentities_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "admin": "my_admin",
-     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
@@ -1767,7 +1801,6 @@ export namespace managedidentities_v1beta1 {
      *   // Example response
      *   // {
      *   //   "admin": "my_admin",
-     *   //   "auditLogsEnabled": false,
      *   //   "authorizedNetworks": [],
      *   //   "createTime": "my_createTime",
      *   //   "fqdn": "my_fqdn",
@@ -2190,7 +2223,7 @@ export namespace managedidentities_v1beta1 {
      *   const res = await managedidentities.projects.locations.global.domains.patch({
      *     // Output only. The unique name of the domain using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
      *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2198,7 +2231,6 @@ export namespace managedidentities_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "admin": "my_admin",
-     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
@@ -2235,7 +2267,7 @@ export namespace managedidentities_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The unique name of the domain using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      * @param {().Domain} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3152,7 +3184,7 @@ export namespace managedidentities_v1beta1 {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      */
     updateMask?: string;
 
@@ -3220,6 +3252,335 @@ export namespace managedidentities_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ValidateTrustRequest;
+  }
+
+  export class Resource$Projects$Locations$Global$Domains$Sqlintegrations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * managedidentities.projects.locations.global.domains.sqlIntegrations.get
+     * @desc Gets details of a single sqlIntegration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
+     *     {
+     *       // Required. SQLIntegration resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
+     *       name:
+     *         'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "sqlInstance": "my_sqlInstance",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias managedidentities.projects.locations.global.domains.sqlIntegrations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. SQLIntegration resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SQLIntegration>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SQLIntegration>,
+      callback: BodyResponseCallback<Schema$SQLIntegration>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
+      callback: BodyResponseCallback<Schema$SQLIntegration>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SQLIntegration>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
+        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SQLIntegration> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SQLIntegration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SQLIntegration>(parameters);
+      }
+    }
+
+    /**
+     * managedidentities.projects.locations.global.domains.sqlIntegrations.list
+     * @desc Lists SQLIntegrations in a given domain.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.list(
+     *     {
+     *       // Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name="sql"`.
+     *       filter: 'placeholder-value',
+     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the SQLIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
+     *       parent: 'projects/my-project/locations/global/domains/my-domain',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sqlIntegrations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias managedidentities.projects.locations.global.domains.sqlIntegrations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name="sql"`.
+     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.parent Required. The resource name of the SQLIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSQLIntegrationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>,
+      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
+      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List
+        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSQLIntegrationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/sqlIntegrations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSQLIntegrationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSQLIntegrationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
+    extends StandardParameters {
+    /**
+     * Required. SQLIntegration resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name="sql"`.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the SQLIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Global$Operations {

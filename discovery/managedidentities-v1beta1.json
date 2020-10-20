@@ -148,11 +148,6 @@
                   "location": "query",
                   "type": "string"
                 },
-                "includeUnrevealedLocations": {
-                  "description": "If true, the returned list will include locations which are not yet revealed.",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "name": {
                   "description": "The resource that owns the locations collection, if applicable.",
                   "location": "path",
@@ -419,7 +414,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`",
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -576,6 +571,83 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
+                  },
+                  "resources": {
+                    "sqlIntegrations": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a single sqlIntegration.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}/sqlIntegrations/{sqlIntegrationsId}",
+                          "httpMethod": "GET",
+                          "id": "managedidentities.projects.locations.global.domains.sqlIntegrations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. SQLIntegration resource name using the form: `projects/{project_id}/locations/global/domains/*/sqlIntegrations/{name}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+/sqlIntegrations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "SQLIntegration"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists SQLIntegrations in a given domain.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}/sqlIntegrations",
+                          "httpMethod": "GET",
+                          "id": "managedidentities.projects.locations.global.domains.sqlIntegrations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name=\"sql\"`.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the SQLIntegrations using the form: `projects/{project_id}/locations/global/domains/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+parent}/sqlIntegrations",
+                          "response": {
+                            "$ref": "ListSQLIntegrationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
                   }
                 },
                 "operations": {
@@ -708,7 +780,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201007",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -772,10 +844,6 @@
         "admin": {
           "description": "Optional. The name of delegated administrator account used to perform Active Directory operations. If not specified, `setupadmin` will be used.",
           "type": "string"
-        },
-        "auditLogsEnabled": {
-          "description": "Optional. Configuration for audit logs. True if audit logs are enabled, else false. Default is audit logs disabled.",
-          "type": "boolean"
         },
         "authorizedNetworks": {
           "description": "Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.",
@@ -1042,7 +1110,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule"
           },
-          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule.",
+          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.",
           "type": "object"
         },
         "maintenanceSettings": {
@@ -1325,6 +1393,31 @@
       },
       "type": "object"
     },
+    "ListSQLIntegrationsResponse": {
+      "description": "ListSQLIntegrationsResponse is the response message for ListSQLIntegrations method.",
+      "id": "ListSQLIntegrationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "sqlIntegrations": {
+          "description": "A list of SQLIntegrations of a domain.",
+          "items": {
+            "$ref": "SQLIntegration"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "A list of locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents Google Cloud Platform location.",
       "id": "Location",
@@ -1485,6 +1578,50 @@
       "properties": {
         "password": {
           "description": "A random password. See admin for more information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SQLIntegration": {
+      "description": "Represents the SQL instance integrated with AD.",
+      "id": "SQLIntegration",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time sql integration was created. Synthetic field is populated automatically by CCFE.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique name of the sql integration in the form of `projects/{project_id}/locations/global/domains/{domain_name}/sqlIntegrations/{sql_integration}`",
+          "type": "string"
+        },
+        "sqlInstance": {
+          "description": "The full resource name of an integrated sql instance TODO(b/161918255) Add resource type annotation post CloudSQL API fix.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the sql integration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "DELETING",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "Not Set",
+            "The sqlIntegration is being created.",
+            "The sqlIntegration is being deleted.",
+            "The sqlIntegration is ready."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time sql integration was updated. Synthetic field is populated automatically by CCFE.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
