@@ -2,7 +2,7 @@
 
 # webmasters
 
-> View Google Search Console data for your verified sites.
+> [Deprecated] View Google Search Console data for your verified sites.
 
 ## Installation
 
