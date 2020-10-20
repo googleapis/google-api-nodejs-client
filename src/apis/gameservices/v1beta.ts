@@ -428,7 +428,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string | null;
     /**
@@ -470,7 +470,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server config. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+     * The resource name of the game server config, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     name?: string | null;
     /**
@@ -516,7 +516,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string | null;
     /**
@@ -545,7 +545,7 @@ export namespace gameservices_v1beta {
      */
     gameServerConfigOverrides?: Schema$GameServerConfigOverride[];
     /**
-     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string | null;
     /**
@@ -903,7 +903,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      */
     name?: string | null;
     /**
@@ -1504,7 +1504,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server delpoyment resource to be created.
      *       deploymentId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1543,7 +1543,7 @@ export namespace gameservices_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.deploymentId Required. The ID of the game server delpoyment resource to be created.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      * @param {().GameServerDeployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1656,7 +1656,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
      *     {
-     *       // Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -1682,7 +1682,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1791,7 +1791,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
      *     {
-     *       // Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -1820,7 +1820,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {().FetchDeploymentStateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1941,7 +1941,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
-     *     // Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *     // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *     name:
      *       'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *   });
@@ -1967,7 +1967,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2223,7 +2223,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
      *     {
-     *       // Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     *       // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -2250,7 +2250,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     * @param {string} params.name Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2376,7 +2376,7 @@ export namespace gameservices_v1beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2402,7 +2402,7 @@ export namespace gameservices_v1beta {
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2523,7 +2523,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
      *     {
-     *       // The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     *       // The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -2564,7 +2564,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * @param {string} params.name The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2675,7 +2675,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
      *     {
-     *       // The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
@@ -2716,7 +2716,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * @param {string} params.name The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
      * @param {string=} params.updateMask Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeploymentRollout} params.requestBody Request body data
@@ -3153,7 +3153,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
      *     {
-     *       // The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -3194,7 +3194,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * @param {string} params.name The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeploymentRollout} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3288,7 +3288,7 @@ export namespace gameservices_v1beta {
      */
     deploymentId?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      */
     parent?: string;
 
@@ -3300,14 +3300,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
 
@@ -3319,7 +3319,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
@@ -3337,7 +3337,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      */
     name?: string;
   }
@@ -3360,14 +3360,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Patch
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string;
     /**
@@ -3383,7 +3383,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3427,7 +3427,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3477,7 +3477,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server config resource to be created.
      *       configId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3518,7 +3518,7 @@ export namespace gameservices_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.configId Required. The ID of the game server config resource to be created.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      * @param {().GameServerConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3631,7 +3631,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
      *     {
-     *       // Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3657,7 +3657,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * @param {string} params.name Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3766,7 +3766,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
      *     {
-     *       // Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3794,7 +3794,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * @param {string} params.name Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3911,7 +3911,7 @@ export namespace gameservices_v1beta {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -3939,7 +3939,7 @@ export namespace gameservices_v1beta {
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4040,7 +4040,7 @@ export namespace gameservices_v1beta {
      */
     configId?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      */
     parent?: string;
 
@@ -4052,14 +4052,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
   }
@@ -4082,7 +4082,7 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      */
     parent?: string;
   }
@@ -4717,7 +4717,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
-     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID of the realm resource to be created.
      *     realmId: 'placeholder-value',
@@ -4757,7 +4757,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      * @param {string=} params.realmId Required. The ID of the realm resource to be created.
      * @param {().Realm} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4870,7 +4870,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
-     *     // Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -4894,7 +4894,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * @param {string} params.name Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5002,7 +5002,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
-     *     // Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -5028,7 +5028,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * @param {string} params.name Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5144,7 +5144,7 @@ export namespace gameservices_v1beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5170,7 +5170,7 @@ export namespace gameservices_v1beta {
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5284,7 +5284,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
-     *     // The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -5324,7 +5324,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * @param {string} params.name The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().Realm} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5434,7 +5434,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
-     *     // The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. The target timestamp to compute the preview.
      *     previewTime: 'placeholder-value',
@@ -5473,7 +5473,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * @param {string} params.name The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
      * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().Realm} params.requestBody Request body data
@@ -5571,7 +5571,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      */
     parent?: string;
     /**
@@ -5587,14 +5587,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Get
     extends StandardParameters {
     /**
-     * Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      */
     name?: string;
   }
@@ -5617,14 +5617,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Patch
     extends StandardParameters {
     /**
-     * The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      */
     name?: string;
     /**
@@ -5640,7 +5640,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Previewupdate
     extends StandardParameters {
     /**
-     * The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      */
     name?: string;
     /**
@@ -5694,7 +5694,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *
      *       // Request body metadata
@@ -5734,7 +5734,7 @@ export namespace gameservices_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.gameServerClusterId Required. The ID of the game server cluster resource to be created.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
      * @param {().GameServerCluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5847,7 +5847,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
      *     {
-     *       // Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -5873,7 +5873,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * @param {string} params.name Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5982,7 +5982,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
      *     {
-     *       // Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -6010,7 +6010,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     * @param {string} params.name Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6130,7 +6130,7 @@ export namespace gameservices_v1beta {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: "projects/{project}/locations/{location}/realms/{realm}".
+     *       // Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *     }
      *   );
@@ -6157,7 +6157,7 @@ export namespace gameservices_v1beta {
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: "projects/{project}/locations/{location}/realms/{realm}".
+     * @param {string} params.parent Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6278,7 +6278,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
      *     {
-     *       // Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -6320,7 +6320,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * @param {string} params.name Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerCluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6433,7 +6433,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *       // Optional. The target timestamp to compute the preview.
      *       previewTime: 'placeholder-value',
@@ -6472,7 +6472,7 @@ export namespace gameservices_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.gameServerClusterId Required. The ID of the game server cluster resource to be created.
-     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
      * @param {().GameServerCluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6600,7 +6600,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
      *     {
-     *       // Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
@@ -6625,7 +6625,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * @param {string} params.name Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6753,7 +6753,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
      *     {
-     *       // Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
@@ -6794,7 +6794,7 @@ export namespace gameservices_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * @param {string} params.name Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
      * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerCluster} params.requestBody Request body data
@@ -6904,7 +6904,7 @@ export namespace gameservices_v1beta {
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
      */
     parent?: string;
 
@@ -6916,14 +6916,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      */
     name?: string;
   }
@@ -6946,14 +6946,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Uses the form: "projects/{project}/locations/{location}/realms/{realm}".
+     * Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**
@@ -6973,7 +6973,7 @@ export namespace gameservices_v1beta {
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
      */
     parent?: string;
     /**
@@ -6989,7 +6989,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      */
     name?: string;
     /**
@@ -7000,7 +7000,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**
