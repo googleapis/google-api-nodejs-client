@@ -101,7 +101,7 @@ export namespace workflows_v1beta {
   /**
    * Workflows API
    *
-   *
+   * Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.
    *
    * @example
    * const {google} = require('googleapis');
