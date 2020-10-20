@@ -730,11 +730,11 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.trafficStats.list({
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'endDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'endDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'endDate.year': 'placeholder-value',
      *     // Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -742,11 +742,11 @@ export namespace gmailpostmastertools_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
      *     parent: 'domains/my-domain',
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'startDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'startDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'startDate.year': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -767,15 +767,15 @@ export namespace gmailpostmastertools_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.endDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.endDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {integer=} params.pageSize Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.
      * @param {string} params.parent The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
-     * @param {integer=} params.startDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.startDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.startDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -876,15 +876,15 @@ export namespace gmailpostmastertools_v1beta1 {
   export interface Params$Resource$Domains$Trafficstats$List
     extends StandardParameters {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'endDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'endDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'endDate.year'?: number;
     /**
@@ -900,15 +900,15 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     parent?: string;
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'startDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'startDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'startDate.year'?: number;
   }
