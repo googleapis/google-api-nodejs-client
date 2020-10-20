@@ -162,7 +162,7 @@
           ],
           "parameters": {
             "jobName": {
-              "description": "\" Required. The job to get.",
+              "description": "Required. \" The job to get.",
               "location": "path",
               "pattern": "^transferJobs/.*$",
               "required": true,
@@ -264,6 +264,9 @@
             }
           },
           "path": "v1/{+name}:cancel",
+          "request": {
+            "$ref": "CancelOperationRequest"
+          },
           "response": {
             "$ref": "Empty"
           },
@@ -396,7 +399,7 @@
       }
     }
   },
-  "revision": "20200924",
+  "revision": "20201001",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
@@ -420,7 +423,7 @@
       "properties": {
         "awsAccessKey": {
           "$ref": "AwsAccessKey",
-          "description": "Required. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key."
+          "description": "Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key."
         },
         "bucketName": {
           "description": "Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).",
@@ -435,7 +438,7 @@
       "properties": {
         "azureCredentials": {
           "$ref": "AzureCredentials",
-          "description": "Required. Credentials used to authenticate API requests to Azure."
+          "description": "Required. Input only. Credentials used to authenticate API requests to Azure."
         },
         "container": {
           "description": "Required. The container to transfer from the Azure Storage account.",
@@ -457,6 +460,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
       "type": "object"
     },
     "Date": {
@@ -934,11 +943,13 @@
         "creationTime": {
           "description": "Output only. The time that the transfer job was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "deletionTime": {
           "description": "Output only. The time that the transfer job was deleted.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -948,6 +959,7 @@
         "lastModificationTime": {
           "description": "Output only. The time that the transfer job was last modified.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -1108,7 +1120,7 @@
         },
         "transferOptions": {
           "$ref": "TransferOptions",
-          "description": "If the option delete_objects_unique_in_sink is `true`, object conditions based on objects' \"last modification time\" are ignored and do not exclude objects in a data source or a data sink."
+          "description": "If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error."
         }
       },
       "type": "object"
