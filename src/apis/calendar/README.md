@@ -2,7 +2,7 @@
 
 # calendar
 
-> Manipulates events and other calendar data.
+> The Google Calendar API lets you manage your calendars and events.
 
 ## Installation
 
