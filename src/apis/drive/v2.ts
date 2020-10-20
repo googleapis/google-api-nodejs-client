@@ -1164,7 +1164,7 @@ export namespace drive_v2 {
      */
     thumbnail?: {image?: string; mimeType?: string} | null;
     /**
-     * A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
+     * A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content. If the file isn&#39;t shared publicly, the URL returned in Files.thumbnailLink must be fetched using a credentialed request.
      */
     thumbnailLink?: string | null;
     /**
@@ -1551,7 +1551,7 @@ export namespace drive_v2 {
      */
     published?: boolean | null;
     /**
-     * A link to the published revision.
+     * A link to the published revision. This is only populated for Google Sites files.
      */
     publishedLink?: string | null;
     /**
