@@ -223,6 +223,10 @@ export namespace artifactregistry_v1beta1 {
      * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      */
     uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
   }
   /**
    * The response message from importing artifacts.
