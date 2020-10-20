@@ -2,7 +2,7 @@
 
 # admob
 
-> The Google AdMob API lets you programmatically get reports on earnings.
+> The AdMob API allows publishers to programmatically get information about their AdMob account.
 
 ## Installation
 
