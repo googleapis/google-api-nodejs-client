@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/GB_1RM82OKxTSfzeb_5bvCbmQ40\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/6fuP5JDS7CDwzVsd3cAc59pg_GE\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3521,7 +3521,7 @@
       }
     }
   },
-  "revision": "20200922",
+  "revision": "20201012",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -5192,7 +5192,7 @@
           "type": "object"
         },
         "thumbnailLink": {
-          "description": "A short-lived link to the file's thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content.",
+          "description": "A short-lived link to the file's thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in Files.thumbnailLink must be fetched using a credentialed request.",
           "type": "string"
         },
         "thumbnailVersion": {
@@ -5716,7 +5716,7 @@
           "type": "boolean"
         },
         "publishedLink": {
-          "description": "A link to the published revision.",
+          "description": "A link to the published revision. This is only populated for Google Sites files.",
           "type": "string"
         },
         "publishedOutsideDomain": {
