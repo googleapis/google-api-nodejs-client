@@ -180,7 +180,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.2.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
      */
     version?: string | null;
   }
@@ -373,7 +373,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     frequency?: string | null;
     /**
-     * Deprecated. This field has no effect.
+     * Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
      */
     nextRunMinuteOfDay?: number | null;
     /**

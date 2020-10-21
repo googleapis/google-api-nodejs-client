@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20201006",
+  "revision": "20201016",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -497,7 +497,7 @@
           "type": "string"
         },
         "version": {
-          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.2.",
+          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.",
           "type": "string"
         }
       },
@@ -3440,7 +3440,7 @@
           "type": "string"
         },
         "nextRunMinuteOfDay": {
-          "description": "Deprecated. This field has no effect.",
+          "description": "Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.",
           "format": "int32",
           "type": "integer"
         },
