@@ -820,7 +820,7 @@ export namespace admin_directory_v1 {
      */
     commandType?: string | null;
     /**
-     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a JSON object in the form: { &quot;volume&quot;: 50 }. The volume has to be an integer in the range [0,100].
+     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { &quot;volume&quot;: 50 }. The volume has to be an integer in the range [0,100].
      */
     payload?: string | null;
   }
