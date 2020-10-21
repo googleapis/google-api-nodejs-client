@@ -426,7 +426,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201019",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -1284,7 +1284,7 @@
           "description": "Billing configuration."
         },
         "configVersion": {
-          "description": "The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.",
+          "description": "This field is obsolete. Its value must be set to `3`.",
           "format": "uint32",
           "type": "integer"
         },
