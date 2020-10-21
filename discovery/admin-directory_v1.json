@@ -4139,7 +4139,7 @@
       }
     }
   },
-  "revision": "20201013",
+  "revision": "20201020",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5137,7 +5137,7 @@
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100].",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100].",
           "type": "string"
         }
       },
