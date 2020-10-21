@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/pNe3pcORsOJbWIaKfhC0AYT-Cww\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/7qFYEdDGEr7kH07mQRXzm61qaUA\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -8881,7 +8881,7 @@
               "type": "string"
             },
             "sourceMachineImage": {
-              "description": "Specifies instance machine to create the instance.\n\nThis field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:  \n- https://www.googleapis.com/compute/v1/projects/project/global/global/machineImages/machineImage \n- projects/project/global/global/machineImages/machineImage \n- global/machineImages/machineImage",
+              "description": "Specifies the machine image to use to create the instance.\n\nThis field is optional. It can be a full or partial URL. For example, the following are all valid URLs to a machine image:  \n- https://www.googleapis.com/compute/v1/projects/project/global/global/machineImages/machineImage \n- projects/project/global/global/machineImages/machineImage \n- global/machineImages/machineImage",
               "location": "query",
               "type": "string"
             },
@@ -28643,7 +28643,7 @@
       }
     }
   },
-  "revision": "20200910",
+  "revision": "20201005",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -29189,7 +29189,7 @@
           "type": "integer"
         },
         "purpose": {
-          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.",
+          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. \n- `IPSEC_INTERCONNECT` for addresses created from a private IP range reserved for a VLAN attachment in an IPsec over Interconnect configuration. These addresses are regional resources.",
           "enum": [
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
@@ -35444,7 +35444,7 @@
       "type": "object"
     },
     "HealthCheck": {
-      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers must use regional health checks. Internal TCP/UDP load balancers can use either regional or global health checks. All other types of GCP load balancers and managed instance group auto-healing must use global health checks. For more information, read Health Check Concepts.\n\nTo perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.",
+      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers must use regional health checks (`compute.v1.regionHealthChecks`).\n\nTraffic Director must use global health checks (`compute.v1.HealthChecks`).\n\nInternal TCP/UDP load balancers can use either regional or global health checks (`compute.v1.regionHealthChecks` or `compute.v1.HealthChecks`).\n\nExternal HTTP(S), TCP proxy, and SSL proxy load balancers as well as managed instance group auto-healing must use global health checks (`compute.v1.HealthChecks`).\n\nNetwork load balancers must use legacy HTTP health checks (httpHealthChecks).\n\nFor more information, see Health checks overview.",
       "id": "HealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -43173,7 +43173,7 @@
       "id": "NetworkEndpointGroupAppEngine",
       "properties": {
         "service": {
-          "description": "Optional serving service.\n\nThe service name must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"default\", \"my-service\".",
+          "description": "Optional serving service.\n\nThe service name is case-sensitive and must be 1-63 characters long.\n\nExample value: \"default\", \"my-service\".",
           "type": "string"
         },
         "urlMask": {
@@ -43181,7 +43181,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Optional serving version.\n\nThe version must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"v1\", \"v2\".",
+          "description": "Optional serving version.\n\nThe version name is case-sensitive and must be 1-100 characters long.\n\nExample value: \"v1\", \"v2\".",
           "type": "string"
         }
       },
