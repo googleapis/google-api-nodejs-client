@@ -148,6 +148,10 @@
     "package": "@google-cloud/container"
   },
   {
+    "api": "logging",
+    "package": "@google-cloud/logging-bunyan"
+  },
+  {
     "api": "mediatranslation",
     "package": "@google-cloud/media-translation"
   },
@@ -238,10 +242,6 @@
   {
     "api": "logging",
     "package": "@google-cloud/logging"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging-bunyan"
   },
   {
     "api": "logging",

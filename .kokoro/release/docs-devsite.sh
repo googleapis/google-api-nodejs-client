@@ -37,9 +37,13 @@ NAME=$(cat .repo-metadata.json | json name)
 mkdir ./_devsite
 cp ./yaml/$NAME/* ./_devsite
 
+# Clean up TOC
 # Delete SharePoint item, see https://github.com/microsoft/rushstack/issues/1229
 sed -i -e '1,3d' ./yaml/toc.yml
 sed -i -e 's/^    //' ./yaml/toc.yml
+# Delete interfaces from TOC (name and uid)
+sed -i -e '/name: I[A-Z]/{N;d;}' ./yaml/toc.yml
+sed -i -e '/^ *\@google-cloud.*:interface/d' ./yaml/toc.yml
 
 cp ./yaml/toc.yml ./_devsite/toc.yml
 
