@@ -2016,7 +2016,7 @@
                               "type": "string"
                             },
                             "_count": {
-                              "description": "The maximum number of search results on a page. Defaults to 1000.",
+                              "description": "The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -2769,7 +2769,7 @@
       }
     }
   },
-  "revision": "20201006",
+  "revision": "20201013",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AuditConfig": {
