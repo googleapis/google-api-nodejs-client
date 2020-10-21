@@ -158,7 +158,8 @@
           "httpMethod": "GET",
           "id": "storagetransfer.transferJobs.get",
           "parameterOrder": [
-            "jobName"
+            "jobName",
+            "projectId"
           ],
           "parameters": {
             "jobName": {
@@ -171,6 +172,7 @@
             "projectId": {
               "description": "Required. The ID of the Google Cloud Platform Console project that owns the job.",
               "location": "query",
+              "required": true,
               "type": "string"
             }
           },
@@ -187,11 +189,14 @@
           "flatPath": "v1/transferJobs",
           "httpMethod": "GET",
           "id": "storagetransfer.transferJobs.list",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "filter"
+          ],
           "parameters": {
             "filter": {
-              "description": "Required. A list of query parameters specified as JSON text in the form of: {\"project_id\":\"my_project_id\", \"job_names\":[\"jobid1\",\"jobid2\",...], \"job_statuses\":[\"status1\",\"status2\",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.",
+              "description": "Required. A list of query parameters specified as JSON text in the form of: `{\"projectId\":\"my_project_id\", \"jobNames\":[\"jobid1\",\"jobid2\",...], \"jobStatuses\":[\"status1\",\"status2\",...]}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "pageSize": {
@@ -305,12 +310,14 @@
           "httpMethod": "GET",
           "id": "storagetransfer.transferOperations.list",
           "parameterOrder": [
-            "name"
+            "name",
+            "filter"
           ],
           "parameters": {
             "filter": {
-              "description": "Required. A list of query parameters specified as JSON text in the form of: {\"project_id\":\"my_project_id\", \"job_names\":[\"jobid1\",\"jobid2\",...], \"operation_names\":[\"opid1\",\"opid2\",...], \"transfer_statuses\":[\"status1\",\"status2\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.",
+              "description": "Required. A list of query parameters specified as JSON text in the form of: `{\"projectId\":\"my_project_id\", \"jobNames\":[\"jobid1\",\"jobid2\",...], \"operationNames\":[\"opid1\",\"opid2\",...], \"transferStatuses\":[\"status1\",\"status2\",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "name": {
@@ -399,7 +406,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201013",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
@@ -960,6 +967,10 @@
           "description": "Output only. The time that the transfer job was last modified.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "latestOperationName": {
+          "description": "The name of the most recently started TransferOperation of this JobConfig. Present if and only if at least one TransferOperation has been created for this JobConfig.",
           "type": "string"
         },
         "name": {
