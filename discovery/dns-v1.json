@@ -23,7 +23,7 @@
   "canonicalName": "Dns",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": "http://developers.google.com/cloud-dns",
+  "documentationLink": "https://cloud.google.com/dns/docs",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1037,7 +1037,7 @@
       }
     }
   },
-  "revision": "20201003",
+  "revision": "20201013",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
