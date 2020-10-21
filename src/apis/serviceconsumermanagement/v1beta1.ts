@@ -1013,7 +1013,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * This field is obsolete. Its value must be set to `3`.
      */
     configVersion?: number | null;
     /**
