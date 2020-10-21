@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201020",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1200,10 +1200,6 @@
           },
           "type": "array"
         },
-        "allowHalfDuplex": {
-          "description": "When this flag is set to true, HTTP requests will be allowed to invoke a half-duplex streaming method.",
-          "type": "boolean"
-        },
         "body": {
           "description": "The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body. NOTE: the referred field must be present at the top-level of the request message type.",
           "type": "string"
@@ -1991,7 +1987,7 @@
           "description": "Billing configuration."
         },
         "configVersion": {
-          "description": "The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.",
+          "description": "This field is obsolete. Its value must be set to `3`.",
           "format": "uint32",
           "type": "integer"
         },
@@ -2103,25 +2099,6 @@
         "usage": {
           "$ref": "Usage",
           "description": "Configuration controlling usage of this service."
-        }
-      },
-      "type": "object"
-    },
-    "ServiceIdentity": {
-      "description": "The per-product per-project service identity for a service. Use this field to configure per-product per-project service identity. Example of a service identity configuration. usage: service_identity: - service_account_parent: \"projects/123456789\" display_name: \"Cloud XXX Service Agent\" description: \"Used as the identity of Cloud XXX to access resources\"",
-      "id": "ServiceIdentity",
-      "properties": {
-        "description": {
-          "description": "Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.",
-          "type": "string"
-        },
-        "serviceAccountParent": {
-          "description": "A service account project that hosts the service accounts. An example name would be: `projects/123456789`",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2331,10 +2308,6 @@
             "$ref": "UsageRule"
           },
           "type": "array"
-        },
-        "serviceIdentity": {
-          "$ref": "ServiceIdentity",
-          "description": "The configuration of a per-product per-project service identity."
         }
       },
       "type": "object"
