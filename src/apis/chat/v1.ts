@@ -676,6 +676,10 @@ export namespace chat_v1 {
      */
     domainId?: string | null;
     /**
+     * Set to true if none of the depending services (Gaia, PeopleApi) returns any info for this user.
+     */
+    isAnonymous?: boolean | null;
+    /**
      * Resource name, in the format &quot;users/*&quot;.
      */
     name?: string | null;
