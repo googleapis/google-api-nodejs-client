@@ -372,7 +372,7 @@
       }
     }
   },
-  "revision": "20200927",
+  "revision": "20201019",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1245,6 +1245,10 @@
         "domainId": {
           "description": "Obfuscated domain information.",
           "type": "string"
+        },
+        "isAnonymous": {
+          "description": "Set to true if none of the depending services (Gaia, PeopleApi) returns any info for this user.",
+          "type": "boolean"
         },
         "name": {
           "description": "Resource name, in the format \"users/*\".",
