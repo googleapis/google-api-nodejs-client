@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201015",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3318,6 +3318,11 @@
           "description": "Optional. Maximum number of times per hour a driver may be restarted as a result of driver terminating with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.",
           "format": "int32",
           "type": "integer"
+        },
+        "maxFailuresTotal": {
+          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3469,7 +3474,7 @@
           "type": "string"
         },
         "idleDeleteTtl": {
-          "description": "Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).",
+          "description": "Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).",
           "format": "google-duration",
           "type": "string"
         },
@@ -3685,7 +3690,7 @@
       "id": "NodeGroupAffinity",
       "properties": {
         "nodeGroupUri": {
-          "description": "Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.",
+          "description": "Required. The URI of a sole-tenant node group resource (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) that the cluster will be created on.A full URL, partial URI, or node group name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 node-group-1",
           "type": "string"
         }
       },
@@ -4097,7 +4102,7 @@
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
-              "The Anaconda python distribution.",
+              "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc preview 2.0 image. The 2.0 preview image is pre-installed with Miniconda.",
               "Docker",
               "The Druid query engine.",
               "Flink",
