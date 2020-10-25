@@ -319,7 +319,7 @@ export namespace testing_v1 {
     thumbnailUrl?: string | null;
   }
   /**
-   * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. Next tag: 29
+   * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. Next tag: 30
    */
   export interface Schema$AndroidRoboTest {
     /**
@@ -520,19 +520,19 @@ export namespace testing_v1 {
     value?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#39;t significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
@@ -919,7 +919,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected, the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected, the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -1196,6 +1196,10 @@ export namespace testing_v1 {
      */
     environmentMatrix?: Schema$EnvironmentMatrix;
     /**
+     * If true, only a single attempt at most will be made to run each execution/shard in the matrix. Flaky test attempts are not affected. Normally, 2 or more attempts are made if a potential infrastructure issue is detected. This feature is for latency sensitive workloads. The incidence of execution failures may be significantly greater for fail-fast matrices and support is more limited because of that expectation.
+     */
+    failFast?: boolean | null;
+    /**
      * The number of times a TestExecution should be re-attempted if one or more of its test cases fail for any reason. The maximum number of reruns allowed is 10. Default is 0, which implies no reruns.
      */
     flakyTestAttempts?: number | null;
@@ -1408,7 +1412,7 @@ export namespace testing_v1 {
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. Total number of shards. When any physical devices are selected, the number must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
+     * Required. Total number of shards. When any physical devices are selected, the number must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 500.
      */
     numShards?: number | null;
   }
@@ -1741,7 +1745,7 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.create
-     * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. Matrices are limited to at most 200 supported executions. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix expands to more than 200 supported executions
+     * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1777,6 +1781,7 @@ export namespace testing_v1 {
      *       // {
      *       //   "clientInfo": {},
      *       //   "environmentMatrix": {},
+     *       //   "failFast": false,
      *       //   "flakyTestAttempts": 0,
      *       //   "invalidMatrixDetails": "my_invalidMatrixDetails",
      *       //   "outcomeSummary": "my_outcomeSummary",
@@ -1796,6 +1801,7 @@ export namespace testing_v1 {
      *   // {
      *   //   "clientInfo": {},
      *   //   "environmentMatrix": {},
+     *   //   "failFast": false,
      *   //   "flakyTestAttempts": 0,
      *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
      *   //   "outcomeSummary": "my_outcomeSummary",
@@ -1945,6 +1951,7 @@ export namespace testing_v1 {
      *   // {
      *   //   "clientInfo": {},
      *   //   "environmentMatrix": {},
+     *   //   "failFast": false,
      *   //   "flakyTestAttempts": 0,
      *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
      *   //   "outcomeSummary": "my_outcomeSummary",

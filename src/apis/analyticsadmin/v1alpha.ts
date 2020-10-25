@@ -161,7 +161,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing an overview of an account and all its child App+Web properties.
+   * A virtual resource representing an overview of an account and all its child GA4 properties.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccountSummary {
     /**
@@ -448,7 +448,7 @@ export namespace analyticsadmin_v1alpha {
     videoEngagementEnabled?: boolean | null;
   }
   /**
-   * A link between an App+Web property and a Firebase project.
+   * A link between an GA4 property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaFirebaseLink {
     /**
@@ -456,7 +456,7 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Maximum user access to the App + Web property allowed to admins of the linked Firebase project.
+     * Maximum user access to the GA4 property allowed to admins of the linked Firebase project.
      */
     maximumUserAccess?: string | null;
     /**
@@ -478,7 +478,7 @@ export namespace analyticsadmin_v1alpha {
     snippet?: string | null;
   }
   /**
-   * A link between an App+Web property and a Google Ads account.
+   * A link between an GA4 property and a Google Ads account.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink {
     /**
@@ -657,7 +657,7 @@ export namespace analyticsadmin_v1alpha {
     webDataStreams?: Schema$GoogleAnalyticsAdminV1alphaWebDataStream[];
   }
   /**
-   * A resource message representing a Google Analytics App+Web property.
+   * A resource message representing a Google Analytics GA4 property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaProperty {
     /**
@@ -698,7 +698,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing metadata for an App+Web property.
+   * A virtual resource representing metadata for an GA4 property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaPropertySummary {
     /**
@@ -1234,7 +1234,7 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * analyticsadmin.accounts.list
-     * @desc Returns all accounts accessible by the caller. Note that these accounts might not currently have App+Web properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * @desc Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3646,7 +3646,7 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * analyticsadmin.properties.create
-     * @desc Creates an "App+Web" property with the specified location and attributes.
+     * @desc Creates an "GA4" property with the specified location and attributes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3808,7 +3808,7 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * analyticsadmin.properties.delete
-     * @desc Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an App+Web Property.
+     * @desc Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3938,7 +3938,7 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * analyticsadmin.properties.get
-     * @desc Lookup for a single "App+Web" Property. Throws "Target not found" if no such property found, if property is not of the type "App+Web", or if caller does not have permissions to access it.
+     * @desc Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4083,7 +4083,7 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * analyticsadmin.properties.list
-     * @desc Returns child Properties under the specified parent Account. Only "App+Web" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
+     * @desc Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

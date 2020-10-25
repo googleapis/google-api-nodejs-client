@@ -270,7 +270,7 @@
       }
     }
   },
-  "revision": "20200919",
+  "revision": "20201012",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
@@ -466,7 +466,7 @@
       "id": "GoogleTypeMoney",
       "properties": {
         "currencyCode": {
-          "description": "The 3-letter currency code defined in ISO 4217.",
+          "description": "The three-letter currency code defined in ISO 4217.",
           "type": "string"
         },
         "nanos": {

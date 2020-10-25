@@ -1845,7 +1845,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$LocalInventory {
     /**
-     * Availability of the product.
+     * Availability of the product. For accepted attribute values, see the local product inventory feed specification.
      */
     availability?: string | null;
     /**
@@ -1857,11 +1857,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Supported pickup method for this offer. Unless the value is &quot;not supported&quot;, this field must be submitted together with `pickupSla`.
+     * Supported pickup method for this offer. Unless the value is &quot;not supported&quot;, this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.
      */
     pickupMethod?: string | null;
     /**
-     * Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`.
+     * Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupSla?: string | null;
     /**
@@ -2850,6 +2850,48 @@ export namespace content_v2_1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsAcknowledgeResponse&quot;.
      */
     kind?: string | null;
+  }
+  export interface Schema$OrderreturnsCreateOrderReturnRequest {
+    /**
+     * The list of line items to return.
+     */
+    lineItems?: Schema$OrderreturnsLineItem[];
+    /**
+     * The ID of the operation. Unique across all operations for a given order.
+     */
+    operationId?: string | null;
+    /**
+     * The ID of the order.
+     */
+    orderId?: string | null;
+    /**
+     * The way of the package being returned.
+     */
+    returnMethodType?: string | null;
+  }
+  export interface Schema$OrderreturnsCreateOrderReturnResponse {
+    /**
+     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     */
+    executionStatus?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsCreateOrderReturnResponse&quot;.
+     */
+    kind?: string | null;
+    /**
+     * Created order return.
+     */
+    orderReturn?: Schema$MerchantOrderReturn;
+  }
+  export interface Schema$OrderreturnsLineItem {
+    /**
+     * The ID of the line item. This value is assigned by Google when an order is created.
+     */
+    lineItemId?: string | null;
+    /**
+     * The quantity of this line item.
+     */
+    quantity?: number | null;
   }
   export interface Schema$OrderreturnsListResponse {
     /**
@@ -14469,6 +14511,167 @@ export namespace content_v2_1 {
     }
 
     /**
+     * content.orderreturns.createorderreturn
+     * @desc Create return in your Merchant Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.createorderreturn({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItems": [],
+     *       //   "operationId": "my_operationId",
+     *       //   "orderId": "my_orderId",
+     *       //   "returnMethodType": "my_returnMethodType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus",
+     *   //   "kind": "my_kind",
+     *   //   "orderReturn": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.orderreturns.createorderreturn
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {().OrderreturnsCreateOrderReturnRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createorderreturn(
+      params: Params$Resource$Orderreturns$Createorderreturn,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createorderreturn(
+      params?: Params$Resource$Orderreturns$Createorderreturn,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderreturnsCreateOrderReturnResponse>;
+    createorderreturn(
+      params: Params$Resource$Orderreturns$Createorderreturn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createorderreturn(
+      params: Params$Resource$Orderreturns$Createorderreturn,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
+    ): void;
+    createorderreturn(
+      params: Params$Resource$Orderreturns$Createorderreturn,
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
+    ): void;
+    createorderreturn(
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
+    ): void;
+    createorderreturn(
+      paramsOrCallback?:
+        | Params$Resource$Orderreturns$Createorderreturn
+        | BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$OrderreturnsCreateOrderReturnResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderreturns$Createorderreturn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$Createorderreturn;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orderreturns/createOrderReturn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreturnsCreateOrderReturnResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$OrderreturnsCreateOrderReturnResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * content.orderreturns.get
      * @desc Retrieves an order return from your Merchant Center account.
      * @example
@@ -14953,6 +15156,18 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$OrderreturnsAcknowledgeRequest;
+  }
+  export interface Params$Resource$Orderreturns$Createorderreturn
+    extends StandardParameters {
+    /**
+     * The ID of the account that manages the order. This cannot be a multi-client account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrderreturnsCreateOrderReturnRequest;
   }
   export interface Params$Resource$Orderreturns$Get extends StandardParameters {
     /**

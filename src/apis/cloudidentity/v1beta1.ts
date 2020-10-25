@@ -1091,7 +1091,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$MembershipAdjacencyList {
     /**
-     * Each edge contains information about the member that belongs to this group.
+     * Each edge contains information about the member that belongs to this group. Note: Fields returned here will help identify the specific Membership resource (e.g name, preferred_member_key and role), but may not be a comprehensive list of all fields.
      */
     edges?: Schema$Membership[];
     /**
@@ -5004,7 +5004,7 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.checkTransitiveMembership
-     * @desc Check a potential member for membership in a group.
+     * @desc Check a potential member for membership in a group. A member has membership to a group as long as there is a single viewable transitive membership between the group and the member. The actor must have view permissions to at least one transitive membership between the member and group.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5035,7 +5035,7 @@ export namespace cloudidentity_v1beta1 {
      *   const res = await cloudidentity.groups.memberships.checkTransitiveMembership({
      *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
      *     parent: 'groups/my-group',
-     *     // Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     *     // Required. A CEL expression that MUST include member specification. This is a `required` field. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value'`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5056,7 +5056,7 @@ export namespace cloudidentity_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
-     * @param {string=} params.query Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification. This is a `required` field. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value'`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5581,7 +5581,7 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.getMembershipGraph
-     * @desc Get a membership graph of a member or member/group.
+     * @desc Get a membership graph of just a member or both a member and a group. Given a member, the response will contain all membership paths from the member. Given both a group and a member, the response will contain all membership paths between the group and the member.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5612,7 +5612,7 @@ export namespace cloudidentity_v1beta1 {
      *   const res = await cloudidentity.groups.memberships.getMembershipGraph({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
      *     parent: 'groups/my-group',
-     *     // Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     *     // Required. A CEL expression that MUST include member specification AND label(s). Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5637,7 +5637,7 @@ export namespace cloudidentity_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
-     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6180,7 +6180,7 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.searchTransitiveGroups
-     * @desc Search transitive groups of a member.
+     * @desc Search transitive groups of a member. A transitive group is any group that has a direct or indirect membership to the member. Actor must have view permissions all transitive groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6215,7 +6215,7 @@ export namespace cloudidentity_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.
      *     parent: 'groups/my-group',
-     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6239,7 +6239,7 @@ export namespace cloudidentity_v1beta1 {
      * @param {integer=} params.pageSize The default page size is 200 (max 1000).
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
      * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id}`, where `group_id` is always '-' as this API will search across all groups for a given member.
-     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * @param {string=} params.query Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6334,7 +6334,7 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.searchTransitiveMemberships
-     * @desc Search transitive memberships of a group.
+     * @desc Search transitive memberships of a group. A transitive membership is any direct or indirect membership of a group. Actor must have view permissions to all transitive memberships.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6494,7 +6494,7 @@ export namespace cloudidentity_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. A CEL expression that MUST include member specification. This is a `required` field. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ]
+     * Required. A CEL expression that MUST include member specification. This is a `required` field. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value'`
      */
     query?: string;
   }
@@ -6531,7 +6531,7 @@ export namespace cloudidentity_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. A CEL expression that MUST include member specification AND label(s). Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * Required. A CEL expression that MUST include member specification AND label(s). Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      */
     query?: string;
   }
@@ -6596,7 +6596,7 @@ export namespace cloudidentity_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Example query: member_key_id == ‘member_key_id_value’ [ && member_key_namespace == ‘member_key_namespace_value’ ] && in labels
+     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      */
     query?: string;
   }

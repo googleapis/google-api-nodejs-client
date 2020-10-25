@@ -917,6 +917,10 @@ export namespace dataproc_v1beta2 {
      * Optional. Maximum number of times per hour a driver may be restarted as a result of driver terminating with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.
      */
     maxFailuresPerHour?: number | null;
+    /**
+     * Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240
+     */
+    maxFailuresTotal?: number | null;
   }
   /**
    * Dataproc job status.
@@ -1017,7 +1021,7 @@ export namespace dataproc_v1beta2 {
      */
     autoDeleteTtl?: string | null;
     /**
-     * Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).
+     * Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).
      */
     idleDeleteTtl?: string | null;
     /**
@@ -1156,7 +1160,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$NodeGroupAffinity {
     /**
-     * Required. The name of a single node group (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) a cluster will be created on.
+     * Required. The URI of a sole-tenant node group resource (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) that the cluster will be created on.A full URL, partial URI, or node group name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 node-group-1
      */
     nodeGroupUri?: string | null;
   }

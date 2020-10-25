@@ -151,7 +151,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AwsS3Data {
     /**
-     * Required. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
+     * Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
      */
     awsAccessKey?: Schema$AwsAccessKey;
     /**
@@ -164,7 +164,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AzureBlobStorageData {
     /**
-     * Required. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure.
      */
     azureCredentials?: Schema$AzureCredentials;
     /**
@@ -185,6 +185,10 @@ export namespace storagetransfer_v1 {
      */
     sasToken?: string | null;
   }
+  /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$CancelOperationRequest {}
   /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
@@ -513,6 +517,10 @@ export namespace storagetransfer_v1 {
      */
     lastModificationTime?: string | null;
     /**
+     * The name of the most recently started TransferOperation of this JobConfig. Present if and only if at least one TransferOperation has been created for this JobConfig.
+     */
+    latestOperationName?: string | null;
+    /**
      * A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `&quot;transferJobs/&quot;` prefix and end with a letter or a number, and should be no more than 128 characters. Example: `&quot;transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$&quot;` Invalid job names will fail with an INVALID_ARGUMENT error.
      */
     name?: string | null;
@@ -628,7 +636,7 @@ export namespace storagetransfer_v1 {
      */
     objectConditions?: Schema$ObjectConditions;
     /**
-     * If the option delete_objects_unique_in_sink is `true`, object conditions based on objects&#39; &quot;last modification time&quot; are ignored and do not exclude objects in a data source or a data sink.
+     * If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as &#39;last modification time&#39; are specified, the request fails with an INVALID_ARGUMENT error.
      */
     transferOptions?: Schema$TransferOptions;
   }
@@ -843,6 +851,7 @@ export namespace storagetransfer_v1 {
      *       //   "deletionTime": "my_deletionTime",
      *       //   "description": "my_description",
      *       //   "lastModificationTime": "my_lastModificationTime",
+     *       //   "latestOperationName": "my_latestOperationName",
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "projectId": "my_projectId",
@@ -860,6 +869,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -987,7 +997,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
-     *     // " Required. The job to get.
+     *     // Required. " The job to get.
      *     jobName: 'transferJobs/.*',
      *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
      *     projectId: 'placeholder-value',
@@ -1000,6 +1010,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1018,8 +1029,8 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.jobName " Required. The job to get.
-     * @param {string=} params.projectId Required. The ID of the Google Cloud Platform Console project that owns the job.
+     * @param {string} params.jobName Required. " The job to get.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform Console project that owns the job.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1086,7 +1097,7 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: ['jobName'],
+        requiredParams: ['jobName', 'projectId'],
         pathParams: ['jobName'],
         context: this.context,
       };
@@ -1127,7 +1138,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.list({
-     *     // Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     *     // Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      *     filter: 'placeholder-value',
      *     // The list page size. The max allowed value is 256.
      *     pageSize: 'placeholder-value',
@@ -1152,7 +1163,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     * @param {string} params.filter Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1227,7 +1238,7 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['filter'],
         pathParams: [],
         context: this.context,
       };
@@ -1289,6 +1300,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1400,7 +1412,7 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**
-     * " Required. The job to get.
+     * Required. " The job to get.
      */
     jobName?: string;
     /**
@@ -1411,7 +1423,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferjobs$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      */
     filter?: string;
     /**
@@ -1471,6 +1483,12 @@ export namespace storagetransfer_v1 {
      *   const res = await storagetransfer.transferOperations.cancel({
      *     // The name of the operation resource to be cancelled.
      *     name: 'transferOperations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -1488,6 +1506,7 @@ export namespace storagetransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1729,7 +1748,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.list({
-     *     // Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     *     // Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      *     filter: 'placeholder-value',
      *     // Required. The value `transferOperations`.
      *     name: 'transferOperations',
@@ -1756,7 +1775,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     * @param {string} params.filter Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      * @param {string} params.name Required. The value `transferOperations`.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
@@ -1832,7 +1851,7 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: ['name'],
+        requiredParams: ['name', 'filter'],
         pathParams: ['name'],
         context: this.context,
       };
@@ -2121,6 +2140,11 @@ export namespace storagetransfer_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Transferoperations$Get
     extends StandardParameters {
@@ -2132,7 +2156,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
     filter?: string;
     /**

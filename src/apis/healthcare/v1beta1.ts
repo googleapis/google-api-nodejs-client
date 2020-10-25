@@ -234,7 +234,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$AttributeDefinition {
     /**
-     * Required. Possible values for the attribute. An empty list is invalid. The list can only be expanded after creation.
+     * Required. Possible values for the attribute. The number of allowed values must not exceed 100. An empty list is invalid. The list can only be expanded after creation.
      */
     allowedValues?: string[] | null;
     /**
@@ -771,11 +771,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination. You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
     /**
-     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
+     * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination;
   }
@@ -784,15 +784,32 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportDicomDataResponse {}
   /**
+   * Request to schedule an export.
+   */
+  export interface Schema$ExportMessagesRequest {
+    /**
+     * The end of the range in `send_time` (MSH.7, https://www.hl7.org/documentcenter/public_temp_2E58C1F9-1C23-BA17-0C6126475344DA9D/wg/conf/HL7MSH.htm) to process. If not specified, the time when the export is scheduled is used. This value has to come after the `start_time` defined below. Only messages whose `send_time` lies in the range `start_time` (inclusive) to `end_time` (exclusive) are exported.
+     */
+    endTime?: string | null;
+    /**
+     * Export to a Cloud Storage destination.
+     */
+    gcsDestination?: Schema$GcsDestination;
+    /**
+     * The start of the range in `send_time` (MSH.7, https://www.hl7.org/documentcenter/public_temp_2E58C1F9-1C23-BA17-0C6126475344DA9D/wg/conf/HL7MSH.htm) to process. If not specified, the UNIX epoch (1970-01-01T00:00:00Z) is used. This value has to come before the `end_time` defined below. Only messages whose `send_time` lies in the range `start_time` (inclusive) to `end_time` (exclusive) are exported.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Request to export resources.
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination. The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
+     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
-     * The Cloud Storage output destination. The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
+     * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
   }
@@ -852,7 +869,7 @@ export namespace healthcare_v1beta1 {
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Be careful with the audit logs if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -942,6 +959,23 @@ export namespace healthcare_v1beta1 {
     start?: string | null;
   }
   /**
+   * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.
+   */
+  export interface Schema$GcsDestination {
+    /**
+     * The format of the exported HL7v2 message files.
+     */
+    contentStructure?: string | null;
+    /**
+     * Specifies the parts of the Message resource to include in the export. If not specified, FULL is used.
+     */
+    messageView?: string | null;
+    /**
+     * URI of an existing Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no trailing slash, the service appends one when composing the object path.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
    * Specifies the configuration for importing data from Cloud Storage.
    */
   export interface Schema$GcsSource {
@@ -1003,7 +1037,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1ConsentPolicy {
     /**
-     * The request conditions to meet to grant access.
+     * The request conditions to meet to grant access. In addition to any supported comparison operators, authorization rules may have `IN` operator as well as at most 10 logical operators that are limited to `AND` (`&amp;&amp;`), `OR` (`||`).
      */
     authorizationRule?: Schema$Expr;
     /**
@@ -1333,7 +1367,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
   }
@@ -1346,7 +1380,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportMessagesRequest {
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GcsSource;
   }
@@ -1363,7 +1397,7 @@ export namespace healthcare_v1beta1 {
      */
     contentStructure?: string | null;
     /**
-     * Cloud Storage source data location and import configuration. The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirGcsSource;
   }
@@ -19065,7 +19099,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-translate
-     * @desc Translates a code from one value set to another using a concept map. Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)). On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Translates a code from one value set to another using a concept map. You can provide your own concept maps to translate any code system to another code system. Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)). On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -20106,7 +20140,7 @@ export namespace healthcare_v1beta1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
-     *       // The maximum number of search results on a page. Defaults to 1000.
+     *       // The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -20135,7 +20169,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the resource to retrieve.
      * @param {string=} params._at Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
-     * @param {integer=} params._count The maximum number of search results on a page. Defaults to 1000.
+     * @param {integer=} params._count The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
      * @param {string=} params._page_token Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      * @param {string=} params._since Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21488,7 +21522,7 @@ export namespace healthcare_v1beta1 {
      */
     _at?: string;
     /**
-     * The maximum number of search results on a page. Defaults to 1000.
+     * The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
      */
     _count?: number;
     /**
@@ -21883,6 +21917,153 @@ export namespace healthcare_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.hl7V2Stores.export
+     * @desc Exports the messages to a destination. To filter messages to be exported, define a filter using the start and end time, relative to the message generation time (MSH.7). This API returns an Operation that can be used to track the status of the job by calling GetOperation. Immediate fatal errors appear in the error field. Otherwise, when the operation finishes, a detailed response of type ExportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.export({
+     *     // The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     *     name:
+     *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "gcsDestination": {},
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.hl7V2Stores.export
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     * @param {().ExportMessagesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -22922,6 +23103,18 @@ export namespace healthcare_v1beta1 {
      * The resource name of the HL7v2 store to delete.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export
+    extends StandardParameters {
+    /**
+     * The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportMessagesRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get
     extends StandardParameters {

@@ -138,6 +138,10 @@ export namespace localservices_v1 {
      */
     accountId?: string | null;
     /**
+     * Aggregator specific information related to the account.
+     */
+    aggregatorInfo?: Schema$GoogleAdsHomeservicesLocalservicesV1AggregatorInfo;
+    /**
      * Average review rating score from 1-5 stars.
      */
     averageFiveStarRating?: number | null;
@@ -379,11 +383,11 @@ export namespace localservices_v1 {
      *
      *   // Do the magic
      *   const res = await localservices.accountReports.search({
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'endDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'endDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'endDate.year': 'placeholder-value',
      *     // The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
      *     pageSize: 'placeholder-value',
@@ -391,11 +395,11 @@ export namespace localservices_v1 {
      *     pageToken: 'placeholder-value',
      *     // A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Account Report for Manager with id 123. | Required.
      *     query: 'placeholder-value',
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'startDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'startDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'startDate.year': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -416,15 +420,15 @@ export namespace localservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.endDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.endDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {integer=} params.pageSize The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous request to SearchAccountReports that indicates where listing should continue. Optional.
      * @param {string=} params.query A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Account Report for Manager with id 123. | Required.
-     * @param {integer=} params.startDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.startDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.startDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -539,15 +543,15 @@ export namespace localservices_v1 {
   export interface Params$Resource$Accountreports$Search
     extends StandardParameters {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'endDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'endDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'endDate.year'?: number;
     /**
@@ -563,15 +567,15 @@ export namespace localservices_v1 {
      */
     query?: string;
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'startDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'startDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'startDate.year'?: number;
   }
@@ -609,11 +613,11 @@ export namespace localservices_v1 {
      *
      *   // Do the magic
      *   const res = await localservices.detailedLeadReports.search({
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'endDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'endDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'endDate.year': 'placeholder-value',
      *     // The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
      *     pageSize: 'placeholder-value',
@@ -621,11 +625,11 @@ export namespace localservices_v1 {
      *     pageToken: 'placeholder-value',
      *     // A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Detailed Lead Report for Manager with id | | | 123. | Required.
      *     query: 'placeholder-value',
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'startDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      *     'startDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'startDate.year': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -646,15 +650,15 @@ export namespace localservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.endDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.endDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {integer=} params.pageSize The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous request to SearchDetailedLeadReports that indicates where listing should continue. Optional.
      * @param {string=} params.query A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Detailed Lead Report for Manager with id | | | 123. | Required.
-     * @param {integer=} params.startDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
-     * @param {integer=} params.startDate.month Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
-     * @param {integer=} params.startDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -769,15 +773,15 @@ export namespace localservices_v1 {
   export interface Params$Resource$Detailedleadreports$Search
     extends StandardParameters {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'endDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'endDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'endDate.year'?: number;
     /**
@@ -793,15 +797,15 @@ export namespace localservices_v1 {
      */
     query?: string;
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     'startDate.day'?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     'startDate.month'?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'startDate.year'?: number;
   }

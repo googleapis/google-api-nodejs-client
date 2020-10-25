@@ -9,8 +9,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://licensing.googleapis.com/",
-  "batchPath": "batch",
+  "baseUrl": "https://www.googleapis.com/",
+  "batchPath": "batch/licensing/v1",
   "description": "The Google Enterprise License Manager API's allows you to license apps for all the users of a domain managed by you.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/admin-sdk/licensing/",
@@ -21,7 +21,7 @@
   },
   "id": "licensing:v1",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://licensing.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
   "name": "licensing",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -397,8 +397,8 @@
       }
     }
   },
-  "revision": "20201005",
-  "rootUrl": "https://licensing.googleapis.com/",
+  "revision": "20201012",
+  "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "LicenseAssignment": {
       "description": "Representation of a license assignment.",

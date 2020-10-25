@@ -476,7 +476,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     frequency?: string | null;
     /**
-     * Deprecated. This field has no effect.
+     * Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
      */
     nextRunMinuteOfDay?: number | null;
     /**

@@ -73,7 +73,7 @@
     "c8": "^7.0.0",
     "codecov": "^3.4.0",
     "execa": "^4.0.0",
-    "gaxios": "^3.0.3",
+    "gaxios": "^4.0.0",
     "gts": "^2.0.0",
     "js-green-licenses": "^2.0.0",
     "linkinator": "^2.0.0",

@@ -353,7 +353,7 @@ export namespace managedidentities_v1 {
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
-     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.
      */
     maintenanceSchedules?: {
       [
@@ -967,8 +967,6 @@ export namespace managedidentities_v1 {
      *   const res = await managedidentities.projects.locations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
-     *     // If true, the returned list will include locations which are not yet revealed.
-     *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
      *     // The standard list page size.
@@ -995,7 +993,6 @@ export namespace managedidentities_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
      * @param {string} params.name The resource that owns the locations collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -1102,10 +1099,6 @@ export namespace managedidentities_v1 {
      * The standard list filter.
      */
     filter?: string;
-    /**
-     * If true, the returned list will include locations which are not yet revealed.
-     */
-    includeUnrevealedLocations?: boolean;
     /**
      * The resource that owns the locations collection, if applicable.
      */

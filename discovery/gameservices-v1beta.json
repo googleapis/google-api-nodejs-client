@@ -199,7 +199,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -227,7 +227,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -252,7 +252,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -280,7 +280,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -336,7 +336,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.",
+                      "description": "Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -382,7 +382,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -407,7 +407,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
+                      "description": "The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -441,7 +441,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
+                      "description": "The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -537,7 +537,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
+                      "description": "The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -580,7 +580,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.",
+                          "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                           "required": true,
@@ -608,7 +608,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
+                          "description": "Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+/configs/[^/]+$",
                           "required": true,
@@ -633,7 +633,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
+                          "description": "Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+/configs/[^/]+$",
                           "required": true,
@@ -679,7 +679,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/*`.",
+                          "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                           "required": true,
@@ -833,7 +833,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -866,7 +866,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
+                      "description": "Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -891,7 +891,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
+                      "description": "Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -937,7 +937,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -962,7 +962,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
+                      "description": "The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -996,7 +996,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
+                      "description": "The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -1045,7 +1045,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.",
+                          "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1073,7 +1073,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1098,7 +1098,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1144,7 +1144,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form: \"projects/{project}/locations/{location}/realms/{realm}\".",
+                          "description": "Required. The parent resource name, in the following form: \"projects/{project}/locations/{location}/realms/{realm}\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1169,7 +1169,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+                          "description": "Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1208,7 +1208,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
+                          "description": "Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1242,7 +1242,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1273,7 +1273,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+                          "description": "Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1312,7 +1312,7 @@
       }
     }
   },
-  "revision": "20200926",
+  "revision": "20201016",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1792,7 +1792,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+          "description": "Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
           "type": "string"
         },
         "updateTime": {
@@ -1848,7 +1848,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the game server config. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
+          "description": "The resource name of the game server config, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
           "type": "string"
         },
         "scalingConfigs": {
@@ -1908,7 +1908,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
+          "description": "The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
           "type": "string"
         },
         "updateTime": {
@@ -1946,7 +1946,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
+          "description": "The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
           "type": "string"
         },
         "updateTime": {
@@ -2447,7 +2447,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
+          "description": "The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
           "type": "string"
         },
         "timeZone": {

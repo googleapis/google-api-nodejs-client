@@ -148,11 +148,6 @@
                   "location": "query",
                   "type": "string"
                 },
-                "includeUnrevealedLocations": {
-                  "description": "If true, the returned list will include locations which are not yet revealed.",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "name": {
                   "description": "The resource that owns the locations collection, if applicable.",
                   "location": "path",
@@ -708,7 +703,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201007",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1037,7 +1032,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule"
           },
-          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule.",
+          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.",
           "type": "object"
         },
         "maintenanceSettings": {

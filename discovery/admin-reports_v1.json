@@ -148,7 +148,8 @@
                 "token",
                 "user_accounts",
                 "context_aware_access",
-                "chrome"
+                "chrome",
+                "data_studio"
               ],
               "enumDescriptions": [
                 "",
@@ -170,7 +171,8 @@
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
-                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp."
+                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp.",
+                "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
               "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
@@ -279,7 +281,8 @@
                 "token",
                 "user_accounts",
                 "context_aware_access",
-                "chrome"
+                "chrome",
+                "data_studio"
               ],
               "enumDescriptions": [
                 "",
@@ -301,7 +304,8 @@
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
-                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp."
+                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp.",
+                "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
               "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
@@ -613,7 +617,7 @@
       }
     }
   },
-  "revision": "20200819",
+  "revision": "20201013",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Activities": {

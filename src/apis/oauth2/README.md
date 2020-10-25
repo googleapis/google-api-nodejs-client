@@ -2,7 +2,7 @@
 
 # oauth2
 
-> 
+> [Deprecated] Obtains end-user authorization grants for use with other Google APIs.
 
 ## Installation
 

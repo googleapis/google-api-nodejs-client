@@ -104,6 +104,7 @@ export namespace bigquery_v2 {
     models: Resource$Models;
     projects: Resource$Projects;
     routines: Resource$Routines;
+    rowAccessPolicies: Resource$Rowaccesspolicies;
     tabledata: Resource$Tabledata;
     tables: Resource$Tables;
 
@@ -118,6 +119,7 @@ export namespace bigquery_v2 {
       this.models = new Resource$Models(this.context);
       this.projects = new Resource$Projects(this.context);
       this.routines = new Resource$Routines(this.context);
+      this.rowAccessPolicies = new Resource$Rowaccesspolicies(this.context);
       this.tabledata = new Resource$Tabledata(this.context);
       this.tables = new Resource$Tables(this.context);
     }
@@ -1875,6 +1877,19 @@ export namespace bigquery_v2 {
     routines?: Schema$Routine[];
   }
   /**
+   * Response message for the ListRowAccessPolicies method.
+   */
+  export interface Schema$ListRowAccessPoliciesResponse {
+    /**
+     * A token to request the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Row access policies on the requested table.
+     */
+    rowAccessPolicies?: Schema$RowAccessPolicy[];
+  }
+  /**
    * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
    */
   export interface Schema$LocationMetadata {
@@ -2371,6 +2386,31 @@ export namespace bigquery_v2 {
      */
     entries?: Schema$Entry[];
   }
+  /**
+   * Represents access on a subset of rows on the specified table, defined by its filter predicate. Access to the subset of rows is controlled by its IAM policy.
+   */
+  export interface Schema$RowAccessPolicy {
+    /**
+     * Output only. The time when this row access policy was created, in milliseconds since the epoch.
+     */
+    creationTime?: string | null;
+    /**
+     * Output only. A hash of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Required. A SQL boolean expression that represents the rows defined by this row access policy, similar to the boolean expression in a WHERE clause of a SELECT query on a table. References to other tables, routines, and temporary functions are not supported. Examples: region=&quot;EU&quot; date_field = CAST(&#39;2019-9-27&#39; as DATE) nullable_field is not NULL numeric_field BETWEEN 1.0 AND 5.0
+     */
+    filterPredicate?: string | null;
+    /**
+     * Output only. The time when this row access policy was last modified, in milliseconds since the epoch.
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * Required. Reference describing the ID of this row access policy.
+     */
+    rowAccessPolicyReference?: Schema$RowAccessPolicyReference;
+  }
   export interface Schema$RowAccessPolicyReference {
     /**
      * [Required] The ID of the dataset containing this row access policy.
@@ -2611,7 +2651,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
+     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
      */
     type?: string | null;
     /**
@@ -7049,6 +7089,195 @@ export namespace bigquery_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Routine;
+  }
+
+  export class Resource$Rowaccesspolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * bigquery.rowAccessPolicies.list
+     * @desc Lists all row access policies on the specified table.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.list({
+     *     // Required. Dataset ID of row access policies to list.
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the row access policies to list.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to list row access policies.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rowAccessPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigquery.rowAccessPolicies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Required. Dataset ID of row access policies to list.
+     * @param {integer=} params.pageSize The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.projectId Required. Project ID of the row access policies to list.
+     * @param {string} params.tableId Required. Table ID of the table to list row access policies.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Rowaccesspolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRowAccessPoliciesResponse>;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$List
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRowAccessPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Rowaccesspolicies$List
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of row access policies to list.
+     */
+    datasetId?: string;
+    /**
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     */
+    pageSize?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project ID of the row access policies to list.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to list row access policies.
+     */
+    tableId?: string;
   }
 
   export class Resource$Tabledata {
