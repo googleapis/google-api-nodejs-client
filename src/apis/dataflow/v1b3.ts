@@ -369,6 +369,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ContainerSpec {
     /**
+     * Default runtime environment for the job.
+     */
+    defaultEnvironment?: Schema$FlexTemplateRuntimeEnvironment;
+    /**
      * Name of the docker container image. E.g., gcr.io/project/some-image
      */
     image?: string | null;
@@ -854,6 +858,10 @@ export namespace dataflow_v1b3 {
      * Output sources for this stage.
      */
     outputSource?: Schema$StageSource[];
+    /**
+     * Other stages that must complete before this stage can run.
+     */
+    prerequisiteStage?: string[] | null;
   }
   /**
    * Indicates which [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) failed to respond to a request for data.
