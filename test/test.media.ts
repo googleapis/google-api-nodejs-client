@@ -483,7 +483,7 @@ describe('Media', () => {
     const google = new GoogleApis();
     const drive = google.drive('v3');
     const scope = nock(Utils.baseUrl)
-      .get('/drive/v3/files/fileId/export')
+      .get('/drive/v3/files/fileId/export?mimeType=mimeType')
       .reply(200, '👋');
     const res = await drive.files.export({
       fileId: 'fileId',
