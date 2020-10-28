@@ -239,6 +239,10 @@ export namespace servicenetworking_v1 {
      */
     requestedAddress?: string | null;
     /**
+     * Optional. A list of secondary IP ranges to be created within the new subnetwork.
+     */
+    secondaryIpRangeSpecs?: Schema$SecondaryIpRangeSpec[];
+    /**
      * Required. A name for the new subnet. For information about the naming requirements, see [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
      */
     subnetwork?: string | null;
@@ -1433,6 +1437,30 @@ export namespace servicenetworking_v1 {
      */
     network?: string | null;
   }
+  export interface Schema$SecondaryIpRange {
+    /**
+     * Secondary IP CIDR range in `x.x.x.x/y` format.
+     */
+    ipCidrRange?: string | null;
+    /**
+     * Name of the secondary IP range.
+     */
+    rangeName?: string | null;
+  }
+  export interface Schema$SecondaryIpRangeSpec {
+    /**
+     * Required. The prefix length of the secondary IP range. Use CIDR range notation, such as `30` to provision a secondary IP range with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer&#39;s allocated range.
+     */
+    ipPrefixLength?: number | null;
+    /**
+     * Required. A name for the secondary IP range. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
+     */
+    rangeName?: string | null;
+    /**
+     * Optional. The starting address of a range. The address must be a valid IPv4 address in the x.x.x.x format. This value combined with the IP prefix range is the CIDR range for the secondary IP range. The range must be within the allocated range that is assigned to the private connection. If the CIDR range isn&#39;t available, the call fails.
+     */
+    requestedAddress?: string | null;
+  }
   /**
    * `Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details. Example: type: google.api.Service config_version: 3 name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: &quot;*&quot; requirements: provider_id: google_calendar_auth
    */
@@ -1601,6 +1629,10 @@ export namespace servicenetworking_v1 {
      * This is a discovered subnet that is not within the current consumer allocated ranges.
      */
     outsideAllocation?: boolean | null;
+    /**
+     * List of secondary IP ranges in this subnetwork.
+     */
+    secondaryIpRanges?: Schema$SecondaryIpRange[];
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as either an HTTP header or a URL query parameter, and if both are passed the behavior is implementation-dependent.
@@ -2410,6 +2442,7 @@ export namespace servicenetworking_v1 {
      *       //   "ipPrefixLength": 0,
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",
+     *       //   "secondaryIpRangeSpecs": [],
      *       //   "subnetwork": "my_subnetwork",
      *       //   "subnetworkUsers": []
      *       // }
