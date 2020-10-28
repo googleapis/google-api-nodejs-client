@@ -1005,7 +1005,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -1133,7 +1133,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1280,7 +1280,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$WatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WatchResponse>(parameters);
@@ -1469,7 +1469,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Draft>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
@@ -1601,7 +1601,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1743,7 +1743,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Draft>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
@@ -1896,7 +1896,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDraftsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDraftsResponse>(parameters);
@@ -2060,7 +2060,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -2220,7 +2220,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Draft>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
@@ -2517,7 +2517,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListHistoryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListHistoryResponse>(parameters);
@@ -2714,7 +2714,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Label>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
@@ -2845,7 +2845,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2993,7 +2993,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Label>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
@@ -3133,7 +3133,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLabelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLabelsResponse>(parameters);
@@ -3298,7 +3298,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Label>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
@@ -3463,7 +3463,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Label>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
@@ -3677,7 +3677,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3814,7 +3814,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3941,7 +3941,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4097,7 +4097,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -4279,7 +4279,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -4455,7 +4455,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -4613,7 +4613,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMessagesResponse>(parameters);
@@ -4767,7 +4767,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -4939,7 +4939,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -5083,7 +5083,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -5227,7 +5227,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -5604,7 +5604,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$MessagePartBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MessagePartBody>(parameters);
@@ -5776,7 +5776,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoForwarding>(parameters);
@@ -5915,7 +5915,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImapSettings>(parameters);
@@ -6050,7 +6050,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$LanguageSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LanguageSettings>(parameters);
@@ -6187,7 +6187,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$PopSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PopSettings>(parameters);
@@ -6329,7 +6329,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VacationSettings>(parameters);
@@ -6474,7 +6474,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoForwarding>(parameters);
@@ -6620,7 +6620,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImapSettings>(parameters);
@@ -6761,7 +6761,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$LanguageSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LanguageSettings>(parameters);
@@ -6903,7 +6903,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$PopSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PopSettings>(parameters);
@@ -7058,7 +7058,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VacationSettings>(parameters);
@@ -7302,7 +7302,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Delegate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Delegate>(parameters);
@@ -7429,7 +7429,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7569,7 +7569,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Delegate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Delegate>(parameters);
@@ -7709,7 +7709,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDelegatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDelegatesResponse>(parameters);
@@ -7901,7 +7901,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8027,7 +8027,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8167,7 +8167,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8305,7 +8305,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFiltersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFiltersResponse>(parameters);
@@ -8498,7 +8498,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
@@ -8625,7 +8625,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8768,7 +8768,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
@@ -8910,7 +8910,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListForwardingAddressesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListForwardingAddressesResponse>(
@@ -9121,7 +9121,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SendAs>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
@@ -9247,7 +9247,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9393,7 +9393,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SendAs>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
@@ -9532,7 +9532,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSendAsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSendAsResponse>(parameters);
@@ -9693,7 +9693,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SendAs>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
@@ -9854,7 +9854,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SendAs>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
@@ -9981,7 +9981,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10206,7 +10206,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10355,7 +10355,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SmimeInfo>(parameters);
@@ -10513,7 +10513,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SmimeInfo>(parameters);
@@ -10658,7 +10658,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSmimeInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSmimeInfoResponse>(parameters);
@@ -10791,7 +10791,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10998,7 +10998,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11149,7 +11149,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Thread>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
@@ -11305,7 +11305,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListThreadsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListThreadsResponse>(parameters);
@@ -11454,7 +11454,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Thread>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
@@ -11593,7 +11593,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Thread>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
@@ -11732,7 +11732,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$Thread>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);

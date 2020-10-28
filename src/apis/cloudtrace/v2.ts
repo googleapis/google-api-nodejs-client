@@ -587,7 +587,7 @@ export namespace cloudtrace_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -773,7 +773,7 @@ export namespace cloudtrace_v2 {
       if (callback) {
         createAPIRequest<Schema$Span>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Span>(parameters);

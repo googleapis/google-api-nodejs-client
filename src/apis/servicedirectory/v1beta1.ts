@@ -528,7 +528,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -675,7 +675,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -859,7 +859,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Namespace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Namespace>(parameters);
@@ -986,7 +986,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1116,7 +1116,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Namespace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Namespace>(parameters);
@@ -1262,7 +1262,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1412,7 +1412,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNamespacesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNamespacesResponse>(parameters);
@@ -1555,7 +1555,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Namespace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Namespace>(parameters);
@@ -1701,7 +1701,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1852,7 +1852,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2120,7 +2120,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -2250,7 +2250,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2384,7 +2384,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -2530,7 +2530,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2683,7 +2683,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -2831,7 +2831,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -2983,7 +2983,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ResolveServiceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResolveServiceResponse>(parameters);
@@ -3129,7 +3129,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3280,7 +3280,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3558,7 +3558,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Endpoint>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Endpoint>(parameters);
@@ -3688,7 +3688,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3823,7 +3823,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Endpoint>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Endpoint>(parameters);
@@ -3976,7 +3976,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListEndpointsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListEndpointsResponse>(parameters);
@@ -4126,7 +4126,7 @@ export namespace servicedirectory_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Endpoint>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Endpoint>(parameters);

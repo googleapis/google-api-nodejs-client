@@ -322,7 +322,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
@@ -480,7 +480,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -639,7 +639,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

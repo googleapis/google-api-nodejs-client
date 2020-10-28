@@ -1276,7 +1276,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1425,7 +1425,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1621,7 +1621,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1756,7 +1756,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1905,7 +1905,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$FetchDeploymentStateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchDeploymentStateResponse>(
@@ -2046,7 +2046,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$GameServerDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerDeployment>(parameters);
@@ -2188,7 +2188,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2334,7 +2334,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$GameServerDeploymentRollout>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerDeploymentRollout>(parameters);
@@ -2486,7 +2486,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
@@ -2640,7 +2640,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2817,7 +2817,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$PreviewGameServerDeploymentRolloutResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -2968,7 +2968,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3118,7 +3118,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3273,7 +3273,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3596,7 +3596,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3731,7 +3731,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3868,7 +3868,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$GameServerConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerConfig>(parameters);
@@ -4023,7 +4023,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGameServerConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerConfigsResponse>(
@@ -4219,7 +4219,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4345,7 +4345,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4477,7 +4477,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4623,7 +4623,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -4833,7 +4833,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4965,7 +4965,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5099,7 +5099,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Realm>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Realm>(parameters);
@@ -5247,7 +5247,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRealmsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRealmsResponse>(parameters);
@@ -5397,7 +5397,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5557,7 +5557,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$PreviewRealmUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewRealmUpdateResponse>(parameters);
@@ -5809,7 +5809,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5944,7 +5944,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6084,7 +6084,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$GameServerCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerCluster>(parameters);
@@ -6238,7 +6238,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGameServerClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerClustersResponse>(
@@ -6393,7 +6393,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6560,7 +6560,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
@@ -6713,7 +6713,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
@@ -6884,7 +6884,7 @@ export namespace gameservices_v1 {
       if (callback) {
         createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(

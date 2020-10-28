@@ -561,7 +561,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectConfig>(parameters);
@@ -701,7 +701,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectConfig>(parameters);
@@ -879,7 +879,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Repo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repo>(parameters);
@@ -1008,7 +1008,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1145,7 +1145,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Repo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repo>(parameters);
@@ -1287,7 +1287,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1430,7 +1430,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReposResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReposResponse>(parameters);
@@ -1572,7 +1572,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Repo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repo>(parameters);
@@ -1719,7 +1719,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1858,7 +1858,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2010,7 +2010,7 @@ export namespace sourcerepo_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

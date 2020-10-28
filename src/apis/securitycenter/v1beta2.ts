@@ -686,7 +686,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -827,7 +827,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -969,7 +969,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -1110,7 +1110,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -1268,7 +1268,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -1424,7 +1424,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -1584,7 +1584,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -1740,7 +1740,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -1985,7 +1985,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -2146,7 +2146,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -2308,7 +2308,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -2469,7 +2469,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -2642,7 +2642,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -2785,7 +2785,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -2925,7 +2925,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityCenterSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityCenterSettings>(parameters);
@@ -3067,7 +3067,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -3200,7 +3200,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -3339,7 +3339,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -3497,7 +3497,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -3655,7 +3655,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -3815,7 +3815,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -3973,7 +3973,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -4232,7 +4232,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -4393,7 +4393,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -4555,7 +4555,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -4716,7 +4716,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -4891,7 +4891,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -5032,7 +5032,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -5174,7 +5174,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -5315,7 +5315,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -5473,7 +5473,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -5629,7 +5629,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -5789,7 +5789,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -5945,7 +5945,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -6190,7 +6190,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6351,7 +6351,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -6524,7 +6524,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6685,7 +6685,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6864,7 +6864,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -7026,7 +7026,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -7187,7 +7187,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);

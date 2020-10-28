@@ -1022,7 +1022,7 @@ export namespace driveactivity_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryDriveActivityResponse>(parameters);

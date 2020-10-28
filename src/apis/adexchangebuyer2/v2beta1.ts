@@ -2299,7 +2299,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Client>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
@@ -2442,7 +2442,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Client>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
@@ -2587,7 +2587,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListClientsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListClientsResponse>(parameters);
@@ -2747,7 +2747,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Client>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
@@ -2966,7 +2966,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ClientUserInvitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClientUserInvitation>(parameters);
@@ -3111,7 +3111,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ClientUserInvitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClientUserInvitation>(parameters);
@@ -3260,7 +3260,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListClientUserInvitationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListClientUserInvitationsResponse>(
@@ -3461,7 +3461,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ClientUser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClientUser>(parameters);
@@ -3608,7 +3608,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListClientUsersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListClientUsersResponse>(parameters);
@@ -3761,7 +3761,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ClientUser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClientUser>(parameters);
@@ -4021,7 +4021,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -4180,7 +4180,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -4327,7 +4327,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -4467,7 +4467,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4660,7 +4660,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -4802,7 +4802,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5046,7 +5046,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5198,7 +5198,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDealAssociationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDealAssociationsResponse>(
@@ -5344,7 +5344,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5556,7 +5556,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListProposalsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProposalsResponse>(parameters);
@@ -5735,7 +5735,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -5882,7 +5882,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
@@ -6081,7 +6081,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -6229,7 +6229,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -6388,7 +6388,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -6547,7 +6547,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -6722,7 +6722,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -6873,7 +6873,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -7023,7 +7023,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListProposalsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProposalsResponse>(parameters);
@@ -7184,7 +7184,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -7343,7 +7343,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -7520,7 +7520,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Proposal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
@@ -7836,7 +7836,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$PublisherProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublisherProfile>(parameters);
@@ -7981,7 +7981,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListPublisherProfilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPublisherProfilesResponse>(
@@ -8239,7 +8239,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$FilterSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
@@ -8366,7 +8366,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8508,7 +8508,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$FilterSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
@@ -8652,7 +8652,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilterSetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilterSetsResponse>(parameters);
@@ -8852,7 +8852,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidMetricsResponse>(parameters);
@@ -9023,7 +9023,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -9196,7 +9196,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -9369,7 +9369,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -9549,7 +9549,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidsResponse>(parameters);
@@ -9738,7 +9738,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9934,7 +9934,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -10111,7 +10111,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -10283,7 +10283,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLosingBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLosingBidsResponse>(parameters);
@@ -10454,7 +10454,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
@@ -10681,7 +10681,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$FilterSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
@@ -10808,7 +10808,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10950,7 +10950,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$FilterSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
@@ -11094,7 +11094,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilterSetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilterSetsResponse>(parameters);
@@ -11291,7 +11291,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidMetricsResponse>(parameters);
@@ -11459,7 +11459,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -11631,7 +11631,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -11803,7 +11803,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -11980,7 +11980,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidsResponse>(parameters);
@@ -12168,7 +12168,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12363,7 +12363,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12537,7 +12537,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -12706,7 +12706,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLosingBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLosingBidsResponse>(parameters);
@@ -12876,7 +12876,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(

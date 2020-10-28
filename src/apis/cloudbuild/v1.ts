@@ -1087,7 +1087,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1218,7 +1218,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1425,7 +1425,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Build>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
@@ -1596,7 +1596,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1757,7 +1757,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Build>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
@@ -1904,7 +1904,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBuildsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBuildsResponse>(parameters);
@@ -2052,7 +2052,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2322,7 +2322,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Build>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
@@ -2493,7 +2493,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2651,7 +2651,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Build>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
@@ -2798,7 +2798,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBuildsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBuildsResponse>(parameters);
@@ -2941,7 +2941,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3160,7 +3160,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3292,7 +3292,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3483,7 +3483,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
@@ -3614,7 +3614,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3759,7 +3759,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
@@ -3904,7 +3904,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBuildTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBuildTriggersResponse>(parameters);
@@ -4070,7 +4070,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
@@ -4223,7 +4223,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

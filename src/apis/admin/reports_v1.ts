@@ -525,7 +525,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<Schema$Activities>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Activities>(parameters);
@@ -718,7 +718,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -968,7 +968,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1127,7 +1127,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<Schema$UsageReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);
@@ -1311,7 +1311,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<Schema$UsageReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);
@@ -1514,7 +1514,7 @@ export namespace admin_reports_v1 {
       if (callback) {
         createAPIRequest<Schema$UsageReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);

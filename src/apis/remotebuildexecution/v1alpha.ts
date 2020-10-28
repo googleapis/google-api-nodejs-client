@@ -1447,7 +1447,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1587,7 +1587,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1745,7 +1745,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
@@ -1903,7 +1903,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
@@ -2066,7 +2066,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2285,7 +2285,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2425,7 +2425,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2584,7 +2584,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
@@ -2745,7 +2745,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
@@ -2896,7 +2896,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3093,7 +3093,7 @@ export namespace remotebuildexecution_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);

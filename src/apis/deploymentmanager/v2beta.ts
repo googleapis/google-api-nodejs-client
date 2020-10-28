@@ -1345,7 +1345,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1493,7 +1493,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$CompositeType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CompositeType>(parameters);
@@ -1667,7 +1667,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1834,7 +1834,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$CompositeTypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CompositeTypesListResponse>(parameters);
@@ -2011,7 +2011,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2188,7 +2188,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2454,7 +2454,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2617,7 +2617,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2767,7 +2767,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2910,7 +2910,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3093,7 +3093,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3257,7 +3257,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeploymentsListResponse>(parameters);
@@ -3446,7 +3446,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3600,7 +3600,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3768,7 +3768,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3922,7 +3922,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
@@ -4111,7 +4111,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4465,7 +4465,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Manifest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Manifest>(parameters);
@@ -4632,7 +4632,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManifestsListResponse>(parameters);
@@ -4841,7 +4841,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5005,7 +5005,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperationsListResponse>(parameters);
@@ -5198,7 +5198,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Resource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Resource>(parameters);
@@ -5365,7 +5365,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResourcesListResponse>(parameters);
@@ -5573,7 +5573,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5724,7 +5724,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TypeProvider>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TypeProvider>(parameters);
@@ -5873,7 +5873,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TypeInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TypeInfo>(parameters);
@@ -6050,7 +6050,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6217,7 +6217,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TypeProvidersListResponse>(parameters);
@@ -6387,7 +6387,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TypeProvidersListTypesResponse>(
@@ -6569,7 +6569,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6749,7 +6749,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7050,7 +7050,7 @@ export namespace deploymentmanager_v2beta {
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TypesListResponse>(parameters);

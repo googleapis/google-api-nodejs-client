@@ -660,7 +660,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$TestRulesetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestRulesetResponse>(parameters);
@@ -829,7 +829,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -959,7 +959,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1095,7 +1095,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -1246,7 +1246,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetReleaseExecutableResponse>(
@@ -1399,7 +1399,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
@@ -1544,7 +1544,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -1770,7 +1770,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Ruleset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ruleset>(parameters);
@@ -1900,7 +1900,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2036,7 +2036,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$Ruleset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ruleset>(parameters);
@@ -2187,7 +2187,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRulesetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRulesetsResponse>(parameters);

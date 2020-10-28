@@ -1804,7 +1804,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleApi__HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
@@ -1944,7 +1944,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
@@ -2090,7 +2090,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleApi__HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
@@ -2265,7 +2265,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
@@ -2429,7 +2429,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
@@ -2576,7 +2576,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
@@ -2718,7 +2718,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
@@ -2866,7 +2866,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
@@ -3035,7 +3035,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
@@ -3184,7 +3184,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
@@ -3337,7 +3337,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -3591,7 +3591,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Location>(parameters);
@@ -3745,7 +3745,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
@@ -3908,7 +3908,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
@@ -4047,7 +4047,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -4231,7 +4231,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Study>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
@@ -4362,7 +4362,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
@@ -4499,7 +4499,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Study>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
@@ -4643,7 +4643,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
@@ -4847,7 +4847,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
@@ -4999,7 +4999,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -5160,7 +5160,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
@@ -5323,7 +5323,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
@@ -5455,7 +5455,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
@@ -5598,7 +5598,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
@@ -5736,7 +5736,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
@@ -5888,7 +5888,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
@@ -6040,7 +6040,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -6304,7 +6304,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
@@ -6443,7 +6443,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -6588,7 +6588,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
@@ -6730,7 +6730,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
@@ -6881,7 +6881,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
@@ -7041,7 +7041,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7192,7 +7192,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
@@ -7345,7 +7345,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -7625,7 +7625,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7766,7 +7766,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7924,7 +7924,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
@@ -8081,7 +8081,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
@@ -8257,7 +8257,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -8427,7 +8427,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
@@ -8639,7 +8639,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
@@ -8778,7 +8778,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -8936,7 +8936,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

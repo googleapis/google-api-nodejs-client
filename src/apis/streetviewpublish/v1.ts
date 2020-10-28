@@ -570,7 +570,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$Photo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
@@ -699,7 +699,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -847,7 +847,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$Photo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
@@ -982,7 +982,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$UploadRef>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadRef>(parameters);
@@ -1144,7 +1144,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$Photo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
@@ -1344,7 +1344,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters);
@@ -1488,7 +1488,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetPhotosResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetPhotosResponse>(parameters);
@@ -1632,7 +1632,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters);
@@ -1776,7 +1776,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPhotosResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPhotosResponse>(parameters);

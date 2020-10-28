@@ -305,7 +305,7 @@ export namespace webfonts_v1 {
       if (callback) {
         createAPIRequest<Schema$WebfontList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebfontList>(parameters);

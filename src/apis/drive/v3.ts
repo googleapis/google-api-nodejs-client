@@ -1337,7 +1337,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$About>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$About>(parameters);
@@ -1497,7 +1497,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$StartPageToken>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StartPageToken>(parameters);
@@ -1671,7 +1671,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$ChangeList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangeList>(parameters);
@@ -1872,7 +1872,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -2157,7 +2157,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2335,7 +2335,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2463,7 +2463,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2613,7 +2613,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2761,7 +2761,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$CommentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
@@ -2927,7 +2927,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -3163,7 +3163,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Drive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
@@ -3286,7 +3286,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3432,7 +3432,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Drive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
@@ -3572,7 +3572,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Drive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
@@ -3713,7 +3713,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$DriveList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DriveList>(parameters);
@@ -3853,7 +3853,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Drive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
@@ -4015,7 +4015,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Drive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
@@ -4372,7 +4372,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -4656,7 +4656,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -4792,7 +4792,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4915,7 +4915,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4983,7 +4983,7 @@ export namespace drive_v3 {
     export(
       params?: Params$Resource$Files$Export,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<unknown>;
     export(
       params: Params$Resource$Files$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4991,26 +4991,26 @@ export namespace drive_v3 {
     ): void;
     export(
       params: Params$Resource$Files$Export,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<unknown>,
+      callback: BodyResponseCallback<unknown>
     ): void;
     export(
       params: Params$Resource$Files$Export,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<unknown>
     ): void;
-    export(callback: BodyResponseCallback<void>): void;
+    export(callback: BodyResponseCallback<unknown>): void;
     export(
       paramsOrCallback?:
         | Params$Resource$Files$Export
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5043,12 +5043,12 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<unknown>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<unknown>(parameters);
       }
     }
 
@@ -5185,7 +5185,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$GeneratedIds>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GeneratedIds>(parameters);
@@ -5391,7 +5391,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -5568,7 +5568,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$FileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
@@ -5863,7 +5863,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -6040,7 +6040,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -6548,7 +6548,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Permission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
@@ -6686,7 +6686,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6847,7 +6847,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Permission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
@@ -7004,7 +7004,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$PermissionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PermissionList>(parameters);
@@ -7190,7 +7190,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Permission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
@@ -7513,7 +7513,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Reply>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
@@ -7645,7 +7645,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7796,7 +7796,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Reply>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
@@ -7943,7 +7943,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$ReplyList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReplyList>(parameters);
@@ -8107,7 +8107,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Reply>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
@@ -8332,7 +8332,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8488,7 +8488,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -8634,7 +8634,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$RevisionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevisionList>(parameters);
@@ -8805,7 +8805,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -9024,7 +9024,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
@@ -9148,7 +9148,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9293,7 +9293,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
@@ -9437,7 +9437,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$TeamDriveList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TeamDriveList>(parameters);
@@ -9598,7 +9598,7 @@ export namespace drive_v3 {
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);

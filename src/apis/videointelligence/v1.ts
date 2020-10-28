@@ -3521,7 +3521,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
@@ -3658,7 +3658,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
@@ -3803,7 +3803,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
@@ -3991,7 +3991,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
@@ -4123,7 +4123,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
@@ -4263,7 +4263,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
@@ -4418,7 +4418,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4625,7 +4625,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);

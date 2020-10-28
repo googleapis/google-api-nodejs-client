@@ -2008,7 +2008,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -2135,7 +2135,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2271,7 +2271,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -2410,7 +2410,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2555,7 +2555,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
@@ -2702,7 +2702,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2852,7 +2852,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3001,7 +3001,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -3255,7 +3255,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
@@ -3385,7 +3385,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3526,7 +3526,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
@@ -3663,7 +3663,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3811,7 +3811,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3971,7 +3971,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4116,7 +4116,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -4261,7 +4261,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4411,7 +4411,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4567,7 +4567,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
@@ -4875,7 +4875,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -5002,7 +5002,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5138,7 +5138,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -5275,7 +5275,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5420,7 +5420,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
@@ -5565,7 +5565,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5715,7 +5715,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -5864,7 +5864,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
@@ -6117,7 +6117,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6264,7 +6264,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6412,7 +6412,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6556,7 +6556,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Cluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
@@ -6692,7 +6692,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6841,7 +6841,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
@@ -7007,7 +7007,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7149,7 +7149,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7300,7 +7300,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7451,7 +7451,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7598,7 +7598,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -7977,7 +7977,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -8112,7 +8112,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8268,7 +8268,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -8404,7 +8404,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8553,7 +8553,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -8740,7 +8740,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -8882,7 +8882,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -9045,7 +9045,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -9193,7 +9193,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9340,7 +9340,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -9649,7 +9649,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9775,7 +9775,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9907,7 +9907,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -10043,7 +10043,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -10186,7 +10186,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -10328,7 +10328,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -10475,7 +10475,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -10716,7 +10716,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
@@ -10846,7 +10846,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10987,7 +10987,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
@@ -11124,7 +11124,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -11272,7 +11272,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -11432,7 +11432,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -11577,7 +11577,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -11722,7 +11722,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -11872,7 +11872,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -12028,7 +12028,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);

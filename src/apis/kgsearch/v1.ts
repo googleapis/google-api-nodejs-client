@@ -294,7 +294,7 @@ export namespace kgsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);

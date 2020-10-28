@@ -426,7 +426,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
@@ -566,7 +566,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Device>(
@@ -731,7 +731,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -918,7 +918,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Structure>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Structure>(
@@ -1083,7 +1083,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
@@ -1255,7 +1255,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Room>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1Room>(
@@ -1417,7 +1417,7 @@ export namespace smartdevicemanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

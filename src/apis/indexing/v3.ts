@@ -310,7 +310,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$UrlNotificationMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlNotificationMetadata>(parameters);
@@ -455,7 +455,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishUrlNotificationResponse>(

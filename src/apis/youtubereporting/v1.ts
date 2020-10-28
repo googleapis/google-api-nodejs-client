@@ -740,7 +740,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -872,7 +872,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1011,7 +1011,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1152,7 +1152,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -1355,7 +1355,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1512,7 +1512,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReportsResponse>(parameters);
@@ -1728,7 +1728,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$GdataMedia>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GdataMedia>(parameters);
@@ -1888,7 +1888,7 @@ export namespace youtubereporting_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReportTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReportTypesResponse>(parameters);

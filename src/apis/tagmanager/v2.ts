@@ -1718,7 +1718,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -1858,7 +1858,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAccountsResponse>(parameters);
@@ -2010,7 +2010,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -2217,7 +2217,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Container>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
@@ -2341,7 +2341,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2484,7 +2484,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Container>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
@@ -2627,7 +2627,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListContainersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListContainersResponse>(parameters);
@@ -2788,7 +2788,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Container>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
@@ -3017,7 +3017,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
@@ -3142,7 +3142,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3291,7 +3291,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
@@ -3434,7 +3434,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
@@ -3603,7 +3603,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
@@ -3775,7 +3775,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
@@ -3974,7 +3974,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4129,7 +4129,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
@@ -4280,7 +4280,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
@@ -4422,7 +4422,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -4572,7 +4572,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
@@ -4722,7 +4722,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
@@ -4901,7 +4901,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
@@ -5126,7 +5126,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ContainerVersionHeader>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerVersionHeader>(parameters);
@@ -5275,7 +5275,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -5489,7 +5489,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Workspace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
@@ -5642,7 +5642,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -5768,7 +5768,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5909,7 +5909,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Workspace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
@@ -6051,7 +6051,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$GetWorkspaceStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetWorkspaceStatusResponse>(parameters);
@@ -6194,7 +6194,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkspacesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWorkspacesResponse>(parameters);
@@ -6336,7 +6336,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$QuickPreviewResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QuickPreviewResponse>(parameters);
@@ -6477,7 +6477,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6614,7 +6614,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$SyncWorkspaceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SyncWorkspaceResponse>(parameters);
@@ -6771,7 +6771,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Workspace>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
@@ -7024,7 +7024,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CreateBuiltInVariableResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateBuiltInVariableResponse>(
@@ -7156,7 +7156,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7303,7 +7303,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
@@ -7448,7 +7448,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertBuiltInVariableResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertBuiltInVariableResponse>(
@@ -7659,7 +7659,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Folder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
@@ -7784,7 +7784,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7925,7 +7925,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$FolderEntities>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FolderEntities>(parameters);
@@ -8068,7 +8068,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Folder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
@@ -8210,7 +8210,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
@@ -8362,7 +8362,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8502,7 +8502,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertFolderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertFolderResponse>(parameters);
@@ -8662,7 +8662,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Folder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
@@ -8960,7 +8960,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -9085,7 +9085,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9245,7 +9245,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -9384,7 +9384,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
@@ -9522,7 +9522,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertTagResponse>(parameters);
@@ -9716,7 +9716,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -9947,7 +9947,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CustomTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
@@ -10072,7 +10072,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10216,7 +10216,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CustomTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
@@ -10360,7 +10360,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTemplatesResponse>(parameters);
@@ -10500,7 +10500,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertTemplateResponse>(parameters);
@@ -10662,7 +10662,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CustomTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
@@ -10937,7 +10937,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -11062,7 +11062,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11228,7 +11228,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -11372,7 +11372,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
@@ -11512,7 +11512,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertTriggerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertTriggerResponse>(parameters);
@@ -11718,7 +11718,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -11963,7 +11963,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -12088,7 +12088,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12239,7 +12239,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -12383,7 +12383,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
@@ -12523,7 +12523,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertVariableResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertVariableResponse>(parameters);
@@ -12699,7 +12699,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -12934,7 +12934,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Zone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
@@ -13059,7 +13059,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -13205,7 +13205,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Zone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
@@ -13347,7 +13347,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListZonesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListZonesResponse>(parameters);
@@ -13485,7 +13485,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertZoneResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevertZoneResponse>(parameters);
@@ -13651,7 +13651,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$Zone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
@@ -13870,7 +13870,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$UserPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);
@@ -13994,7 +13994,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -14129,7 +14129,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$UserPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);
@@ -14270,7 +14270,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListUserPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserPermissionsResponse>(parameters);
@@ -14418,7 +14418,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$UserPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);

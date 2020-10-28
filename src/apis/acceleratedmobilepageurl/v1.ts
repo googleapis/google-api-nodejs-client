@@ -332,7 +332,7 @@ export namespace acceleratedmobilepageurl_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);

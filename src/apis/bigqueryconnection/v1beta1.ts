@@ -533,7 +533,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Connection>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
@@ -663,7 +663,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -801,7 +801,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Connection>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
@@ -951,7 +951,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1098,7 +1098,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
@@ -1254,7 +1254,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Connection>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
@@ -1405,7 +1405,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1559,7 +1559,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1701,7 +1701,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);

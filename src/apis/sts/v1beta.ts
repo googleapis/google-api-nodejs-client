@@ -343,7 +343,7 @@ export namespace sts_v1beta {
       if (callback) {
         createAPIRequest<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

@@ -815,7 +815,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
@@ -960,7 +960,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadLineItemsResponse>(parameters);
@@ -1137,7 +1137,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$Query>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
@@ -1261,7 +1261,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1398,7 +1398,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$Query>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
@@ -1540,7 +1540,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListQueriesResponse>(parameters);
@@ -1678,7 +1678,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1881,7 +1881,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReportsResponse>(parameters);
@@ -2048,7 +2048,7 @@ export namespace doubleclickbidmanager_v1_1 {
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadResponse>(parameters);

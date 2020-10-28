@@ -839,7 +839,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -997,7 +997,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
@@ -1143,7 +1143,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
@@ -1341,7 +1341,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -1471,7 +1471,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1613,7 +1613,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -1762,7 +1762,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -1922,7 +1922,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -2148,7 +2148,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -2297,7 +2297,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
@@ -2490,7 +2490,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -2620,7 +2620,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2759,7 +2759,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -2906,7 +2906,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
@@ -3057,7 +3057,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -3275,7 +3275,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -3424,7 +3424,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
@@ -3616,7 +3616,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3790,7 +3790,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -3920,7 +3920,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4072,7 +4072,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
@@ -4240,7 +4240,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -4392,7 +4392,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -4640,7 +4640,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionFilesResponse>(parameters);
@@ -4809,7 +4809,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
@@ -4955,7 +4955,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
@@ -5150,7 +5150,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -5280,7 +5280,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5422,7 +5422,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -5571,7 +5571,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -5731,7 +5731,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -5957,7 +5957,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -6106,7 +6106,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
@@ -6299,7 +6299,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -6429,7 +6429,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6568,7 +6568,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -6715,7 +6715,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
@@ -6866,7 +6866,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -7084,7 +7084,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Release>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
@@ -7233,7 +7233,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
@@ -7425,7 +7425,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7599,7 +7599,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -7729,7 +7729,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7881,7 +7881,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
@@ -8049,7 +8049,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -8201,7 +8201,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -8449,7 +8449,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionFilesResponse>(parameters);

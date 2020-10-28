@@ -827,7 +827,7 @@ export namespace trafficdirector_v2 {
       if (callback) {
         createAPIRequest<Schema$ClientStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClientStatusResponse>(parameters);

@@ -761,7 +761,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -907,7 +907,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1097,7 +1097,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -1223,7 +1223,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1358,7 +1358,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -1500,7 +1500,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1644,7 +1644,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$ListQueuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListQueuesResponse>(parameters);
@@ -1798,7 +1798,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -1943,7 +1943,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -2088,7 +2088,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -2233,7 +2233,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Queue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Queue>(parameters);
@@ -2375,7 +2375,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2522,7 +2522,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2814,7 +2814,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -2941,7 +2941,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3083,7 +3083,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -3227,7 +3227,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$ListTasksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTasksResponse>(parameters);
@@ -3378,7 +3378,7 @@ export namespace cloudtasks_v2beta3 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);

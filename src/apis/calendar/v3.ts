@@ -1084,7 +1084,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1223,7 +1223,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$AclRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
@@ -1373,7 +1373,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$AclRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
@@ -1522,7 +1522,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Acl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Acl>(parameters);
@@ -1674,7 +1674,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$AclRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
@@ -1826,7 +1826,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$AclRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
@@ -1997,7 +1997,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -2250,7 +2250,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2403,7 +2403,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
@@ -2582,7 +2582,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
@@ -2739,7 +2739,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$CalendarList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarList>(parameters);
@@ -2920,7 +2920,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
@@ -3101,7 +3101,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
@@ -3281,7 +3281,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -3527,7 +3527,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3650,7 +3650,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3790,7 +3790,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Calendar>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
@@ -3939,7 +3939,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Calendar>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
@@ -4092,7 +4092,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Calendar>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
@@ -4245,7 +4245,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Calendar>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
@@ -4442,7 +4442,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4588,7 +4588,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Colors>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Colors>(parameters);
@@ -4733,7 +4733,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4916,7 +4916,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -5137,7 +5137,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -5369,7 +5369,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -5544,7 +5544,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Events>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Events>(parameters);
@@ -5752,7 +5752,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Events>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Events>(parameters);
@@ -5936,7 +5936,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -6174,7 +6174,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -6354,7 +6354,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -6592,7 +6592,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Event>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
@@ -6817,7 +6817,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -7379,7 +7379,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$FreeBusyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FreeBusyResponse>(parameters);
@@ -7530,7 +7530,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Setting>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Setting>(parameters);
@@ -7677,7 +7677,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Settings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Settings>(parameters);
@@ -7847,7 +7847,7 @@ export namespace calendar_v3 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);

@@ -393,7 +393,7 @@ export namespace chromeuxreport_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);

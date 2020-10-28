@@ -1903,7 +1903,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectSettings>(parameters);
@@ -2037,7 +2037,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectSettings>(parameters);
@@ -2211,7 +2211,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$History>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$History>(parameters);
@@ -2348,7 +2348,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$History>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$History>(parameters);
@@ -2493,7 +2493,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListHistoriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListHistoriesResponse>(parameters);
@@ -2719,7 +2719,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -2863,7 +2863,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -3009,7 +3009,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
@@ -3172,7 +3172,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -3404,7 +3404,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ScreenshotCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScreenshotCluster>(parameters);
@@ -3548,7 +3548,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListScreenshotClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScreenshotClustersResponse>(
@@ -3747,7 +3747,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
@@ -3901,7 +3901,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
@@ -4117,7 +4117,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListStepAccessibilityClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListStepAccessibilityClustersResponse>(
@@ -4296,7 +4296,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Step>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Step>(parameters);
@@ -4450,7 +4450,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Step>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Step>(parameters);
@@ -4604,7 +4604,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
@@ -4751,7 +4751,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListStepsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListStepsResponse>(parameters);
@@ -4931,7 +4931,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Step>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Step>(parameters);
@@ -5096,7 +5096,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$Step>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Step>(parameters);
@@ -5420,7 +5420,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
@@ -5617,7 +5617,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PerfSampleSeries>(parameters);
@@ -5779,7 +5779,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PerfSampleSeries>(parameters);
@@ -5931,7 +5931,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
@@ -6184,7 +6184,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
@@ -6355,7 +6355,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListPerfSamplesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPerfSamplesResponse>(parameters);
@@ -6587,7 +6587,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$TestCase>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestCase>(parameters);
@@ -6741,7 +6741,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListTestCasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTestCasesResponse>(parameters);
@@ -6955,7 +6955,7 @@ export namespace toolresults_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$ListStepThumbnailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListStepThumbnailsResponse>(parameters);

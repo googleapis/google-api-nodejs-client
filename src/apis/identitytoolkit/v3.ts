@@ -1701,7 +1701,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$CreateAuthUriResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateAuthUriResponse>(parameters);
@@ -1845,7 +1845,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$DeleteAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteAccountResponse>(parameters);
@@ -1995,7 +1995,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$DownloadAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadAccountResponse>(parameters);
@@ -2145,7 +2145,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$EmailLinkSigninResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EmailLinkSigninResponse>(parameters);
@@ -2292,7 +2292,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$GetAccountInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetAccountInfoResponse>(parameters);
@@ -2451,7 +2451,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
@@ -2622,7 +2622,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
@@ -2768,7 +2768,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
@@ -2904,7 +2904,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$GetRecaptchaParamResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetRecaptchaParamResponse>(parameters);
@@ -3052,7 +3052,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$ResetPasswordResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResetPasswordResponse>(parameters);
@@ -3215,7 +3215,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
@@ -3391,7 +3391,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$SetAccountInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SetAccountInfoResponse>(parameters);
@@ -3561,7 +3561,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
@@ -3719,7 +3719,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3882,7 +3882,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$SignupNewUserResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignupNewUserResponse>(parameters);
@@ -4041,7 +4041,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$UploadAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadAccountResponse>(parameters);
@@ -4233,7 +4233,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$VerifyAssertionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerifyAssertionResponse>(parameters);
@@ -4382,7 +4382,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$VerifyCustomTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerifyCustomTokenResponse>(parameters);
@@ -4545,7 +4545,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$VerifyPasswordResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerifyPasswordResponse>(parameters);
@@ -4720,7 +4720,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse

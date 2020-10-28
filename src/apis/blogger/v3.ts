@@ -762,7 +762,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Blog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
@@ -906,7 +906,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Blog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
@@ -1052,7 +1052,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$BlogList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BlogList>(parameters);
@@ -1247,7 +1247,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$BlogUserInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BlogUserInfo>(parameters);
@@ -1415,7 +1415,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -1542,7 +1542,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1692,7 +1692,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -1851,7 +1851,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$CommentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
@@ -2006,7 +2006,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$CommentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
@@ -2152,7 +2152,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2298,7 +2298,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2576,7 +2576,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2725,7 +2725,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -2888,7 +2888,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3038,7 +3038,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PageList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PageList>(parameters);
@@ -3207,7 +3207,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3349,7 +3349,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3492,7 +3492,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3661,7 +3661,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3934,7 +3934,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Pageviews>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Pageviews>(parameters);
@@ -4077,7 +4077,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4242,7 +4242,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4401,7 +4401,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4584,7 +4584,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4750,7 +4750,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
@@ -4942,7 +4942,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5094,7 +5094,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5244,7 +5244,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5389,7 +5389,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
@@ -5581,7 +5581,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5967,7 +5967,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostUserInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostUserInfo>(parameters);
@@ -6135,7 +6135,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostUserInfosList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostUserInfosList>(parameters);
@@ -6346,7 +6346,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);

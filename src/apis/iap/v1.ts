@@ -618,7 +618,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Brand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
@@ -749,7 +749,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Brand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
@@ -883,7 +883,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBrandsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBrandsResponse>(parameters);
@@ -1068,7 +1068,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1195,7 +1195,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1331,7 +1331,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1482,7 +1482,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
@@ -1632,7 +1632,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1834,7 +1834,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1967,7 +1967,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);
@@ -2108,7 +2108,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2255,7 +2255,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2402,7 +2402,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);

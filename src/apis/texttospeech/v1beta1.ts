@@ -416,7 +416,7 @@ export namespace texttospeech_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SynthesizeSpeechResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters);
@@ -560,7 +560,7 @@ export namespace texttospeech_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVoicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVoicesResponse>(parameters);

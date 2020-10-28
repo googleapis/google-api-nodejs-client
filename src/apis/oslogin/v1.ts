@@ -377,7 +377,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$LoginProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LoginProfile>(parameters);
@@ -534,7 +534,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$ImportSshPublicKeyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImportSshPublicKeyResponse>(parameters);
@@ -702,7 +702,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -846,7 +846,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -980,7 +980,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SshPublicKey>(parameters);
@@ -1129,7 +1129,7 @@ export namespace oslogin_v1 {
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SshPublicKey>(parameters);

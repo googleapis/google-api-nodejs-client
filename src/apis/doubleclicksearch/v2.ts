@@ -725,7 +725,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -864,7 +864,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -1003,7 +1003,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -1146,7 +1146,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
@@ -1378,7 +1378,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1517,7 +1517,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1581,7 +1581,7 @@ export namespace doubleclicksearch_v2 {
     getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<unknown>;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1589,26 +1589,26 @@ export namespace doubleclicksearch_v2 {
     ): void;
     getFile(
       params: Params$Resource$Reports$Getfile,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<unknown>,
+      callback: BodyResponseCallback<unknown>
     ): void;
     getFile(
       params: Params$Resource$Reports$Getfile,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<unknown>
     ): void;
-    getFile(callback: BodyResponseCallback<void>): void;
+    getFile(callback: BodyResponseCallback<unknown>): void;
     getFile(
       paramsOrCallback?:
         | Params$Resource$Reports$Getfile
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1642,12 +1642,12 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<unknown>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<unknown>(parameters);
       }
     }
 
@@ -1801,7 +1801,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1973,7 +1973,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedColumnList>(parameters);

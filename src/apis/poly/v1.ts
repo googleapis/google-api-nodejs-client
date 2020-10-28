@@ -572,7 +572,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$Asset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asset>(parameters);
@@ -725,7 +725,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
@@ -934,7 +934,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserAssetsResponse>(parameters);
@@ -1119,7 +1119,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLikedAssetsResponse>(parameters);

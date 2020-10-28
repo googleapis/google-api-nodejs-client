@@ -1170,7 +1170,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$MatterPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MatterPermission>(parameters);
@@ -1310,7 +1310,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$CloseMatterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloseMatterResponse>(parameters);
@@ -1454,7 +1454,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1594,7 +1594,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Matter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
@@ -1728,7 +1728,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Matter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
@@ -1868,7 +1868,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Matter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
@@ -2011,7 +2011,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMattersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMattersResponse>(parameters);
@@ -2149,7 +2149,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2291,7 +2291,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ReopenMatterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReopenMatterResponse>(parameters);
@@ -2432,7 +2432,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Matter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
@@ -2579,7 +2579,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Matter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
@@ -2864,7 +2864,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Export>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
@@ -2995,7 +2995,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3140,7 +3140,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Export>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
@@ -3284,7 +3284,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListExportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExportsResponse>(parameters);
@@ -3493,7 +3493,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$AddHeldAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AddHeldAccountsResponse>(parameters);
@@ -3645,7 +3645,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Hold>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
@@ -3777,7 +3777,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3923,7 +3923,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Hold>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
@@ -4070,7 +4070,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListHoldsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListHoldsResponse>(parameters);
@@ -4220,7 +4220,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$RemoveHeldAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemoveHeldAccountsResponse>(parameters);
@@ -4375,7 +4375,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Hold>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
@@ -4638,7 +4638,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$HeldAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HeldAccount>(parameters);
@@ -4773,7 +4773,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4914,7 +4914,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListHeldAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListHeldAccountsResponse>(parameters);
@@ -5112,7 +5112,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
@@ -5243,7 +5243,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5383,7 +5383,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
@@ -5529,7 +5529,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSavedQueriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
@@ -5719,7 +5719,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5845,7 +5845,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5979,7 +5979,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6121,7 +6121,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);

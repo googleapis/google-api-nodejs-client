@@ -1803,7 +1803,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1957,7 +1957,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$BackupRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BackupRun>(parameters);
@@ -2132,7 +2132,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2281,7 +2281,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BackupRunsListResponse>(parameters);
@@ -2505,7 +2505,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2652,7 +2652,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Database>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Database>(parameters);
@@ -2819,7 +2819,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2961,7 +2961,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatabasesListResponse>(parameters);
@@ -3131,7 +3131,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3301,7 +3301,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3534,7 +3534,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FlagsListResponse>(parameters);
@@ -3699,7 +3699,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3858,7 +3858,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4007,7 +4007,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4167,7 +4167,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4323,7 +4323,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4483,7 +4483,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4648,7 +4648,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatabaseInstance>(parameters);
@@ -4804,7 +4804,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4989,7 +4989,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5138,7 +5138,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstancesListResponse>(parameters);
@@ -5284,7 +5284,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstancesListServerCasResponse>(
@@ -5474,7 +5474,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5625,7 +5625,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5776,7 +5776,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5927,7 +5927,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6087,7 +6087,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6247,7 +6247,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6398,7 +6398,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6549,7 +6549,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6709,7 +6709,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6897,7 +6897,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7335,7 +7335,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7483,7 +7483,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperationsListResponse>(parameters);
@@ -7690,7 +7690,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7844,7 +7844,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8009,7 +8009,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8223,7 +8223,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCert>(parameters);
@@ -8376,7 +8376,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8523,7 +8523,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCert>(parameters);
@@ -8676,7 +8676,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCertsInsertResponse>(parameters);
@@ -8818,7 +8818,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCertsListResponse>(parameters);
@@ -9032,7 +9032,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TiersListResponse>(parameters);
@@ -9202,7 +9202,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9369,7 +9369,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9510,7 +9510,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsersListResponse>(parameters);
@@ -9683,7 +9683,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

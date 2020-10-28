@@ -3819,7 +3819,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$DeleteSnapshotResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
@@ -3971,7 +3971,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -4161,7 +4161,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -4290,7 +4290,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4429,7 +4429,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -4581,7 +4581,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
@@ -4731,7 +4731,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
@@ -4942,7 +4942,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -5120,7 +5120,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -5320,7 +5320,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -5488,7 +5488,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -5633,7 +5633,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
@@ -5786,7 +5786,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -5944,7 +5944,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -6141,7 +6141,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -6458,7 +6458,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
@@ -6614,7 +6614,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
@@ -6817,7 +6817,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
@@ -7020,7 +7020,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
@@ -7180,7 +7180,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -7390,7 +7390,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -7570,7 +7570,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchFlexTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchFlexTemplateResponse>(parameters);
@@ -7809,7 +7809,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -7977,7 +7977,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -8131,7 +8131,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobExecutionDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobExecutionDetails>(parameters);
@@ -8277,7 +8277,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
@@ -8429,7 +8429,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -8591,7 +8591,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -8788,7 +8788,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -9108,7 +9108,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
@@ -9267,7 +9267,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
@@ -9479,7 +9479,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
@@ -9669,7 +9669,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -9859,7 +9859,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$StageExecutionDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StageExecutionDetails>(parameters);
@@ -10065,7 +10065,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
@@ -10228,7 +10228,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -10423,7 +10423,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$DeleteSnapshotResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
@@ -10573,7 +10573,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -10720,7 +10720,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -10914,7 +10914,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ValidateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ValidateResponse>(parameters);
@@ -11112,7 +11112,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -11263,7 +11263,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
@@ -11432,7 +11432,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
@@ -11656,7 +11656,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -11803,7 +11803,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -12013,7 +12013,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -12164,7 +12164,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
@@ -12332,7 +12332,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
@@ -12551,7 +12551,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListTemplateVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTemplateVersionsResponse>(

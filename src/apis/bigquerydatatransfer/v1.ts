@@ -797,7 +797,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
@@ -948,7 +948,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1097,7 +1097,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -1285,7 +1285,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1437,7 +1437,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1625,7 +1625,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
@@ -1776,7 +1776,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1925,7 +1925,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -2153,7 +2153,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2286,7 +2286,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2438,7 +2438,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2594,7 +2594,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -2777,7 +2777,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2932,7 +2932,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -3089,7 +3089,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -3345,7 +3345,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3496,7 +3496,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
@@ -3651,7 +3651,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
@@ -3851,7 +3851,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
@@ -4060,7 +4060,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4190,7 +4190,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4339,7 +4339,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4493,7 +4493,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -4673,7 +4673,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4825,7 +4825,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -4981,7 +4981,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -5234,7 +5234,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5382,7 +5382,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
@@ -5534,7 +5534,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
@@ -5734,7 +5734,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);

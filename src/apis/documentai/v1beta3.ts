@@ -3245,7 +3245,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudLocationLocation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudLocationLocation>(parameters);
@@ -3399,7 +3399,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3574,7 +3574,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3745,7 +3745,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3908,7 +3908,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4095,7 +4095,7 @@ export namespace documentai_v1beta3 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);

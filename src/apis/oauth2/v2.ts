@@ -240,7 +240,7 @@ export namespace oauth2_v2 {
       if (callback) {
         createAPIRequest<Schema$Tokeninfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tokeninfo>(parameters);
@@ -476,7 +476,7 @@ export namespace oauth2_v2 {
       if (callback) {
         createAPIRequest<Schema$Userinfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Userinfo>(parameters);
@@ -631,7 +631,7 @@ export namespace oauth2_v2 {
       if (callback) {
         createAPIRequest<Schema$Userinfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Userinfo>(parameters);

@@ -1577,7 +1577,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -1704,7 +1704,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1848,7 +1848,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -1991,7 +1991,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2139,7 +2139,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListNotesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNotesResponse>(parameters);
@@ -2310,7 +2310,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -2453,7 +2453,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2601,7 +2601,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2867,7 +2867,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListNoteOccurrencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNoteOccurrencesResponse>(parameters);
@@ -3068,7 +3068,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Occurrence>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
@@ -3195,7 +3195,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3339,7 +3339,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Occurrence>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
@@ -3482,7 +3482,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3629,7 +3629,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -3772,7 +3772,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$GetVulnzOccurrencesSummaryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetVulnzOccurrencesSummaryResponse>(
@@ -3927,7 +3927,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListOccurrencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOccurrencesResponse>(parameters);
@@ -4098,7 +4098,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Occurrence>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
@@ -4241,7 +4241,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4389,7 +4389,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4670,7 +4670,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4813,7 +4813,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4978,7 +4978,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
@@ -5125,7 +5125,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScanConfigsResponse>(parameters);
@@ -5274,7 +5274,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
@@ -5512,7 +5512,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -5639,7 +5639,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5783,7 +5783,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -5926,7 +5926,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6074,7 +6074,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListNotesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNotesResponse>(parameters);
@@ -6245,7 +6245,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Note>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
@@ -6388,7 +6388,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6536,7 +6536,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -6802,7 +6802,7 @@ export namespace containeranalysis_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListNoteOccurrencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNoteOccurrencesResponse>(parameters);

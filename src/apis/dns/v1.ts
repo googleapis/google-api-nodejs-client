@@ -915,7 +915,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Change>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
@@ -1065,7 +1065,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Change>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
@@ -1221,7 +1221,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ChangesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangesListResponse>(parameters);
@@ -1449,7 +1449,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$DnsKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DnsKey>(parameters);
@@ -1602,7 +1602,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$DnsKeysListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DnsKeysListResponse>(parameters);
@@ -1806,7 +1806,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1964,7 +1964,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
@@ -2190,7 +2190,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
@@ -2322,7 +2322,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2476,7 +2476,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
@@ -2629,7 +2629,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedZonesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZonesListResponse>(parameters);
@@ -2798,7 +2798,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2967,7 +2967,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3238,7 +3238,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3369,7 +3369,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3516,7 +3516,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3665,7 +3665,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$PoliciesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesListResponse>(parameters);
@@ -3825,7 +3825,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$PoliciesPatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesPatchResponse>(parameters);
@@ -3985,7 +3985,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$PoliciesUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesUpdateResponse>(parameters);
@@ -4229,7 +4229,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -4408,7 +4408,7 @@ export namespace dns_v1 {
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResourceRecordSetsListResponse>(

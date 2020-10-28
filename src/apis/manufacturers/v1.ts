@@ -609,7 +609,7 @@ export namespace manufacturers_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -754,7 +754,7 @@ export namespace manufacturers_v1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -901,7 +901,7 @@ export namespace manufacturers_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
@@ -1078,7 +1078,7 @@ export namespace manufacturers_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);

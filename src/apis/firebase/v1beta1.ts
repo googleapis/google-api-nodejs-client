@@ -802,7 +802,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAvailableProjectsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAvailableProjectsResponse>(
@@ -959,7 +959,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1136,7 +1136,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1284,7 +1284,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1421,7 +1421,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$FirebaseProject>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirebaseProject>(parameters);
@@ -1559,7 +1559,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AdminSdkConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdminSdkConfig>(parameters);
@@ -1695,7 +1695,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AnalyticsDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyticsDetails>(parameters);
@@ -1838,7 +1838,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFirebaseProjectsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFirebaseProjectsResponse>(
@@ -1992,7 +1992,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$FirebaseProject>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirebaseProject>(parameters);
@@ -2133,7 +2133,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2286,7 +2286,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SearchFirebaseAppsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchFirebaseAppsResponse>(parameters);
@@ -2547,7 +2547,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2684,7 +2684,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AndroidApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AndroidApp>(parameters);
@@ -2818,7 +2818,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AndroidAppConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AndroidAppConfig>(parameters);
@@ -2966,7 +2966,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAndroidAppsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAndroidAppsResponse>(parameters);
@@ -3117,7 +3117,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AndroidApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AndroidApp>(parameters);
@@ -3329,7 +3329,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ShaCertificate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShaCertificate>(parameters);
@@ -3458,7 +3458,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3601,7 +3601,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListShaCertificatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListShaCertificatesResponse>(parameters);
@@ -3785,7 +3785,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAvailableLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAvailableLocationsResponse>(
@@ -3956,7 +3956,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4128,7 +4128,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4266,7 +4266,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$IosApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IosApp>(parameters);
@@ -4400,7 +4400,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$IosAppConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IosAppConfig>(parameters);
@@ -4546,7 +4546,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListIosAppsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListIosAppsResponse>(parameters);
@@ -4699,7 +4699,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$IosApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IosApp>(parameters);
@@ -4916,7 +4916,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5054,7 +5054,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$WebApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);
@@ -5195,7 +5195,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$WebAppConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebAppConfig>(parameters);
@@ -5341,7 +5341,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListWebAppsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWebAppsResponse>(parameters);
@@ -5494,7 +5494,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$WebApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);

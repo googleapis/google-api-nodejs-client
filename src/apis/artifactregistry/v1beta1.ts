@@ -722,7 +722,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -872,7 +872,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1042,7 +1042,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1192,7 +1192,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1388,7 +1388,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1522,7 +1522,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1661,7 +1661,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Repository>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
@@ -1804,7 +1804,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1951,7 +1951,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListRepositoriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRepositoriesResponse>(parameters);
@@ -2105,7 +2105,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Repository>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
@@ -2251,7 +2251,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2405,7 +2405,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2647,7 +2647,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -2798,7 +2798,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilesResponse>(parameters);
@@ -2976,7 +2976,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3114,7 +3114,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Package>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Package>(parameters);
@@ -3264,7 +3264,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListPackagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPackagesResponse>(parameters);
@@ -3450,7 +3450,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -3580,7 +3580,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3716,7 +3716,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -3864,7 +3864,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
@@ -4010,7 +4010,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -4222,7 +4222,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4364,7 +4364,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -4517,7 +4517,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);

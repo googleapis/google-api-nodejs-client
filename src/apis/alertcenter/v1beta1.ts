@@ -1063,7 +1063,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchDeleteAlertsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchDeleteAlertsResponse>(parameters);
@@ -1208,7 +1208,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchUndeleteAlertsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUndeleteAlertsResponse>(parameters);
@@ -1339,7 +1339,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1484,7 +1484,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Alert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alert>(parameters);
@@ -1624,7 +1624,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AlertMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertMetadata>(parameters);
@@ -1767,7 +1767,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAlertsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAlertsResponse>(parameters);
@@ -1918,7 +1918,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Alert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alert>(parameters);
@@ -2157,7 +2157,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AlertFeedback>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertFeedback>(parameters);
@@ -2301,7 +2301,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAlertFeedbackResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAlertFeedbackResponse>(parameters);
@@ -2468,7 +2468,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Settings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Settings>(parameters);
@@ -2605,7 +2605,7 @@ export namespace alertcenter_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Settings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Settings>(parameters);

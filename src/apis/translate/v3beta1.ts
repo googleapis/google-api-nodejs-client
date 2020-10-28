@@ -692,7 +692,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$DetectLanguageResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DetectLanguageResponse>(parameters);
@@ -837,7 +837,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$SupportedLanguages>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SupportedLanguages>(parameters);
@@ -994,7 +994,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$TranslateTextResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TranslateTextResponse>(parameters);
@@ -1199,7 +1199,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1352,7 +1352,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$DetectLanguageResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DetectLanguageResponse>(parameters);
@@ -1487,7 +1487,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1632,7 +1632,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$SupportedLanguages>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SupportedLanguages>(parameters);
@@ -1781,7 +1781,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1938,7 +1938,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$TranslateTextResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TranslateTextResponse>(parameters);
@@ -2173,7 +2173,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2308,7 +2308,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2445,7 +2445,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Glossary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Glossary>(parameters);
@@ -2594,7 +2594,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$ListGlossariesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGlossariesResponse>(parameters);
@@ -2786,7 +2786,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2915,7 +2915,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3050,7 +3050,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3199,7 +3199,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -3346,7 +3346,7 @@ export namespace translate_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

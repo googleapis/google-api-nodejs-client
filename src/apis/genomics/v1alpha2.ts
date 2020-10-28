@@ -860,7 +860,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -994,7 +994,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1139,7 +1139,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1335,7 +1335,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Pipeline>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Pipeline>(parameters);
@@ -1466,7 +1466,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1606,7 +1606,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Pipeline>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Pipeline>(parameters);
@@ -1752,7 +1752,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ControllerConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ControllerConfig>(parameters);
@@ -1900,7 +1900,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListPipelinesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPipelinesResponse>(parameters);
@@ -2045,7 +2045,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2186,7 +2186,7 @@ export namespace genomics_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);

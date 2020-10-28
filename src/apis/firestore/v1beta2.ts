@@ -628,7 +628,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -783,7 +783,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -970,7 +970,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
@@ -1138,7 +1138,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1296,7 +1296,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1506,7 +1506,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1638,7 +1638,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1780,7 +1780,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
@@ -1948,7 +1948,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

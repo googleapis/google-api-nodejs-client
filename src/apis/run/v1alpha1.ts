@@ -2584,7 +2584,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -2762,7 +2762,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -2900,7 +2900,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3040,7 +3040,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -3203,7 +3203,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
@@ -3437,7 +3437,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -3574,7 +3574,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3711,7 +3711,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -3874,7 +3874,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
@@ -4110,7 +4110,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4248,7 +4248,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4388,7 +4388,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4551,7 +4551,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
@@ -4710,7 +4710,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4954,7 +4954,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -5091,7 +5091,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5228,7 +5228,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -5391,7 +5391,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
@@ -5547,7 +5547,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -5774,7 +5774,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -5937,7 +5937,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -6135,7 +6135,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -6275,7 +6275,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6409,7 +6409,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -6572,7 +6572,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -6797,7 +6797,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6931,7 +6931,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -7091,7 +7091,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -7298,7 +7298,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -7456,7 +7456,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -7653,7 +7653,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7793,7 +7793,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7927,7 +7927,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8087,7 +8087,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -8234,7 +8234,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8478,7 +8478,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -8615,7 +8615,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8749,7 +8749,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -8909,7 +8909,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
@@ -9181,7 +9181,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -9353,7 +9353,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -9530,7 +9530,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -9666,7 +9666,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9804,7 +9804,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -9966,7 +9966,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
@@ -10200,7 +10200,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -10336,7 +10336,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10472,7 +10472,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -10635,7 +10635,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
@@ -10870,7 +10870,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -11006,7 +11006,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11144,7 +11144,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -11306,7 +11306,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
@@ -11463,7 +11463,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -11707,7 +11707,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -11843,7 +11843,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11979,7 +11979,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -12142,7 +12142,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
@@ -12297,7 +12297,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -12523,7 +12523,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -12686,7 +12686,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -12884,7 +12884,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -13023,7 +13023,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13156,7 +13156,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -13319,7 +13319,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -13542,7 +13542,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13674,7 +13674,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -13835,7 +13835,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -14040,7 +14040,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -14199,7 +14199,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -14397,7 +14397,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -14535,7 +14535,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14667,7 +14667,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -14804,7 +14804,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -14965,7 +14965,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -15110,7 +15110,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -15254,7 +15254,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -15401,7 +15401,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -15681,7 +15681,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -15816,7 +15816,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15948,7 +15948,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -16109,7 +16109,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);

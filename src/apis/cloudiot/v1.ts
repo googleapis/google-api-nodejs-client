@@ -823,7 +823,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BindDeviceToGatewayResponse>(parameters);
@@ -980,7 +980,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
@@ -1109,7 +1109,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1247,7 +1247,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
@@ -1393,7 +1393,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1541,7 +1541,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeviceRegistriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDeviceRegistriesResponse>(
@@ -1700,7 +1700,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
@@ -1846,7 +1846,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1997,7 +1997,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2149,7 +2149,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -2459,7 +2459,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -2589,7 +2589,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2740,7 +2740,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -2902,7 +2902,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDevicesResponse>(parameters);
@@ -3054,7 +3054,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceConfig>(parameters);
@@ -3230,7 +3230,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -3382,7 +3382,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendCommandToDeviceResponse>(parameters);
@@ -3646,7 +3646,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -3807,7 +3807,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeviceStatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDeviceStatesResponse>(parameters);
@@ -3976,7 +3976,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4122,7 +4122,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4275,7 +4275,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4482,7 +4482,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDevicesResponse>(parameters);

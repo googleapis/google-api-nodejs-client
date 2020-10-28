@@ -1571,7 +1571,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetApkDetailsResponse>(parameters);
@@ -1736,7 +1736,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CancelTestMatrixResponse>(parameters);
@@ -1903,7 +1903,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
@@ -2051,7 +2051,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
@@ -2242,7 +2242,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestEnvironmentCatalog>(parameters);

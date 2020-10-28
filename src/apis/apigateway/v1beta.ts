@@ -769,7 +769,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayLocation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayLocation>(parameters);
@@ -917,7 +917,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayListLocationsResponse>(
@@ -1111,7 +1111,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -1246,7 +1246,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -1380,7 +1380,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayApi>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayApi>(parameters);
@@ -1517,7 +1517,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -1669,7 +1669,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayListApisResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayListApisResponse>(parameters);
@@ -1822,7 +1822,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -1966,7 +1966,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -2119,7 +2119,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
@@ -2393,7 +2393,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -2529,7 +2529,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -2674,7 +2674,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayApiConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayApiConfig>(parameters);
@@ -2812,7 +2812,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -2964,7 +2964,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayListApiConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayListApiConfigsResponse>(
@@ -3124,7 +3124,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -3269,7 +3269,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -3425,7 +3425,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
@@ -3700,7 +3700,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -3835,7 +3835,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -3973,7 +3973,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayGateway>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayGateway>(parameters);
@@ -4110,7 +4110,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -4262,7 +4262,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayListGatewaysResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayListGatewaysResponse>(
@@ -4418,7 +4418,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -4562,7 +4562,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayPolicy>(parameters);
@@ -4715,7 +4715,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayTestIamPermissionsResponse>(
@@ -4965,7 +4965,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5091,7 +5091,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5226,7 +5226,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayOperation>(parameters);
@@ -5374,7 +5374,7 @@ export namespace apigateway_v1beta {
       if (callback) {
         createAPIRequest<Schema$ApigatewayListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApigatewayListOperationsResponse>(

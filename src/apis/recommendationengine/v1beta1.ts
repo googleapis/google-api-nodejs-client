@@ -1189,7 +1189,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
@@ -1358,7 +1358,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1Catalog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1579,7 +1579,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -1713,7 +1713,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1874,7 +1874,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -2032,7 +2032,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2201,7 +2201,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
@@ -2383,7 +2383,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -2631,7 +2631,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2789,7 +2789,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -3005,7 +3005,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
@@ -3194,7 +3194,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
@@ -3328,7 +3328,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -3494,7 +3494,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
@@ -3686,7 +3686,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleApiHttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
@@ -3843,7 +3843,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4013,7 +4013,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
@@ -4170,7 +4170,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4325,7 +4325,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4500,7 +4500,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1UserEvent
@@ -4738,7 +4738,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4895,7 +4895,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

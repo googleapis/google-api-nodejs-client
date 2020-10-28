@@ -540,7 +540,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -688,7 +688,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -832,7 +832,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$WmxSitemap>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WmxSitemap>(parameters);
@@ -974,7 +974,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$SitemapsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitemapsListResponse>(parameters);
@@ -1100,7 +1100,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1272,7 +1272,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1396,7 +1396,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1531,7 +1531,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$WmxSite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WmxSite>(parameters);
@@ -1664,7 +1664,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
@@ -1850,7 +1850,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunMobileFriendlyTestResponse>(

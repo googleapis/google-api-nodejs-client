@@ -1245,7 +1245,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetReportsResponse>(parameters);
@@ -1414,7 +1414,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);

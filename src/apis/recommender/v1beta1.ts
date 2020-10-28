@@ -647,7 +647,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
@@ -812,7 +812,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
@@ -980,7 +980,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
@@ -1200,7 +1200,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1371,7 +1371,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
@@ -1546,7 +1546,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1722,7 +1722,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1898,7 +1898,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

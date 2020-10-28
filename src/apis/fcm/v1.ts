@@ -623,7 +623,7 @@ export namespace fcm_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);

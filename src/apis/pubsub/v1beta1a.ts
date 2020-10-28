@@ -529,7 +529,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -674,7 +674,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -806,7 +806,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -943,7 +943,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -1091,7 +1091,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
@@ -1230,7 +1230,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1368,7 +1368,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1509,7 +1509,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PullResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PullResponse>(parameters);
@@ -1653,7 +1653,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PullBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PullBatchResponse>(parameters);
@@ -1867,7 +1867,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -1998,7 +1998,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2131,7 +2131,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -2271,7 +2271,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicsResponse>(parameters);
@@ -2408,7 +2408,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2555,7 +2555,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PublishBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishBatchResponse>(parameters);

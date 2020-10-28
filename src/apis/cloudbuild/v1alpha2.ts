@@ -1002,7 +1002,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1134,7 +1134,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1318,7 +1318,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);
@@ -1444,7 +1444,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1579,7 +1579,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);
@@ -1715,7 +1715,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkerPoolsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters);
@@ -1869,7 +1869,7 @@ export namespace cloudbuild_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);

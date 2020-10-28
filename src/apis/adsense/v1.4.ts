@@ -776,7 +776,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -915,7 +915,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Accounts>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
@@ -1086,7 +1086,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
@@ -1228,7 +1228,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdClients>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
@@ -1419,7 +1419,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -1562,7 +1562,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
@@ -1711,7 +1711,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
@@ -1921,7 +1921,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
@@ -2078,7 +2078,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2215,7 +2215,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Alerts>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
@@ -2391,7 +2391,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -2537,7 +2537,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
@@ -2731,7 +2731,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
@@ -2900,7 +2900,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Payments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
@@ -3100,7 +3100,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -3322,7 +3322,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -3466,7 +3466,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
@@ -3652,7 +3652,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
@@ -3794,7 +3794,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
@@ -3974,7 +3974,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);
@@ -4140,7 +4140,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdClients>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
@@ -4305,7 +4305,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -4445,7 +4445,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
@@ -4589,7 +4589,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
@@ -4782,7 +4782,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
@@ -4932,7 +4932,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5066,7 +5066,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Alerts>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
@@ -5229,7 +5229,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -5371,7 +5371,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
@@ -5554,7 +5554,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
@@ -5727,7 +5727,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Metadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
@@ -5868,7 +5868,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Metadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
@@ -6008,7 +6008,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$Payments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
@@ -6202,7 +6202,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -6420,7 +6420,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -6562,7 +6562,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
@@ -6736,7 +6736,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
@@ -6876,7 +6876,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
@@ -7043,7 +7043,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);

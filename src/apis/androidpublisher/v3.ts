@@ -1429,7 +1429,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppEdit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
@@ -1556,7 +1556,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1691,7 +1691,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppEdit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
@@ -1832,7 +1832,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppEdit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
@@ -1967,7 +1967,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppEdit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
@@ -2177,7 +2177,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
@@ -2314,7 +2314,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ApksListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApksListResponse>(parameters);
@@ -2465,7 +2465,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Apk>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Apk>(parameters);
@@ -2669,7 +2669,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$BundlesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BundlesListResponse>(parameters);
@@ -2824,7 +2824,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Bundle>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bundle>(parameters);
@@ -3051,7 +3051,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
@@ -3238,7 +3238,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
@@ -3388,7 +3388,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
@@ -3538,7 +3538,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$AppDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
@@ -3741,7 +3741,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
@@ -3903,7 +3903,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
@@ -4065,7 +4065,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
@@ -4238,7 +4238,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ExpansionFilesUploadResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ExpansionFilesUploadResponse>(
@@ -4503,7 +4503,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4651,7 +4651,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ImagesDeleteAllResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters);
@@ -4795,7 +4795,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ImagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImagesListResponse>(parameters);
@@ -4956,7 +4956,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ImagesUploadResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImagesUploadResponse>(parameters);
@@ -5195,7 +5195,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5323,7 +5323,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5465,7 +5465,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Listing>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
@@ -5606,7 +5606,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ListingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListingsListResponse>(parameters);
@@ -5761,7 +5761,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Listing>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
@@ -5916,7 +5916,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Listing>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
@@ -6154,7 +6154,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Testers>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
@@ -6301,7 +6301,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Testers>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
@@ -6448,7 +6448,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Testers>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
@@ -6649,7 +6649,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Track>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
@@ -6788,7 +6788,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$TracksListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TracksListResponse>(parameters);
@@ -6937,7 +6937,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Track>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
@@ -7086,7 +7086,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Track>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
@@ -7287,7 +7287,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7432,7 +7432,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
@@ -7596,7 +7596,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
@@ -7747,7 +7747,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InappproductsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InappproductsListResponse>(parameters);
@@ -7914,7 +7914,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
@@ -8081,7 +8081,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
@@ -8342,7 +8342,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InternalAppSharingArtifact>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InternalAppSharingArtifact>(parameters);
@@ -8498,7 +8498,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InternalAppSharingArtifact>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InternalAppSharingArtifact>(parameters);
@@ -8690,7 +8690,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8867,7 +8867,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9018,7 +9018,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ProductPurchase>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductPurchase>(parameters);
@@ -9201,7 +9201,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9332,7 +9332,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9486,7 +9486,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
@@ -9659,7 +9659,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
@@ -9790,7 +9790,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9921,7 +9921,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10188,7 +10188,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VoidedPurchasesListResponse>(parameters);
@@ -10366,7 +10366,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Review>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Review>(parameters);
@@ -10514,7 +10514,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ReviewsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReviewsListResponse>(parameters);
@@ -10662,7 +10662,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ReviewsReplyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReviewsReplyResponse>(parameters);
@@ -10876,7 +10876,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Variant>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variant>(parameters);
@@ -10943,7 +10943,7 @@ export namespace androidpublisher_v3 {
     download(
       params?: Params$Resource$Systemapks$Variants$Download,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<unknown>;
     download(
       params: Params$Resource$Systemapks$Variants$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10951,26 +10951,26 @@ export namespace androidpublisher_v3 {
     ): void;
     download(
       params: Params$Resource$Systemapks$Variants$Download,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<unknown>,
+      callback: BodyResponseCallback<unknown>
     ): void;
     download(
       params: Params$Resource$Systemapks$Variants$Download,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<unknown>
     ): void;
-    download(callback: BodyResponseCallback<void>): void;
+    download(callback: BodyResponseCallback<unknown>): void;
     download(
       paramsOrCallback?:
         | Params$Resource$Systemapks$Variants$Download
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11005,12 +11005,12 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<unknown>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<unknown>(parameters);
       }
     }
 
@@ -11146,7 +11146,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$Variant>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variant>(parameters);
@@ -11286,7 +11286,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$SystemApksListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SystemApksListResponse>(parameters);

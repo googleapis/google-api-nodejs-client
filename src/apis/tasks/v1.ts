@@ -379,7 +379,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -517,7 +517,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -662,7 +662,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -801,7 +801,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskLists>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskLists>(parameters);
@@ -950,7 +950,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -1099,7 +1099,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -1280,7 +1280,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1406,7 +1406,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1556,7 +1556,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -1729,7 +1729,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -1895,7 +1895,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Tasks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tasks>(parameters);
@@ -2047,7 +2047,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -2217,7 +2217,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -2387,7 +2387,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);

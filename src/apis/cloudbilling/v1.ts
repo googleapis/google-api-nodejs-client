@@ -679,7 +679,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
@@ -814,7 +814,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
@@ -955,7 +955,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1104,7 +1104,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBillingAccountsResponse>(parameters);
@@ -1253,7 +1253,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
@@ -1400,7 +1400,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1551,7 +1551,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1788,7 +1788,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProjectBillingInfoResponse>(
@@ -1956,7 +1956,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectBillingInfo>(parameters);
@@ -2110,7 +2110,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectBillingInfo>(parameters);
@@ -2279,7 +2279,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -2445,7 +2445,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSkusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSkusResponse>(parameters);

@@ -427,7 +427,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -566,7 +566,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -720,7 +720,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -907,7 +907,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -1054,7 +1054,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -1191,7 +1191,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -1340,7 +1340,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -1533,7 +1533,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1672,7 +1672,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -1826,7 +1826,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -2013,7 +2013,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2160,7 +2160,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2297,7 +2297,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2446,7 +2446,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -2639,7 +2639,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2778,7 +2778,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -2932,7 +2932,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -3119,7 +3119,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3266,7 +3266,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3403,7 +3403,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3552,7 +3552,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(

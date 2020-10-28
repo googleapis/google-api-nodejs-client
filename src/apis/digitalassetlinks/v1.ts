@@ -384,7 +384,7 @@ export namespace digitalassetlinks_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckResponse>(parameters);
@@ -565,7 +565,7 @@ export namespace digitalassetlinks_v1 {
       if (callback) {
         createAPIRequest<Schema$ListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListResponse>(parameters);

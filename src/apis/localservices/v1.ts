@@ -531,7 +531,7 @@ export namespace localservices_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
@@ -761,7 +761,7 @@ export namespace localservices_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse

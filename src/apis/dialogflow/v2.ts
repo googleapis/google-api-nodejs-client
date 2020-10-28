@@ -3807,7 +3807,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -3959,7 +3959,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
@@ -4136,7 +4136,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
@@ -4340,7 +4340,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4482,7 +4482,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Fulfillment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Fulfillment>(
@@ -4634,7 +4634,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2ValidationResult>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2ValidationResult>(
@@ -4791,7 +4791,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4946,7 +4946,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5108,7 +5108,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5262,7 +5262,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5420,7 +5420,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Fulfillment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Fulfillment>(
@@ -5685,7 +5685,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5842,7 +5842,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -6005,7 +6005,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
@@ -6139,7 +6139,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -6285,7 +6285,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
@@ -6452,7 +6452,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6617,7 +6617,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
@@ -6879,7 +6879,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -7034,7 +7034,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -7190,7 +7190,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -7398,7 +7398,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListEnvironmentsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListEnvironmentsResponse
@@ -7581,7 +7581,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -7756,7 +7756,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7942,7 +7942,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -8079,7 +8079,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8222,7 +8222,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -8389,7 +8389,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8548,7 +8548,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -8778,7 +8778,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8915,7 +8915,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -9064,7 +9064,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9235,7 +9235,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
@@ -9399,7 +9399,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9620,7 +9620,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -9778,7 +9778,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -9968,7 +9968,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
@@ -10102,7 +10102,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -10263,7 +10263,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
@@ -10433,7 +10433,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2ListIntentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -10625,7 +10625,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
@@ -10893,7 +10893,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -11065,7 +11065,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -11248,7 +11248,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -11382,7 +11382,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -11522,7 +11522,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -11686,7 +11686,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -11842,7 +11842,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
@@ -12069,7 +12069,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12204,7 +12204,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -12351,7 +12351,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12519,7 +12519,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
@@ -12681,7 +12681,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12891,7 +12891,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -13033,7 +13033,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -13190,7 +13190,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -13365,7 +13365,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -13507,7 +13507,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -13664,7 +13664,7 @@ export namespace dialogflow_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

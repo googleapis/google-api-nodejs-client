@@ -5585,7 +5585,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountsAuthInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters);
@@ -5730,7 +5730,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
@@ -5881,7 +5881,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsCustomBatchResponse>(parameters);
@@ -6013,7 +6013,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6157,7 +6157,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -6322,7 +6322,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -6471,7 +6471,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountsLinkResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsLinkResponse>(parameters);
@@ -6615,7 +6615,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
@@ -6782,7 +6782,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -7055,7 +7055,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
@@ -7199,7 +7199,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountStatus>(parameters);
@@ -7349,7 +7349,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountstatusesListResponse>(parameters);
@@ -7547,7 +7547,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
@@ -7684,7 +7684,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountTax>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTax>(parameters);
@@ -7828,7 +7828,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccounttaxListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccounttaxListResponse>(parameters);
@@ -7978,7 +7978,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$AccountTax>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTax>(parameters);
@@ -8191,7 +8191,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
@@ -8322,7 +8322,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8467,7 +8467,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsFetchNowResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsFetchNowResponse>(parameters);
@@ -8611,7 +8611,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -8776,7 +8776,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -8920,7 +8920,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsListResponse>(parameters);
@@ -9087,7 +9087,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -9339,7 +9339,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
@@ -9490,7 +9490,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedStatus>(parameters);
@@ -9636,7 +9636,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesListResponse>(
@@ -9836,7 +9836,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$InventoryCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventoryCustomBatchResponse>(
@@ -10006,7 +10006,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$InventorySetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySetResponse>(parameters);
@@ -10198,7 +10198,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
@@ -10335,7 +10335,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiaSettings>(parameters);
@@ -10493,7 +10493,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -10639,7 +10639,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsListResponse>(parameters);
@@ -10781,7 +10781,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
@@ -10928,7 +10928,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
@@ -11089,7 +11089,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<
           Schema$LiasettingsRequestInventoryVerificationResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$LiasettingsRequestInventoryVerificationResponse
@@ -11258,7 +11258,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<
           Schema$LiasettingsSetInventoryVerificationContactResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$LiasettingsSetInventoryVerificationContactResponse
@@ -11416,7 +11416,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
@@ -11568,7 +11568,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiaSettings>(parameters);
@@ -11887,7 +11887,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12051,7 +12051,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12251,7 +12251,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
@@ -12415,7 +12415,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
@@ -12616,7 +12616,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$MerchantOrderReturn>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MerchantOrderReturn>(parameters);
@@ -12770,7 +12770,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrderreturnsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreturnsListResponse>(parameters);
@@ -12966,7 +12966,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersAcknowledgeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersAcknowledgeResponse>(parameters);
@@ -13107,7 +13107,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
@@ -13259,7 +13259,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelResponse>(parameters);
@@ -13419,7 +13419,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelLineItemResponse>(
@@ -13578,7 +13578,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
@@ -13731,7 +13731,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
@@ -13884,7 +13884,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
@@ -14031,7 +14031,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCustomBatchResponse>(parameters);
@@ -14185,7 +14185,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Order>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Order>(parameters);
@@ -14328,7 +14328,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
@@ -14476,7 +14476,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
@@ -14637,7 +14637,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
@@ -14796,7 +14796,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersListResponse>(parameters);
@@ -14949,7 +14949,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersRefundResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersRefundResponse>(parameters);
@@ -15106,7 +15106,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
@@ -15265,7 +15265,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersReturnLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersReturnLineItemResponse>(
@@ -15426,7 +15426,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
@@ -15583,7 +15583,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
@@ -15743,7 +15743,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersShipLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersShipLineItemsResponse>(parameters);
@@ -15913,7 +15913,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -16068,7 +16068,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
@@ -16227,7 +16227,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
@@ -16723,7 +16723,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosCustomBatchResponse>(parameters);
@@ -16856,7 +16856,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16995,7 +16995,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosStore>(parameters);
@@ -17144,7 +17144,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosStore>(parameters);
@@ -17312,7 +17312,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosInventoryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosInventoryResponse>(parameters);
@@ -17446,7 +17446,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosListResponse>(parameters);
@@ -17608,7 +17608,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$PosSaleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosSaleResponse>(parameters);
@@ -17875,7 +17875,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ProductsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsCustomBatchResponse>(parameters);
@@ -18004,7 +18004,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18215,7 +18215,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -18514,7 +18514,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -18661,7 +18661,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsListResponse>(parameters);
@@ -18887,7 +18887,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
@@ -19039,7 +19039,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ProductStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductStatus>(parameters);
@@ -19195,7 +19195,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ProductstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductstatusesListResponse>(parameters);
@@ -19410,7 +19410,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
@@ -19548,7 +19548,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingSettings>(parameters);
@@ -19701,7 +19701,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -19856,7 +19856,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -20011,7 +20011,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<
           Schema$ShippingsettingsGetSupportedPickupServicesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$ShippingsettingsGetSupportedPickupServicesResponse
@@ -20158,7 +20158,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingsettingsListResponse>(
@@ -20310,7 +20310,7 @@ export namespace content_v2 {
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingSettings>(parameters);

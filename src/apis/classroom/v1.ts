@@ -1480,7 +1480,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Course>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Course>(parameters);
@@ -1605,7 +1605,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1752,7 +1752,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Course>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Course>(parameters);
@@ -1898,7 +1898,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCoursesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCoursesResponse>(parameters);
@@ -2071,7 +2071,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Course>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Course>(parameters);
@@ -2241,7 +2241,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Course>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Course>(parameters);
@@ -2455,7 +2455,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseAlias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseAlias>(parameters);
@@ -2587,7 +2587,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2735,7 +2735,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCourseAliasesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCourseAliasesResponse>(parameters);
@@ -2943,7 +2943,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Announcement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Announcement>(parameters);
@@ -3074,7 +3074,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3221,7 +3221,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Announcement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Announcement>(parameters);
@@ -3375,7 +3375,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAnnouncementsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAnnouncementsResponse>(parameters);
@@ -3530,7 +3530,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Announcement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Announcement>(parameters);
@@ -3697,7 +3697,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Announcement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Announcement>(parameters);
@@ -3984,7 +3984,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWork>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWork>(parameters);
@@ -4116,7 +4116,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4276,7 +4276,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWork>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWork>(parameters);
@@ -4430,7 +4430,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCourseWorkResponse>(parameters);
@@ -4594,7 +4594,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWork>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWork>(parameters);
@@ -4782,7 +4782,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWork>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWork>(parameters);
@@ -5046,7 +5046,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StudentSubmission>(parameters);
@@ -5210,7 +5210,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListStudentSubmissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListStudentSubmissionsResponse>(
@@ -5384,7 +5384,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StudentSubmission>(parameters);
@@ -5571,7 +5571,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StudentSubmission>(parameters);
@@ -5713,7 +5713,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5855,7 +5855,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5997,7 +5997,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6323,7 +6323,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWorkMaterial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
@@ -6454,7 +6454,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6606,7 +6606,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWorkMaterial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
@@ -6765,7 +6765,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkMaterialResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCourseWorkMaterialResponse>(
@@ -6941,7 +6941,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$CourseWorkMaterial>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CourseWorkMaterial>(parameters);
@@ -7187,7 +7187,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Student>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Student>(parameters);
@@ -7319,7 +7319,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7461,7 +7461,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Student>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Student>(parameters);
@@ -7609,7 +7609,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListStudentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListStudentsResponse>(parameters);
@@ -7818,7 +7818,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Teacher>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Teacher>(parameters);
@@ -7950,7 +7950,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8091,7 +8091,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Teacher>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Teacher>(parameters);
@@ -8239,7 +8239,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTeachersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTeachersResponse>(parameters);
@@ -8442,7 +8442,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -8574,7 +8574,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8714,7 +8714,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -8858,7 +8858,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTopicResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicResponse>(parameters);
@@ -9010,7 +9010,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -9216,7 +9216,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9355,7 +9355,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Invitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Invitation>(parameters);
@@ -9484,7 +9484,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9620,7 +9620,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Invitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Invitation>(parameters);
@@ -9765,7 +9765,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInvitationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInvitationsResponse>(parameters);
@@ -9957,7 +9957,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Registration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Registration>(parameters);
@@ -10086,7 +10086,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10254,7 +10254,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$UserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserProfile>(parameters);
@@ -10420,7 +10420,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuardianInvitation>(parameters);
@@ -10564,7 +10564,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuardianInvitation>(parameters);
@@ -10717,7 +10717,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGuardianInvitationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGuardianInvitationsResponse>(
@@ -10878,7 +10878,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuardianInvitation>(parameters);
@@ -11085,7 +11085,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11225,7 +11225,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$Guardian>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Guardian>(parameters);
@@ -11375,7 +11375,7 @@ export namespace classroom_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGuardiansResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGuardiansResponse>(parameters);

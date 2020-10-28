@@ -539,7 +539,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$DeleteEventsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteEventsResponse>(parameters);
@@ -712,7 +712,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListEventsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListEventsResponse>(parameters);
@@ -861,7 +861,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ReportErrorEventResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportErrorEventResponse>(parameters);
@@ -1051,7 +1051,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
@@ -1195,7 +1195,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
@@ -1394,7 +1394,7 @@ export namespace clouderrorreporting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListGroupStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);

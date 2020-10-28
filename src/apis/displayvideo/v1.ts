@@ -4214,7 +4214,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AuditAdvertiserResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuditAdvertiserResponse>(parameters);
@@ -4378,7 +4378,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
@@ -4546,7 +4546,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
@@ -4702,7 +4702,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -4831,7 +4831,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4972,7 +4972,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -5117,7 +5117,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAdvertisersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAdvertisersResponse>(parameters);
@@ -5282,7 +5282,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -5547,7 +5547,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateAssetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateAssetResponse>(parameters);
@@ -5740,7 +5740,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -5875,7 +5875,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6020,7 +6020,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -6171,7 +6171,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCampaignsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCampaignsResponse>(parameters);
@@ -6336,7 +6336,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -6574,7 +6574,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -6714,7 +6714,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -6866,7 +6866,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -7022,7 +7022,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -7265,7 +7265,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
@@ -7413,7 +7413,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -7551,7 +7551,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7704,7 +7704,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
@@ -8025,7 +8025,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8157,7 +8157,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8335,7 +8335,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8483,7 +8483,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -8717,7 +8717,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8967,7 +8967,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -9099,7 +9099,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9246,7 +9246,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -9396,7 +9396,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInsertionOrdersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInsertionOrdersResponse>(parameters);
@@ -9568,7 +9568,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -9824,7 +9824,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
@@ -9995,7 +9995,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
@@ -10175,7 +10175,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -10307,7 +10307,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10461,7 +10461,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -10609,7 +10609,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLineItemsResponse>(parameters);
@@ -10795,7 +10795,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -11169,7 +11169,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -11319,7 +11319,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11516,7 +11516,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -11689,7 +11689,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLineItemAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -11939,7 +11939,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -12077,7 +12077,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -12227,7 +12227,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationListsResponse>(parameters);
@@ -12381,7 +12381,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -12608,7 +12608,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
@@ -12759,7 +12759,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedLocation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedLocation>(parameters);
@@ -12900,7 +12900,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13056,7 +13056,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssignedLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssignedLocationsResponse>(
@@ -13292,7 +13292,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -13424,7 +13424,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13564,7 +13564,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -13708,7 +13708,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
@@ -13865,7 +13865,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -14095,7 +14095,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
@@ -14244,7 +14244,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeyword>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeyword>(parameters);
@@ -14385,7 +14385,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14541,7 +14541,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNegativeKeywordsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNegativeKeywordsResponse>(
@@ -14868,7 +14868,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -15013,7 +15013,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15205,7 +15205,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -15375,7 +15375,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAdvertiserAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -15596,7 +15596,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CombinedAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CombinedAudience>(parameters);
@@ -15750,7 +15750,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCombinedAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCombinedAudiencesResponse>(
@@ -15950,7 +15950,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomBiddingAlgorithm>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
@@ -16104,7 +16104,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
@@ -16291,7 +16291,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomList>(parameters);
@@ -16436,7 +16436,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomListsResponse>(parameters);
@@ -16634,7 +16634,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FirstAndThirdPartyAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
@@ -16794,7 +16794,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
@@ -16985,7 +16985,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FloodlightGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
@@ -17143,7 +17143,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FloodlightGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
@@ -17322,7 +17322,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAudience>(parameters);
@@ -17476,7 +17476,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGoogleAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGoogleAudiencesResponse>(parameters);
@@ -17682,7 +17682,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -17816,7 +17816,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -17959,7 +17959,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -18113,7 +18113,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
@@ -18272,7 +18272,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -18535,7 +18535,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -18696,7 +18696,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedInventorySource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedInventorySource>(parameters);
@@ -18836,7 +18836,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -19001,7 +19001,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
@@ -19239,7 +19239,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySource>(parameters);
@@ -19393,7 +19393,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourcesResponse>(
@@ -19581,7 +19581,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
@@ -19763,7 +19763,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditPartnerAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditPartnerAssignedTargetingOptionsResponse
@@ -19902,7 +19902,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Partner>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Partner>(parameters);
@@ -20044,7 +20044,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPartnersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPartnersResponse>(parameters);
@@ -20241,7 +20241,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20381,7 +20381,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20533,7 +20533,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -20689,7 +20689,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20932,7 +20932,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
@@ -21079,7 +21079,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -21217,7 +21217,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -21369,7 +21369,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
@@ -21706,7 +21706,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -21847,7 +21847,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -22035,7 +22035,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -22205,7 +22205,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPartnerAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -22435,7 +22435,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22585,7 +22585,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22775,7 +22775,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$TargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingOption>(parameters);
@@ -22928,7 +22928,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTargetingOptionsResponse>(
@@ -23127,7 +23127,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
@@ -23269,7 +23269,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -23397,7 +23397,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -23531,7 +23531,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -23671,7 +23671,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUsersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUsersResponse>(parameters);
@@ -23821,7 +23821,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);

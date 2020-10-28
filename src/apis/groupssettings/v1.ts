@@ -550,7 +550,7 @@ export namespace groupssettings_v1 {
       if (callback) {
         createAPIRequest<Schema$Groups>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
@@ -809,7 +809,7 @@ export namespace groupssettings_v1 {
       if (callback) {
         createAPIRequest<Schema$Groups>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
@@ -1068,7 +1068,7 @@ export namespace groupssettings_v1 {
       if (callback) {
         createAPIRequest<Schema$Groups>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);

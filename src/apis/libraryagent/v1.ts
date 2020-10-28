@@ -324,7 +324,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
@@ -478,7 +478,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -642,7 +642,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -782,7 +782,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -943,7 +943,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1083,7 +1083,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(

@@ -708,7 +708,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AggregateResponse>(parameters);
@@ -900,7 +900,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1052,7 +1052,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1215,7 +1215,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1377,7 +1377,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -1545,7 +1545,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1787,7 +1787,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1964,7 +1964,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2134,7 +2134,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -2303,7 +2303,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -2513,7 +2513,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2690,7 +2690,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
@@ -2854,7 +2854,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Session>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Session>(parameters);

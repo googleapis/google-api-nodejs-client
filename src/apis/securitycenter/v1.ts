@@ -1124,7 +1124,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$OrganizationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrganizationSettings>(parameters);
@@ -1276,7 +1276,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$OrganizationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrganizationSettings>(parameters);
@@ -1459,7 +1459,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$GroupAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupAssetsResponse>(parameters);
@@ -1618,7 +1618,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
@@ -1761,7 +1761,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1909,7 +1909,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$SecurityMarks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityMarks>(parameters);
@@ -2151,7 +2151,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$NotificationConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationConfig>(parameters);
@@ -2279,7 +2279,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2416,7 +2416,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$NotificationConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationConfig>(parameters);
@@ -2562,7 +2562,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNotificationConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNotificationConfigsResponse>(
@@ -2717,7 +2717,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$NotificationConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationConfig>(parameters);
@@ -2913,7 +2913,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3040,7 +3040,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3173,7 +3173,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3317,7 +3317,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -3512,7 +3512,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Source>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Source>(parameters);
@@ -3643,7 +3643,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Source>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Source>(parameters);
@@ -3787,7 +3787,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3929,7 +3929,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSourcesResponse>(parameters);
@@ -4074,7 +4074,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Source>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Source>(parameters);
@@ -4219,7 +4219,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4367,7 +4367,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4623,7 +4623,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Finding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Finding>(parameters);
@@ -4777,7 +4777,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$GroupFindingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupFindingsResponse>(parameters);
@@ -4938,7 +4938,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFindingsResponse>(parameters);
@@ -5097,7 +5097,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Finding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Finding>(parameters);
@@ -5248,7 +5248,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$Finding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Finding>(parameters);
@@ -5399,7 +5399,7 @@ export namespace securitycenter_v1 {
       if (callback) {
         createAPIRequest<Schema$SecurityMarks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityMarks>(parameters);
