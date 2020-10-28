@@ -437,7 +437,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -514,7 +514,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -569,7 +569,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.PROFILE and ReadSourceType.CONTACT if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_PROFILE and READ_SOURCE_TYPE_CONTACT if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -631,7 +631,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -831,7 +831,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -960,7 +960,7 @@
                   "type": "string"
                 },
                 "sources": {
-                  "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+                  "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
                   "enum": [
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
@@ -997,7 +997,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201026",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1329,7 +1329,7 @@
           "type": "string"
         },
         "sources": {
-          "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+          "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -2789,7 +2789,7 @@
           "type": "string"
         },
         "sources": {
-          "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+          "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
