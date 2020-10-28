@@ -448,7 +448,7 @@ export namespace recommender_v1 {
    */
   export interface Schema$GoogleTypeMoney {
     /**
-     * The 3-letter currency code defined in ISO 4217.
+     * The three-letter currency code defined in ISO 4217.
      */
     currencyCode?: string | null;
     /**
