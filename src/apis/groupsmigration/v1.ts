@@ -104,14 +104,10 @@ export namespace groupsmigration_v1 {
    * The Groups Migration API allows domain administrators to archive emails into Google groups.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const groupsmigration = google.groupsmigration('v1');
-   *
-   * @namespace groupsmigration
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Groupsmigration
+   * ```
    */
   export class Groupsmigration {
     context: APIRequestContext;
@@ -148,9 +144,9 @@ export namespace groupsmigration_v1 {
     }
 
     /**
-     * groupsmigration.archive.insert
-     * @desc Inserts a new mail into the archive of the Google group.
+     * Inserts a new mail into the archive of the Google group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/groupsmigration.googleapis.com
@@ -199,17 +195,12 @@ export namespace groupsmigration_v1 {
      *   throw e;
      * });
      *
-     * @alias groupsmigration.archive.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupId The group ID
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Archive$Insert,

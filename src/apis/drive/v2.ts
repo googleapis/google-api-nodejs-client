@@ -88,14 +88,10 @@ export namespace drive_v2 {
    * Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const drive = google.drive('v2');
-   *
-   * @namespace drive
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Drive
+   * ```
    */
   export class Drive {
     context: APIRequestContext;
@@ -157,7 +153,11 @@ export namespace drive_v2 {
      */
     canCreateTeamDrives?: boolean | null;
     /**
-     * The domain sharing policy for the current user. Possible values are:   - allowed  - allowedWithWarning  - incomingOnly  - disallowed
+     * The domain sharing policy for the current user. Possible values are:
+     * - allowed
+     * - allowedWithWarning
+     * - incomingOnly
+     * - disallowed
      */
     domainSharingPolicy?: string | null;
     /**
@@ -197,7 +197,7 @@ export namespace drive_v2 {
      */
     kind?: string | null;
     /**
-     * The user&#39;s language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
+     * The user's language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
      */
     languageCode?: string | null;
     /**
@@ -213,7 +213,7 @@ export namespace drive_v2 {
      */
     name?: string | null;
     /**
-     * The current user&#39;s ID as visible in the permissions collection.
+     * The current user's ID as visible in the permissions collection.
      */
     permissionId?: string | null;
     /**
@@ -240,7 +240,9 @@ export namespace drive_v2 {
      */
     quotaBytesUsedInTrash?: string | null;
     /**
-     * The type of the user&#39;s storage quota. Possible values are:   - LIMITED  - UNLIMITED
+     * The type of the user's storage quota. Possible values are:
+     * - LIMITED
+     * - UNLIMITED
      */
     quotaType?: string | null;
     /**
@@ -269,15 +271,15 @@ export namespace drive_v2 {
     user?: Schema$User;
   }
   /**
-   * The apps resource provides a list of the apps that a user has installed, with information about each app&#39;s supported MIME types, file extensions, and other details.
+   * The apps resource provides a list of the apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details.
    */
   export interface Schema$App {
     /**
-     * Whether the app is authorized to access data on the user&#39;s Drive.
+     * Whether the app is authorized to access data on the user's Drive.
      */
     authorized?: boolean | null;
     /**
-     * The template url to create a new file with this app in a given folder. The template will contain {folderId} to be replaced by the folder to create the new file in.
+     * The template url to create a new file with this app in a given folder. The template will contain {folderId\} to be replaced by the folder to create the new file in.
      */
     createInFolderTemplate?: string | null;
     /**
@@ -285,7 +287,7 @@ export namespace drive_v2 {
      */
     createUrl?: string | null;
     /**
-     * Whether the app has drive-wide scope. An app with drive-wide scope can access all files in the user&#39;s drive.
+     * Whether the app has drive-wide scope. An app with drive-wide scope can access all files in the user's drive.
      */
     hasDriveWideScope?: boolean | null;
     /**
@@ -317,7 +319,7 @@ export namespace drive_v2 {
      */
     objectType?: string | null;
     /**
-     * The template url for opening files with this app. The template will contain {ids} and/or {exportIds} to be replaced by the actual file ids. See  Open Files  for the full documentation.
+     * The template url for opening files with this app. The template will contain {ids\} and/or {exportIds\} to be replaced by the actual file ids. See  Open Files  for the full documentation.
      */
     openUrlTemplate?: string | null;
     /**
@@ -505,7 +507,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
      */
     kind?: string | null;
     /**
@@ -563,7 +565,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A reference to a folder&#39;s child.
+   * A reference to a folder's child.
    */
   export interface Schema$ChildReference {
     /**
@@ -592,7 +594,7 @@ export namespace drive_v2 {
      */
     anchor?: string | null;
     /**
-     * The author of the comment. The author&#39;s email address and permission ID will not be populated.
+     * The author of the comment. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -600,7 +602,7 @@ export namespace drive_v2 {
      */
     commentId?: string | null;
     /**
-     * The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment&#39;s content.
+     * The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
      */
     content?: string | null;
     /**
@@ -644,7 +646,9 @@ export namespace drive_v2 {
      */
     selfLink?: string | null;
     /**
-     * The status of this comment. Status can be changed by posting a reply to a comment with the desired status.   - &quot;open&quot; - The comment is still open.  - &quot;resolved&quot; - The comment has been resolved by one of its replies.
+     * The status of this comment. Status can be changed by posting a reply to a comment with the desired status.
+     * - "open" - The comment is still open.
+     * - "resolved" - The comment has been resolved by one of its replies.
      */
     status?: string | null;
   }
@@ -678,11 +682,11 @@ export namespace drive_v2 {
    */
   export interface Schema$CommentReply {
     /**
-     * The author of the reply. The author&#39;s email address and permission ID will not be populated.
+     * The author of the reply. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
-     * The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply&#39;s content. This field is required on inserts if no verb is specified (resolve/reopen).
+     * The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
      */
     content?: string | null;
     /**
@@ -710,7 +714,9 @@ export namespace drive_v2 {
      */
     replyId?: string | null;
     /**
-     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:   - &quot;resolve&quot; - To resolve a comment.  - &quot;reopen&quot; - To reopen (un-resolve) a comment.
+     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:
+     * - "resolve" - To resolve a comment.
+     * - "reopen" - To reopen (un-resolve) a comment.
      */
     verb?: string | null;
   }
@@ -769,7 +775,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Drive {
     /**
-     * An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on drive.drives.update requests that don&#39;t set themeId. When specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on drive.drives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -778,7 +784,7 @@ export namespace drive_v2 {
       yCoordinate?: number;
     } | null;
     /**
-     * A short-lived link to this shared drive&#39;s background image.
+     * A short-lived link to this shared drive's background image.
      */
     backgroundImageLink?: string | null;
     /**
@@ -838,7 +844,7 @@ export namespace drive_v2 {
       driveMembersOnly?: boolean;
     } | null;
     /**
-     * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
      */
     themeId?: string | null;
   }
@@ -935,7 +941,7 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * A link to open this file with the user&#39;s default app for this file. Only populated when the drive.apps.readonly scope is used.
+     * A link to open this file with the user's default app for this file. Only populated when the drive.apps.readonly scope is used.
      */
     defaultOpenWithLink?: string | null;
     /**
@@ -983,7 +989,7 @@ export namespace drive_v2 {
      */
     folderColorRgb?: string | null;
     /**
-     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     fullFileExtension?: string | null;
     /**
@@ -995,11 +1001,11 @@ export namespace drive_v2 {
      */
     hasThumbnail?: boolean | null;
     /**
-     * The ID of the file&#39;s head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     headRevisionId?: string | null;
     /**
-     * A link to the file&#39;s icon.
+     * A link to the file's icon.
      */
     iconLink?: string | null;
     /**
@@ -1076,7 +1082,7 @@ export namespace drive_v2 {
      */
     md5Checksum?: string | null;
     /**
-     * The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content&#39;s MIME type.
+     * The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
      */
     mimeType?: string | null;
     /**
@@ -1088,7 +1094,7 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * A map of the id of each of the user&#39;s apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
+     * A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
      */
     openWithLinks?: {[key: string]: string} | null;
     /**
@@ -1108,7 +1114,8 @@ export namespace drive_v2 {
      */
     owners?: Schema$User[];
     /**
-     * Collection of parent folders which contain this file. If not specified as part of an insert request, the file will be placed directly in the user&#39;s My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the addParents and removeParents parameters to modify the parents list.
+     * Collection of parent folders which contain this file.
+     * If not specified as part of an insert request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the addParents and removeParents parameters to modify the parents list.
      */
     parents?: Schema$ParentReference[];
     /**
@@ -1152,7 +1159,7 @@ export namespace drive_v2 {
      */
     shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
     /**
-     * The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
+     * The list of spaces which contain the file. Supported values are 'drive', 'appDataFolder' and 'photos'.
      */
     spaces?: string[] | null;
     /**
@@ -1164,7 +1171,7 @@ export namespace drive_v2 {
      */
     thumbnail?: {image?: string; mimeType?: string} | null;
     /**
-     * A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content. If the file isn&#39;t shared publicly, the URL returned in Files.thumbnailLink must be fetched using a credentialed request.
+     * A short-lived link to the file's thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in Files.thumbnailLink must be fetched using a credentialed request.
      */
     thumbnailLink?: string | null;
     /**
@@ -1204,7 +1211,7 @@ export namespace drive_v2 {
      */
     webContentLink?: string | null;
     /**
-     * A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
+     * A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive's Website Hosting.
      */
     webViewLink?: string | null;
     /**
@@ -1221,7 +1228,7 @@ export namespace drive_v2 {
      */
     etag?: string | null;
     /**
-     * Whether the search process was incomplete. If true, then some search results may be missing, since all documents were not searched. This may occur when searching multiple drives with the &quot;allDrives&quot; corpora, but all corpora could not be searched. When this happens, it is suggested that clients narrow their query by choosing a different corpus such as &quot;default&quot; or &quot;drive&quot;.
+     * Whether the search process was incomplete. If true, then some search results may be missing, since all documents were not searched. This may occur when searching multiple drives with the "allDrives" corpora, but all corpora could not be searched. When this happens, it is suggested that clients narrow their query by choosing a different corpus such as "default" or "drive".
      */
     incompleteSearch?: boolean | null;
     /**
@@ -1263,7 +1270,7 @@ export namespace drive_v2 {
     space?: string | null;
   }
   /**
-   * A list of a file&#39;s parents.
+   * A list of a file's parents.
    */
   export interface Schema$ParentList {
     /**
@@ -1284,7 +1291,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A reference to a file&#39;s parent.
+   * A reference to a file's parent.
    */
   export interface Schema$ParentReference {
     /**
@@ -1337,7 +1344,12 @@ export namespace drive_v2 {
      */
     etag?: string | null;
     /**
-     * The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:   - They cannot be set on shared drive items  - They can only be set on user and group permissions  - The date must be in the future  - The date cannot be more than a year in the future  - The date can only be set on drive.permissions.update or drive.permissions.patch requests
+     * The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:
+     * - They cannot be set on shared drive items
+     * - They can only be set on user and group permissions
+     * - The date must be in the future
+     * - The date cannot be more than a year in the future
+     * - The date can only be set on drive.permissions.update or drive.permissions.patch requests
      */
     expirationDate?: string | null;
     /**
@@ -1367,7 +1379,12 @@ export namespace drive_v2 {
      */
     photoLink?: string | null;
     /**
-     * The primary role for this user. While new values may be supported in the future, the following are currently allowed:   - owner  - organizer  - fileOrganizer  - writer  - reader
+     * The primary role for this user. While new values may be supported in the future, the following are currently allowed:
+     * - owner
+     * - organizer
+     * - fileOrganizer
+     * - writer
+     * - reader
      */
     role?: string | null;
     /**
@@ -1385,7 +1402,11 @@ export namespace drive_v2 {
       teamDrivePermissionType?: string;
     }> | null;
     /**
-     * The account type. Allowed values are:   - user  - group  - domain  - anyone
+     * The account type. Allowed values are:
+     * - user
+     * - group
+     * - domain
+     * - anyone
      */
     type?: string | null;
     /**
@@ -1440,7 +1461,12 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A key-value pair attached to a file that is either public or private to an application. The following limits apply to file properties:   - Maximum of 100 properties total per file - Maximum of 30 private properties per app - Maximum of 30 public properties - Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property.
+   * A key-value pair attached to a file that is either public or private to an application.
+   * The following limits apply to file properties:
+   * - Maximum of 100 properties total per file
+   * - Maximum of 30 private properties per app
+   * - Maximum of 30 public properties
+   * - Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property.
    */
   export interface Schema$Property {
     /**
@@ -1590,7 +1616,7 @@ export namespace drive_v2 {
   }
   export interface Schema$StartPageToken {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "drive#startPageToken".
      */
     kind?: string | null;
     /**
@@ -1603,7 +1629,7 @@ export namespace drive_v2 {
    */
   export interface Schema$TeamDrive {
     /**
-     * An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on drive.teamdrives.update requests that don&#39;t set themeId. When specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on drive.teamdrives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -1612,7 +1638,7 @@ export namespace drive_v2 {
       yCoordinate?: number;
     } | null;
     /**
-     * A short-lived link to this Team Drive&#39;s background image.
+     * A short-lived link to this Team Drive's background image.
      */
     backgroundImageLink?: string | null;
     /**
@@ -1669,7 +1695,7 @@ export namespace drive_v2 {
       teamMembersOnly?: boolean;
     } | null;
     /**
-     * The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
      */
     themeId?: string | null;
   }
@@ -1711,11 +1737,11 @@ export namespace drive_v2 {
      */
     kind?: string | null;
     /**
-     * The user&#39;s ID as visible in the permissions collection.
+     * The user's ID as visible in the permissions collection.
      */
     permissionId?: string | null;
     /**
-     * The user&#39;s profile picture.
+     * The user's profile picture.
      */
     picture?: {url?: string} | null;
   }
@@ -1727,9 +1753,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.about.get
-     * @desc Gets the information about the current user along with Drive API settings
+     * Gets the information about the current user along with Drive API settings
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -1808,16 +1834,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.about.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeSubscribed Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
-     * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
-     * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$About$Get,
@@ -1917,9 +1939,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.apps.get
-     * @desc Gets a specific app.
+     * Gets a specific app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -1990,14 +2012,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.apps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appId The ID of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Get,
@@ -2078,9 +2098,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.apps.list
-     * @desc Lists a user's installed apps.
+     * Lists a user's installed apps.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -2128,16 +2148,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.apps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
-     * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$List,
@@ -2243,9 +2259,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.changes.get
-     * @desc Deprecated - Use changes.getStartPageToken and changes.list to retrieve recent changes.
+     * Deprecated - Use changes.getStartPageToken and changes.list to retrieve recent changes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -2314,18 +2330,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.changes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.changeId The ID of the change.
-     * @param {string=} params.driveId The shared drive from which the change is returned.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Changes$Get,
@@ -2406,9 +2416,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.changes.getStartPageToken
-     * @desc Gets the starting pageToken for listing future changes.
+     * Gets the starting pageToken for listing future changes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -2464,17 +2474,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.changes.getStartPageToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
@@ -2558,9 +2563,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.changes.list
-     * @desc Lists the changes for a user or shared drive.
+     * Lists the changes for a user or shared drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -2642,27 +2647,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.changes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
-     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
-     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
-     * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Changes$List,
@@ -2740,9 +2730,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.changes.watch
-     * @desc Subscribe to changes for a user.
+     * Subscribe to changes for a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -2843,28 +2833,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.changes.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
-     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
-     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
-     * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Changes$Watch,
@@ -3115,9 +3089,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.channels.stop
-     * @desc Stop watching resources through this channel
+     * Stop watching resources through this channel
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3175,14 +3149,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.channels.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Channels$Stop,
@@ -3275,9 +3247,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.children.delete
-     * @desc Removes a child from a folder.
+     * Removes a child from a folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3319,16 +3291,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.children.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.childId The ID of the child.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's last parent is removed, the item is placed under its owner's root.
-     * @param {string} params.folderId The ID of the folder.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Children$Delete,
@@ -3406,9 +3374,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.children.get
-     * @desc Gets a specific child reference.
+     * Gets a specific child reference.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3461,15 +3429,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.children.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.childId The ID of the child.
-     * @param {string} params.folderId The ID of the folder.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Children$Get,
@@ -3549,9 +3514,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.children.insert
-     * @desc Inserts a file into a folder.
+     * Inserts a file into a folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3615,18 +3580,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.children.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
-     * @param {string} params.folderId The ID of the folder.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().ChildReference} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Children$Insert,
@@ -3707,9 +3666,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.children.list
-     * @desc Lists a folder's children.
+     * Lists a folder's children.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3770,18 +3729,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.children.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.folderId The ID of the folder.
-     * @param {integer=} params.maxResults Maximum number of children to return.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     * @param {string=} params.pageToken Page token for children.
-     * @param {string=} params.q Query string for searching children.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Children$List,
@@ -3939,9 +3892,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.delete
-     * @desc Deletes a comment.
+     * Deletes a comment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -3981,15 +3934,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Comments$Delete,
@@ -4067,9 +4017,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.get
-     * @desc Gets a comment by ID.
+     * Gets a comment by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -4131,16 +4081,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Comments$Get,
@@ -4220,9 +4166,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.insert
-     * @desc Creates a new comment on the given file.
+     * Creates a new comment on the given file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -4301,15 +4247,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Comments$Insert,
@@ -4390,9 +4333,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.list
-     * @desc Lists a file's comments.
+     * Lists a file's comments.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -4448,18 +4391,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
-     * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Comments$List,
@@ -4540,9 +4477,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.patch
-     * @desc Updates an existing comment.
+     * Updates an existing comment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -4623,16 +4560,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Comments$Patch,
@@ -4712,9 +4645,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.comments.update
-     * @desc Updates an existing comment.
+     * Updates an existing comment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -4795,16 +4728,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.comments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Comments$Update,
@@ -4979,9 +4908,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.delete
-     * @desc Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
+     * Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5016,14 +4945,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.driveId The ID of the shared drive.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Drives$Delete,
@@ -5102,9 +5029,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.get
-     * @desc Gets a shared drive's metadata by ID.
+     * Gets a shared drive's metadata by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5159,15 +5086,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.driveId The ID of the shared drive.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Drives$Get,
@@ -5248,9 +5172,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.hide
-     * @desc Hides a shared drive from the default view.
+     * Hides a shared drive from the default view.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5300,14 +5224,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.hide
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.driveId The ID of the shared drive.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     hide(
       params: Params$Resource$Drives$Hide,
@@ -5388,9 +5310,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.insert
-     * @desc Creates a new shared drive.
+     * Creates a new shared drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5458,15 +5380,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
-     * @param {().Drive} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Drives$Insert,
@@ -5544,9 +5463,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.list
-     * @desc Lists the user's shared drives.
+     * Lists the user's shared drives.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5597,17 +5516,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of shared drives to return.
-     * @param {string=} params.pageToken Page token for shared drives.
-     * @param {string=} params.q Query string for searching shared drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Drives$List,
@@ -5685,9 +5599,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.unhide
-     * @desc Restores a shared drive to the default view.
+     * Restores a shared drive to the default view.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5737,14 +5651,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.unhide
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.driveId The ID of the shared drive.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     unhide(
       params: Params$Resource$Drives$Unhide,
@@ -5825,9 +5737,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.drives.update
-     * @desc Updates the metadata for a shared drive.
+     * Updates the metadata for a shared drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -5897,16 +5809,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.drives.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.driveId The ID of the shared drive.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     * @param {().Drive} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Drives$Update,
@@ -6067,9 +5975,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.copy
-     * @desc Creates a copy of the specified file. Folders cannot be copied.
+     * Creates a copy of the specified file. Folders cannot be copied.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -6283,26 +6191,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.copy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
-     * @param {string} params.fileId The ID of the file to copy.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.timedTextLanguage The language of the timed text.
-     * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
-     * @param {().File} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     copy(
       params: Params$Resource$Files$Copy,
@@ -6383,9 +6277,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.delete
-     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
+     * Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -6430,17 +6324,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     * @param {string} params.fileId The ID of the file to delete.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Files$Delete,
@@ -6519,9 +6408,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.emptyTrash
-     * @desc Permanently deletes all of the user's trashed files.
+     * Permanently deletes all of the user's trashed files.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -6556,14 +6445,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.emptyTrash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
@@ -6642,9 +6529,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.export
-     * @desc Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
+     * Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -6685,15 +6572,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.export
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.mimeType The MIME type of the format requested for this export.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     export(
       params: Params$Resource$Files$Export,
@@ -6772,9 +6656,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.generateIds
-     * @desc Generates a set of file IDs which can be provided in insert or copy requests.
+     * Generates a set of file IDs which can be provided in insert or copy requests.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -6822,15 +6706,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.generateIds
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of IDs to return.
-     * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generateIds(
       params: Params$Resource$Files$Generateids,
@@ -6912,9 +6793,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.get
-     * @desc Gets a file's metadata by ID.
+     * Gets a file's metadata by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -7045,21 +6926,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     * @param {string} params.fileId The ID for the file in question.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
-     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Files$Get,
@@ -7140,9 +7012,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.insert
-     * @desc Insert a new file.
+     * Insert a new file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -7359,29 +7231,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.timedTextLanguage The language of the timed text.
-     * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Files$Insert,
@@ -7463,9 +7318,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.list
-     * @desc Lists the user's files.
+     * Lists the user's files.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -7548,28 +7403,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.corpora Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
-     * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
-     * @param {string=} params.driveId ID of the shared drive to search.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
-     * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     * @param {string=} params.pageToken Page token for files.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
-     * @param {string=} params.q Query string for searching files.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Files$List,
@@ -7647,9 +7486,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.patch
-     * @desc Updates file metadata and/or content. This method supports patch semantics.
+     * Updates file metadata and/or content. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -7876,32 +7715,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean=} params.convert This parameter is deprecated and has no function.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
-     * @param {string} params.fileId The ID of the file to update.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
-     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.timedTextLanguage The language of the timed text.
-     * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {().File} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Files$Patch,
@@ -7982,9 +7801,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.touch
-     * @desc Set the file's updated time to the current server time.
+     * Set the file's updated time to the current server time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -8105,17 +7924,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.touch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file to update.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     touch(
       params: Params$Resource$Files$Touch,
@@ -8196,9 +8010,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.trash
-     * @desc Moves a file to the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
+     * Moves a file to the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -8318,17 +8132,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.trash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file to trash.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     trash(
       params: Params$Resource$Files$Trash,
@@ -8409,9 +8218,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.untrash
-     * @desc Restores a file from the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may untrash a file.
+     * Restores a file from the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may untrash a file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -8531,17 +8340,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.untrash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file to untrash.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     untrash(
       params: Params$Resource$Files$Untrash,
@@ -8622,9 +8426,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.update
-     * @desc Updates file metadata and/or content.
+     * Updates file metadata and/or content.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -8855,35 +8659,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean=} params.convert This parameter is deprecated and has no function.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
-     * @param {string} params.fileId The ID of the file to update.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
-     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {string=} params.timedTextLanguage The language of the timed text.
-     * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Files$Update,
@@ -8968,9 +8749,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.files.watch
-     * @desc Subscribe to changes on a file
+     * Subscribe to changes on a file
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -9058,22 +8839,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.files.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     * @param {string} params.fileId The ID for the file in question.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
-     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Files$Watch,
@@ -9694,9 +9465,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.parents.delete
-     * @desc Removes a parent from a file.
+     * Removes a parent from a file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -9738,16 +9509,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.parents.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's last parent is removed, the item is placed under its owner's root.
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.parentId The ID of the parent.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Parents$Delete,
@@ -9825,9 +9592,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.parents.get
-     * @desc Gets a specific parent reference.
+     * Gets a specific parent reference.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -9881,15 +9648,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.parents.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.parentId The ID of the parent.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Parents$Get,
@@ -9969,9 +9733,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.parents.insert
-     * @desc Adds a parent folder for a file.
+     * Adds a parent folder for a file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10037,18 +9801,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.parents.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
-     * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().ParentReference} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Parents$Insert,
@@ -10129,9 +9887,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.parents.list
-     * @desc Lists a file's parents.
+     * Lists a file's parents.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10182,14 +9940,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.parents.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Parents$List,
@@ -10331,9 +10087,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.delete
-     * @desc Deletes a permission from a file or shared drive.
+     * Deletes a permission from a file or shared drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10379,18 +10135,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Permissions$Delete,
@@ -10469,9 +10219,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.get
-     * @desc Gets a permission by ID.
+     * Gets a permission by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10544,18 +10294,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Permissions$Get,
@@ -10635,9 +10379,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.getIdForEmail
-     * @desc Returns the permission ID for an email address.
+     * Returns the permission ID for an email address.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10687,14 +10431,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.getIdForEmail
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.email The email address for which to return a permission ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIdForEmail(
       params: Params$Resource$Permissions$Getidforemail,
@@ -10776,9 +10518,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.insert
-     * @desc Inserts a permission for a file or shared drive.
+     * Inserts a permission for a file or shared drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -10879,22 +10621,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.emailMessage A plain text custom message to include in notification emails.
-     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {boolean=} params.moveToNewOwnersRoot This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
-     * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Permissions$Insert,
@@ -10976,9 +10708,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.list
-     * @desc Lists a file's or shared drive's permissions.
+     * Lists a file's or shared drive's permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -11041,20 +10773,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Permissions$List,
@@ -11135,9 +10859,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.patch
-     * @desc Updates a permission using patch semantics.
+     * Updates a permission using patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -11236,21 +10960,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Permissions$Patch,
@@ -11331,9 +11046,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.permissions.update
-     * @desc Updates a permission.
+     * Updates a permission.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -11432,21 +11147,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.permissions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file or shared drive.
-     * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
-     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Permissions$Update,
@@ -11729,9 +11435,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.delete
-     * @desc Deletes a property.
+     * Deletes a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -11775,16 +11481,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Delete,
@@ -11863,9 +11565,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.get
-     * @desc Gets a property by its key.
+     * Gets a property by its key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -11922,16 +11624,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Get,
@@ -12011,9 +11709,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.insert
-     * @desc Adds a property to a file, or updates it if it already exists.
+     * Adds a property to a file, or updates it if it already exists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12076,15 +11774,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {().Property} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Properties$Insert,
@@ -12166,9 +11861,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.list
-     * @desc Lists a file's properties.
+     * Lists a file's properties.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12219,14 +11914,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$List,
@@ -12307,9 +12000,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.patch
-     * @desc Updates a property.
+     * Updates a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12376,17 +12069,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
-     * @param {().Property} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Patch,
@@ -12466,9 +12154,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.properties.update
-     * @desc Updates a property.
+     * Updates a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12535,17 +12223,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.properties.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
-     * @param {().Property} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Properties$Update,
@@ -12720,9 +12403,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.delete
-     * @desc Deletes a reply.
+     * Deletes a reply.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12764,16 +12447,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.replyId The ID of the reply.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Replies$Delete,
@@ -12852,9 +12531,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.get
-     * @desc Gets a reply.
+     * Gets a reply.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -12912,17 +12591,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
-     * @param {string} params.replyId The ID of the reply.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Replies$Get,
@@ -13003,9 +12677,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.insert
-     * @desc Creates a new reply to the given comment.
+     * Creates a new reply to the given comment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13074,16 +12748,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {().CommentReply} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Replies$Insert,
@@ -13163,9 +12833,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.list
-     * @desc Lists all of the replies to a comment.
+     * Lists all of the replies to a comment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13221,18 +12891,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
-     * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Replies$List,
@@ -13312,9 +12976,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.patch
-     * @desc Updates an existing reply.
+     * Updates an existing reply.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13385,17 +13049,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.replyId The ID of the reply.
-     * @param {().CommentReply} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Replies$Patch,
@@ -13476,9 +13135,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.replies.update
-     * @desc Updates an existing reply.
+     * Updates an existing reply.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13549,17 +13208,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.replies.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commentId The ID of the comment.
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.replyId The ID of the reply.
-     * @param {().CommentReply} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Replies$Update,
@@ -13755,9 +13409,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.revisions.delete
-     * @desc Permanently deletes a file version. You can only delete revisions for files with binary content, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * Permanently deletes a file version. You can only delete revisions for files with binary content, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13798,15 +13452,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.revisions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.revisionId The ID of the revision.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Revisions$Delete,
@@ -13884,9 +13535,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.revisions.get
-     * @desc Gets a specific revision.
+     * Gets a specific revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -13953,15 +13604,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.revisions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {string} params.revisionId The ID of the revision.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Revisions$Get,
@@ -14041,9 +13689,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.revisions.list
-     * @desc Lists a file's revisions.
+     * Lists a file's revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14099,16 +13747,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.revisions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file.
-     * @param {integer=} params.maxResults Maximum number of revisions to return.
-     * @param {string=} params.pageToken Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Revisions$List,
@@ -14189,9 +13833,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.revisions.patch
-     * @desc Updates a revision.
+     * Updates a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14279,16 +13923,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.revisions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
-     * @param {string} params.revisionId The ID for the revision.
-     * @param {().Revision} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Revisions$Patch,
@@ -14368,9 +14008,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.revisions.update
-     * @desc Updates a revision.
+     * Updates a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14458,16 +14098,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.revisions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
-     * @param {string} params.revisionId The ID for the revision.
-     * @param {().Revision} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Revisions$Update,
@@ -14619,9 +14255,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.teamdrives.delete
-     * @desc Deprecated use drives.delete instead.
+     * Deprecated use drives.delete instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14656,14 +14292,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.teamdrives.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Teamdrives$Delete,
@@ -14743,9 +14377,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.teamdrives.get
-     * @desc Deprecated use drives.get instead.
+     * Deprecated use drives.get instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14799,15 +14433,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.teamdrives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Teamdrives$Get,
@@ -14888,9 +14519,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.teamdrives.insert
-     * @desc Deprecated use drives.insert instead.
+     * Deprecated use drives.insert instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -14956,15 +14587,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.teamdrives.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
-     * @param {().TeamDrive} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Teamdrives$Insert,
@@ -15046,9 +14674,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.teamdrives.list
-     * @desc Deprecated use drives.list instead.
+     * Deprecated use drives.list instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -15099,17 +14727,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.teamdrives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of Team Drives to return.
-     * @param {string=} params.pageToken Page token for Team Drives.
-     * @param {string=} params.q Query string for searching Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Teamdrives$List,
@@ -15190,9 +14813,9 @@ export namespace drive_v2 {
     }
 
     /**
-     * drive.teamdrives.update
-     * @desc Deprecated use drives.update instead.
+     * Deprecated use drives.update instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/drive.googleapis.com
@@ -15260,16 +14883,12 @@ export namespace drive_v2 {
      *   throw e;
      * });
      *
-     * @alias drive.teamdrives.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     * @param {().TeamDrive} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Teamdrives$Update,

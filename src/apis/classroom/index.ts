@@ -33,3 +33,14 @@ export function classroom<T = classroom_v1.Classroom>(
 
 const auth = new AuthPlus();
 export {auth};
+export {classroom_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

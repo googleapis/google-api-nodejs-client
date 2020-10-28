@@ -35,3 +35,14 @@ export function servicemanagement<T = servicemanagement_v1.Servicemanagement>(
 
 const auth = new AuthPlus();
 export {auth};
+export {servicemanagement_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

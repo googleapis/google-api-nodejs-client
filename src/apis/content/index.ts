@@ -35,3 +35,15 @@ export function content<T = content_v2_1.Content | content_v2.Content>(
 
 const auth = new AuthPlus();
 export {auth};
+export {content_v2_1};
+export {content_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

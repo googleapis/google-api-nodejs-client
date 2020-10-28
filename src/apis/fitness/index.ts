@@ -31,3 +31,14 @@ export function fitness<T = fitness_v1.Fitness>(
 
 const auth = new AuthPlus();
 export {auth};
+export {fitness_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -56,3 +56,16 @@ export function cloudbuild<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudbuild_v1};
+export {cloudbuild_v1alpha1};
+export {cloudbuild_v1alpha2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

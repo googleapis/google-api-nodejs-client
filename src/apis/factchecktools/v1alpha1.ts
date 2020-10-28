@@ -104,14 +104,10 @@ export namespace factchecktools_v1alpha1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const factchecktools = google.factchecktools('v1alpha1');
-   *
-   * @namespace factchecktools
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Factchecktools
+   * ```
    */
   export class Factchecktools {
     context: APIRequestContext;
@@ -134,7 +130,7 @@ export namespace factchecktools_v1alpha1 {
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1Claim {
     /**
-     * A person or organization stating the claim. For instance, &quot;John Doe&quot;.
+     * A person or organization stating the claim. For instance, "John Doe".
      */
     claimant?: string | null;
     /**
@@ -146,7 +142,7 @@ export namespace factchecktools_v1alpha1 {
      */
     claimReview?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview[];
     /**
-     * The claim text. For instance, &quot;Crime has doubled in the last 2 years.&quot;
+     * The claim text. For instance, "Crime has doubled in the last 2 years."
      */
     text?: string | null;
   }
@@ -163,7 +159,7 @@ export namespace factchecktools_v1alpha1 {
      */
     jobTitle?: string | null;
     /**
-     * A person or organization stating the claim. For instance, &quot;John Doe&quot;. Corresponds to `ClaimReview.itemReviewed.author.name`.
+     * A person or organization stating the claim. For instance, "John Doe". Corresponds to `ClaimReview.itemReviewed.author.name`.
      */
     name?: string | null;
     /**
@@ -205,7 +201,7 @@ export namespace factchecktools_v1alpha1 {
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview {
     /**
-     * The language this review was written in. For instance, &quot;en&quot; or &quot;de&quot;.
+     * The language this review was written in. For instance, "en" or "de".
      */
     languageCode?: string | null;
     /**
@@ -217,7 +213,7 @@ export namespace factchecktools_v1alpha1 {
      */
     reviewDate?: string | null;
     /**
-     * Textual rating. For instance, &quot;Mostly false&quot;.
+     * Textual rating. For instance, "Mostly false".
      */
     textualRating?: string | null;
     /**
@@ -275,7 +271,7 @@ export namespace factchecktools_v1alpha1 {
      */
     rating?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating;
     /**
-     * This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (&quot;page jump&quot;). Corresponds to `ClaimReview.url`
+     * This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link ("page jump"). Corresponds to `ClaimReview.url`
      */
     url?: string | null;
   }
@@ -292,7 +288,7 @@ export namespace factchecktools_v1alpha1 {
      */
     claimReviewMarkups?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup[];
     /**
-     * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
+     * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id\}`. Except for update requests, this field is output-only and should not be set by the user.
      */
     name?: string | null;
     /**
@@ -339,16 +335,16 @@ export namespace factchecktools_v1alpha1 {
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1Publisher {
     /**
-     * The name of this publisher. For instance, &quot;Awesome Fact Checks&quot;.
+     * The name of this publisher. For instance, "Awesome Fact Checks".
      */
     name?: string | null;
     /**
-     * Host-level site name, without the protocol or &quot;www&quot; prefix. For instance, &quot;awesomefactchecks.com&quot;. This value of this field is based purely on the claim review URL.
+     * Host-level site name, without the protocol or "www" prefix. For instance, "awesomefactchecks.com". This value of this field is based purely on the claim review URL.
      */
     site?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -359,9 +355,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.claims.search
-     * @desc Search through fact-checked claims.
+     * Search through fact-checked claims.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -414,20 +410,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.claims.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region.
-     * @param {integer=} params.maxAgeDays The maximum age of the returned search results, in days. Age is determined by either claim date or review date, whichever is newer.
-     * @param {integer=} params.offset An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
-     * @param {integer=} params.pageSize The pagination size. We will return up to that many results. Defaults to 10 if not set.
-     * @param {string=} params.pageToken The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.
-     * @param {string=} params.query Textual query string. Required unless `review_publisher_site_filter` is specified.
-     * @param {string=} params.reviewPublisherSiteFilter The review publisher site to filter results by, e.g. nytimes.com.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Claims$Search,
@@ -573,9 +561,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.pages.create
-     * @desc Create `ClaimReview` markup on a page.
+     * Create `ClaimReview` markup on a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -630,14 +618,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.pages.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Pages$Create,
@@ -742,9 +728,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.pages.delete
-     * @desc Delete all `ClaimReview` markup on a page.
+     * Delete all `ClaimReview` markup on a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -768,7 +754,7 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.pages.delete({
-     *     // The name of the resource to delete, in the form of `pages/{page_id}`.
+     *     // The name of the resource to delete, in the form of `pages/{page_id\}`.
      *     name: 'pages/my-page',
      *   });
      *   console.log(res.data);
@@ -782,14 +768,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.pages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the resource to delete, in the form of `pages/{page_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Pages$Delete,
@@ -871,9 +855,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.pages.get
-     * @desc Get all `ClaimReview` markup on a page.
+     * Get all `ClaimReview` markup on a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -897,7 +881,7 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.pages.get({
-     *     // The name of the resource to get, in the form of `pages/{page_id}`.
+     *     // The name of the resource to get, in the form of `pages/{page_id\}`.
      *     name: 'pages/my-page',
      *   });
      *   console.log(res.data);
@@ -918,14 +902,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.pages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the resource to get, in the form of `pages/{page_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pages$Get,
@@ -1030,9 +1012,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.pages.list
-     * @desc List the `ClaimReview` markup pages for a specific URL or for an organization.
+     * List the `ClaimReview` markup pages for a specific URL or for an organization.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -1081,18 +1063,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.pages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.offset An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset, and if the request is not for a specific URL. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
-     * @param {string=} params.organization The organization for which we want to fetch markups for. For instance, "site.com". Cannot be specified along with an URL.
-     * @param {integer=} params.pageSize The pagination size. We will return up to that many results. Defaults to 10 if not set. Has no effect if a URL is requested.
-     * @param {string=} params.pageToken The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.
-     * @param {string=} params.url The URL from which to get `ClaimReview` markup. There will be at most one result. If markup is associated with a more canonical version of the URL provided, we will return that URL instead. Cannot be specified along with an organization.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Pages$List,
@@ -1197,9 +1173,9 @@ export namespace factchecktools_v1alpha1 {
     }
 
     /**
-     * factchecktools.pages.update
-     * @desc Update for all `ClaimReview` markup on a page Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.
+     * Update for all `ClaimReview` markup on a page Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
@@ -1223,7 +1199,7 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.pages.update({
-     *     // The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
+     *     // The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id\}`. Except for update requests, this field is output-only and should not be set by the user.
      *     name: 'pages/my-page',
      *
      *     // Request body metadata
@@ -1257,15 +1233,12 @@ export namespace factchecktools_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias factchecktools.pages.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Pages$Update,
@@ -1378,13 +1351,13 @@ export namespace factchecktools_v1alpha1 {
   }
   export interface Params$Resource$Pages$Delete extends StandardParameters {
     /**
-     * The name of the resource to delete, in the form of `pages/{page_id}`.
+     * The name of the resource to delete, in the form of `pages/{page_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
-     * The name of the resource to get, in the form of `pages/{page_id}`.
+     * The name of the resource to get, in the form of `pages/{page_id\}`.
      */
     name?: string;
   }
@@ -1412,7 +1385,7 @@ export namespace factchecktools_v1alpha1 {
   }
   export interface Params$Resource$Pages$Update extends StandardParameters {
     /**
-     * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
+     * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id\}`. Except for update requests, this field is output-only and should not be set by the user.
      */
     name?: string;
 

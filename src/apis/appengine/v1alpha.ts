@@ -104,14 +104,10 @@ export namespace appengine_v1alpha {
    * Provisions and manages developers&#39; App Engine applications.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const appengine = google.appengine('v1alpha');
-   *
-   * @namespace appengine
-   * @type {Function}
-   * @version v1alpha
-   * @variation v1alpha
-   * @param {object=} options Options for Appengine
+   * ```
    */
   export class Appengine {
     context: APIRequestContext;
@@ -234,7 +230,7 @@ export namespace appengine_v1alpha {
      */
     name?: string | null;
     /**
-     * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.@OutputOnly
+     * The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.@OutputOnly
      */
     resourceRecords?: Schema$ResourceRecord[];
     /**
@@ -243,7 +239,7 @@ export namespace appengine_v1alpha {
     sslSettings?: Schema$SslSettings;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
   /**
@@ -316,15 +312,15 @@ export namespace appengine_v1alpha {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: &quot;us-east1&quot;.
+     * The canonical id for this location. For example: "us-east1".
      */
     locationId?: string | null;
     /**
@@ -332,7 +328,7 @@ export namespace appengine_v1alpha {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
+     * Resource name for the location, which may vary between implementations. For example: "projects/example-project/locations/us-east1"
      */
     name?: string | null;
   }
@@ -379,7 +375,7 @@ export namespace appengine_v1alpha {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id\}.
      */
     name?: string | null;
     /**
@@ -494,7 +490,7 @@ export namespace appengine_v1alpha {
    */
   export interface Schema$ResourceRecord {
     /**
-     * Relative name of the object affected by this record. Only applicable for CNAME records. Example: &#39;www&#39;.
+     * Relative name of the object affected by this record. Only applicable for CNAME records. Example: 'www'.
      */
     name?: string | null;
     /**
@@ -565,9 +561,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.create
-     * @desc Uploads the specified SSL certificate.
+     * Uploads the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -631,15 +627,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {().AuthorizedCertificate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
@@ -725,9 +718,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.delete
-     * @desc Deletes the specified SSL certificate.
+     * Deletes the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -767,15 +760,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
@@ -857,9 +847,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.get
-     * @desc Gets the specified SSL certificate.
+     * Gets the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -915,16 +905,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the GET response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
@@ -1011,9 +997,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.list
-     * @desc Lists all SSL certificates the user is authorized to administer.
+     * Lists all SSL certificates the user is authorized to administer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1064,17 +1050,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string=} params.view Controls the set of fields returned in the LIST response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
@@ -1164,9 +1145,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.patch
-     * @desc Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
+     * Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1234,17 +1215,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-     * @param {().AuthorizedCertificate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
@@ -1416,9 +1392,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.authorizedDomains.list
-     * @desc Lists all domains the user is authorized to administer.
+     * Lists all domains the user is authorized to administer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1467,16 +1443,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedDomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
@@ -1590,9 +1562,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.domainMappings.create
-     * @desc Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
+     * Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1651,17 +1623,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.
-     * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
@@ -1743,9 +1710,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.domainMappings.delete
-     * @desc Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
+     * Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1791,15 +1758,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
@@ -1881,9 +1845,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.domainMappings.get
-     * @desc Gets the specified domain mapping.
+     * Gets the specified domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1932,15 +1896,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
@@ -2022,9 +1983,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.domainMappings.list
-     * @desc Lists the domain mappings on an application.
+     * Lists the domain mappings on an application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2073,16 +2034,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Domainmappings$List,
@@ -2171,9 +2128,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.domainMappings.patch
-     * @desc Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
+     * Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2234,18 +2191,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
@@ -2416,9 +2367,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2468,15 +2419,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Resource name for the location.
-     * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Locations$Get,
@@ -2557,9 +2505,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2610,17 +2558,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-     * @param {string=} params.filter The standard list filter.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Locations$List,
@@ -2745,9 +2688,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2797,15 +2740,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation resource.
-     * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Operations$Get,
@@ -2886,9 +2826,9 @@ export namespace appengine_v1alpha {
     }
 
     /**
-     * appengine.apps.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2939,17 +2879,12 @@ export namespace appengine_v1alpha {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
-     * @param {string=} params.filter The standard list filter.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Operations$List,

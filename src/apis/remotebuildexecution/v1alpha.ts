@@ -104,14 +104,10 @@ export namespace remotebuildexecution_v1alpha {
    * Supplies a Remote Execution API service for tools such as bazel.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const remotebuildexecution = google.remotebuildexecution('v1alpha');
-   *
-   * @namespace remotebuildexecution
-   * @type {Function}
-   * @version v1alpha
-   * @variation v1alpha
-   * @param {object=} options Options for Remotebuildexecution
+   * ```
    */
   export class Remotebuildexecution {
     context: APIRequestContext;
@@ -136,7 +132,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     commandDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
-     * If true, then the `Action`&#39;s result cannot be cached, and in-flight requests for the same `Action` may not be merged.
+     * If true, then the `Action`'s result cannot be cached, and in-flight requests for the same `Action` may not be merged.
      */
     doNotCache?: boolean | null;
     /**
@@ -148,7 +144,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     outputNodeProperties?: string[] | null;
     /**
-     * A timeout after which the execution should be killed. If the timeout is absent, then the client is specifying that the execution should continue as long as the server will let it. The server SHOULD impose a timeout if the client does not specify one, however, if the client does specify a timeout that is longer than the server&#39;s maximum timeout, the server MUST reject the request. The timeout is a part of the Action message, and therefore two `Actions` with different timeouts are different, even if they are otherwise identical. This is because, if they were not, running an `Action` with a lower timeout than is required might result in a cache hit from an execution run with a longer timeout, hiding the fact that the timeout is too short. By encoding it directly in the `Action`, a lower timeout will result in a cache miss and the execution timeout will fail immediately, rather than whenever the cache entry gets evicted.
+     * A timeout after which the execution should be killed. If the timeout is absent, then the client is specifying that the execution should continue as long as the server will let it. The server SHOULD impose a timeout if the client does not specify one, however, if the client does specify a timeout that is longer than the server's maximum timeout, the server MUST reject the request. The timeout is a part of the Action message, and therefore two `Actions` with different timeouts are different, even if they are otherwise identical. This is because, if they were not, running an `Action` with a lower timeout than is required might result in a cache hit from an execution run with a longer timeout, hiding the fact that the timeout is too short. By encoding it directly in the `Action`, a lower timeout will result in a cache miss and the execution timeout will fail immediately, rather than whenever the cache entry gets evicted.
      */
     timeout?: string | null;
   }
@@ -165,7 +161,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     exitCode?: number | null;
     /**
-     * The output directories of the action. For each output directory requested in the `output_directories` or `output_paths` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member. As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability): ```json // OutputDirectory proto: { path: &quot;a/b/dir&quot; tree_digest: { hash: &quot;4a73bc9d03...&quot;, size: 55 } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: { root: { files: [ { name: &quot;bar&quot;, digest: { hash: &quot;4a73bc9d03...&quot;, size: 65534 } } ], directories: [ { name: &quot;foo&quot;, digest: { hash: &quot;4cf2eda940...&quot;, size: 43 } } ] } children : { // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) files: [ { name: &quot;baz&quot;, digest: { hash: &quot;b2c941073e...&quot;, size: 1294, }, is_executable: true } ] } } ``` If an output of the same name as listed in `output_files` of the Command was found in `output_directories`, but was not a directory, the server will return a FAILED_PRECONDITION.
+     * The output directories of the action. For each output directory requested in the `output_directories` or `output_paths` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member. As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability): ```json // OutputDirectory proto: { path: "a/b/dir" tree_digest: { hash: "4a73bc9d03...", size: 55 \} \} // Tree proto with hash "4a73bc9d03..." and size 55: { root: { files: [ { name: "bar", digest: { hash: "4a73bc9d03...", size: 65534 \} \} ], directories: [ { name: "foo", digest: { hash: "4cf2eda940...", size: 43 \} \} ] \} children : { // (Directory proto with hash "4cf2eda940..." and size 43) files: [ { name: "baz", digest: { hash: "b2c941073e...", size: 1294, \}, is_executable: true \} ] \} \} ``` If an output of the same name as listed in `output_files` of the Command was found in `output_directories`, but was not a directory, the server will return a FAILED_PRECONDITION.
      */
     outputDirectories?: Schema$BuildBazelRemoteExecutionV2OutputDirectory[];
     /**
@@ -235,7 +231,7 @@ export namespace remotebuildexecution_v1alpha {
     workingDirectory?: string | null;
   }
   /**
-   * An `EnvironmentVariable` is one variable to set in the running program&#39;s environment.
+   * An `EnvironmentVariable` is one variable to set in the running program's environment.
    */
   export interface Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable {
     /**
@@ -261,7 +257,7 @@ export namespace remotebuildexecution_v1alpha {
     sizeBytes?: string | null;
   }
   /**
-   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory. In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`: * Every child in the directory must have a path of exactly one segment. Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name). Note that while the API itself is case-sensitive, the environment where the Action is executed may or may not be case-sensitive. That is, it is legal to call the API with a Directory that has both &quot;Foo&quot; and &quot;foo&quot; as children, but the Action may be rejected by the remote system upon execution. * The files, directories and symlinks in the directory must each be sorted in lexicographical order by path. The path strings must be sorted by code point, equivalently, by UTF-8 bytes. * The NodeProperties of files, directories, and symlinks must be sorted in lexicographical order by property name. A `Directory` that obeys the restrictions is said to be in canonical form. As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability): ```json // (Directory proto) { files: [ { name: &quot;bar&quot;, digest: { hash: &quot;4a73bc9d03...&quot;, size: 65534 }, node_properties: [ { &quot;name&quot;: &quot;MTime&quot;, &quot;value&quot;: &quot;2017-01-15T01:30:15.01Z&quot; } ] } ], directories: [ { name: &quot;foo&quot;, digest: { hash: &quot;4cf2eda940...&quot;, size: 43 } } ] } // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) { files: [ { name: &quot;baz&quot;, digest: { hash: &quot;b2c941073e...&quot;, size: 1294, }, is_executable: true } ] } ```
+   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory. In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`: * Every child in the directory must have a path of exactly one segment. Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name). Note that while the API itself is case-sensitive, the environment where the Action is executed may or may not be case-sensitive. That is, it is legal to call the API with a Directory that has both "Foo" and "foo" as children, but the Action may be rejected by the remote system upon execution. * The files, directories and symlinks in the directory must each be sorted in lexicographical order by path. The path strings must be sorted by code point, equivalently, by UTF-8 bytes. * The NodeProperties of files, directories, and symlinks must be sorted in lexicographical order by property name. A `Directory` that obeys the restrictions is said to be in canonical form. As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability): ```json // (Directory proto) { files: [ { name: "bar", digest: { hash: "4a73bc9d03...", size: 65534 \}, node_properties: [ { "name": "MTime", "value": "2017-01-15T01:30:15.01Z" \} ] \} ], directories: [ { name: "foo", digest: { hash: "4cf2eda940...", size: 43 \} \} ] \} // (Directory proto with hash "4cf2eda940..." and size 43) { files: [ { name: "baz", digest: { hash: "b2c941073e...", size: 1294, \}, is_executable: true \} ] \} ```
    */
   export interface Schema$BuildBazelRemoteExecutionV2Directory {
     /**
@@ -377,7 +373,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     result?: Schema$BuildBazelRemoteExecutionV2ActionResult;
     /**
-     * An optional list of additional log outputs the server wishes to provide. A server can use this to return execution-specific logs however it wishes. This is intended primarily to make it easier for users to debug issues that may be outside of the actual job execution, such as by identifying the worker executing the action or by providing logs from the worker&#39;s setup phase. The keys SHOULD be human readable so that a client can display them to a user.
+     * An optional list of additional log outputs the server wishes to provide. A server can use this to return execution-specific logs however it wishes. This is intended primarily to make it easier for users to debug issues that may be outside of the actual job execution, such as by identifying the worker executing the action or by providing logs from the worker's setup phase. The keys SHOULD be human readable so that a client can display them to a user.
      */
     serverLogs?: {
       [key: string]: Schema$BuildBazelRemoteExecutionV2LogFile;
@@ -392,7 +388,7 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$BuildBazelRemoteExecutionV2FileNode {
     /**
-     * The digest of the file&#39;s content.
+     * The digest of the file's content.
      */
     digest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
@@ -435,7 +431,7 @@ export namespace remotebuildexecution_v1alpha {
     value?: string | null;
   }
   /**
-   * An `OutputDirectory` is the output in an `ActionResult` corresponding to a directory&#39;s full contents rather than a single file.
+   * An `OutputDirectory` is the output in an `ActionResult` corresponding to a directory's full contents rather than a single file.
    */
   export interface Schema$BuildBazelRemoteExecutionV2OutputDirectory {
     /**
@@ -443,7 +439,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     path?: string | null;
     /**
-     * The digest of the encoded Tree proto containing the directory&#39;s contents.
+     * The digest of the encoded Tree proto containing the directory's contents.
      */
     treeDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
   }
@@ -456,7 +452,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     contents?: string | null;
     /**
-     * The digest of the file&#39;s content.
+     * The digest of the file's content.
      */
     digest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
@@ -490,7 +486,7 @@ export namespace remotebuildexecution_v1alpha {
     target?: string | null;
   }
   /**
-   * A `Platform` is a set of requirements, such as hardware, operating system, or compiler toolchain, for an Action&#39;s execution environment. A `Platform` is represented as a series of key-value pairs representing the properties that are required of the platform.
+   * A `Platform` is a set of requirements, such as hardware, operating system, or compiler toolchain, for an Action's execution environment. A `Platform` is represented as a series of key-value pairs representing the properties that are required of the platform.
    */
   export interface Schema$BuildBazelRemoteExecutionV2Platform {
     /**
@@ -499,7 +495,7 @@ export namespace remotebuildexecution_v1alpha {
     properties?: Schema$BuildBazelRemoteExecutionV2PlatformProperty[];
   }
   /**
-   * A single property for the environment. The server is responsible for specifying the property `name`s that it accepts. If an unknown `name` is provided in the requirements for an Action, the server SHOULD reject the execution request. If permitted by the server, the same `name` may occur multiple times. The server is also responsible for specifying the interpretation of property `value`s. For instance, a property describing how much RAM must be available may be interpreted as allowing a worker with 16GB to fulfill a request for 8GB, while a property describing the OS environment on which the action must be performed may require an exact match with the worker&#39;s OS. The server MAY use the `value` of one or more properties to determine how it sets up the execution environment, such as by making specific system files available to the worker.
+   * A single property for the environment. The server is responsible for specifying the property `name`s that it accepts. If an unknown `name` is provided in the requirements for an Action, the server SHOULD reject the execution request. If permitted by the server, the same `name` may occur multiple times. The server is also responsible for specifying the interpretation of property `value`s. For instance, a property describing how much RAM must be available may be interpreted as allowing a worker with 16GB to fulfill a request for 8GB, while a property describing the OS environment on which the action must be performed may require an exact match with the worker's OS. The server MAY use the `value` of one or more properties to determine how it sets up the execution environment, such as by making specific system files available to the worker.
    */
   export interface Schema$BuildBazelRemoteExecutionV2PlatformProperty {
     /**
@@ -683,7 +679,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     acceleratorCount?: string | null;
     /**
-     * The type of accelerator to attach to each VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
+     * The type of accelerator to attach to each VM, e.g. "nvidia-tesla-k80" for nVidia Tesla K80.
      */
     acceleratorType?: string | null;
   }
@@ -757,7 +753,7 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy {
     /**
-     * Which container image sources are allowed. Currently only RBE-supported registry (gcr.io) is allowed. One can allow all repositories under a project or one specific repository only. E.g. container_image_sources { policy: RESTRICTED allowed_values: [ &quot;gcr.io/project-foo&quot;, &quot;gcr.io/project-bar/repo-baz&quot;, ] } will allow any repositories under &quot;gcr.io/project-foo&quot; plus the repository &quot;gcr.io/project-bar/repo-baz&quot;. Default (UNSPECIFIED) is equivalent to any source is allowed.
+     * Which container image sources are allowed. Currently only RBE-supported registry (gcr.io) is allowed. One can allow all repositories under a project or one specific repository only. E.g. container_image_sources { policy: RESTRICTED allowed_values: [ "gcr.io/project-foo", "gcr.io/project-bar/repo-baz", ] \} will allow any repositories under "gcr.io/project-foo" plus the repository "gcr.io/project-bar/repo-baz". Default (UNSPECIFIED) is equivalent to any source is allowed.
      */
     containerImageSources?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature;
     /**
@@ -863,7 +859,7 @@ export namespace remotebuildexecution_v1alpha {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `&gt;`, `&gt;=`, `&lt;=` or `&lt;`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count &gt; 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string | null;
     /**
@@ -886,7 +882,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     nodesZone?: string | null;
     /**
-     * The sole-tenant node type to host the pool&#39;s workers on.
+     * The sole-tenant node type to host the pool's workers on.
      */
     nodeType?: string | null;
   }
@@ -957,11 +953,11 @@ export namespace remotebuildexecution_v1alpha {
      */
     minCpuPlatform?: string | null;
     /**
-     * Determines the type of network access granted to workers. Possible values: - &quot;public&quot;: Workers can connect to the public internet. - &quot;private&quot;: Workers can only connect to Google APIs and services. - &quot;restricted-private&quot;: Workers can only connect to Google APIs that are reachable through `restricted.googleapis.com` (`199.36.153.4/30`).
+     * Determines the type of network access granted to workers. Possible values: - "public": Workers can connect to the public internet. - "private": Workers can only connect to Google APIs and services. - "restricted-private": Workers can only connect to Google APIs that are reachable through `restricted.googleapis.com` (`199.36.153.4/30`).
      */
     networkAccess?: string | null;
     /**
-     * Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won&#39;t be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.
+     * Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won't be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean | null;
     /**
@@ -1003,7 +999,7 @@ export namespace remotebuildexecution_v1alpha {
     workerCount?: string | null;
   }
   /**
-   * AdminTemp is a prelimiary set of administration tasks. It&#39;s called &quot;Temp&quot; because we do not yet know the best way to represent admin tasks; it&#39;s possible that this will be entirely replaced in later versions of this API. If this message proves to be sufficient, it will be renamed in the alpha or beta release of this API. This message (suitably marshalled into a protobuf.Any) can be used as the inline_assignment field in a lease; the lease assignment field should simply be `&quot;admin&quot;` in these cases. This message is heavily based on Swarming administration tasks from the LUCI project (http://github.com/luci/luci-py/appengine/swarming).
+   * AdminTemp is a prelimiary set of administration tasks. It's called "Temp" because we do not yet know the best way to represent admin tasks; it's possible that this will be entirely replaced in later versions of this API. If this message proves to be sufficient, it will be renamed in the alpha or beta release of this API. This message (suitably marshalled into a protobuf.Any) can be used as the inline_assignment field in a lease; the lease assignment field should simply be `"admin"` in these cases. This message is heavily based on Swarming administration tasks from the LUCI project (http://github.com/luci/luci-py/appengine/swarming).
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2AdminTemp {
     /**
@@ -1033,7 +1029,7 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2CommandOutputs {
     /**
-     * exit_code is only fully reliable if the status&#39; code is OK. If the task exceeded its deadline or was cancelled, the process may still produce an exit code as it is cancelled, and this will be populated, but a successful (zero) is unlikely to be correct unless the status code is OK.
+     * exit_code is only fully reliable if the status' code is OK. If the task exceeded its deadline or was cancelled, the process may still produce an exit code as it is cancelled, and this will be populated, but a successful (zero) is unlikely to be correct unless the status code is OK.
      */
     exitCode?: number | null;
     /**
@@ -1055,7 +1051,7 @@ export namespace remotebuildexecution_v1alpha {
     overhead?: string | null;
   }
   /**
-   * All information about the execution of a command, suitable for providing as the Bots interface&#39;s `Lease.result` field.
+   * All information about the execution of a command, suitable for providing as the Bots interface's `Lease.result` field.
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2CommandResult {
     /**
@@ -1063,11 +1059,11 @@ export namespace remotebuildexecution_v1alpha {
      */
     duration?: string | null;
     /**
-     * The exit code of the process. An exit code of &quot;0&quot; should only be trusted if `status` has a code of OK (otherwise it may simply be unset).
+     * The exit code of the process. An exit code of "0" should only be trusted if `status` has a code of OK (otherwise it may simply be unset).
      */
     exitCode?: number | null;
     /**
-     * Implementation-dependent metadata about the task. Both servers and bots may define messages which can be encoded here; bots are free to provide metadata in multiple formats, and servers are free to choose one or more of the values to process and ignore others. In particular, it is *not* considered an error for the bot to provide the server with a field that it doesn&#39;t know about.
+     * Implementation-dependent metadata about the task. Both servers and bots may define messages which can be encoded here; bots are free to provide metadata in multiple formats, and servers are free to choose one or more of the values to process and ignore others. In particular, it is *not* considered an error for the bot to provide the server with a field that it doesn't know about.
      */
     metadata?: Array<{[key: string]: any}> | null;
     /**
@@ -1084,7 +1080,7 @@ export namespace remotebuildexecution_v1alpha {
     status?: Schema$GoogleRpcStatus;
   }
   /**
-   * Describes a shell-style task to execute, suitable for providing as the Bots interface&#39;s `Lease.payload` field.
+   * Describes a shell-style task to execute, suitable for providing as the Bots interface's `Lease.payload` field.
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2CommandTask {
     /**
@@ -1105,7 +1101,7 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputs {
     /**
-     * The command itself to run (e.g., argv). This field should be passed directly to the underlying operating system, and so it must be sensible to that operating system. For example, on Windows, the first argument might be &quot;C:\Windows\System32\ping.exe&quot; - that is, using drive letters and backslashes. A command for a *nix system, on the other hand, would use forward slashes. All other fields in the RWAPI must consistently use forward slashes, since those fields may be interpretted by both the service and the bot.
+     * The command itself to run (e.g., argv). This field should be passed directly to the underlying operating system, and so it must be sensible to that operating system. For example, on Windows, the first argument might be "C:\Windows\System32\ping.exe" - that is, using drive letters and backslashes. A command for a *nix system, on the other hand, would use forward slashes. All other fields in the RWAPI must consistently use forward slashes, since those fields may be interpretted by both the service and the bot.
      */
     arguments?: string[] | null;
     /**
@@ -1113,7 +1109,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     environmentVariables?: Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable[];
     /**
-     * The input filesystem to be set up prior to the task beginning. The contents should be a repeated set of FileMetadata messages though other formats are allowed if better for the implementation (eg, a LUCI-style .isolated file). This field is repeated since implementations might want to cache the metadata, in which case it may be useful to break up portions of the filesystem that change frequently (eg, specific input files) from those that don&#39;t (eg, standard header files).
+     * The input filesystem to be set up prior to the task beginning. The contents should be a repeated set of FileMetadata messages though other formats are allowed if better for the implementation (eg, a LUCI-style .isolated file). This field is repeated since implementations might want to cache the metadata, in which case it may be useful to break up portions of the filesystem that change frequently (eg, specific input files) from those that don't (eg, standard header files).
      */
     files?: Schema$GoogleDevtoolsRemoteworkersV1test2Digest[];
     /**
@@ -1121,7 +1117,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     inlineBlobs?: Schema$GoogleDevtoolsRemoteworkersV1test2Blob[];
     /**
-     * Directory from which a command is executed. It is a relative directory with respect to the bot&#39;s working directory (i.e., &quot;./&quot;). If it is non-empty, then it must exist under &quot;./&quot;. Otherwise, &quot;./&quot; will be used.
+     * Directory from which a command is executed. It is a relative directory with respect to the bot's working directory (i.e., "./"). If it is non-empty, then it must exist under "./". Otherwise, "./" will be used.
      */
     workingDirectory?: string | null;
   }
@@ -1177,15 +1173,15 @@ export namespace remotebuildexecution_v1alpha {
     shutdown?: string | null;
   }
   /**
-   * The CommandTask and CommandResult messages assume the existence of a service that can serve blobs of content, identified by a hash and size known as a &quot;digest.&quot; The method by which these blobs may be retrieved is not specified here, but a model implementation is in the Remote Execution API&#39;s &quot;ContentAddressibleStorage&quot; interface. In the context of the RWAPI, a Digest will virtually always refer to the contents of a file or a directory. The latter is represented by the byte-encoded Directory message.
+   * The CommandTask and CommandResult messages assume the existence of a service that can serve blobs of content, identified by a hash and size known as a "digest." The method by which these blobs may be retrieved is not specified here, but a model implementation is in the Remote Execution API's "ContentAddressibleStorage" interface. In the context of the RWAPI, a Digest will virtually always refer to the contents of a file or a directory. The latter is represented by the byte-encoded Directory message.
    */
   export interface Schema$GoogleDevtoolsRemoteworkersV1test2Digest {
     /**
-     * A string-encoded hash (eg &quot;1a2b3c&quot;, not the byte array [0x1a, 0x2b, 0x3c]) using an implementation-defined hash algorithm (eg SHA-256).
+     * A string-encoded hash (eg "1a2b3c", not the byte array [0x1a, 0x2b, 0x3c]) using an implementation-defined hash algorithm (eg SHA-256).
      */
     hash?: string | null;
     /**
-     * The size of the contents. While this is not strictly required as part of an identifier (after all, any given hash will have exactly one canonical size), it&#39;s useful in almost all cases when one might want to send or retrieve blobs of content and is included here for this reason.
+     * The size of the contents. While this is not strictly required as part of an identifier (after all, any given hash will have exactly one canonical size), it's useful in almost all cases when one might want to send or retrieve blobs of content and is included here for this reason.
      */
     sizeBytes?: string | null;
   }
@@ -1253,7 +1249,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -1301,9 +1297,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.create
-     * @desc Creates a new instance in the specified region. Returns a long running operation which contains an instance on completion. While the long running operation is in progress, any call to `GetInstance` returns an instance in state `CREATING`.
+     * Creates a new instance in the specified region. Returns a long running operation which contains an instance on completion. While the long running operation is in progress, any call to `GetInstance` returns an instance in state `CREATING`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -1357,15 +1353,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the project containing the instance. Format: `projects/[PROJECT_ID]`.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Create,
@@ -1455,9 +1448,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.delete
-     * @desc Deletes the specified instance. Returns a long running operation which contains a `google.protobuf.Empty` response on completion. Deleting an instance with worker pools in it will delete these worker pools.
+     * Deletes the specified instance. Returns a long running operation which contains a `google.protobuf.Empty` response on completion. Deleting an instance with worker pools in it will delete these worker pools.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -1501,14 +1494,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the instance to delete. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Delete,
@@ -1595,9 +1586,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.get
-     * @desc Returns the specified instance.
+     * Returns the specified instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -1641,14 +1632,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the instance to retrieve. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Get,
@@ -1754,9 +1743,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.list
-     * @desc Lists instances in a project.
+     * Lists instances in a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -1796,14 +1785,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the project. Format: `projects/[PROJECT_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$List,
@@ -1912,9 +1899,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.patch
-     * @desc Updates the specified instance. Returns a long running operation which contains the updated instance in the response on completion.
+     * Updates the specified instance. Returns a long running operation which contains the updated instance in the response on completion.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -1976,18 +1963,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.loggingEnabled Deprecated, use instance.logging_enabled instead. Whether to enable Stackdriver logging for this instance.
-     * @param {string} params.name Output only. Instance resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`. Name should not be populated when creating an instance since it is provided in the `instance_id` field.
-     * @param {string=} params.name1 Deprecated, use instance.Name instead. Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {string=} params.updateMask The update mask applies to instance. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If an empty update_mask is provided, only the non-default valued field in the worker pool field will be updated. Note that in order to update a field to the default value (zero, false, empty string) an explicit update_mask must be provided.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Instances$Patch,
@@ -2139,9 +2120,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.workerpools.create
-     * @desc Creates a new worker pool with a specified size and configuration. Returns a long running operation which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `CREATING`.
+     * Creates a new worker pool with a specified size and configuration. Returns a long running operation which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `CREATING`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -2195,15 +2176,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.workerpools.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the instance in which to create the new worker pool. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Workerpools$Create,
@@ -2293,9 +2271,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.workerpools.delete
-     * @desc Deletes the specified worker pool. Returns a long running operation, which contains a `google.protobuf.Empty` response on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `DELETING`.
+     * Deletes the specified worker pool. Returns a long running operation, which contains a `google.protobuf.Empty` response on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `DELETING`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -2339,14 +2317,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.workerpools.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the worker pool to delete. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Workerpools$Delete,
@@ -2433,9 +2409,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.workerpools.get
-     * @desc Returns the specified worker pool.
+     * Returns the specified worker pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -2480,14 +2456,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.workerpools.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the worker pool to retrieve. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
@@ -2593,9 +2567,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.workerpools.list
-     * @desc Lists worker pools in an instance.
+     * Lists worker pools in an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -2619,7 +2593,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.list({
-     *     // Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     *     // Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      *     filter: 'placeholder-value',
      *     // Resource name of the instance. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
      *     parent: 'projects/my-project/instances/my-instance',
@@ -2637,15 +2611,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.workerpools.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
-     * @param {string} params.parent Resource name of the instance. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
@@ -2754,9 +2725,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.instances.workerpools.patch
-     * @desc Updates an existing worker pool with a specified size and/or configuration. Returns a long running operation, which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `UPDATING`.
+     * Updates an existing worker pool with a specified size and/or configuration. Returns a long running operation, which contains a worker pool on completion. While the long running operation is in progress, any call to `GetWorkerPool` returns a worker pool in state `UPDATING`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -2809,15 +2780,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.instances.workerpools.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name WorkerPool resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`. name should not be populated when creating a worker pool since it is provided in the `poolId` field.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Instances$Workerpools$Patch,
@@ -2933,7 +2901,7 @@ export namespace remotebuildexecution_v1alpha {
   export interface Params$Resource$Projects$Instances$Workerpools$List
     extends StandardParameters {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string;
     /**
@@ -2961,9 +2929,9 @@ export namespace remotebuildexecution_v1alpha {
     }
 
     /**
-     * remotebuildexecution.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
@@ -3007,14 +2975,12 @@ export namespace remotebuildexecution_v1alpha {
      *   throw e;
      * });
      *
-     * @alias remotebuildexecution.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,

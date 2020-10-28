@@ -34,7 +34,7 @@
           {% if m.parameters %}
             {% for pname, p in m.parameters|dictsort %}
               /**
-               * {{ p.description|oneLine|cleanComments|safe }}
+               * {{ p.description|cleanComments|safe|replace("\n", "\n * ") }}
                */
               {{ pname|cleanPropertyName|safe }}?: {{ p|getType }}{% if p.repeated %}[]{% endif %};
             {% endfor %}

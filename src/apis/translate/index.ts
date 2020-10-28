@@ -56,3 +56,16 @@ export function translate<
 
 const auth = new AuthPlus();
 export {auth};
+export {translate_v2};
+export {translate_v3};
+export {translate_v3beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

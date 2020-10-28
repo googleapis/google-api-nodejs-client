@@ -104,14 +104,10 @@ export namespace driveactivity_v2 {
    * Provides a historical view of activity in Google Drive.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const driveactivity = google.driveactivity('v2');
-   *
-   * @namespace driveactivity
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Driveactivity
+   * ```
    */
   export class Driveactivity {
     context: APIRequestContext;
@@ -321,7 +317,7 @@ export namespace driveactivity_v2 {
     upload?: Schema$Upload;
   }
   /**
-   * A change in the object&#39;s data leak prevention status.
+   * A change in the object's data leak prevention status.
    */
   export interface Schema$DataLeakPreventionChange {
     /**
@@ -351,7 +347,7 @@ export namespace driveactivity_v2 {
      */
     legacyId?: string | null;
     /**
-     * The name of the domain, e.g. &quot;google.com&quot;.
+     * The name of the domain, e.g. "google.com".
      */
     name?: string | null;
   }
@@ -360,7 +356,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Drive {
     /**
-     * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
+     * The resource name of the shared drive. The format is "COLLECTION_ID/DRIVE_ID". Clients should not assume a specific collection ID for this resource name.
      */
     name?: string | null;
     /**
@@ -439,7 +435,7 @@ export namespace driveactivity_v2 {
      */
     mimeType?: string | null;
     /**
-     * The target Drive item. The format is &quot;items/ITEM_ID&quot;.
+     * The target Drive item. The format is "items/ITEM_ID".
      */
     name?: string | null;
     /**
@@ -472,7 +468,7 @@ export namespace driveactivity_v2 {
      */
     folder?: Schema$Folder;
     /**
-     * The target Drive item. The format is &quot;items/ITEM_ID&quot;.
+     * The target Drive item. The format is "items/ITEM_ID".
      */
     name?: string | null;
     /**
@@ -485,7 +481,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$DriveReference {
     /**
-     * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
+     * The resource name of the shared drive. The format is "COLLECTION_ID/DRIVE_ID". Clients should not assume a specific collection ID for this resource name.
      */
     name?: string | null;
     /**
@@ -514,7 +510,7 @@ export namespace driveactivity_v2 {
      */
     legacyDiscussionId?: string | null;
     /**
-     * The link to the discussion thread containing this comment, for example, &quot;https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID&quot;.
+     * The link to the discussion thread containing this comment, for example, "https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID".
      */
     linkToDiscussion?: string | null;
     /**
@@ -562,7 +558,7 @@ export namespace driveactivity_v2 {
      */
     isCurrentUser?: boolean | null;
     /**
-     * The identifier for this user that can be used with the People API to get more information. The format is &quot;people/ACCOUNT_ID&quot;. See https://developers.google.com/people/.
+     * The identifier for this user that can be used with the People API to get more information. The format is "people/ACCOUNT_ID". See https://developers.google.com/people/.
      */
     personName?: string | null;
   }
@@ -617,7 +613,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Permission {
     /**
-     * If true, the item can be discovered (e.g. in the user&#39;s &quot;Shared with me&quot; collection) without needing a link to the item.
+     * If true, the item can be discovered (e.g. in the user's "Shared with me" collection) without needing a link to the item.
      */
     allowDiscovery?: boolean | null;
     /**
@@ -633,7 +629,7 @@ export namespace driveactivity_v2 {
      */
     group?: Schema$Group;
     /**
-     * Indicates the Google Drive permissions role. The role determines a user&#39;s ability to read, write, and comment on items.
+     * Indicates the Google Drive permissions role. The role determines a user's ability to read, write, and comment on items.
      */
     role?: string | null;
     /**
@@ -668,7 +664,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$QueryDriveActivityRequest {
     /**
-     * Return activities for this Drive folder and all children and descendants. The format is &quot;items/ITEM_ID&quot;.
+     * Return activities for this Drive folder and all children and descendants. The format is "items/ITEM_ID".
      */
     ancestorName?: string | null;
     /**
@@ -676,11 +672,11 @@ export namespace driveactivity_v2 {
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
-     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;. Supported fields: - time: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - time &gt; 1452409200000 AND time &lt;= 1492812924310 - time &gt;= &quot;2016-01-10T01:02:03-05:00&quot; - detail.action_detail_case: Uses the &quot;has&quot; operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - detail.action_detail_case: RENAME - detail.action_detail_case:(CREATE EDIT) - -detail.action_detail_case:MOVE
+     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional "AND", where each expression is of the form "field operator value". Supported fields: - time: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - time \> 1452409200000 AND time <= 1492812924310 - time \>= "2016-01-10T01:02:03-05:00" - detail.action_detail_case: Uses the "has" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - detail.action_detail_case: RENAME - detail.action_detail_case:(CREATE EDIT) - -detail.action_detail_case:MOVE
      */
     filter?: string | null;
     /**
-     * Return activities for this Drive item. The format is &quot;items/ITEM_ID&quot;.
+     * Return activities for this Drive item. The format is "items/ITEM_ID".
      */
     itemName?: string | null;
     /**
@@ -881,9 +877,9 @@ export namespace driveactivity_v2 {
     }
 
     /**
-     * driveactivity.activity.query
-     * @desc Query past activity in Google Drive.
+     * Query past activity in Google Drive.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/driveactivity.googleapis.com
@@ -937,14 +933,12 @@ export namespace driveactivity_v2 {
      *   throw e;
      * });
      *
-     * @alias driveactivity.activity.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().QueryDriveActivityRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Activity$Query,

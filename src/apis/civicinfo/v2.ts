@@ -104,14 +104,10 @@ export namespace civicinfo_v2 {
    * Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const civicinfo = google.civicinfo('v2');
-   *
-   * @namespace civicinfo
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Civicinfo
+   * ```
    */
   export class Civicinfo {
     context: APIRequestContext;
@@ -222,7 +218,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$Candidate {
     /**
-     * The URL for the candidate&#39;s campaign web site.
+     * The URL for the candidate's campaign web site.
      */
     candidateUrl?: string | null;
     /**
@@ -230,11 +226,11 @@ export namespace civicinfo_v2 {
      */
     channels?: Schema$Channel[];
     /**
-     * The email address for the candidate&#39;s campaign.
+     * The email address for the candidate's campaign.
      */
     email?: string | null;
     /**
-     * The candidate&#39;s name. If this is a joint ticket it will indicate the name of the candidate at the top of a ticket followed by a / and that name of candidate at the bottom of the ticket. e.g. &quot;Mitt Romney / Paul Ryan&quot;
+     * The candidate's name. If this is a joint ticket it will indicate the name of the candidate at the top of a ticket followed by a / and that name of candidate at the bottom of the ticket. e.g. "Mitt Romney / Paul Ryan"
      */
     name?: string | null;
     /**
@@ -246,7 +242,7 @@ export namespace civicinfo_v2 {
      */
     party?: string | null;
     /**
-     * The voice phone number for the candidate&#39;s campaign office.
+     * The voice phone number for the candidate's campaign office.
      */
     phone?: string | null;
     /**
@@ -259,7 +255,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$Channel {
     /**
-     * The unique public identifier for the candidate&#39;s channel.
+     * The unique public identifier for the candidate's channel.
      */
     id?: string | null;
     /**
@@ -268,11 +264,11 @@ export namespace civicinfo_v2 {
     type?: string | null;
   }
   /**
-   * Information about a contest that appears on a voter&#39;s ballot.
+   * Information about a contest that appears on a voter's ballot.
    */
   export interface Schema$Contest {
     /**
-     * A number specifying the position of this contest on the voter&#39;s ballot.
+     * A number specifying the position of this contest on the voter's ballot.
      */
     ballotPlacement?: string | null;
     /**
@@ -292,7 +288,7 @@ export namespace civicinfo_v2 {
      */
     electorateSpecifications?: string | null;
     /**
-     * The levels of government of the office for this contest. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+     * The levels of government of the office for this contest. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at "locality" level, but also effectively at both "administrative-area-2" and "administrative-area-1".
      */
     level?: string[] | null;
     /**
@@ -312,47 +308,47 @@ export namespace civicinfo_v2 {
      */
     primaryParties?: string[] | null;
     /**
-     * [DEPRECATED] If this is a partisan election, the name of the party it is for. This field as deprecated in favor of the array &quot;primaryParties&quot;, as contests may contain more than one party.
+     * [DEPRECATED] If this is a partisan election, the name of the party it is for. This field as deprecated in favor of the array "primaryParties", as contests may contain more than one party.
      */
     primaryParty?: string | null;
     /**
-     * The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include &quot;yes&quot; or &quot;no&quot; for referenda. This field is only populated for contests of type &#39;Referendum&#39;.
+     * The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include "yes" or "no" for referenda. This field is only populated for contests of type 'Referendum'.
      */
     referendumBallotResponses?: string[] | null;
     /**
-     * Specifies a short summary of the referendum that is typically on the ballot below the title but above the text. This field is only populated for contests of type &#39;Referendum&#39;.
+     * Specifies a short summary of the referendum that is typically on the ballot below the title but above the text. This field is only populated for contests of type 'Referendum'.
      */
     referendumBrief?: string | null;
     /**
-     * A statement in opposition to the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
+     * A statement in opposition to the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type 'Referendum'.
      */
     referendumConStatement?: string | null;
     /**
-     * Specifies what effect abstaining (not voting) on the proposition will have (i.e. whether abstaining is considered a vote against it). This field is only populated for contests of type &#39;Referendum&#39;.
+     * Specifies what effect abstaining (not voting) on the proposition will have (i.e. whether abstaining is considered a vote against it). This field is only populated for contests of type 'Referendum'.
      */
     referendumEffectOfAbstain?: string | null;
     /**
-     * The threshold of votes that the referendum needs in order to pass, e.g. &quot;two-thirds&quot;. This field is only populated for contests of type &#39;Referendum&#39;.
+     * The threshold of votes that the referendum needs in order to pass, e.g. "two-thirds". This field is only populated for contests of type 'Referendum'.
      */
     referendumPassageThreshold?: string | null;
     /**
-     * A statement in favor of the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
+     * A statement in favor of the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type 'Referendum'.
      */
     referendumProStatement?: string | null;
     /**
-     * A brief description of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+     * A brief description of the referendum. This field is only populated for contests of type 'Referendum'.
      */
     referendumSubtitle?: string | null;
     /**
-     * The full text of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+     * The full text of the referendum. This field is only populated for contests of type 'Referendum'.
      */
     referendumText?: string | null;
     /**
-     * The title of the referendum (e.g. &#39;Proposition 42&#39;). This field is only populated for contests of type &#39;Referendum&#39;.
+     * The title of the referendum (e.g. 'Proposition 42'). This field is only populated for contests of type 'Referendum'.
      */
     referendumTitle?: string | null;
     /**
-     * A link to the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+     * A link to the referendum. This field is only populated for contests of type 'Referendum'.
      */
     referendumUrl?: string | null;
     /**
@@ -364,11 +360,11 @@ export namespace civicinfo_v2 {
      */
     sources?: Schema$Source[];
     /**
-     * &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
+     * "Yes" or "No" depending on whether this a contest being held outside the normal election cycle.
      */
     special?: string | null;
     /**
-     * The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
+     * The type of contest. Usually this will be 'General', 'Primary', or 'Run-off' for contests with candidates. For referenda this will be 'Referendum'. For Retention contests this will typically be 'Retention'.
      */
     type?: string | null;
   }
@@ -377,7 +373,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$DivisionSearchResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#divisionSearchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "civicinfo#divisionSearchResponse".
      */
     kind?: string | null;
     results?: Schema$DivisionSearchResult[];
@@ -454,7 +450,7 @@ export namespace civicinfo_v2 {
      */
     elections?: Schema$Election[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#electionsQueryResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "civicinfo#electionsQueryResponse".
      */
     kind?: string | null;
   }
@@ -463,7 +459,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$ElectoralDistrict {
     /**
-     * An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
+     * An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id "34" and a scope of stateUpper.
      */
     id?: string | null;
     /**
@@ -471,7 +467,7 @@ export namespace civicinfo_v2 {
      */
     name?: string | null;
     /**
-     * The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
+     * The geographic scope of this district. If unspecified the district's geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
      */
     scope?: string | null;
   }
@@ -480,7 +476,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$GeographicDivision {
     /**
-     * Any other valid OCD IDs that refer to the same division.x/x/Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.x/x/For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
+     * Any other valid OCD IDs that refer to the same division.\n\nBecause OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.\n\nFor example, if this division's OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
      */
     alsoKnownAs?: string[] | null;
     /**
@@ -501,7 +497,7 @@ export namespace civicinfo_v2 {
      */
     divisionId?: string | null;
     /**
-     * The levels of government of which this office is part. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+     * The levels of government of which this office is part. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at "locality" level, but also effectively at both "administrative-area-2" and "administrative-area-1".
      */
     levels?: string[] | null;
     /**
@@ -538,7 +534,7 @@ export namespace civicinfo_v2 {
      */
     emails?: string[] | null;
     /**
-     * The official&#39;s name.
+     * The official's name.
      */
     name?: string | null;
     /**
@@ -546,7 +542,7 @@ export namespace civicinfo_v2 {
      */
     party?: string | null;
     /**
-     * The official&#39;s public contact phone numbers.
+     * The official's public contact phone numbers.
      */
     phones?: string[] | null;
     /**
@@ -554,7 +550,7 @@ export namespace civicinfo_v2 {
      */
     photoUrl?: string | null;
     /**
-     * The official&#39;s public website URLs.
+     * The official's public website URLs.
      */
     urls?: string[] | null;
   }
@@ -626,7 +622,7 @@ export namespace civicinfo_v2 {
      */
     divisions?: {[key: string]: Schema$GeographicDivision} | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#representativeInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "civicinfo#representativeInfoResponse".
      */
     kind?: string | null;
     /**
@@ -693,7 +689,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$VoterInfoResponse {
     /**
-     * Contests that will appear on the voter&#39;s ballot.
+     * Contests that will appear on the voter's ballot.
      */
     contests?: Schema$Contest[];
     /**
@@ -709,7 +705,7 @@ export namespace civicinfo_v2 {
      */
     election?: Schema$Election;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#voterInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "civicinfo#voterInfoResponse".
      */
     kind?: string | null;
     /**
@@ -742,9 +738,9 @@ export namespace civicinfo_v2 {
     }
 
     /**
-     * civicinfo.divisions.search
-     * @desc Searches for political divisions by their natural name or OCD ID.
+     * Searches for political divisions by their natural name or OCD ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
@@ -785,14 +781,12 @@ export namespace civicinfo_v2 {
      *   throw e;
      * });
      *
-     * @alias civicinfo.divisions.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Divisions$Search,
@@ -892,9 +886,9 @@ export namespace civicinfo_v2 {
     }
 
     /**
-     * civicinfo.elections.electionQuery
-     * @desc List of available elections to query.
+     * List of available elections to query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
@@ -932,13 +926,12 @@ export namespace civicinfo_v2 {
      *   throw e;
      * });
      *
-     * @alias civicinfo.elections.electionQuery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     electionQuery(
       params: Params$Resource$Elections$Electionquery,
@@ -1027,9 +1020,9 @@ export namespace civicinfo_v2 {
     }
 
     /**
-     * civicinfo.elections.voterInfoQuery
-     * @desc Looks up information relevant to a voter based on the voter's registered address.
+     * Looks up information relevant to a voter based on the voter's registered address.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
@@ -1055,7 +1048,7 @@ export namespace civicinfo_v2 {
      *   const res = await civicinfo.elections.voterInfoQuery({
      *     // The registered address of the voter to look up.
      *     address: 'placeholder-value',
-     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version\}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      *     electionId: 'placeholder-value',
      *     // If set to true, only data from official state sources will be returned.
      *     officialOnly: 'placeholder-value',
@@ -1085,17 +1078,12 @@ export namespace civicinfo_v2 {
      *   throw e;
      * });
      *
-     * @alias civicinfo.elections.voterInfoQuery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.address The registered address of the voter to look up.
-     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
-     * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
-     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     voterInfoQuery(
       params: Params$Resource$Elections$Voterinfoquery,
@@ -1191,7 +1179,7 @@ export namespace civicinfo_v2 {
      */
     address?: string;
     /**
-     * The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     * The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version\}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      */
     electionId?: string;
     /**
@@ -1211,9 +1199,9 @@ export namespace civicinfo_v2 {
     }
 
     /**
-     * civicinfo.representatives.representativeInfoByAddress
-     * @desc Looks up political geography and representative information for a single address.
+     * Looks up political geography and representative information for a single address.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
@@ -1263,17 +1251,12 @@ export namespace civicinfo_v2 {
      *   throw e;
      * });
      *
-     * @alias civicinfo.representatives.representativeInfoByAddress
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL
-     * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
-     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     representativeInfoByAddress(
       params: Params$Resource$Representatives$Representativeinfobyaddress,
@@ -1362,9 +1345,9 @@ export namespace civicinfo_v2 {
     }
 
     /**
-     * civicinfo.representatives.representativeInfoByDivision
-     * @desc Looks up representative information for a single geographic division.
+     * Looks up representative information for a single geographic division.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
@@ -1412,17 +1395,12 @@ export namespace civicinfo_v2 {
      *   throw e;
      * });
      *
-     * @alias civicinfo.representatives.representativeInfoByDivision
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
-     * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
-     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     representativeInfoByDivision(
       params: Params$Resource$Representatives$Representativeinfobydivision,

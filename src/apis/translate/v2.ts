@@ -109,17 +109,14 @@ export namespace translate_v2 {
   /**
    * Google Cloud Translation API
    *
-   * The Google Cloud Translation API lets websites and programs integrate with     Google Translate programmatically.
+   * The Google Cloud Translation API lets websites and programs integrate with
+   *     Google Translate programmatically.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const translate = google.translate('v2');
-   *
-   * @namespace translate
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Translate
+   * ```
    */
   export class Translate {
     context: APIRequestContext;
@@ -154,7 +151,8 @@ export namespace translate_v2 {
    */
   export interface Schema$DetectLanguageRequest {
     /**
-     * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
+     * The input text upon which to perform language detection. Repeat this
+     * parameter to perform language detection on multiple text inputs.
      */
     q?: string[] | null;
   }
@@ -163,7 +161,8 @@ export namespace translate_v2 {
    */
   export interface Schema$GetSupportedLanguagesRequest {
     /**
-     * The language to use to return localized, human readable names of supported languages.
+     * The language to use to return localized, human readable names of supported
+     * languages.
      */
     target?: string | null;
   }
@@ -175,7 +174,9 @@ export namespace translate_v2 {
   }
   export interface Schema$LanguagesResource {
     /**
-     * Supported language code, generally consisting of its ISO 639-1 identifier. (E.g. &#39;en&#39;, &#39;ja&#39;). In certain cases, BCP-47 codes including language + region identifiers are returned (e.g. &#39;zh-TW&#39; and &#39;zh-CH&#39;)
+     * Supported language code, generally consisting of its ISO 639-1
+     * identifier. (E.g. 'en', 'ja'). In certain cases, BCP-47 codes including
+     * language + region identifiers are returned (e.g. 'zh-TW' and 'zh-CH')
      */
     language?: string | null;
     /**
@@ -188,23 +189,30 @@ export namespace translate_v2 {
    */
   export interface Schema$TranslateTextRequest {
     /**
-     * The format of the source text, in either HTML (default) or plain-text. A value of &quot;html&quot; indicates HTML and a value of &quot;text&quot; indicates plain-text.
+     * The format of the source text, in either HTML (default) or plain-text. A
+     * value of "html" indicates HTML and a value of "text" indicates plain-text.
      */
     format?: string | null;
     /**
-     * The `model` type requested for this translation. Valid values are listed in public documentation.
+     * The `model` type requested for this translation. Valid values are
+     * listed in public documentation.
      */
     model?: string | null;
     /**
-     * The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
+     * The input text to translate. Repeat this parameter to perform translation
+     * operations on multiple text inputs.
      */
     q?: string[] | null;
     /**
-     * The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
+     * The language of the source text, set to one of the language codes listed in
+     * Language Support. If the source language is not specified, the API will
+     * attempt to identify the source language automatically and return it within
+     * the response.
      */
     source?: string | null;
     /**
-     * The language to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * The language to use for translation of the input text, set to one of the
+     * language codes listed in Language Support.
      */
     target?: string | null;
   }
@@ -219,11 +227,16 @@ export namespace translate_v2 {
   }
   export interface Schema$TranslationsResource {
     /**
-     * The source language of the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language will not occur and this field will be empty.
+     * The source language of the initial request, detected automatically, if
+     * no source language was passed within the initial request. If the
+     * source language was passed, auto-detection of the language will not
+     * occur and this field will be empty.
      */
     detectedSourceLanguage?: string | null;
     /**
-     * The `model` type used for this translation. Valid values are listed in public documentation. Can be different from requested `model`. Present only if specific model type was explicitly requested.
+     * The `model` type used for this translation. Valid values are
+     * listed in public documentation. Can be different from requested `model`.
+     * Present only if specific model type was explicitly requested.
      */
     model?: string | null;
     /**
@@ -239,9 +252,9 @@ export namespace translate_v2 {
     }
 
     /**
-     * language.detections.detect
-     * @desc Detects the language of text within a request.
+     * Detects the language of text within a request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/translate.googleapis.com
@@ -289,14 +302,12 @@ export namespace translate_v2 {
      *   throw e;
      * });
      *
-     * @alias language.detections.detect
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DetectLanguageRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     detect(
       params: Params$Resource$Detections$Detect,
@@ -383,9 +394,9 @@ export namespace translate_v2 {
     }
 
     /**
-     * language.detections.list
-     * @desc Detects the language of text within a request.
+     * Detects the language of text within a request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/translate.googleapis.com
@@ -429,14 +440,12 @@ export namespace translate_v2 {
      *   throw e;
      * });
      *
-     * @alias language.detections.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.q The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Detections$List,
@@ -531,7 +540,8 @@ export namespace translate_v2 {
   }
   export interface Params$Resource$Detections$List extends StandardParameters {
     /**
-     * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
+     * The input text upon which to perform language detection. Repeat this
+     * parameter to perform language detection on multiple text inputs.
      */
     q?: string[];
   }
@@ -543,9 +553,9 @@ export namespace translate_v2 {
     }
 
     /**
-     * language.languages.list
-     * @desc Returns a list of supported languages for translation.
+     * Returns a list of supported languages for translation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/translate.googleapis.com
@@ -591,15 +601,12 @@ export namespace translate_v2 {
      *   throw e;
      * });
      *
-     * @alias language.languages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.model The model type for which supported languages should be returned.
-     * @param {string=} params.target The language to use to return localized, human readable names of supported languages.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Languages$List,
@@ -691,7 +698,8 @@ export namespace translate_v2 {
      */
     model?: string;
     /**
-     * The language to use to return localized, human readable names of supported languages.
+     * The language to use to return localized, human readable names of supported
+     * languages.
      */
     target?: string;
   }
@@ -703,9 +711,9 @@ export namespace translate_v2 {
     }
 
     /**
-     * language.translations.list
-     * @desc Translates input text, returning translated text.
+     * Translates input text, returning translated text.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/translate.googleapis.com
@@ -765,19 +773,12 @@ export namespace translate_v2 {
      *   throw e;
      * });
      *
-     * @alias language.translations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.cid The customization id for translate
-     * @param {string=} params.format The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
-     * @param {string=} params.model The `model` type requested for this translation. Valid values are listed in public documentation.
-     * @param {string} params.q The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
-     * @param {string=} params.source The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
-     * @param {string} params.target The language to use for translation of the input text, set to one of the language codes listed in Language Support.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Translations$List,
@@ -864,9 +865,9 @@ export namespace translate_v2 {
     }
 
     /**
-     * language.translations.translate
-     * @desc Translates input text, returning translated text.
+     * Translates input text, returning translated text.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/translate.googleapis.com
@@ -918,14 +919,12 @@ export namespace translate_v2 {
      *   throw e;
      * });
      *
-     * @alias language.translations.translate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().TranslateTextRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     translate(
       params: Params$Resource$Translations$Translate,
@@ -1021,23 +1020,30 @@ export namespace translate_v2 {
      */
     cid?: string[];
     /**
-     * The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
+     * The format of the source text, in either HTML (default) or plain-text. A
+     * value of "html" indicates HTML and a value of "text" indicates plain-text.
      */
     format?: string;
     /**
-     * The `model` type requested for this translation. Valid values are listed in public documentation.
+     * The `model` type requested for this translation. Valid values are
+     * listed in public documentation.
      */
     model?: string;
     /**
-     * The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
+     * The input text to translate. Repeat this parameter to perform translation
+     * operations on multiple text inputs.
      */
     q?: string[];
     /**
-     * The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
+     * The language of the source text, set to one of the language codes listed in
+     * Language Support. If the source language is not specified, the API will
+     * attempt to identify the source language automatically and return it within
+     * the response.
      */
     source?: string;
     /**
-     * The language to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * The language to use for translation of the input text, set to one of the
+     * language codes listed in Language Support.
      */
     target?: string;
   }

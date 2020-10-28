@@ -35,3 +35,15 @@ export function iap<T = iap_v1.Iap | iap_v1beta1.Iap>(
 
 const auth = new AuthPlus();
 export {auth};
+export {iap_v1};
+export {iap_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

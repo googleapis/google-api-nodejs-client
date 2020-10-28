@@ -31,3 +31,14 @@ export function tasks<T = tasks_v1.Tasks>(
 
 const auth = new AuthPlus();
 export {auth};
+export {tasks_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

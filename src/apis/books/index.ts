@@ -31,3 +31,14 @@ export function books<T = books_v1.Books>(
 
 const auth = new AuthPlus();
 export {auth};
+export {books_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace firebasedynamiclinks_v1 {
    * Programmatically creates and manages Firebase Dynamic Links.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
-   *
-   * @namespace firebasedynamiclinks
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Firebasedynamiclinks
+   * ```
    */
   export class Firebasedynamiclinks {
     context: APIRequestContext;
@@ -174,15 +170,15 @@ export namespace firebasedynamiclinks_v1 {
      */
     dynamicLinkInfo?: Schema$DynamicLinkInfo;
     /**
-     * Full long Dynamic Link URL with desired query parameters specified. For example, &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;, [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
+     * Full long Dynamic Link URL with desired query parameters specified. For example, "https://sample.app.goo.gl/?link=http://www.google.com&apn=com.sample", [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
     longDynamicLink?: string | null;
     /**
-     * Link name to associate with the link. It&#39;s used for marketer to identify manually-created links in the Firebase console (https://console.firebase.google.com/). Links must be named to be tracked.
+     * Link name to associate with the link. It's used for marketer to identify manually-created links in the Firebase console (https://console.firebase.google.com/). Links must be named to be tracked.
      */
     name?: string | null;
     /**
-     * Google SDK version. Version takes the form &quot;$major.$minor.$patch&quot;
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
      */
     sdkVersion?: string | null;
     /**
@@ -216,11 +212,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     dynamicLinkInfo?: Schema$DynamicLinkInfo;
     /**
-     * Full long Dynamic Link URL with desired query parameters specified. For example, &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;, [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
+     * Full long Dynamic Link URL with desired query parameters specified. For example, "https://sample.app.goo.gl/?link=http://www.google.com&apn=com.sample", [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
     longDynamicLink?: string | null;
     /**
-     * Google SDK version. Version takes the form &quot;$major.$minor.$patch&quot;
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
      */
     sdkVersion?: string | null;
     /**
@@ -333,7 +329,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     iosInfo?: Schema$IosInfo;
     /**
-     * The link your app will open, You can specify any URL your app can handle. This link must be a well-formatted URL, be properly URL-encoded, and use the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually). Required.
+     * The link your app will open, You can specify any URL your app can handle. This link must be a well-formatted URL, be properly URL-encoded, and use the HTTP or HTTPS scheme. See 'link' parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually). Required.
      */
     link?: string | null;
     /**
@@ -388,7 +384,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     device?: Schema$DeviceInfo;
     /**
-     * iOS version, ie: 9.3.5. Consider adding &quot;build&quot;.
+     * iOS version, ie: 9.3.5. Consider adding "build".
      */
     iosVersion?: string | null;
     /**
@@ -396,7 +392,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     retrievalMethod?: string | null;
     /**
-     * Google SDK version. Version takes the form &quot;$major.$minor.$patch&quot;
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
      */
     sdkVersion?: string | null;
     /**
@@ -441,7 +437,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     isStrongMatchExecutable?: boolean | null;
     /**
-     * Describes why match failed, ie: &quot;discarded due to low confidence&quot;. This message will be publicly visible.
+     * Describes why match failed, ie: "discarded due to low confidence". This message will be publicly visible.
      */
     matchMessage?: string | null;
     /**
@@ -453,7 +449,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     requestIpVersion?: string | null;
     /**
-     * The entire FDL, expanded from a short link. It is the same as the requested_link, if it is long. Parameters from this should not be used directly (ie: server can default utm_[campaign|medium|source] to a value when requested_link lack them, server determine the best fallback_link when requested_link specifies &gt;1 fallback links).
+     * The entire FDL, expanded from a short link. It is the same as the requested_link, if it is long. Parameters from this should not be used directly (ie: server can default utm_[campaign|medium|source] to a value when requested_link lack them, server determine the best fallback_link when requested_link specifies \>1 fallback links).
      */
     resolvedLink?: string | null;
     /**
@@ -486,11 +482,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     bundleId?: string | null;
     /**
-     * FDL link to be verified from an app universal link open. The FDL link can be one of: 1) short FDL. e.g. .page.link/, or 2) long FDL. e.g. .page.link/?{query params}, or 3) Invite FDL. e.g. .page.link/i/
+     * FDL link to be verified from an app universal link open. The FDL link can be one of: 1) short FDL. e.g. .page.link/, or 2) long FDL. e.g. .page.link/?{query params\}, or 3) Invite FDL. e.g. .page.link/i/
      */
     requestedLink?: string | null;
     /**
-     * Google SDK version. Version takes the form &quot;$major.$minor.$patch&quot;
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
      */
     sdkVersion?: string | null;
   }
@@ -507,7 +503,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     invitationId?: string | null;
     /**
-     * FDL input value of the &quot;&amp;imv=&quot; parameter, minimum app version to be returned to Google Firebase SDK running on iOS-9.
+     * FDL input value of the "&imv=" parameter, minimum app version to be returned to Google Firebase SDK running on iOS-9.
      */
     iosMinAppVersion?: string | null;
     /**
@@ -635,7 +631,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     info?: Schema$DynamicLinkInfo;
     /**
-     * Short durable link url, for example, &quot;https://sample.app.goo.gl/xyz123&quot;. Required.
+     * Short durable link url, for example, "https://sample.app.goo.gl/xyz123". Required.
      */
     link?: string | null;
     /**
@@ -694,9 +690,9 @@ export namespace firebasedynamiclinks_v1 {
     }
 
     /**
-     * firebasedynamiclinks.managedShortLinks.create
-     * @desc Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. This differs from CreateShortDynamicLink in the following ways: - The request will also contain a name for the link (non unique name for the front end). - The response must be authenticated with an auth token (generated with the admin service account). - The link will appear in the FDL list of links in the console front end. The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. This differs from CreateShortDynamicLink in the following ways: - The request will also contain a name for the link (non unique name for the front end). - The response must be authenticated with an auth token (generated with the admin service account). - The link will appear in the FDL list of links in the console front end. The Dynamic Link domain in the request must be owned by requester's Firebase project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
@@ -747,14 +743,12 @@ export namespace firebasedynamiclinks_v1 {
      *   throw e;
      * });
      *
-     * @alias firebasedynamiclinks.managedShortLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().CreateManagedShortLinkRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Managedshortlinks$Create,
@@ -861,9 +855,9 @@ export namespace firebasedynamiclinks_v1 {
     }
 
     /**
-     * firebasedynamiclinks.shortLinks.create
-     * @desc Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link. The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link. The Dynamic Link domain in the request must be owned by requester's Firebase project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
@@ -913,14 +907,12 @@ export namespace firebasedynamiclinks_v1 {
      *   throw e;
      * });
      *
-     * @alias firebasedynamiclinks.shortLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().CreateShortDynamicLinkRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Shortlinks$Create,
@@ -1024,9 +1016,9 @@ export namespace firebasedynamiclinks_v1 {
     }
 
     /**
-     * firebasedynamiclinks.getLinkStats
-     * @desc Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
+     * Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
@@ -1070,16 +1062,12 @@ export namespace firebasedynamiclinks_v1 {
      *   throw e;
      * });
      *
-     * @alias firebasedynamiclinks.getLinkStats
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.durationDays The span of time requested in days.
-     * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
-     * @param {string=} params.sdkVersion Google SDK version. Version takes the form "$major.$minor.$patch"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
@@ -1161,9 +1149,9 @@ export namespace firebasedynamiclinks_v1 {
     }
 
     /**
-     * firebasedynamiclinks.installAttribution
-     * @desc Get iOS strong/weak-match info for post-install attribution.
+     * Get iOS strong/weak-match info for post-install attribution.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
@@ -1230,14 +1218,12 @@ export namespace firebasedynamiclinks_v1 {
      *   throw e;
      * });
      *
-     * @alias firebasedynamiclinks.installAttribution
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GetIosPostInstallAttributionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     installAttribution(
       params: Params$Resource$V1$Installattribution,
@@ -1335,9 +1321,9 @@ export namespace firebasedynamiclinks_v1 {
     }
 
     /**
-     * firebasedynamiclinks.reopenAttribution
-     * @desc Get iOS reopen attribution for app universal link open deeplinking.
+     * Get iOS reopen attribution for app universal link open deeplinking.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
@@ -1392,14 +1378,12 @@ export namespace firebasedynamiclinks_v1 {
      *   throw e;
      * });
      *
-     * @alias firebasedynamiclinks.reopenAttribution
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GetIosReopenAttributionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,

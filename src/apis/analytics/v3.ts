@@ -88,14 +88,10 @@ export namespace analytics_v3 {
    * Views and manages your Google Analytics data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const analytics = google.analytics('v3');
-   *
-   * @namespace analytics
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Analytics
+   * ```
    */
   export class Analytics {
     context: APIRequestContext;
@@ -537,7 +533,7 @@ export namespace analytics_v3 {
      */
     index?: number | null;
     /**
-     * Kind value for a custom dimension. Set to &quot;analytics#customDimension&quot;. It is a read-only field.
+     * Kind value for a custom dimension. Set to "analytics#customDimension". It is a read-only field.
      */
     kind?: string | null;
     /**
@@ -627,7 +623,7 @@ export namespace analytics_v3 {
      */
     index?: number | null;
     /**
-     * Kind value for a custom metric. Set to &quot;analytics#customMetric&quot;. It is a read-only field.
+     * Kind value for a custom metric. Set to "analytics#customMetric". It is a read-only field.
      */
     kind?: string | null;
     /**
@@ -885,11 +881,11 @@ export namespace analytics_v3 {
      */
     name?: string | null;
     /**
-     * The metric that the experiment is optimizing. Valid values: &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;, &quot;ga:adsenseAdsViewed&quot;, &quot;ga:adsenseRevenue&quot;, &quot;ga:bounces&quot;, &quot;ga:pageviews&quot;, &quot;ga:sessionDuration&quot;, &quot;ga:transactions&quot;, &quot;ga:transactionRevenue&quot;. This field is required if status is &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot; or &quot;API&quot;.
+     * The metric that the experiment is optimizing. Valid values: "ga:goal(n)Completions", "ga:adsenseAdsClicks", "ga:adsenseAdsViewed", "ga:adsenseRevenue", "ga:bounces", "ga:pageviews", "ga:sessionDuration", "ga:transactions", "ga:transactionRevenue". This field is required if status is "RUNNING" and servingFramework is one of "REDIRECT" or "API".
      */
     objectiveMetric?: string | null;
     /**
-     * Whether the objectiveMetric should be minimized or maximized. Possible values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
+     * Whether the objectiveMetric should be minimized or maximized. Possible values: "MAXIMUM", "MINIMUM". Optional--defaults to "MAXIMUM". Cannot be specified without objectiveMetric. Cannot be modified when status is "RUNNING" or "ENDED".
      */
     optimizationType?: string | null;
     /**
@@ -901,7 +897,7 @@ export namespace analytics_v3 {
      */
     profileId?: string | null;
     /**
-     * Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;, &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;, &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;. &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
+     * Why the experiment ended. Possible values: "STOPPED_BY_USER", "WINNER_FOUND", "EXPERIMENT_EXPIRED", "ENDED_WITH_NO_WINNER", "GOAL_OBJECTIVE_CHANGED". "ENDED_WITH_NO_WINNER" means that the experiment didn't expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
      */
     reasonExperimentEnded?: string | null;
     /**
@@ -913,7 +909,10 @@ export namespace analytics_v3 {
      */
     selfLink?: string | null;
     /**
-     * The framework used to serve the experiment variations and evaluate the results. One of:   - REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. - API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. - EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
+     * The framework used to serve the experiment variations and evaluate the results. One of:
+     * - REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results.
+     * - API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation.
+     * - EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
      */
     servingFramework?: string | null;
     /**
@@ -925,7 +924,7 @@ export namespace analytics_v3 {
      */
     startTime?: string | null;
     /**
-     * Experiment status. Possible values: &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;. Experiments can be created in the &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is required when creating an experiment.
+     * Experiment status. Possible values: "DRAFT", "READY_TO_RUN", "RUNNING", "ENDED". Experiments can be created in the "DRAFT", "READY_TO_RUN" or "RUNNING" state. This field is required when creating an experiment.
      */
     status?: string | null;
     /**
@@ -1094,7 +1093,93 @@ export namespace analytics_v3 {
      */
     expressionValue?: string | null;
     /**
-     * Field to filter. Possible values:   - Content and Traffic   - PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  - COST_DATA_URI (Campaign target URL),  - HIT_TYPE,  - INTERNAL_SEARCH_TERM,  - INTERNAL_SEARCH_TYPE,  - SOURCE_PROPERTY_TRACKING_ID,    - Campaign or AdGroup   - CAMPAIGN_SOURCE,  - CAMPAIGN_MEDIUM,  - CAMPAIGN_NAME,  - CAMPAIGN_AD_GROUP,  - CAMPAIGN_TERM,  - CAMPAIGN_CONTENT,  - CAMPAIGN_CODE,  - CAMPAIGN_REFERRAL_PATH,    - E-Commerce   - TRANSACTION_COUNTRY,  - TRANSACTION_REGION,  - TRANSACTION_CITY,  - TRANSACTION_AFFILIATION (Store or order location),  - ITEM_NAME,  - ITEM_CODE,  - ITEM_VARIATION,  - TRANSACTION_ID,  - TRANSACTION_CURRENCY_CODE,  - PRODUCT_ACTION_TYPE,    - Audience/Users   - BROWSER,  - BROWSER_VERSION,  - BROWSER_SIZE,  - PLATFORM,  - PLATFORM_VERSION,  - LANGUAGE,  - SCREEN_RESOLUTION,  - SCREEN_COLORS,  - JAVA_ENABLED (Boolean Field),  - FLASH_VERSION,  - GEO_SPEED (Connection speed),  - VISITOR_TYPE,  - GEO_ORGANIZATION (ISP organization),  - GEO_DOMAIN,  - GEO_IP_ADDRESS,  - GEO_IP_VERSION,    - Location   - GEO_COUNTRY,  - GEO_REGION,  - GEO_CITY,    - Event   - EVENT_CATEGORY,  - EVENT_ACTION,  - EVENT_LABEL,    - Other   - CUSTOM_FIELD_1,  - CUSTOM_FIELD_2,  - USER_DEFINED_VALUE,    - Application   - APP_ID,  - APP_INSTALLER_ID,  - APP_NAME,  - APP_VERSION,  - SCREEN,  - IS_APP (Boolean Field),  - IS_FATAL_EXCEPTION (Boolean Field),  - EXCEPTION_DESCRIPTION,    - Mobile device   - IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),  - IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),  - DEVICE_CATEGORY,  - MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  - MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  - MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,    - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,    - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
+     * Field to filter. Possible values:
+     * - Content and Traffic
+     * - PAGE_REQUEST_URI,
+     * - PAGE_HOSTNAME,
+     * - PAGE_TITLE,
+     * - REFERRAL,
+     * - COST_DATA_URI (Campaign target URL),
+     * - HIT_TYPE,
+     * - INTERNAL_SEARCH_TERM,
+     * - INTERNAL_SEARCH_TYPE,
+     * - SOURCE_PROPERTY_TRACKING_ID,
+     * - Campaign or AdGroup
+     * - CAMPAIGN_SOURCE,
+     * - CAMPAIGN_MEDIUM,
+     * - CAMPAIGN_NAME,
+     * - CAMPAIGN_AD_GROUP,
+     * - CAMPAIGN_TERM,
+     * - CAMPAIGN_CONTENT,
+     * - CAMPAIGN_CODE,
+     * - CAMPAIGN_REFERRAL_PATH,
+     * - E-Commerce
+     * - TRANSACTION_COUNTRY,
+     * - TRANSACTION_REGION,
+     * - TRANSACTION_CITY,
+     * - TRANSACTION_AFFILIATION (Store or order location),
+     * - ITEM_NAME,
+     * - ITEM_CODE,
+     * - ITEM_VARIATION,
+     * - TRANSACTION_ID,
+     * - TRANSACTION_CURRENCY_CODE,
+     * - PRODUCT_ACTION_TYPE,
+     * - Audience/Users
+     * - BROWSER,
+     * - BROWSER_VERSION,
+     * - BROWSER_SIZE,
+     * - PLATFORM,
+     * - PLATFORM_VERSION,
+     * - LANGUAGE,
+     * - SCREEN_RESOLUTION,
+     * - SCREEN_COLORS,
+     * - JAVA_ENABLED (Boolean Field),
+     * - FLASH_VERSION,
+     * - GEO_SPEED (Connection speed),
+     * - VISITOR_TYPE,
+     * - GEO_ORGANIZATION (ISP organization),
+     * - GEO_DOMAIN,
+     * - GEO_IP_ADDRESS,
+     * - GEO_IP_VERSION,
+     * - Location
+     * - GEO_COUNTRY,
+     * - GEO_REGION,
+     * - GEO_CITY,
+     * - Event
+     * - EVENT_CATEGORY,
+     * - EVENT_ACTION,
+     * - EVENT_LABEL,
+     * - Other
+     * - CUSTOM_FIELD_1,
+     * - CUSTOM_FIELD_2,
+     * - USER_DEFINED_VALUE,
+     * - Application
+     * - APP_ID,
+     * - APP_INSTALLER_ID,
+     * - APP_NAME,
+     * - APP_VERSION,
+     * - SCREEN,
+     * - IS_APP (Boolean Field),
+     * - IS_FATAL_EXCEPTION (Boolean Field),
+     * - EXCEPTION_DESCRIPTION,
+     * - Mobile device
+     * - IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),
+     * - IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),
+     * - DEVICE_CATEGORY,
+     * - MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),
+     * - MOBILE_HAS_NFC_SUPPORT (Boolean Field),
+     * - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),
+     * - MOBILE_HAS_WIFI_SUPPORT (Boolean Field),
+     * - MOBILE_BRAND_NAME,
+     * - MOBILE_MODEL_NAME,
+     * - MOBILE_MARKETING_NAME,
+     * - MOBILE_POINTING_METHOD,
+     * - Social
+     * - SOCIAL_NETWORK,
+     * - SOCIAL_ACTION,
+     * - SOCIAL_ACTION_TARGET,
+     * - Custom dimension
+     * - CUSTOM_DIMENSION (See accompanying field index),
      */
     field?: string | null;
     /**
@@ -1607,7 +1692,8 @@ export namespace analytics_v3 {
      */
     created?: string | null;
     /**
-     * The currency type associated with this view (profile), defaults to USD. The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
+     * The currency type associated with this view (profile), defaults to USD. The supported values are:
+     * USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
      */
     currency?: string | null;
     /**
@@ -1716,7 +1802,9 @@ export namespace analytics_v3 {
      */
     profileRef?: Schema$ProfileRef;
     /**
-     * The rank of this profile filter link relative to the other filters linked to the same profile. For readonly (i.e., list and get) operations, the rank always starts at 1. For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
+     * The rank of this profile filter link relative to the other filters linked to the same profile.
+     * For readonly (i.e., list and get) operations, the rank always starts at 1.
+     * For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don't specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
      */
     rank?: number | null;
     /**
@@ -2041,7 +2129,7 @@ export namespace analytics_v3 {
      */
     name?: string | null;
     /**
-     * Segment ID. Can be used with the &#39;segment&#39; parameter in Core Reporting API.
+     * Segment ID. Can be used with the 'segment' parameter in Core Reporting API.
      */
     segmentId?: string | null;
     /**
@@ -2049,7 +2137,7 @@ export namespace analytics_v3 {
      */
     selfLink?: string | null;
     /**
-     * Type for a segment. Possible values are &quot;BUILT_IN&quot; or &quot;CUSTOM&quot;.
+     * Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".
      */
     type?: string | null;
     /**
@@ -2295,7 +2383,7 @@ export namespace analytics_v3 {
      */
     id?: {type?: string; userId?: string} | null;
     /**
-     * Value is &quot;analytics#userDeletionRequest&quot;.
+     * Value is "analytics#userDeletionRequest".
      */
     kind?: string | null;
     /**
@@ -2375,11 +2463,14 @@ export namespace analytics_v3 {
      */
     created?: string | null;
     /**
-     * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period). Set to false to delete data associated with the user identifier automatically after the rentention period. This property cannot be set on insert.
+     * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period).
+     * Set to false to delete data associated with the user identifier automatically after the rentention period.
+     * This property cannot be set on insert.
      */
     dataRetentionResetOnNewActivity?: boolean | null;
     /**
-     * The length of time for which user and event data is retained. This property cannot be set on insert.
+     * The length of time for which user and event data is retained.
+     * This property cannot be set on insert.
      */
     dataRetentionTtl?: string | null;
     /**
@@ -2526,9 +2617,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.data.ga.get
-     * @desc Returns Analytics data for a view (profile).
+     * Returns Analytics data for a view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -2611,26 +2702,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.data.ga.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dimensions A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
-     * @param {string} params.end-date End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-     * @param {string=} params.filters A comma-separated list of dimension or metric filters to be applied to Analytics data.
-     * @param {string} params.ids Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-     * @param {boolean=} params.include-empty-rows The response will include empty rows if this parameter is set to true, the default is true
-     * @param {integer=} params.max-results The maximum number of entries to include in this feed.
-     * @param {string} params.metrics A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
-     * @param {string=} params.output The selected format for the response. Default format is JSON.
-     * @param {string=} params.samplingLevel The desired sampling level.
-     * @param {string=} params.segment An Analytics segment to be applied to data.
-     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-     * @param {string} params.start-date Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Data$Ga$Get,
@@ -2773,9 +2850,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.data.mcf.get
-     * @desc Returns Analytics Multi-Channel Funnels data for a view (profile).
+     * Returns Analytics Multi-Channel Funnels data for a view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -2850,23 +2927,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.data.mcf.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dimensions A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
-     * @param {string} params.end-date End date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-     * @param {string=} params.filters A comma-separated list of dimension or metric filters to be applied to the Analytics data.
-     * @param {string} params.ids Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-     * @param {integer=} params.max-results The maximum number of entries to include in this feed.
-     * @param {string} params.metrics A comma-separated list of Multi-Channel Funnels metrics. E.g., 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must be specified.
-     * @param {string=} params.samplingLevel The desired sampling level.
-     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
-     * @param {string} params.start-date Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Data$Mcf$Get,
@@ -2997,9 +3063,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.data.realtime.get
-     * @desc Returns real time data for a view (profile).
+     * Returns real time data for a view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3060,19 +3126,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.data.realtime.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dimensions A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
-     * @param {string=} params.filters A comma-separated list of dimension or metric filters to be applied to real time data.
-     * @param {string} params.ids Unique table ID for retrieving real time data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-     * @param {integer=} params.max-results The maximum number of entries to include in this feed.
-     * @param {string} params.metrics A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
-     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for real time data.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Data$Realtime$Get,
@@ -3256,9 +3315,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accounts.list
-     * @desc Lists all accounts to which the user has access.
+     * Lists all accounts to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3311,15 +3370,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.max-results The maximum number of accounts to include in this response.
-     * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Accounts$List,
@@ -3420,9 +3476,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accountSummaries.list
-     * @desc Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
+     * Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3474,15 +3530,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accountSummaries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.max-results The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Accountsummaries$List,
@@ -3582,9 +3635,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accountUserLinks.delete
-     * @desc Removes a user from the given account.
+     * Removes a user from the given account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3621,15 +3674,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accountUserLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the user link for.
-     * @param {string} params.linkId Link ID to delete the user link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Accountuserlinks$Delete,
@@ -3709,9 +3759,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accountUserLinks.insert
-     * @desc Adds a new user to the given account.
+     * Adds a new user to the given account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3769,15 +3819,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accountUserLinks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Accountuserlinks$Insert,
@@ -3859,9 +3906,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accountUserLinks.list
-     * @desc Lists account-user links for a given account.
+     * Lists account-user links for a given account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -3914,16 +3961,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accountUserLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve the user links for.
-     * @param {integer=} params.max-results The maximum number of account-user links to include in this response.
-     * @param {integer=} params.start-index An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Accountuserlinks$List,
@@ -4005,9 +4048,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.accountUserLinks.update
-     * @desc Updates permissions for an existing user on the given account.
+     * Updates permissions for an existing user on the given account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4067,16 +4110,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.accountUserLinks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to update the account-user link for.
-     * @param {string} params.linkId Link ID to update the account-user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Accountuserlinks$Update,
@@ -4220,9 +4259,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.clientId.hashClientId
-     * @desc Hashes the given Client ID.
+     * Hashes the given Client ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4275,14 +4314,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.clientId.hashClientId
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().HashClientIdRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     hashClientId(
       params: Params$Resource$Management$Clientid$Hashclientid,
@@ -4385,9 +4422,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDataSources.list
-     * @desc List custom data sources to which the user has access.
+     * List custom data sources to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4444,17 +4481,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDataSources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account Id for the custom data sources to retrieve.
-     * @param {integer=} params.max-results The maximum number of custom data sources to include in this response.
-     * @param {integer=} params.start-index A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property Id for the custom data sources to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Customdatasources$List,
@@ -4566,9 +4598,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDimensions.get
-     * @desc Get a custom dimension to which the user has access.
+     * Get a custom dimension to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4626,16 +4658,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDimensions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom dimension to retrieve.
-     * @param {string} params.customDimensionId The ID of the custom dimension to retrieve.
-     * @param {string} params.webPropertyId Web property ID for the custom dimension to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Customdimensions$Get,
@@ -4717,9 +4745,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDimensions.insert
-     * @desc Create a new custom dimension.
+     * Create a new custom dimension.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4791,16 +4819,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDimensions.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom dimension to create.
-     * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomDimension} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Customdimensions$Insert,
@@ -4882,9 +4906,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDimensions.list
-     * @desc Lists custom dimensions to which the user has access.
+     * Lists custom dimensions to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -4940,17 +4964,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDimensions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom dimensions to retrieve.
-     * @param {integer=} params.max-results The maximum number of custom dimensions to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID for the custom dimensions to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Customdimensions$List,
@@ -5032,9 +5051,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDimensions.patch
-     * @desc Updates an existing custom dimension. This method supports patch semantics.
+     * Updates an existing custom dimension. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -5110,18 +5129,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDimensions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom dimension to update.
-     * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
-     * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
-     * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Customdimensions$Patch,
@@ -5203,9 +5216,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customDimensions.update
-     * @desc Updates an existing custom dimension.
+     * Updates an existing custom dimension.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -5281,18 +5294,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customDimensions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom dimension to update.
-     * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
-     * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
-     * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Customdimensions$Update,
@@ -5480,9 +5487,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customMetrics.get
-     * @desc Get a custom metric to which the user has access.
+     * Get a custom metric to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -5543,16 +5550,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customMetrics.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom metric to retrieve.
-     * @param {string} params.customMetricId The ID of the custom metric to retrieve.
-     * @param {string} params.webPropertyId Web property ID for the custom metric to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Custommetrics$Get,
@@ -5634,9 +5637,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customMetrics.insert
-     * @desc Create a new custom metric.
+     * Create a new custom metric.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -5714,16 +5717,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customMetrics.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom metric to create.
-     * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomMetric} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Custommetrics$Insert,
@@ -5805,9 +5804,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customMetrics.list
-     * @desc Lists custom metrics to which the user has access.
+     * Lists custom metrics to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -5863,17 +5862,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customMetrics.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom metrics to retrieve.
-     * @param {integer=} params.max-results The maximum number of custom metrics to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID for the custom metrics to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Custommetrics$List,
@@ -5955,9 +5949,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customMetrics.patch
-     * @desc Updates an existing custom metric. This method supports patch semantics.
+     * Updates an existing custom metric. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6039,18 +6033,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customMetrics.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom metric to update.
-     * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
-     * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
-     * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Custommetrics$Patch,
@@ -6132,9 +6120,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.customMetrics.update
-     * @desc Updates an existing custom metric.
+     * Updates an existing custom metric.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6216,18 +6204,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.customMetrics.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the custom metric to update.
-     * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
-     * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
-     * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Custommetrics$Update,
@@ -6415,9 +6397,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.delete
-     * @desc Delete an experiment.
+     * Delete an experiment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6461,17 +6443,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the experiment belongs
-     * @param {string} params.experimentId ID of the experiment to delete
-     * @param {string} params.profileId View (Profile) ID to which the experiment belongs
-     * @param {string} params.webPropertyId Web property ID to which the experiment belongs
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Experiments$Delete,
@@ -6556,9 +6533,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.get
-     * @desc Returns an experiment to which the user has access.
+     * Returns an experiment to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6635,17 +6612,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve the experiment for.
-     * @param {string} params.experimentId Experiment ID to retrieve the experiment for.
-     * @param {string} params.profileId View (Profile) ID to retrieve the experiment for.
-     * @param {string} params.webPropertyId Web property ID to retrieve the experiment for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Experiments$Get,
@@ -6732,9 +6704,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.insert
-     * @desc Create a new experiment.
+     * Create a new experiment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6843,17 +6815,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the experiment for.
-     * @param {string} params.profileId View (Profile) ID to create the experiment for.
-     * @param {string} params.webPropertyId Web property ID to create the experiment for.
-     * @param {().Experiment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Experiments$Insert,
@@ -6935,9 +6902,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.list
-     * @desc Lists experiments to which the user has access.
+     * Lists experiments to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -6996,18 +6963,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve experiments for.
-     * @param {integer=} params.max-results The maximum number of experiments to include in this response.
-     * @param {string} params.profileId View (Profile) ID to retrieve experiments for.
-     * @param {integer=} params.start-index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve experiments for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Experiments$List,
@@ -7089,9 +7050,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.patch
-     * @desc Update an existing experiment. This method supports patch semantics.
+     * Update an existing experiment. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -7202,18 +7163,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID of the experiment to update.
-     * @param {string} params.experimentId Experiment ID of the experiment to update.
-     * @param {string} params.profileId View (Profile) ID of the experiment to update.
-     * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Experiments$Patch,
@@ -7300,9 +7255,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.experiments.update
-     * @desc Update an existing experiment.
+     * Update an existing experiment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -7413,18 +7368,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.experiments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID of the experiment to update.
-     * @param {string} params.experimentId Experiment ID of the experiment to update.
-     * @param {string} params.profileId View (Profile) ID of the experiment to update.
-     * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Experiments$Update,
@@ -7648,9 +7597,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.delete
-     * @desc Delete a filter.
+     * Delete a filter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -7706,15 +7655,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the filter for.
-     * @param {string} params.filterId ID of the filter to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Filters$Delete,
@@ -7796,9 +7742,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.get
-     * @desc Returns filters to which the user has access.
+     * Returns filters to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -7857,15 +7803,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve filters for.
-     * @param {string} params.filterId Filter ID to retrieve filters for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Filters$Get,
@@ -7947,9 +7890,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.insert
-     * @desc Create a new filter.
+     * Create a new filter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8025,15 +7968,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create filter for.
-     * @param {().Filter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Filters$Insert,
@@ -8114,9 +8054,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.list
-     * @desc Lists all filters for an account
+     * Lists all filters for an account
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8170,16 +8110,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve filters for.
-     * @param {integer=} params.max-results The maximum number of filters to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Filters$List,
@@ -8260,9 +8196,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.patch
-     * @desc Updates an existing filter. This method supports patch semantics.
+     * Updates an existing filter. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8340,16 +8276,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the filter belongs.
-     * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Filters$Patch,
@@ -8431,9 +8363,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.filters.update
-     * @desc Updates an existing filter.
+     * Updates an existing filter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8511,16 +8443,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.filters.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the filter belongs.
-     * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Filters$Update,
@@ -8691,9 +8619,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.goals.get
-     * @desc Gets a goal to which the user has access.
+     * Gets a goal to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8759,17 +8687,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.goals.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve the goal for.
-     * @param {string} params.goalId Goal ID to retrieve the goal for.
-     * @param {string} params.profileId View (Profile) ID to retrieve the goal for.
-     * @param {string} params.webPropertyId Web property ID to retrieve the goal for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Goals$Get,
@@ -8851,9 +8774,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.goals.insert
-     * @desc Create a new goal.
+     * Create a new goal.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -8939,17 +8862,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.goals.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the goal for.
-     * @param {string} params.profileId View (Profile) ID to create the goal for.
-     * @param {string} params.webPropertyId Web property ID to create the goal for.
-     * @param {().Goal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Goals$Insert,
@@ -9031,9 +8949,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.goals.list
-     * @desc Lists goals to which the user has access.
+     * Lists goals to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -9092,18 +9010,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.goals.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-     * @param {integer=} params.max-results The maximum number of goals to include in this response.
-     * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
-     * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Goals$List,
@@ -9185,9 +9097,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.goals.patch
-     * @desc Updates an existing goal. This method supports patch semantics.
+     * Updates an existing goal. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -9275,18 +9187,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.goals.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to update the goal.
-     * @param {string} params.goalId Index of the goal to be updated.
-     * @param {string} params.profileId View (Profile) ID to update the goal.
-     * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Goals$Patch,
@@ -9368,9 +9274,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.goals.update
-     * @desc Updates an existing goal.
+     * Updates an existing goal.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -9458,18 +9364,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.goals.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to update the goal.
-     * @param {string} params.goalId Index of the goal to be updated.
-     * @param {string} params.profileId View (Profile) ID to update the goal.
-     * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Goals$Update,
@@ -9669,9 +9569,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.delete
-     * @desc Delete a profile filter link.
+     * Delete a profile filter link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -9712,17 +9612,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the profile filter link belongs.
-     * @param {string} params.linkId ID of the profile filter link to delete.
-     * @param {string} params.profileId Profile ID to which the filter link belongs.
-     * @param {string} params.webPropertyId Web property Id to which the profile filter link belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Profilefilterlinks$Delete,
@@ -9802,9 +9697,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.get
-     * @desc Returns a single profile filter link.
+     * Returns a single profile filter link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -9858,17 +9753,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve profile filter link for.
-     * @param {string} params.linkId ID of the profile filter link.
-     * @param {string} params.profileId Profile ID to retrieve filter link for.
-     * @param {string} params.webPropertyId Web property Id to retrieve profile filter link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Profilefilterlinks$Get,
@@ -9953,9 +9843,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.insert
-     * @desc Create a new profile filter link.
+     * Create a new profile filter link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10017,17 +9907,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create profile filter link for.
-     * @param {string} params.profileId Profile ID to create filter link for.
-     * @param {string} params.webPropertyId Web property Id to create profile filter link for.
-     * @param {().ProfileFilterLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Profilefilterlinks$Insert,
@@ -10112,9 +9997,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.list
-     * @desc Lists all profile filter links for a profile.
+     * Lists all profile filter links for a profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10172,18 +10057,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve profile filter links for.
-     * @param {integer=} params.max-results The maximum number of profile filter links to include in this response.
-     * @param {string} params.profileId Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Profilefilterlinks$List,
@@ -10268,9 +10147,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.patch
-     * @desc Update an existing profile filter link. This method supports patch semantics.
+     * Update an existing profile filter link. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10334,18 +10213,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which profile filter link belongs.
-     * @param {string} params.linkId ID of the profile filter link to be updated.
-     * @param {string} params.profileId Profile ID to which filter link belongs
-     * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Profilefilterlinks$Patch,
@@ -10430,9 +10303,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileFilterLinks.update
-     * @desc Update an existing profile filter link.
+     * Update an existing profile filter link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10496,18 +10369,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileFilterLinks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which profile filter link belongs.
-     * @param {string} params.linkId ID of the profile filter link to be updated.
-     * @param {string} params.profileId Profile ID to which filter link belongs
-     * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Profilefilterlinks$Update,
@@ -10729,9 +10596,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.delete
-     * @desc Deletes a view (profile).
+     * Deletes a view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10770,16 +10637,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the view (profile) for.
-     * @param {string} params.profileId ID of the view (profile) to be deleted.
-     * @param {string} params.webPropertyId Web property ID to delete the view (profile) for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Profiles$Delete,
@@ -10859,9 +10722,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.get
-     * @desc Gets a view (profile) to which the user has access.
+     * Gets a view (profile) to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -10933,16 +10796,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve the view (profile) for.
-     * @param {string} params.profileId View (Profile) ID to retrieve the view (profile) for.
-     * @param {string} params.webPropertyId Web property ID to retrieve the view (profile) for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Profiles$Get,
@@ -11024,9 +10883,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.insert
-     * @desc Create a new view (profile).
+     * Create a new view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -11126,16 +10985,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the view (profile) for.
-     * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
-     * @param {().Profile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Profiles$Insert,
@@ -11217,9 +11072,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.list
-     * @desc Lists views (profiles) to which the user has access.
+     * Lists views (profiles) to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -11276,17 +11131,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
-     * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Profiles$List,
@@ -11368,9 +11218,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.patch
-     * @desc Updates an existing view (profile). This method supports patch semantics.
+     * Updates an existing view (profile). This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -11472,17 +11322,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the view (profile) belongs
-     * @param {string} params.profileId ID of the view (profile) to be updated.
-     * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Profiles$Patch,
@@ -11564,9 +11409,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profiles.update
-     * @desc Updates an existing view (profile).
+     * Updates an existing view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -11668,17 +11513,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profiles.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the view (profile) belongs
-     * @param {string} params.profileId ID of the view (profile) to be updated.
-     * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Profiles$Update,
@@ -11873,9 +11713,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileUserLinks.delete
-     * @desc Removes a user from the given view (profile).
+     * Removes a user from the given view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -11916,17 +11756,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileUserLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the user link for.
-     * @param {string} params.linkId Link ID to delete the user link for.
-     * @param {string} params.profileId View (Profile) ID to delete the user link for.
-     * @param {string} params.webPropertyId Web Property ID to delete the user link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Profileuserlinks$Delete,
@@ -12006,9 +11841,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileUserLinks.insert
-     * @desc Adds a new user to the given view (profile).
+     * Adds a new user to the given view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12070,17 +11905,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileUserLinks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the user link for.
-     * @param {string} params.profileId View (Profile) ID to create the user link for.
-     * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Profileuserlinks$Insert,
@@ -12162,9 +11992,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileUserLinks.list
-     * @desc Lists profile-user links for a given view (profile).
+     * Lists profile-user links for a given view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12221,18 +12051,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileUserLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID which the given view (profile) belongs to.
-     * @param {integer=} params.max-results The maximum number of profile-user links to include in this response.
-     * @param {string} params.profileId View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
-     * @param {integer=} params.start-index An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Profileuserlinks$List,
@@ -12314,9 +12138,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.profileUserLinks.update
-     * @desc Updates permissions for an existing user on the given view (profile).
+     * Updates permissions for an existing user on the given view (profile).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12380,18 +12204,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.profileUserLinks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to update the user link for.
-     * @param {string} params.linkId Link ID to update the user link for.
-     * @param {string} params.profileId View (Profile ID) to update the user link for.
-     * @param {string} params.webPropertyId Web Property ID to update the user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Profileuserlinks$Update,
@@ -12567,9 +12385,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.delete
-     * @desc Delete a remarketing audience.
+     * Delete a remarketing audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12608,16 +12426,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the remarketing audience belongs.
-     * @param {string} params.remarketingAudienceId The ID of the remarketing audience to delete.
-     * @param {string} params.webPropertyId Web property ID to which the remarketing audience belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Remarketingaudience$Delete,
@@ -12697,9 +12511,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.get
-     * @desc Gets a remarketing audience to which the user has access.
+     * Gets a remarketing audience to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12759,16 +12573,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account ID of the remarketing audience to retrieve.
-     * @param {string} params.remarketingAudienceId The ID of the remarketing audience to retrieve.
-     * @param {string} params.webPropertyId The web property ID of the remarketing audience to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Remarketingaudience$Get,
@@ -12853,9 +12663,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.insert
-     * @desc Creates a new remarketing audience.
+     * Creates a new remarketing audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -12931,16 +12741,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account ID for which to create the remarketing audience.
-     * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
-     * @param {().RemarketingAudience} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Remarketingaudience$Insert,
@@ -13025,9 +12831,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.list
-     * @desc Lists remarketing audiences to which the user has access.
+     * Lists remarketing audiences to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -13085,18 +12891,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account ID of the remarketing audiences to retrieve.
-     * @param {integer=} params.max-results The maximum number of remarketing audiences to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string=} params.type
-     * @param {string} params.webPropertyId The web property ID of the remarketing audiences to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Remarketingaudience$List,
@@ -13183,9 +12983,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.patch
-     * @desc Updates an existing remarketing audience. This method supports patch semantics.
+     * Updates an existing remarketing audience. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -13263,17 +13063,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account ID of the remarketing audience to update.
-     * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
-     * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Remarketingaudience$Patch,
@@ -13358,9 +13153,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.remarketingAudience.update
-     * @desc Updates an existing remarketing audience.
+     * Updates an existing remarketing audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -13438,17 +13233,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.remarketingAudience.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account ID of the remarketing audience to update.
-     * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
-     * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Remarketingaudience$Update,
@@ -13650,9 +13440,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.segments.list
-     * @desc Lists segments to which the user has access.
+     * Lists segments to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -13705,15 +13495,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.segments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.max-results The maximum number of segments to include in this response.
-     * @param {integer=} params.start-index An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Segments$List,
@@ -13814,9 +13601,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.unsampledReports.delete
-     * @desc Deletes an unsampled report.
+     * Deletes an unsampled report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -13857,17 +13644,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.unsampledReports.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the unsampled report for.
-     * @param {string} params.profileId View (Profile) ID to delete the unsampled report for.
-     * @param {string} params.unsampledReportId ID of the unsampled report to be deleted.
-     * @param {string} params.webPropertyId Web property ID to delete the unsampled reports for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Unsampledreports$Delete,
@@ -13957,9 +13739,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.unsampledReports.get
-     * @desc Returns a single unsampled report.
+     * Returns a single unsampled report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14027,17 +13809,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.unsampledReports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve unsampled report for.
-     * @param {string} params.profileId View (Profile) ID to retrieve unsampled report for.
-     * @param {string} params.unsampledReportId ID of the unsampled report to retrieve.
-     * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Unsampledreports$Get,
@@ -14129,9 +13906,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.unsampledReports.insert
-     * @desc Create a new unsampled report.
+     * Create a new unsampled report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14222,17 +13999,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.unsampledReports.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the unsampled report for.
-     * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
-     * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
-     * @param {().UnsampledReport} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Unsampledreports$Insert,
@@ -14314,9 +14086,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.unsampledReports.list
-     * @desc Lists unsampled reports to which the user has access.
+     * Lists unsampled reports to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14375,18 +14147,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.unsampledReports.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
-     * @param {integer=} params.max-results The maximum number of unsampled reports to include in this response.
-     * @param {string} params.profileId View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
-     * @param {integer=} params.start-index An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Unsampledreports$List,
@@ -14557,9 +14323,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.uploads.deleteUploadData
-     * @desc Delete data associated with a previous upload.
+     * Delete data associated with a previous upload.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14609,17 +14375,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.uploads.deleteUploadData
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account Id for the uploads to be deleted.
-     * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
-     * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
-     * @param {().AnalyticsDataimportDeleteUploadDataRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteUploadData(
       params: Params$Resource$Management$Uploads$Deleteuploaddata,
@@ -14699,9 +14460,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.uploads.get
-     * @desc List uploads to which the user has access.
+     * List uploads to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14757,17 +14518,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.uploads.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account Id for the upload to retrieve.
-     * @param {string} params.customDataSourceId Custom data source Id for upload to retrieve.
-     * @param {string} params.uploadId Upload Id to retrieve.
-     * @param {string} params.webPropertyId Web property Id for the upload to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Uploads$Get,
@@ -14859,9 +14615,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.uploads.list
-     * @desc List uploads to which the user has access.
+     * List uploads to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -14919,18 +14675,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.uploads.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account Id for the uploads to retrieve.
-     * @param {string} params.customDataSourceId Custom data source Id for uploads to retrieve.
-     * @param {integer=} params.max-results The maximum number of uploads to include in this response.
-     * @param {integer=} params.start-index A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property Id for the uploads to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Uploads$List,
@@ -15012,9 +14762,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.uploads.uploadData
-     * @desc Upload data for a custom data source.
+     * Upload data for a custom data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -15075,19 +14825,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.uploads.uploadData
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account Id associated with the upload.
-     * @param {string} params.customDataSourceId Custom data source Id to which the data being uploaded belongs.
-     * @param {string} params.webPropertyId Web property UA-string associated with the upload.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     uploadData(
       params: Params$Resource$Management$Uploads$Uploaddata,
@@ -15278,9 +15021,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webproperties.get
-     * @desc Gets a web property to which the user has access.
+     * Gets a web property to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -15343,15 +15086,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webproperties.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve the web property for.
-     * @param {string} params.webPropertyId ID to retrieve the web property for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Webproperties$Get,
@@ -15433,9 +15173,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webproperties.insert
-     * @desc Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
+     * Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -15519,15 +15259,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webproperties.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the web property for.
-     * @param {().Webproperty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Webproperties$Insert,
@@ -15609,9 +15346,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webproperties.list
-     * @desc Lists web properties to which the user has access.
+     * Lists web properties to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -15666,16 +15403,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webproperties.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-     * @param {integer=} params.max-results The maximum number of web properties to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Webproperties$List,
@@ -15757,9 +15490,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webproperties.patch
-     * @desc Updates an existing web property. This method supports patch semantics.
+     * Updates an existing web property. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -15845,16 +15578,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webproperties.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the web property belongs
-     * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Webproperties$Patch,
@@ -15936,9 +15665,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webproperties.update
-     * @desc Updates an existing web property.
+     * Updates an existing web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16024,16 +15753,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webproperties.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to which the web property belongs
-     * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Webproperties$Update,
@@ -16193,9 +15918,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.delete
-     * @desc Deletes a web property-Google Ads link.
+     * Deletes a web property-Google Ads link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16234,16 +15959,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property Google Ads link ID.
-     * @param {string} params.webPropertyId Web property ID to delete the Google Ads link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
@@ -16327,9 +16048,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.get
-     * @desc Returns a web property-Google Ads link to which the user has access.
+     * Returns a web property-Google Ads link to which the user has access.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16382,16 +16103,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Management$Webpropertyadwordslinks$Get,
@@ -16480,9 +16197,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.insert
-     * @desc Creates a webProperty-Google Ads link.
+     * Creates a webProperty-Google Ads link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16544,16 +16261,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the Google Analytics account to create the link for.
-     * @param {string} params.webPropertyId Web property ID to create the link for.
-     * @param {().EntityAdWordsLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
@@ -16638,9 +16351,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.list
-     * @desc Lists webProperty-Google Ads links for a given web property.
+     * Lists webProperty-Google Ads links for a given web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16695,17 +16408,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {integer=} params.max-results The maximum number of webProperty-Google Ads links to include in this response.
-     * @param {integer=} params.start-index An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads links for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Webpropertyadwordslinks$List,
@@ -16790,9 +16498,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.patch
-     * @desc Updates an existing webProperty-Google Ads link. This method supports patch semantics.
+     * Updates an existing webProperty-Google Ads link. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -16856,17 +16564,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
@@ -16955,9 +16658,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webPropertyAdWordsLinks.update
-     * @desc Updates an existing webProperty-Google Ads link.
+     * Updates an existing webProperty-Google Ads link.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17021,17 +16724,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webPropertyAdWordsLinks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Webpropertyadwordslinks$Update,
@@ -17233,9 +16931,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webpropertyUserLinks.delete
-     * @desc Removes a user from the given web property.
+     * Removes a user from the given web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17274,16 +16972,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webpropertyUserLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to delete the user link for.
-     * @param {string} params.linkId Link ID to delete the user link for.
-     * @param {string} params.webPropertyId Web Property ID to delete the user link for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Management$Webpropertyuserlinks$Delete,
@@ -17363,9 +17057,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webpropertyUserLinks.insert
-     * @desc Adds a new user to the given web property.
+     * Adds a new user to the given web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17425,16 +17119,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webpropertyUserLinks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to create the user link for.
-     * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Management$Webpropertyuserlinks$Insert,
@@ -17516,9 +17206,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webpropertyUserLinks.list
-     * @desc Lists webProperty-user links for a given web property.
+     * Lists webProperty-user links for a given web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17573,17 +17263,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webpropertyUserLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID which the given web property belongs to.
-     * @param {integer=} params.max-results The maximum number of webProperty-user Links to include in this response.
-     * @param {integer=} params.start-index An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Management$Webpropertyuserlinks$List,
@@ -17665,9 +17350,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.management.webpropertyUserLinks.update
-     * @desc Updates permissions for an existing user on the given web property.
+     * Updates permissions for an existing user on the given web property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17729,17 +17414,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.management.webpropertyUserLinks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to update the account-user link for.
-     * @param {string} params.linkId Link ID to update the account-user link for.
-     * @param {string} params.webPropertyId Web property ID to update the account-user link for.
-     * @param {().EntityUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Management$Webpropertyuserlinks$Update,
@@ -17908,9 +17588,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.metadata.columns.list
-     * @desc Lists all columns for a report type
+     * Lists all columns for a report type
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -17958,14 +17638,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.metadata.columns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.reportType Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Metadata$Columns$List,
@@ -18061,9 +17739,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.provisioning.createAccountTicket
-     * @desc Creates an account ticket.
+     * Creates an account ticket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -18118,14 +17796,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.provisioning.createAccountTicket
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AccountTicket} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createAccountTicket(
       params: Params$Resource$Provisioning$Createaccountticket,
@@ -18208,9 +17884,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.provisioning.createAccountTree
-     * @desc Provision account.
+     * Provision account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -18263,14 +17939,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.provisioning.createAccountTree
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AccountTreeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createAccountTree(
       params: Params$Resource$Provisioning$Createaccounttree,
@@ -18389,9 +18063,9 @@ export namespace analytics_v3 {
     }
 
     /**
-     * analytics.userDeletion.userDeletionRequest.upsert
-     * @desc Insert or update a user deletion requests.
+     * Insert or update a user deletion requests.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
@@ -18446,14 +18120,12 @@ export namespace analytics_v3 {
      *   throw e;
      * });
      *
-     * @alias analytics.userDeletion.userDeletionRequest.upsert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().UserDeletionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upsert(
       params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,

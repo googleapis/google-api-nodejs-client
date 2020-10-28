@@ -56,3 +56,16 @@ export function cloudtrace<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudtrace_v1};
+export {cloudtrace_v2};
+export {cloudtrace_v2beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -88,14 +88,10 @@ export namespace discovery_v1 {
    * Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const discovery = google.discovery('v1');
-   *
-   * @namespace discovery
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Discovery
+   * ```
    */
   export class Discovery {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace discovery_v1 {
   }
   export interface Schema$JsonSchema {
     /**
-     * A reference to another schema. The value of this property is the &quot;id&quot; of another schema.
+     * A reference to another schema. The value of this property is the "id" of another schema.
      */
     $ref?: string | null;
     /**
@@ -164,7 +160,7 @@ export namespace discovery_v1 {
      */
     enum?: string[] | null;
     /**
-     * The descriptions for the enums. Each position maps to the corresponding value in the &quot;enum&quot; array.
+     * The descriptions for the enums. Each position maps to the corresponding value in the "enum" array.
      */
     enumDescriptions?: string[] | null;
     /**
@@ -371,7 +367,7 @@ export namespace discovery_v1 {
       };
     } | null;
     /**
-     * Ordered list of required parameters, serves as a hint to clients on how to structure their method signatures. The array is ordered such that the &quot;most-significant&quot; parameter appears first.
+     * Ordered list of required parameters, serves as a hint to clients on how to structure their method signatures. The array is ordered such that the "most-significant" parameter appears first.
      */
     parameterOrder?: string[] | null;
     /**
@@ -407,7 +403,7 @@ export namespace discovery_v1 {
      */
     supportsSubscription?: boolean | null;
     /**
-     * Indicates that downloads from this method should use the download service URL (i.e. &quot;/download&quot;). Only applies if the method supports media download.
+     * Indicates that downloads from this method should use the download service URL (i.e. "/download"). Only applies if the method supports media download.
      */
     useMediaDownloadService?: boolean | null;
   }
@@ -429,9 +425,9 @@ export namespace discovery_v1 {
     }
 
     /**
-     * discovery.apis.getRest
-     * @desc Retrieve the description of a particular version of an api.
+     * Retrieve the description of a particular version of an api.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
@@ -502,15 +498,12 @@ export namespace discovery_v1 {
      *   throw e;
      * });
      *
-     * @alias discovery.apis.getRest
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.api The name of the API.
-     * @param {string} params.version The version of the API.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getRest(
       params: Params$Resource$Apis$Getrest,
@@ -591,9 +584,9 @@ export namespace discovery_v1 {
     }
 
     /**
-     * discovery.apis.list
-     * @desc Retrieve the list of APIs supported at this endpoint.
+     * Retrieve the list of APIs supported at this endpoint.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
@@ -637,15 +630,12 @@ export namespace discovery_v1 {
      *   throw e;
      * });
      *
-     * @alias discovery.apis.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.name Only include APIs with the given name.
-     * @param {boolean=} params.preferred Return only the preferred version of an API.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apis$List,

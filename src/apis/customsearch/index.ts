@@ -33,3 +33,14 @@ export function customsearch<T = customsearch_v1.Customsearch>(
 
 const auth = new AuthPlus();
 export {auth};
+export {customsearch_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

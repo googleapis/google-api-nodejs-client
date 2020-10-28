@@ -104,14 +104,10 @@ export namespace tagmanager_v1 {
    * This API allows clients to access and modify container and tag configuration.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const tagmanager = google.tagmanager('v1');
-   *
-   * @namespace tagmanager
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Tagmanager
+   * ```
    */
   export class Tagmanager {
     context: APIRequestContext;
@@ -162,7 +158,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * A list of named parameters (key/value), depending on the condition's type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -351,7 +347,7 @@ export namespace tagmanager_v1 {
      */
     notes?: string | null;
     /**
-     * The creation of this version may be for quick preview and shouldn&#39;t be saved.
+     * The creation of this version may be for quick preview and shouldn't be saved.
      */
     quickPreview?: boolean | null;
   }
@@ -444,7 +440,7 @@ export namespace tagmanager_v1 {
     name?: string | null;
   }
   /**
-   * Represents a Google Tag Manager Folder&#39;s contents.
+   * Represents a Google Tag Manager Folder's contents.
    */
   export interface Schema$FolderEntities {
     /**
@@ -582,7 +578,7 @@ export namespace tagmanager_v1 {
      */
     notes?: string | null;
     /**
-     * The macro&#39;s parameters. @mutable tagmanager.accounts.containers.macros.create @mutable tagmanager.accounts.containers.macros.update
+     * The macro's parameters. @mutable tagmanager.accounts.containers.macros.create @mutable tagmanager.accounts.containers.macros.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -611,19 +607,19 @@ export namespace tagmanager_v1 {
      */
     key?: string | null;
     /**
-     * This list parameter&#39;s parameters (keys will be ignored). @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * This list parameter's parameters (keys will be ignored). @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     list?: Schema$Parameter[];
     /**
-     * This map parameter&#39;s parameters (must have keys; keys must be unique). @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * This map parameter's parameters (must have keys; keys must be unique). @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are: - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39; - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * The parameter type. Valid values are: - boolean: The value represents a boolean, represented as 'true' or 'false' - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     type?: string | null;
     /**
-     * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * A parameter's value (may contain variable references such as "{{myVariable\}\}") as appropriate to the specified type. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     value?: string | null;
   }
@@ -728,7 +724,7 @@ export namespace tagmanager_v1 {
      */
     notes?: string | null;
     /**
-     * The tag&#39;s parameters. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * The tag's parameters. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -740,7 +736,7 @@ export namespace tagmanager_v1 {
      */
     paused?: boolean | null;
     /**
-     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag's priority can be a positive or negative value. The default value is 0. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     priority?: Schema$Parameter;
     /**
@@ -855,7 +851,7 @@ export namespace tagmanager_v1 {
      */
     parentFolderId?: string | null;
     /**
-     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * A click trigger CSS selector (i.e. "a", "button" etc.). Only valid for AMP Click trigger. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     selector?: Schema$Parameter;
     /**
@@ -871,7 +867,7 @@ export namespace tagmanager_v1 {
      */
     type?: string | null;
     /**
-     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don't exist until then. Only valid for Form Submit, Link Click and Timer triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     uniqueTriggerId?: Schema$Parameter;
     /**
@@ -879,7 +875,7 @@ export namespace tagmanager_v1 {
      */
     verticalScrollPercentageList?: Schema$Parameter;
     /**
-     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * A visibility trigger CSS selector (i.e. "#id"). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     visibilitySelector?: Schema$Parameter;
     /**
@@ -895,12 +891,12 @@ export namespace tagmanager_v1 {
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * How long to wait (in milliseconds) for tags to fire when 'waits_for_tags' above evaluates to true. Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     waitForTagsTimeout?: Schema$Parameter;
   }
   /**
-   * Represents a user&#39;s permissions to an account and its container.
+   * Represents a user's permissions to an account and its container.
    */
   export interface Schema$UserAccess {
     /**
@@ -916,7 +912,7 @@ export namespace tagmanager_v1 {
      */
     containerAccess?: Schema$ContainerAccess[];
     /**
-     * User&#39;s email address. @mutable tagmanager.accounts.permissions.create
+     * User's email address. @mutable tagmanager.accounts.permissions.create
      */
     emailAddress?: string | null;
     /**
@@ -957,7 +953,7 @@ export namespace tagmanager_v1 {
      */
     notes?: string | null;
     /**
-     * The variable&#39;s parameters. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update
+     * The variable's parameters. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -993,9 +989,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.get
-     * @desc Gets a GTM Account.
+     * Gets a GTM Account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1042,14 +1038,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -1130,9 +1124,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.list
-     * @desc Lists all GTM Accounts that a user has access to.
+     * Lists all GTM Accounts that a user has access to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1173,13 +1167,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -1265,9 +1258,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.update
-     * @desc Updates a GTM Account.
+     * Updates a GTM Account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1323,16 +1316,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Update,
@@ -1465,9 +1454,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.create
-     * @desc Creates a Container.
+     * Creates a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1535,15 +1524,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {().Container} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Create,
@@ -1624,9 +1610,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.delete
-     * @desc Deletes a Container.
+     * Deletes a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1663,15 +1649,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Delete,
@@ -1751,9 +1734,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.get
-     * @desc Gets a Container.
+     * Gets a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1808,15 +1791,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Get,
@@ -1898,9 +1878,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.list
-     * @desc Lists all Containers that belongs to a GTM Account.
+     * Lists all Containers that belongs to a GTM Account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -1943,14 +1923,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$List,
@@ -2036,9 +2014,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.update
-     * @desc Updates a Container.
+     * Updates a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2110,17 +2088,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
-     * @param {().Container} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Update,
@@ -2271,9 +2244,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.environments.create
-     * @desc Creates a GTM Environment.
+     * Creates a GTM Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2345,16 +2318,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.environments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Environments$Create,
@@ -2436,9 +2405,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.environments.delete
-     * @desc Deletes a GTM Environment.
+     * Deletes a GTM Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2477,16 +2446,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.environments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.environmentId The GTM Environment ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Environments$Delete,
@@ -2566,9 +2531,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.environments.get
-     * @desc Gets a GTM Environment.
+     * Gets a GTM Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2626,16 +2591,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.environments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.environmentId The GTM Environment ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Environments$Get,
@@ -2717,9 +2678,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.environments.list
-     * @desc Lists all GTM Environments of a GTM Container.
+     * Lists all GTM Environments of a GTM Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2764,15 +2725,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.environments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
@@ -2859,9 +2817,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.environments.update
-     * @desc Updates a GTM Environment.
+     * Updates a GTM Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -2937,18 +2895,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.environments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.environmentId The GTM Environment ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
-     * @param {().Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Environments$Update,
@@ -3123,9 +3075,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.create
-     * @desc Creates a GTM Folder.
+     * Creates a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3183,16 +3135,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().Folder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Folders$Create,
@@ -3274,9 +3222,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.delete
-     * @desc Deletes a GTM Folder.
+     * Deletes a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3315,16 +3263,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Folders$Delete,
@@ -3404,9 +3348,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.get
-     * @desc Gets a GTM Folder.
+     * Gets a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3457,16 +3401,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Folders$Get,
@@ -3548,9 +3488,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.list
-     * @desc Lists all GTM Folders of a Container.
+     * Lists all GTM Folders of a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3595,15 +3535,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Folders$List,
@@ -3688,9 +3625,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.update
-     * @desc Updates a GTM Folder.
+     * Updates a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3752,18 +3689,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
-     * @param {string} params.folderId The GTM Folder ID.
-     * @param {().Folder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Folders$Update,
@@ -3934,9 +3865,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.folders.entities.list
-     * @desc List all entities in a GTM Folder.
+     * List all entities in a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -3985,16 +3916,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.folders.entities.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Folders$Entities$List,
@@ -4099,9 +4026,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.move_folders.update
-     * @desc Moves entities to a GTM Folder.
+     * Moves entities to a GTM Folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -4158,20 +4085,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.move_folders.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.folderId The GTM Folder ID.
-     * @param {string=} params.tagId The tags to be moved to the folder.
-     * @param {string=} params.triggerId The triggers to be moved to the folder.
-     * @param {string=} params.variableId The variables to be moved to the folder.
-     * @param {().Folder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Move_folders$Update,
@@ -4291,9 +4210,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.reauthorize_environments.update
-     * @desc Re-generates the authorization code for a GTM Environment.
+     * Re-generates the authorization code for a GTM Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -4369,17 +4288,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.reauthorize_environments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.environmentId The GTM Environment ID.
-     * @param {().Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
@@ -4489,9 +4403,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.tags.create
-     * @desc Creates a GTM Tag.
+     * Creates a GTM Tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -4581,16 +4495,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.tags.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().Tag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Tags$Create,
@@ -4672,9 +4582,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.tags.delete
-     * @desc Deletes a GTM Tag.
+     * Deletes a GTM Tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -4713,16 +4623,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.tags.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.tagId The GTM Tag ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Tags$Delete,
@@ -4802,9 +4708,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.tags.get
-     * @desc Gets a GTM Tag.
+     * Gets a GTM Tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -4871,16 +4777,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.tags.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.tagId The GTM Tag ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Tags$Get,
@@ -4962,9 +4864,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.tags.list
-     * @desc Lists all GTM Tags of a Container.
+     * Lists all GTM Tags of a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5009,15 +4911,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.tags.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Tags$List,
@@ -5099,9 +4998,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.tags.update
-     * @desc Updates a GTM Tag.
+     * Updates a GTM Tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5195,18 +5094,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.tags.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
-     * @param {string} params.tagId The GTM Tag ID.
-     * @param {().Tag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Tags$Update,
@@ -5377,9 +5270,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.triggers.create
-     * @desc Creates a GTM Trigger.
+     * Creates a GTM Trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5483,16 +5376,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.triggers.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().Trigger} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Triggers$Create,
@@ -5574,9 +5463,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.triggers.delete
-     * @desc Deletes a GTM Trigger.
+     * Deletes a GTM Trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5615,16 +5504,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.triggers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.triggerId The GTM Trigger ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Triggers$Delete,
@@ -5704,9 +5589,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.triggers.get
-     * @desc Gets a GTM Trigger.
+     * Gets a GTM Trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5780,16 +5665,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.triggers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.triggerId The GTM Trigger ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Triggers$Get,
@@ -5871,9 +5752,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.triggers.list
-     * @desc Lists all GTM Triggers of a Container.
+     * Lists all GTM Triggers of a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -5918,15 +5799,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.triggers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Triggers$List,
@@ -6013,9 +5891,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.triggers.update
-     * @desc Updates a GTM Trigger.
+     * Updates a GTM Trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6123,18 +6001,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.triggers.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
-     * @param {string} params.triggerId The GTM Trigger ID.
-     * @param {().Trigger} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Triggers$Update,
@@ -6305,9 +6177,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.variables.create
-     * @desc Creates a GTM Variable.
+     * Creates a GTM Variable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6381,16 +6253,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.variables.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().Variable} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Variables$Create,
@@ -6472,9 +6340,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.variables.delete
-     * @desc Deletes a GTM Variable.
+     * Deletes a GTM Variable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6513,16 +6381,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.variables.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.variableId The GTM Variable ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Variables$Delete,
@@ -6602,9 +6466,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.variables.get
-     * @desc Gets a GTM Variable.
+     * Gets a GTM Variable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6663,16 +6527,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.variables.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.variableId The GTM Variable ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Variables$Get,
@@ -6754,9 +6614,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.variables.list
-     * @desc Lists all GTM Variables of a Container.
+     * Lists all GTM Variables of a Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6801,15 +6661,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.variables.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Variables$List,
@@ -6896,9 +6753,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.variables.update
-     * @desc Updates a GTM Variable.
+     * Updates a GTM Variable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -6976,18 +6833,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.variables.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
-     * @param {string} params.variableId The GTM Variable ID.
-     * @param {().Variable} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Variables$Update,
@@ -7158,9 +7009,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.create
-     * @desc Creates a Container Version.
+     * Creates a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7215,16 +7066,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {().CreateContainerVersionRequestVersionOptions} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Containers$Versions$Create,
@@ -7315,9 +7162,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.delete
-     * @desc Deletes a Container Version.
+     * Deletes a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7358,16 +7205,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Containers$Versions$Delete,
@@ -7447,9 +7290,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.get
-     * @desc Gets a Container Version.
+     * Gets a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7510,16 +7353,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Containers$Versions$Get,
@@ -7601,9 +7440,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.list
-     * @desc Lists all Container Versions of a GTM Container.
+     * Lists all Container Versions of a GTM Container.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7654,17 +7493,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {boolean=} params.headers Retrieve headers only when true.
-     * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Containers$Versions$List,
@@ -7755,9 +7589,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.publish
-     * @desc Publishes a Container Version.
+     * Publishes a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7804,17 +7638,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Accounts$Containers$Versions$Publish,
@@ -7905,9 +7734,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.restore
-     * @desc Restores a Container Version. This will overwrite the container's current configuration (including its variables, triggers and tags). The operation will not have any effect on the version that is being served (i.e. the published version).
+     * Restores a Container Version. This will overwrite the container's current configuration (including its variables, triggers and tags). The operation will not have any effect on the version that is being served (i.e. the published version).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -7964,16 +7793,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.restore
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restore(
       params: Params$Resource$Accounts$Containers$Versions$Restore,
@@ -8055,9 +7880,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.undelete
-     * @desc Undeletes a Container Version.
+     * Undeletes a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8116,16 +7941,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.undelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
       params: Params$Resource$Accounts$Containers$Versions$Undelete,
@@ -8207,9 +8028,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.containers.versions.update
-     * @desc Updates a Container Version.
+     * Updates a Container Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8291,18 +8112,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.containers.versions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
-     * @param {().ContainerVersion} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Containers$Versions$Update,
@@ -8530,9 +8345,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.permissions.create
-     * @desc Creates a user's Account & Container Permissions.
+     * Creates a user's Account & Container Permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8588,15 +8403,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.permissions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {().UserAccess} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Permissions$Create,
@@ -8677,9 +8489,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.permissions.delete
-     * @desc Removes a user from the account, revoking access to it and all of its containers.
+     * Removes a user from the account, revoking access to it and all of its containers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8716,15 +8528,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.permissions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.permissionId The GTM User ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Permissions$Delete,
@@ -8804,9 +8613,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.permissions.get
-     * @desc Gets a user's Account & Container Permissions.
+     * Gets a user's Account & Container Permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8852,15 +8661,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.permissions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.permissionId The GTM User ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Permissions$Get,
@@ -8942,9 +8748,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.permissions.list
-     * @desc List all users that have access to the account along with Account and Container Permissions granted to each of them.
+     * List all users that have access to the account along with Account and Container Permissions granted to each of them.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -8984,14 +8790,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.permissions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Permissions$List,
@@ -9077,9 +8881,9 @@ export namespace tagmanager_v1 {
     }
 
     /**
-     * tagmanager.accounts.permissions.update
-     * @desc Updates a user's Account & Container Permissions.
+     * Updates a user's Account & Container Permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
@@ -9137,16 +8941,12 @@ export namespace tagmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias tagmanager.accounts.permissions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.permissionId The GTM User ID.
-     * @param {().UserAccess} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Permissions$Update,

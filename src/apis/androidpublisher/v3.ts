@@ -104,14 +104,10 @@ export namespace androidpublisher_v3 {
    * Lets Android application developers access their Google Play accounts.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const androidpublisher = google.androidpublisher('v3');
-   *
-   * @namespace androidpublisher
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Androidpublisher
+   * ```
    */
   export class Androidpublisher {
     context: APIRequestContext;
@@ -194,7 +190,7 @@ export namespace androidpublisher_v3 {
      */
     apks?: Schema$Apk[];
     /**
-     * The kind of this response (&quot;androidpublisher#apksListResponse&quot;).
+     * The kind of this response ("androidpublisher#apksListResponse").
      */
     kind?: string | null;
   }
@@ -215,7 +211,7 @@ export namespace androidpublisher_v3 {
      */
     contactWebsite?: string | null;
     /**
-     * Default language code, in BCP 47 format (eg &quot;en-US&quot;).
+     * Default language code, in BCP 47 format (eg "en-US").
      */
     defaultLanguage?: string | null;
   }
@@ -245,7 +241,7 @@ export namespace androidpublisher_v3 {
      */
     sha256?: string | null;
     /**
-     * The version code of the Android App Bundle, as specified in the Android App Bundle&#39;s base module APK manifest file.
+     * The version code of the Android App Bundle, as specified in the Android App Bundle's base module APK manifest file.
      */
     versionCode?: number | null;
   }
@@ -258,7 +254,7 @@ export namespace androidpublisher_v3 {
      */
     bundles?: Schema$Bundle[];
     /**
-     * The kind of this response (&quot;androidpublisher#bundlesListResponse&quot;).
+     * The kind of this response ("androidpublisher#bundlesListResponse").
      */
     kind?: string | null;
   }
@@ -284,7 +280,7 @@ export namespace androidpublisher_v3 {
      */
     countries?: string[] | null;
     /**
-     * Include &quot;rest of world&quot; as well as explicitly targeted countries.
+     * Include "rest of world" as well as explicitly targeted countries.
      */
     includeRestOfWorld?: boolean | null;
   }
@@ -320,15 +316,15 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
-   * Characteristics of the user&#39;s device.
+   * Characteristics of the user's device.
    */
   export interface Schema$DeviceMetadata {
     /**
-     * Device CPU make, e.g. &quot;Qualcomm&quot;
+     * Device CPU make, e.g. "Qualcomm"
      */
     cpuMake?: string | null;
     /**
-     * Device CPU model, e.g. &quot;MSM8974&quot;
+     * Device CPU model, e.g. "MSM8974"
      */
     cpuModel?: string | null;
     /**
@@ -344,7 +340,7 @@ export namespace androidpublisher_v3 {
      */
     manufacturer?: string | null;
     /**
-     * Comma separated list of native platforms (e.g. &quot;arm&quot;, &quot;arm7&quot;)
+     * Comma separated list of native platforms (e.g. "arm", "arm7")
      */
     nativePlatform?: string | null;
     /**
@@ -352,7 +348,7 @@ export namespace androidpublisher_v3 {
      */
     productName?: string | null;
     /**
-     * Device RAM in Megabytes, e.g. &quot;2048&quot;
+     * Device RAM in Megabytes, e.g. "2048"
      */
     ramMb?: number | null;
     /**
@@ -377,11 +373,11 @@ export namespace androidpublisher_v3 {
      */
     screenDensity?: number | null;
     /**
-     * Supported ABI architectures in the order of preference. The values should be the string as reported by the platform, e.g. &quot;armeabi-v7a&quot;, &quot;x86_64&quot;.
+     * Supported ABI architectures in the order of preference. The values should be the string as reported by the platform, e.g. "armeabi-v7a", "x86_64".
      */
     supportedAbis?: string[] | null;
     /**
-     * All installed locales represented as BCP-47 strings, e.g. &quot;en-US&quot;.
+     * All installed locales represented as BCP-47 strings, e.g. "en-US".
      */
     supportedLocales?: string[] | null;
   }
@@ -390,11 +386,11 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ExpansionFile {
     /**
-     * If set, this field indicates that this APK has an expansion file uploaded to it: this APK does not reference another APK&#39;s expansion file. The field&#39;s value is the size of the uploaded expansion file in bytes.
+     * If set, this field indicates that this APK has an expansion file uploaded to it: this APK does not reference another APK's expansion file. The field's value is the size of the uploaded expansion file in bytes.
      */
     fileSize?: string | null;
     /**
-     * If set, this APK&#39;s expansion file references another APK&#39;s expansion file. The file_size field will not be set.
+     * If set, this APK's expansion file references another APK's expansion file. The file_size field will not be set.
      */
     referencesVersion?: number | null;
   }
@@ -525,11 +521,11 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$InAppProduct {
     /**
-     * Default language of the localized data, as defined by BCP-47. e.g. &quot;en-US&quot;.
+     * Default language of the localized data, as defined by BCP-47. e.g. "en-US".
      */
     defaultLanguage?: string | null;
     /**
-     * Default price. Cannot be zero, as in-app products are never free. Always in the developer&#39;s Checkout merchant currency.
+     * Default price. Cannot be zero, as in-app products are never free. Always in the developer's Checkout merchant currency.
      */
     defaultPrice?: Schema$Price;
     /**
@@ -537,7 +533,7 @@ export namespace androidpublisher_v3 {
      */
     gracePeriod?: string | null;
     /**
-     * List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. &quot;en-US&quot;.
+     * List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. "en-US".
      */
     listings?: {[key: string]: Schema$InAppProductListing} | null;
     /**
@@ -557,7 +553,7 @@ export namespace androidpublisher_v3 {
      */
     sku?: string | null;
     /**
-     * The status of the product, e.g. whether it&#39;s active.
+     * The status of the product, e.g. whether it's active.
      */
     status?: string | null;
     /**
@@ -595,7 +591,7 @@ export namespace androidpublisher_v3 {
      */
     inappproduct?: Schema$InAppProduct[];
     /**
-     * The kind of this response (&quot;androidpublisher#inappproductsListResponse&quot;).
+     * The kind of this response ("androidpublisher#inappproductsListResponse").
      */
     kind?: string | null;
     /**
@@ -633,7 +629,7 @@ export namespace androidpublisher_v3 {
      */
     introductoryPriceAmountMicros?: string | null;
     /**
-     * ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+     * ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is "GBP".
      */
     introductoryPriceCurrencyCode?: string | null;
     /**
@@ -641,7 +637,7 @@ export namespace androidpublisher_v3 {
      */
     introductoryPriceCycles?: number | null;
     /**
-     * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
+     * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) "P1W" (one week), "P1M" (one month), "P3M" (three months), "P6M" (six months), and "P1Y" (one year).
      */
     introductoryPricePeriod?: string | null;
   }
@@ -654,7 +650,7 @@ export namespace androidpublisher_v3 {
      */
     fullDescription?: string | null;
     /**
-     * Language localization code (a BCP-47 language tag; for example, &quot;de-AT&quot; for Austrian German).
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string | null;
     /**
@@ -675,7 +671,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ListingsListResponse {
     /**
-     * The kind of this response (&quot;androidpublisher#listingsListResponse&quot;).
+     * The kind of this response ("androidpublisher#listingsListResponse").
      */
     kind?: string | null;
     /**
@@ -688,7 +684,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$LocalizedText {
     /**
-     * Language localization code (a BCP-47 language tag; for example, &quot;de-AT&quot; for Austrian German).
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string | null;
     /**
@@ -697,7 +693,7 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
-   * Information about the current page. List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.
+   * Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned.
    */
   export interface Schema$PageInfo {
     /**
@@ -727,7 +723,7 @@ export namespace androidpublisher_v3 {
     priceMicros?: string | null;
   }
   /**
-   * A ProductPurchase resource indicates the status of a user&#39;s inapp product purchase.
+   * A ProductPurchase resource indicates the status of a user's inapp product purchase.
    */
   export interface Schema$ProductPurchase {
     /**
@@ -747,11 +743,11 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
+     * An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
      */
     obfuscatedExternalAccountId?: string | null;
     /**
-     * An obfuscated version of the id that is uniquely associated with the user&#39;s profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     * An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
      */
     obfuscatedExternalProfileId?: string | null;
     /**
@@ -866,7 +862,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SubscriptionCancelSurveyResult {
     /**
-     * The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don&#39;t use this service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app
+     * The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don't use this service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app
      */
     cancelSurveyReason?: number | null;
     /**
@@ -896,12 +892,12 @@ export namespace androidpublisher_v3 {
      */
     newPrice?: Schema$Price;
     /**
-     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless it&#39;s canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
+     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless it's canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
      */
     state?: number | null;
   }
   /**
-   * A SubscriptionPurchase resource indicates the status of a user&#39;s subscription purchase.
+   * A SubscriptionPurchase resource indicates the status of a user's subscription purchase.
    */
   export interface Schema$SubscriptionPurchase {
     /**
@@ -933,7 +929,7 @@ export namespace androidpublisher_v3 {
      */
     developerPayload?: string | null;
     /**
-     * The email address of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The email address of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
      */
     emailAddress?: string | null;
     /**
@@ -945,11 +941,11 @@ export namespace androidpublisher_v3 {
      */
     externalAccountId?: string | null;
     /**
-     * The family name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The family name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
      */
     familyName?: string | null;
     /**
-     * The given name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The given name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
      */
     givenName?: string | null;
     /**
@@ -965,11 +961,11 @@ export namespace androidpublisher_v3 {
      */
     linkedPurchaseToken?: string | null;
     /**
-     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
+     * An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
      */
     obfuscatedExternalAccountId?: string | null;
     /**
-     * An obfuscated version of the id that is uniquely associated with the user&#39;s profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     * An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
      */
     obfuscatedExternalProfileId?: string | null;
     /**
@@ -989,15 +985,15 @@ export namespace androidpublisher_v3 {
      */
     priceChange?: Schema$SubscriptionPriceChange;
     /**
-     * ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+     * ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is "GBP".
      */
     priceCurrencyCode?: string | null;
     /**
-     * The Google profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The Google profile id of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
      */
     profileId?: string | null;
     /**
-     * The profile name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The profile name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.
      */
     profileName?: string | null;
     /**
@@ -1080,11 +1076,11 @@ export namespace androidpublisher_v3 {
     seconds?: string | null;
   }
   /**
-   * Pagination information returned by a List operation when token pagination is enabled. List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned. When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.
+   * Pagination information returned by a List operation when token pagination is enabled. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned. When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.
    */
   export interface Schema$TokenPagination {
     /**
-     * Tokens to pass to the standard list field &#39;page_token&#39;. Whenever available, tokens are preferred over manipulating start_index.
+     * Tokens to pass to the standard list field 'page_token'. Whenever available, tokens are preferred over manipulating start_index.
      */
     nextPageToken?: string | null;
     previousPageToken?: string | null;
@@ -1115,7 +1111,7 @@ export namespace androidpublisher_v3 {
      */
     inAppUpdatePriority?: number | null;
     /**
-     * The release name. Not required to be unique. If not set, the name is generated from the APK&#39;s version_name. If the release contains multiple APKs, the name is generated from the date.
+     * The release name. Not required to be unique. If not set, the name is generated from the APK's version_name. If the release contains multiple APKs, the name is generated from the date.
      */
     name?: string | null;
     /**
@@ -1127,7 +1123,7 @@ export namespace androidpublisher_v3 {
      */
     status?: string | null;
     /**
-     * Fraction of users who are eligible for a staged release. 0 &lt; fraction &lt; 1. Can only be set when status is &quot;inProgress&quot; or &quot;halted&quot;.
+     * Fraction of users who are eligible for a staged release. 0 < fraction < 1. Can only be set when status is "inProgress" or "halted".
      */
     userFraction?: number | null;
     /**
@@ -1140,7 +1136,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$TracksListResponse {
     /**
-     * The kind of this response (&quot;androidpublisher#tracksListResponse&quot;).
+     * The kind of this response ("androidpublisher#tracksListResponse").
      */
     kind?: string | null;
     /**
@@ -1153,7 +1149,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$UserComment {
     /**
-     * Integer Android SDK version of the user&#39;s device at the time the review was written, e.g. 23 is Marshmallow. May be absent.
+     * Integer Android SDK version of the user's device at the time the review was written, e.g. 23 is Marshmallow. May be absent.
      */
     androidOsVersion?: number | null;
     /**
@@ -1165,11 +1161,11 @@ export namespace androidpublisher_v3 {
      */
     appVersionName?: string | null;
     /**
-     * Codename for the reviewer&#39;s device, e.g. klte, flounder. May be absent.
+     * Codename for the reviewer's device, e.g. klte, flounder. May be absent.
      */
     device?: string | null;
     /**
-     * Information about the characteristics of the user&#39;s device.
+     * Information about the characteristics of the user's device.
      */
     deviceMetadata?: Schema$DeviceMetadata;
     /**
@@ -1302,9 +1298,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.commit
-     * @desc Commits an app edit.
+     * Commits an app edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -1347,15 +1343,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.commit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     commit(
       params: Params$Resource$Edits$Commit,
@@ -1437,9 +1430,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.delete
-     * @desc Deletes an app edit.
+     * Deletes an app edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -1476,15 +1469,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Edits$Delete,
@@ -1564,9 +1554,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.get
-     * @desc Gets an app edit.
+     * Gets an app edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -1609,15 +1599,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Get,
@@ -1699,9 +1686,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.insert
-     * @desc Creates a new edit for an app.
+     * Creates a new edit for an app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -1751,15 +1738,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {().AppEdit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Edits$Insert,
@@ -1840,9 +1824,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.validate
-     * @desc Validates an app edit.
+     * Validates an app edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -1885,15 +1869,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.validate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     validate(
       params: Params$Resource$Edits$Validate,
@@ -2034,9 +2015,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.apks.addexternallyhosted
-     * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
+     * Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2086,16 +2067,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.apks.addexternallyhosted
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().ApksAddExternallyHostedRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addexternallyhosted(
       params: Params$Resource$Edits$Apks$Addexternallyhosted,
@@ -2187,9 +2164,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.apks.list
-     * @desc Lists all current APKs of the app and edit.
+     * Lists all current APKs of the app and edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2232,15 +2209,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.apks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Edits$Apks$List,
@@ -2322,9 +2296,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.apks.upload
-     * @desc Uploads an APK and adds to the current edit.
+     * Uploads an APK and adds to the current edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2375,18 +2349,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.apks.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Edits$Apks$Upload,
@@ -2538,9 +2506,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.bundles.list
-     * @desc Lists all current Android App Bundles of the app and edit.
+     * Lists all current Android App Bundles of the app and edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2583,15 +2551,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.bundles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Edits$Bundles$List,
@@ -2677,9 +2642,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.bundles.upload
-     * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
+     * Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2733,19 +2698,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.bundles.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.ackBundleInstallationWarning Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Edits$Bundles$Upload,
@@ -2886,9 +2844,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.deobfuscationfiles.upload
-     * @desc Uploads a new deobfuscation file and attaches to the specified APK.
+     * Uploads a new deobfuscation file and attaches to the specified APK.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -2942,20 +2900,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.deobfuscationfiles.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Deobfuscation File is being uploaded.
-     * @param {string} params.deobfuscationFileType The type of the deobfuscation file.
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Edits$Deobfuscationfiles$Upload,
@@ -3108,9 +3058,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.details.get
-     * @desc Gets details of an app.
+     * Gets details of an app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3155,15 +3105,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.details.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Details$Get,
@@ -3246,9 +3193,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.details.patch
-     * @desc Patches details of an app.
+     * Patches details of an app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3304,16 +3251,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.details.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().AppDetails} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Edits$Details$Patch,
@@ -3396,9 +3339,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.details.update
-     * @desc Updates details of an app.
+     * Updates details of an app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3454,16 +3397,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.details.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().AppDetails} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Edits$Details$Update,
@@ -3597,9 +3536,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.expansionfiles.get
-     * @desc Fetches the expansion file configuration for the specified APK.
+     * Fetches the expansion file configuration for the specified APK.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3646,17 +3585,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.expansionfiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.expansionFileType The file type of the file configuration which is being read or modified.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Expansionfiles$Get,
@@ -3749,9 +3683,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.expansionfiles.patch
-     * @desc Patches the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
+     * Patches the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3807,18 +3741,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.expansionfiles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.expansionFileType The file type of the expansion file configuration which is being updated.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().ExpansionFile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Edits$Expansionfiles$Patch,
@@ -3911,9 +3839,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.expansionfiles.update
-     * @desc Updates the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
+     * Updates the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -3969,18 +3897,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.expansionfiles.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.expansionFileType The file type of the file configuration which is being read or modified.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().ExpansionFile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Edits$Expansionfiles$Update,
@@ -4073,9 +3995,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.expansionfiles.upload
-     * @desc Uploads a new expansion file and attaches to the specified APK.
+     * Uploads a new expansion file and attaches to the specified APK.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -4129,20 +4051,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.expansionfiles.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.expansionFileType The file type of the expansion file configuration which is being updated.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Edits$Expansionfiles$Upload,
@@ -4362,9 +4276,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.images.delete
-     * @desc Deletes the image (specified by id) from the edit.
+     * Deletes the image (specified by id) from the edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -4407,18 +4321,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.images.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
-     * @param {string} params.imageType Type of the Image.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Edits$Images$Delete,
@@ -4511,9 +4419,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.images.deleteall
-     * @desc Deletes all images for the specified language and image type. Returns an empty response if no images are found.
+     * Deletes all images for the specified language and image type. Returns an empty response if no images are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -4559,17 +4467,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.images.deleteall
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.imageType Type of the Image. Providing an image type that refers to no images is a no-op.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteall(
       params: Params$Resource$Edits$Images$Deleteall,
@@ -4659,9 +4562,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.images.list
-     * @desc Lists all images. The response may be empty.
+     * Lists all images. The response may be empty.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -4707,17 +4610,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.images.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.imageType Type of the Image. Providing an image type that refers to no images will return an empty response.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Edits$Images$List,
@@ -4803,9 +4701,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.images.upload
-     * @desc Uploads an image of the specified language and image type, and adds to the edit.
+     * Uploads an image of the specified language and image type, and adds to the edit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -4859,20 +4757,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.images.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.imageType Type of the Image.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Edits$Images$Upload,
@@ -5072,9 +4962,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.delete
-     * @desc Deletes a localized store listing.
+     * Deletes a localized store listing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5113,16 +5003,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Edits$Listings$Delete,
@@ -5203,9 +5089,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.deleteall
-     * @desc Deletes all store listings.
+     * Deletes all store listings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5242,15 +5128,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.deleteall
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteall(
       params: Params$Resource$Edits$Listings$Deleteall,
@@ -5331,9 +5214,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.get
-     * @desc Gets a localized store listing.
+     * Gets a localized store listing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5381,16 +5264,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Listings$Get,
@@ -5473,9 +5352,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.list
-     * @desc Lists all localized store listings.
+     * Lists all localized store listings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5518,15 +5397,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Edits$Listings$List,
@@ -5614,9 +5490,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.patch
-     * @desc Patches a localized store listing.
+     * Patches a localized store listing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5676,17 +5552,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     * @param {string} params.packageName Package name of the app.
-     * @param {().Listing} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Edits$Listings$Patch,
@@ -5769,9 +5640,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.listings.update
-     * @desc Creates or updates a localized store listing.
+     * Creates or updates a localized store listing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -5831,17 +5702,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.listings.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     * @param {string} params.packageName Package name of the app.
-     * @param {().Listing} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Edits$Listings$Update,
@@ -6024,9 +5890,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.testers.get
-     * @desc Gets testers.
+     * Gets testers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6070,16 +5936,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.testers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track The track to read from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Testers$Get,
@@ -6162,9 +6024,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.testers.patch
-     * @desc Patches testers.
+     * Patches testers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6216,17 +6078,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.testers.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track The track to update.
-     * @param {().Testers} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Edits$Testers$Patch,
@@ -6309,9 +6166,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.testers.update
-     * @desc Updates testers.
+     * Updates testers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6363,17 +6220,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.testers.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track The track to update.
-     * @param {().Testers} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Edits$Testers$Update,
@@ -6519,9 +6371,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.tracks.get
-     * @desc Gets a track.
+     * Gets a track.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6566,16 +6418,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.tracks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track Identifier of the track.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Edits$Tracks$Get,
@@ -6657,9 +6505,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.tracks.list
-     * @desc Lists all tracks.
+     * Lists all tracks.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6702,15 +6550,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.tracks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Edits$Tracks$List,
@@ -6796,9 +6641,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.tracks.patch
-     * @desc Patches a track.
+     * Patches a track.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -6852,17 +6697,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.tracks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track Identifier of the track.
-     * @param {().Track} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Edits$Tracks$Patch,
@@ -6945,9 +6785,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.edits.tracks.update
-     * @desc Updates a track.
+     * Updates a track.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7001,17 +6841,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.edits.tracks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Identifier of the edit.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.track Identifier of the track.
-     * @param {().Track} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Edits$Tracks$Update,
@@ -7167,9 +7002,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.delete
-     * @desc Deletes an in-app product (i.e. a managed product or a subscriptions).
+     * Deletes an in-app product (i.e. a managed product or a subscriptions).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7206,15 +7041,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Inappproducts$Delete,
@@ -7295,9 +7127,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.get
-     * @desc Gets an in-app product, which can be a managed product or a subscription.
+     * Gets an in-app product, which can be a managed product or a subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7349,15 +7181,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Inappproducts$Get,
@@ -7440,9 +7269,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.insert
-     * @desc Creates an in-app product (i.e. a managed product or a subscriptions).
+     * Creates an in-app product (i.e. a managed product or a subscriptions).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7512,16 +7341,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Package name of the app.
-     * @param {().InAppProduct} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Inappproducts$Insert,
@@ -7604,9 +7429,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.list
-     * @desc Lists all in-app products - both managed products and subscriptions.
+     * Lists all in-app products - both managed products and subscriptions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7655,17 +7480,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults How many results the list operation should return.
-     * @param {string} params.packageName Package name of the app.
-     * @param {integer=} params.startIndex The index of the first element to return.
-     * @param {string=} params.token Pagination token. If empty, list starts at the first product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Inappproducts$List,
@@ -7755,9 +7575,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.patch
-     * @desc Patches an in-app product (i.e. a managed product or a subscriptions).
+     * Patches an in-app product (i.e. a managed product or a subscriptions).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7829,17 +7649,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {().InAppProduct} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Inappproducts$Patch,
@@ -7922,9 +7737,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.inappproducts.update
-     * @desc Updates an in-app product (i.e. a managed product or a subscriptions).
+     * Updates an in-app product (i.e. a managed product or a subscriptions).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -7996,17 +7811,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.inappproducts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {().InAppProduct} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Inappproducts$Update,
@@ -8194,9 +8004,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.internalappsharingartifacts.uploadapk
-     * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
+     * Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -8246,17 +8056,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.internalappsharingartifacts.uploadapk
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     uploadapk(
       params: Params$Resource$Internalappsharingartifacts$Uploadapk,
@@ -8350,9 +8155,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.internalappsharingartifacts.uploadbundle
-     * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
+     * Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -8402,17 +8207,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.internalappsharingartifacts.uploadbundle
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     uploadbundle(
       params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
@@ -8568,9 +8368,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.orders.refund
-     * @desc Refund a user's subscription or in-app purchase order.
+     * Refund a user's subscription or in-app purchase order.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -8609,16 +8409,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.orders.refund
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.orderId The order ID provided to the user when the subscription or in-app order was purchased.
-     * @param {string} params.packageName The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
-     * @param {boolean=} params.revoke Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     refund(
       params: Params$Resource$Orders$Refund,
@@ -8735,9 +8531,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.products.acknowledge
-     * @desc Acknowledges a purchase of an inapp item.
+     * Acknowledges a purchase of an inapp item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -8784,17 +8580,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.products.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
-     * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
-     * @param {().ProductPurchasesAcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Purchases$Products$Acknowledge,
@@ -8875,9 +8666,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.products.get
-     * @desc Checks the purchase and consumption status of an inapp item.
+     * Checks the purchase and consumption status of an inapp item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -8934,16 +8725,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.products.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
-     * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Purchases$Products$Get,
@@ -9069,9 +8856,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.acknowledge
-     * @desc Acknowledges a subscription purchase.
+     * Acknowledges a subscription purchase.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9118,17 +8905,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {().SubscriptionPurchasesAcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Purchases$Subscriptions$Acknowledge,
@@ -9209,9 +8991,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.cancel
-     * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
+     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9250,16 +9032,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Purchases$Subscriptions$Cancel,
@@ -9340,9 +9118,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.defer
-     * @desc Defers a user's subscription purchase until a specified future expiration time.
+     * Defers a user's subscription purchase until a specified future expiration time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9394,17 +9172,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.defer
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {().SubscriptionPurchasesDeferRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     defer(
       params: Params$Resource$Purchases$Subscriptions$Defer,
@@ -9496,9 +9269,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.get
-     * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
+     * Checks whether a user's subscription purchase is valid and returns its expiry time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9570,16 +9343,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Purchases$Subscriptions$Get,
@@ -9667,9 +9436,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.refund
-     * @desc Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
+     * Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9708,16 +9477,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.refund
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId "The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     refund(
       params: Params$Resource$Purchases$Subscriptions$Refund,
@@ -9798,9 +9563,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.subscriptions.revoke
-     * @desc Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
+     * Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -9839,16 +9604,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.subscriptions.revoke
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     revoke(
       params: Params$Resource$Purchases$Subscriptions$Revoke,
@@ -10037,9 +9798,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.purchases.voidedpurchases.list
-     * @desc Lists the purchases that were canceled, refunded or charged-back.
+     * Lists the purchases that were canceled, refunded or charged-back.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10093,20 +9854,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.purchases.voidedpurchases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     * @param {integer=} params.maxResults Defines how many results the list operation should return. The default number depends on the resource collection.
-     * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
-     * @param {integer=} params.startIndex Defines the index of the first element to return. This can only be used if indexed paging is enabled.
-     * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     * @param {string=} params.token Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
-     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
@@ -10235,9 +9988,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.reviews.get
-     * @desc Gets a single review.
+     * Gets a single review.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10283,16 +10036,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.reviews.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.reviewId Unique identifier for a review.
-     * @param {string=} params.translationLanguage Language localization code.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Reviews$Get,
@@ -10374,9 +10123,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.reviews.list
-     * @desc Lists all reviews.
+     * Lists all reviews.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10426,18 +10175,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.reviews.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults How many results the list operation should return.
-     * @param {string} params.packageName Package name of the app.
-     * @param {integer=} params.startIndex The index of the first element to return.
-     * @param {string=} params.token Pagination token. If empty, list starts at the first review.
-     * @param {string=} params.translationLanguage Language localization code.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Reviews$List,
@@ -10522,9 +10265,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.reviews.reply
-     * @desc Replies to a single review, or updates an existing reply.
+     * Replies to a single review, or updates an existing reply.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10574,16 +10317,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.reviews.reply
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Package name of the app.
-     * @param {string} params.reviewId Unique identifier for a review.
-     * @param {().ReviewsReplyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reply(
       params: Params$Resource$Reviews$Reply,
@@ -10738,9 +10477,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.systemapks.variants.create
-     * @desc Creates an APK which is suitable for inclusion in a system image from an already uploaded Android App Bundle.
+     * Creates an APK which is suitable for inclusion in a system image from an already uploaded Android App Bundle.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10792,16 +10531,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.systemapks.variants.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier of the Android app.
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {().Variant} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Systemapks$Variants$Create,
@@ -10884,9 +10619,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.systemapks.variants.download
-     * @desc Downloads a previously created system APK which is suitable for inclusion in a system image.
+     * Downloads a previously created system APK which is suitable for inclusion in a system image.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -10925,16 +10660,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.systemapks.variants.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier of the Android app.
-     * @param {integer} params.variantId The ID of a previously created system APK variant.
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Systemapks$Variants$Download,
@@ -11015,9 +10746,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.systemapks.variants.get
-     * @desc Returns a previously created system APK variant.
+     * Returns a previously created system APK variant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -11062,16 +10793,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.systemapks.variants.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier of the Android app.
-     * @param {integer} params.variantId The ID of a previously created system APK variant.
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Systemapks$Variants$Get,
@@ -11154,9 +10881,9 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * androidpublisher.systemapks.variants.list
-     * @desc Returns the list of previously created system APK variants.
+     * Returns the list of previously created system APK variants.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
@@ -11198,15 +10925,12 @@ export namespace androidpublisher_v3 {
      *   throw e;
      * });
      *
-     * @alias androidpublisher.systemapks.variants.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier of the Android app.
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Systemapks$Variants$List,

@@ -104,14 +104,10 @@ export namespace bigtableadmin_v2 {
    * Administer your Cloud Bigtable tables and instances.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const bigtableadmin = google.bigtableadmin('v2');
-   *
-   * @namespace bigtableadmin
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Bigtableadmin
+   * ```
    */
   export class Bigtableadmin {
     context: APIRequestContext;
@@ -146,7 +142,7 @@ export namespace bigtableadmin_v2 {
      */
     multiClusterRoutingUseAny?: Schema$MultiClusterRoutingUseAny;
     /**
-     * The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string | null;
     /**
@@ -155,7 +151,7 @@ export namespace bigtableadmin_v2 {
     singleClusterRouting?: Schema$SingleClusterRouting;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -168,7 +164,7 @@ export namespace bigtableadmin_v2 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -193,7 +189,7 @@ export namespace bigtableadmin_v2 {
      */
     expireTime?: string | null;
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     name?: string | null;
     /**
@@ -201,7 +197,7 @@ export namespace bigtableadmin_v2 {
      */
     sizeBytes?: string | null;
     /**
-     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/tables/{source_table}`.
+     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project\}/instances/{instance\}/tables/{source_table\}`.
      */
     sourceTable?: string | null;
     /**
@@ -243,7 +239,7 @@ export namespace bigtableadmin_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -274,15 +270,15 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Cluster {
     /**
-     * Immutable. The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
+     * Immutable. The type of storage used by this cluster to serve its parent instance's tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
     /**
-     * Immutable. The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
+     * Immutable. The location where this cluster's nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project\}/locations/{zone\}`.
      */
     location?: string | null;
     /**
-     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      */
     name?: string | null;
     /**
@@ -295,7 +291,7 @@ export namespace bigtableadmin_v2 {
     state?: string | null;
   }
   /**
-   * The state of a table&#39;s data in a particular cluster.
+   * The state of a table's data in a particular cluster.
    */
   export interface Schema$ClusterState {
     /**
@@ -308,7 +304,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ColumnFamily {
     /**
-     * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it&#39;s possible for reads to return a cell even if it matches the active GC expression for its family.
+     * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it's possible for reads to return a cell even if it matches the active GC expression for its family.
      */
     gcRule?: Schema$GcRule;
   }
@@ -350,7 +346,7 @@ export namespace bigtableadmin_v2 {
      */
     requestTime?: string | null;
     /**
-     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
+     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table's data has been copied to the newly-created cluster so far.
      */
     tables?: {[key: string]: Schema$TableProgress} | null;
   }
@@ -367,7 +363,7 @@ export namespace bigtableadmin_v2 {
      */
     clusterId?: string | null;
     /**
-     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string | null;
   }
@@ -405,7 +401,7 @@ export namespace bigtableadmin_v2 {
      */
     instanceId?: string | null;
     /**
-     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project\}`.
      */
     parent?: string | null;
   }
@@ -414,7 +410,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateTableRequest {
     /**
-     * The optional list of row keys that will be used to initially split the table into several tablets (tablets are similar to HBase regions). Given two split keys, `s1` and `s2`, three tablets will be created, spanning the key ranges: `[, s1), [s1, s2), [s2, )`. Example: * Row keys := `[&quot;a&quot;, &quot;apple&quot;, &quot;custom&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;,` `&quot;other&quot;, &quot;zz&quot;]` * initial_split_keys := `[&quot;apple&quot;, &quot;customer_1&quot;, &quot;customer_2&quot;, &quot;other&quot;]` * Key assignment: - Tablet 1 `[, apple) =&gt; {&quot;a&quot;}.` - Tablet 2 `[apple, customer_1) =&gt; {&quot;apple&quot;, &quot;custom&quot;}.` - Tablet 3 `[customer_1, customer_2) =&gt; {&quot;customer_1&quot;}.` - Tablet 4 `[customer_2, other) =&gt; {&quot;customer_2&quot;}.` - Tablet 5 `[other, ) =&gt; {&quot;other&quot;, &quot;zz&quot;}.`
+     * The optional list of row keys that will be used to initially split the table into several tablets (tablets are similar to HBase regions). Given two split keys, `s1` and `s2`, three tablets will be created, spanning the key ranges: `[, s1), [s1, s2), [s2, )`. Example: * Row keys := `["a", "apple", "custom", "customer_1", "customer_2",` `"other", "zz"]` * initial_split_keys := `["apple", "customer_1", "customer_2", "other"]` * Key assignment: - Tablet 1 `[, apple) =\> {"a"\}.` - Tablet 2 `[apple, customer_1) =\> {"apple", "custom"\}.` - Tablet 3 `[customer_1, customer_2) =\> {"customer_1"\}.` - Tablet 4 `[customer_2, other) =\> {"customer_2"\}.` - Tablet 5 `[other, ) =\> {"other", "zz"\}.`
      */
     initialSplits?: Schema$Split[];
     /**
@@ -422,7 +418,7 @@ export namespace bigtableadmin_v2 {
      */
     table?: Schema$Table;
     /**
-     * Required. The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`. Maximum 50 characters.
+     * Required. The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `{parent\}/tables/foobar`. Maximum 50 characters.
      */
     tableId?: string | null;
   }
@@ -440,11 +436,11 @@ export namespace bigtableadmin_v2 {
     rowKeyPrefix?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -536,11 +532,11 @@ export namespace bigtableadmin_v2 {
      */
     displayName?: string | null;
     /**
-     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll\}\p{Lo\}{0,62\}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
@@ -669,15 +665,15 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -685,7 +681,7 @@ export namespace bigtableadmin_v2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -715,7 +711,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ModifyColumnFamiliesRequest {
     /**
-     * Required. Modifications to be atomically applied to the specified table&#39;s families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).
+     * Required. Modifications to be atomically applied to the specified table's families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).
      */
     modifications?: Schema$Modification[];
   }
@@ -740,7 +736,7 @@ export namespace bigtableadmin_v2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -792,7 +788,7 @@ export namespace bigtableadmin_v2 {
     updateMask?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -869,7 +865,7 @@ export namespace bigtableadmin_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -929,7 +925,7 @@ export namespace bigtableadmin_v2 {
      */
     granularity?: string | null;
     /**
-     * The unique name of the table. Values are of the form `projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
+     * The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      */
     name?: string | null;
     /**
@@ -938,11 +934,11 @@ export namespace bigtableadmin_v2 {
     restoreInfo?: Schema$RestoreInfo;
   }
   /**
-   * Progress info for copying a table&#39;s data to the new cluster.
+   * Progress info for copying a table's data to the new cluster.
    */
   export interface Schema$TableProgress {
     /**
-     * Estimate of the number of bytes copied so far for this table. This will eventually reach &#39;estimated_size_bytes&#39; unless the table copy is CANCELLED.
+     * Estimate of the number of bytes copied so far for this table. This will eventually reach 'estimated_size_bytes' unless the table copy is CANCELLED.
      */
     estimatedCopiedBytes?: string | null;
     /**
@@ -956,7 +952,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1026,9 +1022,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1073,14 +1069,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Operations$Cancel,
@@ -1160,9 +1154,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1207,14 +1201,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Operations$Delete,
@@ -1294,9 +1286,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1348,14 +1340,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -1473,9 +1463,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.operations.projects.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1530,17 +1520,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.operations.projects.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$Projects$Operations$List,
@@ -1674,9 +1659,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.create
-     * @desc Create an instance within a project.
+     * Create an instance within a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1707,7 +1692,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.create({
-     *     // Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
+     *     // Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project\}`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1738,15 +1723,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
-     * @param {().CreateInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Create,
@@ -1829,9 +1811,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.delete
-     * @desc Delete an instance from a project.
+     * Delete an instance from a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1862,7 +1844,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.delete({
-     *     // Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance to be deleted. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     name: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1876,14 +1858,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Delete,
@@ -1963,9 +1943,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.get
-     * @desc Gets information about an instance.
+     * Gets information about an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -1997,7 +1977,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.get({
-     *     // Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the requested instance. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     name: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2017,14 +1997,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Get,
@@ -2104,9 +2082,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.getIamPolicy
-     * @desc Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
+     * Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2164,15 +2142,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
@@ -2255,9 +2230,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.list
-     * @desc Lists information about instances in a project.
+     * Lists information about instances in a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2291,7 +2266,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.list({
      *     // DEPRECATED: This field is unused and ignored.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
+     *     // Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project\}`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2309,15 +2284,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken DEPRECATED: This field is unused and ignored.
-     * @param {string} params.parent Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$List,
@@ -2405,9 +2377,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.partialUpdateInstance
-     * @desc Partially updates an instance within a project. This method can modify all fields of an Instance and is the preferred way to update an Instance.
+     * Partially updates an instance within a project. This method can modify all fields of an Instance and is the preferred way to update an Instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2438,7 +2410,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.partialUpdateInstance({
-     *     // The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     *     // The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
      *     // Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      *     updateMask: 'placeholder-value',
@@ -2472,16 +2444,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.partialUpdateInstance
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
-     * @param {string=} params.updateMask Required. The subset of Instance fields which should be replaced. Must be explicitly set.
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     partialUpdateInstance(
       params: Params$Resource$Projects$Instances$Partialupdateinstance,
@@ -2563,9 +2531,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.setIamPolicy
-     * @desc Sets the access control policy on an instance resource. Replaces any existing policy.
+     * Sets the access control policy on an instance resource. Replaces any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2624,15 +2592,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
@@ -2715,9 +2680,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified instance resource.
+     * Returns permissions that the caller has on the specified instance resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2772,15 +2737,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
@@ -2870,9 +2832,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.update
-     * @desc Updates an instance within a project. This method updates only the display name and type for an Instance. To update other Instance properties, such as labels, use PartialUpdateInstance.
+     * Updates an instance within a project. This method updates only the display name and type for an Instance. To update other Instance properties, such as labels, use PartialUpdateInstance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -2903,7 +2865,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.update({
-     *     // The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     *     // The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -2935,15 +2897,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Instances$Update,
@@ -3026,7 +2985,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Create
     extends StandardParameters {
     /**
-     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project\}`.
      */
     parent?: string;
 
@@ -3038,14 +2997,14 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Delete
     extends StandardParameters {
     /**
-     * Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance to be deleted. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Get
     extends StandardParameters {
     /**
-     * Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the requested instance. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     name?: string;
   }
@@ -3068,14 +3027,14 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
+     * Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Partialupdateinstance
     extends StandardParameters {
     /**
-     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
     /**
@@ -3115,7 +3074,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Update
     extends StandardParameters {
     /**
-     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
 
@@ -3132,9 +3091,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.appProfiles.create
-     * @desc Creates an app profile within an instance.
+     * Creates an app profile within an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -3169,7 +3128,7 @@ export namespace bigtableadmin_v2 {
      *     appProfileId: 'placeholder-value',
      *     // If true, ignore safety checks when creating the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -3201,17 +3160,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.appProfiles.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.appProfileId Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
-     * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when creating the app profile.
-     * @param {string} params.parent Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {().AppProfile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Appprofiles$Create,
@@ -3294,9 +3248,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.appProfiles.delete
-     * @desc Deletes an app profile from an instance.
+     * Deletes an app profile from an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -3329,7 +3283,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.appProfiles.delete({
      *     // Required. If true, ignore safety checks when deleting the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     *     // Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *   });
      *   console.log(res.data);
@@ -3343,15 +3297,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.appProfiles.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
-     * @param {string} params.name Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Appprofiles$Delete,
@@ -3431,9 +3382,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.appProfiles.get
-     * @desc Gets information about an app profile.
+     * Gets information about an app profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -3465,7 +3416,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.get({
-     *     // Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     *     // Required. The unique name of the requested app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *   });
      *   console.log(res.data);
@@ -3485,14 +3436,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.appProfiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Appprofiles$Get,
@@ -3572,9 +3521,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.appProfiles.list
-     * @desc Lists information about app profiles in an instance.
+     * Lists information about app profiles in an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -3609,7 +3558,7 @@ export namespace bigtableadmin_v2 {
      *     pageSize: 'placeholder-value',
      *     // The value of `next_page_token` returned by a previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     *     // Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      *     parent: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -3627,16 +3576,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.appProfiles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
-     * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
-     * @param {string} params.parent Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$Appprofiles$List,
@@ -3724,9 +3669,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.appProfiles.patch
-     * @desc Updates an app profile within an instance.
+     * Updates an app profile within an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -3759,7 +3704,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.appProfiles.patch({
      *     // If true, ignore safety checks when updating the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
+     *     // The unique name of the app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *     // Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
      *     updateMask: 'placeholder-value',
@@ -3793,17 +3738,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.appProfiles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when updating the app profile.
-     * @param {string} params.name The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
-     * @param {string=} params.updateMask Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
-     * @param {().AppProfile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Instances$Appprofiles$Patch,
@@ -3894,7 +3834,7 @@ export namespace bigtableadmin_v2 {
      */
     ignoreWarnings?: boolean;
     /**
-     * Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string;
 
@@ -3910,14 +3850,14 @@ export namespace bigtableadmin_v2 {
      */
     ignoreWarnings?: boolean;
     /**
-     * Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Appprofiles$Get
     extends StandardParameters {
     /**
-     * Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * Required. The unique name of the requested app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
      */
     name?: string;
   }
@@ -3932,7 +3872,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      */
     parent?: string;
   }
@@ -3943,7 +3883,7 @@ export namespace bigtableadmin_v2 {
      */
     ignoreWarnings?: boolean;
     /**
-     * The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string;
     /**
@@ -3968,9 +3908,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.create
-     * @desc Creates a cluster within an instance.
+     * Creates a cluster within an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4003,7 +3943,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.clusters.create({
      *     // Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      *     clusterId: 'placeholder-value',
-     *     // Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -4035,16 +3975,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * @param {string} params.parent Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {().Cluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Clusters$Create,
@@ -4127,9 +4063,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.delete
-     * @desc Deletes a cluster from an instance.
+     * Deletes a cluster from an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4160,7 +4096,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.delete({
-     *     // Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -4174,14 +4110,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Delete,
@@ -4261,9 +4195,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.get
-     * @desc Gets information about a cluster.
+     * Gets information about a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4295,7 +4229,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.get({
-     *     // Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. The unique name of the requested cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -4315,14 +4249,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Clusters$Get,
@@ -4402,9 +4334,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.list
-     * @desc Lists information about clusters in an instance.
+     * Lists information about clusters in an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4438,7 +4370,7 @@ export namespace bigtableadmin_v2 {
      *   const res = await bigtableadmin.projects.instances.clusters.list({
      *     // DEPRECATED: This field is unused and ignored.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     *     // Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      *     parent: 'projects/my-project/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -4456,15 +4388,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken DEPRECATED: This field is unused and ignored.
-     * @param {string} params.parent Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$Clusters$List,
@@ -4552,9 +4481,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.update
-     * @desc Updates a cluster within an instance.
+     * Updates a cluster within an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4585,7 +4514,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.update({
-     *     // The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     *     // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4617,15 +4546,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
-     * @param {().Cluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Instances$Clusters$Update,
@@ -4712,7 +4638,7 @@ export namespace bigtableadmin_v2 {
      */
     clusterId?: string;
     /**
-     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string;
 
@@ -4724,14 +4650,14 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Delete
     extends StandardParameters {
     /**
-     * Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Get
     extends StandardParameters {
     /**
-     * Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Required. The unique name of the requested cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     name?: string;
   }
@@ -4742,14 +4668,14 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Update
     extends StandardParameters {
     /**
-     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      */
     name?: string;
 
@@ -4766,9 +4692,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.create
-     * @desc Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
+     * Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4798,9 +4724,9 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.create({
-     *     // Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     *     // Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent\}/backups/{backup_id\} to create the full backup name, of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup_id\}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
      *     backupId: 'placeholder-value',
-     *     // Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4834,16 +4760,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.backupId Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
-     * @param {string} params.parent Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param {().Backup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
@@ -4926,9 +4848,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.delete
-     * @desc Deletes a pending or completed Cloud Bigtable backup.
+     * Deletes a pending or completed Cloud Bigtable backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -4958,7 +4880,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.delete({
-     *     // Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     // Required. Name of the backup to delete. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
@@ -4973,14 +4895,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
@@ -5060,9 +4980,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.get
-     * @desc Gets metadata on a pending or completed Cloud Bigtable Backup.
+     * Gets metadata on a pending or completed Cloud Bigtable Backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5092,7 +5012,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.get({
-     *     // Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     // Required. Name of the backup. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
@@ -5115,14 +5035,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
@@ -5202,9 +5120,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.getIamPolicy
-     * @desc Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5264,15 +5182,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
@@ -5355,9 +5270,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.list
-     * @desc Lists Cloud Bigtable backups. Returns both completed and pending backups.
+     * Lists Cloud Bigtable backups. Returns both completed and pending backups.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5387,7 +5302,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.list({
-     *     // A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     *     // A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, \>, <=, \>=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --\> The backup's name is the string "exact". * `name:howl` --\> The backup's name contains the string "howl". * `source_table:prod` --\> The source_table's name contains the string "prod". * `state:CREATING` --\> The backup is pending creation. * `state:READY` --\> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --\> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes \> 10000000000` --\> The backup's size is greater than 10GB
      *     filter: 'placeholder-value',
      *     // An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
      *     orderBy: 'placeholder-value',
@@ -5395,7 +5310,7 @@ export namespace bigtableadmin_v2 {
      *     pageSize: 'placeholder-value',
      *     // If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     *     // Required. The cluster to list backups from. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`. Use `{cluster\} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project\}/instances/{instance\}/clusters/-`.
      *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -5412,18 +5327,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
-     * @param {string=} params.orderBy An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
-     * @param {integer=} params.pageSize Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
-     * @param {string} params.parent Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$Clusters$Backups$List,
@@ -5509,9 +5418,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.patch
-     * @desc Updates a pending or completed Cloud Bigtable Backup.
+     * Updates a pending or completed Cloud Bigtable Backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5541,7 +5450,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.patch({
-     *     // A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      *     name:
      *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *     // Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
@@ -5580,16 +5489,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param {string=} params.updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
-     * @param {().Backup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
@@ -5669,9 +5574,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.setIamPolicy
-     * @desc Sets the access control policy on a Table resource. Replaces any existing policy.
+     * Sets the access control policy on a Table resource. Replaces any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5732,15 +5637,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
@@ -5823,9 +5725,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.clusters.backups.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified table resource.
+     * Returns permissions that the caller has on the specified table resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -5882,15 +5784,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.clusters.backups.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
@@ -5983,11 +5882,11 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Create
     extends StandardParameters {
     /**
-     * Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     * Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent\}/backups/{backup_id\} to create the full backup name, of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup_id\}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
      */
     backupId?: string;
     /**
-     * Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     parent?: string;
 
@@ -5999,14 +5898,14 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * Required. Name of the backup to delete. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Get
     extends StandardParameters {
     /**
-     * Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * Required. Name of the backup. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
      */
     name?: string;
   }
@@ -6025,7 +5924,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$List
     extends StandardParameters {
     /**
-     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --> The backup's name is the string "exact". * `name:howl` --> The backup's name contains the string "howl". * `source_table:prod` --> The source_table's name contains the string "prod". * `state:CREATING` --> The backup is pending creation. * `state:READY` --> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, \>, <=, \>=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --\> The backup's name is the string "exact". * `name:howl` --\> The backup's name contains the string "howl". * `source_table:prod` --\> The source_table's name contains the string "prod". * `state:CREATING` --\> The backup is pending creation. * `state:READY` --\> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --\> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes \> 10000000000` --\> The backup's size is greater than 10GB
      */
     filter?: string;
     /**
@@ -6041,14 +5940,14 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The cluster to list backups from. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     * Required. The cluster to list backups from. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`. Use `{cluster\} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project\}/instances/{instance\}/clusters/-`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Patch
     extends StandardParameters {
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     name?: string;
     /**
@@ -6093,9 +5992,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.checkConsistency
-     * @desc Checks replication consistency based on a consistency token, that is, if replication has caught up based on the conditions specified in the token and the check request.
+     * Checks replication consistency based on a consistency token, that is, if replication has caught up based on the conditions specified in the token and the check request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6125,7 +6024,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.checkConsistency({
-     *     // Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -6149,15 +6048,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.checkConsistency
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {().CheckConsistencyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     checkConsistency(
       params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
@@ -6247,9 +6143,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.create
-     * @desc Creates a new table in the specified instance. The table can be created with a full set of initial column families, specified in the request.
+     * Creates a new table in the specified instance. The table can be created with a full set of initial column families, specified in the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6279,7 +6175,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.create({
-     *     // Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -6309,15 +6205,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {().CreateTableRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Instances$Tables$Create,
@@ -6400,9 +6293,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.delete
-     * @desc Permanently deletes a specified table and all of its data.
+     * Permanently deletes a specified table and all of its data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6432,7 +6325,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.delete({
-     *     // Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the table to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *   });
      *   console.log(res.data);
@@ -6446,14 +6339,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Instances$Tables$Delete,
@@ -6533,9 +6424,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.dropRowRange
-     * @desc Permanently drop/delete a row range from a specified table. The request can specify whether to delete all rows in a table, or only those that match a particular prefix.
+     * Permanently drop/delete a row range from a specified table. The request can specify whether to delete all rows in a table, or only those that match a particular prefix.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6565,7 +6456,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.dropRowRange({
-     *     // Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *     // Request body metadata
@@ -6588,15 +6479,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.dropRowRange
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {().DropRowRangeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     dropRowRange(
       params: Params$Resource$Projects$Instances$Tables$Droprowrange,
@@ -6679,9 +6567,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.generateConsistencyToken
-     * @desc Generates a consistency token for a Table, which can be used in CheckConsistency to check whether mutations to the table that finished before this call started have been replicated. The tokens will be available for 90 days.
+     * Generates a consistency token for a Table, which can be used in CheckConsistency to check whether mutations to the table that finished before this call started have been replicated. The tokens will be available for 90 days.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6712,7 +6600,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.generateConsistencyToken(
      *     {
-     *       // Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *       // Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *       // Request body metadata
@@ -6735,15 +6623,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.generateConsistencyToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {().GenerateConsistencyTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generateConsistencyToken(
       params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
@@ -6835,9 +6720,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.get
-     * @desc Gets metadata information about the specified table.
+     * Gets metadata information about the specified table.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -6868,7 +6753,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.get({
-     *     // Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *     // Required. The unique name of the requested table. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *     name: 'projects/my-project/instances/my-instance/tables/my-table',
      *     // The view to be applied to the returned table's fields. Defaults to `SCHEMA_VIEW` if unspecified.
      *     view: 'placeholder-value',
@@ -6890,15 +6775,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {string=} params.view The view to be applied to the returned table's fields. Defaults to `SCHEMA_VIEW` if unspecified.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Instances$Tables$Get,
@@ -6978,9 +6860,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.getIamPolicy
-     * @desc Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7037,15 +6919,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
@@ -7128,9 +7007,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.list
-     * @desc Lists all tables served from a specified instance.
+     * Lists all tables served from a specified instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7165,7 +7044,7 @@ export namespace bigtableadmin_v2 {
      *     pageSize: 'placeholder-value',
      *     // The value of `next_page_token` returned by a previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
+     *     // Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     parent: 'projects/my-project/instances/my-instance',
      *     // The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *     view: 'placeholder-value',
@@ -7184,17 +7063,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
-     * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
-     * @param {string} params.parent Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
-     * @param {string=} params.view The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Instances$Tables$List,
@@ -7280,9 +7154,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.modifyColumnFamilies
-     * @desc Performs a series of column family modifications on the specified table. Either all or none of the modifications will occur before this method returns, but data requests received prior to that point may see a table where only some modifications have taken effect.
+     * Performs a series of column family modifications on the specified table. Either all or none of the modifications will occur before this method returns, but data requests received prior to that point may see a table where only some modifications have taken effect.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7313,7 +7187,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.modifyColumnFamilies(
      *     {
-     *       // Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     *       // Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
      *       // Request body metadata
@@ -7342,15 +7216,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.modifyColumnFamilies
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param {().ModifyColumnFamiliesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyColumnFamilies(
       params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
@@ -7433,9 +7304,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.restore
-     * @desc Create a new table by restoring from a completed backup. The new table must be in the same instance as the instance containing the backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
+     * Create a new table by restoring from a completed backup. The new table must be in the same instance as the instance containing the backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7494,15 +7365,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.restore
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects//instances/`.
-     * @param {().RestoreTableRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restore(
       params: Params$Resource$Projects$Instances$Tables$Restore,
@@ -7585,9 +7453,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.setIamPolicy
-     * @desc Sets the access control policy on a Table resource. Replaces any existing policy.
+     * Sets the access control policy on a Table resource. Replaces any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7645,15 +7513,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
@@ -7736,9 +7601,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified table resource.
+     * Returns permissions that the caller has on the specified table resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -7792,15 +7657,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.instances.tables.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
@@ -7893,7 +7755,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Checkconsistency
     extends StandardParameters {
     /**
-     * Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
 
@@ -7905,7 +7767,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Create
     extends StandardParameters {
     /**
-     * Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string;
 
@@ -7917,14 +7779,14 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Delete
     extends StandardParameters {
     /**
-     * Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the table to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Droprowrange
     extends StandardParameters {
     /**
-     * Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
 
@@ -7936,7 +7798,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Generateconsistencytoken
     extends StandardParameters {
     /**
-     * Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
 
@@ -7948,7 +7810,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Get
     extends StandardParameters {
     /**
-     * Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the requested table. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
     /**
@@ -7979,7 +7841,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string;
     /**
@@ -7990,7 +7852,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies
     extends StandardParameters {
     /**
-     * Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     name?: string;
 
@@ -8043,9 +7905,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -8097,14 +7959,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -8184,9 +8044,9 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
@@ -8241,17 +8101,12 @@ export namespace bigtableadmin_v2 {
      *   throw e;
      * });
      *
-     * @alias bigtableadmin.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,

@@ -104,14 +104,10 @@ export namespace pubsublite_v1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const pubsublite = google.pubsublite('v1');
-   *
-   * @namespace pubsublite
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Pubsublite
+   * ```
    */
   export class Pubsublite {
     context: APIRequestContext;
@@ -136,11 +132,11 @@ export namespace pubsublite_v1 {
    */
   export interface Schema$Capacity {
     /**
-     * Publish throughput capacity per partition in MiB/s. Must be &gt;= 4 and &lt;= 16.
+     * Publish throughput capacity per partition in MiB/s. Must be \>= 4 and <= 16.
      */
     publishMibPerSec?: number | null;
     /**
-     * Subscribe throughput capacity per partition in MiB/s. Must be &gt;= 4 and &lt;= 32.
+     * Subscribe throughput capacity per partition in MiB/s. Must be \>= 4 and <= 32.
      */
     subscribeMibPerSec?: number | null;
   }
@@ -149,7 +145,7 @@ export namespace pubsublite_v1 {
    */
   export interface Schema$ComputeMessageStatsRequest {
     /**
-     * The exclusive end of the range. The range is empty if end_cursor &lt;= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages.
+     * The exclusive end of the range. The range is empty if end_cursor <= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages.
      */
     endCursor?: Schema$Cursor;
     /**
@@ -192,7 +188,7 @@ export namespace pubsublite_v1 {
     offset?: string | null;
   }
   /**
-   * The settings for a subscription&#39;s message delivery.
+   * The settings for a subscription's message delivery.
    */
   export interface Schema$DeliveryConfig {
     /**
@@ -201,7 +197,7 @@ export namespace pubsublite_v1 {
     deliveryRequirement?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -257,7 +253,7 @@ export namespace pubsublite_v1 {
     subscriptions?: string[] | null;
   }
   /**
-   * The settings for a topic&#39;s partitions.
+   * The settings for a topic's partitions.
    */
   export interface Schema$PartitionConfig {
     /**
@@ -287,7 +283,7 @@ export namespace pubsublite_v1 {
     partition?: string | null;
   }
   /**
-   * The settings for a topic&#39;s message retention.
+   * The settings for a topic's message retention.
    */
   export interface Schema$RetentionConfig {
     /**
@@ -295,7 +291,7 @@ export namespace pubsublite_v1 {
      */
     period?: string | null;
     /**
-     * The provisioned storage, in bytes, per partition. If the number of bytes stored in any of the topic&#39;s partitions grows beyond this value, older messages will be dropped to make room for newer ones, regardless of the value of `period`.
+     * The provisioned storage, in bytes, per partition. If the number of bytes stored in any of the topic's partitions grows beyond this value, older messages will be dropped to make room for newer ones, regardless of the value of `period`.
      */
     perPartitionBytes?: string | null;
   }
@@ -304,15 +300,15 @@ export namespace pubsublite_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The settings for this subscription&#39;s message delivery.
+     * The settings for this subscription's message delivery.
      */
     deliveryConfig?: Schema$DeliveryConfig;
     /**
-     * The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
+     * The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
      */
     name?: string | null;
     /**
-     * The name of the topic this subscription is attached to. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
+     * The name of the topic this subscription is attached to. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      */
     topic?: string | null;
   }
@@ -321,15 +317,15 @@ export namespace pubsublite_v1 {
    */
   export interface Schema$Topic {
     /**
-     * The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
+     * The name of the topic. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      */
     name?: string | null;
     /**
-     * The settings for this topic&#39;s partitions.
+     * The settings for this topic's partitions.
      */
     partitionConfig?: Schema$PartitionConfig;
     /**
-     * The settings for this topic&#39;s message retention.
+     * The settings for this topic's message retention.
      */
     retentionConfig?: Schema$RetentionConfig;
   }
@@ -381,9 +377,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.subscriptions.create
-     * @desc Creates a new subscription.
+     * Creates a new subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -407,7 +403,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.create({
-     *     // Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent location in which to create the subscription. Structured like `projects/{project_number\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      *     subscriptionId: 'placeholder-value',
@@ -437,16 +433,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.subscriptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {string=} params.subscriptionId Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
-     * @param {().Subscription} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$Create,
@@ -528,9 +520,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.subscriptions.delete
-     * @desc Deletes the specified subscription.
+     * Deletes the specified subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -569,14 +561,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.subscriptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the subscription to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$Delete,
@@ -655,9 +645,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.subscriptions.get
-     * @desc Returns the subscription configuration.
+     * Returns the subscription configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -700,14 +690,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.subscriptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the subscription whose configuration to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$Get,
@@ -786,9 +774,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.subscriptions.list
-     * @desc Returns the list of subscriptions for the given project.
+     * Returns the list of subscriptions for the given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -816,7 +804,7 @@ export namespace pubsublite_v1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -833,16 +821,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.subscriptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
-     * @param {string} params.parent Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$List,
@@ -931,9 +915,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.subscriptions.patch
-     * @desc Updates properties of the specified subscription.
+     * Updates properties of the specified subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -957,7 +941,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.patch({
-     *     // The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
+     *     // The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
      *     name:
      *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *     // Required. A mask specifying the subscription fields to change.
@@ -988,16 +972,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.subscriptions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
-     * @param {string=} params.updateMask Required. A mask specifying the subscription fields to change.
-     * @param {().Subscription} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Admin$Projects$Locations$Subscriptions$Patch,
@@ -1079,7 +1059,7 @@ export namespace pubsublite_v1 {
   export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Create
     extends StandardParameters {
     /**
-     * Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.
+     * Required. The parent location in which to create the subscription. Structured like `projects/{project_number\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -1117,14 +1097,14 @@ export namespace pubsublite_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.
+     * Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Admin$Projects$Locations$Subscriptions$Patch
     extends StandardParameters {
     /**
-     * The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}
+     * The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
      */
     name?: string;
     /**
@@ -1149,9 +1129,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.create
-     * @desc Creates a new topic.
+     * Creates a new topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1175,7 +1155,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.topics.create({
-     *     // Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent location in which to create the topic. Structured like `projects/{project_number\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.
      *     topicId: 'placeholder-value',
@@ -1205,16 +1185,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {string=} params.topicId Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.
-     * @param {().Topic} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Admin$Projects$Locations$Topics$Create,
@@ -1296,9 +1272,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.delete
-     * @desc Deletes the specified topic.
+     * Deletes the specified topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1336,14 +1312,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the topic to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Admin$Projects$Locations$Topics$Delete,
@@ -1422,9 +1396,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.get
-     * @desc Returns the topic configuration.
+     * Returns the topic configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1466,14 +1440,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the topic whose configuration to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Admin$Projects$Locations$Topics$Get,
@@ -1552,9 +1524,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.getPartitions
-     * @desc Returns the partition information for the requested topic.
+     * Returns the partition information for the requested topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1594,14 +1566,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.getPartitions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The topic whose partition information to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getPartitions(
       params: Params$Resource$Admin$Projects$Locations$Topics$Getpartitions,
@@ -1683,9 +1653,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.list
-     * @desc Returns the list of topics for the given project.
+     * Returns the list of topics for the given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1713,7 +1683,7 @@ export namespace pubsublite_v1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.
+     *     // Required. The parent whose topics are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1730,16 +1700,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.
-     * @param {string} params.parent Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Admin$Projects$Locations$Topics$List,
@@ -1824,9 +1790,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.patch
-     * @desc Updates properties of the specified topic.
+     * Updates properties of the specified topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -1850,7 +1816,7 @@ export namespace pubsublite_v1 {
      *
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.topics.patch({
-     *     // The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
+     *     // The name of the topic. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      *     name: 'projects/my-project/locations/my-location/topics/my-topic',
      *     // Required. A mask specifying the topic fields to change.
      *     updateMask: 'placeholder-value',
@@ -1880,16 +1846,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
-     * @param {string=} params.updateMask Required. A mask specifying the topic fields to change.
-     * @param {().Topic} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Admin$Projects$Locations$Topics$Patch,
@@ -1971,7 +1933,7 @@ export namespace pubsublite_v1 {
   export interface Params$Resource$Admin$Projects$Locations$Topics$Create
     extends StandardParameters {
     /**
-     * Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.
+     * Required. The parent location in which to create the topic. Structured like `projects/{project_number\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -2016,14 +1978,14 @@ export namespace pubsublite_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.
+     * Required. The parent whose topics are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Admin$Projects$Locations$Topics$Patch
     extends StandardParameters {
     /**
-     * The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}
+     * The name of the topic. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      */
     name?: string;
     /**
@@ -2044,9 +2006,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.admin.projects.locations.topics.subscriptions.list
-     * @desc Lists the subscriptions attached to the specified topic.
+     * Lists the subscriptions attached to the specified topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -2093,16 +2055,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.admin.projects.locations.topics.subscriptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the topic whose subscriptions to list.
-     * @param {integer=} params.pageSize The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List,
@@ -2256,9 +2214,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.cursor.projects.locations.subscriptions.cursors.list
-     * @desc Returns all committed cursor information for a subscription.
+     * Returns all committed cursor information for a subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -2287,7 +2245,7 @@ export namespace pubsublite_v1 {
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
+     *       // Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *     }
@@ -2306,16 +2264,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.cursor.projects.locations.subscriptions.cursors.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.
-     * @param {string=} params.pageToken A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
-     * @param {string} params.parent Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List,
@@ -2417,7 +2371,7 @@ export namespace pubsublite_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.
+     * Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}`.
      */
     parent?: string;
   }
@@ -2458,9 +2412,9 @@ export namespace pubsublite_v1 {
     }
 
     /**
-     * pubsublite.topicStats.projects.locations.topics.computeMessageStats
-     * @desc Compute statistics about a range of messages in a given topic and partition.
+     * Compute statistics about a range of messages in a given topic and partition.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
@@ -2515,15 +2469,12 @@ export namespace pubsublite_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsublite.topicStats.projects.locations.topics.computeMessageStats
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic Required. The topic for which we should compute message stats.
-     * @param {().ComputeMessageStatsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     computeMessageStats(
       params: Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats,

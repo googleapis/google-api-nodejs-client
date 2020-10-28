@@ -56,3 +56,16 @@ export function dialogflow<
 
 const auth = new AuthPlus();
 export {auth};
+export {dialogflow_v2};
+export {dialogflow_v2beta1};
+export {dialogflow_v3beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

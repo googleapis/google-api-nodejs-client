@@ -31,3 +31,14 @@ export function script<T = script_v1.Script>(
 
 const auth = new AuthPlus();
 export {auth};
+export {script_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

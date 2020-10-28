@@ -104,14 +104,10 @@ export namespace vault_v1 {
    * Archiving and eDiscovery for G Suite.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const vault = google.vault('v1');
-   *
-   * @namespace vault
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Vault
+   * ```
    */
   export class Vault {
     context: APIRequestContext;
@@ -362,7 +358,7 @@ export namespace vault_v1 {
     versionDate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -518,7 +514,7 @@ export namespace vault_v1 {
    */
   export interface Schema$HeldAccount {
     /**
-     * The account&#39;s ID as provided by the Admin SDK.
+     * The account's ID as provided by the Admin SDK.
      */
     accountId?: string | null;
     /**
@@ -603,7 +599,7 @@ export namespace vault_v1 {
      */
     holdTime?: string | null;
     /**
-     * The org unit&#39;s immutable ID as provided by the Admin SDK.
+     * The org unit's immutable ID as provided by the Admin SDK.
      */
     orgUnitId?: string | null;
   }
@@ -795,7 +791,7 @@ export namespace vault_v1 {
      */
     accountId?: string | null;
     /**
-     * The user&#39;s role in this matter.
+     * The user's role in this matter.
      */
     role?: string | null;
   }
@@ -816,7 +812,7 @@ export namespace vault_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -834,11 +830,11 @@ export namespace vault_v1 {
     orgUnitId?: string | null;
   }
   /**
-   * A query definition relevant for search &amp; export.
+   * A query definition relevant for search & export.
    */
   export interface Schema$Query {
     /**
-     * When &#39;ACCOUNT&#39; is chosen as search method, account_info needs to be specified.
+     * When 'ACCOUNT' is chosen as search method, account_info needs to be specified.
      */
     accountInfo?: Schema$AccountInfo;
     /**
@@ -858,7 +854,7 @@ export namespace vault_v1 {
      */
     endTime?: string | null;
     /**
-     * When &#39;ROOM&#39; is chosen as search method, hangout_chats_info needs to be specified. (read-only)
+     * When 'ROOM' is chosen as search method, hangout_chats_info needs to be specified. (read-only)
      */
     hangoutsChatInfo?: Schema$HangoutsChatInfo;
     /**
@@ -874,7 +870,7 @@ export namespace vault_v1 {
      */
     method?: string | null;
     /**
-     * When &#39;ORG_UNIT&#39; is chosen as as search method, org_unit_info needs to be specified.
+     * When 'ORG_UNIT' is chosen as as search method, org_unit_info needs to be specified.
      */
     orgUnitInfo?: Schema$OrgUnitInfo;
     /**
@@ -882,7 +878,7 @@ export namespace vault_v1 {
      */
     searchMethod?: string | null;
     /**
-     * When &#39;SHARED_DRIVE&#39; is chosen as search method, shared_drive_info needs to be specified.
+     * When 'SHARED_DRIVE' is chosen as search method, shared_drive_info needs to be specified.
      */
     sharedDriveInfo?: Schema$SharedDriveInfo;
     /**
@@ -890,7 +886,7 @@ export namespace vault_v1 {
      */
     startTime?: string | null;
     /**
-     * When &#39;TEAM_DRIVE&#39; is chosen as search method, team_drive_info needs to be specified.
+     * When 'TEAM_DRIVE' is chosen as search method, team_drive_info needs to be specified.
      */
     teamDriveInfo?: Schema$TeamDriveInfo;
     /**
@@ -898,7 +894,7 @@ export namespace vault_v1 {
      */
     terms?: string | null;
     /**
-     * The time zone name. It should be an IANA TZ name, such as &quot;America/Los_Angeles&quot;. For more information, see Time Zone.
+     * The time zone name. It should be an IANA TZ name, such as "America/Los_Angeles". For more information, see Time Zone.
      */
     timeZone?: string | null;
   }
@@ -1007,7 +1003,7 @@ export namespace vault_v1 {
    */
   export interface Schema$UndeleteMatterRequest {}
   /**
-   * User&#39;s information.
+   * User's information.
    */
   export interface Schema$UserInfo {
     /**
@@ -1033,9 +1029,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.addPermissions
-     * @desc Adds an account as a matter collaborator.
+     * Adds an account as a matter collaborator.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1086,15 +1082,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.addPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().AddMatterPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addPermissions(
       params: Params$Resource$Matters$Addpermissions,
@@ -1178,9 +1171,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.close
-     * @desc Closes the specified matter. Returns matter with updated state.
+     * Closes the specified matter. Returns matter with updated state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1226,15 +1219,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.close
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().CloseMatterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     close(
       params: Params$Resource$Matters$Close,
@@ -1318,9 +1308,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.count
-     * @desc Counts the artifacts within the context of a matter and returns a detailed breakdown of metrics.
+     * Counts the artifacts within the context of a matter and returns a detailed breakdown of metrics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1373,15 +1363,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.count
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().CountArtifactsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     count(
       params: Params$Resource$Matters$Count,
@@ -1462,9 +1449,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.create
-     * @desc Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
+     * Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1517,14 +1504,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Matter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Matters$Create,
@@ -1602,9 +1587,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.delete
-     * @desc Deletes the specified matter. Returns matter with updated state.
+     * Deletes the specified matter. Returns matter with updated state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1648,14 +1633,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Matters$Delete,
@@ -1736,9 +1719,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.get
-     * @desc Gets the specified matter.
+     * Gets the specified matter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1787,15 +1770,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {string=} params.view Specifies which parts of the Matter to return in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Matters$Get,
@@ -1876,9 +1856,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.list
-     * @desc Lists matters the user has access to.
+     * Lists matters the user has access to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -1928,17 +1908,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
-     * @param {string=} params.pageToken The pagination token as returned in the response.
-     * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
-     * @param {string=} params.view Specifies which parts of the matter to return in response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Matters$List,
@@ -2019,9 +1994,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.removePermissions
-     * @desc Removes an account as a matter collaborator.
+     * Removes an account as a matter collaborator.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2067,15 +2042,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.removePermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().RemoveMatterPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removePermissions(
       params: Params$Resource$Matters$Removepermissions,
@@ -2157,9 +2129,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.reopen
-     * @desc Reopens the specified matter. Returns matter with updated state.
+     * Reopens the specified matter. Returns matter with updated state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2205,15 +2177,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.reopen
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().ReopenMatterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reopen(
       params: Params$Resource$Matters$Reopen,
@@ -2299,9 +2268,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.undelete
-     * @desc Undeletes the specified matter. Returns matter with updated state.
+     * Undeletes the specified matter. Returns matter with updated state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2351,15 +2320,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.undelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().UndeleteMatterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
       params: Params$Resource$Matters$Undelete,
@@ -2440,9 +2406,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.update
-     * @desc Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter.
+     * Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2498,15 +2464,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().Matter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Matters$Update,
@@ -2714,9 +2677,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.exports.create
-     * @desc Creates an Export.
+     * Creates an Export.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2782,15 +2745,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.exports.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().Export} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Matters$Exports$Create,
@@ -2872,9 +2832,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.exports.delete
-     * @desc Deletes an Export.
+     * Deletes an Export.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -2914,15 +2874,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.exports.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.exportId The export ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Matters$Exports$Delete,
@@ -3003,9 +2960,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.exports.get
-     * @desc Gets an Export.
+     * Gets an Export.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3059,15 +3016,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.exports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.exportId The export ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Matters$Exports$Get,
@@ -3148,9 +3102,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.exports.list
-     * @desc Lists Exports.
+     * Lists Exports.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3198,16 +3152,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.exports.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {integer=} params.pageSize The number of exports to return in the response.
-     * @param {string=} params.pageToken The pagination token as returned in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Matters$Exports$List,
@@ -3351,9 +3301,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.addHeldAccounts
-     * @desc Adds HeldAccounts to a hold. Returns a list of accounts that have been successfully added. Accounts can only be added to an existing account-based hold.
+     * Adds HeldAccounts to a hold. Returns a list of accounts that have been successfully added. Accounts can only be added to an existing account-based hold.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3404,16 +3354,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.addHeldAccounts
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {().AddHeldAccountsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addHeldAccounts(
       params: Params$Resource$Matters$Holds$Addheldaccounts,
@@ -3501,9 +3447,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.create
-     * @desc Creates a hold in the given matter.
+     * Creates a hold in the given matter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3563,15 +3509,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Matters$Holds$Create,
@@ -3653,9 +3596,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.delete
-     * @desc Removes a hold by ID. This will release any HeldAccounts on this Hold.
+     * Removes a hold by ID. This will release any HeldAccounts on this Hold.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3695,15 +3638,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Matters$Holds$Delete,
@@ -3785,9 +3725,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.get
-     * @desc Gets a hold by ID.
+     * Gets a hold by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3840,16 +3780,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Matters$Holds$Get,
@@ -3931,9 +3867,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.list
-     * @desc Lists holds within a matter. An empty page token in ListHoldsResponse denotes no more holds to list.
+     * Lists holds within a matter. An empty page token in ListHoldsResponse denotes no more holds to list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -3983,17 +3919,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID.
-     * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
-     * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
-     * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Matters$Holds$List,
@@ -4078,9 +4009,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.removeHeldAccounts
-     * @desc Removes HeldAccounts from a hold. Returns a list of statuses in the same order as the request. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * Removes HeldAccounts from a hold. Returns a list of statuses in the same order as the request. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -4130,16 +4061,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.removeHeldAccounts
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {().RemoveHeldAccountsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removeHeldAccounts(
       params: Params$Resource$Matters$Holds$Removeheldaccounts,
@@ -4228,9 +4155,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.update
-     * @desc Updates the OU and/or query parameters of a hold. You cannot add accounts to a hold that covers an OU, nor can you add OUs to a hold that covers individual accounts. Accounts listed in the hold will be ignored.
+     * Updates the OU and/or query parameters of a hold. You cannot add accounts to a hold that covers an OU, nor can you add OUs to a hold that covers individual accounts. Accounts listed in the hold will be ignored.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -4292,16 +4219,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The ID of the hold.
-     * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Matters$Holds$Update,
@@ -4496,9 +4419,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.accounts.create
-     * @desc Adds a HeldAccount to a hold. Accounts can only be added to a hold that has no held_org_unit set. Attempting to add an account to an OU-based hold will result in an error.
+     * Adds a HeldAccount to a hold. Accounts can only be added to a hold that has no held_org_unit set. Attempting to add an account to an OU-based hold will result in an error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -4556,16 +4479,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.accounts.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {().HeldAccount} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Matters$Holds$Accounts$Create,
@@ -4646,9 +4565,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.accounts.delete
-     * @desc Removes a HeldAccount from a hold. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * Removes a HeldAccount from a hold. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -4690,16 +4609,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.accounts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account to remove from the hold.
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Matters$Holds$Accounts$Delete,
@@ -4781,9 +4696,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.holds.accounts.list
-     * @desc Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use Admin SDK to enumerate its members.
+     * Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use Admin SDK to enumerate its members.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -4828,15 +4743,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.holds.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.holdId The hold ID.
-     * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Matters$Holds$Accounts$List,
@@ -4972,9 +4884,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.savedQueries.create
-     * @desc Creates a saved query.
+     * Creates a saved query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5030,15 +4942,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.savedQueries.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be created.
-     * @param {().SavedQuery} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Matters$Savedqueries$Create,
@@ -5120,9 +5029,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.savedQueries.delete
-     * @desc Deletes a saved query by Id.
+     * Deletes a saved query by Id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5162,15 +5071,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.savedQueries.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be deleted.
-     * @param {string} params.savedQueryId ID of the saved query to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Matters$Savedqueries$Delete,
@@ -5251,9 +5157,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.savedQueries.get
-     * @desc Retrieves a saved query by Id.
+     * Retrieves a saved query by Id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5302,15 +5208,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.savedQueries.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be retrieved.
-     * @param {string} params.savedQueryId ID of the saved query to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Matters$Savedqueries$Get,
@@ -5391,9 +5294,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.matters.savedQueries.list
-     * @desc Lists saved queries within a matter. An empty page token in ListSavedQueriesResponse denotes no more saved queries to list.
+     * Lists saved queries within a matter. An empty page token in ListSavedQueriesResponse denotes no more saved queries to list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5441,16 +5344,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.matters.savedQueries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter ID of the parent matter for which the saved queries are to be retrieved.
-     * @param {integer=} params.pageSize The maximum number of saved queries to return.
-     * @param {string=} params.pageToken The pagination token as returned in the previous response. An empty token means start from the beginning.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Matters$Savedqueries$List,
@@ -5594,9 +5493,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5640,15 +5539,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Operations$Cancel,
@@ -5727,9 +5623,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5767,14 +5663,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Operations$Delete,
@@ -5853,9 +5747,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -5902,14 +5796,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -5987,9 +5879,9 @@ export namespace vault_v1 {
     }
 
     /**
-     * vault.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vault.googleapis.com
@@ -6036,17 +5928,12 @@ export namespace vault_v1 {
      *   throw e;
      * });
      *
-     * @alias vault.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$List,

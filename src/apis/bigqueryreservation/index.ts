@@ -62,3 +62,16 @@ export function bigqueryreservation<
 
 const auth = new AuthPlus();
 export {auth};
+export {bigqueryreservation_v1};
+export {bigqueryreservation_v1alpha2};
+export {bigqueryreservation_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

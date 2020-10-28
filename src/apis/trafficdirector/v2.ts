@@ -104,14 +104,10 @@ export namespace trafficdirector_v2 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const trafficdirector = google.trafficdirector('v2');
-   *
-   * @namespace trafficdirector
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Trafficdirector
+   * ```
    */
   export class Trafficdirector {
     context: APIRequestContext;
@@ -135,7 +131,7 @@ export namespace trafficdirector_v2 {
     socketAddress?: Schema$SocketAddress;
   }
   /**
-   * BuildVersion combines SemVer version of extension with free-form build information (i.e. &#39;alpha&#39;, &#39;private-build&#39;) as a set of strings.
+   * BuildVersion combines SemVer version of extension with free-form build information (i.e. 'alpha', 'private-build') as a set of strings.
    */
   export interface Schema$BuildVersion {
     /**
@@ -173,7 +169,7 @@ export namespace trafficdirector_v2 {
     config?: Schema$ClientConfig[];
   }
   /**
-   * Envoy&#39;s cluster manager fills this message with all currently known clusters. Cluster configuration information can be used to recreate an Envoy configuration by populating all clusters as static clusters or by returning them in a CDS response.
+   * Envoy's cluster manager fills this message with all currently known clusters. Cluster configuration information can be used to recreate an Envoy configuration by populating all clusters as static clusters or by returning them in a CDS response.
    */
   export interface Schema$ClustersConfigDump {
     /**
@@ -189,7 +185,7 @@ export namespace trafficdirector_v2 {
      */
     staticClusters?: Schema$StaticCluster[];
     /**
-     * This is the :ref:`version_info ` in the last processed CDS discovery response. If there are only static bootstrap clusters, this field will be &quot;&quot;.
+     * This is the :ref:`version_info ` in the last processed CDS discovery response. If there are only static bootstrap clusters, this field will be "".
      */
     versionInfo?: string | null;
   }
@@ -312,7 +308,7 @@ export namespace trafficdirector_v2 {
    */
   export interface Schema$Extension {
     /**
-     * Category of the extension. Extension category names use reverse DNS notation. For instance &quot;envoy.filters.listener&quot; for Envoy&#39;s built-in listener filters or &quot;com.acme.filters.http&quot; for HTTP filters from acme.com vendor. [#comment:
+     * Category of the extension. Extension category names use reverse DNS notation. For instance "envoy.filters.listener" for Envoy's built-in listener filters or "com.acme.filters.http" for HTTP filters from acme.com vendor. [#comment:
      */
     category?: string | null;
     /**
@@ -333,11 +329,11 @@ export namespace trafficdirector_v2 {
     version?: Schema$BuildVersion;
   }
   /**
-   * Google&#39;s `RE2 `_ regex engine. The regex string must adhere to the documented `syntax `_. The engine is designed to complete execution in linear time as well as limit the amount of memory used. Envoy supports program size checking via runtime. The runtime keys `re2.max_program_size.error_level` and `re2.max_program_size.warn_level` can be set to integers as the maximum program size or complexity that a compiled regex can have before an exception is thrown or a warning is logged, respectively. `re2.max_program_size.error_level` defaults to 100, and `re2.max_program_size.warn_level` has no default if unset (will not check/log a warning). Envoy emits two stats for tracking the program size of regexes: the histogram `re2.program_size`, which records the program size, and the counter `re2.exceeded_warn_level`, which is incremented each time the program size exceeds the warn level threshold.
+   * Google's `RE2 `_ regex engine. The regex string must adhere to the documented `syntax `_. The engine is designed to complete execution in linear time as well as limit the amount of memory used. Envoy supports program size checking via runtime. The runtime keys `re2.max_program_size.error_level` and `re2.max_program_size.warn_level` can be set to integers as the maximum program size or complexity that a compiled regex can have before an exception is thrown or a warning is logged, respectively. `re2.max_program_size.error_level` defaults to 100, and `re2.max_program_size.warn_level` has no default if unset (will not check/log a warning). Envoy emits two stats for tracking the program size of regexes: the histogram `re2.program_size`, which records the program size, and the counter `re2.exceeded_warn_level`, which is incremented each time the program size exceeds the warn level threshold.
    */
   export interface Schema$GoogleRE2 {
     /**
-     * This field controls the RE2 &quot;program size&quot; which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client.
+     * This field controls the RE2 "program size" which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client.
      */
     maxProgramSize?: number | null;
   }
@@ -356,7 +352,7 @@ export namespace trafficdirector_v2 {
     scopedRouteConfigs?: Array<{[key: string]: any}> | null;
   }
   /**
-   * Envoy&#39;s listener manager fills this message with all currently known listeners. Listener configuration information can be used to recreate an Envoy configuration by populating all listeners as static listeners or by returning them in a LDS response.
+   * Envoy's listener manager fills this message with all currently known listeners. Listener configuration information can be used to recreate an Envoy configuration by populating all listeners as static listeners or by returning them in a LDS response.
    */
   export interface Schema$ListenersConfigDump {
     /**
@@ -368,7 +364,7 @@ export namespace trafficdirector_v2 {
      */
     staticListeners?: Schema$StaticListener[];
     /**
-     * This is the :ref:`version_info ` in the last processed LDS discovery response. If there are only static bootstrap listeners, this field will be &quot;&quot;.
+     * This is the :ref:`version_info ` in the last processed LDS discovery response. If there are only static bootstrap listeners, this field will be "".
      */
     versionInfo?: string | null;
   }
@@ -439,11 +435,11 @@ export namespace trafficdirector_v2 {
      */
     userAgentBuildVersion?: Schema$BuildVersion;
     /**
-     * Free-form string that identifies the entity requesting config. E.g. &quot;envoy&quot; or &quot;grpc&quot;
+     * Free-form string that identifies the entity requesting config. E.g. "envoy" or "grpc"
      */
     userAgentName?: string | null;
     /**
-     * Free-form string that identifies the version of the entity requesting config. E.g. &quot;1.12.2&quot; or &quot;abcd1234&quot;, or &quot;SpecialEnvoyBuild&quot;
+     * Free-form string that identifies the version of the entity requesting config. E.g. "1.12.2" or "abcd1234", or "SpecialEnvoyBuild"
      */
     userAgentVersion?: string | null;
   }
@@ -489,7 +485,7 @@ export namespace trafficdirector_v2 {
      */
     mode?: number | null;
     /**
-     * Unix Domain Socket path. On Linux, paths starting with &#39;@&#39; will use the abstract namespace. The starting &#39;@&#39; is replaced by a null byte by Envoy. Paths starting with &#39;@&#39; will result in an error in environments other than Linux.
+     * Unix Domain Socket path. On Linux, paths starting with '@' will use the abstract namespace. The starting '@' is replaced by a null byte by Envoy. Paths starting with '@' will result in an error in environments other than Linux.
      */
     path?: string | null;
   }
@@ -498,7 +494,7 @@ export namespace trafficdirector_v2 {
    */
   export interface Schema$RegexMatcher {
     /**
-     * Google&#39;s RE2 regex engine.
+     * Google's RE2 regex engine.
      */
     googleRe2?: Schema$GoogleRE2;
     /**
@@ -507,7 +503,7 @@ export namespace trafficdirector_v2 {
     regex?: string | null;
   }
   /**
-   * Envoy&#39;s RDS implementation fills this message with all currently loaded routes, as described by their RouteConfiguration objects. Static routes that are either defined in the bootstrap configuration or defined inline while configuring listeners are separated from those configured dynamically via RDS. Route configuration information can be used to recreate an Envoy configuration by populating all routes as static routes or by returning them in RDS responses.
+   * Envoy's RDS implementation fills this message with all currently loaded routes, as described by their RouteConfiguration objects. Static routes that are either defined in the bootstrap configuration or defined inline while configuring listeners are separated from those configured dynamically via RDS. Route configuration information can be used to recreate an Envoy configuration by populating all routes as static routes or by returning them in RDS responses.
    */
   export interface Schema$RoutesConfigDump {
     /**
@@ -520,7 +516,7 @@ export namespace trafficdirector_v2 {
     staticRouteConfigs?: Schema$StaticRouteConfig[];
   }
   /**
-   * Envoy&#39;s scoped RDS implementation fills this message with all currently loaded route configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the dynamically obtained scopes via the SRDS API.
+   * Envoy's scoped RDS implementation fills this message with all currently loaded route configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the dynamically obtained scopes via the SRDS API.
    */
   export interface Schema$ScopedRoutesConfigDump {
     /**
@@ -616,7 +612,7 @@ export namespace trafficdirector_v2 {
      */
     prefix?: string | null;
     /**
-     * The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\d{3}`` matches the value *123* * The regex ``\d{3}`` does not match the value *1234* * The regex ``\d{3}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases.
+     * The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\d{3\}`` matches the value *123* * The regex ``\d{3\}`` does not match the value *1234* * The regex ``\d{3\}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases.
      */
     regex?: string | null;
     /**
@@ -629,7 +625,7 @@ export namespace trafficdirector_v2 {
     suffix?: string | null;
   }
   /**
-   * StructMatcher provides a general interface to check if a given value is matched in google.protobuf.Struct. It uses `path` to retrieve the value from the struct and then check if it&#39;s matched to the specified value. For example, for the following Struct: .. code-block:: yaml fields: a: struct_value: fields: b: struct_value: fields: c: string_value: pro t: list_value: values: - string_value: m - string_value: n The following MetadataMatcher is matched as the path [a, b, c] will retrieve a string value &quot;pro&quot; from the Metadata which is matched to the specified prefix match. .. code-block:: yaml path: - key: a - key: b - key: c value: string_match: prefix: pr The following StructMatcher is matched as the code will match one of the string values in the list at the path [a, t]. .. code-block:: yaml path: - key: a - key: t value: list_match: one_of: string_match: exact: m An example use of StructMatcher is to match metadata in envoy.v*.core.Node.
+   * StructMatcher provides a general interface to check if a given value is matched in google.protobuf.Struct. It uses `path` to retrieve the value from the struct and then check if it's matched to the specified value. For example, for the following Struct: .. code-block:: yaml fields: a: struct_value: fields: b: struct_value: fields: c: string_value: pro t: list_value: values: - string_value: m - string_value: n The following MetadataMatcher is matched as the path [a, b, c] will retrieve a string value "pro" from the Metadata which is matched to the specified prefix match. .. code-block:: yaml path: - key: a - key: b - key: c value: string_match: prefix: pr The following StructMatcher is matched as the code will match one of the string values in the list at the path [a, t]. .. code-block:: yaml path: - key: a - key: t value: list_match: one_of: string_match: exact: m An example use of StructMatcher is to match metadata in envoy.v*.core.Node.
    */
   export interface Schema$StructMatcher {
     /**
@@ -692,8 +688,8 @@ export namespace trafficdirector_v2 {
     }
 
     /**
-     * trafficdirector.discovery.client_status
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/trafficdirector.googleapis.com
@@ -738,14 +734,12 @@ export namespace trafficdirector_v2 {
      *   throw e;
      * });
      *
-     * @alias trafficdirector.discovery.client_status
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ClientStatusRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     client_status(
       params: Params$Resource$Discovery$Client_status,

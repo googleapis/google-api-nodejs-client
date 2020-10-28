@@ -104,14 +104,10 @@ export namespace clouddebugger_v2 {
    * Examines the call stack and variables of a running application without stopping or slowing it down.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const clouddebugger = google.clouddebugger('v2');
-   *
-   * @namespace clouddebugger
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Clouddebugger
+   * ```
    */
   export class Clouddebugger {
     context: APIRequestContext;
@@ -245,7 +241,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$CloudWorkspaceId {
     /**
-     * The unique name of the workspace within the repo. This is the name chosen by the client in the Source API&#39;s CreateWorkspace method.
+     * The unique name of the workspace within the repo. This is the name chosen by the client in the Source API's CreateWorkspace method.
      */
     name?: string | null;
     /**
@@ -320,7 +316,7 @@ export namespace clouddebugger_v2 {
     uniquifier?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -341,7 +337,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$FormatMessage {
     /**
-     * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character. Examples: * `Failed to load &#39;$0&#39; which helps debug $1 the first time it is loaded. Again, $0 is very important.` * `Please pay $$10 to use $0 instead of $1.`
+     * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character. Examples: * `Failed to load '$0' which helps debug $1 the first time it is loaded. Again, $0 is very important.` * `Please pay $$10 to use $0 instead of $1.`
      */
     format?: string | null;
     /**
@@ -362,7 +358,7 @@ export namespace clouddebugger_v2 {
      */
     aliasName?: string | null;
     /**
-     * The full project name within the host. Projects may be nested, so &quot;project/subproject&quot; is a valid project name. The &quot;repo name&quot; is hostURI/project.
+     * The full project name within the host. Projects may be nested, so "project/subproject" is a valid project name. The "repo name" is hostURI/project.
      */
     gerritProject?: string | null;
     /**
@@ -582,7 +578,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$UpdateActiveBreakpointResponse {}
   /**
-   * Represents a variable or an argument possibly of a compound object type. Note how the following variables are represented: 1) A simple variable: int x = 5 { name: &quot;x&quot;, value: &quot;5&quot;, type: &quot;int&quot; } // Captured variable 2) A compound object: struct T { int m1; int m2; }; T x = { 3, 7 }; { // Captured variable name: &quot;x&quot;, type: &quot;T&quot;, members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } 3) A pointer where the pointee was captured: T x = { 3, 7 }; T* p = &amp;x; { // Captured variable name: &quot;p&quot;, type: &quot;T*&quot;, value: &quot;0x00500500&quot;, members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } 4) A pointer where the pointee was not captured: T* p = new T; { // Captured variable name: &quot;p&quot;, type: &quot;T*&quot;, value: &quot;0x00400400&quot; status { is_error: true, description { format: &quot;unavailable&quot; } } } The status should describe the reason for the missing value, such as ``, ``, ``. Note that a null pointer should not have members. 5) An unnamed value: int* p = new int(7); { // Captured variable name: &quot;p&quot;, value: &quot;0x00500500&quot;, type: &quot;int*&quot;, members { value: &quot;7&quot;, type: &quot;int&quot; } } 6) An unnamed pointer where the pointee was not captured: int* p = new int(7); int** pp = &amp;p; { // Captured variable name: &quot;pp&quot;, value: &quot;0x00500500&quot;, type: &quot;int**&quot;, members { value: &quot;0x00400400&quot;, type: &quot;int*&quot; status { is_error: true, description: { format: &quot;unavailable&quot; } } } } } To optimize computation, memory and network traffic, variables that repeat in the output multiple times can be stored once in a shared variable table and be referenced using the `var_table_index` field. The variables stored in the shared table are nameless and are essentially a partition of the complete variable. To reconstruct the complete variable, merge the referencing variable with the referenced variable. When using the shared variable table, the following variables: T x = { 3, 7 }; T* p = &amp;x; T&amp; r = x; { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; } // Captured variables { name: &quot;p&quot;, value &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 } { name: &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 } { // Shared variable table entry #3: members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } Note that the pointer address is stored with the referencing variable and not with the referenced variable. This allows the referenced variable to be shared between pointers and references. The type field is optional. The debugger agent may or may not support it.
+   * Represents a variable or an argument possibly of a compound object type. Note how the following variables are represented: 1) A simple variable: int x = 5 { name: "x", value: "5", type: "int" \} // Captured variable 2) A compound object: struct T { int m1; int m2; \}; T x = { 3, 7 \}; { // Captured variable name: "x", type: "T", members { name: "m1", value: "3", type: "int" \}, members { name: "m2", value: "7", type: "int" \} \} 3) A pointer where the pointee was captured: T x = { 3, 7 \}; T* p = &x; { // Captured variable name: "p", type: "T*", value: "0x00500500", members { name: "m1", value: "3", type: "int" \}, members { name: "m2", value: "7", type: "int" \} \} 4) A pointer where the pointee was not captured: T* p = new T; { // Captured variable name: "p", type: "T*", value: "0x00400400" status { is_error: true, description { format: "unavailable" \} \} \} The status should describe the reason for the missing value, such as ``, ``, ``. Note that a null pointer should not have members. 5) An unnamed value: int* p = new int(7); { // Captured variable name: "p", value: "0x00500500", type: "int*", members { value: "7", type: "int" \} \} 6) An unnamed pointer where the pointee was not captured: int* p = new int(7); int** pp = &p; { // Captured variable name: "pp", value: "0x00500500", type: "int**", members { value: "0x00400400", type: "int*" status { is_error: true, description: { format: "unavailable" \} \} \} \} \} To optimize computation, memory and network traffic, variables that repeat in the output multiple times can be stored once in a shared variable table and be referenced using the `var_table_index` field. The variables stored in the shared table are nameless and are essentially a partition of the complete variable. To reconstruct the complete variable, merge the referencing variable with the referenced variable. When using the shared variable table, the following variables: T x = { 3, 7 \}; T* p = &x; T& r = x; { name: "x", var_table_index: 3, type: "T" \} // Captured variables { name: "p", value "0x00500500", type="T*", var_table_index: 3 \} { name: "r", type="T&", var_table_index: 3 \} { // Shared variable table entry #3: members { name: "m1", value: "3", type: "int" \}, members { name: "m2", value: "7", type: "int" \} \} Note that the pointer address is stored with the referencing variable and not with the referenced variable. This allows the referenced variable to be shared between pointers and references. The type field is optional. The debugger agent may or may not support it.
    */
   export interface Schema$Variable {
     /**
@@ -631,9 +627,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.controller.debuggees.register
-     * @desc Registers the debuggee with the controller service. All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method. This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
+     * Registers the debuggee with the controller service. All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method. This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -682,14 +678,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.controller.debuggees.register
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().RegisterDebuggeeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     register(
       params: Params$Resource$Controller$Debuggees$Register,
@@ -794,9 +788,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.controller.debuggees.breakpoints.list
-     * @desc Returns the list of all active breakpoints for the debuggee. The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics. This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
+     * Returns the list of all active breakpoints for the debuggee. The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics. This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -847,17 +841,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.controller.debuggees.breakpoints.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.agentId Identifies the agent. This is the ID returned in the RegisterDebuggee response.
-     * @param {string} params.debuggeeId Required. Identifies the debuggee.
-     * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired. If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
-     * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Controller$Debuggees$Breakpoints$List,
@@ -948,9 +937,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.controller.debuggees.breakpoints.update
-     * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service. Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
+     * Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service. Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1001,16 +990,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.controller.debuggees.breakpoints.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.debuggeeId Required. Identifies the debuggee being debugged.
-     * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
-     * @param {().UpdateActiveBreakpointRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
@@ -1157,9 +1142,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.debugger.debuggees.list
-     * @desc Lists all the debuggees that the user has access to.
+     * Lists all the debuggees that the user has access to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1206,16 +1191,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.debugger.debuggees.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
-     * @param {string=} params.project Required. Project number of a Google Cloud project whose debuggees to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Debugger$Debuggees$List,
@@ -1326,9 +1307,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.debugger.debuggees.breakpoints.delete
-     * @desc Deletes the breakpoint from the debuggee.
+     * Deletes the breakpoint from the debuggee.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1373,16 +1354,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.debugger.debuggees.breakpoints.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.breakpointId Required. ID of the breakpoint to delete.
-     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoint to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
@@ -1465,9 +1442,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.debugger.debuggees.breakpoints.get
-     * @desc Gets breakpoint information.
+     * Gets breakpoint information.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1514,16 +1491,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.debugger.debuggees.breakpoints.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.breakpointId Required. ID of the breakpoint to get.
-     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoint to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
@@ -1611,9 +1584,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.debugger.debuggees.breakpoints.list
-     * @desc Lists all breakpoints for the debuggee.
+     * Lists all breakpoints for the debuggee.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1669,20 +1642,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.debugger.debuggees.breakpoints.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
-     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoints to list.
-     * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
-     * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
-     * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
-     * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
@@ -1769,9 +1734,9 @@ export namespace clouddebugger_v2 {
     }
 
     /**
-     * clouddebugger.debugger.debuggees.breakpoints.set
-     * @desc Sets the breakpoint to the debuggee.
+     * Sets the breakpoint to the debuggee.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/clouddebugger.googleapis.com
@@ -1843,17 +1808,12 @@ export namespace clouddebugger_v2 {
      *   throw e;
      * });
      *
-     * @alias clouddebugger.debugger.debuggees.breakpoints.set
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.canaryOption The canary option set by the user upon setting breakpoint.
-     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId Required. ID of the debuggee where the breakpoint is to be set.
-     * @param {().Breakpoint} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     set(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,

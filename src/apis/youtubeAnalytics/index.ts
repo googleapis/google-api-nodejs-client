@@ -51,3 +51,15 @@ export function youtubeAnalytics<
 
 const auth = new AuthPlus();
 export {auth};
+export {youtubeAnalytics_v1};
+export {youtubeAnalytics_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

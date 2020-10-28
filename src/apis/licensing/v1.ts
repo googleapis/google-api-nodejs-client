@@ -104,14 +104,10 @@ export namespace licensing_v1 {
    * The Google Enterprise License Manager API&#39;s allows you to license apps for all the users of a domain managed by you.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const licensing = google.licensing('v1');
-   *
-   * @namespace licensing
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Licensing
+   * ```
    */
   export class Licensing {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace licensing_v1 {
      */
     kind?: string | null;
     /**
-     * A product&#39;s unique identifier. For more information about products in this version of the API, see Product and SKU IDs.
+     * A product's unique identifier. For more information about products in this version of the API, see Product and SKU IDs.
      */
     productId?: string | null;
     /**
@@ -152,7 +148,7 @@ export namespace licensing_v1 {
      */
     selfLink?: string | null;
     /**
-     * A product SKU&#39;s unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string | null;
     /**
@@ -160,7 +156,7 @@ export namespace licensing_v1 {
      */
     skuName?: string | null;
     /**
-     * The user&#39;s current primary email address. If the user&#39;s email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user&#39;s email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string | null;
   }
@@ -199,9 +195,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.delete
-     * @desc Revoke a license.
+     * Revoke a license.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -240,16 +236,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Licenseassignments$Delete,
@@ -329,9 +321,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.get
-     * @desc Get a specific user's license by product SKU.
+     * Get a specific user's license by product SKU.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -382,16 +374,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Licenseassignments$Get,
@@ -476,9 +464,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.insert
-     * @desc Assign a license.
+     * Assign a license.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -535,16 +523,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {().LicenseAssignmentInsert} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Licenseassignments$Insert,
@@ -629,9 +613,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.listForProduct
-     * @desc List all users assigned licenses for a specific product SKU.
+     * List all users assigned licenses for a specific product SKU.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -680,17 +664,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.listForProduct
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
-     * @param {integer=} params.maxResults The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
-     * @param {string=} params.pageToken Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
@@ -778,9 +757,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.listForProductAndSku
-     * @desc List all users assigned licenses for a specific product SKU.
+     * List all users assigned licenses for a specific product SKU.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -831,18 +810,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.listForProductAndSku
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
-     * @param {integer=} params.maxResults The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
-     * @param {string=} params.pageToken Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
@@ -931,9 +904,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.patch
-     * @desc Patch a Licensing info via Apiary Patch Orchestration
+     * Patch a Licensing info via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -999,17 +972,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {().LicenseAssignment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Licenseassignments$Patch,
@@ -1094,9 +1062,9 @@ export namespace licensing_v1 {
     }
 
     /**
-     * licensing.licenseAssignments.update
-     * @desc Reassign a user's product SKU with a different SKU in the same product.
+     * Reassign a user's product SKU with a different SKU in the same product.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
@@ -1162,17 +1130,12 @@ export namespace licensing_v1 {
      *   throw e;
      * });
      *
-     * @alias licensing.licenseAssignments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
-     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {().LicenseAssignment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Licenseassignments$Update,

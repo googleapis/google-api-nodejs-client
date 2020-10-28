@@ -104,14 +104,10 @@ export namespace language_v1 {
    * Provides natural language understanding technologies, such as sentiment analysis, entity recognition, entity sentiment analysis, and other text annotations, to developers.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const language = google.language('v1');
-   *
-   * @namespace language
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Language
+   * ```
    */
   export class Language {
     context: APIRequestContext;
@@ -290,7 +286,7 @@ export namespace language_v1 {
    */
   export interface Schema$ClassificationCategory {
     /**
-     * The classifier&#39;s confidence of the category. Number represents how certain the classifier is that this category represents the given text.
+     * The classifier's confidence of the category. Number represents how certain the classifier is that this category represents the given text.
      */
     confidence?: number | null;
     /**
@@ -559,9 +555,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.analyzeEntities
-     * @desc Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
+     * Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -611,14 +607,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.analyzeEntities
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitiesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
@@ -707,9 +701,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.analyzeEntitySentiment
-     * @desc Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
+     * Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -759,14 +753,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.analyzeEntitySentiment
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitySentimentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     analyzeEntitySentiment(
       params: Params$Resource$Documents$Analyzeentitysentiment,
@@ -857,9 +849,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.analyzeSentiment
-     * @desc Analyzes the sentiment of the provided text.
+     * Analyzes the sentiment of the provided text.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -910,14 +902,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.analyzeSentiment
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AnalyzeSentimentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
@@ -1006,9 +996,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.analyzeSyntax
-     * @desc Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
+     * Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -1059,14 +1049,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.analyzeSyntax
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AnalyzeSyntaxRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
@@ -1155,9 +1143,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.annotateText
-     * @desc A convenience method that provides all the features that analyzeSentiment, analyzeEntities, and analyzeSyntax provide in one call.
+     * A convenience method that provides all the features that analyzeSentiment, analyzeEntities, and analyzeSyntax provide in one call.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -1212,14 +1200,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.annotateText
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AnnotateTextRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
@@ -1308,9 +1294,9 @@ export namespace language_v1 {
     }
 
     /**
-     * language.documents.classifyText
-     * @desc Classifies a document into categories.
+     * Classifies a document into categories.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/language.googleapis.com
@@ -1358,14 +1344,12 @@ export namespace language_v1 {
      *   throw e;
      * });
      *
-     * @alias language.documents.classifyText
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ClassifyTextRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     classifyText(
       params: Params$Resource$Documents$Classifytext,

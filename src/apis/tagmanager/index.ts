@@ -41,3 +41,15 @@ export function tagmanager<
 
 const auth = new AuthPlus();
 export {auth};
+export {tagmanager_v1};
+export {tagmanager_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

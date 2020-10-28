@@ -35,3 +35,14 @@ export function siteVerification<T = siteVerification_v1.Siteverification>(
 
 const auth = new AuthPlus();
 export {auth};
+export {siteVerification_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

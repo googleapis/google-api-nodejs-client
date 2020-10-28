@@ -35,3 +35,14 @@ export function datacatalog<T = datacatalog_v1beta1.Datacatalog>(
 
 const auth = new AuthPlus();
 export {auth};
+export {datacatalog_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

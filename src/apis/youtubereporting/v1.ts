@@ -104,14 +104,10 @@ export namespace youtubereporting_v1 {
    * Schedules reporting jobs containing your YouTube Analytics data and downloads the resulting bulk data reports in the form of CSV files.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const youtubereporting = google.youtubereporting('v1');
-   *
-   * @namespace youtubereporting
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Youtubereporting
+   * ```
    */
   export class Youtubereporting {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace youtubereporting_v1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -535,7 +531,7 @@ export namespace youtubereporting_v1 {
     reportTypes?: Schema$ReportType[];
   }
   /**
-   * A report&#39;s metadata including the URL from which the report itself can be downloaded.
+   * A report's metadata including the URL from which the report itself can be downloaded.
    */
   export interface Schema$Report {
     /**
@@ -598,9 +594,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.create
-     * @desc Creates a job and returns it.
+     * Creates a job and returns it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -661,15 +657,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {().Job} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Jobs$Create,
@@ -748,9 +741,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.delete
-     * @desc Deletes a job.
+     * Deletes a job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -793,15 +786,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The ID of the job to delete.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Jobs$Delete,
@@ -880,9 +870,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.get
-     * @desc Gets a job.
+     * Gets a job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -932,15 +922,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The ID of the job to retrieve.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Jobs$Get,
@@ -1019,9 +1006,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.list
-     * @desc Lists jobs.
+     * Lists jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -1071,17 +1058,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Jobs$List,
@@ -1217,9 +1199,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.reports.get
-     * @desc Gets the metadata of a specific report.
+     * Gets the metadata of a specific report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -1272,16 +1254,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.reports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The ID of the job.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {string} params.reportId The ID of the report to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Jobs$Reports$Get,
@@ -1363,9 +1341,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.jobs.reports.list
-     * @desc Lists reports created by a specific job. Returns NOT_FOUND if the job does not exist.
+     * Lists reports created by a specific job. Returns NOT_FOUND if the job does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -1421,20 +1399,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.jobs.reports.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
-     * @param {string} params.jobId The ID of the job.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
-     * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
-     * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Jobs$Reports$List,
@@ -1573,9 +1543,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.media.download
-     * @desc Method for media download. Download is supported on the URI `/v1/media/{+name}?alt=media`.
+     * Method for media download. Download is supported on the URI `/v1/media/{+name\}?alt=media`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -1647,14 +1617,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.media.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Media$Download,
@@ -1750,9 +1718,9 @@ export namespace youtubereporting_v1 {
     }
 
     /**
-     * youtubereporting.reportTypes.list
-     * @desc Lists report types.
+     * Lists report types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubereporting.googleapis.com
@@ -1802,17 +1770,12 @@ export namespace youtubereporting_v1 {
      *   throw e;
      * });
      *
-     * @alias youtubereporting.reportTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSystemManaged If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Reporttypes$List,

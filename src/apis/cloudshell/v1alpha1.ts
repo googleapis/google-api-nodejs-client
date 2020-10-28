@@ -104,14 +104,10 @@ export namespace cloudshell_v1alpha1 {
    * Allows users to start, configure, and connect to interactive shell sessions running in the cloud.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudshell = google.cloudshell('v1alpha1');
-   *
-   * @namespace cloudshell
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Cloudshell
+   * ```
    */
   export class Cloudshell {
     context: APIRequestContext;
@@ -154,23 +150,23 @@ export namespace cloudshell_v1alpha1 {
     key?: Schema$PublicKey;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * A Cloud Shell environment, which is defined as the combination of a Docker image specifying what is installed on the environment and a home directory containing the user&#39;s data that will remain across sessions. Each user has a single environment with the ID &quot;default&quot;.
+   * A Cloud Shell environment, which is defined as the combination of a Docker image specifying what is installed on the environment and a home directory containing the user's data that will remain across sessions. Each user has a single environment with the ID "default".
    */
   export interface Schema$Environment {
     /**
-     * Required. Full path to the Docker image used to run this environment, e.g. &quot;gcr.io/dev-con/cloud-devshell:latest&quot;.
+     * Required. Full path to the Docker image used to run this environment, e.g. "gcr.io/dev-con/cloud-devshell:latest".
      */
     dockerImage?: string | null;
     /**
-     * Output only. The environment&#39;s identifier, unique among the user&#39;s environments.
+     * Output only. The environment's identifier, unique among the user's environments.
      */
     id?: string | null;
     /**
-     * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the email address of the user to whom this environment belongs, and `{environment_id}` is the identifier of this environment. For example, `users/someone@example.com/environments/default`.
+     * Output only. Full name of this resource, in the format `users/{owner_email\}/environments/{environment_id\}`. `{owner_email\}` is the email address of the user to whom this environment belongs, and `{environment_id\}` is the identifier of this environment. For example, `users/someone@example.com/environments/default`.
      */
     name?: string | null;
     /**
@@ -227,7 +223,7 @@ export namespace cloudshell_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -240,7 +236,7 @@ export namespace cloudshell_v1alpha1 {
    */
   export interface Schema$PublicKey {
     /**
-     * Required. Format of this key&#39;s content.
+     * Required. Format of this key's content.
      */
     format?: string | null;
     /**
@@ -248,7 +244,7 @@ export namespace cloudshell_v1alpha1 {
      */
     key?: string | null;
     /**
-     * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}/publicKeys/{key_id}`. `{owner_email}` is the email address of the user to whom the key belongs. `{environment_id}` is the identifier of the environment to which the key grants access. `{key_id}` is the unique identifier of the key. For example, `users/someone@example.com/environments/default/publicKeys/myKey`.
+     * Output only. Full name of this resource, in the format `users/{owner_email\}/environments/{environment_id\}/publicKeys/{key_id\}`. `{owner_email\}` is the email address of the user to whom the key belongs. `{environment_id\}` is the identifier of the environment to which the key grants access. `{key_id\}` is the unique identifier of the key. For example, `users/someone@example.com/environments/default/publicKeys/myKey`.
      */
     name?: string | null;
   }
@@ -321,9 +317,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.authorize
-     * @desc Sends OAuth credentials to a running environment on behalf of a user. When this completes, the environment will be authorized to run various Google Cloud command line tools without requiring the user to manually authenticate.
+     * Sends OAuth credentials to a running environment on behalf of a user. When this completes, the environment will be authorized to run various Google Cloud command line tools without requiring the user to manually authenticate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -371,15 +367,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.authorize
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().AuthorizeEnvironmentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     authorize(
       params: Params$Resource$Users$Environments$Authorize,
@@ -461,9 +454,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.get
-     * @desc Gets an environment. Returns NOT_FOUND if the environment does not exist.
+     * Gets an environment. Returns NOT_FOUND if the environment does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -514,14 +507,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the requested resource, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Environments$Get,
@@ -600,9 +591,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.patch
-     * @desc Updates an existing environment.
+     * Updates an existing environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -674,16 +665,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {string=} params.updateMask Mask specifying which fields in the environment should be updated.
-     * @param {().Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Environments$Patch,
@@ -762,9 +749,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.start
-     * @desc Starts an existing environment, allowing clients to connect to it. The returned operation will contain an instance of StartEnvironmentMetadata in its metadata field. Users can wait for the environment to start by polling this operation via GetOperation. Once the environment has finished starting and is ready to accept connections, the operation will contain a StartEnvironmentResponse in its response field.
+     * Starts an existing environment, allowing clients to connect to it. The returned operation will contain an instance of StartEnvironmentMetadata in its metadata field. Users can wait for the environment to start by polling this operation via GetOperation. Once the environment has finished starting and is ready to accept connections, the operation will contain a StartEnvironmentResponse in its response field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -817,15 +804,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.start
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().StartEnvironmentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     start(
       params: Params$Resource$Users$Environments$Start,
@@ -962,9 +946,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.publicKeys.create
-     * @desc Adds a public SSH key to an environment, allowing clients with the corresponding private key to connect to that environment via SSH. If a key with the same format and content already exists, this will return the existing key.
+     * Adds a public SSH key to an environment, allowing clients with the corresponding private key to connect to that environment via SSH. If a key with the same format and content already exists, this will return the existing key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -1014,15 +998,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.publicKeys.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Parent resource name, e.g. `users/me/environments/default`.
-     * @param {().CreatePublicKeyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Environments$Publickeys$Create,
@@ -1104,9 +1085,9 @@ export namespace cloudshell_v1alpha1 {
     }
 
     /**
-     * cloudshell.users.environments.publicKeys.delete
-     * @desc Removes a public SSH key from an environment. Clients will no longer be able to connect to the environment using the corresponding private key.
+     * Removes a public SSH key from an environment. Clients will no longer be able to connect to the environment using the corresponding private key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
@@ -1144,14 +1125,12 @@ export namespace cloudshell_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudshell.users.environments.publicKeys.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource to be deleted, e.g. `users/me/environments/default/publicKeys/my-key`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Environments$Publickeys$Delete,

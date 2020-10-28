@@ -45,3 +45,15 @@ export function servicecontrol<
 
 const auth = new AuthPlus();
 export {auth};
+export {servicecontrol_v1};
+export {servicecontrol_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

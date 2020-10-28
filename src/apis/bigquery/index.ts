@@ -31,3 +31,14 @@ export function bigquery<T = bigquery_v2.Bigquery>(
 
 const auth = new AuthPlus();
 export {auth};
+export {bigquery_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

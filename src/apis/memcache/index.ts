@@ -41,3 +41,15 @@ export function memcache<T = memcache_v1.Memcache | memcache_v1beta2.Memcache>(
 
 const auth = new AuthPlus();
 export {auth};
+export {memcache_v1};
+export {memcache_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

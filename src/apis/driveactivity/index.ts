@@ -33,3 +33,14 @@ export function driveactivity<T = driveactivity_v2.Driveactivity>(
 
 const auth = new AuthPlus();
 export {auth};
+export {driveactivity_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

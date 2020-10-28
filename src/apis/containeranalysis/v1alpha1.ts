@@ -104,14 +104,10 @@ export namespace containeranalysis_v1alpha1 {
    * An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const containeranalysis = google.containeranalysis('v1alpha1');
-   *
-   * @namespace containeranalysis
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Containeranalysis
+   * ```
    */
   export class Containeranalysis {
     context: APIRequestContext;
@@ -151,23 +147,23 @@ export namespace containeranalysis_v1alpha1 {
     names?: string[] | null;
   }
   /**
-   * Occurrence that represents a single &quot;attestation&quot;. The authenticity of an Attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the AttestationAuthority to which this Attestation is attached is primarily useful for look-up (how to find this Attestation if you already know the Authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
+   * Occurrence that represents a single "attestation". The authenticity of an Attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the AttestationAuthority to which this Attestation is attached is primarily useful for look-up (how to find this Attestation if you already know the Authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
    */
   export interface Schema$Attestation {
     pgpSignedAttestation?: Schema$PgpSignedAttestation;
   }
   /**
-   * Note kind that represents a logical attestation &quot;role&quot; or &quot;authority&quot;. For example, an organization might have one `AttestationAuthority` for &quot;QA&quot; and one for &quot;build&quot;. This Note is intended to act strictly as a grouping mechanism for the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup to find all attached Attestation Occurrences, even if they don&#39;t all live in the same project.
+   * Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one `AttestationAuthority` for "QA" and one for "build". This Note is intended to act strictly as a grouping mechanism for the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup to find all attached Attestation Occurrences, even if they don't all live in the same project.
    */
   export interface Schema$AttestationAuthority {
     hint?: Schema$AttestationAuthorityHint;
   }
   /**
-   * This submessage provides human-readable hints about the purpose of the AttestationAuthority. Because the name of a Note acts as its resource reference, it is important to disambiguate the canonical name of the Note (which might be a UUID for security purposes) from &quot;readable&quot; names more suitable for debug output. Note that these hints should NOT be used to look up AttestationAuthorities in security sensitive contexts, such as when looking up Attestations to verify.
+   * This submessage provides human-readable hints about the purpose of the AttestationAuthority. Because the name of a Note acts as its resource reference, it is important to disambiguate the canonical name of the Note (which might be a UUID for security purposes) from "readable" names more suitable for debug output. Note that these hints should NOT be used to look up AttestationAuthorities in security sensitive contexts, such as when looking up Attestations to verify.
    */
   export interface Schema$AttestationAuthorityHint {
     /**
-     * The human readable name of this Attestation Authority, for example &quot;qa&quot;.
+     * The human readable name of this Attestation Authority, for example "qa".
      */
     humanReadableName?: string | null;
   }
@@ -197,7 +193,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -243,7 +239,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * E-mail address of the user who initiated this build. Note that this was the user&#39;s e-mail address at the time the build was initiated; this address may not represent the same end-user for all time.
+     * E-mail address of the user who initiated this build. Note that this was the user's e-mail address at the time the build was initiated; this address may not represent the same end-user for all time.
      */
     creator?: string | null;
     /**
@@ -297,7 +293,7 @@ export namespace containeranalysis_v1alpha1 {
     signature?: string | null;
   }
   /**
-   * Note holding the version of the provider&#39;s builder and the signature of the provenance message in linked BuildDetails.
+   * Note holding the version of the provider's builder and the signature of the provenance message in linked BuildDetails.
    */
   export interface Schema$BuildType {
     /**
@@ -410,7 +406,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     fingerprint?: Schema$Fingerprint;
     /**
-     * This contains layer-specific metadata, if populated it has length &quot;distance&quot; and is ordered with [distance] being the layer immediately following the base image and [1] being the final layer.
+     * This contains layer-specific metadata, if populated it has length "distance" and is ordered with [distance] being the layer immediately following the base image and [1] being the final layer.
      */
     layerInfo?: Schema$Layer[];
   }
@@ -481,7 +477,7 @@ export namespace containeranalysis_v1alpha1 {
     operation?: Schema$Operation;
   }
   /**
-   * A note that indicates a type of analysis a provider would perform. This note exists in a provider&#39;s project. A `Discovery` occurrence is created in a consumer&#39;s project at the start of analysis. The occurrence&#39;s operation will indicate the status of the analysis. Absence of an occurrence linked to this note for a resource indicates that analysis hasn&#39;t started.
+   * A note that indicates a type of analysis a provider would perform. This note exists in a provider's project. A `Discovery` occurrence is created in a consumer's project at the start of analysis. The occurrence's operation will indicate the status of the analysis. Absence of an occurrence linked to this note for a resource indicates that analysis hasn't started.
    */
   export interface Schema$Discovery {
     /**
@@ -490,7 +486,7 @@ export namespace containeranalysis_v1alpha1 {
     analysisKind?: string | null;
   }
   /**
-   * This represents a particular channel of distribution for a given package. e.g. Debian&#39;s jessie-backports dpkg mirror
+   * This represents a particular channel of distribution for a given package. e.g. Debian's jessie-backports dpkg mirror
    */
   export interface Schema$Distribution {
     /**
@@ -519,11 +515,11 @@ export namespace containeranalysis_v1alpha1 {
     url?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -557,7 +553,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Fingerprint {
     /**
-     * The layer-id of the final layer in the Docker image&#39;s v1 representation. This field can be used as a filter in list requests.
+     * The layer-id of the final layer in the Docker image's v1 representation. This field can be used as a filter in list requests.
      */
     v1Name?: string | null;
     /**
@@ -565,7 +561,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     v2Blob?: string[] | null;
     /**
-     * Output only. The name of the image&#39;s v2 blobs computed via: [bottom] := v2_blobbottom := sha256(v2_blob[N] + &quot; &quot; + v2_name[N+1]) Only the name of the final blob is kept. This field can be used as a filter in list requests.
+     * Output only. The name of the image's v2 blobs computed via: [bottom] := v2_blobbottom := sha256(v2_blob[N] + " " + v2_name[N+1]) Only the name of the final blob is kept. This field can be used as a filter in list requests.
      */
     v2Name?: string | null;
   }
@@ -635,7 +631,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     aliasContext?: Schema$GoogleDevtoolsContaineranalysisV1alpha1AliasContext;
     /**
-     * The full project name within the host. Projects may be nested, so &quot;project/subproject&quot; is a valid project name. The &quot;repo name&quot; is the hostURI/project.
+     * The full project name within the host. Projects may be nested, so "project/subproject" is a valid project name. The "repo name" is the hostURI/project.
      */
     gerritProject?: string | null;
     /**
@@ -812,7 +808,7 @@ export namespace containeranalysis_v1alpha1 {
     scanConfigs?: Schema$ScanConfig[];
   }
   /**
-   * An occurrence of a particular package installation found within a system&#39;s filesystem. e.g. glibc was found in /var/lib/dpkg/status
+   * An occurrence of a particular package installation found within a system's filesystem. e.g. glibc was found in /var/lib/dpkg/status
    */
   export interface Schema$Location {
     /**
@@ -869,7 +865,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     longDescription?: string | null;
     /**
-     * The name of the note in the form &quot;projects/{provider_project_id}/notes/{NOTE_ID}&quot;
+     * The name of the note in the form "projects/{provider_project_id\}/notes/{NOTE_ID\}"
      */
     name?: string | null;
     /**
@@ -934,11 +930,11 @@ export namespace containeranalysis_v1alpha1 {
      */
     kind?: string | null;
     /**
-     * Output only. The name of the `Occurrence` in the form &quot;projects/{project_id}/occurrences/{OCCURRENCE_ID}&quot;
+     * Output only. The name of the `Occurrence` in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string | null;
     /**
-     * An analysis note associated with this image, in the form &quot;providers/{provider_id}/notes/{NOTE_ID}&quot; This field can be used as a filter in list requests.
+     * An analysis note associated with this image, in the form "providers/{provider_id\}/notes/{NOTE_ID\}" This field can be used as a filter in list requests.
      */
     noteName?: string | null;
     /**
@@ -983,7 +979,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -1027,7 +1023,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     contentType?: string | null;
     /**
-     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexadecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge &quot;LONG&quot;, &quot;SHORT&quot;, or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons. For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \ --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
+     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexadecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge "LONG", "SHORT", or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons. For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \ --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
      */
     pgpKeyId?: string | null;
     /**
@@ -1036,7 +1032,7 @@ export namespace containeranalysis_v1alpha1 {
     signature?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1099,11 +1095,11 @@ export namespace containeranalysis_v1alpha1 {
      */
     contentHash?: Schema$Hash;
     /**
-     * The name of the resource. E.g., the name of a Docker image - &quot;Debian&quot;.
+     * The name of the resource. E.g., the name of a Docker image - "Debian".
      */
     name?: string | null;
     /**
-     * The unique URI of the resource. E.g., &quot;https://gcr.io/project/image@sha256:foo&quot; for a Docker image.
+     * The unique URI of the resource. E.g., "https://gcr.io/project/image@sha256:foo" for a Docker image.
      */
     uri?: string | null;
   }
@@ -1124,7 +1120,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     enabled?: boolean | null;
     /**
-     * Output only. The name of the ScanConfig in the form “projects/{project_id}/scanConfigs/{scan_config_id}&quot;.
+     * Output only. The name of the ScanConfig in the form “projects/{project_id\}/scanConfigs/{scan_config_id\}".
      */
     name?: string | null;
     /**
@@ -1222,7 +1218,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1408,9 +1404,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.create
-     * @desc Creates a new `Note`.
+     * Creates a new `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -1434,11 +1430,11 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.create({
-     *     // The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
+     *     // The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      *     name: 'placeholder-value',
      *     // The ID to use for this note.
      *     noteId: 'placeholder-value',
-     *     // This field contains the project Id for example: "projects/{project_id}
+     *     // This field contains the project Id for example: "projects/{project_id\}
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1492,17 +1488,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.name The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
-     * @param {string=} params.noteId The ID to use for this note.
-     * @param {string} params.parent This field contains the project Id for example: "projects/{project_id}
-     * @param {().Note} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Notes$Create,
@@ -1585,9 +1576,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.delete
-     * @desc Deletes the given `Note` from the system.
+     * Deletes the given `Note` from the system.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -1611,7 +1602,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.delete({
-     *     // The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     *     // The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      *     name: 'projects/my-project/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -1625,14 +1616,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Notes$Delete,
@@ -1712,9 +1701,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.get
-     * @desc Returns the requested `Note`.
+     * Returns the requested `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -1738,7 +1727,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.get({
-     *     // The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     *     // The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      *     name: 'projects/my-project/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -1769,14 +1758,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Notes$Get,
@@ -1856,9 +1843,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.getIamPolicy
-     * @desc Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for occurrences and projects/{PROJECT_ID}/notes/{NOTE_ID} for notes
+     * Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for occurrences and projects/{PROJECT_ID\}/notes/{NOTE_ID\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -1908,15 +1895,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Notes$Getiampolicy,
@@ -1999,9 +1983,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.list
-     * @desc Lists all `Notes` for a given project.
+     * Lists all `Notes` for a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2027,13 +2011,13 @@ export namespace containeranalysis_v1alpha1 {
      *   const res = await containeranalysis.projects.notes.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
+     *     // The name field will contain the project Id for example: "providers/{provider_id\} @Deprecated
      *     name: 'placeholder-value',
      *     // Number of notes to return in the list.
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // This field contains the project Id for example: "projects/{PROJECT_ID}".
+     *     // This field contains the project Id for example: "projects/{PROJECT_ID\}".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2050,18 +2034,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string=} params.name The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
-     * @param {integer=} params.pageSize Number of notes to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.parent This field contains the project Id for example: "projects/{PROJECT_ID}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Notes$List,
@@ -2147,9 +2125,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.patch
-     * @desc Updates an existing `Note`.
+     * Updates an existing `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2173,7 +2151,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.patch({
-     *     // The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
+     *     // The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      *     name: 'projects/my-project/notes/my-note',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -2229,16 +2207,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
-     * @param {string=} params.updateMask The fields to update.
-     * @param {().Note} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Notes$Patch,
@@ -2318,9 +2292,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.setIamPolicy
-     * @desc Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid}/occurrences/{occurrenceid}` for occurrences and projects/{projectid}/notes/{noteid} for notes
+     * Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid\}/occurrences/{occurrenceid\}` for occurrences and projects/{projectid\}/notes/{noteid\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2370,15 +2344,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Notes$Setiampolicy,
@@ -2461,9 +2432,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.testIamPermissions
-     * @desc Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for `Occurrences` and `projects/{PROJECT_ID}/notes/{NOTE_ID}` for `Notes`
+     * Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for `Occurrences` and `projects/{PROJECT_ID\}/notes/{NOTE_ID\}` for `Notes`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2511,15 +2482,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Notes$Testiampermissions,
@@ -2612,7 +2580,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Notes$Create
     extends StandardParameters {
     /**
-     * The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
+     * The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      */
     name?: string;
     /**
@@ -2620,7 +2588,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     noteId?: string;
     /**
-     * This field contains the project Id for example: "projects/{project_id}
+     * This field contains the project Id for example: "projects/{project_id\}
      */
     parent?: string;
 
@@ -2632,14 +2600,14 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Notes$Delete
     extends StandardParameters {
     /**
-     * The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notes$Get
     extends StandardParameters {
     /**
-     * The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
@@ -2662,7 +2630,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     filter?: string;
     /**
-     * The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
+     * The name field will contain the project Id for example: "providers/{provider_id\} @Deprecated
      */
     name?: string;
     /**
@@ -2674,14 +2642,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * This field contains the project Id for example: "projects/{PROJECT_ID}".
+     * This field contains the project Id for example: "projects/{PROJECT_ID\}".
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Notes$Patch
     extends StandardParameters {
     /**
-     * The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
+     * The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      */
     name?: string;
     /**
@@ -2726,9 +2694,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.notes.occurrences.list
-     * @desc Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer projects.
+     * Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer projects.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2754,7 +2722,7 @@ export namespace containeranalysis_v1alpha1 {
      *   const res = await containeranalysis.projects.notes.occurrences.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
+     *     // The name field will contain the note name for example: "provider/{provider_id\}/notes/{note_id\}"
      *     name: 'projects/my-project/notes/my-note',
      *     // Number of notes to return in the list.
      *     pageSize: 'placeholder-value',
@@ -2775,17 +2743,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.notes.occurrences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string} params.name The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
-     * @param {integer=} params.pageSize Number of notes to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Notes$Occurrences$List,
@@ -2882,7 +2845,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     filter?: string;
     /**
-     * The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
+     * The name field will contain the note name for example: "provider/{provider_id\}/notes/{note_id\}"
      */
     name?: string;
     /**
@@ -2902,9 +2865,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.create
-     * @desc Creates a new `Occurrence`. Use this method to create `Occurrences` for a resource.
+     * Creates a new `Occurrence`. Use this method to create `Occurrences` for a resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -2928,9 +2891,9 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.create({
-     *     // The name of the project. Should be of the form "projects/{project_id}". @Deprecated
+     *     // The name of the project. Should be of the form "projects/{project_id\}". @Deprecated
      *     name: 'placeholder-value',
-     *     // This field contains the project Id for example: "projects/{project_id}"
+     *     // This field contains the project Id for example: "projects/{project_id\}"
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2984,16 +2947,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.name The name of the project. Should be of the form "projects/{project_id}". @Deprecated
-     * @param {string} params.parent This field contains the project Id for example: "projects/{project_id}"
-     * @param {().Occurrence} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Occurrences$Create,
@@ -3076,9 +3035,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.delete
-     * @desc Deletes the given `Occurrence` from the system. Use this when an `Occurrence` is no longer applicable for the given resource.
+     * Deletes the given `Occurrence` from the system. Use this when an `Occurrence` is no longer applicable for the given resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3102,7 +3061,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.delete({
-     *     // The name of the occurrence in the form of "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     *     // The name of the occurrence in the form of "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -3116,14 +3075,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form of "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Occurrences$Delete,
@@ -3203,9 +3160,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.get
-     * @desc Returns the requested `Occurrence`.
+     * Returns the requested `Occurrence`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3229,7 +3186,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.get({
-     *     // The name of the occurrence of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     *     // The name of the occurrence of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -3260,14 +3217,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Occurrences$Get,
@@ -3347,9 +3302,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.getIamPolicy
-     * @desc Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for occurrences and projects/{PROJECT_ID}/notes/{NOTE_ID} for notes
+     * Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for occurrences and projects/{PROJECT_ID\}/notes/{NOTE_ID\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3399,15 +3354,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Occurrences$Getiampolicy,
@@ -3490,9 +3442,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.getNotes
-     * @desc Gets the `Note` attached to the given `Occurrence`.
+     * Gets the `Note` attached to the given `Occurrence`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3516,7 +3468,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getNotes({
-     *     // The name of the occurrence in the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     *     // The name of the occurrence in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *   });
      *   console.log(res.data);
@@ -3547,14 +3499,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.getNotes
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getNotes(
       params: Params$Resource$Projects$Occurrences$Getnotes,
@@ -3637,9 +3587,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.getVulnerabilitySummary
-     * @desc Gets a summary of the number and severity of occurrences.
+     * Gets a summary of the number and severity of occurrences.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3666,7 +3616,7 @@ export namespace containeranalysis_v1alpha1 {
      *     {
      *       // The filter expression.
      *       filter: 'placeholder-value',
-     *       // This contains the project Id for example: projects/{project_id}
+     *       // This contains the project Id for example: projects/{project_id\}
      *       parent: 'projects/my-project',
      *     }
      *   );
@@ -3683,15 +3633,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.getVulnerabilitySummary
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string} params.parent This contains the project Id for example: projects/{project_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getVulnerabilitySummary(
       params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
@@ -3782,9 +3729,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.list
-     * @desc Lists active `Occurrences` for a given project matching the filters.
+     * Lists active `Occurrences` for a given project matching the filters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3812,13 +3759,13 @@ export namespace containeranalysis_v1alpha1 {
      *     filter: 'placeholder-value',
      *     // The kind of occurrences to filter on.
      *     kind: 'placeholder-value',
-     *     // The name field contains the project Id. For example: "projects/{project_id} @Deprecated
+     *     // The name field contains the project Id. For example: "projects/{project_id\} @Deprecated
      *     name: 'placeholder-value',
      *     // Number of occurrences to return in the list.
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // This contains the project Id for example: projects/{project_id}.
+     *     // This contains the project Id for example: projects/{project_id\}.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3835,19 +3782,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string=} params.kind The kind of occurrences to filter on.
-     * @param {string=} params.name The name field contains the project Id. For example: "projects/{project_id} @Deprecated
-     * @param {integer=} params.pageSize Number of occurrences to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.parent This contains the project Id for example: projects/{project_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Occurrences$List,
@@ -3935,9 +3875,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.patch
-     * @desc Updates an existing occurrence.
+     * Updates an existing occurrence.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -3961,7 +3901,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.patch({
-     *     // The name of the occurrence. Should be of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}".
+     *     // The name of the occurrence. Should be of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}".
      *     name: 'projects/my-project/occurrences/my-occurrence',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -4017,16 +3957,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence. Should be of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}".
-     * @param {string=} params.updateMask The fields to update.
-     * @param {().Occurrence} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Occurrences$Patch,
@@ -4106,9 +4042,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.setIamPolicy
-     * @desc Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid}/occurrences/{occurrenceid}` for occurrences and projects/{projectid}/notes/{noteid} for notes
+     * Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid\}/occurrences/{occurrenceid\}` for occurrences and projects/{projectid\}/notes/{noteid\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -4158,15 +4094,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Occurrences$Setiampolicy,
@@ -4249,9 +4182,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.occurrences.testIamPermissions
-     * @desc Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for `Occurrences` and `projects/{PROJECT_ID}/notes/{NOTE_ID}` for `Notes`
+     * Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for `Occurrences` and `projects/{PROJECT_ID\}/notes/{NOTE_ID\}` for `Notes`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -4299,15 +4232,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.occurrences.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Occurrences$Testiampermissions,
@@ -4400,11 +4330,11 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Create
     extends StandardParameters {
     /**
-     * The name of the project. Should be of the form "projects/{project_id}". @Deprecated
+     * The name of the project. Should be of the form "projects/{project_id\}". @Deprecated
      */
     name?: string;
     /**
-     * This field contains the project Id for example: "projects/{project_id}"
+     * This field contains the project Id for example: "projects/{project_id\}"
      */
     parent?: string;
 
@@ -4416,14 +4346,14 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Delete
     extends StandardParameters {
     /**
-     * The name of the occurrence in the form of "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     * The name of the occurrence in the form of "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Get
     extends StandardParameters {
     /**
-     * The name of the occurrence of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     * The name of the occurrence of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
@@ -4442,7 +4372,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Getnotes
     extends StandardParameters {
     /**
-     * The name of the occurrence in the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}"
+     * The name of the occurrence in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}"
      */
     name?: string;
   }
@@ -4453,7 +4383,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     filter?: string;
     /**
-     * This contains the project Id for example: projects/{project_id}
+     * This contains the project Id for example: projects/{project_id\}
      */
     parent?: string;
   }
@@ -4468,7 +4398,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name field contains the project Id. For example: "projects/{project_id} @Deprecated
+     * The name field contains the project Id. For example: "projects/{project_id\} @Deprecated
      */
     name?: string;
     /**
@@ -4480,14 +4410,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * This contains the project Id for example: projects/{project_id}.
+     * This contains the project Id for example: projects/{project_id\}.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Patch
     extends StandardParameters {
     /**
-     * The name of the occurrence. Should be of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}".
+     * The name of the occurrence. Should be of the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\}".
      */
     name?: string;
     /**
@@ -4532,9 +4462,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.operations.create
-     * @desc Creates a new `Operation`.
+     * Creates a new `Operation`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -4587,15 +4517,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.operations.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project Id that this operation should be created under.
-     * @param {().CreateOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Operations$Create,
@@ -4678,9 +4605,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.operations.patch
-     * @desc Updates an existing operation returns an error if operation does not exist. The only valid operations are to update mark the done bit change the result.
+     * Updates an existing operation returns an error if operation does not exist. The only valid operations are to update mark the done bit change the result.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -4704,7 +4631,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.operations.patch({
-     *     // The name of the Operation. Should be of the form "projects/{provider_id}/operations/{operation_id}".
+     *     // The name of the Operation. Should be of the form "projects/{provider_id\}/operations/{operation_id\}".
      *     name: 'projects/my-project/operations/my-operation',
      *
      *     // Request body metadata
@@ -4733,15 +4660,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.operations.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the Operation. Should be of the form "projects/{provider_id}/operations/{operation_id}".
-     * @param {().UpdateOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Operations$Patch,
@@ -4836,7 +4760,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Operations$Patch
     extends StandardParameters {
     /**
-     * The name of the Operation. Should be of the form "projects/{provider_id}/operations/{operation_id}".
+     * The name of the Operation. Should be of the form "projects/{provider_id\}/operations/{operation_id\}".
      */
     name?: string;
 
@@ -4853,9 +4777,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.scanConfigs.get
-     * @desc Gets a specific scan configuration for a project.
+     * Gets a specific scan configuration for a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -4879,7 +4803,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.get({
-     *     // The name of the ScanConfig in the form projects/{project_id}/scanConfigs/{scan_config_id}
+     *     // The name of the ScanConfig in the form projects/{project_id\}/scanConfigs/{scan_config_id\}
      *     name: 'projects/my-project/scanConfigs/my-scanConfig',
      *   });
      *   console.log(res.data);
@@ -4899,14 +4823,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.scanConfigs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the ScanConfig in the form projects/{project_id}/scanConfigs/{scan_config_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Scanconfigs$Get,
@@ -4986,9 +4908,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.scanConfigs.list
-     * @desc Lists scan configurations for a project.
+     * Lists scan configurations for a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5018,7 +4940,7 @@ export namespace containeranalysis_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The page token to use for the next request.
      *     pageToken: 'placeholder-value',
-     *     // This containers the project Id i.e.: projects/{project_id}
+     *     // This containers the project Id i.e.: projects/{project_id\}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -5035,17 +4957,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.scanConfigs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {integer=} params.pageSize The number of items to return.
-     * @param {string=} params.pageToken The page token to use for the next request.
-     * @param {string} params.parent This containers the project Id i.e.: projects/{project_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Scanconfigs$List,
@@ -5133,9 +5050,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.projects.scanConfigs.patch
-     * @desc Updates the scan configuration to a new value.
+     * Updates the scan configuration to a new value.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5159,7 +5076,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.patch({
-     *     // The scan config to update of the form projects/{project_id}/scanConfigs/{scan_config_id}.
+     *     // The scan config to update of the form projects/{project_id\}/scanConfigs/{scan_config_id\}.
      *     name: 'projects/my-project/scanConfigs/my-scanConfig',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -5193,16 +5110,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.projects.scanConfigs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The scan config to update of the form projects/{project_id}/scanConfigs/{scan_config_id}.
-     * @param {string=} params.updateMask The fields to update.
-     * @param {().ScanConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Scanconfigs$Patch,
@@ -5285,7 +5198,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Scanconfigs$Get
     extends StandardParameters {
     /**
-     * The name of the ScanConfig in the form projects/{project_id}/scanConfigs/{scan_config_id}
+     * The name of the ScanConfig in the form projects/{project_id\}/scanConfigs/{scan_config_id\}
      */
     name?: string;
   }
@@ -5304,14 +5217,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * This containers the project Id i.e.: projects/{project_id}
+     * This containers the project Id i.e.: projects/{project_id\}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$Patch
     extends StandardParameters {
     /**
-     * The scan config to update of the form projects/{project_id}/scanConfigs/{scan_config_id}.
+     * The scan config to update of the form projects/{project_id\}/scanConfigs/{scan_config_id\}.
      */
     name?: string;
     /**
@@ -5343,9 +5256,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.create
-     * @desc Creates a new `Note`.
+     * Creates a new `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5369,11 +5282,11 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.create({
-     *     // The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
+     *     // The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      *     name: 'providers/my-provider',
      *     // The ID to use for this note.
      *     noteId: 'placeholder-value',
-     *     // This field contains the project Id for example: "projects/{project_id}
+     *     // This field contains the project Id for example: "projects/{project_id\}
      *     parent: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5427,17 +5340,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
-     * @param {string=} params.noteId The ID to use for this note.
-     * @param {string=} params.parent This field contains the project Id for example: "projects/{project_id}
-     * @param {().Note} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Providers$Notes$Create,
@@ -5520,9 +5428,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.delete
-     * @desc Deletes the given `Note` from the system.
+     * Deletes the given `Note` from the system.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5546,7 +5454,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.delete({
-     *     // The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     *     // The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      *     name: 'providers/my-provider/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -5560,14 +5468,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Providers$Notes$Delete,
@@ -5647,9 +5553,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.get
-     * @desc Returns the requested `Note`.
+     * Returns the requested `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5673,7 +5579,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.get({
-     *     // The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     *     // The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      *     name: 'providers/my-provider/notes/my-note',
      *   });
      *   console.log(res.data);
@@ -5704,14 +5610,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Providers$Notes$Get,
@@ -5791,9 +5695,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.getIamPolicy
-     * @desc Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for occurrences and projects/{PROJECT_ID}/notes/{NOTE_ID} for notes
+     * Gets the access control policy for a note or an `Occurrence` resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. Attempting to call this method on a resource without the required permission will result in a `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for occurrences and projects/{PROJECT_ID\}/notes/{NOTE_ID\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5843,15 +5747,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Providers$Notes$Getiampolicy,
@@ -5934,9 +5835,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.list
-     * @desc Lists all `Notes` for a given project.
+     * Lists all `Notes` for a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -5962,13 +5863,13 @@ export namespace containeranalysis_v1alpha1 {
      *   const res = await containeranalysis.providers.notes.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
+     *     // The name field will contain the project Id for example: "providers/{provider_id\} @Deprecated
      *     name: 'providers/my-provider',
      *     // Number of notes to return in the list.
      *     pageSize: 'placeholder-value',
      *     // Token to provide to skip to a particular spot in the list.
      *     pageToken: 'placeholder-value',
-     *     // This field contains the project Id for example: "projects/{PROJECT_ID}".
+     *     // This field contains the project Id for example: "projects/{PROJECT_ID\}".
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5985,18 +5886,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string} params.name The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
-     * @param {integer=} params.pageSize Number of notes to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string=} params.parent This field contains the project Id for example: "projects/{PROJECT_ID}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Providers$Notes$List,
@@ -6082,9 +5977,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.patch
-     * @desc Updates an existing `Note`.
+     * Updates an existing `Note`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -6108,7 +6003,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.patch({
-     *     // The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
+     *     // The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      *     name: 'providers/my-provider/notes/my-note',
      *     // The fields to update.
      *     updateMask: 'placeholder-value',
@@ -6164,16 +6059,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
-     * @param {string=} params.updateMask The fields to update.
-     * @param {().Note} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Providers$Notes$Patch,
@@ -6253,9 +6144,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.setIamPolicy
-     * @desc Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid}/occurrences/{occurrenceid}` for occurrences and projects/{projectid}/notes/{noteid} for notes
+     * Sets the access control policy on the specified `Note` or `Occurrence`. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a `Note` or an `Occurrence`, respectively. Attempting to call this method without these permissions will result in a ` `PERMISSION_DENIED` error. Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has `containeranalysis.notes.list` permission on a `Note` or `containeranalysis.occurrences.list` on an `Occurrence`, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{projectid\}/occurrences/{occurrenceid\}` for occurrences and projects/{projectid\}/notes/{noteid\} for notes
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -6305,15 +6196,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Providers$Notes$Setiampolicy,
@@ -6396,9 +6284,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.testIamPermissions
-     * @desc Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID}/occurrences/{OCCURRENCE_ID}` for `Occurrences` and `projects/{PROJECT_ID}/notes/{NOTE_ID}` for `Notes`
+     * Returns the permissions that a caller has on the specified note or occurrence resource. Requires list permission on the project (for example, "storage.objects.list" on the containing bucket for testing permission of an object). Attempting to call this method on a non-existent resource will result in a `NOT_FOUND` error if the user has list permission on the project, or a `PERMISSION_DENIED` error otherwise. The resource takes the following formats: `projects/{PROJECT_ID\}/occurrences/{OCCURRENCE_ID\}` for `Occurrences` and `projects/{PROJECT_ID\}/notes/{NOTE_ID\}` for `Notes`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -6446,15 +6334,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Providers$Notes$Testiampermissions,
@@ -6547,7 +6432,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Providers$Notes$Create
     extends StandardParameters {
     /**
-     * The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
+     * The name of the project. Should be of the form "providers/{provider_id\}". @Deprecated
      */
     name?: string;
     /**
@@ -6555,7 +6440,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     noteId?: string;
     /**
-     * This field contains the project Id for example: "projects/{project_id}
+     * This field contains the project Id for example: "projects/{project_id\}
      */
     parent?: string;
 
@@ -6567,14 +6452,14 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Providers$Notes$Delete
     extends StandardParameters {
     /**
-     * The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
   export interface Params$Resource$Providers$Notes$Get
     extends StandardParameters {
     /**
-     * The name of the note in the form of "providers/{provider_id}/notes/{NOTE_ID}"
+     * The name of the note in the form of "providers/{provider_id\}/notes/{NOTE_ID\}"
      */
     name?: string;
   }
@@ -6597,7 +6482,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     filter?: string;
     /**
-     * The name field will contain the project Id for example: "providers/{provider_id} @Deprecated
+     * The name field will contain the project Id for example: "providers/{provider_id\} @Deprecated
      */
     name?: string;
     /**
@@ -6609,14 +6494,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * This field contains the project Id for example: "projects/{PROJECT_ID}".
+     * This field contains the project Id for example: "projects/{PROJECT_ID\}".
      */
     parent?: string;
   }
   export interface Params$Resource$Providers$Notes$Patch
     extends StandardParameters {
     /**
-     * The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
+     * The name of the note. Should be of the form "projects/{provider_id\}/notes/{note_id\}".
      */
     name?: string;
     /**
@@ -6661,9 +6546,9 @@ export namespace containeranalysis_v1alpha1 {
     }
 
     /**
-     * containeranalysis.providers.notes.occurrences.list
-     * @desc Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer projects.
+     * Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer projects.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
@@ -6689,7 +6574,7 @@ export namespace containeranalysis_v1alpha1 {
      *   const res = await containeranalysis.providers.notes.occurrences.list({
      *     // The filter expression.
      *     filter: 'placeholder-value',
-     *     // The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
+     *     // The name field will contain the note name for example: "provider/{provider_id\}/notes/{note_id\}"
      *     name: 'providers/my-provider/notes/my-note',
      *     // Number of notes to return in the list.
      *     pageSize: 'placeholder-value',
@@ -6710,17 +6595,12 @@ export namespace containeranalysis_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias containeranalysis.providers.notes.occurrences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
-     * @param {string} params.name The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
-     * @param {integer=} params.pageSize Number of notes to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Providers$Notes$Occurrences$List,
@@ -6817,7 +6697,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     filter?: string;
     /**
-     * The name field will contain the note name for example: "provider/{provider_id}/notes/{note_id}"
+     * The name field will contain the note name for example: "provider/{provider_id\}/notes/{note_id\}"
      */
     name?: string;
     /**

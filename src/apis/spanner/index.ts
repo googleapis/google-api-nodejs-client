@@ -31,3 +31,14 @@ export function spanner<T = spanner_v1.Spanner>(
 
 const auth = new AuthPlus();
 export {auth};
+export {spanner_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

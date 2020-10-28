@@ -31,3 +31,14 @@ export function webfonts<T = webfonts_v1.Webfonts>(
 
 const auth = new AuthPlus();
 export {auth};
+export {webfonts_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace osconfig_v1 {
    * OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const osconfig = google.osconfig('v1');
-   *
-   * @namespace osconfig
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Osconfig
+   * ```
    */
   export class Osconfig {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace osconfig_v1 {
   }
 
   /**
-   * Apt patching is completed by executing `apt-get update &amp;&amp; apt-get upgrade`. Additional options can be set to control how this is executed.
+   * Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed.
    */
   export interface Schema$AptSettings {
     /**
@@ -149,7 +145,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$CancelPatchJobRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -220,7 +216,7 @@ export namespace osconfig_v1 {
     rollout?: Schema$PatchRollout;
   }
   /**
-   * Message encapsulating a value that can be either absolute (&quot;fixed&quot;) or relative (&quot;percent&quot;) to a value.
+   * Message encapsulating a value that can be either absolute ("fixed") or relative ("percent") to a value.
    */
   export interface Schema$FixedOrPercent {
     /**
@@ -293,11 +289,11 @@ export namespace osconfig_v1 {
     patchJobs?: Schema$PatchJob[];
   }
   /**
-   * Represents a monthly schedule. An example of a valid monthly schedule is &quot;on the third Tuesday of the month&quot; or &quot;on the 15th of the month&quot;.
+   * Represents a monthly schedule. An example of a valid monthly schedule is "on the third Tuesday of the month" or "on the 15th of the month".
    */
   export interface Schema$MonthlySchedule {
     /**
-     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month. Months without the target day will be skipped. For example, a schedule to run &quot;every month on the 31st&quot; will not run in February, April, June, etc.
+     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month. Months without the target day will be skipped. For example, a schedule to run "every month on the 31st" will not run in February, April, June, etc.
      */
     monthDay?: number | null;
     /**
@@ -376,7 +372,7 @@ export namespace osconfig_v1 {
      */
     lastExecuteTime?: string | null;
     /**
-     * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id}/patchDeployments/{patch_deployment_id}`. This field is ignored when you create a new patch deployment.
+     * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
      */
     name?: string | null;
     /**
@@ -413,7 +409,7 @@ export namespace osconfig_v1 {
      */
     groupLabels?: Schema$PatchInstanceFilterGroupLabel[];
     /**
-     * Targets VMs whose name starts with one of these prefixes. Similar to labels, this is another way to group VMs when targeting configs, for example prefix=&quot;prod-&quot;.
+     * Targets VMs whose name starts with one of these prefixes. Similar to labels, this is another way to group VMs when targeting configs, for example prefix="prod-".
      */
     instanceNamePrefixes?: string[] | null;
     /**
@@ -426,7 +422,7 @@ export namespace osconfig_v1 {
     zones?: string[] | null;
   }
   /**
-   * Targets a group of VM instances by using their [assigned labels](https://cloud.google.com/compute/docs/labeling-resources). Labels are key-value pairs. A `GroupLabel` is a combination of labels that is used to target VMs for a patch job. For example, a patch job can target VMs that have the following `GroupLabel`: `{&quot;env&quot;:&quot;test&quot;, &quot;app&quot;:&quot;web&quot;}`. This means that the patch job is applied to VMs that have both the labels `env=test` and `app=web`.
+   * Targets a group of VM instances by using their [assigned labels](https://cloud.google.com/compute/docs/labeling-resources). Labels are key-value pairs. A `GroupLabel` is a combination of labels that is used to target VMs for a patch job. For example, a patch job can target VMs that have the following `GroupLabel`: `{"env":"test", "app":"web"\}`. This means that the patch job is applied to VMs that have both the labels `env=test` and `app=web`.
    */
   export interface Schema$PatchInstanceFilterGroupLabel {
     /**
@@ -471,7 +467,7 @@ export namespace osconfig_v1 {
      */
     instanceFilter?: Schema$PatchInstanceFilter;
     /**
-     * Unique identifier for this patch job in the form `projects/x/patchJobs/x
+     * Unique identifier for this patch job in the form `projects/x/patchJobs/x`
      */
     name?: string | null;
     /**
@@ -516,7 +512,7 @@ export namespace osconfig_v1 {
      */
     instanceSystemId?: string | null;
     /**
-     * The instance name in the form `projects/x/zones/x/instances/x
+     * The instance name in the form `projects/x/zones/x/instances/x`
      */
     name?: string | null;
     /**
@@ -648,7 +644,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
@@ -669,16 +665,16 @@ export namespace osconfig_v1 {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. &quot;America/New_York&quot;.
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. &quot;2019a&quot;.
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
      */
     version?: string | null;
   }
   /**
-   * Represents one week day in a month. An example is &quot;the 4th Sunday&quot;.
+   * Represents one week day in a month. An example is "the 4th Sunday".
    */
   export interface Schema$WeekDayOfMonth {
     /**
@@ -750,7 +746,7 @@ export namespace osconfig_v1 {
      */
     excludes?: string[] | null;
     /**
-     * An exclusive list of patches to be updated. These are the only patches that will be installed using &#39;zypper patch patch:&#39; command. This field must not be used with any other patch configuration fields.
+     * An exclusive list of patches to be updated. These are the only patches that will be installed using 'zypper patch patch:' command. This field must not be used with any other patch configuration fields.
      */
     exclusivePatches?: string[] | null;
     /**
@@ -787,9 +783,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchDeployments.create
-     * @desc Create an OS Config patch deployment.
+     * Create an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -859,16 +855,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project to apply this patch deployment to in the form `projects/x`.
-     * @param {string=} params.patchDeploymentId Required. A name for the patch deployment in the project. When creating a name the following rules apply: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
-     * @param {().PatchDeployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
@@ -950,9 +942,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchDeployments.delete
-     * @desc Delete an OS Config patch deployment.
+     * Delete an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -990,14 +982,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
@@ -1076,9 +1066,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchDeployments.get
-     * @desc Get an OS Config patch deployment.
+     * Get an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1128,14 +1118,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
@@ -1214,9 +1202,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchDeployments.list
-     * @desc Get a page of OS Config patch deployments.
+     * Get a page of OS Config patch deployments.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1261,16 +1249,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of patch deployments to return. Default is 100.
-     * @param {string=} params.pageToken Optional. A pagination token returned from a previous call to ListPatchDeployments that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The resource name of the parent in the form `projects/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
@@ -1418,9 +1402,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchJobs.cancel
-     * @desc Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
+     * Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1480,15 +1464,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the patch in the form `projects/x/patchJobs/x`
-     * @param {().CancelPatchJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
@@ -1567,9 +1548,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchJobs.execute
-     * @desc Patch VM instances by creating and running a patch job.
+     * Patch VM instances by creating and running a patch job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1637,15 +1618,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.execute
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which to run this patch in the form `projects/x`
-     * @param {().ExecutePatchJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
@@ -1727,9 +1705,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchJobs.get
-     * @desc Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
+     * Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1783,14 +1761,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the patch in the form `projects/x/patchJobs/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
@@ -1869,9 +1845,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchJobs.list
-     * @desc Get a list of patch jobs.
+     * Get a list of patch jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1918,17 +1894,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
-     * @param {integer=} params.pageSize The maximum number of instance status to return.
-     * @param {string=} params.pageToken A pagination token returned from a previous call that indicates where this listing should continue from.
-     * @param {string} params.parent Required. In the form of `projects/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchjobs$List,
@@ -2073,9 +2044,9 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * osconfig.projects.patchJobs.instanceDetails.list
-     * @desc Get a list of instance details for a given patch job.
+     * Get a list of instance details for a given patch job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2122,17 +2093,12 @@ export namespace osconfig_v1 {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.instanceDetails.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
-     * @param {integer=} params.pageSize The maximum number of instance details records to return. Default is 100.
-     * @param {string=} params.pageToken A pagination token returned from a previous call that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,

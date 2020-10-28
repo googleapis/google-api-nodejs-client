@@ -62,3 +62,16 @@ export function websecurityscanner<
 
 const auth = new AuthPlus();
 export {auth};
+export {websecurityscanner_v1};
+export {websecurityscanner_v1alpha};
+export {websecurityscanner_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

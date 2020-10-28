@@ -104,14 +104,10 @@ export namespace sts_v1beta {
    * The Security Token Service exchanges Google or third-party credentials for a short-lived access token to Google Cloud resources.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const sts = google.sts('v1beta');
-   *
-   * @namespace sts
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Sts
+   * ```
    */
   export class Sts {
     context: APIRequestContext;
@@ -152,7 +148,7 @@ export namespace sts_v1beta {
      */
     scope?: string | null;
     /**
-     * Required. The input token. This token is a either an external credential issued by a workload identity pool provider, or a short-lived access token issued by Google. If the token is an OIDC JWT, it must use the JWT format defined in [RFC 7523](https://tools.ietf.org/html/rfc7523), and the `subject_token_type` must be `urn:ietf:params:oauth:token-type:jwt`. The following headers are required: - `kid`: The identifier of the signing key securing the JWT. - `alg`: The cryptographic algorithm securing the JWT. Must be `RS256`. The following payload fields are required. For more information, see [RFC 7523, Section 3](https://tools.ietf.org/html/rfc7523#section-3): - `iss`: The issuer of the token. The issuer must provide a discovery document at the URL `/.well-known/openid-configuration`, where `` is the value of this field. The document must be formatted according to section 4.2 of the [OIDC 1.0 Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). - `iat`: The issue time, in seconds, since the Unix epoch. Must be in the past. - `exp`: The expiration time, in seconds, since the Unix epoch. Must be less than 48 hours after `iat`. Shorter expiration times are more secure. If possible, we recommend setting an expiration time less than 6 hours. - `sub`: The identity asserted in the JWT. - `aud`: Configured by the mapper policy. The default value is the service account&#39;s unique ID. Example header: ``` { &quot;alg&quot;: &quot;RS256&quot;, &quot;kid&quot;: &quot;us-east-11&quot; } ``` Example payload: ``` { &quot;iss&quot;: &quot;https://accounts.google.com&quot;, &quot;iat&quot;: 1517963104, &quot;exp&quot;: 1517966704, &quot;aud&quot;: &quot;113475438248934895348&quot;, &quot;sub&quot;: &quot;113475438248934895348&quot;, &quot;my_claims&quot;: { &quot;additional_claim&quot;: &quot;value&quot; } } ``` If `subject_token` is an AWS token, it must be a serialized, [signed](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html) request to the AWS [`GetCallerIdentity()`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity) method. Format the request as URL-encoded JSON, and set the `subject_token_type` parameter to `urn:ietf:params:aws:token-type:aws4_request`. The following parameters are required: - `url`: The URL of the AWS STS endpoint for `GetCallerIdentity()`, such as `https://sts.amazonaws.com?Action=GetCallerIdentity&amp;Version=2011-06-15`. Regional endpoints are also supported. - `method`: The HTTP request method: `POST`. - `headers`: The HTTP request headers, which must include: - `Authorization`: The request signature. - `x-amz-date`: The time you will send the request, formatted as an [ISO8601 Basic](https://docs.aws.amazon.com/general/latest/gr/sigv4_elements.html#sigv4_elements_date) string. This is typically set to the current time and used to prevent replay attacks. - `host`: The hostname of the `url` field; for example, `sts.amazonaws.com`. - `x-goog-cloud-target-resource`: The full, canonical resource name of the workload identity pool provider, with or without an `https:` prefix. To help ensure data integrity, we recommend including this header in the `SignedHeaders` field of the signed request. For example: //iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ https://iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ If you are using temporary security credentials provided by AWS, you must also include the header `x-amz-security-token`, with the value ``. The following example shows a signed, serialized request: ``` { &quot;headers&quot;:[ {&quot;key&quot;: &quot;x-amz-date&quot;, &quot;value&quot;: &quot;20200815T015049Z&quot;}, {&quot;key&quot;: &quot;Authorization&quot;, &quot;value&quot;: &quot;AWS4-HMAC-SHA256+Credential=$credential,+SignedHeaders=host;x-amz-date;x-goog-cloud-target-resource,+Signature=$signature&quot;}, {&quot;key&quot;: &quot;x-goog-cloud-target-resource&quot;, &quot;value&quot;: &quot;//iam.googleapis.com/projects//locations//workloadIdentityPools//providers/&quot;}, {&quot;key&quot;: &quot;host&quot;, &quot;value&quot;: &quot;sts.amazonaws.com&quot;} . ], &quot;method&quot;:&quot;POST&quot;, &quot;url&quot;:&quot;https://sts.amazonaws.com?Action=GetCallerIdentity&amp;Version=2011-06-15&quot; } ``` You can also use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as a Credential Access Boundary. In this case, set `subject_token_type` to `urn:ietf:params:oauth:token-type:access_token`. If an access token already contains security attributes, you cannot apply additional security attributes.
+     * Required. The input token. This token is a either an external credential issued by a workload identity pool provider, or a short-lived access token issued by Google. If the token is an OIDC JWT, it must use the JWT format defined in [RFC 7523](https://tools.ietf.org/html/rfc7523), and the `subject_token_type` must be `urn:ietf:params:oauth:token-type:jwt`. The following headers are required: - `kid`: The identifier of the signing key securing the JWT. - `alg`: The cryptographic algorithm securing the JWT. Must be `RS256`. The following payload fields are required. For more information, see [RFC 7523, Section 3](https://tools.ietf.org/html/rfc7523#section-3): - `iss`: The issuer of the token. The issuer must provide a discovery document at the URL `/.well-known/openid-configuration`, where `` is the value of this field. The document must be formatted according to section 4.2 of the [OIDC 1.0 Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). - `iat`: The issue time, in seconds, since the Unix epoch. Must be in the past. - `exp`: The expiration time, in seconds, since the Unix epoch. Must be less than 48 hours after `iat`. Shorter expiration times are more secure. If possible, we recommend setting an expiration time less than 6 hours. - `sub`: The identity asserted in the JWT. - `aud`: Configured by the mapper policy. The default value is the service account's unique ID. Example header: ``` { "alg": "RS256", "kid": "us-east-11" \} ``` Example payload: ``` { "iss": "https://accounts.google.com", "iat": 1517963104, "exp": 1517966704, "aud": "113475438248934895348", "sub": "113475438248934895348", "my_claims": { "additional_claim": "value" \} \} ``` If `subject_token` is an AWS token, it must be a serialized, [signed](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html) request to the AWS [`GetCallerIdentity()`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity) method. Format the request as URL-encoded JSON, and set the `subject_token_type` parameter to `urn:ietf:params:aws:token-type:aws4_request`. The following parameters are required: - `url`: The URL of the AWS STS endpoint for `GetCallerIdentity()`, such as `https://sts.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15`. Regional endpoints are also supported. - `method`: The HTTP request method: `POST`. - `headers`: The HTTP request headers, which must include: - `Authorization`: The request signature. - `x-amz-date`: The time you will send the request, formatted as an [ISO8601 Basic](https://docs.aws.amazon.com/general/latest/gr/sigv4_elements.html#sigv4_elements_date) string. This is typically set to the current time and used to prevent replay attacks. - `host`: The hostname of the `url` field; for example, `sts.amazonaws.com`. - `x-goog-cloud-target-resource`: The full, canonical resource name of the workload identity pool provider, with or without an `https:` prefix. To help ensure data integrity, we recommend including this header in the `SignedHeaders` field of the signed request. For example: //iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ https://iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ If you are using temporary security credentials provided by AWS, you must also include the header `x-amz-security-token`, with the value ``. The following example shows a signed, serialized request: ``` { "headers":[ {"key": "x-amz-date", "value": "20200815T015049Z"\}, {"key": "Authorization", "value": "AWS4-HMAC-SHA256+Credential=$credential,+SignedHeaders=host;x-amz-date;x-goog-cloud-target-resource,+Signature=$signature"\}, {"key": "x-goog-cloud-target-resource", "value": "//iam.googleapis.com/projects//locations//workloadIdentityPools//providers/"\}, {"key": "host", "value": "sts.amazonaws.com"\} . ], "method":"POST", "url":"https://sts.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15" \} ``` You can also use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as a Credential Access Boundary. In this case, set `subject_token_type` to `urn:ietf:params:oauth:token-type:access_token`. If an access token already contains security attributes, you cannot apply additional security attributes.
      */
     subjectToken?: string | null;
     /**
@@ -189,9 +185,9 @@ export namespace sts_v1beta {
     }
 
     /**
-     * sts.token
-     * @desc Exchanges a credential for a Google OAuth 2.0 access token. The token asserts an external identity within a workload identity pool, or it applies a Credential Access Boundary to a Google access token.
+     * Exchanges a credential for a Google OAuth 2.0 access token. The token asserts an external identity within a workload identity pool, or it applies a Credential Access Boundary to a Google access token.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sts.googleapis.com
@@ -245,14 +241,12 @@ export namespace sts_v1beta {
      *   throw e;
      * });
      *
-     * @alias sts.token
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleIdentityStsV1betaExchangeTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     token(
       params: Params$Resource$V1beta$Token,

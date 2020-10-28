@@ -51,3 +51,15 @@ export function servicenetworking<
 
 const auth = new AuthPlus();
 export {auth};
+export {servicenetworking_v1};
+export {servicenetworking_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

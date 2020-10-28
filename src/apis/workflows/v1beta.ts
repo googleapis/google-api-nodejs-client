@@ -104,14 +104,10 @@ export namespace workflows_v1beta {
    * Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const workflows = google.workflows('v1beta');
-   *
-   * @namespace workflows
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Workflows
+   * ```
    */
   export class Workflows {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace workflows_v1beta {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -179,15 +175,15 @@ export namespace workflows_v1beta {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -195,7 +191,7 @@ export namespace workflows_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -216,7 +212,7 @@ export namespace workflows_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -283,7 +279,7 @@ export namespace workflows_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string | null;
     /**
@@ -291,11 +287,11 @@ export namespace workflows_v1beta {
      */
     revisionCreateTime?: string | null;
     /**
-     * Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following fields of a workflow: - `source_code` - `service_account` The format is &quot;000001-a4d&quot;, where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters.
+     * Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following fields of a workflow: - `source_code` - `service_account` The format is "000001-a4d", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters.
      */
     revisionId?: string | null;
     /**
-     * Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project&#39;s default service account. Modifying this field for an existing workflow results in a new workflow revision.
+     * Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project\}/serviceAccounts/{account\} Using `-` as a wildcard for the `{project\}` will infer the project from the account. The `{account\}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision.
      */
     serviceAccount?: string | null;
     /**
@@ -334,9 +330,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -380,14 +376,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -466,9 +460,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -515,17 +509,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -646,9 +635,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -686,14 +675,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -772,9 +759,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -818,14 +805,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -904,9 +889,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -953,17 +938,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -1091,9 +1071,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.workflows.create
-     * @desc Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.
+     * Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -1117,7 +1097,7 @@ export namespace workflows_v1beta {
      *
      *   // Do the magic
      *   const res = await workflows.projects.locations.workflows.create({
-     *     // Required. Project and location in which the workflow should be created. Format: projects/{project}/locations/{location}
+     *     // Required. Project and location in which the workflow should be created. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID of the workflow to be created. It has to fulfill the following requirements: * Must contain only letters, numbers, underscores and hyphens. * Must start with a letter. * Must be between 1-64 characters. * Must end with a number or a letter. * Must be unique within the customer project and location.
      *     workflowId: 'placeholder-value',
@@ -1156,16 +1136,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.workflows.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project and location in which the workflow should be created. Format: projects/{project}/locations/{location}
-     * @param {string=} params.workflowId Required. The ID of the workflow to be created. It has to fulfill the following requirements: * Must contain only letters, numbers, underscores and hyphens. * Must start with a letter. * Must be between 1-64 characters. * Must end with a number or a letter. * Must be unique within the customer project and location.
-     * @param {().Workflow} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Workflows$Create,
@@ -1247,9 +1223,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.workflows.delete
-     * @desc Deletes a workflow with the specified name. This method also cancels and deletes all running executions of the workflow.
+     * Deletes a workflow with the specified name. This method also cancels and deletes all running executions of the workflow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -1273,7 +1249,7 @@ export namespace workflows_v1beta {
      *
      *   // Do the magic
      *   const res = await workflows.projects.locations.workflows.delete({
-     *     // Required. Name of the workflow to be deleted. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *     // Required. Name of the workflow to be deleted. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *   });
      *   console.log(res.data);
@@ -1293,14 +1269,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.workflows.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the workflow to be deleted. Format: projects/{project}/locations/{location}/workflows/{workflow}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Workflows$Delete,
@@ -1379,9 +1353,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.workflows.get
-     * @desc Gets details of a single Workflow.
+     * Gets details of a single Workflow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -1405,7 +1379,7 @@ export namespace workflows_v1beta {
      *
      *   // Do the magic
      *   const res = await workflows.projects.locations.workflows.get({
-     *     // Required. Name of the workflow which information should be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *     // Required. Name of the workflow which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *   });
      *   console.log(res.data);
@@ -1430,14 +1404,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.workflows.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the workflow which information should be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Workflows$Get,
@@ -1516,9 +1488,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.workflows.list
-     * @desc Lists Workflows in a given project and location. The default order is not specified.
+     * Lists Workflows in a given project and location. The default order is not specified.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -1550,7 +1522,7 @@ export namespace workflows_v1beta {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListWorkflows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflows` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Project and location from which the workflows should be listed. Format: projects/{project}/locations/{location}
+     *     // Required. Project and location from which the workflows should be listed. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1568,18 +1540,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.workflows.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter to restrict results to specific workflows.
-     * @param {string=} params.orderBy Comma-separated list of fields that that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a " desc" suffix. If not specified, the results will be returned in an unspecified order.
-     * @param {integer=} params.pageSize Maximum number of workflows to return per call. The service may return fewer than this value. If the value is not specified, a default value of 500 will be used. The maximum permitted value is 1000 and values greater than 1000 will be coerced down to 1000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListWorkflows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflows` must match the call that provided the page token.
-     * @param {string} params.parent Required. Project and location from which the workflows should be listed. Format: projects/{project}/locations/{location}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Workflows$List,
@@ -1666,9 +1632,9 @@ export namespace workflows_v1beta {
     }
 
     /**
-     * workflows.projects.locations.workflows.patch
-     * @desc Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.
+     * Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflows.googleapis.com
@@ -1692,7 +1658,7 @@ export namespace workflows_v1beta {
      *
      *   // Do the magic
      *   const res = await workflows.projects.locations.workflows.patch({
-     *     // The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *     // The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *     // List of fields to be updated. If not present, the entire workflow will be updated.
      *     updateMask: 'placeholder-value',
@@ -1731,16 +1697,12 @@ export namespace workflows_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflows.projects.locations.workflows.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}
-     * @param {string=} params.updateMask List of fields to be updated. If not present, the entire workflow will be updated.
-     * @param {().Workflow} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Workflows$Patch,
@@ -1822,7 +1784,7 @@ export namespace workflows_v1beta {
   export interface Params$Resource$Projects$Locations$Workflows$Create
     extends StandardParameters {
     /**
-     * Required. Project and location in which the workflow should be created. Format: projects/{project}/locations/{location}
+     * Required. Project and location in which the workflow should be created. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
     /**
@@ -1838,14 +1800,14 @@ export namespace workflows_v1beta {
   export interface Params$Resource$Projects$Locations$Workflows$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the workflow to be deleted. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Required. Name of the workflow to be deleted. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflows$Get
     extends StandardParameters {
     /**
-     * Required. Name of the workflow which information should be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Required. Name of the workflow which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
   }
@@ -1868,14 +1830,14 @@ export namespace workflows_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. Project and location from which the workflows should be listed. Format: projects/{project}/locations/{location}
+     * Required. Project and location from which the workflows should be listed. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflows$Patch
     extends StandardParameters {
     /**
-     * The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
     /**

@@ -56,3 +56,16 @@ export function datastore<
 
 const auth = new AuthPlus();
 export {auth};
+export {datastore_v1};
+export {datastore_v1beta1};
+export {datastore_v1beta3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

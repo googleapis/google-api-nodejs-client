@@ -31,3 +31,14 @@ export function iam<T = iam_v1.Iam>(
 
 const auth = new AuthPlus();
 export {auth};
+export {iam_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

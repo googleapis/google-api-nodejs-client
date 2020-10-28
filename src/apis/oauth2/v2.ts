@@ -88,14 +88,10 @@ export namespace oauth2_v2 {
    * Obtains end-user authorization grants for use with other Google APIs.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const oauth2 = google.oauth2('v2');
-   *
-   * @namespace oauth2
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Oauth2
+   * ```
    */
   export class Oauth2 {
     context: APIRequestContext;
@@ -111,8 +107,8 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * oauth2.tokeninfo
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
@@ -159,15 +155,12 @@ export namespace oauth2_v2 {
      *   throw e;
      * });
      *
-     * @alias oauth2.tokeninfo
-     * @memberOf! oauth2(v2)
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.access_token
-     * @param {string=} params.id_token
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     tokeninfo(
       params: Params$$Tokeninfo,
@@ -280,19 +273,19 @@ export namespace oauth2_v2 {
   }
   export interface Schema$Userinfo {
     /**
-     * The user&#39;s email address.
+     * The user's email address.
      */
     email?: string | null;
     /**
-     * The user&#39;s last name.
+     * The user's last name.
      */
     family_name?: string | null;
     /**
-     * The user&#39;s gender.
+     * The user's gender.
      */
     gender?: string | null;
     /**
-     * The user&#39;s first name.
+     * The user's first name.
      */
     given_name?: string | null;
     /**
@@ -308,19 +301,19 @@ export namespace oauth2_v2 {
      */
     link?: string | null;
     /**
-     * The user&#39;s preferred locale.
+     * The user's preferred locale.
      */
     locale?: string | null;
     /**
-     * The user&#39;s full name.
+     * The user's full name.
      */
     name?: string | null;
     /**
-     * URL of the user&#39;s picture image.
+     * URL of the user's picture image.
      */
     picture?: string | null;
     /**
-     * Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
+     * Boolean flag which is true if the email address is verified. Always verified because we only return the user's primary email address.
      */
     verified_email?: boolean | null;
   }
@@ -345,8 +338,8 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * oauth2.userinfo.get
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
@@ -397,13 +390,12 @@ export namespace oauth2_v2 {
      *   throw e;
      * });
      *
-     * @alias oauth2.userinfo.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userinfo$Get,
@@ -502,8 +494,8 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * oauth2.userinfo.v2.me.get
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
@@ -554,13 +546,12 @@ export namespace oauth2_v2 {
      *   throw e;
      * });
      *
-     * @alias oauth2.userinfo.v2.me.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userinfo$V2$Me$Get,

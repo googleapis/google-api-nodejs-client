@@ -31,3 +31,14 @@ export function games<T = games_v1.Games>(
 
 const auth = new AuthPlus();
 export {auth};
+export {games_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace billingbudgets_v1 {
    * The Cloud Billing Budget API stores Cloud Billing budgets, which define a budget plan and the rules to execute as spend is tracked against that plan.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const billingbudgets = google.billingbudgets('v1');
-   *
-   * @namespace billingbudgets
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Billingbudgets
+   * ```
    */
   export class Billingbudgets {
     context: APIRequestContext;
@@ -148,7 +144,7 @@ export namespace billingbudgets_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string | null;
     /**
@@ -165,7 +161,7 @@ export namespace billingbudgets_v1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1BudgetAmount {
     /**
-     * Use the last period&#39;s actual spend as the budget for the present period.
+     * Use the last period's actual spend as the budget for the present period.
      */
     lastPeriodAmount?: Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount;
     /**
@@ -186,20 +182,20 @@ export namespace billingbudgets_v1 {
      */
     labels?: {[key: string]: any[]} | null;
     /**
-     * Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
+     * Optional. A set of projects of the form `projects/{project\}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
      */
     projects?: string[] | null;
     /**
-     * Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
+     * Optional. A set of services of the form `services/{service_id\}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
      */
     services?: string[] | null;
     /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist.
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id\}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist.
      */
     subaccounts?: string[] | null;
   }
   /**
-   * Describes a budget amount targeted to last period&#39;s spend. At this time, the amount is automatically 100% of last period&#39;s spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period&#39;s spend).
+   * Describes a budget amount targeted to last period's spend. At this time, the amount is automatically 100% of last period's spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period's spend).
    */
   export interface Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount {}
   /**
@@ -224,15 +220,15 @@ export namespace billingbudgets_v1 {
      */
     disableDefaultIamRecipients?: boolean | null;
     /**
-     * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
+     * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id\}/notificationChannels/{channel_id\}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
      */
     monitoringNotificationChannels?: string[] | null;
     /**
-     * Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it&#39;s set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.
+     * Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id\}/topics/{topic_id\}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.
      */
     pubsubTopic?: string | null;
     /**
-     * Optional. The schema version of the notification sent to `pubsub_topic`. Only &quot;1.0&quot; is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
+     * Optional. The schema version of the notification sent to `pubsub_topic`. Only "1.0" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
      */
     schemaVersion?: string | null;
   }
@@ -250,7 +246,7 @@ export namespace billingbudgets_v1 {
     thresholdPercent?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -266,7 +262,7 @@ export namespace billingbudgets_v1 {
      */
     nanos?: number | null;
     /**
-     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
   }
@@ -287,9 +283,9 @@ export namespace billingbudgets_v1 {
     }
 
     /**
-     * billingbudgets.billingAccounts.budgets.create
-     * @desc Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create.
+     * Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
@@ -316,7 +312,7 @@ export namespace billingbudgets_v1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.create({
-     *     // Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.
+     *     // Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId\}`.
      *     parent: 'billingAccounts/my-billingAccount',
      *
      *     // Request body metadata
@@ -352,15 +348,12 @@ export namespace billingbudgets_v1 {
      *   throw e;
      * });
      *
-     * @alias billingbudgets.billingAccounts.budgets.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.
-     * @param {().GoogleCloudBillingBudgetsV1Budget} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
@@ -452,9 +445,9 @@ export namespace billingbudgets_v1 {
     }
 
     /**
-     * billingbudgets.billingAccounts.budgets.delete
-     * @desc Deletes a budget. Returns successfully if already deleted.
+     * Deletes a budget. Returns successfully if already deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
@@ -481,7 +474,7 @@ export namespace billingbudgets_v1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.delete({
-     *     // Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *   });
      *   console.log(res.data);
@@ -495,14 +488,12 @@ export namespace billingbudgets_v1 {
      *   throw e;
      * });
      *
-     * @alias billingbudgets.billingAccounts.budgets.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Billingaccounts$Budgets$Delete,
@@ -585,9 +576,9 @@ export namespace billingbudgets_v1 {
     }
 
     /**
-     * billingbudgets.billingAccounts.budgets.get
-     * @desc Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
@@ -614,7 +605,7 @@ export namespace billingbudgets_v1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.get({
-     *     // Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *   });
      *   console.log(res.data);
@@ -636,14 +627,12 @@ export namespace billingbudgets_v1 {
      *   throw e;
      * });
      *
-     * @alias billingbudgets.billingAccounts.budgets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
@@ -732,9 +721,9 @@ export namespace billingbudgets_v1 {
     }
 
     /**
-     * billingbudgets.billingAccounts.budgets.list
-     * @desc Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
@@ -765,7 +754,7 @@ export namespace billingbudgets_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListBudgetsResponse` which indicates that this is a continuation of a prior `ListBudgets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId}`.
+     *     // Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId\}`.
      *     parent: 'billingAccounts/my-billingAccount',
      *   });
      *   console.log(res.data);
@@ -782,16 +771,12 @@ export namespace billingbudgets_v1 {
      *   throw e;
      * });
      *
-     * @alias billingbudgets.billingAccounts.budgets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of budgets to return per page. The default and maximum value are 100.
-     * @param {string=} params.pageToken Optional. The value returned by the last `ListBudgetsResponse` which indicates that this is a continuation of a prior `ListBudgets` call, and that the system should return the next page of data.
-     * @param {string} params.parent Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
@@ -897,9 +882,9 @@ export namespace billingbudgets_v1 {
     }
 
     /**
-     * billingbudgets.billingAccounts.budgets.patch
-     * @desc Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
+     * Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
@@ -926,7 +911,7 @@ export namespace billingbudgets_v1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.patch({
-     *     // Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *     // Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
      *     updateMask: 'placeholder-value',
@@ -964,16 +949,12 @@ export namespace billingbudgets_v1 {
      *   throw e;
      * });
      *
-     * @alias billingbudgets.billingAccounts.budgets.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
-     * @param {string=} params.updateMask Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values.
-     * @param {().GoogleCloudBillingBudgetsV1Budget} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
@@ -1065,7 +1046,7 @@ export namespace billingbudgets_v1 {
   export interface Params$Resource$Billingaccounts$Budgets$Create
     extends StandardParameters {
     /**
-     * Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.
+     * Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId\}`.
      */
     parent?: string;
 
@@ -1077,14 +1058,14 @@ export namespace billingbudgets_v1 {
   export interface Params$Resource$Billingaccounts$Budgets$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Billingaccounts$Budgets$Get
     extends StandardParameters {
     /**
-     * Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string;
   }
@@ -1099,14 +1080,14 @@ export namespace billingbudgets_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId}`.
+     * Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Billingaccounts$Budgets$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string;
     /**
