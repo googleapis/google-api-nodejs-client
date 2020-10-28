@@ -60,7 +60,6 @@ export class Generator {
       {trimBlocks: true}
     );
     this.env.addFilter('buildurl', filters.buildurl);
-    this.env.addFilter('oneLine', filters.oneLine);
     this.env.addFilter('getType', filters.getType);
     this.env.addFilter('cleanPropertyName', filters.cleanPropertyName);
     this.env.addFilter('cleanComments', filters.cleanComments);
@@ -68,7 +67,6 @@ export class Generator {
     this.env.addFilter('getPathParams', filters.getPathParams);
     this.env.addFilter('getSafeParamName', filters.getSafeParamName);
     this.env.addFilter('hasResourceParam', filters.hasResourceParam);
-    this.env.addFilter('cleanPaths', filters.cleanPaths);
   }
 
   /**
