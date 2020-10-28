@@ -1917,7 +1917,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.volumeId The id of the book to be removed.
+     * @param {string} params.volumeId The id of the book to be removed.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1987,7 +1987,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['volumeId'],
         pathParams: [],
         context: this.context,
       };
@@ -2239,7 +2239,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to request the data.
+     * @param {string} params.cpksver The device/version ID from which to request the data.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2309,7 +2309,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['cpksver'],
         pathParams: [],
         context: this.context,
       };
@@ -3207,7 +3207,7 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.allowWebDefinitions For the dictionary layer. Whether or not to allow web definitions.
      * @param {string} params.annotationDataId The ID of the annotation data to retrieve.
-     * @param {string=} params.contentVersion The content version for the volume you are trying to retrieve.
+     * @param {string} params.contentVersion The content version for the volume you are trying to retrieve.
      * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
      * @param {string} params.layerId The ID for the layer to get the annotations.
      * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
@@ -3289,7 +3289,12 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId', 'annotationDataId'],
+        requiredParams: [
+          'volumeId',
+          'layerId',
+          'annotationDataId',
+          'contentVersion',
+        ],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
         context: this.context,
       };
@@ -3378,7 +3383,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string} params.contentVersion The content version for the requested volume.
      * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
      * @param {string} params.layerId The ID for the layer to get the annotation data.
      * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
@@ -3458,7 +3463,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId'],
+        requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
         context: this.context,
       };
@@ -3813,7 +3818,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string} params.contentVersion The content version for the requested volume.
      * @param {string=} params.endOffset The end offset to end retrieving data from.
      * @param {string=} params.endPosition The end position to end retrieving data from.
      * @param {string} params.layerId The ID for the layer to get the annotations.
@@ -3899,7 +3904,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId'],
+        requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
         context: this.context,
       };
@@ -4194,10 +4199,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeIds The volume(s) to release restrictions for.
+     * @param {string} params.volumeIds The volume(s) to release restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4269,7 +4274,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['cpksver', 'volumeIds'],
         pathParams: [],
         context: this.context,
       };
@@ -4342,12 +4347,12 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to request the restrictions.
+     * @param {string} params.cpksver The device/version ID from which to request the restrictions.
      * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string=} params.nonce The client nonce value.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId The volume to request concurrent/download restrictions for.
+     * @param {string} params.nonce The client nonce value.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4422,7 +4427,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['cpksver', 'nonce', 'source', 'volumeId'],
         pathParams: [],
         context: this.context,
       };
@@ -4499,13 +4504,13 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
      * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
      * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string=} params.nonce The client nonce value.
+     * @param {string} params.nonce The client nonce value.
      * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.source String to identify the originator of this request.
      * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4576,7 +4581,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['cpksver', 'nonce', 'source'],
         pathParams: [],
         context: this.context,
       };
@@ -5373,8 +5378,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.layerIds Array of layer IDs to get the summary for.
-     * @param {string=} params.volumeId Volume id to get the summary for.
+     * @param {string} params.layerIds Array of layer IDs to get the summary for.
+     * @param {string} params.volumeId Volume id to get the summary for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5447,7 +5452,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
         context: this.context,
       };
@@ -5804,7 +5809,7 @@ export namespace books_v1 {
      * @param {string=} params.reason The reason for which the book is added to the library.
      * @param {string} params.shelf ID of bookshelf to which to add a volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to add.
+     * @param {string} params.volumeId ID of volume to add.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5873,7 +5878,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
         context: this.context,
       };
@@ -6346,8 +6351,8 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.shelf ID of bookshelf with the volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to move.
-     * @param {integer=} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+     * @param {string} params.volumeId ID of volume to move.
+     * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6416,7 +6421,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
         context: this.context,
       };
@@ -6484,7 +6489,7 @@ export namespace books_v1 {
      * @param {string=} params.reason The reason for which the book is removed from the library.
      * @param {string} params.shelf ID of bookshelf from which to remove a volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to remove.
+     * @param {string} params.volumeId ID of volume to remove.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6553,7 +6558,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
         context: this.context,
       };
@@ -7059,9 +7064,9 @@ export namespace books_v1 {
      * @param {string=} params.action Action that caused this reading position to be set.
      * @param {string=} params.contentVersion Volume content version for which this reading position applies.
      * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
-     * @param {string=} params.position Position string for the new volume reading position.
+     * @param {string} params.position Position string for the new volume reading position.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
+     * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
      * @param {string} params.volumeId ID of volume for which to update the reading position.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7132,7 +7137,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId'],
+        requiredParams: ['volumeId', 'position', 'timestamp'],
         pathParams: ['volumeId'],
         context: this.context,
       };
@@ -7267,7 +7272,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
-     * @param {string=} params.notification_id String to identify the notification.
+     * @param {string} params.notification_id String to identify the notification.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7337,7 +7342,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['notification_id'],
         pathParams: [],
         context: this.context,
       };
@@ -8446,7 +8451,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.series_id String that identifies the series
+     * @param {string} params.series_id String that identifies the series
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8515,7 +8520,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['series_id'],
         pathParams: [],
         context: this.context,
       };
@@ -8598,7 +8603,7 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
      * @param {string=} params.page_token The value of the nextToken from the previous page.
-     * @param {string=} params.series_id String that identifies the series
+     * @param {string} params.series_id String that identifies the series
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8668,7 +8673,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['series_id'],
         pathParams: [],
         context: this.context,
       };
@@ -8956,7 +8961,7 @@ export namespace books_v1 {
      * @param {string=} params.partner Restrict and brand results for partner ID.
      * @param {string=} params.printType Restrict to books or magazines.
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.q Full-text search query string.
+     * @param {string} params.q Full-text search query string.
      * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
@@ -9025,7 +9030,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['q'],
         pathParams: [],
         context: this.context,
       };
@@ -9694,9 +9699,9 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.rating Rating to be given to the volume.
+     * @param {string} params.rating Rating to be given to the volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of the source volume.
+     * @param {string} params.volumeId ID of the source volume.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9773,7 +9778,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['rating', 'volumeId'],
         pathParams: [],
         context: this.context,
       };

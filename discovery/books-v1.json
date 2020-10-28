@@ -188,6 +188,7 @@
                   "description": "Maximum number of results to return",
                   "format": "uint32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "shelf": {
@@ -210,6 +211,7 @@
                   "description": "Index of the first element to return (starts at 0)",
                   "format": "uint32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "userId": {
@@ -274,11 +276,14 @@
           "flatPath": "books/v1/cloudloading/deleteBook",
           "httpMethod": "POST",
           "id": "books.cloudloading.deleteBook",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "volumeId"
+          ],
           "parameters": {
             "volumeId": {
               "description": "The id of the book to be removed.",
               "location": "query",
+              "required": true,
               "type": "string"
             }
           },
@@ -317,11 +322,14 @@
           "flatPath": "books/v1/dictionary/listOfflineMetadata",
           "httpMethod": "GET",
           "id": "books.dictionary.listOfflineMetadata",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "cpksver"
+          ],
           "parameters": {
             "cpksver": {
               "description": "The device/version ID from which to request the data.",
               "location": "query",
+              "required": true,
               "type": "string"
             }
           },
@@ -483,6 +491,8 @@
               "description": "Maximum number of results to return",
               "format": "uint32",
               "location": "query",
+              "maximum": "200",
+              "minimum": "0",
               "type": "integer"
             },
             "pageToken": {
@@ -522,7 +532,8 @@
               "parameterOrder": [
                 "volumeId",
                 "layerId",
-                "annotationDataId"
+                "annotationDataId",
+                "contentVersion"
               ],
               "parameters": {
                 "allowWebDefinitions": {
@@ -539,6 +550,7 @@
                 "contentVersion": {
                   "description": "The content version for the volume you are trying to retrieve.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "h": {
@@ -562,6 +574,7 @@
                   "description": "The requested scale for the image.",
                   "format": "int32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "source": {
@@ -597,7 +610,8 @@
               "id": "books.layers.annotationData.list",
               "parameterOrder": [
                 "volumeId",
-                "layerId"
+                "layerId",
+                "contentVersion"
               ],
               "parameters": {
                 "annotationDataId": {
@@ -609,6 +623,7 @@
                 "contentVersion": {
                   "description": "The content version for the requested volume.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "h": {
@@ -632,6 +647,8 @@
                   "description": "Maximum number of results to return",
                   "format": "uint32",
                   "location": "query",
+                  "maximum": "200",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "pageToken": {
@@ -643,6 +660,7 @@
                   "description": "The requested scale for the image.",
                   "format": "int32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "source": {
@@ -740,12 +758,14 @@
               "id": "books.layers.volumeAnnotations.list",
               "parameterOrder": [
                 "volumeId",
-                "layerId"
+                "layerId",
+                "contentVersion"
               ],
               "parameters": {
                 "contentVersion": {
                   "description": "The content version for the requested volume.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "endOffset": {
@@ -773,6 +793,8 @@
                   "description": "Maximum number of results to return",
                   "format": "uint32",
                   "location": "query",
+                  "maximum": "200",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "pageToken": {
@@ -862,11 +884,15 @@
           "flatPath": "books/v1/myconfig/releaseDownloadAccess",
           "httpMethod": "POST",
           "id": "books.myconfig.releaseDownloadAccess",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "cpksver",
+            "volumeIds"
+          ],
           "parameters": {
             "cpksver": {
               "description": "The device/version ID from which to release the restriction.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "locale": {
@@ -883,6 +909,7 @@
               "description": "The volume(s) to release restrictions for.",
               "location": "query",
               "repeated": true,
+              "required": true,
               "type": "string"
             }
           },
@@ -899,11 +926,17 @@
           "flatPath": "books/v1/myconfig/requestAccess",
           "httpMethod": "POST",
           "id": "books.myconfig.requestAccess",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "cpksver",
+            "nonce",
+            "source",
+            "volumeId"
+          ],
           "parameters": {
             "cpksver": {
               "description": "The device/version ID from which to request the restrictions.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "licenseTypes": {
@@ -931,16 +964,19 @@
             "nonce": {
               "description": "The client nonce value.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "source": {
               "description": "String to identify the originator of this request.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "volumeId": {
               "description": "The volume to request concurrent/download restrictions for.",
               "location": "query",
+              "required": true,
               "type": "string"
             }
           },
@@ -957,11 +993,16 @@
           "flatPath": "books/v1/myconfig/syncVolumeLicenses",
           "httpMethod": "POST",
           "id": "books.myconfig.syncVolumeLicenses",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "cpksver",
+            "nonce",
+            "source"
+          ],
           "parameters": {
             "cpksver": {
               "description": "The device/version ID from which to release the restriction.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "features": {
@@ -991,6 +1032,7 @@
             "nonce": {
               "description": "The client nonce value.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "showPreorders": {
@@ -1001,6 +1043,7 @@
             "source": {
               "description": "String to identify the originator of this request.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "volumeIds": {
@@ -1137,6 +1180,8 @@
                   "description": "Maximum number of results to return",
                   "format": "uint32",
                   "location": "query",
+                  "maximum": "40",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "pageToken": {
@@ -1183,17 +1228,22 @@
               "flatPath": "books/v1/mylibrary/annotations/summary",
               "httpMethod": "POST",
               "id": "books.mylibrary.annotations.summary",
-              "parameterOrder": [],
+              "parameterOrder": [
+                "layerIds",
+                "volumeId"
+              ],
               "parameters": {
                 "layerIds": {
                   "description": "Array of layer IDs to get the summary for.",
                   "location": "query",
                   "repeated": true,
+                  "required": true,
                   "type": "string"
                 },
                 "volumeId": {
                   "description": "Volume id to get the summary for.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 }
               },
@@ -1247,7 +1297,8 @@
               "httpMethod": "POST",
               "id": "books.mylibrary.bookshelves.addVolume",
               "parameterOrder": [
-                "shelf"
+                "shelf",
+                "volumeId"
               ],
               "parameters": {
                 "reason": {
@@ -1281,6 +1332,7 @@
                 "volumeId": {
                   "description": "ID of volume to add.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 }
               },
@@ -1377,7 +1429,9 @@
               "httpMethod": "POST",
               "id": "books.mylibrary.bookshelves.moveVolume",
               "parameterOrder": [
-                "shelf"
+                "shelf",
+                "volumeId",
+                "volumePosition"
               ],
               "parameters": {
                 "shelf": {
@@ -1394,12 +1448,14 @@
                 "volumeId": {
                   "description": "ID of volume to move.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "volumePosition": {
                   "description": "Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)",
                   "format": "int32",
                   "location": "query",
+                  "required": true,
                   "type": "integer"
                 }
               },
@@ -1417,7 +1473,8 @@
               "httpMethod": "POST",
               "id": "books.mylibrary.bookshelves.removeVolume",
               "parameterOrder": [
-                "shelf"
+                "shelf",
+                "volumeId"
               ],
               "parameters": {
                 "reason": {
@@ -1447,6 +1504,7 @@
                 "volumeId": {
                   "description": "ID of volume to remove.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 }
               },
@@ -1480,6 +1538,7 @@
                       "description": "Maximum number of results to return",
                       "format": "uint32",
                       "location": "query",
+                      "minimum": "0",
                       "type": "integer"
                     },
                     "projection": {
@@ -1522,6 +1581,7 @@
                       "description": "Index of the first element to return (starts at 0)",
                       "format": "uint32",
                       "location": "query",
+                      "minimum": "0",
                       "type": "integer"
                     }
                   },
@@ -1579,7 +1639,9 @@
               "httpMethod": "POST",
               "id": "books.mylibrary.readingpositions.setPosition",
               "parameterOrder": [
-                "volumeId"
+                "volumeId",
+                "position",
+                "timestamp"
               ],
               "parameters": {
                 "action": {
@@ -1618,6 +1680,7 @@
                 "position": {
                   "description": "Position string for the new volume reading position.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "source": {
@@ -1628,6 +1691,7 @@
                 "timestamp": {
                   "description": "RFC 3339 UTC format timestamp associated with this reading position.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "volumeId": {
@@ -1656,7 +1720,9 @@
           "flatPath": "books/v1/notification/get",
           "httpMethod": "GET",
           "id": "books.notification.get",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "notification_id"
+          ],
           "parameters": {
             "locale": {
               "description": "ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.",
@@ -1666,6 +1732,7 @@
             "notification_id": {
               "description": "String to identify the notification.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "source": {
@@ -1970,12 +2037,15 @@
           "flatPath": "books/v1/series/get",
           "httpMethod": "GET",
           "id": "books.series.get",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "series_id"
+          ],
           "parameters": {
             "series_id": {
               "description": "String that identifies the series",
               "location": "query",
               "repeated": true,
+              "required": true,
               "type": "string"
             }
           },
@@ -1996,7 +2066,9 @@
               "flatPath": "books/v1/series/membership/get",
               "httpMethod": "GET",
               "id": "books.series.membership.get",
-              "parameterOrder": [],
+              "parameterOrder": [
+                "series_id"
+              ],
               "parameters": {
                 "page_size": {
                   "description": "Number of maximum results per page to be included in the response.",
@@ -2012,6 +2084,7 @@
                 "series_id": {
                   "description": "String that identifies the series",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 }
               },
@@ -2097,7 +2170,9 @@
           "flatPath": "books/v1/volumes",
           "httpMethod": "GET",
           "id": "books.volumes.list",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "q"
+          ],
           "parameters": {
             "download": {
               "description": "Restrict to volumes by download availability.",
@@ -2172,6 +2247,8 @@
               "description": "Maximum number of results to return.",
               "format": "uint32",
               "location": "query",
+              "maximum": "40",
+              "minimum": "0",
               "type": "integer"
             },
             "orderBy": {
@@ -2229,6 +2306,7 @@
             "q": {
               "description": "Full-text search query string.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "showPreorders": {
@@ -2245,6 +2323,7 @@
               "description": "Index of the first result to return (starts at 0)",
               "format": "uint32",
               "location": "query",
+              "minimum": "0",
               "type": "integer"
             }
           },
@@ -2379,6 +2458,8 @@
                   "description": "Maximum number of results to return.",
                   "format": "uint32",
                   "location": "query",
+                  "maximum": "100",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "processingState": {
@@ -2408,6 +2489,7 @@
                   "description": "Index of the first result to return (starts at 0)",
                   "format": "uint32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 }
               },
@@ -2469,7 +2551,10 @@
               "flatPath": "books/v1/volumes/recommended/rate",
               "httpMethod": "POST",
               "id": "books.volumes.recommended.rate",
-              "parameterOrder": [],
+              "parameterOrder": [
+                "rating",
+                "volumeId"
+              ],
               "parameters": {
                 "locale": {
                   "description": "ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.",
@@ -2489,6 +2574,7 @@
                     "Rating indicating a negative dismissal of a volume."
                   ],
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 },
                 "source": {
@@ -2499,6 +2585,7 @@
                 "volumeId": {
                   "description": "ID of the source volume.",
                   "location": "query",
+                  "required": true,
                   "type": "string"
                 }
               },
@@ -2530,6 +2617,8 @@
                   "description": "Maximum number of results to return.",
                   "format": "uint32",
                   "location": "query",
+                  "maximum": "40",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "processingState": {
@@ -2559,6 +2648,7 @@
                   "description": "Index of the first result to return (starts at 0)",
                   "format": "uint32",
                   "location": "query",
+                  "minimum": "0",
                   "type": "integer"
                 },
                 "volumeId": {
@@ -2581,7 +2671,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201023",
   "rootUrl": "https://books.googleapis.com/",
   "schemas": {
     "Annotation": {
