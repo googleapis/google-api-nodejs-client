@@ -104,14 +104,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
-   *
-   * @namespace prod_tt_sasportal
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Prod_tt_sasportal
+   * ```
    */
   export class Prod_tt_sasportal {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalAssignment {
     /**
-     * The identities the role is assigned to. It can have the following values: * `{user_email}`: An email address that represents a specific Google account. For example: `alice@gmail.com`. * `{group_email}`: An email address that represents a Google group. For example, `viewers@gmail.com`.
+     * The identities the role is assigned to. It can have the following values: * `{user_email\}`: An email address that represents a specific Google account. For example: `alice@gmail.com`. * `{group_email\}`: An email address that represents a Google group. For example, `viewers@gmail.com`.
      */
     members?: string[] | null;
     /**
@@ -153,7 +149,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalBulkCreateDeviceRequest {
     /**
-     * Required. A csv with each row representing a [device]. Each row must conform to the regulations described on CreateDeviceRequest&#39;s device field.
+     * Required. A csv with each row representing a [device]. Each row must conform to the regulations described on CreateDeviceRequest's device field.
      */
     csv?: string | null;
   }
@@ -235,7 +231,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     state?: string | null;
   }
   /**
-   * Information about the device&#39;s air interface.
+   * Information about the device's air interface.
    */
   export interface Schema$SasPortalDeviceAirInterface {
     /**
@@ -252,7 +248,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalDeviceConfig {
     /**
-     * Information about this device&#39;s air interface.
+     * Information about this device's air interface.
      */
     airInterface?: Schema$SasPortalDeviceAirInterface;
     /**
@@ -359,7 +355,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     vendor?: string | null;
   }
   /**
-   * An entry in a DPA&#39;s move list.
+   * An entry in a DPA's move list.
    */
   export interface Schema$SasPortalDpaMoveList {
     /**
@@ -372,7 +368,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
     frequencyRange?: Schema$SasPortalFrequencyRange;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$SasPortalEmpty {}
   /**
@@ -443,7 +439,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     eirpCapability?: number | null;
     /**
-     * Device antenna height in meters. When the heightType parameter value is &quot;AGL&quot;, the antenna height should be given relative to ground level. When the heightType parameter value is &quot;AMSL&quot;, it is given with respect to WGS84 datum.
+     * Device antenna height in meters. When the heightType parameter value is "AGL", the antenna height should be given relative to ground level. When the heightType parameter value is "AMSL", it is given with respect to WGS84 datum.
      */
     height?: number | null;
     /**
@@ -542,7 +538,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalNode {
     /**
-     * The node&#39;s display name.
+     * The node's display name.
      */
     displayName?: string | null;
     /**
@@ -571,7 +567,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -668,7 +664,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalValidateInstallerRequest {
     /**
-     * Required. JSON Web Token signed using a CPI private key. Payload must include a &quot;secret&quot; claim whose value is the secret.
+     * Required. JSON Web Token signed using a CPI private key. Payload must include a "secret" claim whose value is the secret.
      */
     encodedSecret?: string | null;
     /**
@@ -698,9 +694,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.get
-     * @desc Returns a requested customer.
+     * Returns a requested customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -742,14 +738,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the customer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customers$Get,
@@ -823,7 +817,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalCustomer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
@@ -831,9 +825,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.list
-     * @desc Returns a list of requested customers.
+     * Returns a list of requested customers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -876,15 +870,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of customers to return in the response.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListCustomers method that indicates where this listing should continue from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customers$List,
@@ -965,7 +956,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListCustomersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListCustomersResponse>(
@@ -975,9 +966,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.patch
-     * @desc Updates an existing customer.
+     * Updates an existing customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1031,16 +1022,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of the customer.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalCustomer} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Customers$Patch,
@@ -1114,7 +1101,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalCustomer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
@@ -1163,9 +1150,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.deployments.move
-     * @desc Moves a deployment under another node or customer.
+     * Moves a deployment under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1217,15 +1204,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.deployments.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the deployment to move.
-     * @param {().SasPortalMoveDeploymentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Customers$Deployments$Move,
@@ -1303,7 +1287,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -1331,9 +1315,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.deployments.devices.create
-     * @desc Creates a device under a node or customer.
+     * Creates a device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1397,15 +1381,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.deployments.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Customers$Deployments$Devices$Create,
@@ -1480,7 +1461,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -1488,9 +1469,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.deployments.devices.createSigned
-     * @desc Creates a signed device under a node or customer.
+     * Creates a signed device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1549,15 +1530,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.deployments.devices.createSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSigned(
       params: Params$Resource$Customers$Deployments$Devices$Createsigned,
@@ -1632,7 +1610,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -1640,9 +1618,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.deployments.devices.list
-     * @desc Lists devices under a node or customer.
+     * Lists devices under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1689,17 +1667,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.deployments.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customers$Deployments$Devices$List,
@@ -1781,7 +1754,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -1842,9 +1815,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.bulk
-     * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * Creates a device under a node or customer. Returned devices are unordered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -1892,15 +1865,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.bulk
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalBulkCreateDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulk(
       params: Params$Resource$Customers$Devices$Bulk,
@@ -1982,7 +1952,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -1992,9 +1962,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.create
-     * @desc Creates a device under a node or customer.
+     * Creates a device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2058,15 +2028,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Customers$Devices$Create,
@@ -2141,7 +2108,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2149,9 +2116,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.createSigned
-     * @desc Creates a signed device under a node or customer.
+     * Creates a signed device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2208,15 +2175,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.createSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
@@ -2291,7 +2255,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2299,9 +2263,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.delete
-     * @desc Deletes a device.
+     * Deletes a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2339,14 +2303,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Customers$Devices$Delete,
@@ -2418,7 +2380,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -2426,9 +2388,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.get
-     * @desc Gets details about a device.
+     * Gets details about a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2476,14 +2438,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customers$Devices$Get,
@@ -2555,7 +2515,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2563,9 +2523,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.list
-     * @desc Lists devices under a node or customer.
+     * Lists devices under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2612,17 +2572,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customers$Devices$List,
@@ -2704,7 +2659,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -2714,9 +2669,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.move
-     * @desc Moves a device under another node or customer.
+     * Moves a device under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2768,15 +2723,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to move.
-     * @param {().SasPortalMoveDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Customers$Devices$Move,
@@ -2854,7 +2806,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -2862,9 +2814,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.patch
-     * @desc Updates a device.
+     * Updates a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -2930,16 +2882,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Customers$Devices$Patch,
@@ -3011,7 +2959,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -3019,9 +2967,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.signDevice
-     * @desc Signs a device.
+     * Signs a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3067,15 +3015,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.signDevice
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {().SasPortalSignDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
@@ -3150,7 +3095,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -3158,9 +3103,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.devices.updateSigned
-     * @desc Updates a signed device.
+     * Updates a signed device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3217,15 +3162,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.devices.updateSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to update.
-     * @param {().SasPortalUpdateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
@@ -3300,7 +3242,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -3432,16 +3374,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export class Resource$Customers$Nodes {
     context: APIRequestContext;
+    devices: Resource$Customers$Nodes$Devices;
     nodes: Resource$Customers$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.devices = new Resource$Customers$Nodes$Devices(this.context);
       this.nodes = new Resource$Customers$Nodes$Nodes(this.context);
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.create
-     * @desc Creates a new node.
+     * Creates a new node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3493,15 +3437,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name where the node is to be created.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Customers$Nodes$Create,
@@ -3576,7 +3517,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -3584,9 +3525,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.delete
-     * @desc Deletes a node.
+     * Deletes a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3624,14 +3565,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
@@ -3703,7 +3642,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -3711,9 +3650,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.get
-     * @desc Returns a requested node.
+     * Returns a requested node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3755,14 +3694,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customers$Nodes$Get,
@@ -3834,7 +3771,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -3842,9 +3779,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.list
-     * @desc Lists nodes.
+     * Lists nodes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -3889,16 +3826,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customers$Nodes$List,
@@ -3980,7 +3913,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -3988,9 +3921,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.move
-     * @desc Moves a node under another node or customer.
+     * Moves a node under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4042,15 +3975,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node to move.
-     * @param {().SasPortalMoveNodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Customers$Nodes$Move,
@@ -4128,7 +4058,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -4136,9 +4066,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.patch
-     * @desc Updates an existing node.
+     * Updates an existing node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4192,16 +4122,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
@@ -4273,7 +4199,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -4351,6 +4277,504 @@ export namespace prod_tt_sasportal_v1alpha1 {
     requestBody?: Schema$SasPortalNode;
   }
 
+  export class Resource$Customers$Nodes$Devices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Customers$Nodes$Devices$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Devices$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$Create
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSigned(
+      params?: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(
+      params: Params$Resource$Customers$Nodes$Devices$Createsigned,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    createSigned(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$Createsigned
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$Createsigned;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$Createsigned;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices:createSigned').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Nodes$Devices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Devices$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Devices$List
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Nodes$Devices$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDevice;
+  }
+  export interface Params$Resource$Customers$Nodes$Devices$Createsigned
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
+  }
+  export interface Params$Resource$Customers$Nodes$Devices$List
+    extends StandardParameters {
+    /**
+     * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     */
+    filter?: string;
+    /**
+     * The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+  }
+
   export class Resource$Customers$Nodes$Nodes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4358,9 +4782,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.nodes.create
-     * @desc Creates a new node.
+     * Creates a new node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4412,15 +4836,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.nodes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name where the node is to be created.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
@@ -4495,7 +4916,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -4503,9 +4924,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.customers.nodes.nodes.list
-     * @desc Lists nodes.
+     * Lists nodes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4550,16 +4971,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.customers.nodes.nodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
@@ -4641,7 +5058,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -4693,9 +5110,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.delete
-     * @desc Deletes a device.
+     * Deletes a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4733,14 +5150,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Deployments$Devices$Delete,
@@ -4812,7 +5227,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -4820,9 +5235,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.get
-     * @desc Gets details about a device.
+     * Gets details about a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -4870,14 +5285,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Deployments$Devices$Get,
@@ -4949,7 +5362,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -4957,9 +5370,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.move
-     * @desc Moves a device under another node or customer.
+     * Moves a device under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5011,15 +5424,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to move.
-     * @param {().SasPortalMoveDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Deployments$Devices$Move,
@@ -5097,7 +5507,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -5105,9 +5515,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.patch
-     * @desc Updates a device.
+     * Updates a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5173,16 +5583,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Deployments$Devices$Patch,
@@ -5254,7 +5660,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -5262,9 +5668,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.signDevice
-     * @desc Signs a device.
+     * Signs a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5310,15 +5716,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.signDevice
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {().SasPortalSignDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signDevice(
       params: Params$Resource$Deployments$Devices$Signdevice,
@@ -5393,7 +5796,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -5401,9 +5804,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.deployments.devices.updateSigned
-     * @desc Updates a signed device.
+     * Updates a signed device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5460,15 +5863,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.deployments.devices.updateSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to update.
-     * @param {().SasPortalUpdateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSigned(
       params: Params$Resource$Deployments$Devices$Updatesigned,
@@ -5543,7 +5943,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -5625,9 +6025,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.installer.generateSecret
-     * @desc Generates a secret to be used with the ValidateInstaller method
+     * Generates a secret to be used with the ValidateInstaller method
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5670,14 +6070,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.installer.generateSecret
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SasPortalGenerateSecretRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
@@ -5759,7 +6157,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
@@ -5769,9 +6167,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.installer.validate
-     * @desc Validates the identity of a Certified Professional Installer (CPI).
+     * Validates the identity of a Certified Professional Installer (CPI).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5816,14 +6214,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.installer.validate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SasPortalValidateInstallerRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     validate(
       params: Params$Resource$Installer$Validate,
@@ -5905,7 +6301,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
@@ -5943,9 +6339,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.get
-     * @desc Returns a requested node.
+     * Returns a requested node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -5987,14 +6383,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Nodes$Get,
@@ -6065,7 +6459,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -6089,9 +6483,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.deployments.move
-     * @desc Moves a deployment under another node or customer.
+     * Moves a deployment under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6143,15 +6537,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.deployments.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the deployment to move.
-     * @param {().SasPortalMoveDeploymentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Nodes$Deployments$Move,
@@ -6229,7 +6620,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -6257,9 +6648,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.deployments.devices.create
-     * @desc Creates a device under a node or customer.
+     * Creates a device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6323,15 +6714,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.deployments.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Nodes$Deployments$Devices$Create,
@@ -6406,7 +6794,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -6414,9 +6802,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.deployments.devices.createSigned
-     * @desc Creates a signed device under a node or customer.
+     * Creates a signed device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6473,15 +6861,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.deployments.devices.createSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSigned(
       params: Params$Resource$Nodes$Deployments$Devices$Createsigned,
@@ -6556,7 +6941,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -6564,9 +6949,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.deployments.devices.list
-     * @desc Lists devices under a node or customer.
+     * Lists devices under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6613,17 +6998,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.deployments.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Nodes$Deployments$Devices$List,
@@ -6705,7 +7085,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -6766,9 +7146,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.bulk
-     * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * Creates a device under a node or customer. Returned devices are unordered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6816,15 +7196,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.bulk
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalBulkCreateDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulk(
       params: Params$Resource$Nodes$Devices$Bulk,
@@ -6906,7 +7283,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -6916,9 +7293,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.create
-     * @desc Creates a device under a node or customer.
+     * Creates a device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -6982,15 +7359,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Nodes$Devices$Create,
@@ -7065,7 +7439,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7073,9 +7447,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.createSigned
-     * @desc Creates a signed device under a node or customer.
+     * Creates a signed device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7132,15 +7506,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.createSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
@@ -7215,7 +7586,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7223,9 +7594,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.delete
-     * @desc Deletes a device.
+     * Deletes a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7263,14 +7634,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
@@ -7342,7 +7711,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -7350,9 +7719,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.get
-     * @desc Gets details about a device.
+     * Gets details about a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7400,14 +7769,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Nodes$Devices$Get,
@@ -7479,7 +7846,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7487,9 +7854,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.list
-     * @desc Lists devices under a node or customer.
+     * Lists devices under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7536,17 +7903,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Nodes$Devices$List,
@@ -7628,7 +7990,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -7638,9 +8000,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.move
-     * @desc Moves a device under another node or customer.
+     * Moves a device under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7692,15 +8054,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to move.
-     * @param {().SasPortalMoveDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Nodes$Devices$Move,
@@ -7778,7 +8137,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -7786,9 +8145,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.patch
-     * @desc Updates a device.
+     * Updates a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7854,16 +8213,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
@@ -7935,7 +8290,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7943,9 +8298,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.signDevice
-     * @desc Signs a device.
+     * Signs a device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -7991,15 +8346,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.signDevice
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource path name.
-     * @param {().SasPortalSignDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
@@ -8074,7 +8426,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -8082,9 +8434,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.devices.updateSigned
-     * @desc Updates a signed device.
+     * Updates a signed device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8141,15 +8493,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.devices.updateSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the device to update.
-     * @param {().SasPortalUpdateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
@@ -8224,7 +8573,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -8365,9 +8714,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.create
-     * @desc Creates a new node.
+     * Creates a new node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8419,15 +8768,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name where the node is to be created.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Nodes$Nodes$Create,
@@ -8502,7 +8848,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -8510,9 +8856,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.delete
-     * @desc Deletes a node.
+     * Deletes a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8550,14 +8896,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
@@ -8629,7 +8973,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -8637,9 +8981,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.get
-     * @desc Returns a requested node.
+     * Returns a requested node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8681,14 +9025,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Nodes$Nodes$Get,
@@ -8759,7 +9101,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -8767,9 +9109,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.list
-     * @desc Lists nodes.
+     * Lists nodes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8814,16 +9156,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Nodes$Nodes$List,
@@ -8904,7 +9242,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -8912,9 +9250,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.move
-     * @desc Moves a node under another node or customer.
+     * Moves a node under another node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -8966,15 +9304,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the node to move.
-     * @param {().SasPortalMoveNodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Nodes$Nodes$Move,
@@ -9051,7 +9386,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -9059,9 +9394,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.patch
-     * @desc Updates an existing node.
+     * Updates an existing node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -9115,16 +9450,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name.
-     * @param {string=} params.updateMask Fields to be updated.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
@@ -9196,7 +9527,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -9278,9 +9609,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.devices.bulk
-     * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * Creates a device under a node or customer. Returned devices are unordered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -9328,15 +9659,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.devices.bulk
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalBulkCreateDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulk(
       params: Params$Resource$Nodes$Nodes$Devices$Bulk,
@@ -9418,7 +9746,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -9428,9 +9756,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.devices.create
-     * @desc Creates a device under a node or customer.
+     * Creates a device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -9494,15 +9822,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
@@ -9577,7 +9902,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -9585,9 +9910,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.devices.createSigned
-     * @desc Creates a signed device under a node or customer.
+     * Creates a signed device under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -9644,15 +9969,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.devices.createSigned
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
@@ -9727,7 +10049,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -9735,9 +10057,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.devices.list
-     * @desc Lists devices under a node or customer.
+     * Lists devices under a node or customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -9784,17 +10106,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The name of the parent resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
@@ -9876,7 +10193,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -9949,9 +10266,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.nodes.create
-     * @desc Creates a new node.
+     * Creates a new node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -10003,15 +10320,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.nodes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name where the node is to be created.
-     * @param {().SasPortalNode} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
@@ -10086,7 +10400,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -10094,9 +10408,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.nodes.nodes.nodes.list
-     * @desc Lists nodes.
+     * Lists nodes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -10141,16 +10455,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.nodes.nodes.nodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
@@ -10232,7 +10542,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -10275,9 +10585,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.policies.get
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -10323,14 +10633,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.policies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SasPortalGetPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Policies$Get,
@@ -10404,7 +10712,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
@@ -10412,9 +10720,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.policies.set
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -10461,14 +10769,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.policies.set
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SasPortalSetPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     set(
       params: Params$Resource$Policies$Set,
@@ -10542,7 +10848,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
@@ -10550,9 +10856,9 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
 
     /**
-     * prod_tt_sasportal.policies.test
-     * @desc Returns permissions that a caller has on the specified resource.
+     * Returns permissions that a caller has on the specified resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
@@ -10598,14 +10904,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias prod_tt_sasportal.policies.test
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SasPortalTestPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     test(
       params: Params$Resource$Policies$Test,
@@ -10686,7 +10990,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalTestPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalTestPermissionsResponse>(

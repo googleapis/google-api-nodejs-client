@@ -104,14 +104,10 @@ export namespace sts_v1 {
    * The Security Token Service exchanges Google or third-party credentials for a short-lived access token to Google Cloud resources.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const sts = google.sts('v1');
-   *
-   * @namespace sts
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Sts
+   * ```
    */
   export class Sts {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace sts_v1 {
    */
   export interface Schema$GoogleIdentityStsV1ExchangeTokenRequest {
     /**
-     * Required. The grant type. Must be `urn:ietf:params:oauth:grant-type:token-exchange`, which indicates a token exchange is requested.
+     * Required. The grant type. Must be `urn:ietf:params:oauth:grant-type:token-exchange`, which indicates a token exchange.
      */
     grantType?: string | null;
     /**
@@ -144,7 +140,7 @@ export namespace sts_v1 {
      */
     requestedTokenType?: string | null;
     /**
-     * Required. Input subject token. You can use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as an AccessBoundary. Applying additional security attributes on access tokens that already contain security attributes is not allowed.
+     * Required. The input token. You can use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as a Credential Access Boundary. If an access token already contains security attributes, you cannot apply additional security attributes.
      */
     subjectToken?: string | null;
     /**
@@ -161,7 +157,7 @@ export namespace sts_v1 {
      */
     access_token?: string | null;
     /**
-     * The expiration time of `access_token` in seconds, measured from the time of issuance. This field is absent when the `subject_token` in the request is a Google-issued, short-lived access token. In this case, the expiration time of the `access_token` is the same as the `subject_token`.
+     * The amount of time, in seconds, between the time when the `access_token` was issued and the time when the `access_token` will expire. This field is absent when the `subject_token` in the request is a Google-issued, short-lived access token. In this case, the `access_token` has the same expiration time as the `subject_token`.
      */
     expires_in?: number | null;
     /**
@@ -181,9 +177,9 @@ export namespace sts_v1 {
     }
 
     /**
-     * sts.token
-     * @desc Exchanges a credential for a Google OAuth 2.0 access token.
+     * Exchanges a credential for a Google OAuth 2.0 access token.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sts.googleapis.com
@@ -235,14 +231,12 @@ export namespace sts_v1 {
      *   throw e;
      * });
      *
-     * @alias sts.token
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleIdentityStsV1ExchangeTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     token(
       params: Params$Resource$V1$Token,
@@ -325,7 +319,7 @@ export namespace sts_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIdentityStsV1ExchangeTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

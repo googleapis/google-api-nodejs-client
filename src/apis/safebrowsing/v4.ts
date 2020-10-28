@@ -104,14 +104,10 @@ export namespace safebrowsing_v4 {
    * Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const safebrowsing = google.safebrowsing('v4');
-   *
-   * @namespace safebrowsing
-   * @type {Function}
-   * @version v4
-   * @variation v4
-   * @param {object=} options Options for Safebrowsing
+   * ```
    */
   export class Safebrowsing {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace safebrowsing_v4 {
   }
 
   /**
-   * The expected state of a client&#39;s local database.
+   * The expected state of a client's local database.
    */
   export interface Schema$Checksum {
     /**
@@ -166,7 +162,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$Constraints {
     /**
-     * A client&#39;s physical location, expressed as a ISO 31166-1 alpha-2 region code.
+     * A client's physical location, expressed as a ISO 31166-1 alpha-2 region code.
      */
     deviceLocation?: string | null;
     /**
@@ -182,7 +178,7 @@ export namespace safebrowsing_v4 {
      */
     maxUpdateEntries?: number | null;
     /**
-     * Requests the list for a specific geographic location. If not set the server may pick that value based on the user&#39;s IP address. Expects ISO 3166-1 alpha-2 format.
+     * Requests the list for a specific geographic location. If not set the server may pick that value based on the user's IP address. Expects ISO 3166-1 alpha-2 format.
      */
     region?: string | null;
     /**
@@ -191,7 +187,7 @@ export namespace safebrowsing_v4 {
     supportedCompressions?: string[] | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -222,7 +218,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$FindFullHashesRequest {
     /**
-     * Client metadata associated with callers of higher-level APIs built on top of the client&#39;s implementation.
+     * Client metadata associated with callers of higher-level APIs built on top of the client's implementation.
      */
     apiClient?: Schema$ClientInfo;
     /**
@@ -230,7 +226,7 @@ export namespace safebrowsing_v4 {
      */
     client?: Schema$ClientInfo;
     /**
-     * The current client states for each of the client&#39;s local threat lists.
+     * The current client states for each of the client's local threat lists.
      */
     clientStates?: string[] | null;
     /**
@@ -307,11 +303,11 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$ListUpdateResponse {
     /**
-     * A set of entries to add to a local threat type&#39;s list. Repeated to allow for a combination of compressed and raw data to be sent in a single response.
+     * A set of entries to add to a local threat type's list. Repeated to allow for a combination of compressed and raw data to be sent in a single response.
      */
     additions?: Schema$ThreatEntrySet[];
     /**
-     * The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn&#39;t match the expected state, the client must disregard this update and retry later.
+     * The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn't match the expected state, the client must disregard this update and retry later.
      */
     checksum?: Schema$Checksum;
     /**
@@ -323,7 +319,7 @@ export namespace safebrowsing_v4 {
      */
     platformType?: string | null;
     /**
-     * A set of entries to remove from a local threat type&#39;s list. In practice, this field is empty or contains exactly one ThreatEntrySet.
+     * A set of entries to remove from a local threat type's list. In practice, this field is empty or contains exactly one ThreatEntrySet.
      */
     removals?: Schema$ThreatEntrySet[];
     /**
@@ -383,7 +379,7 @@ export namespace safebrowsing_v4 {
      */
     encodedData?: string | null;
     /**
-     * The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value. If the field is empty or missing, assume zero.
+     * The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer's value. If the field is empty or missing, assume zero.
      */
     firstValue?: string | null;
     /**
@@ -422,7 +418,7 @@ export namespace safebrowsing_v4 {
     entries?: Schema$MetadataEntry[];
   }
   /**
-   * A set of threats that should be added or removed from a client&#39;s local database.
+   * A set of threats that should be added or removed from a client's local database.
    */
   export interface Schema$ThreatEntrySet {
     /**
@@ -498,7 +494,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$ThreatListDescriptor {
     /**
-     * The platform type targeted by the list&#39;s entries.
+     * The platform type targeted by the list's entries.
      */
     platformType?: string | null;
     /**
@@ -506,7 +502,7 @@ export namespace safebrowsing_v4 {
      */
     threatEntryType?: string | null;
     /**
-     * The threat type posed by the list&#39;s entries.
+     * The threat type posed by the list's entries.
      */
     threatType?: string | null;
   }
@@ -565,7 +561,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$UserInfo {
     /**
-     * The UN M.49 region code associated with the user&#39;s location.
+     * The UN M.49 region code associated with the user's location.
      */
     regionCode?: string | null;
     /**
@@ -581,8 +577,8 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.encodedFullHashes.get
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -628,16 +624,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.encodedFullHashes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientId A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client implementation.
-     * @param {string} params.encodedRequest A serialized FindFullHashesRequest proto.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Encodedfullhashes$Get,
@@ -716,7 +708,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
@@ -747,8 +739,8 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.encodedUpdates.get
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -793,16 +785,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.encodedUpdates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientId A client ID that uniquely identifies the client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client implementation.
-     * @param {string} params.encodedRequest A serialized FetchThreatListUpdatesRequest proto.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Encodedupdates$Get,
@@ -883,7 +871,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -916,9 +904,9 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.fullHashes.find
-     * @desc Finds the full hashes that match the requested hash prefixes.
+     * Finds the full hashes that match the requested hash prefixes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -968,14 +956,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.fullHashes.find
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().FindFullHashesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     find(
       params: Params$Resource$Fullhashes$Find,
@@ -1053,7 +1039,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
@@ -1075,9 +1061,9 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.threatHits.create
-     * @desc Reports a Safe Browsing threat list hit to Google. Only projects with TRUSTED_REPORTER visibility can use this method.
+     * Reports a Safe Browsing threat list hit to Google. Only projects with TRUSTED_REPORTER visibility can use this method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -1125,14 +1111,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.threatHits.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ThreatHit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Threathits$Create,
@@ -1203,7 +1187,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1226,9 +1210,9 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.threatLists.list
-     * @desc Lists the Safe Browsing threat lists available for download.
+     * Lists the Safe Browsing threat lists available for download.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -1265,13 +1249,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.threatLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Threatlists$List,
@@ -1346,7 +1329,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$ListThreatListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
@@ -1364,9 +1347,9 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.threatListUpdates.fetch
-     * @desc Fetches the most recent threat list updates. A client can request updates for multiple lists at once.
+     * Fetches the most recent threat list updates. A client can request updates for multiple lists at once.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -1413,14 +1396,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.threatListUpdates.fetch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().FetchThreatListUpdatesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
@@ -1501,7 +1482,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1526,9 +1507,9 @@ export namespace safebrowsing_v4 {
     }
 
     /**
-     * safebrowsing.threatMatches.find
-     * @desc Finds the threat entries that match the Safe Browsing lists.
+     * Finds the threat entries that match the Safe Browsing lists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
@@ -1574,14 +1555,12 @@ export namespace safebrowsing_v4 {
      *   throw e;
      * });
      *
-     * @alias safebrowsing.threatMatches.find
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().FindThreatMatchesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     find(
       params: Params$Resource$Threatmatches$Find,
@@ -1662,7 +1641,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);

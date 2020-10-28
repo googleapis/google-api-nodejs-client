@@ -3,8 +3,8 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {
-  AuthPlus, 
-  getAPI, 
+  AuthPlus,
+  getAPI,
   GoogleConfigurable
 } from 'googleapis-common';
 {% for versionName, version in api %}
@@ -27,4 +27,8 @@ export function {{ name }}<T = {% for versionName, version in api %}{{ name }}_{
 }
 
 const auth = new AuthPlus();
-export {auth};
+export {auth}
+{% for versionName, version in api %}
+export { {{ name }}_{{ version|replace('.','_') }} };
+{% endfor %}
+export {AuthPlus, GlobalOptions, APIRequestContext, GoogleConfigurable, StreamMethodOptions, GaxiosPromise, MethodOptions, BodyResponseCallback} from 'googleapis-common';

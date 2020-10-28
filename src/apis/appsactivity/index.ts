@@ -33,3 +33,14 @@ export function appsactivity<T = appsactivity_v1.Appsactivity>(
 
 const auth = new AuthPlus();
 export {auth};
+export {appsactivity_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

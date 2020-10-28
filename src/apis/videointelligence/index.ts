@@ -84,3 +84,18 @@ export function videointelligence<
 
 const auth = new AuthPlus();
 export {auth};
+export {videointelligence_v1};
+export {videointelligence_v1beta2};
+export {videointelligence_v1p1beta1};
+export {videointelligence_v1p2beta1};
+export {videointelligence_v1p3beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

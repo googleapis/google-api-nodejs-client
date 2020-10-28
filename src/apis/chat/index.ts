@@ -31,3 +31,14 @@ export function chat<T = chat_v1.Chat>(
 
 const auth = new AuthPlus();
 export {auth};
+export {chat_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -35,3 +35,14 @@ export function pagespeedonline<T = pagespeedonline_v5.Pagespeedonline>(
 
 const auth = new AuthPlus();
 export {auth};
+export {pagespeedonline_v5};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

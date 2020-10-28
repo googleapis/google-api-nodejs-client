@@ -33,3 +33,14 @@ export function manufacturers<T = manufacturers_v1.Manufacturers>(
 
 const auth = new AuthPlus();
 export {auth};
+export {manufacturers_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

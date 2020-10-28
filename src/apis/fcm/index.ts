@@ -31,3 +31,14 @@ export function fcm<T = fcm_v1.Fcm>(
 
 const auth = new AuthPlus();
 export {auth};
+export {fcm_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

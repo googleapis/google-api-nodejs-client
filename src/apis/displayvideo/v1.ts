@@ -104,14 +104,10 @@ export namespace displayvideo_v1 {
    * Display &amp; Video 360 API allows users to manage and create campaigns and reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const displayvideo = google.displayvideo('v1');
-   *
-   * @namespace displayvideo
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Displayvideo
+   * ```
    */
   export class Displayvideo {
     context: APIRequestContext;
@@ -176,11 +172,11 @@ export namespace displayvideo_v1 {
      */
     minimumQuartile?: string | null;
     /**
-     * Required. The minimum percentage of the video ad&#39;s pixels visible on the screen in order for an impression to be recorded.
+     * Required. The minimum percentage of the video ad's pixels visible on the screen in order for an impression to be recorded.
      */
     minimumViewability?: string | null;
     /**
-     * Required. The minimum percentage of the video ad&#39;s volume required in order for an impression to be recorded.
+     * Required. The minimum percentage of the video ad's volume required in order for an impression to be recorded.
      */
     minimumVolume?: string | null;
   }
@@ -189,12 +185,12 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$Adloox {
     /**
-     * Adloox&#39;s brand safety settings.
+     * Adloox's brand safety settings.
      */
     excludedAdlooxCategories?: string[] | null;
   }
   /**
-   * A single advertiser in Display &amp; Video 360 (DV360).
+   * A single advertiser in Display & Video 360 (DV360).
    */
   export interface Schema$Advertiser {
     /**
@@ -268,15 +264,15 @@ export namespace displayvideo_v1 {
      */
     dynamicCreativeEnabled?: boolean | null;
     /**
-     * An ID for configuring campaign monitoring provided by Integral Ad Service (IAS). The DV360 system will append an IAS &quot;Campaign Monitor&quot; tag containing this ID to the creative tag.
+     * An ID for configuring campaign monitoring provided by Integral Ad Service (IAS). The DV360 system will append an IAS "Campaign Monitor" tag containing this ID to the creative tag.
      */
     iasClientId?: string | null;
     /**
-     * Whether or not to use DV360&#39;s Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
+     * Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
      */
     obaComplianceDisabled?: boolean | null;
     /**
-     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display &amp; Video 360 advertiser to provide reporting and features related to the advertiser&#39;s television campaigns. Applicable only when the advertiser has a CM hybrid ad server configuration.
+     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display & Video 360 advertiser to provide reporting and features related to the advertiser's television campaigns. Applicable only when the advertiser has a CM hybrid ad server configuration.
      */
     videoCreativeDataSharingAuthorized?: boolean | null;
   }
@@ -294,15 +290,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AdvertiserGeneralConfig {
     /**
-     * Required. Immutable. Advertiser&#39;s currency in ISO 4217 format. Accepted codes and the currencies they represent are: Currency Code : Currency Name * `ARS` : Argentine Peso * `AUD` : Australian Dollar * `BRL` : Brazilian Real * `CAD` : Canadian Dollar * `CHF` : Swiss Franc * `CLP` : Chilean Peso * `CNY` : Chinese Yuan * `COP` : Colombian Peso * `CZK` : Czech Koruna * `DKK` : Danish Krone * `EGP` : Egyption Pound * `EUR` : Euro * `GBP` : British Pound * `HKD` : Hong Kong Dollar * `HUF` : Hungarian Forint * `IDR` : Indonesian Rupiah * `ILS` : Israeli Shekel * `INR` : Indian Rupee * `JPY` : Japanese Yen * `KRW` : South Korean Won * `MXN` : Mexican Pesos * `MYR` : Malaysian Ringgit * `NGN` : Nigerian Naira * `NOK` : Norwegian Krone * `NZD` : New Zealand Dollar * `PEN` : Peruvian Nuevo Sol * `PLN` : Polish Zloty * `RON` : New Romanian Leu * `RUB` : Russian Ruble * `SEK` : Swedish Krona * `TRY` : Turkish Lira * `TWD` : New Taiwan Dollar * `USD` : US Dollar * `ZAR` : South African Rand
+     * Required. Immutable. Advertiser's currency in ISO 4217 format. Accepted codes and the currencies they represent are: Currency Code : Currency Name * `ARS` : Argentine Peso * `AUD` : Australian Dollar * `BRL` : Brazilian Real * `CAD` : Canadian Dollar * `CHF` : Swiss Franc * `CLP` : Chilean Peso * `CNY` : Chinese Yuan * `COP` : Colombian Peso * `CZK` : Czech Koruna * `DKK` : Danish Krone * `EGP` : Egyption Pound * `EUR` : Euro * `GBP` : British Pound * `HKD` : Hong Kong Dollar * `HUF` : Hungarian Forint * `IDR` : Indonesian Rupiah * `ILS` : Israeli Shekel * `INR` : Indian Rupee * `JPY` : Japanese Yen * `KRW` : South Korean Won * `MXN` : Mexican Pesos * `MYR` : Malaysian Ringgit * `NGN` : Nigerian Naira * `NOK` : Norwegian Krone * `NZD` : New Zealand Dollar * `PEN` : Peruvian Nuevo Sol * `PLN` : Polish Zloty * `RON` : New Romanian Leu * `RUB` : Russian Ruble * `SEK` : Swedish Krona * `TRY` : Turkish Lira * `TWD` : New Taiwan Dollar * `USD` : US Dollar * `ZAR` : South African Rand
      */
     currencyCode?: string | null;
     /**
-     * Required. The domain URL of the advertiser&#39;s primary website. The system will send this information to publishers that require website URL to associate a campaign with an advertiser. Provide a URL with no path or query string, beginning with `http:` or `https:`. For example, http://www.example.com
+     * Required. The domain URL of the advertiser's primary website. The system will send this information to publishers that require website URL to associate a campaign with an advertiser. Provide a URL with no path or query string, beginning with `http:` or `https:`. For example, http://www.example.com
      */
     domainUrl?: string | null;
     /**
-     * Output only. The standard TZ database name of the advertiser&#39;s time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.
+     * Output only. The standard TZ database name of the advertiser's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.
      */
     timeZone?: string | null;
   }
@@ -355,7 +351,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AppAssignedTargetingOptionDetails {
     /**
-     * Required. The ID of the app. Android&#39;s Play store app uses bundle ID, for example `com.google.android.gm`. Apple&#39;s App store app ID uses 9 digit string, for example `422689480`.
+     * Required. The ID of the app. Android's Play store app uses bundle ID, for example `com.google.android.gm`. Apple's App store app ID uses 9 digit string, for example `422689480`.
      */
     appId?: string | null;
     /**
@@ -478,7 +474,7 @@ export namespace displayvideo_v1 {
      */
     audienceGroupDetails?: Schema$AudienceGroupAssignedTargetingOptionDetails;
     /**
-     * Authorized seller status details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per line item. If a line item doesn&#39;t have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
+     * Authorized seller status details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per line item. If a line item doesn't have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
      */
     authorizedSellerStatusDetails?: Schema$AuthorizedSellerStatusAssignedTargetingOptionDetails;
     /**
@@ -518,7 +514,7 @@ export namespace displayvideo_v1 {
      */
     deviceTypeDetails?: Schema$DeviceTypeAssignedTargetingOptionDetails;
     /**
-     * Digital content label details. This field will be populated when the TargetingType is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude content labels in addition to advertiser exclusions, but can&#39;t override them. A line item won&#39;t serve if all the digital content labels are excluded.
+     * Digital content label details. This field will be populated when the TargetingType is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren't visible in line item settings). Line item settings can exclude content labels in addition to advertiser exclusions, but can't override them. A line item won't serve if all the digital content labels are excluded.
      */
     digitalContentLabelExclusionDetails?: Schema$DigitalContentLabelAssignedTargetingOptionDetails;
     /**
@@ -590,7 +586,7 @@ export namespace displayvideo_v1 {
      */
     regionalLocationListDetails?: Schema$RegionalLocationListAssignedTargetingOptionDetails;
     /**
-     * Sensitive category details. This field will be populated when the TargetingType is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude sensitive categories in addition to advertiser exclusions, but can&#39;t override them.
+     * Sensitive category details. This field will be populated when the TargetingType is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren't visible in line item settings). Line item settings can exclude sensitive categories in addition to advertiser exclusions, but can't override them.
      */
     sensitiveCategoryExclusionDetails?: Schema$SensitiveCategoryAssignedTargetingOptionDetails;
     /**
@@ -623,7 +619,7 @@ export namespace displayvideo_v1 {
     viewabilityDetails?: Schema$ViewabilityAssignedTargetingOptionDetails;
   }
   /**
-   * A single assigned user role, which defines a user&#39;s authorized interaction with a specified partner or advertiser.
+   * A single assigned user role, which defines a user's authorized interaction with a specified partner or advertiser.
    */
   export interface Schema$AssignedUserRole {
     /**
@@ -644,7 +640,7 @@ export namespace displayvideo_v1 {
     userRole?: string | null;
   }
   /**
-   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is UNION&#39;ed with other groups.
+   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is UNION'ed with other groups.
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
     /**
@@ -652,7 +648,7 @@ export namespace displayvideo_v1 {
      */
     excludedFirstAndThirdPartyAudienceGroup?: Schema$FirstAndThirdPartyAudienceGroup;
     /**
-     * The Google audience ids of the excluded Google audience group. Used for negative targeting. It&#39;s COMPLEMENT is used to UNION other audience groups. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
+     * The Google audience ids of the excluded Google audience group. Used for negative targeting. It's COMPLEMENT is used to UNION other audience groups. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
      */
     excludedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
     /**
@@ -664,7 +660,7 @@ export namespace displayvideo_v1 {
      */
     includedCustomListGroup?: Schema$CustomListGroup;
     /**
-     * The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION&#39;ed with other audience groups. Repeated groups with same settings will be ignored.
+     * The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION'ed with other audience groups. Repeated groups with same settings will be ignored.
      */
     includedFirstAndThirdPartyAudienceGroups?: Schema$FirstAndThirdPartyAudienceGroup[];
     /**
@@ -1033,7 +1029,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$CampaignFlight {
     /**
-     * Required. The dates that the campaign is expected to run. They are resolved relative to the parent advertiser&#39;s time zone. * The dates specified here will not affect serving. They are used to generate alerts and warnings. For example, if the flight date of any child insertion order is outside the range of these dates, the user interface will show a warning. * `start_date` is required and must be the current date or later. * `end_date` is optional. If specified, it must be the `start_date` or later. * Any specified date must be before the year 2037.
+     * Required. The dates that the campaign is expected to run. They are resolved relative to the parent advertiser's time zone. * The dates specified here will not affect serving. They are used to generate alerts and warnings. For example, if the flight date of any child insertion order is outside the range of these dates, the user interface will show a warning. * `start_date` is required and must be the current date or later. * `end_date` is optional. If specified, it must be the `start_date` or later. * Any specified date must be before the year 2037.
      */
     plannedDates?: Schema$DateRange;
     /**
@@ -1080,7 +1076,7 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The type indicating if it&#39;s carrier or ISP.
+     * Output only. The type indicating if it's carrier or ISP.
      */
     type?: string | null;
   }
@@ -1161,7 +1157,7 @@ export namespace displayvideo_v1 {
      */
     cmFloodlightConfigId?: string | null;
     /**
-     * Required. Immutable. By setting this field to `true`, you, on behalf of your company, authorize the sharing of information from the given Floodlight configuration to this Display &amp; Video 360 advertiser.
+     * Required. Immutable. By setting this field to `true`, you, on behalf of your company, authorize the sharing of information from the given Floodlight configuration to this Display & Video 360 advertiser.
      */
     cmFloodlightLinkingAuthorized?: boolean | null;
     /**
@@ -1388,7 +1384,7 @@ export namespace displayvideo_v1 {
      */
     cmTrackingAd?: Schema$CmTrackingAd;
     /**
-     * The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher&#39;s video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
+     * The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher's video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     companionCreativeIds?: string[] | null;
     /**
@@ -1428,7 +1424,7 @@ export namespace displayvideo_v1 {
      */
     entityStatus?: string | null;
     /**
-     * Required. Exit events for this creative. An exit (also known as a click tag) is any area in your creative that someone can click or tap to open an advertiser&#39;s landing page. Every creative must include at least one exit. You can add an exit to your creative in any of the following ways: * Use Google Web Designer&#39;s tap area. * Define a JavaScript variable called &quot;clickTag&quot;. * Use the Enabler (Enabler.exit()) to track exits in rich media formats.
+     * Required. Exit events for this creative. An exit (also known as a click tag) is any area in your creative that someone can click or tap to open an advertiser's landing page. Every creative must include at least one exit. You can add an exit to your creative in any of the following ways: * Use Google Web Designer's tap area. * Define a JavaScript variable called "clickTag". * Use the Enabler (Enabler.exit()) to track exits in rich media formats.
      */
     exitEvents?: Schema$ExitEvent[];
     /**
@@ -1492,7 +1488,7 @@ export namespace displayvideo_v1 {
      */
     requireMraid?: boolean | null;
     /**
-     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     requirePingForAttribution?: boolean | null;
     /**
@@ -1520,11 +1516,11 @@ export namespace displayvideo_v1 {
      */
     timerEvents?: Schema$TimerEvent[];
     /**
-     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn&#39;t require SSL compliance). If using macros in your URL, use only macros supported by Display &amp; Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn't require SSL compliance). If using macros in your URL, use only macros supported by Display & Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     trackerUrls?: string[] | null;
     /**
-     * Output only. Audio/Video transcodes. Display &amp; Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths. These transcodes give a publisher&#39;s system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
+     * Output only. Audio/Video transcodes. Display & Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths. These transcodes give a publisher's system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
      */
     transcodes?: Schema$Transcode[];
     /**
@@ -1630,19 +1626,19 @@ export namespace displayvideo_v1 {
     customListId?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
@@ -1797,7 +1793,7 @@ export namespace displayvideo_v1 {
      */
     displayViewability?: Schema$DoubleVerifyDisplayViewability;
     /**
-     * Avoid Sites and Apps with historical Fraud &amp; IVT Rates.
+     * Avoid Sites and Apps with historical Fraud & IVT Rates.
      */
     fraudInvalidTraffic?: Schema$DoubleVerifyFraudInvalidTraffic;
     /**
@@ -1849,15 +1845,15 @@ export namespace displayvideo_v1 {
     viewableDuring?: string | null;
   }
   /**
-   * DoubleVerify Fraud &amp; Invalid Traffic settings.
+   * DoubleVerify Fraud & Invalid Traffic settings.
    */
   export interface Schema$DoubleVerifyFraudInvalidTraffic {
     /**
-     * Avoid Sites and Apps with historical Fraud &amp; IVT.
+     * Avoid Sites and Apps with historical Fraud & IVT.
      */
     avoidedFraudOption?: string | null;
     /**
-     * Insufficient Historical Fraud &amp; IVT Stats.
+     * Insufficient Historical Fraud & IVT Stats.
      */
     avoidInsufficientOption?: boolean | null;
   }
@@ -1879,7 +1875,7 @@ export namespace displayvideo_v1 {
     videoViewableRate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -1891,7 +1887,7 @@ export namespace displayvideo_v1 {
      */
     environment?: string | null;
     /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_ENVIRONMENT` (e.g., &quot;508010&quot; for targeting the `ENVIRONMENT_WEB_OPTIMIZED` option).
+     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_ENVIRONMENT` (e.g., "508010" for targeting the `ENVIRONMENT_WEB_OPTIMIZED` option).
      */
     targetingOptionId?: string | null;
   }
@@ -2078,7 +2074,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FixedBidStrategy {
     /**
-     * The fixed bid amount, in micros of the advertiser&#39;s currency. For insertion order entity, bid_amount_micros should be set as 0. For line item entity, bid_amount_micros must be greater than or equal to billable unit of the given currency and smaller than or equal to the upper limit 1000000000. For example, 1500000 represents 1.5 standard units of the currency.
+     * The fixed bid amount, in micros of the advertiser's currency. For insertion order entity, bid_amount_micros should be set as 0. For line item entity, bid_amount_micros must be greater than or equal to billable unit of the given currency and smaller than or equal to the upper limit 1000000000. For example, 1500000 represents 1.5 standard units of the currency.
      */
     bidAmountMicros?: string | null;
   }
@@ -2091,7 +2087,7 @@ export namespace displayvideo_v1 {
      */
     activeViewConfig?: Schema$ActiveViewVideoViewabilityMetricConfig;
     /**
-     * User-defined custom variables owned by the Floodlight group. Use custom Floodlight variables to create reporting data that is tailored to your unique business needs. Custom Floodlight variables use the keys `U1=`, `U2=`, and so on, and can take any values that you choose to pass to them. You can use them to track virtually any type of data that you collect about your customers, such as the genre of movie that a customer purchases, the country to which the item is shipped, and so on. Custom Floodlight variables may not be used to pass any data that could be used or recognized as personally identifiable information (PII). Example: `custom_variables { fields { &quot;U1&quot;: value { number_value: 123.4 }, &quot;U2&quot;: value { string_value: &quot;MyVariable2&quot; }, &quot;U3&quot;: value { string_value: &quot;MyVariable3&quot; } } }` Acceptable values for keys are &quot;U1&quot; through &quot;U100&quot;, inclusive. String values must be less than 64 characters long, and cannot contain the following characters: `&quot;&lt;&gt;`.
+     * User-defined custom variables owned by the Floodlight group. Use custom Floodlight variables to create reporting data that is tailored to your unique business needs. Custom Floodlight variables use the keys `U1=`, `U2=`, and so on, and can take any values that you choose to pass to them. You can use them to track virtually any type of data that you collect about your customers, such as the genre of movie that a customer purchases, the country to which the item is shipped, and so on. Custom Floodlight variables may not be used to pass any data that could be used or recognized as personally identifiable information (PII). Example: `custom_variables { fields { "U1": value { number_value: 123.4 \}, "U2": value { string_value: "MyVariable2" \}, "U3": value { string_value: "MyVariable3" \} \} \}` Acceptable values for keys are "U1" through "U100", inclusive. String values must be less than 64 characters long, and cannot contain the following characters: `"<\>`.
      */
     customVariables?: {[key: string]: any} | null;
     /**
@@ -2163,7 +2159,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$GeoRegionAssignedTargetingOptionDetails {
     /**
-     * Output only. The display name of the geographic region (e.g., &quot;Ontario, Canada&quot;).
+     * Output only. The display name of the geographic region (e.g., "Ontario, Canada").
      */
     displayName?: string | null;
     /**
@@ -2184,7 +2180,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$GeoRegionTargetingOptionDetails {
     /**
-     * Output only. The display name of the geographic region (e.g., &quot;Ontario, Canada&quot;).
+     * Output only. The display name of the geographic region (e.g., "Ontario, Canada").
      */
     displayName?: string | null;
     /**
@@ -2382,7 +2378,7 @@ export namespace displayvideo_v1 {
      */
     campaignBudgetId?: string | null;
     /**
-     * Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser&#39;s time zone. * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
+     * Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser's time zone. * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
      */
     dateRange?: Schema$DateRange;
     /**
@@ -2626,7 +2622,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$LanguageAssignedTargetingOptionDetails {
     /**
-     * Output only. The display name of the language (e.g., &quot;French&quot;).
+     * Output only. The display name of the language (e.g., "French").
      */
     displayName?: string | null;
     /**
@@ -2643,7 +2639,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$LanguageTargetingOptionDetails {
     /**
-     * Output only. The display name of the language (e.g., &quot;French&quot;).
+     * Output only. The display name of the language (e.g., "French").
      */
     displayName?: string | null;
   }
@@ -2680,11 +2676,11 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Controls whether or not the line item can spend its budget and bid on inventory. * For CreateLineItem method, only `ENTITY_STATUS_DRAFT` is allowed. To activate a line item, use UpdateLineItem method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * A line item cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * If the line item&#39;s parent insertion order is not active, the line item can&#39;t spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
+     * Required. Controls whether or not the line item can spend its budget and bid on inventory. * For CreateLineItem method, only `ENTITY_STATUS_DRAFT` is allowed. To activate a line item, use UpdateLineItem method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * A line item cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * If the line item's parent insertion order is not active, the line item can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
      */
     entityStatus?: string | null;
     /**
-     * Required. The start and end time of the line item&#39;s flight.
+     * Required. The start and end time of the line item's flight.
      */
     flight?: Schema$LineItemFlight;
     /**
@@ -2749,7 +2745,7 @@ export namespace displayvideo_v1 {
      */
     budgetUnit?: string | null;
     /**
-     * The maximum budget amount the line item will spend. Must be greater than 0. When budget_allocation_type is: * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC`, this field is immutable and is set by the system. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`, if budget_unit is: - `BUDGET_UNIT_CURRENCY`, this field represents maximum budget amount to spend, in micros of the advertiser&#39;s currency. For example, 1500000 represents 1.5 standard units of the currency. - `BUDGET_UNIT_IMPRESSIONS`, this field represents the maximum number of impressions to serve. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED`, this field is not applicable and will be ignored by the system.
+     * The maximum budget amount the line item will spend. Must be greater than 0. When budget_allocation_type is: * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC`, this field is immutable and is set by the system. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`, if budget_unit is: - `BUDGET_UNIT_CURRENCY`, this field represents maximum budget amount to spend, in micros of the advertiser's currency. For example, 1500000 represents 1.5 standard units of the currency. - `BUDGET_UNIT_IMPRESSIONS`, this field represents the maximum number of impressions to serve. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED`, this field is not applicable and will be ignored by the system.
      */
     maxAmount?: string | null;
   }
@@ -2758,11 +2754,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$LineItemFlight {
     /**
-     * The flight start and end dates of the line item. They are resolved relative to the parent advertiser&#39;s time zone. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM`. Output only otherwise. * When creating a new flight, both `start_date` and `end_date` must be in the future. * An existing flight with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
+     * The flight start and end dates of the line item. They are resolved relative to the parent advertiser's time zone. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM`. Output only otherwise. * When creating a new flight, both `start_date` and `end_date` must be in the future. * An existing flight with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
      */
     dateRange?: Schema$DateRange;
     /**
-     * Required. The type of the line item&#39;s flight dates.
+     * Required. The type of the line item's flight dates.
      */
     flightDateType?: string | null;
   }
@@ -3090,7 +3086,7 @@ export namespace displayvideo_v1 {
      */
     customBiddingAlgorithmId?: string | null;
     /**
-     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. For example, 1500000 represents 1.5 standard units of the currency.
+     * The maximum average CPM that may be bid, in micros of the advertiser's currency. Must be greater than or equal to a billable unit of the given currency. For example, 1500000 represents 1.5 standard units of the currency.
      */
     maxAverageCpmBidAmountMicros?: string | null;
     /**
@@ -3116,7 +3112,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$Money {
     /**
-     * The 3-letter currency code defined in ISO 4217.
+     * The three-letter currency code defined in ISO 4217.
      */
     currencyCode?: string | null;
     /**
@@ -3124,7 +3120,7 @@ export namespace displayvideo_v1 {
      */
     nanos?: number | null;
     /**
-     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
   }
@@ -3273,7 +3269,7 @@ export namespace displayvideo_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -3290,7 +3286,7 @@ export namespace displayvideo_v1 {
      */
     dailyMaxImpressions?: string | null;
     /**
-     * Maximum currency amount to spend every day in micros of advertiser&#39;s currency. Applicable when the budget is currency based. Must be greater than 0. For example, for 1.5 standard unit of the currency, set this field to 1500000. The value assigned will be rounded to whole billable units for the relevant currency by the following rules: any positive value less than a single billable unit will be rounded up to one billable unit and any value larger than a single billable unit will be rounded down to the nearest billable value. For example, if the currency&#39;s billable unit is 0.01, and this field is set to 10257770, it will round down to 10250000, a value of 10.25. If set to 505, it will round up to 10000, a value of 0.01.
+     * Maximum currency amount to spend every day in micros of advertiser's currency. Applicable when the budget is currency based. Must be greater than 0. For example, for 1.5 standard unit of the currency, set this field to 1500000. The value assigned will be rounded to whole billable units for the relevant currency by the following rules: any positive value less than a single billable unit will be rounded up to one billable unit and any value larger than a single billable unit will be rounded down to the nearest billable value. For example, if the currency's billable unit is 0.01, and this field is set to 10257770, it will round down to 10250000, a value of 10.25. If set to 505, it will round up to 10000, a value of 0.01.
      */
     dailyMaxMicros?: string | null;
     /**
@@ -3342,7 +3338,7 @@ export namespace displayvideo_v1 {
     filterType?: string | null;
   }
   /**
-   * A single partner in Display &amp; Video 360 (DV360).
+   * A single partner in Display & Video 360 (DV360).
    */
   export interface Schema$Partner {
     /**
@@ -3400,7 +3396,7 @@ export namespace displayvideo_v1 {
      */
     costType?: string | null;
     /**
-     * The CPM fee amount in micros of advertiser&#39;s currency. Applicable when the fee_type is `PARTNER_FEE_TYPE_CPM_FEE`. Must be greater than or equal to 0. For example, for 1.5 standard unit of the advertiser&#39;s currency, set this field to 1500000.
+     * The CPM fee amount in micros of advertiser's currency. Applicable when the fee_type is `PARTNER_FEE_TYPE_CPM_FEE`. Must be greater than or equal to 0. For example, for 1.5 standard unit of the advertiser's currency, set this field to 1500000.
      */
     feeAmount?: string | null;
     /**
@@ -3430,11 +3426,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PartnerGeneralConfig {
     /**
-     * Immutable. Partner&#39;s currency in ISO 4217 format.
+     * Immutable. Partner's currency in ISO 4217 format.
      */
     currencyCode?: string | null;
     /**
-     * Immutable. The standard TZ database name of the partner&#39;s time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+     * Immutable. The standard TZ database name of the partner's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
      */
     timeZone?: string | null;
   }
@@ -3443,7 +3439,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PartnerRevenueModel {
     /**
-     * Required. The markup amount of the partner revenue model. Must be greater than or equal to 0. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`, this field represents the CPM markup in micros of advertiser&#39;s currency. For example, 1500000 represents 1.5 standard units of the currency. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP`, this field represents the media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001). * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`, this field represents the total media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001).
+     * Required. The markup amount of the partner revenue model. Must be greater than or equal to 0. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`, this field represents the CPM markup in micros of advertiser's currency. For example, 1500000 represents 1.5 standard units of the currency. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP`, this field represents the media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001). * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`, this field represents the total media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001).
      */
     markupAmount?: string | null;
     /**
@@ -3456,7 +3452,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PerformanceGoal {
     /**
-     * The goal amount, in micros of the advertiser&#39;s currency. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` For example 1500000 represents 1.5 standard units of the currency.
+     * The goal amount, in micros of the advertiser's currency. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` For example 1500000 represents 1.5 standard units of the currency.
      */
     performanceGoalAmountMicros?: string | null;
     /**
@@ -3481,11 +3477,11 @@ export namespace displayvideo_v1 {
      */
     customBiddingAlgorithmId?: string | null;
     /**
-     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`. For example, 1500000 represents 1.5 standard units of the currency.
+     * The maximum average CPM that may be bid, in micros of the advertiser's currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`. For example, 1500000 represents 1.5 standard units of the currency.
      */
     maxAverageCpmBidAmountMicros?: string | null;
     /**
-     * Required. The performance goal the bidding strategy will attempt to meet or beat, in micros of the advertiser&#39;s currency or in micro of the ROAS (Return On Advertising Spend) value which is also based on advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency and smaller or equal to upper bounds. Each performance_goal_type has its upper bound: * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, upper bound is 10000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`, upper bound is 1000.00 and lower bound is 0.01. Example: If set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will be based on the probability that each available impression will be viewable. For example, if viewable CPM target is $2 and an impression is 40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2). For example, 1500000 represents 1.5 standard units of the currency or ROAS value.
+     * Required. The performance goal the bidding strategy will attempt to meet or beat, in micros of the advertiser's currency or in micro of the ROAS (Return On Advertising Spend) value which is also based on advertiser's currency. Must be greater than or equal to a billable unit of the given currency and smaller or equal to upper bounds. Each performance_goal_type has its upper bound: * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, upper bound is 10000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`, upper bound is 1000.00 and lower bound is 0.01. Example: If set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will be based on the probability that each available impression will be viewable. For example, if viewable CPM target is $2 and an impression is 40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2). For example, 1500000 represents 1.5 standard units of the currency or ROAS value.
      */
     performanceGoalAmountMicros?: string | null;
     /**
@@ -3596,7 +3592,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$SdfDownloadTask {
     /**
-     * A resource name to be used in media.download to Download the prepared files. Resource names have the format `download/sdfdownloadtasks/media/{media_id}`. `media_id` will be made available by the long running operation service once the task status is done.
+     * A resource name to be used in media.download to Download the prepared files. Resource names have the format `download/sdfdownloadtasks/media/{media_id\}`. `media_id` will be made available by the long running operation service once the task status is done.
      */
     resourceName?: string | null;
   }
@@ -3784,7 +3780,7 @@ export namespace displayvideo_v1 {
      */
     subExchangeDetails?: Schema$SubExchangeTargetingOptionDetails;
     /**
-     * Output only. A unique identifier for this targeting option. The tuple {`targeting_type`, `targeting_option_id`} will be unique.
+     * Output only. A unique identifier for this targeting option. The tuple {`targeting_type`, `targeting_option_id`\} will be unique.
      */
     targetingOptionId?: string | null;
     /**
@@ -3954,7 +3950,7 @@ export namespace displayvideo_v1 {
     url?: string | null;
   }
   /**
-   * A single user in Display &amp; Video 360.
+   * A single user in Display & Video 360.
    */
   export interface Schema$User {
     /**
@@ -4027,7 +4023,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ViewabilityAssignedTargetingOptionDetails {
     /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_VIEWABILITY` (e.g., &quot;509010&quot; for targeting the `VIEWABILITY_10_PERCENT_OR_MORE` option).
+     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_VIEWABILITY` (e.g., "509010" for targeting the `VIEWABILITY_10_PERCENT_OR_MORE` option).
      */
     targetingOptionId?: string | null;
     /**
@@ -4076,9 +4072,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.audit
-     * @desc Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.
+     * Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4127,15 +4123,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.audit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser to audit.
-     * @param {string=} params.readMask Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount * channelsCount * negativelyTargetedChannelsCount * negativeKeywordListsCount * adGroupCriteriaCount * campaignCriteriaCount
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     audit(
       params: Params$Resource$Advertisers$Audit,
@@ -4214,7 +4207,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AuditAdvertiserResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuditAdvertiserResponse>(parameters);
@@ -4222,9 +4215,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions
-     * @desc Bulk edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
+     * Bulk edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4275,15 +4268,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {().BulkEditAdvertiserAssignedTargetingOptionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEditAdvertiserAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
@@ -4378,7 +4368,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
@@ -4387,9 +4377,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions
-     * @desc Lists assigned targeting options of an advertiser across targeting types.
+     * Lists assigned targeting options of an advertiser across targeting types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4416,7 +4406,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      *       orderBy: 'placeholder-value',
@@ -4440,18 +4430,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     * @param {integer=} params.pageSize Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkListAdvertiserAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
@@ -4546,7 +4530,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
@@ -4555,9 +4539,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.create
-     * @desc Creates a new advertiser. Returns the newly created advertiser if successful. This method can take up to 180 seconds to complete.
+     * Creates a new advertiser. Returns the newly created advertiser if successful. This method can take up to 180 seconds to complete.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4624,14 +4608,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Advertiser} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Create,
@@ -4702,7 +4684,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -4710,9 +4692,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.delete
-     * @desc Deletes an advertiser. Deleting an advertiser will delete all of its child resources, for example, campaigns, insertion orders and line items. A deleted advertiser cannot be recovered.
+     * Deletes an advertiser. Deleting an advertiser will delete all of its child resources, for example, campaigns, insertion orders and line items. A deleted advertiser cannot be recovered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4750,14 +4732,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser we need to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Delete,
@@ -4831,7 +4811,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4839,9 +4819,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.get
-     * @desc Gets an advertiser.
+     * Gets an advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -4892,14 +4872,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Get,
@@ -4972,7 +4950,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -4980,9 +4958,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.list
-     * @desc Lists advertisers that are accessible to the current user. The order is defined by the order_by parameter. A single partner_id is required. Cross-partner listing is not supported.
+     * Lists advertisers that are accessible to the current user. The order is defined by the order_by parameter. A single partner_id is required. Cross-partner listing is not supported.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5006,7 +4984,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.list({
-     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -5031,18 +5009,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$List,
@@ -5117,7 +5089,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAdvertisersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAdvertisersResponse>(parameters);
@@ -5125,9 +5097,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.patch
-     * @desc Updates an existing advertiser. Returns the updated advertiser if successful.
+     * Updates an existing advertiser. Returns the updated advertiser if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5199,16 +5171,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().Advertiser} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Patch,
@@ -5282,7 +5250,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -5320,7 +5288,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -5358,7 +5326,7 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
-     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -5402,9 +5370,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.assets.upload
-     * @desc Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos.
+     * Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5456,18 +5424,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.assets.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser this asset belongs to.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
@@ -5547,7 +5509,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateAssetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateAssetResponse>(parameters);
@@ -5590,9 +5552,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.campaigns.create
-     * @desc Creates a new campaign. Returns the newly created campaign if successful.
+     * Creates a new campaign. Returns the newly created campaign if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5659,15 +5621,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.campaigns.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the campaign belongs to.
-     * @param {().Campaign} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
@@ -5740,7 +5699,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -5748,9 +5707,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.campaigns.delete
-     * @desc Permanently deletes a campaign. A deleted campaign cannot be recovered. The campaign should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
+     * Permanently deletes a campaign. A deleted campaign cannot be recovered. The campaign should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5793,15 +5752,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.campaigns.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser this campaign belongs to.
-     * @param {string} params.campaignId The ID of the campaign we need to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
@@ -5875,7 +5831,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5883,9 +5839,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.campaigns.get
-     * @desc Gets a campaign.
+     * Gets a campaign.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -5938,15 +5894,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.campaigns.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser this campaign belongs to.
-     * @param {string} params.campaignId Required. The ID of the campaign to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
@@ -6020,7 +5973,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -6028,9 +5981,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.campaigns.list
-     * @desc Lists campaigns in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * Lists campaigns in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6059,7 +6012,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.campaigns.list({
      *     // The ID of the advertiser to list campaigns for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -6082,18 +6035,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.campaigns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser to list campaigns for.
-     * @param {string=} params.filter Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
@@ -6171,7 +6118,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCampaignsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCampaignsResponse>(parameters);
@@ -6179,9 +6126,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.campaigns.patch
-     * @desc Updates an existing campaign. Returns the updated campaign if successful.
+     * Updates an existing campaign. Returns the updated campaign if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6252,17 +6199,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.campaigns.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the campaign belongs to.
-     * @param {string} params.campaignId Output only. The unique ID of the campaign. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().Campaign} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
@@ -6336,7 +6278,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -6385,7 +6327,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -6431,9 +6373,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.create
-     * @desc Creates a new channel. Returns the newly created channel if successful.
+     * Creates a new channel. Returns the newly created channel if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6491,16 +6433,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the created channel.
-     * @param {string=} params.partnerId The ID of the partner that owns the created channel.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Channels$Create,
@@ -6574,7 +6512,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -6582,9 +6520,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.get
-     * @desc Gets a channel for a partner or advertiser.
+     * Gets a channel for a partner or advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6632,16 +6570,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the fetched channel.
-     * @param {string} params.channelId Required. The ID of the channel to fetch.
-     * @param {string=} params.partnerId The ID of the partner that owns the fetched channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Channels$Get,
@@ -6714,7 +6648,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -6722,9 +6656,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.list
-     * @desc Lists channels for a partner or advertiser.
+     * Lists channels for a partner or advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6750,7 +6684,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.channels.list({
      *     // The ID of the advertiser that owns the channels.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -6775,19 +6709,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the channels.
-     * @param {string=} params.filter Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that owns the channels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Channels$List,
@@ -6866,7 +6793,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -6874,9 +6801,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.patch
-     * @desc Updates a channel. Returns the updated channel if successful.
+     * Updates a channel. Returns the updated channel if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -6938,18 +6865,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the created channel.
-     * @param {string} params.channelId Output only. The unique ID of the channel. Assigned by the system.
-     * @param {string=} params.partnerId The ID of the partner that owns the created channel.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Channels$Patch,
@@ -7022,7 +6943,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -7068,7 +6989,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -7120,9 +7041,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.sites.bulkEdit
-     * @desc Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -7175,16 +7096,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.sites.bulkEdit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel to which the sites belong.
-     * @param {().BulkEditSitesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
@@ -7265,7 +7182,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
@@ -7273,9 +7190,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.sites.create
-     * @desc Creates a site in a channel.
+     * Creates a site in a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -7329,17 +7246,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.sites.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel in which the site will be created.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {().Site} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Channels$Sites$Create,
@@ -7413,7 +7325,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -7421,9 +7333,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.sites.delete
-     * @desc Deletes a site from a channel.
+     * Deletes a site from a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -7467,17 +7379,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.sites.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel to which the site belongs.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {string} params.urlOrAppId Required. The URL or app ID of the site to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Channels$Sites$Delete,
@@ -7551,7 +7458,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7559,9 +7466,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.channels.sites.list
-     * @desc Lists sites in a channel.
+     * Lists sites in a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -7589,7 +7496,7 @@ export namespace displayvideo_v1 {
      *     advertiserId: '[^/]+',
      *     // Required. The ID of the parent channel to which the requested sites belong.
      *     channelId: '[^/]+',
-     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
@@ -7614,20 +7521,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.channels.sites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
-     * @param {string=} params.filter Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Channels$Sites$List,
@@ -7704,7 +7603,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
@@ -7778,7 +7677,7 @@ export namespace displayvideo_v1 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      */
     filter?: string;
     /**
@@ -7806,9 +7705,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.creatives.create
-     * @desc Creates a new creative. Returns the newly created creative if successful.
+     * Creates a new creative. Returns the newly created creative if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -7944,15 +7843,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.creatives.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the creative belongs to.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
@@ -8025,7 +7921,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8033,9 +7929,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.creatives.delete
-     * @desc Deletes a creative. Returns error code `NOT_FOUND` if the creative does not exist. The creative should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, before it can be deleted.
+     * Deletes a creative. Returns error code `NOT_FOUND` if the creative does not exist. The creative should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, before it can be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -8075,15 +7971,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.creatives.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser this creative belongs to.
-     * @param {string} params.creativeId The ID of the creative to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
@@ -8157,7 +8050,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8165,9 +8058,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.creatives.get
-     * @desc Gets a creative.
+     * Gets a creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -8253,15 +8146,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.creatives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser this creative belongs to.
-     * @param {string} params.creativeId Required. The ID of the creative to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
@@ -8335,7 +8225,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8343,9 +8233,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.creatives.list
-     * @desc Lists creatives in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * Lists creatives in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -8371,7 +8261,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.creatives.list({
      *     // Required. The ID of the advertiser to list creatives for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      *     orderBy: 'placeholder-value',
@@ -8394,18 +8284,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser to list creatives for.
-     * @param {string=} params.filter Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Creatives$List,
@@ -8483,7 +8367,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -8491,9 +8375,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.creatives.patch
-     * @desc Updates an existing creative. Returns the updated creative if successful.
+     * Updates an existing creative. Returns the updated creative if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -8633,17 +8517,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.creatives.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the creative belongs to.
-     * @param {string} params.creativeId Output only. The unique ID of the creative. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
@@ -8717,7 +8596,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -8766,7 +8645,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
+     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -8810,9 +8689,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.insertionOrders.create
-     * @desc Creates a new insertion order. Returns the newly created insertion order if successful.
+     * Creates a new insertion order. Returns the newly created insertion order if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -8886,15 +8765,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.insertionOrders.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the insertion order belongs to.
-     * @param {().InsertionOrder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
@@ -8967,7 +8843,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -8975,9 +8851,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.insertionOrders.delete
-     * @desc Deletes an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist. The insertion order should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
+     * Deletes an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist. The insertion order should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9017,15 +8893,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.insertionOrders.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser this insertion order belongs to.
-     * @param {string} params.insertionOrderId The ID of the insertion order we need to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
@@ -9099,7 +8972,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9107,9 +8980,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.insertionOrders.get
-     * @desc Gets an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist.
+     * Gets an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9164,15 +9037,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.insertionOrders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser this insertion order belongs to.
-     * @param {string} params.insertionOrderId Required. The ID of the insertion order to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
@@ -9246,7 +9116,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -9254,9 +9124,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.insertionOrders.list
-     * @desc Lists insertion orders in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * Lists insertion orders in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9282,7 +9152,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.insertionOrders.list({
      *     // Required. The ID of the advertiser to list insertion orders for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -9305,18 +9175,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.insertionOrders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser to list insertion orders for.
-     * @param {string=} params.filter Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
@@ -9396,7 +9260,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInsertionOrdersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInsertionOrdersResponse>(parameters);
@@ -9404,9 +9268,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.insertionOrders.patch
-     * @desc Updates an existing insertion order. Returns the updated insertion order if successful.
+     * Updates an existing insertion order. Returns the updated insertion order if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9484,17 +9348,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.insertionOrders.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the insertion order belongs to.
-     * @param {string} params.insertionOrderId Output only. The unique ID of the insertion order. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().InsertionOrder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
@@ -9568,7 +9427,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InsertionOrder>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
@@ -9617,7 +9476,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
+     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -9665,9 +9524,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions
-     * @desc Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests .
+     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests .
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9720,16 +9579,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string} params.lineItemId Required. The ID of the line item the assigned targeting option will belong to.
-     * @param {().BulkEditLineItemAssignedTargetingOptionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEditLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
@@ -9824,7 +9679,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
@@ -9833,9 +9688,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions
-     * @desc Lists assigned targeting options of a line item across targeting types.
+     * Lists assigned targeting options of a line item across targeting types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -9862,7 +9717,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the line item to list assigned targeting options for.
      *       lineItemId: '[^/]+',
@@ -9888,19 +9743,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     * @param {string} params.lineItemId Required. The ID of the line item to list assigned targeting options for.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     * @param {integer=} params.pageSize Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkListLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
@@ -9995,7 +9843,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
@@ -10004,9 +9852,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.create
-     * @desc Creates a new line item. Returns the newly created line item if successful.
+     * Creates a new line item. Returns the newly created line item if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -10094,15 +9942,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the line item belongs to.
-     * @param {().LineItem} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
@@ -10175,7 +10020,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -10183,9 +10028,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.delete
-     * @desc Deletes a line item. Returns error code `NOT_FOUND` if the line item does not exist. The line item should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
+     * Deletes a line item. Returns error code `NOT_FOUND` if the line item does not exist. The line item should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -10225,15 +10070,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId The ID of the advertiser this line item belongs to.
-     * @param {string} params.lineItemId The ID of the line item we need to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
@@ -10307,7 +10149,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10315,9 +10157,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.get
-     * @desc Gets a line item.
+     * Gets a line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -10379,15 +10221,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser this line item belongs to.
-     * @param {string} params.lineItemId Required. The ID of the line item to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
@@ -10461,7 +10300,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -10469,9 +10308,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.list
-     * @desc Lists line items in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * Lists line items in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -10497,7 +10336,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -10520,18 +10359,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser to list line items for.
-     * @param {string=} params.filter Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
@@ -10609,7 +10442,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLineItemsResponse>(parameters);
@@ -10617,9 +10450,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.patch
-     * @desc Updates an existing line item. Returns the updated line item if successful.
+     * Updates an existing line item. Returns the updated line item if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -10711,17 +10544,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Output only. The unique ID of the advertiser the line item belongs to.
-     * @param {string} params.lineItemId Output only. The unique ID of the line item. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().LineItem} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
@@ -10795,7 +10623,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LineItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
@@ -10826,7 +10654,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -10887,7 +10715,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -10942,9 +10770,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create
-     * @desc Assigns a targeting option to a line item. Returns the assigned targeting option if successful.
+     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11078,17 +10906,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string} params.lineItemId Required. The ID of the line item the assigned targeting option will belong to.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {().AssignedTargetingOption} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
@@ -11169,7 +10992,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -11177,9 +11000,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete
-     * @desc Deletes an assigned targeting option from a line item.
+     * Deletes an assigned targeting option from a line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11225,17 +11048,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string} params.assignedTargetingOptionId Required. The ID of the assigned targeting option to delete.
-     * @param {string} params.lineItemId Required. The ID of the line item the assigned targeting option belongs to.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
@@ -11319,7 +11137,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11327,9 +11145,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get
-     * @desc Gets a single targeting option assigned to a line item.
+     * Gets a single targeting option assigned to a line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11417,17 +11235,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string} params.assignedTargetingOptionId Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
-     * @param {string} params.lineItemId Required. The ID of the line item the assigned targeting option belongs to.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
@@ -11516,7 +11329,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -11524,9 +11337,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list
-     * @desc Lists the targeting options assigned to a line item.
+     * Lists the targeting options assigned to a line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11553,7 +11366,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the line item to list assigned targeting options for.
      *       lineItemId: '[^/]+',
@@ -11581,20 +11394,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     * @param {string} params.lineItemId Required. The ID of the line item to list assigned targeting options for.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
@@ -11689,7 +11494,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLineItemAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -11764,7 +11569,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -11800,9 +11605,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.create
-     * @desc Creates a new location list. Returns the newly created location list if successful.
+     * Creates a new location list. Returns the newly created location list if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11858,15 +11663,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {().LocationList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Locationlists$Create,
@@ -11939,7 +11741,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -11947,9 +11749,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.get
-     * @desc Gets a location list.
+     * Gets a location list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -11995,15 +11797,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched location list belongs.
-     * @param {string} params.locationListId Required. The ID of the location list to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
@@ -12077,7 +11876,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -12085,9 +11884,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.list
-     * @desc Lists location lists based on a given advertiser id.
+     * Lists location lists based on a given advertiser id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12113,7 +11912,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.locationLists.list({
      *     // Required. The ID of the DV360 advertiser to which the fetched location lists belong.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     *     // Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -12136,18 +11935,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched location lists belong.
-     * @param {string=} params.filter Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
@@ -12227,7 +12020,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationListsResponse>(parameters);
@@ -12235,9 +12028,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.patch
-     * @desc Updates a location list. Returns the updated location list if successful.
+     * Updates a location list. Returns the updated location list if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12297,17 +12090,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location lists belongs.
-     * @param {string} params.locationListId Output only. The unique ID of the location list. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().LocationList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Locationlists$Patch,
@@ -12381,7 +12169,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$LocationList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
@@ -12419,7 +12207,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     * Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
      */
     filter?: string;
     /**
@@ -12463,9 +12251,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.assignedLocations.bulkEdit
-     * @desc Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
+     * Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12518,16 +12306,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.assignedLocations.bulkEdit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {string} params.locationListId Required. The ID of the location list to which these assignments are assigned.
-     * @param {().BulkEditAssignedLocationsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEdit(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
@@ -12608,7 +12392,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
@@ -12618,9 +12402,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.assignedLocations.create
-     * @desc Creates an assignment between a location and a location list.
+     * Creates an assignment between a location and a location list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12676,16 +12460,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.assignedLocations.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {string} params.locationListId Required. The ID of the location list for which the assignment will be created.
-     * @param {().AssignedLocation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
@@ -12759,7 +12539,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedLocation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedLocation>(parameters);
@@ -12767,9 +12547,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.assignedLocations.delete
-     * @desc Deletes the assignment between a location and a location list.
+     * Deletes the assignment between a location and a location list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12813,16 +12593,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.assignedLocations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {string} params.assignedLocationId Required. The ID of the assigned location to delete.
-     * @param {string} params.locationListId Required. The ID of the location list to which this assignment is assigned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
@@ -12900,7 +12676,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -12908,9 +12684,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.locationLists.assignedLocations.list
-     * @desc Lists locations assigned to a location list.
+     * Lists locations assigned to a location list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -12937,7 +12713,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the location list to which these assignments are assigned.
      *       locationListId: 'placeholder-value',
@@ -12963,19 +12739,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.locationLists.assignedLocations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {string=} params.filter Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
-     * @param {string} params.locationListId Required. The ID of the location list to which these assignments are assigned.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
@@ -13056,7 +12825,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssignedLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssignedLocationsResponse>(
@@ -13120,7 +12889,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
+     * Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -13152,9 +12921,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.create
-     * @desc Creates a new negative keyword list. Returns the newly created negative keyword list if successful.
+     * Creates a new negative keyword list. Returns the newly created negative keyword list if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -13208,15 +12977,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
-     * @param {().NegativeKeywordList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Create,
@@ -13292,7 +13058,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -13300,9 +13066,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.delete
-     * @desc Deletes a negative keyword list given an advertiser ID and a negative keyword list ID.
+     * Deletes a negative keyword list given an advertiser ID and a negative keyword list ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -13342,15 +13108,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
-     * @param {string} params.negativeKeywordListId Required. The ID of the negative keyword list to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
@@ -13424,7 +13187,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13432,9 +13195,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.get
-     * @desc Gets a negative keyword list given an advertiser ID and a negative keyword list ID.
+     * Gets a negative keyword list given an advertiser ID and a negative keyword list ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -13479,15 +13242,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
-     * @param {string} params.negativeKeywordListId Required. The ID of the negative keyword list to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
@@ -13564,7 +13324,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -13572,9 +13332,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.list
-     * @desc Lists negative keyword lists based on a given advertiser id.
+     * Lists negative keyword lists based on a given advertiser id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -13619,16 +13379,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
@@ -13708,7 +13464,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
@@ -13718,9 +13474,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.patch
-     * @desc Updates a negative keyword list. Returns the updated negative keyword list if successful.
+     * Updates a negative keyword list. Returns the updated negative keyword list if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -13778,17 +13534,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
-     * @param {string} params.negativeKeywordListId Output only. The unique ID of the negative keyword list. Assigned by the system.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().NegativeKeywordList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
@@ -13865,7 +13616,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeywordList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
@@ -13950,9 +13701,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit
-     * @desc Bulk edits negative keywords in a single negative keyword list. The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords. This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
+     * Bulk edits negative keywords in a single negative keyword list. The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords. This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14005,16 +13756,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the negative keywords belong.
-     * @param {().BulkEditNegativeKeywordsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEdit(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
@@ -14095,7 +13842,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
@@ -14105,9 +13852,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create
-     * @desc Creates a negative keyword in a negative keyword list.
+     * Creates a negative keyword in a negative keyword list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14161,16 +13908,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list in which the negative keyword will be created.
-     * @param {().NegativeKeyword} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
@@ -14244,7 +13987,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$NegativeKeyword>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NegativeKeyword>(parameters);
@@ -14252,9 +13995,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete
-     * @desc Deletes a negative keyword from a negative keyword list.
+     * Deletes a negative keyword from a negative keyword list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14298,16 +14041,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     * @param {string} params.keywordValue Required. The keyword value of the negative keyword to delete.
-     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the negative keyword belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
@@ -14385,7 +14124,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14393,9 +14132,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list
-     * @desc Lists negative keywords in a negative keyword list.
+     * Lists negative keywords in a negative keyword list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14422,7 +14161,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
      *       filter: 'placeholder-value',
      *       // Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
      *       negativeKeywordListId: '[^/]+',
@@ -14448,19 +14187,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     * @param {string=} params.filter Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
-     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
@@ -14541,7 +14273,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNegativeKeywordsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNegativeKeywordsResponse>(
@@ -14605,7 +14337,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     * Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
      */
     filter?: string;
     /**
@@ -14644,9 +14376,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create
-     * @desc Assigns a targeting option to an advertiser. Returns the assigned targeting option if successful.
+     * Assigns a targeting option to an advertiser. Returns the assigned targeting option if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14778,16 +14510,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {().AssignedTargetingOption} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
@@ -14868,7 +14596,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -14876,9 +14604,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete
-     * @desc Deletes an assigned targeting option from an advertiser.
+     * Deletes an assigned targeting option from an advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -14922,16 +14650,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {string} params.assignedTargetingOptionId Required. The ID of the assigned targeting option to delete.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
@@ -15013,7 +14737,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15021,9 +14745,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get
-     * @desc Gets a single targeting option assigned to an advertiser.
+     * Gets a single targeting option assigned to an advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15109,16 +14833,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {string} params.assignedTargetingOptionId Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
@@ -15205,7 +14925,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -15213,9 +14933,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list
-     * @desc Lists the targeting options assigned to an advertiser.
+     * Lists the targeting options assigned to an advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15242,7 +14962,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *       orderBy: 'placeholder-value',
@@ -15268,19 +14988,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
@@ -15375,7 +15088,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAdvertiserAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -15438,7 +15151,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -15466,9 +15179,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.combinedAudiences.get
-     * @desc Gets a combined audience.
+     * Gets a combined audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15514,16 +15227,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.combinedAudiences.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched combined audience.
-     * @param {string} params.combinedAudienceId Required. The ID of the combined audience to fetch.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched combined audience.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Combinedaudiences$Get,
@@ -15596,7 +15305,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CombinedAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CombinedAudience>(parameters);
@@ -15604,9 +15313,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.combinedAudiences.list
-     * @desc Lists combined audiences. The order is defined by the order_by parameter.
+     * Lists combined audiences. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15632,7 +15341,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.combinedAudiences.list({
      *     // The ID of the advertiser that has access to the fetched combined audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -15657,19 +15366,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.combinedAudiences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched combined audiences.
-     * @param {string=} params.filter Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched combined audiences.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Combinedaudiences$List,
@@ -15750,7 +15452,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCombinedAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCombinedAudiencesResponse>(
@@ -15782,7 +15484,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -15810,9 +15512,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.customBiddingAlgorithms.get
-     * @desc Gets a custom bidding algorithm.
+     * Gets a custom bidding algorithm.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15862,16 +15564,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.customBiddingAlgorithms.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV360 partner that has access to the custom bidding algorithm.
-     * @param {string} params.customBiddingAlgorithmId Required. The ID of the custom bidding algorithm to fetch.
-     * @param {string=} params.partnerId The ID of the DV360 partner that has access to the custom bidding algorithm.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
@@ -15950,7 +15648,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomBiddingAlgorithm>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
@@ -15958,9 +15656,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.customBiddingAlgorithms.list
-     * @desc Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.
+     * Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -15986,7 +15684,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.customBiddingAlgorithms.list({
      *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -16011,19 +15709,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.customBiddingAlgorithms.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV360 advertiser that has access to the custom bidding algorithm.
-     * @param {string=} params.filter Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the DV360 partner that has access to the custom bidding algorithm.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Custombiddingalgorithms$List,
@@ -16104,7 +15795,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
@@ -16136,7 +15827,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -16164,9 +15855,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.customLists.get
-     * @desc Gets a custom list.
+     * Gets a custom list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -16210,15 +15901,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.customLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV360 advertiser that has access to the fetched custom lists.
-     * @param {string} params.customListId Required. The ID of the custom list to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customlists$Get,
@@ -16291,7 +15979,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomList>(parameters);
@@ -16299,9 +15987,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.customLists.list
-     * @desc Lists custom lists. The order is defined by the order_by parameter.
+     * Lists custom lists. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -16327,7 +16015,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.customLists.list({
      *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -16350,18 +16038,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.customLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV360 advertiser that has access to the fetched custom lists.
-     * @param {string=} params.filter Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customlists$List,
@@ -16436,7 +16118,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomListsResponse>(parameters);
@@ -16460,7 +16142,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -16484,9 +16166,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.firstAndThirdPartyAudiences.get
-     * @desc Gets a first and third party audience.
+     * Gets a first and third party audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -16544,16 +16226,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.firstAndThirdPartyAudiences.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched first and third party audience.
-     * @param {string} params.firstAndThirdPartyAudienceId Required. The ID of the first and third party audience to fetch.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched first and third party audience.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Firstandthirdpartyaudiences$Get,
@@ -16634,7 +16312,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FirstAndThirdPartyAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
@@ -16642,9 +16320,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.firstAndThirdPartyAudiences.list
-     * @desc Lists first and third party audiences. The order is defined by the order_by parameter.
+     * Lists first and third party audiences. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -16670,7 +16348,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.firstAndThirdPartyAudiences.list({
      *     // The ID of the advertiser that has access to the fetched first and third party audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -16695,19 +16373,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.firstAndThirdPartyAudiences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched first and third party audiences.
-     * @param {string=} params.filter Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched first and third party audiences.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Firstandthirdpartyaudiences$List,
@@ -16794,7 +16465,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
@@ -16826,7 +16497,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -16854,9 +16525,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.floodlightGroups.get
-     * @desc Gets a Floodlight group.
+     * Gets a Floodlight group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -16904,15 +16575,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.floodlightGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.floodlightGroupId Required. The ID of the Floodlight group to fetch.
-     * @param {string=} params.partnerId Required. The partner context by which the Floodlight group is being accessed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Floodlightgroups$Get,
@@ -16985,7 +16653,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FloodlightGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
@@ -16993,9 +16661,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.floodlightGroups.patch
-     * @desc Updates an existing Floodlight group. Returns the updated Floodlight group if successful.
+     * Updates an existing Floodlight group. Returns the updated Floodlight group if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17059,17 +16727,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.floodlightGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.floodlightGroupId Output only. The unique ID of the Floodlight group. Assigned by the system.
-     * @param {string=} params.partnerId Required. The partner context by which the Floodlight group is being accessed.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().FloodlightGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
@@ -17143,7 +16806,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FloodlightGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
@@ -17190,9 +16853,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.googleAudiences.get
-     * @desc Gets a Google audience.
+     * Gets a Google audience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17239,16 +16902,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.googleAudiences.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched Google audience.
-     * @param {string} params.googleAudienceId Required. The ID of the Google audience to fetch.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched Google audience.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Googleaudiences$Get,
@@ -17322,7 +16981,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAudience>(parameters);
@@ -17330,9 +16989,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.googleAudiences.list
-     * @desc Lists Google audiences. The order is defined by the order_by parameter.
+     * Lists Google audiences. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17358,7 +17017,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.googleAudiences.list({
      *     // The ID of the advertiser that has access to the fetched Google audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -17383,19 +17042,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.googleAudiences.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched Google audiences.
-     * @param {string=} params.filter Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the fetched Google audiences.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Googleaudiences$List,
@@ -17476,7 +17128,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGoogleAudiencesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGoogleAudiencesResponse>(parameters);
@@ -17506,7 +17158,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -17538,9 +17190,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.create
-     * @desc Creates a new inventory source group. Returns the newly created inventory source group if successful.
+     * Creates a new inventory source group. Returns the newly created inventory source group if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17594,16 +17246,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
-     * @param {().InventorySourceGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
@@ -17682,7 +17330,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -17690,9 +17338,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.delete
-     * @desc Deletes an inventory source group.
+     * Deletes an inventory source group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17734,16 +17382,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to delete.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Inventorysourcegroups$Delete,
@@ -17816,7 +17460,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -17824,9 +17468,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.get
-     * @desc Gets an inventory source group.
+     * Gets an inventory source group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17872,16 +17516,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to fetch.
-     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
@@ -17959,7 +17599,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -17967,9 +17607,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.list
-     * @desc Lists inventory source groups that are accessible to the current user. The order is defined by the order_by parameter.
+     * Lists inventory source groups that are accessible to the current user. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -17995,7 +17635,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.inventorySourceGroups.list({
      *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -18020,19 +17660,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
-     * @param {string=} params.filter Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Inventorysourcegroups$List,
@@ -18113,7 +17746,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
@@ -18123,9 +17756,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.patch
-     * @desc Updates an inventory source group. Returns the updated inventory source group if successful.
+     * Updates an inventory source group. Returns the updated inventory source group if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -18183,18 +17816,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
-     * @param {string} params.inventorySourceGroupId Output only. The unique ID of the inventory source group. Assigned by the system.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().InventorySourceGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
@@ -18272,7 +17899,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySourceGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
@@ -18333,7 +17960,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -18385,9 +18012,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit
-     * @desc Bulk edits multiple assignments between inventory sources and a single inventory source group. The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
+     * Bulk edits multiple assignments between inventory sources and a single inventory source group. The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -18440,15 +18067,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which the assignments are assigned.
-     * @param {().BulkEditAssignedInventorySourcesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
@@ -18535,7 +18159,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -18545,9 +18169,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.assignedInventorySources.create
-     * @desc Creates an assignment between an inventory source and an inventory source group.
+     * Creates an assignment between an inventory source and an inventory source group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -18605,17 +18229,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which the assignment will be assigned.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
-     * @param {().AssignedInventorySource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
@@ -18696,7 +18315,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedInventorySource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedInventorySource>(parameters);
@@ -18704,9 +18323,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.assignedInventorySources.delete
-     * @desc Deletes the assignment between an inventory source and an inventory source group.
+     * Deletes the assignment between an inventory source and an inventory source group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -18752,17 +18371,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
-     * @param {string} params.assignedInventorySourceId Required. The ID of the assigned inventory source to delete.
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which this assignment is assigned.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
@@ -18836,7 +18450,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -18844,9 +18458,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySourceGroups.assignedInventorySources.list
-     * @desc Lists inventory sources assigned to an inventory source group.
+     * Lists inventory sources assigned to an inventory source group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -18873,7 +18487,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
      *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the inventory source group to which these assignments are assigned.
      *       inventorySourceGroupId: '[^/]+',
@@ -18901,20 +18515,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
-     * @param {string=} params.filter Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
-     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which these assignments are assigned.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
@@ -19001,7 +18607,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
@@ -19069,7 +18675,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -19101,9 +18707,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySources.get
-     * @desc Gets an inventory source.
+     * Gets an inventory source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19158,15 +18764,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.inventorySourceId Required. The ID of the inventory source to fetch.
-     * @param {string=} params.partnerId Required. The ID of the DV360 partner to which the fetched inventory source is permissioned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Inventorysources$Get,
@@ -19239,7 +18842,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$InventorySource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventorySource>(parameters);
@@ -19247,9 +18850,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.inventorySources.list
-     * @desc Lists inventory sources that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * Lists inventory sources that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19275,7 +18878,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.inventorySources.list({
      *     // The ID of the advertiser that has access to the inventory source.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -19300,19 +18903,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.inventorySources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source.
-     * @param {string=} params.filter Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Inventorysources$List,
@@ -19393,7 +18989,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourcesResponse>(
@@ -19421,7 +19017,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -19449,9 +19045,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.media.download
-     * @desc Downloads media. Download is supported on the URI `/download/{resource_name=**}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
+     * Downloads media. Download is supported on the URI `/download/{resource_name=**\}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19494,14 +19090,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.media.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Media$Download,
@@ -19581,7 +19175,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
@@ -19607,9 +19201,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.bulkEditPartnerAssignedTargetingOptions
-     * @desc Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
+     * Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19660,15 +19254,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.bulkEditPartnerAssignedTargetingOptions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.partnerId Required. The ID of the partner.
-     * @param {().BulkEditPartnerAssignedTargetingOptionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEditPartnerAssignedTargetingOptions(
       params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
@@ -19763,7 +19354,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditPartnerAssignedTargetingOptionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BulkEditPartnerAssignedTargetingOptionsResponse
@@ -19772,9 +19363,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.get
-     * @desc Gets a partner.
+     * Gets a partner.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19822,14 +19413,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.partnerId Required. The ID of the partner to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Partners$Get,
@@ -19902,7 +19491,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Partner>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Partner>(parameters);
@@ -19910,9 +19499,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.list
-     * @desc Lists partners that are accessible to the current user. The order is defined by the order_by parameter.
+     * Lists partners that are accessible to the current user. The order is defined by the order_by parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -19936,7 +19525,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.list({
-     *     // Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -19959,17 +19548,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Partners$List,
@@ -20044,7 +19628,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPartnersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPartnersResponse>(parameters);
@@ -20072,7 +19656,7 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Partners$List extends StandardParameters {
     /**
-     * Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -20098,9 +19682,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.create
-     * @desc Creates a new channel. Returns the newly created channel if successful.
+     * Creates a new channel. Returns the newly created channel if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20158,16 +19742,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the created channel.
-     * @param {string} params.partnerId The ID of the partner that owns the created channel.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Partners$Channels$Create,
@@ -20241,7 +19821,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20249,9 +19829,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.get
-     * @desc Gets a channel for a partner or advertiser.
+     * Gets a channel for a partner or advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20299,16 +19879,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the fetched channel.
-     * @param {string} params.channelId Required. The ID of the channel to fetch.
-     * @param {string} params.partnerId The ID of the partner that owns the fetched channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Partners$Channels$Get,
@@ -20381,7 +19957,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20389,9 +19965,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.list
-     * @desc Lists channels for a partner or advertiser.
+     * Lists channels for a partner or advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20417,7 +19993,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.partners.channels.list({
      *     // The ID of the advertiser that owns the channels.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -20442,19 +20018,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the channels.
-     * @param {string=} params.filter Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
-     * @param {string} params.partnerId The ID of the partner that owns the channels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Partners$Channels$List,
@@ -20533,7 +20102,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
@@ -20541,9 +20110,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.patch
-     * @desc Updates a channel. Returns the updated channel if successful.
+     * Updates a channel. Returns the updated channel if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20605,18 +20174,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the created channel.
-     * @param {string} params.channelId Output only. The unique ID of the channel. Assigned by the system.
-     * @param {string} params.partnerId The ID of the partner that owns the created channel.
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Partners$Channels$Patch,
@@ -20689,7 +20252,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -20735,7 +20298,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -20787,9 +20350,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.sites.bulkEdit
-     * @desc Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20842,16 +20405,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.sites.bulkEdit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.channelId Required. The ID of the parent channel to which the sites belong.
-     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {().BulkEditSitesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
@@ -20932,7 +20491,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
@@ -20940,9 +20499,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.sites.create
-     * @desc Creates a site in a channel.
+     * Creates a site in a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -20996,17 +20555,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.sites.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel in which the site will be created.
-     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {().Site} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Partners$Channels$Sites$Create,
@@ -21079,7 +20633,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -21087,9 +20641,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.sites.delete
-     * @desc Deletes a site from a channel.
+     * Deletes a site from a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -21133,17 +20687,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.sites.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel to which the site belongs.
-     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {string} params.urlOrAppId Required. The URL or app ID of the site to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Partners$Channels$Sites$Delete,
@@ -21217,7 +20766,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -21225,9 +20774,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.channels.sites.list
-     * @desc Lists sites in a channel.
+     * Lists sites in a channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -21255,7 +20804,7 @@ export namespace displayvideo_v1 {
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the parent channel to which the requested sites belong.
      *     channelId: '[^/]+',
-     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
@@ -21280,20 +20829,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.channels.sites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
-     * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
-     * @param {string=} params.filter Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
-     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Partners$Channels$Sites$List,
@@ -21369,7 +20910,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
@@ -21443,7 +20984,7 @@ export namespace displayvideo_v1 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      */
     filter?: string;
     /**
@@ -21482,9 +21023,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.targetingTypes.assignedTargetingOptions.create
-     * @desc Assigns a targeting option to a partner. Returns the assigned targeting option if successful.
+     * Assigns a targeting option to a partner. Returns the assigned targeting option if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -21616,16 +21157,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.partnerId Required. The ID of the partner.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     * @param {().AssignedTargetingOption} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
@@ -21706,7 +21243,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -21714,9 +21251,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.targetingTypes.assignedTargetingOptions.delete
-     * @desc Deletes an assigned targeting option from a partner.
+     * Deletes an assigned targeting option from a partner.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -21760,16 +21297,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.assignedTargetingOptionId Required. The ID of the assigned targeting option to delete.
-     * @param {string} params.partnerId Required. The ID of the partner.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
@@ -21847,7 +21380,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -21855,9 +21388,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.targetingTypes.assignedTargetingOptions.get
-     * @desc Gets a single targeting option assigned to a partner.
+     * Gets a single targeting option assigned to a partner.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -21943,16 +21476,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.assignedTargetingOptionId Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
-     * @param {string} params.partnerId Required. The ID of the partner.
-     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
@@ -22035,7 +21564,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$AssignedTargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
@@ -22043,9 +21572,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.partners.targetingTypes.assignedTargetingOptions.list
-     * @desc Lists the targeting options assigned to a partner.
+     * Lists the targeting options assigned to a partner.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -22070,7 +21599,7 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.list(
      *     {
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *       orderBy: 'placeholder-value',
@@ -22098,19 +21627,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {string} params.partnerId Required. The ID of the partner.
-     * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
@@ -22205,7 +21727,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPartnerAssignedTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -22264,7 +21786,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
     extends StandardParameters {
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -22298,9 +21820,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.sdfdownloadtasks.create
-     * @desc Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
+     * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -22354,14 +21876,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.sdfdownloadtasks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().CreateSdfDownloadTaskRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
@@ -22435,7 +21955,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22458,9 +21978,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.sdfdownloadtasks.operations.get
-     * @desc Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -22507,14 +22027,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.sdfdownloadtasks.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
@@ -22585,7 +22103,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22619,9 +22137,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.targetingTypes.targetingOptions.get
-     * @desc Gets a single targeting option.
+     * Gets a single targeting option.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -22692,16 +22210,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.targetingTypes.targetingOptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Required. The Advertiser this request is being made in the context of.
-     * @param {string} params.targetingOptionId Required. The ID of the of targeting option to retrieve.
-     * @param {string} params.targetingType Required. The type of targeting option to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
@@ -22775,7 +22289,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$TargetingOption>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingOption>(parameters);
@@ -22783,9 +22297,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.targetingTypes.targetingOptions.list
-     * @desc Lists targeting options of a given type.
+     * Lists targeting options of a given type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -22811,7 +22325,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.targetingTypes.targetingOptions.list({
      *     // Required. The Advertiser this request is being made in the context of.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `carrier_and_isp_details.type` - `geo_region_details.geo_region_type` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geo_region_details.geo_region_type="GEO_REGION_TYPE_COUNTRY" OR geo_region_details.geo_region_type="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrier_and_isp_details.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
+     *     // Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be "=" (equal sign). * Supported fields: - `carrierAndIspDetails.type` - `geoRegionDetails.geoRegionType` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
      *     orderBy: 'placeholder-value',
@@ -22836,19 +22350,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.targetingTypes.targetingOptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Required. The Advertiser this request is being made in the context of.
-     * @param {string=} params.filter Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `carrier_and_isp_details.type` - `geo_region_details.geo_region_type` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geo_region_details.geo_region_type="GEO_REGION_TYPE_COUNTRY" OR geo_region_details.geo_region_type="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrier_and_isp_details.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
-     * @param {string} params.targetingType Required. The type of targeting option to be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
@@ -22928,7 +22435,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTargetingOptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTargetingOptionsResponse>(
@@ -22960,7 +22467,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `carrier_and_isp_details.type` - `geo_region_details.geo_region_type` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geo_region_details.geo_region_type="GEO_REGION_TYPE_COUNTRY" OR geo_region_details.geo_region_type="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrier_and_isp_details.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be "=" (equal sign). * Supported fields: - `carrierAndIspDetails.type` - `geoRegionDetails.geoRegionType` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -22988,9 +22495,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.bulkEditAssignedUserRoles
-     * @desc Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles.
+     * Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23039,15 +22546,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.bulkEditAssignedUserRoles
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Required. The ID of the user to which the assigned user roles belong.
-     * @param {().BulkEditAssignedUserRolesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     bulkEditAssignedUserRoles(
       params: Params$Resource$Users$Bulkeditassigneduserroles,
@@ -23127,7 +22631,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
@@ -23137,9 +22641,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.create
-     * @desc Creates a new user. Returns the newly created user if successful.
+     * Creates a new user. Returns the newly created user if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23192,14 +22696,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Create,
@@ -23269,7 +22771,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -23277,9 +22779,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.delete
-     * @desc Deletes a user.
+     * Deletes a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23317,14 +22819,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Required. The ID of the user to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Delete,
@@ -23397,7 +22897,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -23405,9 +22905,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.get
-     * @desc Gets a user.
+     * Gets a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23451,14 +22951,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Required. The ID of the user to fetch.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Get,
@@ -23531,7 +23029,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -23539,9 +23037,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.list
-     * @desc Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other.
+     * Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23565,7 +23063,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.users.list({
-     *     // Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -23588,17 +23086,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$List,
@@ -23671,7 +23164,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUsersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUsersResponse>(parameters);
@@ -23679,9 +23172,9 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * displayvideo.users.patch
-     * @desc Updates an existing user. Returns the updated user if successful.
+     * Updates an existing user. Returns the updated user if successful.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -23739,16 +23232,12 @@ export namespace displayvideo_v1 {
      *   throw e;
      * });
      *
-     * @alias displayvideo.users.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.updateMask Required. The mask to control which fields to update.
-     * @param {string} params.userId Output only. The unique ID of the user. Assigned by the system.
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Patch,
@@ -23821,7 +23310,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -23861,7 +23350,7 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     * Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**

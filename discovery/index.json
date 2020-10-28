@@ -209,7 +209,7 @@
       "name": "admob",
       "version": "v1",
       "title": "AdMob API",
-      "description": "The Google AdMob API lets you programmatically get reports on earnings.",
+      "description": "The AdMob API allows publishers to programmatically get information about their AdMob account.",
       "discoveryRestUrl": "https://admob.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -269,14 +269,13 @@
       "name": "analytics",
       "version": "v3",
       "title": "Google Analytics API",
-      "description": "Views and manages your Google Analytics data.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/analytics/v3/rest",
-      "discoveryLink": "./apis/analytics/v3/rest",
+      "description": "The Analytics API provides access to Analytics configuration and report data.",
+      "discoveryRestUrl": "https://analytics.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/analytics-16.png",
-        "x32": "https://www.google.com/images/icons/product/analytics-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/analytics/",
+      "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
       "preferred": true
     },
     {
@@ -487,6 +486,21 @@
       },
       "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
       "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "area120tables:v1alpha1",
+      "name": "area120tables",
+      "version": "v1alpha1",
+      "title": "Area120 Tables API",
+      "description": "",
+      "discoveryRestUrl": "https://area120tables.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://tables.area120.google.com",
+      "preferred": true
     },
     {
       "kind": "discovery#directoryItem",
@@ -748,15 +762,14 @@
       "id": "calendar:v3",
       "name": "calendar",
       "version": "v3",
-      "title": "Calendar API",
-      "description": "Manipulates events and other calendar data.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
-      "discoveryLink": "./apis/calendar/v3/rest",
+      "title": "Google Calendar API",
+      "description": "The Google Calendar API lets you manage your calendars and events.",
+      "discoveryRestUrl": "https://calendar-json.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "http://www.google.com/images/icons/product/calendar-16.png",
-        "x32": "http://www.google.com/images/icons/product/calendar-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/google-apps/calendar/firstapp",
+      "documentationLink": "http://code.google.com/apis/calendar/v3/",
       "preferred": true
     },
     {
@@ -1458,14 +1471,13 @@
       "name": "content",
       "version": "v2",
       "title": "Content API for Shopping",
-      "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest",
-      "discoveryLink": "./apis/content/v2/rest",
+      "description": "Manage your product listings and accounts for Google Shopping",
+      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/shopping-content",
+      "documentationLink": "https://developers.google.com/shopping-content/v2/",
       "preferred": false
     },
     {
@@ -1474,14 +1486,13 @@
       "name": "content",
       "version": "v2.1",
       "title": "Content API for Shopping",
-      "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/content/v2.1/rest",
-      "discoveryLink": "./apis/content/v2.1/rest",
+      "description": "Manage your product listings and accounts for Google Shopping",
+      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2.1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/shopping-content",
+      "documentationLink": "https://developers.google.com/shopping-content/v2/",
       "preferred": true
     },
     {
@@ -1871,7 +1882,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://developers.google.com/cloud-dns",
+      "documentationLink": "https://cloud.google.com/dns/docs",
       "preferred": true
     },
     {
@@ -1886,7 +1897,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://developers.google.com/cloud-dns",
+      "documentationLink": "https://cloud.google.com/dns/docs",
       "preferred": false
     },
     {
@@ -1933,6 +1944,36 @@
       },
       "documentationLink": "https://cloud.google.com/document-ai/docs/",
       "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "domains:v1alpha2",
+      "name": "domains",
+      "version": "v1alpha2",
+      "title": "Cloud Domains API",
+      "description": "Enables management and configuration of domain names.",
+      "discoveryRestUrl": "https://domains.googleapis.com/$discovery/rest?version=v1alpha2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/domains/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "domains:v1beta1",
+      "name": "domains",
+      "version": "v1beta1",
+      "title": "Cloud Domains API",
+      "description": "Enables management and configuration of domain names.",
+      "discoveryRestUrl": "https://domains.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/domains/",
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -2039,6 +2080,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/drive/activity/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "eventarc:v1beta1",
+      "name": "eventarc",
+      "version": "v1beta1",
+      "title": "Eventarc API",
+      "description": "",
+      "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/eventarc",
       "preferred": true
     },
     {
@@ -2497,7 +2553,7 @@
       "name": "iam",
       "version": "v1",
       "title": "Identity and Access Management (IAM) API",
-      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. *Note:* This API is tied to the IAM service account credentials API </iam/docs/reference/credentials/rest> (iamcredentials.googleapis.com). Enabling or disabling this API will also enable or disable the IAM service account credentials API.",
+      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
       "discoveryRestUrl": "https://iam.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2512,7 +2568,7 @@
       "name": "iamcredentials",
       "version": "v1",
       "title": "IAM Service Account Credentials API",
-      "description": "Creates short-lived credentials for impersonating IAM service accounts. *Note:* This API is tied to the IAM API </iam/docs/reference/rest> ( iam.googleapis.com). Enabling or disabling this API will also enable or disable the IAM API.",
+      "description": "Creates short-lived credentials for impersonating IAM service accounts. To enable this API, you must enable the IAM API (iam.googleapis.com).",
       "discoveryRestUrl": "https://iamcredentials.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2929,6 +2985,22 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "oauth2:v2",
+      "name": "oauth2",
+      "version": "v2",
+      "title": "Google OAuth2 API",
+      "description": "[Deprecated] Obtains end-user authorization grants for use with other Google APIs.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest",
+      "discoveryLink": "./apis/oauth2/v2/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/accounts/docs/OAuth2",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "osconfig:v1alpha2",
       "name": "osconfig",
       "version": "v1alpha2",
@@ -3120,6 +3192,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/poly/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "privateca:v1beta1",
+      "name": "privateca",
+      "version": "v1beta1",
+      "title": "Certificate Authority API",
+      "description": "",
+      "discoveryRestUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
       "preferred": true
     },
     {
@@ -4335,7 +4422,7 @@
       "name": "webmasters",
       "version": "v3",
       "title": "Search Console API",
-      "description": "View Google Search Console data for your verified sites.",
+      "description": "[Deprecated] View Google Search Console data for your verified sites.",
       "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/webmasters/v3/rest",
       "discoveryLink": "./apis/webmasters/v3/rest",
       "icons": {
@@ -4411,7 +4498,7 @@
       "name": "workflows",
       "version": "v1beta",
       "title": "Workflows API",
-      "description": "",
+      "description": "Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.",
       "discoveryRestUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4425,15 +4512,14 @@
       "id": "youtube:v3",
       "name": "youtube",
       "version": "v3",
-      "title": "YouTube Data API",
-      "description": "Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-      "discoveryLink": "./apis/youtube/v3/rest",
+      "title": "YouTube Data API v3",
+      "description": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
+      "discoveryRestUrl": "https://youtube.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/youtube-16.png",
-        "x32": "https://www.google.com/images/icons/product/youtube-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/youtube/v3",
+      "documentationLink": "https://developers.google.com/youtube/",
       "preferred": true
     },
     {

@@ -33,3 +33,14 @@ export function groupssettings<T = groupssettings_v1.Groupssettings>(
 
 const auth = new AuthPlus();
 export {auth};
+export {groupssettings_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

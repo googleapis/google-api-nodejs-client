@@ -104,14 +104,10 @@ export namespace cloudsearch_v1 {
    * Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudsearch = google.cloudsearch('v1');
-   *
-   * @namespace cloudsearch
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Cloudsearch
+   * ```
    */
   export class Cloudsearch {
     context: APIRequestContext;
@@ -144,7 +140,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$BooleanOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&lt;value&gt;* show results only where the value of the property named *isClosed* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property's name is *isClosed*, then queries like *closed:<value\>* show results only where the value of the property named *isClosed* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -246,7 +242,7 @@ export namespace cloudsearch_v1 {
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
-     * Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
+     * Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
     name?: string | null;
     /**
@@ -254,7 +250,7 @@ export namespace cloudsearch_v1 {
      */
     operationIds?: string[] | null;
     /**
-     * A short name or alias for the source. This value will be used to match the &#39;source&#39; operator. For example, if the short name is *&lt;value&gt;* then queries like *source:&lt;value&gt;* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
+     * A short name or alias for the source. This value will be used to match the 'source' operator. For example, if the short name is *<value\>* then queries like *source:<value\>* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with 'google' and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
      */
     shortName?: string | null;
   }
@@ -276,7 +272,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DataSourceRestriction {
     /**
-     * Filter options restricting the results. If multiple filters are present, they are grouped by object type before joining. Filters with the same object type are joined conjunctively, then the resulting expressions are joined disjunctively. The maximum number of elements is 20. NOTE: Suggest API supports only few filters at the moment: &quot;objecttype&quot;, &quot;type&quot; and &quot;mimetype&quot;. For now, schema specific filters cannot be used to filter suggestions.
+     * Filter options restricting the results. If multiple filters are present, they are grouped by object type before joining. Filters with the same object type are joined conjunctively, then the resulting expressions are joined disjunctively. The maximum number of elements is 20. NOTE: Suggest API supports only few filters at the moment: "objecttype", "type" and "mimetype". For now, schema specific filters cannot be used to filter suggestions.
      */
     filterOptions?: Schema$FilterOptions[];
     /**
@@ -306,15 +302,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DateOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&lt;value&gt;* show results only where the value of the property named *closeDate* is later than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property's name is *closeDate*, then queries like *closedafter:<value\>* show results only where the value of the property named *closeDate* is later than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&lt;value&gt;* show results only where the value of the property named *closeDate* is earlier than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property's name is *closeDate*, then queries like *closedbefore:<value\>* show results only where the value of the property named *closeDate* is earlier than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&lt;value&gt;* show results only where the value of the *closeDate* property matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:<value\>* show results only where the value of the *closeDate* property matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -344,7 +340,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$DeleteQueueItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -390,31 +386,31 @@ export namespace cloudsearch_v1 {
     values?: number[] | null;
   }
   /**
-   * Drive follow-up search restricts (e.g. &quot;followup:suggestions&quot;).
+   * Drive follow-up search restricts (e.g. "followup:suggestions").
    */
   export interface Schema$DriveFollowUpRestrict {
     type?: string | null;
   }
   /**
-   * Drive location search restricts (e.g. &quot;is:starred&quot;).
+   * Drive location search restricts (e.g. "is:starred").
    */
   export interface Schema$DriveLocationRestrict {
     type?: string | null;
   }
   /**
-   * Drive mime-type search restricts (e.g. &quot;type:pdf&quot;).
+   * Drive mime-type search restricts (e.g. "type:pdf").
    */
   export interface Schema$DriveMimeTypeRestrict {
     type?: string | null;
   }
   /**
-   * The time span search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
+   * The time span search restrict (e.g. "after:2017-09-11 before:2017-09-12").
    */
   export interface Schema$DriveTimeSpanRestrict {
     type?: string | null;
   }
   /**
-   * A person&#39;s email address.
+   * A person's email address.
    */
   export interface Schema$EmailAddress {
     /**
@@ -423,11 +419,11 @@ export namespace cloudsearch_v1 {
     emailAddress?: string | null;
   }
   /**
-   * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* returns items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property&#39;s value, with the query *priority:p0*.
+   * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* returns items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property's value, with the query *priority:p0*.
    */
   export interface Schema$EnumOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&lt;value&gt;* show results only where the value of the property named *priorityVal* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property's name is *priorityVal*, then queries like *priority:<value\>* show results only where the value of the property named *priorityVal* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -514,7 +510,7 @@ export namespace cloudsearch_v1 {
      */
     operatorName?: string | null;
     /**
-     * Source name to facet on. Format: datasources/{source_id} If empty, all data sources will be used.
+     * Source name to facet on. Format: datasources/{source_id\} If empty, all data sources will be used.
      */
     sourceName?: string | null;
   }
@@ -631,7 +627,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$HtmlOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&lt;value&gt;* show results only where the value of the property named *subjectLine* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator return all items where *&lt;value&gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property's name is *subjectLine*, then queries like *subject:<value\>* show results only where the value of the property named *subjectLine* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator return all items where *<value\>* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -665,7 +661,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$IndexItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -674,7 +670,7 @@ export namespace cloudsearch_v1 {
     debugOptions?: Schema$DebugOptions;
     indexItemOptions?: Schema$IndexItemOptions;
     /**
-     * Name of the item. Format: datasources/{source_id}/items/{item_id}
+     * Name of the item. Format: datasources/{source_id\}/items/{item_id\}
      */
     item?: Schema$Item;
     /**
@@ -687,15 +683,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$IntegerOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&lt;value&gt;* show results only where the value of the property named *priorityVal* is greater than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property's name is *priorityVal*, then queries like *priorityabove:<value\>* show results only where the value of the property named *priorityVal* is greater than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&lt;value&gt;* show results only where the value of the property named *priorityVal* is less than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property's name is *priorityVal*, then queries like *prioritybelow:<value\>* show results only where the value of the property named *priorityVal* is less than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&lt;value&gt;* show results only where the value of the property named *priorityVal* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property's name is *priorityVal*, then queries like *priority:<value\>* show results only where the value of the property named *priorityVal* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -761,7 +757,7 @@ export namespace cloudsearch_v1 {
      */
     metadata?: Schema$ItemMetadata;
     /**
-     * Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
+     * Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string | null;
     /**
@@ -781,7 +777,7 @@ export namespace cloudsearch_v1 {
      */
     structuredData?: Schema$ItemStructuredData;
     /**
-     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won&#39;t index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      */
     version?: string | null;
   }
@@ -847,7 +843,7 @@ export namespace cloudsearch_v1 {
      */
     containerName?: string | null;
     /**
-     * The BCP-47 language code for the item, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. The maximum length is 32 characters.
+     * The BCP-47 language code for the item, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. The maximum length is 32 characters.
      */
     contentLanguage?: string | null;
     /**
@@ -871,7 +867,7 @@ export namespace cloudsearch_v1 {
      */
     mimeType?: string | null;
     /**
-     * The type of the item. This should correspond to the name of an object definition in the schema registered for the data source. For example, if the schema for the data source contains an object definition with name &#39;document&#39;, then item indexing requests for objects of that type should set objectType to &#39;document&#39;. The maximum length is 256 characters.
+     * The type of the item. This should correspond to the name of an object definition in the schema registered for the data source. For example, if the schema for the data source contains an object definition with name 'document', then item indexing requests for objects of that type should set objectType to 'document'. The maximum length is 256 characters.
      */
     objectType?: string | null;
     /**
@@ -892,7 +888,7 @@ export namespace cloudsearch_v1 {
     updateTime?: string | null;
   }
   /**
-   * This contains item&#39;s status and any errors.
+   * This contains item's status and any errors.
    */
   export interface Schema$ItemStatus {
     /**
@@ -1045,11 +1041,11 @@ export namespace cloudsearch_v1 {
     properties?: Schema$DisplayedProperty[];
   }
   /**
-   * A person&#39;s name.
+   * A person's name.
    */
   export interface Schema$Name {
     /**
-     * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the Accept-Language HTTP header.
+     * The read-only display name formatted according to the locale specified by the viewer's account or the Accept-Language HTTP header.
      */
     displayName?: string | null;
   }
@@ -1097,7 +1093,7 @@ export namespace cloudsearch_v1 {
      */
     metalines?: Schema$Metaline[];
     /**
-     * The user friendly label to display in the search result to indicate the type of the item. This is OPTIONAL; if not provided, an object label isn&#39;t displayed on the context line of the search results. The maximum length is 64 characters.
+     * The user friendly label to display in the search result to indicate the type of the item. This is OPTIONAL; if not provided, an object label isn't displayed on the context line of the search results. The maximum length is 64 characters.
      */
     objectDisplayLabel?: string | null;
   }
@@ -1146,7 +1142,7 @@ export namespace cloudsearch_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -1168,7 +1164,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Person {
     /**
-     * The person&#39;s email addresses
+     * The person's email addresses
      */
     emailAddresses?: Schema$EmailAddress[];
     /**
@@ -1180,16 +1176,16 @@ export namespace cloudsearch_v1 {
      */
     obfuscatedId?: string | null;
     /**
-     * The person&#39;s name
+     * The person's name
      */
     personNames?: Schema$Name[];
     /**
-     * A person&#39;s read-only photo. A picture shown next to the person&#39;s name to help others recognize the person in search results.
+     * A person's read-only photo. A picture shown next to the person's name to help others recognize the person in search results.
      */
     photos?: Schema$Photo[];
   }
   /**
-   * A person&#39;s photo.
+   * A person's photo.
    */
   export interface Schema$Photo {
     /**
@@ -1199,7 +1195,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PollItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -1211,7 +1207,7 @@ export namespace cloudsearch_v1 {
      */
     limit?: number | null;
     /**
-     * Queue name to fetch items from. If unspecified, PollItems will fetch from &#39;default&#39; queue. The maximum length is 100 characters.
+     * Queue name to fetch items from. If unspecified, PollItems will fetch from 'default' queue. The maximum length is 100 characters.
      */
     queue?: string | null;
     /**
@@ -1230,7 +1226,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Principal {
     /**
-     * This principal is a group identified using an external identity. The name field must specify the group resource name with this format: identitysources/{source_id}/groups/{ID}
+     * This principal is a group identified using an external identity. The name field must specify the group resource name with this format: identitysources/{source_id\}/groups/{ID\}
      */
     groupResourceName?: string | null;
     /**
@@ -1238,7 +1234,7 @@ export namespace cloudsearch_v1 {
      */
     gsuitePrincipal?: Schema$GSuitePrincipal;
     /**
-     * This principal is a user identified using an external identity. The name field must specify the user resource name with this format: identitysources/{source_id}/users/{ID}
+     * This principal is a user identified using an external identity. The name field must specify the user resource name with this format: identitysources/{source_id\}/users/{ID\}
      */
     userResourceName?: string | null;
   }
@@ -1263,7 +1259,7 @@ export namespace cloudsearch_v1 {
     booleanPropertyOptions?: Schema$BooleanPropertyOptions;
     datePropertyOptions?: Schema$DatePropertyOptions;
     /**
-     * Options that determine how the property is displayed in the Cloud Search results page if it is specified to be displayed in the object&#39;s display options .
+     * Options that determine how the property is displayed in the Cloud Search results page if it is specified to be displayed in the object's display options .
      */
     displayOptions?: Schema$PropertyDisplayOptions;
     doublePropertyOptions?: Schema$DoublePropertyOptions;
@@ -1307,7 +1303,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$PropertyDisplayOptions {
     /**
-     * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user sees &#39;priority : 1&#39; in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 64 characters.
+     * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is '1', the value by itself may not be useful context for the user. If the display name given was 'priority', then the user sees 'priority : 1' in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 64 characters.
      */
     displayLabel?: string | null;
   }
@@ -1316,11 +1312,11 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$PushItem {
     /**
-     * Content hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
+     * Content hash of the item according to the repository. If specified, this is used to determine how to modify this item's status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
     contentHash?: string | null;
     /**
-     * Metadata hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
+     * Metadata hash of the item according to the repository. If specified, this is used to determine how to modify this item's status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
     metadataHash?: string | null;
     /**
@@ -1336,7 +1332,7 @@ export namespace cloudsearch_v1 {
      */
     repositoryError?: Schema$RepositoryError;
     /**
-     * Structured data hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
+     * Structured data hash of the item according to the repository. If specified, this is used to determine how to modify this item's status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
     structuredDataHash?: string | null;
     /**
@@ -1346,7 +1342,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PushItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -1368,7 +1364,7 @@ export namespace cloudsearch_v1 {
   export interface Schema$QueryInterpretation {
     interpretationType?: string | null;
     /**
-     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
+     * The interpretation of the query used in search. For example, queries with natural language intent like "email from john" will be interpreted as "from:john source:mail". This field will not be filled when the reason is NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
      */
     interpretedQuery?: string | null;
     /**
@@ -1464,7 +1460,7 @@ export namespace cloudsearch_v1 {
      */
     operators?: Schema$QueryOperator[];
     /**
-     * A short name or alias for the source. This value can be used with the &#39;source&#39; operator.
+     * A short name or alias for the source. This value can be used with the 'source' operator.
      */
     shortName?: string | null;
     /**
@@ -1502,7 +1498,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user&#39;s language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     languageCode?: string | null;
     /**
@@ -1510,7 +1506,7 @@ export namespace cloudsearch_v1 {
      */
     searchApplicationId?: string | null;
     /**
-     * Current user&#39;s time zone id, such as &quot;America/Los_Angeles&quot; or &quot;Australia/Sydney&quot;. These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
+     * Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      */
     timeZone?: string | null;
   }
@@ -1544,7 +1540,7 @@ export namespace cloudsearch_v1 {
     driveMimeTypeRestrict?: Schema$DriveMimeTypeRestrict;
     driveTimeSpanRestrict?: Schema$DriveTimeSpanRestrict;
     /**
-     * The search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
+     * The search restrict (e.g. "after:2017-09-11 before:2017-09-12").
      */
     searchOperator?: string | null;
   }
@@ -1652,7 +1648,7 @@ export namespace cloudsearch_v1 {
      */
     displayName?: string | null;
     /**
-     * Name of the Search Application. Format: searchapplications/{application_id}.
+     * Name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string | null;
     /**
@@ -1841,7 +1837,7 @@ export namespace cloudsearch_v1 {
      */
     title?: string | null;
     /**
-     * The URL of the search result. The URL contains a Google redirect to the actual item. This URL is signed and shouldn&#39;t be changed.
+     * The URL of the search result. The URL contains a Google redirect to the actual item. This URL is signed and shouldn't be changed.
      */
     url?: string | null;
   }
@@ -1899,7 +1895,7 @@ export namespace cloudsearch_v1 {
     source?: Schema$Source;
   }
   /**
-   * Set search results crowding limits. Crowding is a situation in which multiple results from the same source or host &quot;crowd out&quot; other results, diminishing the quality of search for users. To foster better search quality and source diversity in search results, you can set a condition to reduce repetitive results by source.
+   * Set search results crowding limits. Crowding is a situation in which multiple results from the same source or host "crowd out" other results, diminishing the quality of search for users. To foster better search quality and source diversity in search results, you can set a condition to reduce repetitive results by source.
    */
   export interface Schema$SourceCrowdingConfig {
     /**
@@ -1952,7 +1948,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$StartUploadItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -2004,7 +2000,7 @@ export namespace cloudsearch_v1 {
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
-     * Partial query for which autocomplete suggestions will be shown. For example, if the query is &quot;sea&quot;, then the server might return &quot;season&quot;, &quot;search&quot;, &quot;seagull&quot; and so on.
+     * Partial query for which autocomplete suggestions will be shown. For example, if the query is "sea", then the server might return "season", "search", "seagull" and so on.
      */
     query?: string | null;
     /**
@@ -2047,11 +2043,11 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TextOperatorOptions {
     /**
-     * If true, the text value is tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is &quot;genre&quot; and the value is &quot;science-fiction&quot; the query restrictions &quot;genre:science&quot; and &quot;genre:fiction&quot; doesn&#39;t match the item; &quot;genre:science-fiction&quot; does. Value matching is case-sensitive and does not remove special characters. If false, the text is tokenized. For example, if the value is &quot;science-fiction&quot; the queries &quot;genre:science&quot; and &quot;genre:fiction&quot; matches the item.
+     * If true, the text value is tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is "genre" and the value is "science-fiction" the query restrictions "genre:science" and "genre:fiction" doesn't match the item; "genre:science-fiction" does. Value matching is case-sensitive and does not remove special characters. If false, the text is tokenized. For example, if the value is "science-fiction" the queries "genre:science" and "genre:fiction" matches the item.
      */
     exactMatchWithOperator?: boolean | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&lt;value&gt;* show results only where the value of the property named *subjectLine* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property's name is *subjectLine*, then queries like *subject:<value\>* show results only where the value of the property named *subjectLine* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -2082,15 +2078,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TimestampOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&lt;value&gt;* show results only where the value of the property named *closeDate* is later than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property's name is *closeDate*, then queries like *closedafter:<value\>* show results only where the value of the property named *closeDate* is later than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&lt;value&gt;* show results only where the value of the property named *closeDate* is earlier than *&lt;value&gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property's name is *closeDate*, then queries like *closedbefore:<value\>* show results only where the value of the property named *closeDate* is earlier than *<value\>*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&lt;value&gt;* show results only where the value of the property named *closeDate* matches *&lt;value&gt;*. By contrast, a search that uses the same *&lt;value&gt;* without an operator returns all items where *&lt;value&gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property's name is *closeDate*, then queries like *closedon:<value\>* show results only where the value of the property named *closeDate* matches *<value\>*. By contrast, a search that uses the same *<value\>* without an operator returns all items where *<value\>* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -2121,7 +2117,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$UnreserveItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -2216,9 +2212,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.debug.datasources.items.checkAccess
-     * @desc Checks whether an item is accessible by specified principal. **Note:** This API requires an admin account to execute.
+     * Checks whether an item is accessible by specified principal. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -2247,7 +2243,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.debug.datasources.items.checkAccess({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Item name, format: datasources/{source_id}/items/{item_id}
+     *     // Item name, format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -2273,16 +2269,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.debug.datasources.items.checkAccess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Item name, format: datasources/{source_id}/items/{item_id}
-     * @param {().Principal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     checkAccess(
       params: Params$Resource$Debug$Datasources$Items$Checkaccess,
@@ -2361,7 +2353,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckAccessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckAccessResponse>(parameters);
@@ -2369,9 +2361,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.debug.datasources.items.searchByViewUrl
-     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request. **Note:** This API requires an admin account to execute.
+     * Fetches the item whose viewUrl exactly matches that of the URL provided in the request. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -2398,7 +2390,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.searchByViewUrl({
-     *     // Source name, format: datasources/{source_id}
+     *     // Source name, format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -2425,15 +2417,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.debug.datasources.items.searchByViewUrl
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Source name, format: datasources/{source_id}
-     * @param {().SearchItemsByViewUrlRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     searchByViewUrl(
       params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
@@ -2514,7 +2503,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
@@ -2531,7 +2520,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Item name, format: datasources/{source_id}/items/{item_id}
+     * Item name, format: datasources/{source_id\}/items/{item_id\}
      */
     name?: string;
 
@@ -2543,7 +2532,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
     extends StandardParameters {
     /**
-     * Source name, format: datasources/{source_id}
+     * Source name, format: datasources/{source_id\}
      */
     name?: string;
 
@@ -2560,9 +2549,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.debug.datasources.items.unmappedids.list
-     * @desc List all unmapped identities for a specific item. **Note:** This API requires an admin account to execute.
+     * List all unmapped identities for a specific item. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -2595,7 +2584,7 @@ export namespace cloudsearch_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the item, in the following format: datasources/{source_id}/items/{ID}
+     *     // The name of the item, in the following format: datasources/{source_id\}/items/{ID\}
      *     parent: 'datasources/my-datasource/items/my-item',
      *   });
      *   console.log(res.data);
@@ -2612,17 +2601,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.debug.datasources.items.unmappedids.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The name of the item, in the following format: datasources/{source_id}/items/{ID}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
@@ -2703,7 +2687,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2728,7 +2712,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the item, in the following format: datasources/{source_id}/items/{ID}
+     * The name of the item, in the following format: datasources/{source_id\}/items/{ID\}
      */
     parent?: string;
   }
@@ -2753,9 +2737,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.debug.identitysources.items.listForunmappedidentity
-     * @desc Lists names of items associated with an unmapped identity. **Note:** This API requires an admin account to execute.
+     * Lists names of items associated with an unmapped identity. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -2791,7 +2775,7 @@ export namespace cloudsearch_v1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the identity source, in the following format: identitysources/{source_id}}
+     *       // The name of the identity source, in the following format: identitysources/{source_id\}\}
      *       parent: 'identitysources/my-identitysource',
      *
      *       userResourceName: 'placeholder-value',
@@ -2811,19 +2795,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.debug.identitysources.items.listForunmappedidentity
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.groupResourceName
-     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The name of the identity source, in the following format: identitysources/{source_id}}
-     * @param {string=} params.userResourceName
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
@@ -2909,7 +2886,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -2938,7 +2915,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the identity source, in the following format: identitysources/{source_id}}
+     * The name of the identity source, in the following format: identitysources/{source_id\}\}
      */
     parent?: string;
     /**
@@ -2954,9 +2931,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.debug.identitysources.unmappedids.list
-     * @desc Lists unmapped user identities for an identity source. **Note:** This API requires an admin account to execute.
+     * Lists unmapped user identities for an identity source. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -2989,7 +2966,7 @@ export namespace cloudsearch_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the identity source, in the following format: identitysources/{source_id}
+     *     // The name of the identity source, in the following format: identitysources/{source_id\}
      *     parent: 'identitysources/my-identitysource',
      *     // Limit users selection to this status.
      *     resolutionStatusCode: 'placeholder-value',
@@ -3008,18 +2985,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.debug.identitysources.unmappedids.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The name of the identity source, in the following format: identitysources/{source_id}
-     * @param {string=} params.resolutionStatusCode Limit users selection to this status.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Debug$Identitysources$Unmappedids$List,
@@ -3100,7 +3071,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -3125,7 +3096,7 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the identity source, in the following format: identitysources/{source_id}
+     * The name of the identity source, in the following format: identitysources/{source_id\}
      */
     parent?: string;
     /**
@@ -3152,9 +3123,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.deleteSchema
-     * @desc Deletes the schema of a data source. **Note:** This API requires an admin or service account to execute.
+     * Deletes the schema of a data source. **Note:** This API requires an admin or service account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3184,7 +3155,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.deleteSchema({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to delete Schema. Format: datasources/{source_id}
+     *     // Name of the data source to delete Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3204,15 +3175,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.deleteSchema
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the data source to delete Schema. Format: datasources/{source_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteSchema(
       params: Params$Resource$Indexing$Datasources$Deleteschema,
@@ -3286,7 +3254,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3294,9 +3262,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.getSchema
-     * @desc Gets the schema of a data source. **Note:** This API requires an admin or service account to execute.
+     * Gets the schema of a data source. **Note:** This API requires an admin or service account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3326,7 +3294,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.getSchema({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to get Schema. Format: datasources/{source_id}
+     *     // Name of the data source to get Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3343,15 +3311,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.getSchema
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the data source to get Schema. Format: datasources/{source_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSchema(
       params: Params$Resource$Indexing$Datasources$Getschema,
@@ -3425,7 +3390,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -3433,9 +3398,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.updateSchema
-     * @desc Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema. **Note:** This API requires an admin or service account to execute.
+     * Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema. **Note:** This API requires an admin or service account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3463,7 +3428,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.updateSchema({
-     *     // Name of the data source to update Schema. Format: datasources/{source_id}
+     *     // Name of the data source to update Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -3493,15 +3458,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.updateSchema
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the data source to update Schema. Format: datasources/{source_id}
-     * @param {().UpdateSchemaRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSchema(
       params: Params$Resource$Indexing$Datasources$Updateschema,
@@ -3575,7 +3537,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3590,7 +3552,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to delete Schema. Format: datasources/{source_id}
+     * Name of the data source to delete Schema. Format: datasources/{source_id\}
      */
     name?: string;
   }
@@ -3601,14 +3563,14 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to get Schema. Format: datasources/{source_id}
+     * Name of the data source to get Schema. Format: datasources/{source_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Updateschema
     extends StandardParameters {
     /**
-     * Name of the data source to update Schema. Format: datasources/{source_id}
+     * Name of the data source to update Schema. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -3625,9 +3587,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.delete
-     * @desc Deletes Item resource for the specified resource name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Deletes Item resource for the specified resource name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3654,13 +3616,13 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.delete({
-     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // Required. The RequestMode for this request.
      *     mode: 'placeholder-value',
-     *     // Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
+     *     // Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
      *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      *     version: 'placeholder-value',
@@ -3682,18 +3644,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.mode Required. The RequestMode for this request.
-     * @param {string} params.name Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
-     * @param {string=} params.version Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Indexing$Datasources$Items$Delete,
@@ -3767,7 +3723,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3775,9 +3731,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.deleteQueueItems
-     * @desc Deletes all items in a queue. This method is useful for deleting stale items. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Deletes all items in a queue. This method is useful for deleting stale items. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3804,7 +3760,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
-     *     // Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
+     *     // Name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -3834,15 +3790,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.deleteQueueItems
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
-     * @param {().DeleteQueueItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteQueueItems(
       params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
@@ -3915,7 +3868,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3923,9 +3876,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.get
-     * @desc Gets Item resource by item name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Gets Item resource by item name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -3952,11 +3905,11 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.get({
-     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
+     *     // Name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
      *   });
      *   console.log(res.data);
@@ -3981,16 +3934,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Indexing$Datasources$Items$Get,
@@ -4064,7 +4013,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Item>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
@@ -4072,9 +4021,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.index
-     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates. Fields with no provided values are cleared out in the Cloud Search index. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates. Fields with no provided values are cleared out in the Cloud Search index. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4101,7 +4050,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.index({
-     *     // Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
+     *     // Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4133,15 +4082,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.index
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
-     * @param {().IndexItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     index(
       params: Params$Resource$Indexing$Datasources$Items$Index,
@@ -4215,7 +4161,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4223,9 +4169,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.list
-     * @desc Lists all or a subset of Item resources. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Lists all or a subset of Item resources. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4254,11 +4200,11 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.items.list({
      *     // When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
      *     brief: 'placeholder-value',
-     *     // Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the Data Source to list Items. Format: datasources/{source_id}
+     *     // Name of the Data Source to list Items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *     // Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
      *     pageSize: 'placeholder-value',
@@ -4279,19 +4225,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
-     * @param {string=} params.connectorName Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the Data Source to list Items. Format: datasources/{source_id}
-     * @param {integer=} params.pageSize Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Indexing$Datasources$Items$List,
@@ -4368,7 +4307,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListItemsResponse>(parameters);
@@ -4376,9 +4315,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.poll
-     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: ERROR MODIFIED NEW_ITEM ACCEPTED Reserving items ensures that polling from other threads cannot create overlapping sets. After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE. Items automatically become available (unreserved) after 4 hours even if no update or push method is called. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: ERROR MODIFIED NEW_ITEM ACCEPTED Reserving items ensures that polling from other threads cannot create overlapping sets. After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE. Items automatically become available (unreserved) after 4 hours even if no update or push method is called. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4405,7 +4344,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.poll({
-     *     // Name of the Data Source to poll items. Format: datasources/{source_id}
+     *     // Name of the Data Source to poll items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4433,15 +4372,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.poll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Data Source to poll items. Format: datasources/{source_id}
-     * @param {().PollItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     poll(
       params: Params$Resource$Indexing$Datasources$Items$Poll,
@@ -4518,7 +4454,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$PollItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PollItemsResponse>(parameters);
@@ -4526,9 +4462,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.push
-     * @desc Pushes an item onto a queue for later polling and updating. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Pushes an item onto a queue for later polling and updating. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4555,7 +4491,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.push({
-     *     // Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
+     *     // Name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4590,15 +4526,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.push
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
-     * @param {().PushItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     push(
       params: Params$Resource$Indexing$Datasources$Items$Push,
@@ -4672,7 +4605,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Item>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
@@ -4680,9 +4613,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.unreserve
-     * @desc Unreserves all items from a queue, making them all eligible to be polled. This method is useful for resetting the indexing queue after a connector has been restarted. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Unreserves all items from a queue, making them all eligible to be polled. This method is useful for resetting the indexing queue after a connector has been restarted. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4709,7 +4642,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.unreserve({
-     *     // Name of the Data Source to unreserve all items. Format: datasources/{source_id}
+     *     // Name of the Data Source to unreserve all items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4739,15 +4672,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.unreserve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Data Source to unreserve all items. Format: datasources/{source_id}
-     * @param {().UnreserveItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     unreserve(
       params: Params$Resource$Indexing$Datasources$Items$Unreserve,
@@ -4821,7 +4751,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4829,9 +4759,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.indexing.datasources.items.upload
-     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -4858,7 +4788,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.upload({
-     *     // Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
+     *     // Name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4883,15 +4813,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.indexing.datasources.items.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
-     * @param {().StartUploadItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Indexing$Datasources$Items$Upload,
@@ -4965,7 +4892,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$UploadItemRef>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadItemRef>(parameters);
@@ -4976,7 +4903,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Delete
     extends StandardParameters {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -4988,7 +4915,7 @@ export namespace cloudsearch_v1 {
      */
     mode?: string;
     /**
-     * Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
+     * Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      */
     name?: string;
     /**
@@ -4999,7 +4926,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
     extends StandardParameters {
     /**
-     * Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
+     * Name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5011,7 +4938,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Get
     extends StandardParameters {
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -5019,14 +4946,14 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
+     * Name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Items$Index
     extends StandardParameters {
     /**
-     * Name of the Item. Format: datasources/{source_id}/items/{item_id} This is a required field. The maximum length is 1536 characters.
+     * Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5042,7 +4969,7 @@ export namespace cloudsearch_v1 {
      */
     brief?: boolean;
     /**
-     * Name of connector making this call. Format: datasources/{source_id}/connectors/{ID}
+     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -5050,7 +4977,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the Data Source to list Items. Format: datasources/{source_id}
+     * Name of the Data Source to list Items. Format: datasources/{source_id\}
      */
     name?: string;
     /**
@@ -5065,7 +4992,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Poll
     extends StandardParameters {
     /**
-     * Name of the Data Source to poll items. Format: datasources/{source_id}
+     * Name of the Data Source to poll items. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5077,7 +5004,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Push
     extends StandardParameters {
     /**
-     * Name of the item to push into the indexing queue. Format: datasources/{source_id}/items/{ID} This is a required field. The maximum length is 1536 characters.
+     * Name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5089,7 +5016,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Unreserve
     extends StandardParameters {
     /**
-     * Name of the Data Source to unreserve all items. Format: datasources/{source_id}
+     * Name of the Data Source to unreserve all items. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5101,7 +5028,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Upload
     extends StandardParameters {
     /**
-     * Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
+     * Name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
      */
     name?: string;
 
@@ -5118,9 +5045,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.media.upload
-     * @desc Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.
+     * Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -5175,18 +5102,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.media.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Media$Upload,
@@ -5263,7 +5184,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Media>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Media>(parameters);
@@ -5307,9 +5228,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -5360,14 +5281,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -5437,7 +5356,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5459,9 +5378,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.operations.lro.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -5515,17 +5434,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.operations.lro.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$Lro$List,
@@ -5601,7 +5515,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -5638,9 +5552,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.query.search
-     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -5705,14 +5619,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.query.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SearchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Query$Search,
@@ -5782,7 +5694,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);
@@ -5790,9 +5702,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.query.suggest
-     * @desc Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -5842,14 +5754,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.query.suggest
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SuggestRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     suggest(
       params: Params$Resource$Query$Suggest,
@@ -5919,7 +5829,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SuggestResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SuggestResponse>(parameters);
@@ -5947,9 +5857,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.query.sources.list
-     * @desc Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6001,18 +5911,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.query.sources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken Number of sources to return in the response.
-     * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
-     * @param {string=} params.requestOptions.searchApplicationId The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
-     * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Query$Sources$List,
@@ -6088,7 +5992,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListQuerySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListQuerySourcesResponse>(parameters);
@@ -6140,9 +6044,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.datasources.create
-     * @desc Creates a datasource. **Note:** This API requires an admin account to execute.
+     * Creates a datasource. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6202,14 +6106,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.datasources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DataSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Settings$Datasources$Create,
@@ -6283,7 +6185,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6291,9 +6193,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.datasources.delete
-     * @desc Deletes a datasource. **Note:** This API requires an admin account to execute.
+     * Deletes a datasource. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6323,7 +6225,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.datasources.delete({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource. Format: datasources/{source_id}.
+     *     // Name of the datasource. Format: datasources/{source_id\}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -6343,15 +6245,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.datasources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the datasource. Format: datasources/{source_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Settings$Datasources$Delete,
@@ -6425,7 +6324,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6433,9 +6332,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.datasources.get
-     * @desc Gets a datasource. **Note:** This API requires an admin account to execute.
+     * Gets a datasource. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6465,7 +6364,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.datasources.get({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource resource. Format: datasources/{source_id}.
+     *     // Name of the datasource resource. Format: datasources/{source_id\}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -6488,15 +6387,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.datasources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Settings$Datasources$Get,
@@ -6570,7 +6466,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -6578,9 +6474,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.datasources.list
-     * @desc Lists datasources. **Note:** This API requires an admin account to execute.
+     * Lists datasources. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6629,16 +6525,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.datasources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {integer=} params.pageSize Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
-     * @param {string=} params.pageToken Starting index of the results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Settings$Datasources$List,
@@ -6717,7 +6609,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourceResponse>(parameters);
@@ -6725,9 +6617,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.datasources.update
-     * @desc Updates a datasource. **Note:** This API requires an admin account to execute.
+     * Updates a datasource. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -6755,7 +6647,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.update({
-     *     // Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
+     *     // Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -6784,15 +6676,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.datasources.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
-     * @param {().UpdateDataSourceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Settings$Datasources$Update,
@@ -6866,7 +6755,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6888,7 +6777,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the datasource. Format: datasources/{source_id}.
+     * Name of the datasource. Format: datasources/{source_id\}.
      */
     name?: string;
   }
@@ -6899,7 +6788,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the datasource resource. Format: datasources/{source_id}.
+     * Name of the datasource resource. Format: datasources/{source_id\}.
      */
     name?: string;
   }
@@ -6921,7 +6810,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Update
     extends StandardParameters {
     /**
-     * Name of the datasource resource. Format: datasources/{source_id}. The name is ignored when creating a datasource.
+     * Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
     name?: string;
 
@@ -6938,9 +6827,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.create
-     * @desc Creates a search application. **Note:** This API requires an admin account to execute.
+     * Creates a search application. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7000,14 +6889,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SearchApplication} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Settings$Searchapplications$Create,
@@ -7081,7 +6968,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7089,9 +6976,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.delete
-     * @desc Deletes a search application. **Note:** This API requires an admin account to execute.
+     * Deletes a search application. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7121,7 +7008,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.searchapplications.delete({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // The name of the search application to be deleted. Format: applications/{application_id}.
+     *     // The name of the search application to be deleted. Format: applications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7141,15 +7028,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name The name of the search application to be deleted. Format: applications/{application_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Settings$Searchapplications$Delete,
@@ -7223,7 +7107,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7231,9 +7115,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.get
-     * @desc Gets the specified search application. **Note:** This API requires an admin account to execute.
+     * Gets the specified search application. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7263,7 +7147,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.searchapplications.get({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the search application. Format: searchapplications/{application_id}.
+     *     // Name of the search application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7286,15 +7170,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the search application. Format: searchapplications/{application_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Settings$Searchapplications$Get,
@@ -7371,7 +7252,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchApplication>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchApplication>(parameters);
@@ -7379,9 +7260,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.list
-     * @desc Lists all search applications. **Note:** This API requires an admin account to execute.
+     * Lists all search applications. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7430,16 +7311,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. The default value is 10
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Settings$Searchapplications$List,
@@ -7520,7 +7397,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSearchApplicationsResponse>(
@@ -7530,9 +7407,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.reset
-     * @desc Resets a search application to default settings. This will return an empty response. **Note:** This API requires an admin account to execute.
+     * Resets a search application to default settings. This will return an empty response. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7560,7 +7437,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.reset({
-     *     // The name of the search application to be reset. Format: applications/{application_id}.
+     *     // The name of the search application to be reset. Format: applications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *
      *     // Request body metadata
@@ -7588,15 +7465,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.reset
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the search application to be reset. Format: applications/{application_id}.
-     * @param {().ResetSearchApplicationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reset(
       params: Params$Resource$Settings$Searchapplications$Reset,
@@ -7670,7 +7544,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7678,9 +7552,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.settings.searchapplications.update
-     * @desc Updates a search application. **Note:** This API requires an admin account to execute.
+     * Updates a search application. **Note:** This API requires an admin account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7708,7 +7582,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.update({
-     *     // Name of the Search Application. Format: searchapplications/{application_id}.
+     *     // Name of the Search Application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *
      *     // Request body metadata
@@ -7743,15 +7617,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.settings.searchapplications.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Search Application. Format: searchapplications/{application_id}.
-     * @param {().SearchApplication} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Settings$Searchapplications$Update,
@@ -7825,7 +7696,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7847,7 +7718,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * The name of the search application to be deleted. Format: applications/{application_id}.
+     * The name of the search application to be deleted. Format: applications/{application_id\}.
      */
     name?: string;
   }
@@ -7858,7 +7729,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. Format: searchapplications/{application_id}.
+     * Name of the search application. Format: searchapplications/{application_id\}.
      */
     name?: string;
   }
@@ -7880,7 +7751,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Reset
     extends StandardParameters {
     /**
-     * The name of the search application to be reset. Format: applications/{application_id}.
+     * The name of the search application to be reset. Format: applications/{application_id\}.
      */
     name?: string;
 
@@ -7892,7 +7763,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Update
     extends StandardParameters {
     /**
-     * Name of the Search Application. Format: searchapplications/{application_id}.
+     * Name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string;
 
@@ -7917,9 +7788,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.getIndex
-     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day. **Note:** This API requires a standard end user account to execute.
+     * Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -7973,19 +7844,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.getIndex
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIndex(
       params: Params$Resource$Stats$Getindex,
@@ -8062,7 +7926,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
@@ -8072,9 +7936,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.getQuery
-     * @desc Get the query statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * Get the query statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -8128,19 +7992,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.getQuery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getQuery(
       params: Params$Resource$Stats$Getquery,
@@ -8217,7 +8074,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
@@ -8227,9 +8084,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.getSession
-     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * Get the # of search sessions, % of successful sessions with a click query statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -8283,19 +8140,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.getSession
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSession(
       params: Params$Resource$Stats$Getsession,
@@ -8372,7 +8222,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
@@ -8382,9 +8232,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.getUser
-     * @desc Get the users statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * Get the users statistics for customer. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -8438,19 +8288,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.getUser
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getUser(
       params: Params$Resource$Stats$Getuser,
@@ -8527,7 +8370,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerUserStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerUserStatsResponse>(
@@ -8658,9 +8501,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.index.datasources.get
-     * @desc Gets indexed item statistics for a single data source. **Note:** This API requires a standard end user account to execute.
+     * Gets indexed item statistics for a single data source. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -8694,7 +8537,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
+     *     // The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id\}"
      *     name: 'datasources/my-datasource',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -8716,20 +8559,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.index.datasources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {string} params.name The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Stats$Index$Datasources$Get,
@@ -8810,7 +8645,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
@@ -8835,7 +8670,7 @@ export namespace cloudsearch_v1 {
      */
     'fromDate.year'?: number;
     /**
-     * The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
+     * The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id\}"
      */
     name?: string;
     /**
@@ -8870,9 +8705,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.query.searchapplications.get
-     * @desc Get the query statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * Get the query statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -8906,7 +8741,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     *     // The resource id of the search application query stats, in the following format: searchapplications/{application_id\}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -8928,20 +8763,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.query.searchapplications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {string} params.name The resource id of the search application query stats, in the following format: searchapplications/{application_id}
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Stats$Query$Searchapplications$Get,
@@ -9028,7 +8855,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
@@ -9053,7 +8880,7 @@ export namespace cloudsearch_v1 {
      */
     'fromDate.year'?: number;
     /**
-     * The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     * The resource id of the search application query stats, in the following format: searchapplications/{application_id\}
      */
     name?: string;
     /**
@@ -9088,9 +8915,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.session.searchapplications.get
-     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * Get the # of search sessions, % of successful sessions with a click query statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -9124,7 +8951,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -9146,20 +8973,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.session.searchapplications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Stats$Session$Searchapplications$Get,
@@ -9246,7 +9065,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9271,7 +9090,7 @@ export namespace cloudsearch_v1 {
      */
     'fromDate.year'?: number;
     /**
-     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
      */
     name?: string;
     /**
@@ -9306,9 +9125,9 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * cloudsearch.stats.user.searchapplications.get
-     * @desc Get the users statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * Get the users statistics for search application. **Note:** This API requires a standard end user account to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
@@ -9342,7 +9161,7 @@ export namespace cloudsearch_v1 {
      *     'fromDate.month': 'placeholder-value',
      *     // Year of date. Must be from 1 to 9999.
      *     'fromDate.year': 'placeholder-value',
-     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
      *     name: 'searchapplications/my-searchapplication',
      *     // Day of month. Must be from 1 to 31 and valid for the year and month.
      *     'toDate.day': 'placeholder-value',
@@ -9364,20 +9183,12 @@ export namespace cloudsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudsearch.stats.user.searchapplications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
-     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
-     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
-     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
-     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Stats$User$Searchapplications$Get,
@@ -9464,7 +9275,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
@@ -9489,7 +9300,7 @@ export namespace cloudsearch_v1 {
      */
     'fromDate.year'?: number;
     /**
-     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
      */
     name?: string;
     /**

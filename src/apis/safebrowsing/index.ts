@@ -33,3 +33,14 @@ export function safebrowsing<T = safebrowsing_v4.Safebrowsing>(
 
 const auth = new AuthPlus();
 export {auth};
+export {safebrowsing_v4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

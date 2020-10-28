@@ -104,14 +104,10 @@ export namespace kgsearch_v1 {
    * Searches the Google Knowledge Graph for entities.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const kgsearch = google.kgsearch('v1');
-   *
-   * @namespace kgsearch
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Kgsearch
+   * ```
    */
   export class Kgsearch {
     context: APIRequestContext;
@@ -152,9 +148,9 @@ export namespace kgsearch_v1 {
     }
 
     /**
-     * kgsearch.entities.search
-     * @desc Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
+     * Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/kgsearch.googleapis.com
@@ -208,20 +204,12 @@ export namespace kgsearch_v1 {
      *   throw e;
      * });
      *
-     * @alias kgsearch.entities.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B
-     * @param {boolean=} params.indent Enables indenting of json results.
-     * @param {string=} params.languages The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
-     * @param {integer=} params.limit Limits the number of entities to be returned.
-     * @param {boolean=} params.prefix Enables prefix match against names and aliases of entities
-     * @param {string=} params.query The literal query string for search.
-     * @param {string=} params.types Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Entities$Search,
@@ -294,7 +282,7 @@ export namespace kgsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);

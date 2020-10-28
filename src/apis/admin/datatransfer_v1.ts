@@ -104,14 +104,10 @@ export namespace admin_datatransfer_v1 {
    * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const admin = google.admin('datatransfer_v1');
-   *
-   * @namespace admin
-   * @type {Function}
-   * @version datatransfer_v1
-   * @variation datatransfer_v1
-   * @param {object=} options Options for Admin
+   * ```
    */
   export class Admin {
     context: APIRequestContext;
@@ -130,7 +126,7 @@ export namespace admin_datatransfer_v1 {
   }
 
   /**
-   * The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Application {
     /**
@@ -138,7 +134,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The application&#39;s ID.
+     * The application's ID.
      */
     id?: string | null;
     /**
@@ -146,7 +142,7 @@ export namespace admin_datatransfer_v1 {
      */
     kind?: string | null;
     /**
-     * The application&#39;s name.
+     * The application's name.
      */
     name?: string | null;
     /**
@@ -159,7 +155,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationDataTransfer {
     /**
-     * The application&#39;s ID.
+     * The application's ID.
      */
     applicationId?: string | null;
     /**
@@ -172,7 +168,7 @@ export namespace admin_datatransfer_v1 {
     applicationTransferStatus?: string | null;
   }
   /**
-   * Template for a collection of Applications. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * Template for a collection of Applications. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ApplicationsListResponse {
     /**
@@ -197,16 +193,16 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationTransferParam {
     /**
-     * The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
+     * The type of the transfer parameter. eg: 'PRIVACY_LEVEL'
      */
     key?: string | null;
     /**
-     * The value of the corresponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
+     * The value of the corresponding transfer parameter. eg: 'PRIVATE' or 'SHARED'
      */
     value?: string[] | null;
   }
   /**
-   * The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$DataTransfer {
     /**
@@ -218,7 +214,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The transfer&#39;s ID (Read-only).
+     * The transfer's ID (Read-only).
      */
     id?: string | null;
     /**
@@ -243,7 +239,7 @@ export namespace admin_datatransfer_v1 {
     requestTime?: string | null;
   }
   /**
-   * Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$DataTransfersListResponse {
     /**
@@ -271,9 +267,9 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * datatransfer.applications.get
-     * @desc Retrieves information about an application for the given application ID.
+     * Retrieves information about an application for the given application ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -320,14 +316,12 @@ export namespace admin_datatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias datatransfer.applications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId ID of the application resource to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Applications$Get,
@@ -399,7 +393,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Application>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
@@ -407,9 +401,9 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * datatransfer.applications.list
-     * @desc Lists the applications available for data transfer for a customer.
+     * Lists the applications available for data transfer for a customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -459,16 +453,12 @@ export namespace admin_datatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias datatransfer.applications.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-     * @param {string=} params.pageToken Token to specify next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Applications$List,
@@ -547,7 +537,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ApplicationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApplicationsListResponse>(parameters);
@@ -584,9 +574,9 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * datatransfer.transfers.get
-     * @desc Retrieves a data transfer request by its resource ID.
+     * Retrieves a data transfer request by its resource ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -636,14 +626,12 @@ export namespace admin_datatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias datatransfer.transfers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Transfers$Get,
@@ -715,7 +703,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfer>(parameters);
@@ -723,9 +711,9 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * datatransfer.transfers.insert
-     * @desc Inserts a data transfer request.
+     * Inserts a data transfer request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -784,14 +772,12 @@ export namespace admin_datatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias datatransfer.transfers.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DataTransfer} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Transfers$Insert,
@@ -864,7 +850,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfer>(parameters);
@@ -872,9 +858,9 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * datatransfer.transfers.list
-     * @desc Lists the transfers for a customer by source user, destination user, or status.
+     * Lists the transfers for a customer by source user, destination user, or status.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -930,19 +916,12 @@ export namespace admin_datatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias datatransfer.transfers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-     * @param {string=} params.newOwnerUserId Destination user's profile ID.
-     * @param {string=} params.oldOwnerUserId Source user's profile ID.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.status Status of the transfer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Transfers$List,
@@ -1022,7 +1001,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfersListResponse>(parameters);

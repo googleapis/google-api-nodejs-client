@@ -33,3 +33,14 @@ export function playcustomapp<T = playcustomapp_v1.Playcustomapp>(
 
 const auth = new AuthPlus();
 export {auth};
+export {playcustomapp_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

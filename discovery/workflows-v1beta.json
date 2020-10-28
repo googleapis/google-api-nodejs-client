@@ -12,7 +12,7 @@
   "baseUrl": "https://workflows.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Workflows",
-  "description": "",
+  "description": "Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/workflows",
   "fullyEncodeReservedExpansion": true,
@@ -444,7 +444,7 @@
       }
     }
   },
-  "revision": "20200828",
+  "revision": "20201008",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {

@@ -37,3 +37,14 @@ export function clouderrorreporting<
 
 const auth = new AuthPlus();
 export {auth};
+export {clouderrorreporting_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

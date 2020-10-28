@@ -47,3 +47,16 @@ export function compute<
 
 const auth = new AuthPlus();
 export {auth};
+export {compute_alpha};
+export {compute_beta};
+export {compute_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

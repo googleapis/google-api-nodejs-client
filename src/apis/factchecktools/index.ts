@@ -35,3 +35,14 @@ export function factchecktools<T = factchecktools_v1alpha1.Factchecktools>(
 
 const auth = new AuthPlus();
 export {auth};
+export {factchecktools_v1alpha1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

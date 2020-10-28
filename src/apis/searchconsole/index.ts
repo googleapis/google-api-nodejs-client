@@ -33,3 +33,14 @@ export function searchconsole<T = searchconsole_v1.Searchconsole>(
 
 const auth = new AuthPlus();
 export {auth};
+export {searchconsole_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

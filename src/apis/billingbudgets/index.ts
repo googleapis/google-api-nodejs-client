@@ -47,3 +47,15 @@ export function billingbudgets<
 
 const auth = new AuthPlus();
 export {auth};
+export {billingbudgets_v1};
+export {billingbudgets_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

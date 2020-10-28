@@ -31,3 +31,14 @@ export function slides<T = slides_v1.Slides>(
 
 const auth = new AuthPlus();
 export {auth};
+export {slides_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

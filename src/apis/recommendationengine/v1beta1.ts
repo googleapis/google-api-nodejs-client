@@ -104,14 +104,10 @@ export namespace recommendationengine_v1beta1 {
    * Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const recommendationengine = google.recommendationengine('v1beta1');
-   *
-   * @namespace recommendationengine
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Recommendationengine
+   * ```
    */
   export class Recommendationengine {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace recommendationengine_v1beta1 {
   }
 
   /**
-   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$GoogleApiHttpBody {
     /**
@@ -162,7 +158,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1alphaTuningMetadata {
     /**
-     * The resource name of the recommendation model that this tune applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/eventStores/{event_store_id}/recommendationModels/{recommendation_model_id}
+     * The resource name of the recommendation model that this tune applies to. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/eventStores/{event_store_id\}/recommendationModels/{recommendation_model_id\}
      */
     recommendationModel?: string | null;
   }
@@ -175,7 +171,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1BigQuerySource {
     /**
-     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. &quot;user_events_ga360&quot; using https://support.google.com/analytics/answer/3437719?hl=en
+     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: "catalog_recommendations_ai" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: "catalog_merchant_center" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: "user_events_recommendations_ai" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. "user_events_ga360" using https://support.google.com/analytics/answer/3437719?hl=en
      */
     dataSchema?: string | null;
     /**
@@ -230,7 +226,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1CatalogItem {
     /**
-     * Required. Catalog item categories. This field is repeated for supporting one catalog item belonging to several parallel category hierarchies. For example, if a shoes product belongs to both [&quot;Shoes &amp; Accessories&quot; -&gt; &quot;Shoes&quot;] and [&quot;Sports &amp; Fitness&quot; -&gt; &quot;Athletic Clothing&quot; -&gt; &quot;Shoes&quot;], it could be represented as: &quot;categoryHierarchies&quot;: [ { &quot;categories&quot;: [&quot;Shoes &amp; Accessories&quot;, &quot;Shoes&quot;]}, { &quot;categories&quot;: [&quot;Sports &amp; Fitness&quot;, &quot;Athletic Clothing&quot;, &quot;Shoes&quot;] } ]
+     * Required. Catalog item categories. This field is repeated for supporting one catalog item belonging to several parallel category hierarchies. For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categoryHierarchies": [ { "categories": ["Shoes & Accessories", "Shoes"]\}, { "categories": ["Sports & Fitness", "Athletic Clothing", "Shoes"] \} ]
      */
     categoryHierarchies?: Schema$GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy[];
     /**
@@ -314,7 +310,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageViewId?: string | null;
     /**
-     * Optional. Recommendation token included in the recommendation prediction response. This field enables accurate attribution of recommendation model performance. This token enables us to accurately attribute page view or purchase back to the event and the particular predict response containing this clicked/purchased item. If user clicks on product K in the recommendation results, pass the `PredictResponse.recommendationToken` property as a url parameter to product K&#39;s page. When recording events on product K&#39;s page, log the PredictResponse.recommendation_token to this field. Optional, but highly encouraged for user events that are the result of a recommendation prediction query.
+     * Optional. Recommendation token included in the recommendation prediction response. This field enables accurate attribution of recommendation model performance. This token enables us to accurately attribute page view or purchase back to the event and the particular predict response containing this clicked/purchased item. If user clicks on product K in the recommendation results, pass the `PredictResponse.recommendationToken` property as a url parameter to product K's page. When recording events on product K's page, log the PredictResponse.recommendation_token to this field. Optional, but highly encouraged for user events that are the result of a recommendation prediction query.
      */
     recommendationToken?: string | null;
     /**
@@ -322,7 +318,7 @@ export namespace recommendationengine_v1beta1 {
      */
     referrerUri?: string | null;
     /**
-     * Optional. Complete url (window.location.href) of the user&#39;s current page. When using the JavaScript pixel, this value is filled in automatically. Maximum length 5KB.
+     * Optional. Complete url (window.location.href) of the user's current page. When using the JavaScript pixel, this value is filled in automatically. Maximum length 5KB.
      */
     uri?: string | null;
   }
@@ -331,7 +327,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1FeatureMap {
     /**
-     * Categorical features that can take on one of a limited number of possible values. Some examples would be the brand/maker of a product, or country of a customer. Feature names and values must be UTF-8 encoded strings. For example: `{ &quot;colors&quot;: {&quot;value&quot;: [&quot;yellow&quot;, &quot;green&quot;]}, &quot;sizes&quot;: {&quot;value&quot;:[&quot;S&quot;, &quot;M&quot;]}`
+     * Categorical features that can take on one of a limited number of possible values. Some examples would be the brand/maker of a product, or country of a customer. Feature names and values must be UTF-8 encoded strings. For example: `{ "colors": {"value": ["yellow", "green"]\}, "sizes": {"value":["S", "M"]\}`
      */
     categoricalFeatures?: {
       [
@@ -339,7 +335,7 @@ export namespace recommendationengine_v1beta1 {
       ]: Schema$GoogleCloudRecommendationengineV1beta1FeatureMapStringList;
     } | null;
     /**
-     * Numerical features. Some examples would be the height/weight of a product, or age of a customer. Feature names must be UTF-8 encoded strings. For example: `{ &quot;lengths_cm&quot;: {&quot;value&quot;:[2.3, 15.4]}, &quot;heights_cm&quot;: {&quot;value&quot;:[8.1, 6.4]} }`
+     * Numerical features. Some examples would be the height/weight of a product, or age of a customer. Feature names must be UTF-8 encoded strings. For example: `{ "lengths_cm": {"value":[2.3, 15.4]\}, "heights_cm": {"value":[8.1, 6.4]\} \}`
      */
     numericalFeatures?: {
       [
@@ -370,11 +366,11 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1GcsSource {
     /**
-     * Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, gs://bucket/directory/object.json) or a pattern matching one or more files, such as gs://bucket/directory/*.json. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing catalog information](/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.
+     * Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, gs://bucket/directory/object.json) or a pattern matching one or more files, such as gs://bucket/directory/x.json. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing catalog information](/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.
      */
     inputUris?: string[] | null;
     /**
-     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. &quot;user_events_ga360&quot; using https://support.google.com/analytics/answer/3437719?hl=en
+     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: "catalog_recommendations_ai" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: "catalog_merchant_center" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: "user_events_recommendations_ai" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. "user_events_ga360" using https://support.google.com/analytics/answer/3437719?hl=en
      */
     jsonSchema?: string | null;
   }
@@ -412,7 +408,7 @@ export namespace recommendationengine_v1beta1 {
      */
     requestId?: string | null;
     /**
-     * Optional. Indicates which fields in the provided imported &#39;items&#39; to update. If not set, will by default update all fields.
+     * Optional. Indicates which fields in the provided imported 'items' to update. If not set, will by default update all fields.
      */
     updateMask?: string | null;
   }
@@ -531,7 +527,7 @@ export namespace recommendationengine_v1beta1 {
      */
     catalogItems?: Schema$GoogleCloudRecommendationengineV1beta1CatalogItem[];
     /**
-     * If empty, the list is complete. If nonempty, the token to pass to the next request&#39;s ListCatalogItemRequest.page_token.
+     * If empty, the list is complete. If nonempty, the token to pass to the next request's ListCatalogItemRequest.page_token.
      */
     nextPageToken?: string | null;
   }
@@ -540,7 +536,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse {
     /**
-     * Output only. All the customer&#39;s catalogs.
+     * Output only. All the customer's catalogs.
      */
     catalogs?: Schema$GoogleCloudRecommendationengineV1beta1Catalog[];
     /**
@@ -553,7 +549,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse {
     /**
-     * If empty, the list is complete. If nonempty, pass the token to the next request&#39;s `ListPredictionApiKeysRegistrationsRequest.pageToken`.
+     * If empty, the list is complete. If nonempty, pass the token to the next request's `ListPredictionApiKeysRegistrationsRequest.pageToken`.
      */
     nextPageToken?: string | null;
     /**
@@ -566,7 +562,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse {
     /**
-     * If empty, the list is complete. If nonempty, the token to pass to the next request&#39;s ListUserEvents.page_token.
+     * If empty, the list is complete. If nonempty, the token to pass to the next request's ListUserEvents.page_token.
      */
     nextPageToken?: string | null;
     /**
@@ -592,7 +588,7 @@ export namespace recommendationengine_v1beta1 {
      */
     dryRun?: boolean | null;
     /**
-     * Optional. Filter for restricting prediction results. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to items that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-&quot;tagA&quot;` is also supported and is equivalent to `NOT &quot;tagA&quot;`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1 KiB. * filterOutOfStockItems. Restricts predictions to items that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(&quot;Red&quot; OR &quot;Blue&quot;) tag=&quot;New-Arrival&quot; tag=(NOT &quot;promotional&quot;) * filterOutOfStockItems tag=(-&quot;promotional&quot;) * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular items to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
+     * Optional. Filter for restricting prediction results. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to items that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1 KiB. * filterOutOfStockItems. Restricts predictions to items that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular items to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
      */
     filter?: string | null;
     /**
@@ -608,11 +604,11 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string | null;
     /**
-     * Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction &#39;score&#39; corresponding to each returned item will be set in the `metadata` field in the prediction response. The given &#39;score&#39; indicates the probability of an item being clicked/purchased given the user&#39;s context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results.
+     * Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned item will be set in the `metadata` field in the prediction response. The given 'score' indicates the probability of an item being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results.
      */
     params?: {[key: string]: any} | null;
     /**
-     * Required. Context about the user, what they are looking at and what action they took to trigger the predict request. Note that this user event detail won&#39;t be ingested to userEvent logs. Thus, a separate userEvent write request is required for event logging.
+     * Required. Context about the user, what they are looking at and what action they took to trigger the predict request. Note that this user event detail won't be ingested to userEvent logs. Thus, a separate userEvent write request is required for event logging.
      */
     userEvent?: Schema$GoogleCloudRecommendationengineV1beta1UserEvent;
   }
@@ -633,7 +629,7 @@ export namespace recommendationengine_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * If empty, the list is complete. If nonempty, the token to pass to the next request&#39;s PredictRequest.page_token.
+     * If empty, the list is complete. If nonempty, the token to pass to the next request's PredictRequest.page_token.
      */
     nextPageToken?: string | null;
     /**
@@ -671,7 +667,7 @@ export namespace recommendationengine_v1beta1 {
      */
     canonicalProductUri?: string | null;
     /**
-     * Optional. A map to pass the costs associated with the product. For example: {&quot;manufacturing&quot;: 45.5} The profit of selling this item is computed like so: * If &#39;exactPrice&#39; is provided, profit = displayPrice - sum(costs) * If &#39;priceRange&#39; is provided, profit = minPrice - sum(costs)
+     * Optional. A map to pass the costs associated with the product. For example: {"manufacturing": 45.5\} The profit of selling this item is computed like so: * If 'exactPrice' is provided, profit = displayPrice - sum(costs) * If 'priceRange' is provided, profit = minPrice - sum(costs)
      */
     costs?: {[key: string]: number} | null;
     /**
@@ -704,7 +700,7 @@ export namespace recommendationengine_v1beta1 {
      */
     displayPrice?: number | null;
     /**
-     * Optional. Price of the product without any discount. If zero, by default set to be the &#39;displayPrice&#39;.
+     * Optional. Price of the product without any discount. If zero, by default set to be the 'displayPrice'.
      */
     originalPrice?: number | null;
   }
@@ -771,11 +767,11 @@ export namespace recommendationengine_v1beta1 {
      */
     listId?: string | null;
     /**
-     * Required for `category-page-view` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : [&quot;Sales&quot;, &quot;2017 Black Friday Deals&quot;].
+     * Required for `category-page-view` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : ["Sales", "2017 Black Friday Deals"].
      */
     pageCategories?: Schema$GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy[];
     /**
-     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that &#39;product_details&#39; should be set for this unless the shopping cart is empty. * `search` (highly encouraged) In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished broswing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new SEARCH event with different product_details is desired. The end user may have not finished broswing the whole page yet. This field is not allowed for the following event types: * `category-page-view` * `home-page-view`
+     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that 'product_details' should be set for this unless the shopping cart is empty. * `search` (highly encouraged) In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished broswing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new SEARCH event with different product_details is desired. The end user may have not finished broswing the whole page yet. This field is not allowed for the following event types: * `category-page-view` * `home-page-view`
      */
     productDetails?: Schema$GoogleCloudRecommendationengineV1beta1ProductDetail[];
     /**
@@ -783,7 +779,7 @@ export namespace recommendationengine_v1beta1 {
      */
     purchaseTransaction?: Schema$GoogleCloudRecommendationengineV1beta1PurchaseTransaction;
     /**
-     * Required for `search` events. Other event types should not set this field. The user&#39;s search query as UTF-8 encoded text with a length limit of 5 KiB.
+     * Required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.
      */
     searchQuery?: string | null;
   }
@@ -830,7 +826,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest {
     /**
-     * Required. The filter string to specify the events to be deleted. Empty string filter is not allowed. The eligible fields for filtering are: * `eventType`: UserEvent.eventType field of type string. * `eventTime`: in ISO 8601 &quot;zulu&quot; format. * `visitorId`: field of type string. Specifying this will delete all events associated with a visitor. * `userId`: field of type string. Specifying this will delete all events associated with a user. Examples: * Deleting all events in a time range: `eventTime &gt; &quot;2012-04-23T18:25:43.511Z&quot; eventTime &lt; &quot;2012-04-23T18:30:43.511Z&quot;` * Deleting specific eventType in time range: `eventTime &gt; &quot;2012-04-23T18:25:43.511Z&quot; eventType = &quot;detail-page-view&quot;` * Deleting all events for a specific visitor: `visitorId = &quot;visitor1024&quot;` The filtering fields are assumed to have an implicit AND.
+     * Required. The filter string to specify the events to be deleted. Empty string filter is not allowed. The eligible fields for filtering are: * `eventType`: UserEvent.eventType field of type string. * `eventTime`: in ISO 8601 "zulu" format. * `visitorId`: field of type string. Specifying this will delete all events associated with a visitor. * `userId`: field of type string. Specifying this will delete all events associated with a user. Examples: * Deleting all events in a time range: `eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z"` * Deleting specific eventType in time range: `eventTime \> "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"` * Deleting all events for a specific visitor: `visitorId = "visitor1024"` The filtering fields are assumed to have an implicit AND.
      */
     filter?: string | null;
     /**
@@ -861,7 +857,7 @@ export namespace recommendationengine_v1beta1 {
     userEventRejoinScope?: string | null;
   }
   /**
-   * UserEvent captures all metadata information recommendation engine needs to know about how end users interact with customers&#39; website.
+   * UserEvent captures all metadata information recommendation engine needs to know about how end users interact with customers' website.
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1UserEvent {
     /**
@@ -881,7 +877,7 @@ export namespace recommendationengine_v1beta1 {
      */
     eventType?: string | null;
     /**
-     * Optional. Retail product specific user event metadata. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `category-page-view` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` * `search` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that &#39;product_event_detail&#39; should be set for this unless the shopping cart is empty. This field is not allowed for the following event types: * `home-page-view`
+     * Optional. Retail product specific user event metadata. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `category-page-view` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` * `search` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that 'product_event_detail' should be set for this unless the shopping cart is empty. This field is not allowed for the following event types: * `home-page-view`
      */
     productEventDetail?: Schema$GoogleCloudRecommendationengineV1beta1ProductEventDetail;
     /**
@@ -966,7 +962,7 @@ export namespace recommendationengine_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -975,7 +971,7 @@ export namespace recommendationengine_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -1033,9 +1029,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.list
-     * @desc Lists all the catalog configurations associated with the project.
+     * Lists all the catalog configurations associated with the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1080,16 +1076,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
-     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListCatalogs` call. Provide this to retrieve the subsequent page.
-     * @param {string} params.parent Required. The account resource name with an associated location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
@@ -1189,7 +1181,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
@@ -1198,9 +1190,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.patch
-     * @desc Updates the catalog configuration.
+     * Updates the catalog configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1256,16 +1248,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the catalog.
-     * @param {string=} params.updateMask Optional. Indicates which fields in the provided 'catalog' to update. If not set, will only update the catalog_item_level_config field. Currently only fields that can be updated are catalog_item_level_config.
-     * @param {().GoogleCloudRecommendationengineV1beta1Catalog} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Patch,
@@ -1358,7 +1346,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1Catalog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1407,9 +1395,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.create
-     * @desc Creates a catalog item.
+     * Creates a catalog item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1475,15 +1463,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
-     * @param {().GoogleCloudRecommendationengineV1beta1CatalogItem} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create,
@@ -1579,7 +1564,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -1588,9 +1573,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.delete
-     * @desc Deletes a catalog item.
+     * Deletes a catalog item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1631,14 +1616,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete,
@@ -1713,7 +1696,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1721,9 +1704,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.get
-     * @desc Gets a specific catalog item.
+     * Gets a specific catalog item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1774,14 +1757,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get,
@@ -1874,7 +1855,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -1883,9 +1864,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.import
-     * @desc Bulk import of multiple catalog items. Request processing may be synchronous. No partial updating supported. Non-existing items will be created. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully updated.
+     * Bulk import of multiple catalog items. Request processing may be synchronous. No partial updating supported. Non-existing items will be created. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -1942,15 +1923,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. "projects/1234/locations/global/catalogs/default_catalog" If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
-     * @param {().GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import,
@@ -2032,7 +2010,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2040,9 +2018,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.list
-     * @desc Gets a list of catalog items.
+     * Gets a list of catalog items.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -2091,17 +2069,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. A filter to apply on the list results.
-     * @param {integer=} params.pageSize Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
-     * @param {string=} params.pageToken Optional. The previous ListCatalogItemsResponse.next_page_token.
-     * @param {string} params.parent Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$List,
@@ -2201,7 +2174,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
@@ -2210,9 +2183,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.catalogItems.patch
-     * @desc Updates a catalog item. Partial updating is supported. Non-existing items will be created.
+     * Updates a catalog item. Partial updating is supported. Non-existing items will be created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -2281,16 +2254,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.catalogItems.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
-     * @param {string=} params.updateMask Optional. Indicates which fields in the provided 'item' to update. If not set, will by default update all fields.
-     * @param {().GoogleCloudRecommendationengineV1beta1CatalogItem} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch,
@@ -2383,7 +2352,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
@@ -2496,9 +2465,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -2545,14 +2514,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get,
@@ -2631,7 +2598,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2639,9 +2606,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -2691,17 +2658,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List,
@@ -2789,7 +2751,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -2833,9 +2795,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.placements.predict
-     * @desc Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
+     * Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -2860,7 +2822,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.placements.predict(
      *     {
-     *       // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     *       // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/placements/my-placement',
      *
@@ -2897,15 +2859,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.placements.predict
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
-     * @param {().GoogleCloudRecommendationengineV1beta1PredictRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict,
@@ -3005,7 +2964,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
@@ -3017,7 +2976,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      */
     name?: string;
 
@@ -3034,9 +2993,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.create
-     * @desc Register an API key for use with predict method.
+     * Register an API key for use with predict method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3087,15 +3046,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store".
-     * @param {().GoogleCloudRecommendationengineV1beta1CreatePredictionApiKeyRegistrationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create,
@@ -3194,7 +3150,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
@@ -3203,9 +3159,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.delete
-     * @desc Unregister an apiKey from using for predict method.
+     * Unregister an apiKey from using for predict method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3246,14 +3202,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The API key to unregister including full resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete,
@@ -3328,7 +3282,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -3336,9 +3290,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.list
-     * @desc List the registered apiKeys for use with predict method.
+     * List the registered apiKeys for use with predict method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3386,16 +3340,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. Maximum number of results to return per page. If unset, the service will choose a reasonable default.
-     * @param {string=} params.pageToken Optional. The previous `ListPredictionApiKeyRegistration.nextPageToken`.
-     * @param {string} params.parent Required. The parent placement resource name such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List,
@@ -3494,7 +3444,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
@@ -3545,9 +3495,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.collect
-     * @desc Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Recommendations AI JavaScript pixel. Users should not call this method directly.
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Recommendations AI JavaScript pixel. Users should not call this method directly.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3598,17 +3548,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.collect
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ets Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
-     * @param {string} params.parent Required. The parent eventStore name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
-     * @param {string=} params.uri Optional. The url including cgi-parameters but excluding the hash fragment. The URL must be truncated to 1.5K bytes to conservatively be under the 2K bytes. This is often more useful than the referer url, because many browsers only send the domain for 3rd party requests.
-     * @param {string=} params.userEvent Required. URL encoded UserEvent proto.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     collect(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect,
@@ -3686,7 +3631,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleApiHttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
@@ -3694,9 +3639,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.import
-     * @desc Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.
+     * Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3753,15 +3698,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
-     * @param {().GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import,
@@ -3843,7 +3785,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3851,9 +3793,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.list
-     * @desc Gets a list of user events within a time range, with potential filtering. The method does not list unjoined user events. Unjoined user event definition: when a user event is ingested from Recommendations AI User Event APIs, the catalog item included in the user event is connected with the current catalog. If a catalog item of the ingested event is not in the current catalog, it could lead to degraded model quality. This is called an unjoined event.
+     * Gets a list of user events within a time range, with potential filtering. The method does not list unjoined user events. Unjoined user event definition: when a user event is ingested from Recommendations AI User Event APIs, the catalog item included in the user event is connected with the current catalog. If a catalog item of the ingested event is not in the current catalog, it could lead to degraded model quality. This is called an unjoined event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -3878,7 +3820,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.list(
      *     {
-     *       // Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime > "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime > "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime > "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime > "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
+     *       // Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime \> "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
      *       filter: 'placeholder-value',
      *       // Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
      *       pageSize: 'placeholder-value',
@@ -3903,17 +3845,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime > "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime > "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime > "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime > "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
-     * @param {integer=} params.pageSize Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
-     * @param {string=} params.pageToken Optional. The previous ListUserEventsResponse.next_page_token.
-     * @param {string} params.parent Required. The parent eventStore resource name, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List,
@@ -4013,7 +3950,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
@@ -4022,9 +3959,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge
-     * @desc Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.
+     * Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -4049,7 +3986,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge(
      *     {
-     *       // Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}"
+     *       // Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}"
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
@@ -4080,15 +4017,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}"
-     * @param {().GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge,
@@ -4170,7 +4104,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4178,9 +4112,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin
-     * @desc Triggers a user event rejoin operation with latest catalog data. Events will not be annotated with detailed catalog information if catalog item is missing at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This API can be used to trigger a 'join' operation on specified events with latest version of catalog items. It can also be used to correct events joined with wrong catalog items.
+     * Triggers a user event rejoin operation with latest catalog data. Events will not be annotated with detailed catalog information if catalog item is missing at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This API can be used to trigger a 'join' operation on specified events with latest version of catalog items. It can also be used to correct events joined with wrong catalog items.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -4235,15 +4169,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Full resource name of user event, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
-     * @param {().GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rejoin(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin,
@@ -4325,7 +4256,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4333,9 +4264,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.eventStores.userEvents.write
-     * @desc Writes a single user event.
+     * Writes a single user event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -4396,15 +4327,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.eventStores.userEvents.write
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent eventStore resource name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
-     * @param {().GoogleCloudRecommendationengineV1beta1UserEvent} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     write(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write,
@@ -4500,7 +4428,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommendationengineV1beta1UserEvent
@@ -4543,7 +4471,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List
     extends StandardParameters {
     /**
-     * Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime > "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime > "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime > "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime > "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
+     * Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime \> "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
      */
     filter?: string;
     /**
@@ -4562,7 +4490,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge
     extends StandardParameters {
     /**
-     * Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}"
+     * Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}"
      */
     parent?: string;
 
@@ -4603,9 +4531,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -4652,14 +4580,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
@@ -4738,7 +4664,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4746,9 +4672,9 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * recommendationengine.projects.locations.catalogs.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommendationengine.googleapis.com
@@ -4797,17 +4723,12 @@ export namespace recommendationengine_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias recommendationengine.projects.locations.catalogs.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$List,
@@ -4895,7 +4816,7 @@ export namespace recommendationengine_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

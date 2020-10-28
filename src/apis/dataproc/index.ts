@@ -41,3 +41,15 @@ export function dataproc<T = dataproc_v1.Dataproc | dataproc_v1beta2.Dataproc>(
 
 const auth = new AuthPlus();
 export {auth};
+export {dataproc_v1};
+export {dataproc_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

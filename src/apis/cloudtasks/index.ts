@@ -56,3 +56,16 @@ export function cloudtasks<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudtasks_v2};
+export {cloudtasks_v2beta2};
+export {cloudtasks_v2beta3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

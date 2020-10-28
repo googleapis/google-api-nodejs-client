@@ -69,3 +69,17 @@ export function displayvideo<
 
 const auth = new AuthPlus();
 export {auth};
+export {displayvideo_v1};
+export {displayvideo_v1beta};
+export {displayvideo_v1beta2};
+export {displayvideo_v1dev};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

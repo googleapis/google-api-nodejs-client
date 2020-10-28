@@ -56,3 +56,16 @@ export function admin<
 
 const auth = new AuthPlus();
 export {auth};
+export {admin_datatransfer_v1};
+export {admin_directory_v1};
+export {admin_reports_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

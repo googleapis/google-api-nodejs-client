@@ -104,14 +104,10 @@ export namespace documentai_v1beta2 {
    * Service to parse structured information from unstructured or semi-structured documents using state-of-the-art Google AI such as natural language, computer vision, translation, and AutoML.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const documentai = google.documentai('v1beta2');
-   *
-   * @namespace documentai
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Documentai
+   * ```
    */
   export class Documentai {
     context: APIRequestContext;
@@ -427,7 +423,7 @@ export namespace documentai_v1beta2 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective &#39;structured_value&#39; fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -561,7 +557,7 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -603,7 +599,7 @@ export namespace documentai_v1beta2 {
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
     /**
-     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - &quot;unfilled_checkbox&quot; - &quot;filled_checkbox&quot;
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - "unfilled_checkbox" - "filled_checkbox"
      */
     valueType?: string | null;
   }
@@ -989,7 +985,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTranslation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -1108,7 +1104,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2AutoMlParams {
     /**
-     * Resource name of the AutoML model. Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`.
+     * Resource name of the AutoML model. Format: `projects/{project-id\}/locations/{location-id\}/models/{model-id\}`.
      */
     model?: string | null;
   }
@@ -1274,7 +1270,7 @@ export namespace documentai_v1beta2 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective &#39;structured_value&#39; fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1300,7 +1296,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentLabel {
     /**
-     * Label is generated AutoML model. This field stores the full resource name of the AutoML model. Format: `projects/{project-id}/locations/{location-id}/models/{model-id}`
+     * Label is generated AutoML model. This field stores the full resource name of the AutoML model. Format: `projects/{project-id\}/locations/{location-id\}/models/{model-id\}`
      */
     automlModel?: string | null;
     /**
@@ -1425,7 +1421,7 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1467,7 +1463,7 @@ export namespace documentai_v1beta2 {
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
     /**
-     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - &quot;unfilled_checkbox&quot; - &quot;filled_checkbox&quot;
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - "unfilled_checkbox" - "filled_checkbox"
      */
     valueType?: string | null;
   }
@@ -1853,7 +1849,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTranslation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -1878,7 +1874,7 @@ export namespace documentai_v1beta2 {
      */
     enabled?: boolean | null;
     /**
-     * Model version of the entity extraction. Default is &quot;builtin/stable&quot;. Specify &quot;builtin/latest&quot; for the latest model.
+     * Model version of the entity extraction. Default is "builtin/stable". Specify "builtin/latest" for the latest model.
      */
     modelVersion?: string | null;
   }
@@ -1895,7 +1891,7 @@ export namespace documentai_v1beta2 {
      */
     keyValuePairHints?: Schema$GoogleCloudDocumentaiV1beta2KeyValuePairHint[];
     /**
-     * Model version of the form extraction system. Default is &quot;builtin/stable&quot;. Specify &quot;builtin/latest&quot; for the latest model. For custom form models, specify: “custom/{model_name}&quot;. Model name format is &quot;bucket_name/path/to/modeldir&quot; corresponding to &quot;gs://bucket_name/path/to/modeldir&quot; where annotated examples are stored.
+     * Model version of the form extraction system. Default is "builtin/stable". Specify "builtin/latest" for the latest model. For custom form models, specify: “custom/{model_name\}". Model name format is "bucket_name/path/to/modeldir" corresponding to "gs://bucket_name/path/to/modeldir" where annotated examples are stored.
      */
     modelVersion?: string | null;
   }
@@ -2006,7 +2002,7 @@ export namespace documentai_v1beta2 {
      */
     automlParams?: Schema$GoogleCloudDocumentaiV1beta2AutoMlParams;
     /**
-     * Specifies a known document type for deeper structure detection. Valid values are currently &quot;general&quot; and &quot;invoice&quot;. If not provided, &quot;general&quot;\ is used as default. If any other value is given, the request is rejected.
+     * Specifies a known document type for deeper structure detection. Valid values are currently "general" and "invoice". If not provided, "general"\ is used as default. If any other value is given, the request is rejected.
      */
     documentType?: string | null;
     /**
@@ -2030,7 +2026,7 @@ export namespace documentai_v1beta2 {
      */
     outputConfig?: Schema$GoogleCloudDocumentaiV1beta2OutputConfig;
     /**
-     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string | null;
     /**
@@ -2077,7 +2073,7 @@ export namespace documentai_v1beta2 {
      */
     headerHints?: string[] | null;
     /**
-     * Model version of the table extraction system. Default is &quot;builtin/stable&quot;. Specify &quot;builtin/latest&quot; for the latest model.
+     * Model version of the table extraction system. Default is "builtin/stable". Specify "builtin/latest" for the latest model.
      */
     modelVersion?: string | null;
     /**
@@ -2136,7 +2132,7 @@ export namespace documentai_v1beta2 {
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as &#39;output_gcs_destination&#39;) of the processed document if it was successful, otherwise empty.
+     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -2195,7 +2191,7 @@ export namespace documentai_v1beta2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -2204,7 +2200,7 @@ export namespace documentai_v1beta2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -2225,7 +2221,7 @@ export namespace documentai_v1beta2 {
     message?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha &lt;= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!(&#39;alpha&#39; in rgb_color)) { return rgbToCssColor_(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(&#39;,&#39;); return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;); }; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = [&#39;#&#39;]; for (var i = 0; i &lt; missingZeros; i++) { resultBuilder.push(&#39;0&#39;); } resultBuilder.push(hexString); return resultBuilder.join(&#39;&#39;); }; // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of "java.awt.Color" in Java; it can also be trivially provided to UIColor's "+colorWithRed:green:blue:alpha" method in iOS; and, with just a little work, it can be easily formatted into a CSS "rgba()" string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor_(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$GoogleTypeColor {
     /**
@@ -2263,7 +2259,7 @@ export namespace documentai_v1beta2 {
     year?: number | null;
   }
   /**
-   * Represents civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type is more flexible than some applications may want. Make sure to document and validate your application&#39;s limitations.
+   * Represents civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$GoogleTypeDateTime {
     /**
@@ -2271,7 +2267,7 @@ export namespace documentai_v1beta2 {
      */
     day?: number | null;
     /**
-     * Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     * Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
@@ -2295,7 +2291,7 @@ export namespace documentai_v1beta2 {
      */
     timeZone?: Schema$GoogleTypeTimeZone;
     /**
-     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 \}.
      */
     utcOffset?: string | null;
     /**
@@ -2316,7 +2312,7 @@ export namespace documentai_v1beta2 {
      */
     nanos?: number | null;
     /**
-     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
   }
@@ -2325,15 +2321,15 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. &quot;Austin, TX&quot;), it is important that the line order is clear. The order of address lines should be &quot;envelope order&quot; for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. &quot;ja&quot; for large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. &quot;Barcelona&quot; and not &quot;Catalonia&quot;). Many countries don&#39;t use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
-     * Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address&#39; country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: &quot;zh-Hant&quot;, &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
+     * Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address' country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: "zh-Hant", "ja", "ja-Latn", "en".
      */
     languageCode?: string | null;
     /**
@@ -2349,11 +2345,11 @@ export namespace documentai_v1beta2 {
      */
     postalCode?: string | null;
     /**
-     * Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain &quot;care of&quot; information.
+     * Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain "care of" information.
      */
     recipients?: string[] | null;
     /**
-     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: &quot;CH&quot; for Switzerland.
+     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland.
      */
     regionCode?: string | null;
     /**
@@ -2361,7 +2357,7 @@ export namespace documentai_v1beta2 {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like &quot;CEDEX&quot;, optionally followed by a number (e.g. &quot;CEDEX 7&quot;), or just a number alone, representing the &quot;sector code&quot; (Jamaica), &quot;delivery area indicator&quot; (Malawi) or &quot;post office indicator&quot; (e.g. Côte d&#39;Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (e.g. "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (e.g. Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
@@ -2374,11 +2370,11 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleTypeTimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. &quot;America/New_York&quot;.
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. &quot;2019a&quot;.
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
      */
     version?: string | null;
   }
@@ -2403,9 +2399,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.documents.batchProcess
-     * @desc LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.
+     * LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -2429,7 +2425,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.documents.batchProcess({
-     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
+     *     // Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2457,15 +2453,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.documents.batchProcess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
-     * @param {().GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchProcess(
       params: Params$Resource$Projects$Documents$Batchprocess,
@@ -2545,7 +2538,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2553,9 +2546,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.documents.process
-     * @desc Processes a single document.
+     * Processes a single document.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -2579,7 +2572,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.documents.process({
-     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     *     // Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2624,15 +2617,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.documents.process
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
-     * @param {().GoogleCloudDocumentaiV1beta2ProcessDocumentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     process(
       params: Params$Resource$Projects$Documents$Process,
@@ -2719,7 +2709,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDocumentaiV1beta2Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta2Document>(
@@ -2732,7 +2722,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Documents$Batchprocess
     extends StandardParameters {
     /**
-     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
+     * Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically.
      */
     parent?: string;
 
@@ -2744,7 +2734,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Documents$Process
     extends StandardParameters {
     /**
-     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string;
 
@@ -2774,9 +2764,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.locations.documents.batchProcess
-     * @desc LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.
+     * LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -2800,7 +2790,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.documents.batchProcess({
-     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
+     *     // Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2828,15 +2818,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.locations.documents.batchProcess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
-     * @param {().GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchProcess(
       params: Params$Resource$Projects$Locations$Documents$Batchprocess,
@@ -2916,7 +2903,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2924,9 +2911,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.locations.documents.process
-     * @desc Processes a single document.
+     * Processes a single document.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -2950,7 +2937,7 @@ export namespace documentai_v1beta2 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.documents.process({
-     *     // Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     *     // Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2995,15 +2982,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.locations.documents.process
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
-     * @param {().GoogleCloudDocumentaiV1beta2ProcessDocumentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     process(
       params: Params$Resource$Projects$Locations$Documents$Process,
@@ -3090,7 +3074,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDocumentaiV1beta2Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta2Document>(
@@ -3103,7 +3087,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Locations$Documents$Batchprocess
     extends StandardParameters {
     /**
-     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically.
+     * Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically.
      */
     parent?: string;
 
@@ -3115,7 +3099,7 @@ export namespace documentai_v1beta2 {
   export interface Params$Resource$Projects$Locations$Documents$Process
     extends StandardParameters {
     /**
-     * Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
+     * Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no location is specified, a region will be chosen automatically. This field is only populated when used in ProcessDocument method.
      */
     parent?: string;
 
@@ -3132,9 +3116,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -3178,14 +3162,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -3263,7 +3245,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3286,9 +3268,9 @@ export namespace documentai_v1beta2 {
     }
 
     /**
-     * documentai.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
@@ -3332,14 +3314,12 @@ export namespace documentai_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias documentai.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,
@@ -3417,7 +3397,7 @@ export namespace documentai_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);

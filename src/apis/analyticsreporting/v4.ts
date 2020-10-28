@@ -104,14 +104,10 @@ export namespace analyticsreporting_v4 {
    * Accesses Analytics report data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const analyticsreporting = google.analyticsreporting('v4');
-   *
-   * @namespace analyticsreporting
-   * @type {Function}
-   * @version v4
-   * @variation v4
-   * @param {object=} options Options for Analyticsreporting
+   * ```
    */
   export class Analyticsreporting {
     context: APIRequestContext;
@@ -130,7 +126,7 @@ export namespace analyticsreporting_v4 {
   }
 
   /**
-   * An Activity represents data for an activity of a user. Note that an Activity is different from a hit. A hit might result in multiple Activity&#39;s. For example, if a hit includes a transaction and a goal completion, there will be two Activity protos for this hit, one for ECOMMERCE and one for GOAL. Conversely, multiple hits can also construct one Activity. In classic e-commerce, data for one transaction might be sent through multiple hits. These hits will be merged into one ECOMMERCE Activity.
+   * An Activity represents data for an activity of a user. Note that an Activity is different from a hit. A hit might result in multiple Activity's. For example, if a hit includes a transaction and a goal completion, there will be two Activity protos for this hit, one for ECOMMERCE and one for GOAL. Conversely, multiple hits can also construct one Activity. In classic e-commerce, data for one transaction might be sent through multiple hits. These hits will be merged into one ECOMMERCE Activity.
    */
   export interface Schema$Activity {
     /**
@@ -150,7 +146,7 @@ export namespace analyticsreporting_v4 {
      */
     campaign?: string | null;
     /**
-     * The Channel Group associated with an end user&#39;s session for this View (defined by the View&#39;s Channel Groupings).
+     * The Channel Group associated with an end user's session for this View (defined by the View's Channel Groupings).
      */
     channelGrouping?: string | null;
     /**
@@ -178,7 +174,7 @@ export namespace analyticsreporting_v4 {
      */
     keyword?: string | null;
     /**
-     * The first page in users&#39; sessions, or the landing page.
+     * The first page in users' sessions, or the landing page.
      */
     landingPagePath?: string | null;
     /**
@@ -212,7 +208,7 @@ export namespace analyticsreporting_v4 {
     type?: string | null;
   }
   /**
-   * Defines a cohort group. For example: &quot;cohortGroup&quot;: { &quot;cohorts&quot;: [{ &quot;name&quot;: &quot;cohort 1&quot;, &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;, &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-08-01&quot;, &quot;endDate&quot;: &quot;2015-08-01&quot; } },{ &quot;name&quot;: &quot;cohort 2&quot; &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot; &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-07-01&quot;, &quot;endDate&quot;: &quot;2015-07-01&quot; } }] }
+   * Defines a cohort group. For example: "cohortGroup": { "cohorts": [{ "name": "cohort 1", "type": "FIRST_VISIT_DATE", "dateRange": { "startDate": "2015-08-01", "endDate": "2015-08-01" \} \},{ "name": "cohort 2" "type": "FIRST_VISIT_DATE" "dateRange": { "startDate": "2015-07-01", "endDate": "2015-07-01" \} \}] \}
    */
   export interface Schema$CohortGroup {
     /**
@@ -277,11 +273,11 @@ export namespace analyticsreporting_v4 {
     values?: string[] | null;
   }
   /**
-   * [Dimensions](https://support.google.com/analytics/answer/1033861) are attributes of your data. For example, the dimension `ga:city` indicates the city, for example, &quot;Paris&quot; or &quot;New York&quot;, from which a session originates.
+   * [Dimensions](https://support.google.com/analytics/answer/1033861) are attributes of your data. For example, the dimension `ga:city` indicates the city, for example, "Paris" or "New York", from which a session originates.
    */
   export interface Schema$Dimension {
     /**
-     * If non-empty, we place dimension values into buckets after string to int64. Dimension values that are not the string representation of an integral value will be converted to zero. The bucket values have to be in increasing order. Each bucket is closed on the lower end, and open on the upper end. The &quot;first&quot; bucket includes all values less than the first boundary, the &quot;last&quot; bucket includes all values up to infinity. Dimension values that fall in a bucket get transformed to a new dimension value. For example, if one gives a list of &quot;0, 1, 3, 4, 7&quot;, then we return the following buckets: - bucket #1: values &lt; 0, dimension value &quot;&lt;0&quot; - bucket #2: values in [0,1), dimension value &quot;0&quot; - bucket #3: values in [1,3), dimension value &quot;1-2&quot; - bucket #4: values in [3,4), dimension value &quot;3&quot; - bucket #5: values in [4,7), dimension value &quot;4-6&quot; - bucket #6: values &gt;= 7, dimension value &quot;7+&quot; NOTE: If you are applying histogram mutation on any dimension, and using that dimension in sort, you will want to use the sort type `HISTOGRAM_BUCKET` for that purpose. Without that the dimension values will be sorted according to dictionary (lexicographic) order. For example the ascending dictionary order is: &quot;&lt;50&quot;, &quot;1001+&quot;, &quot;121-1000&quot;, &quot;50-120&quot; And the ascending `HISTOGRAM_BUCKET` order is: &quot;&lt;50&quot;, &quot;50-120&quot;, &quot;121-1000&quot;, &quot;1001+&quot; The client has to explicitly request `&quot;orderType&quot;: &quot;HISTOGRAM_BUCKET&quot;` for a histogram-mutated dimension.
+     * If non-empty, we place dimension values into buckets after string to int64. Dimension values that are not the string representation of an integral value will be converted to zero. The bucket values have to be in increasing order. Each bucket is closed on the lower end, and open on the upper end. The "first" bucket includes all values less than the first boundary, the "last" bucket includes all values up to infinity. Dimension values that fall in a bucket get transformed to a new dimension value. For example, if one gives a list of "0, 1, 3, 4, 7", then we return the following buckets: - bucket #1: values < 0, dimension value "<0" - bucket #2: values in [0,1), dimension value "0" - bucket #3: values in [1,3), dimension value "1-2" - bucket #4: values in [3,4), dimension value "3" - bucket #5: values in [4,7), dimension value "4-6" - bucket #6: values \>= 7, dimension value "7+" NOTE: If you are applying histogram mutation on any dimension, and using that dimension in sort, you will want to use the sort type `HISTOGRAM_BUCKET` for that purpose. Without that the dimension values will be sorted according to dictionary (lexicographic) order. For example the ascending dictionary order is: "<50", "1001+", "121-1000", "50-120" And the ascending `HISTOGRAM_BUCKET` order is: "<50", "50-120", "121-1000", "1001+" The client has to explicitly request `"orderType": "HISTOGRAM_BUCKET"` for a histogram-mutated dimension.
      */
     histogramBuckets?: string[] | null;
     /**
@@ -370,11 +366,11 @@ export namespace analyticsreporting_v4 {
    */
   export interface Schema$EventData {
     /**
-     * Type of interaction with the object. Eg: &#39;play&#39;.
+     * Type of interaction with the object. Eg: 'play'.
      */
     eventAction?: string | null;
     /**
-     * The object on the page that was interacted with. Eg: &#39;Video&#39;.
+     * The object on the page that was interacted with. Eg: 'Video'.
      */
     eventCategory?: string | null;
     /**
@@ -587,7 +583,7 @@ export namespace analyticsreporting_v4 {
    */
   export interface Schema$Pivot {
     /**
-     * DimensionFilterClauses are logically combined with an `AND` operator: only data that is included by all these DimensionFilterClauses contributes to the values in this pivot region. Dimension filters can be used to restrict the columns shown in the pivot region. For example if you have `ga:browser` as the requested dimension in the pivot region, and you specify key filters to restrict `ga:browser` to only &quot;IE&quot; or &quot;Firefox&quot;, then only those two browsers would show up as columns.
+     * DimensionFilterClauses are logically combined with an `AND` operator: only data that is included by all these DimensionFilterClauses contributes to the values in this pivot region. Dimension filters can be used to restrict the columns shown in the pivot region. For example if you have `ga:browser` as the requested dimension in the pivot region, and you specify key filters to restrict `ga:browser` to only "IE" or "Firefox", then only those two browsers would show up as columns.
      */
     dimensionFilterClauses?: Schema$DimensionFilterClause[];
     /**
@@ -603,7 +599,7 @@ export namespace analyticsreporting_v4 {
      */
     metrics?: Schema$Metric[];
     /**
-     * If k metrics were requested, then the response will contain some data-dependent multiple of k columns in the report. E.g., if you pivoted on the dimension `ga:browser` then you&#39;d get k columns for &quot;Firefox&quot;, k columns for &quot;IE&quot;, k columns for &quot;Chrome&quot;, etc. The ordering of the groups of columns is determined by descending order of &quot;total&quot; for the first of the k values. Ties are broken by lexicographic ordering of the first pivot dimension, then lexicographic ordering of the second pivot dimension, and so on. E.g., if the totals for the first value for Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns would be Chrome, Firefox, IE. The following let you choose which of the groups of k columns are included in the response.
+     * If k metrics were requested, then the response will contain some data-dependent multiple of k columns in the report. E.g., if you pivoted on the dimension `ga:browser` then you'd get k columns for "Firefox", k columns for "IE", k columns for "Chrome", etc. The ordering of the groups of columns is determined by descending order of "total" for the first of the k values. Ties are broken by lexicographic ordering of the first pivot dimension, then lexicographic ordering of the second pivot dimension, and so on. E.g., if the totals for the first value for Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns would be Chrome, Firefox, IE. The following let you choose which of the groups of k columns are included in the response.
      */
     startGroup?: number | null;
   }
@@ -709,7 +705,7 @@ export namespace analyticsreporting_v4 {
      */
     rowCount?: number | null;
     /**
-     * There&#39;s one ReportRow for every unique combination of dimensions.
+     * There's one ReportRow for every unique combination of dimensions.
      */
     rows?: Schema$ReportRow[];
     /**
@@ -721,7 +717,7 @@ export namespace analyticsreporting_v4 {
      */
     samplingSpaceSizes?: string[] | null;
     /**
-     * For each requested date range, for the set of all rows that match the query, every requested value format gets a total. The total for a value format is computed by first totaling the metrics mentioned in the value format and then evaluating the value format as a scalar expression. E.g., The &quot;totals&quot; for `3 / (ga:sessions + 2)` we compute `3 / ((sum of all relevant ga:sessions) + 2)`. Totals are computed before pagination.
+     * For each requested date range, for the set of all rows that match the query, every requested value format gets a total. The total for a value format is computed by first totaling the metrics mentioned in the value format and then evaluating the value format as a scalar expression. E.g., The "totals" for `3 / (ga:sessions + 2)` we compute `3 / ((sum of all relevant ga:sessions) + 2)`. Totals are computed before pagination.
      */
     totals?: Schema$DateRangeValues[];
   }
@@ -774,7 +770,7 @@ export namespace analyticsreporting_v4 {
      */
     orderBys?: Schema$OrderBy[];
     /**
-     * Page size is for paging and specifies the maximum number of returned rows. Page size should be &gt;= 0. A query returns the default of 1,000 rows. The Analytics Core Reporting API returns a maximum of 100,000 rows per request, no matter how many you ask for. It can also return fewer rows than requested, if there aren&#39;t as many dimension segments as you expect. For instance, there are fewer than 300 possible values for `ga:country`, so when segmenting only by country, you can&#39;t get more than 300 rows, even if you set `pageSize` to a higher value.
+     * Page size is for paging and specifies the maximum number of returned rows. Page size should be \>= 0. A query returns the default of 1,000 rows. The Analytics Core Reporting API returns a maximum of 100,000 rows per request, no matter how many you ask for. It can also return fewer rows than requested, if there aren't as many dimension segments as you expect. For instance, there are fewer than 300 possible values for `ga:country`, so when segmenting only by country, you can't get more than 300 rows, even if you set `pageSize` to a higher value.
      */
     pageSize?: number | null;
     /**
@@ -830,11 +826,11 @@ export namespace analyticsreporting_v4 {
      */
     appName?: string | null;
     /**
-     * Mobile manufacturer or branded name. Eg: &quot;Google&quot;, &quot;Apple&quot; etc.
+     * Mobile manufacturer or branded name. Eg: "Google", "Apple" etc.
      */
     mobileDeviceBranding?: string | null;
     /**
-     * Mobile device model. Eg: &quot;Pixel&quot;, &quot;iPhone&quot; etc.
+     * Mobile device model. Eg: "Pixel", "iPhone" etc.
      */
     mobileDeviceModel?: string | null;
     /**
@@ -855,7 +851,7 @@ export namespace analyticsreporting_v4 {
      */
     dateRange?: Schema$DateRange;
     /**
-     * Page size is for paging and specifies the maximum number of returned rows. Page size should be &gt; 0. If the value is 0 or if the field isn&#39;t specified, the request returns the default of 1000 rows per page.
+     * Page size is for paging and specifies the maximum number of returned rows. Page size should be \> 0. If the value is 0 or if the field isn't specified, the request returns the default of 1000 rows per page.
      */
     pageSize?: number | null;
     /**
@@ -948,7 +944,7 @@ export namespace analyticsreporting_v4 {
    */
   export interface Schema$SegmentFilter {
     /**
-     * If true, match the complement of simple or sequence segment. For example, to match all visits not from &quot;New York&quot;, we can define the segment as follows: &quot;sessionSegment&quot;: { &quot;segmentFilters&quot;: [{ &quot;simpleSegment&quot; :{ &quot;orFiltersForSegment&quot;: [{ &quot;segmentFilterClauses&quot;:[{ &quot;dimensionFilter&quot;: { &quot;dimensionName&quot;: &quot;ga:city&quot;, &quot;expressions&quot;: [&quot;New York&quot;] } }] }] }, &quot;not&quot;: &quot;True&quot; }] },
+     * If true, match the complement of simple or sequence segment. For example, to match all visits not from "New York", we can define the segment as follows: "sessionSegment": { "segmentFilters": [{ "simpleSegment" :{ "orFiltersForSegment": [{ "segmentFilterClauses":[{ "dimensionFilter": { "dimensionName": "ga:city", "expressions": ["New York"] \} \}] \}] \}, "not": "True" \}] \},
      */
     not?: boolean | null;
     /**
@@ -1080,15 +1076,15 @@ export namespace analyticsreporting_v4 {
      */
     activities?: Schema$Activity[];
     /**
-     * The data source of a hit. By default, hits sent from analytics.js are reported as &quot;web&quot; and hits sent from the mobile SDKs are reported as &quot;app&quot;. These values can be overridden in the Measurement Protocol.
+     * The data source of a hit. By default, hits sent from analytics.js are reported as "web" and hits sent from the mobile SDKs are reported as "app". These values can be overridden in the Measurement Protocol.
      */
     dataSource?: string | null;
     /**
-     * The type of device used: &quot;mobile&quot;, &quot;tablet&quot; etc.
+     * The type of device used: "mobile", "tablet" etc.
      */
     deviceCategory?: string | null;
     /**
-     * Platform on which the activity happened: &quot;android&quot;, &quot;ios&quot; etc.
+     * Platform on which the activity happened: "android", "ios" etc.
      */
     platform?: string | null;
     /**
@@ -1108,9 +1104,9 @@ export namespace analyticsreporting_v4 {
     }
 
     /**
-     * analyticsreporting.reports.batchGet
-     * @desc Returns the Analytics data.
+     * Returns the Analytics data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsreporting.googleapis.com
@@ -1161,14 +1157,12 @@ export namespace analyticsreporting_v4 {
      *   throw e;
      * });
      *
-     * @alias analyticsreporting.reports.batchGet
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GetReportsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchGet(
       params: Params$Resource$Reports$Batchget,
@@ -1245,7 +1239,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetReportsResponse>(parameters);
@@ -1267,9 +1261,9 @@ export namespace analyticsreporting_v4 {
     }
 
     /**
-     * analyticsreporting.userActivity.search
-     * @desc Returns User Activity data.
+     * Returns User Activity data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsreporting.googleapis.com
@@ -1325,14 +1319,12 @@ export namespace analyticsreporting_v4 {
      *   throw e;
      * });
      *
-     * @alias analyticsreporting.userActivity.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SearchUserActivityRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Useractivity$Search,
@@ -1414,7 +1406,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);

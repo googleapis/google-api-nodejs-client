@@ -104,14 +104,10 @@ export namespace monitoring_v1 {
    * Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Cloud Monitoring documentation.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const monitoring = google.monitoring('v1');
-   *
-   * @namespace monitoring
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Monitoring
+   * ```
    */
   export class Monitoring {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace monitoring_v1 {
   }
 
   /**
-   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
+   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example "the 95% latency across the average of all tasks in a cluster". This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
    */
   export interface Schema$Aggregation {
     /**
@@ -230,7 +226,7 @@ export namespace monitoring_v1 {
    */
   export interface Schema$DataSet {
     /**
-     * A template string for naming TimeSeries in the resulting data set. This should be a string with interpolations of the form ${label_name}, which will resolve to the label&#39;s value.
+     * A template string for naming TimeSeries in the resulting data set. This should be a string with interpolations of the form ${label_name\}, which will resolve to the label's value.
      */
     legendTemplate?: string | null;
     /**
@@ -256,7 +252,7 @@ export namespace monitoring_v1 {
     label?: {[key: string]: string} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
   /**
@@ -300,12 +296,12 @@ export namespace monitoring_v1 {
      */
     packed?: boolean | null;
     /**
-     * The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
+     * The field type URL, without the scheme, for message or enumeration types. Example: "type.googleapis.com/google.protobuf.Timestamp".
      */
     typeUrl?: string | null;
   }
   /**
-   * A gauge chart shows where the current value sits within a pre-defined range. The upper and lower bounds should define the possible range of values for the scorecard&#39;s query (inclusive).
+   * A gauge chart shows where the current value sits within a pre-defined range. The upper and lower bounds should define the possible range of values for the scorecard's query (inclusive).
    */
   export interface Schema$GaugeView {
     /**
@@ -322,7 +318,7 @@ export namespace monitoring_v1 {
    */
   export interface Schema$GridLayout {
     /**
-     * The number of columns into which the view&#39;s width is divided. If omitted or set to zero, a system default will be used while rendering.
+     * The number of columns into which the view's width is divided. If omitted or set to zero, a system default will be used while rendering.
      */
     columns?: string | null;
     /**
@@ -361,11 +357,11 @@ export namespace monitoring_v1 {
    */
   export interface Schema$Option {
     /**
-     * The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, &quot;map_entry&quot;. For custom options, it should be the fully-qualified name. For example, &quot;google.api.http&quot;.
+     * The option's name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, "map_entry". For custom options, it should be the fully-qualified name. For example, "google.api.http".
      */
     name?: string | null;
     /**
-     * The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
+     * The option's value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
      */
     value?: {[key: string]: any} | null;
   }
@@ -434,7 +430,7 @@ export namespace monitoring_v1 {
      */
     sparkChartView?: Schema$SparkChartView;
     /**
-     * The thresholds used to determine the state of the scorecard given the time series&#39; current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: { value: 90, category: &#39;DANGER&#39;, trigger: &#39;ABOVE&#39;, }, { value: 70, category: &#39;WARNING&#39;, trigger: &#39;ABOVE&#39;, }, { value: 10, category: &#39;DANGER&#39;, trigger: &#39;BELOW&#39;, }, { value: 20, category: &#39;WARNING&#39;, trigger: &#39;BELOW&#39;, }Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.
+     * The thresholds used to determine the state of the scorecard given the time series' current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: { value: 90, category: 'DANGER', trigger: 'ABOVE', \}, { value: 70, category: 'WARNING', trigger: 'ABOVE', \}, { value: 10, category: 'DANGER', trigger: 'BELOW', \}, { value: 20, category: 'WARNING', trigger: 'BELOW', \}Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.
      */
     thresholds?: Schema$Threshold[];
     /**
@@ -447,7 +443,7 @@ export namespace monitoring_v1 {
    */
   export interface Schema$SourceContext {
     /**
-     * The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
+     * The path-qualified name of the .proto file that contained the associated protobuf element. For example: "google/protobuf/source_context.proto".
      */
     fileName?: string | null;
   }
@@ -461,7 +457,7 @@ export namespace monitoring_v1 {
     spanName?: string | null;
   }
   /**
-   * A sparkChart is a small chart suitable for inclusion in a table-cell or inline in text. This message contains the configuration for a sparkChart to show up on a Scorecard, showing recent trends of the scorecard&#39;s timeseries.
+   * A sparkChart is a small chart suitable for inclusion in a table-cell or inline in text. This message contains the configuration for a sparkChart to show up on a Scorecard, showing recent trends of the scorecard's timeseries.
    */
   export interface Schema$SparkChartView {
     /**
@@ -716,9 +712,9 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * monitoring.projects.dashboards.create
-     * @desc Creates a new custom dashboard.This method requires the monitoring.dashboards.create permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Creates a new custom dashboard.This method requires the monitoring.dashboards.create permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -782,15 +778,12 @@ export namespace monitoring_v1 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.dashboards.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
-     * @param {().Dashboard} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Dashboards$Create,
@@ -864,7 +857,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
@@ -872,9 +865,9 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * monitoring.projects.dashboards.delete
-     * @desc Deletes an existing custom dashboard.This method requires the monitoring.dashboards.delete permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Deletes an existing custom dashboard.This method requires the monitoring.dashboards.delete permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -916,14 +909,12 @@ export namespace monitoring_v1 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.dashboards.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Dashboard. The format is: projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Dashboards$Delete,
@@ -994,7 +985,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1002,9 +993,9 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * monitoring.projects.dashboards.get
-     * @desc Fetches a specific dashboard.This method requires the monitoring.dashboards.get permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Fetches a specific dashboard.This method requires the monitoring.dashboards.get permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -1054,14 +1045,12 @@ export namespace monitoring_v1 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.dashboards.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID] (for custom dashboards).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Dashboards$Get,
@@ -1132,7 +1121,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
@@ -1140,9 +1129,9 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * monitoring.projects.dashboards.list
-     * @desc Lists the existing dashboards.This method requires the monitoring.dashboards.list permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Lists the existing dashboards.This method requires the monitoring.dashboards.list permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -1191,16 +1180,12 @@ export namespace monitoring_v1 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.dashboards.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If unspecified, a default of 1000 is used.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. The scope of the dashboards to list. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Dashboards$List,
@@ -1279,7 +1264,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDashboardsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDashboardsResponse>(parameters);
@@ -1287,9 +1272,9 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * monitoring.projects.dashboards.patch
-     * @desc Replaces an existing custom dashboard with a new definition.This method requires the monitoring.dashboards.update permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Replaces an existing custom dashboard with a new definition.This method requires the monitoring.dashboards.update permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -1353,15 +1338,12 @@ export namespace monitoring_v1 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.dashboards.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Immutable. The resource name of the dashboard.
-     * @param {().Dashboard} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Dashboards$Patch,
@@ -1432,7 +1414,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);

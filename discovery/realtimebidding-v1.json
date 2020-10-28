@@ -362,7 +362,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
+                  "description": "Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/creatives/[^/]+$",
                   "required": true,
@@ -593,7 +593,7 @@
       }
     }
   },
-  "revision": "20201006",
+  "revision": "20201017",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdvertiserAndBrand": {
@@ -819,7 +819,8 @@
           "type": "array"
         },
         "name": {
-          "description": "Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
+          "description": "Output only. Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.",
+          "readOnly": true,
           "type": "string"
         },
         "native": {
@@ -858,13 +859,13 @@
       "description": "Top level status and detected attributes of a creative.",
       "id": "CreativeServingDecision",
       "properties": {
-        "chinaServingStatus": {
-          "$ref": "ServingStatus",
-          "description": "The serving status of this creative in China. When approved or disapproved, this status applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction."
+        "chinaPolicyCompliance": {
+          "$ref": "PolicyCompliance",
+          "description": "The policy compliance of this creative in China. When approved or disapproved, this applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction."
         },
-        "dealsServingStatus": {
-          "$ref": "ServingStatus",
-          "description": "Status of this creative when bidding on PG and PD deals (outside of Russia and China)."
+        "dealsPolicyCompliance": {
+          "$ref": "PolicyCompliance",
+          "description": "Policy compliance of this creative when bidding on Programmatic Guaranteed and Preferred Deals (outside of Russia and China)."
         },
         "detectedAdvertisers": {
           "description": "Detected advertisers and brands.",
@@ -1010,33 +1011,37 @@
           "format": "google-datetime",
           "type": "string"
         },
-        "openAuctionServingStatus": {
-          "$ref": "ServingStatus",
-          "description": "Status of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China)."
+        "networkPolicyCompliance": {
+          "$ref": "PolicyCompliance",
+          "description": "Policy compliance of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China)."
         },
-        "russiaServingStatus": {
-          "$ref": "ServingStatus",
-          "description": "The serving status of this creative in Russia. When approved or disapproved, this status applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction."
+        "platformPolicyCompliance": {
+          "$ref": "PolicyCompliance",
+          "description": "Policy compliance of this creative when bidding in Open Bidding (outside of Russia and China). For the list of platform policies, see: https://support.google.com/platformspolicy/answer/3013851."
+        },
+        "russiaPolicyCompliance": {
+          "$ref": "PolicyCompliance",
+          "description": "The policy compliance of this creative in Russia. When approved or disapproved, this applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction."
         }
       },
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "Date",
       "properties": {
         "day": {
-          "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
           "format": "int32",
           "type": "integer"
         },
         "month": {
-          "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
           "format": "int32",
           "type": "integer"
         },
         "year": {
-          "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
         }
@@ -1479,6 +1484,36 @@
       "properties": {},
       "type": "object"
     },
+    "PolicyCompliance": {
+      "description": "Policy compliance of the creative for a transaction type or a region.",
+      "id": "PolicyCompliance",
+      "properties": {
+        "status": {
+          "description": "Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "DISAPPROVED",
+            "APPROVED"
+          ],
+          "enumDescriptions": [
+            "Default value that should never be used.",
+            "Creative is pending review.",
+            "Creative cannot serve.",
+            "Creative is approved."
+          ],
+          "type": "string"
+        },
+        "topics": {
+          "description": "Topics related to the policy compliance for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.",
+          "items": {
+            "$ref": "PolicyTopicEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PolicyTopicEntry": {
       "description": "Each policy topic entry will represent a violation of a policy topic for a creative, with the policy topic information and optional evidence for the policy violation.",
       "id": "PolicyTopicEntry",
@@ -1532,36 +1567,6 @@
         "httpCookie": {
           "$ref": "HttpCookieEvidence",
           "description": "Evidence for HTTP cookie-related policy violations."
-        }
-      },
-      "type": "object"
-    },
-    "ServingStatus": {
-      "description": "Serving status of the creative for a transaction type or a region.",
-      "id": "ServingStatus",
-      "properties": {
-        "status": {
-          "description": "Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.",
-          "enum": [
-            "STATUS_UNSPECIFIED",
-            "PENDING_REVIEW",
-            "DISAPPROVED",
-            "APPROVED"
-          ],
-          "enumDescriptions": [
-            "Default value that should never be used.",
-            "Creative is pending review.",
-            "Creative cannot serve.",
-            "Creative is approved."
-          ],
-          "type": "string"
-        },
-        "topics": {
-          "description": "Policy topics related to the serving decision for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.",
-          "items": {
-            "$ref": "PolicyTopicEntry"
-          },
-          "type": "array"
         }
       },
       "type": "object"

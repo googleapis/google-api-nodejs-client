@@ -35,3 +35,15 @@ export function redis<T = redis_v1.Redis | redis_v1beta1.Redis>(
 
 const auth = new AuthPlus();
 export {auth};
+export {redis_v1};
+export {redis_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

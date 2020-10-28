@@ -62,3 +62,16 @@ export function managedidentities<
 
 const auth = new AuthPlus();
 export {auth};
+export {managedidentities_v1};
+export {managedidentities_v1alpha1};
+export {managedidentities_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

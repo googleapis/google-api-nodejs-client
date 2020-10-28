@@ -47,3 +47,15 @@ export function cloudidentity<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudidentity_v1};
+export {cloudidentity_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

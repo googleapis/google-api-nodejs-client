@@ -33,3 +33,14 @@ export function sourcerepo<T = sourcerepo_v1.Sourcerepo>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sourcerepo_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

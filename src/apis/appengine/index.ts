@@ -56,3 +56,16 @@ export function appengine<
 
 const auth = new AuthPlus();
 export {auth};
+export {appengine_v1};
+export {appengine_v1alpha};
+export {appengine_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -35,3 +35,14 @@ export function playablelocations<T = playablelocations_v3.Playablelocations>(
 
 const auth = new AuthPlus();
 export {auth};
+export {playablelocations_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

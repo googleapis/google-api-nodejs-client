@@ -33,3 +33,14 @@ export function sasportal<T = sasportal_v1alpha1.Sasportal>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sasportal_v1alpha1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

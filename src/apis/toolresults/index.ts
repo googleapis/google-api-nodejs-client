@@ -35,3 +35,14 @@ export function toolresults<T = toolresults_v1beta3.Toolresults>(
 
 const auth = new AuthPlus();
 export {auth};
+export {toolresults_v1beta3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

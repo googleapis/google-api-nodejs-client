@@ -104,14 +104,10 @@ export namespace games_v1 {
    * The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const games = google.games('v1');
-   *
-   * @namespace games
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Games
+   * ```
    */
   export class Games {
     context: APIRequestContext;
@@ -125,6 +121,7 @@ export namespace games_v1 {
     revisions: Resource$Revisions;
     scores: Resource$Scores;
     snapshots: Resource$Snapshots;
+    snapshotsExtended: Resource$Snapshotsextended;
     stats: Resource$Stats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -145,6 +142,7 @@ export namespace games_v1 {
       this.revisions = new Resource$Revisions(this.context);
       this.scores = new Resource$Scores(this.context);
       this.snapshots = new Resource$Snapshots(this.context);
+      this.snapshotsExtended = new Resource$Snapshotsextended(this.context);
       this.stats = new Resource$Stats(this.context);
     }
   }
@@ -416,7 +414,7 @@ export namespace games_v1 {
      */
     name?: string | null;
     /**
-     * A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. &quot;E0E0E0&quot;).
+     * A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. "E0E0E0").
      */
     themeColor?: string | null;
   }
@@ -982,7 +980,7 @@ export namespace games_v1 {
      */
     numScores?: string | null;
     /**
-     * The score of the requesting player on the leaderboard. The player&#39;s score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the `scoreRank`and `formattedScoreRank` values will not be present.
+     * The score of the requesting player on the leaderboard. The player's score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the `scoreRank`and `formattedScoreRank` values will not be present.
      */
     playerScore?: Schema$LeaderboardEntry;
     /**
@@ -1052,11 +1050,11 @@ export namespace games_v1 {
      */
     playerId?: string | null;
     /**
-     * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
+     * The player's profile settings. Controls whether or not the player's profile is visible to other players.
      */
     profileSettings?: Schema$ProfileSettings;
     /**
-     * The player&#39;s title rewarded for their game activities.
+     * The player's title rewarded for their game activities.
      */
     title?: string | null;
   }
@@ -1089,7 +1087,7 @@ export namespace games_v1 {
      */
     kind?: string | null;
     /**
-     * The timestamp of the last modification to this achievement&#39;s state.
+     * The timestamp of the last modification to this achievement's state.
      */
     lastUpdatedTimestamp?: string | null;
   }
@@ -1153,7 +1151,7 @@ export namespace games_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * 1P/3P metadata about the player&#39;s experience.
+   * 1P/3P metadata about the player's experience.
    */
   export interface Schema$PlayerExperienceInfo {
     /**
@@ -1244,7 +1242,7 @@ export namespace games_v1 {
     player?: Schema$Player;
   }
   /**
-   * 1P/3P metadata about a user&#39;s level.
+   * 1P/3P metadata about a user's level.
    */
   export interface Schema$PlayerLevel {
     /**
@@ -1344,7 +1342,7 @@ export namespace games_v1 {
      */
     scoreTag?: string | null;
     /**
-     * The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player&#39;s `DAILY` score, but not better than the player&#39;s scores for the `WEEKLY` or `ALL_TIME` time spans.
+     * The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player's `DAILY` score, but not better than the player's scores for the `WEEKLY` or `ALL_TIME` time spans.
      */
     unbeatenScores?: Schema$PlayerScore[];
   }
@@ -1371,9 +1369,27 @@ export namespace games_v1 {
      */
     kind?: string | null;
     /**
-     * Whether the player&#39;s profile is visible to the currently signed in player.
+     * Whether the player's profile is visible to the currently signed in player.
      */
     profileVisible?: boolean | null;
+  }
+  /**
+   * Request for ResolveSnapshotHead RPC.
+   */
+  export interface Schema$ResolveSnapshotHeadRequest {
+    /**
+     * Required. The automatic resolution policy. All conflicts are resolved in chronological order, starting from the/ least recent. If the comparison metric is equal for the tentative head and the conflict, the head wins.
+     */
+    resolutionPolicy?: string | null;
+  }
+  /**
+   * Response for ResolveSnapshotHead RPC.
+   */
+  export interface Schema$ResolveSnapshotHeadResponse {
+    /**
+     * The state of the snapshot.
+     */
+    snapshot?: Schema$SnapshotExtended;
   }
   /**
    * A third party checking a revision response.
@@ -1467,6 +1483,77 @@ export namespace games_v1 {
     uniqueName?: string | null;
   }
   /**
+   * Identifies a snapshot cover image resource. The image is provided by the game.
+   */
+  export interface Schema$SnapshotCoverImageResource {
+    /**
+     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical.
+     */
+    contentHash?: string | null;
+    /**
+     * Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
+     */
+    downloadUrl?: string | null;
+    /**
+     * Output only. The height of the image in pixels.
+     */
+    height?: number | null;
+    /**
+     * Output only. The MIME type of the image.
+     */
+    mimeType?: string | null;
+    /**
+     * The ID of the image resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.
+     */
+    resourceId?: string | null;
+    /**
+     * Output only. The width of the image in pixels.
+     */
+    width?: number | null;
+  }
+  /**
+   * Identifies a snapshot data resource. The data is provided by the game.
+   */
+  export interface Schema$SnapshotDataResource {
+    /**
+     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
+     */
+    contentHash?: string | null;
+    /**
+     * Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
+     */
+    downloadUrl?: string | null;
+    /**
+     * The ID of the blob resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same resource ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.
+     */
+    resourceId?: string | null;
+    /**
+     * Size of the saved game blob in bytes.
+     */
+    size?: string | null;
+  }
+  /**
+   * A snapshot represents a saved game state referred to using the developer-provided snapshot_id (think of it as a file's path). The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot_revision_id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
+   */
+  export interface Schema$SnapshotExtended {
+    /**
+     * A list of conflicting revisions. Only set if explicitly requested (e.g. using a field mask or a request flag), or if the RPC guarantees that this field is set. The conflicting revisions are sorted chronologically by their server creation time (oldest first). If there are too many conflicting revisions to return all of them in a single request this will only contain the first batch. In such case, the presented conflicting revisions must be resolved first in order to fetch the next batch.
+     */
+    conflictingRevisions?: Schema$SnapshotRevision[];
+    /**
+     * An indicator whether the snapshot has any conflicting revisions or not. Always set.
+     */
+    hasConflictingRevisions?: boolean | null;
+    /**
+     * The current head revision (the canonical revision as understood by the server).
+     */
+    headRevision?: Schema$SnapshotRevision;
+    /**
+     * An identifier of the snapshot,developer-specified.
+     */
+    name?: string | null;
+  }
+  /**
    * An image of a snapshot.
    */
   export interface Schema$SnapshotImage {
@@ -1507,6 +1594,56 @@ export namespace games_v1 {
      * Token corresponding to the next page of results. If there are no more results, the token is omitted.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Metadata about a snapshot revision. Snapshot metadata is immutable - a metadata change corresponds to a new snapshot revision.
+   */
+  export interface Schema$SnapshotMetadata {
+    /**
+     * The description of this snapshot.
+     */
+    description?: string | null;
+    /**
+     * The device that created the current revision.
+     */
+    deviceName?: string | null;
+    /**
+     * The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
+     */
+    duration?: string | null;
+    /**
+     * The timestamp of the last modification to this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
+     */
+    lastModifyTime?: string | null;
+    /**
+     * The progress value (64-bit integer set by developer) associated with this snapshot.
+     */
+    progressValue?: string | null;
+    /**
+     * The title of this snapshot.
+     */
+    title?: string | null;
+  }
+  /**
+   * A Snapshot revision resource. Snapshot revisions are immutable.
+   */
+  export interface Schema$SnapshotRevision {
+    /**
+     * Reference to the game provided blob for this revision.
+     */
+    blob?: Schema$SnapshotDataResource;
+    /**
+     * Reference to the cover image for this revision.
+     */
+    coverImage?: Schema$SnapshotCoverImageResource;
+    /**
+     * Output only. A server generated identifier of the snapshot revision.
+     */
+    id?: string | null;
+    /**
+     * Metadata for this snapshot revision.
+     */
+    metadata?: Schema$SnapshotMetadata;
   }
   /**
    * A third party stats resource.
@@ -1565,9 +1702,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievementDefinitions.list
-     * @desc Lists all the achievement definitions for your application.
+     * Lists all the achievement definitions for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -1613,16 +1750,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievementDefinitions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Achievementdefinitions$List,
@@ -1703,7 +1836,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -1736,9 +1869,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.increment
-     * @desc Increments the steps of the achievement with the given ID for the currently authenticated player.
+     * Increments the steps of the achievement with the given ID for the currently authenticated player.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -1784,16 +1917,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.increment
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {string=} params.requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
-     * @param {integer} params.stepsToIncrement The number of steps to increment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     increment(
       params: Params$Resource$Achievements$Increment,
@@ -1873,7 +2002,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -1883,9 +2012,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.list
-     * @desc Lists the progress for all your application's achievements for the currently authenticated player.
+     * Lists the progress for all your application's achievements for the currently authenticated player.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -1935,18 +2064,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {string=} params.state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Achievements$List,
@@ -2026,7 +2149,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -2036,9 +2159,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.reveal
-     * @desc Sets the state of the achievement with the given ID to `REVEALED` for the currently authenticated player.
+     * Sets the state of the achievement with the given ID to `REVEALED` for the currently authenticated player.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2079,14 +2202,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.reveal
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reveal(
       params: Params$Resource$Achievements$Reveal,
@@ -2166,7 +2287,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementRevealResponse>(parameters);
@@ -2174,9 +2295,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.setStepsAtLeast
-     * @desc Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.
+     * Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2220,15 +2341,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.setStepsAtLeast
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {integer} params.steps The minimum value to set the steps to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
@@ -2308,7 +2426,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -2318,9 +2436,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.unlock
-     * @desc Unlocks this achievement for the currently authenticated player.
+     * Unlocks this achievement for the currently authenticated player.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2361,14 +2479,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.unlock
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     unlock(
       params: Params$Resource$Achievements$Unlock,
@@ -2448,7 +2564,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementUnlockResponse>(parameters);
@@ -2456,9 +2572,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.achievements.updateMultiple
-     * @desc Updates multiple achievements for the currently authenticated player.
+     * Updates multiple achievements for the currently authenticated player.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2505,14 +2621,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.achievements.updateMultiple
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AchievementUpdateMultipleRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
@@ -2593,7 +2707,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -2681,9 +2795,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.applications.get
-     * @desc Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified `platformType`, the returned response will not include any instance data.
+     * Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified `platformType`, the returned response will not include any instance data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2739,16 +2853,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.applications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string=} params.platformType Restrict application details returned to the specific platform.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Applications$Get,
@@ -2821,7 +2931,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$Application>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
@@ -2829,9 +2939,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.applications.played
-     * @desc Indicate that the currently authenticated user is playing your application.
+     * Indicate that the currently authenticated user is playing your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2863,13 +2973,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.applications.played
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     played(
       params: Params$Resource$Applications$Played,
@@ -2941,7 +3050,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2949,9 +3058,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.applications.verify
-     * @desc Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
+     * Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -2993,14 +3102,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.applications.verify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verify(
       params: Params$Resource$Applications$Verify,
@@ -3080,7 +3187,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApplicationVerifyResponse>(parameters);
@@ -3119,9 +3226,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.events.listByPlayer
-     * @desc Returns a list showing the current progress on events in this application for the currently authenticated user.
+     * Returns a list showing the current progress on events in this application for the currently authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3167,16 +3274,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.events.listByPlayer
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
@@ -3254,7 +3357,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerEventListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerEventListResponse>(parameters);
@@ -3262,9 +3365,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.events.listDefinitions
-     * @desc Returns a list of the event definitions in this application.
+     * Returns a list of the event definitions in this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3310,16 +3413,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.events.listDefinitions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
@@ -3400,7 +3499,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventDefinitionListResponse>(parameters);
@@ -3408,9 +3507,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.events.record
-     * @desc Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.
+     * Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3464,15 +3563,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.events.record
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().EventRecordRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     record(
       params: Params$Resource$Events$Record,
@@ -3545,7 +3641,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$EventUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventUpdateResponse>(parameters);
@@ -3602,9 +3698,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.leaderboards.get
-     * @desc Retrieves the metadata of the leaderboard with the given ID.
+     * Retrieves the metadata of the leaderboard with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3651,15 +3747,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.leaderboards.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Leaderboards$Get,
@@ -3732,7 +3825,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$Leaderboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Leaderboard>(parameters);
@@ -3740,9 +3833,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.leaderboards.list
-     * @desc Lists all the leaderboard metadata for your application.
+     * Lists all the leaderboard metadata for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3788,16 +3881,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.leaderboards.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Leaderboards$List,
@@ -3876,7 +3965,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$LeaderboardListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardListResponse>(parameters);
@@ -3917,9 +4006,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.metagame.getMetagameConfig
-     * @desc Return the metagame configuration data for the calling application.
+     * Return the metagame configuration data for the calling application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -3958,13 +4047,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.metagame.getMetagameConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
@@ -4040,7 +4128,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$MetagameConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetagameConfig>(parameters);
@@ -4048,9 +4136,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.metagame.listCategoriesByPlayer
-     * @desc List play data aggregated per category for the player corresponding to `playerId`.
+     * List play data aggregated per category for the player corresponding to `playerId`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4100,18 +4188,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.metagame.listCategoriesByPlayer
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.collection The collection of categories for which data will be returned.
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
@@ -4191,7 +4273,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$CategoryListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CategoryListResponse>(parameters);
@@ -4232,9 +4314,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.players.get
-     * @desc Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`.
+     * Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4287,15 +4369,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.players.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Players$Get,
@@ -4368,7 +4447,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$Player>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Player>(parameters);
@@ -4376,9 +4455,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.players.list
-     * @desc Get the collection of players for the currently authenticated user.
+     * Get the collection of players for the currently authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4426,17 +4505,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.players.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.collection Collection of players being retrieved
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Players$List,
@@ -4511,7 +4585,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerListResponse>(parameters);
@@ -4555,9 +4629,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.revisions.check
-     * @desc Checks whether the games client is out of date.
+     * Checks whether the games client is out of date.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4599,14 +4673,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.revisions.check
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clientRevision The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     check(
       params: Params$Resource$Revisions$Check,
@@ -4684,7 +4756,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$RevisionCheckResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RevisionCheckResponse>(parameters);
@@ -4706,9 +4778,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.scores.get
-     * @desc Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
+     * Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4763,20 +4835,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.scores.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.includeRankType The types of ranks to return. If the parameter is omitted, no ranks will be returned.
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Scores$Get,
@@ -4856,7 +4920,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -4866,9 +4930,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.scores.list
-     * @desc Lists the scores in a leaderboard, starting from the top.
+     * Lists the scores in a leaderboard, starting from the top.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -4923,19 +4987,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.scores.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.collection The collection of scores you're requesting.
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Scores$List,
@@ -5011,7 +5068,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
@@ -5019,9 +5076,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.scores.listWindow
-     * @desc Lists the scores in a leaderboard around (and including) a player's score.
+     * Lists the scores in a leaderboard around (and including) a player's score.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5080,21 +5137,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.scores.listWindow
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.collection The collection of scores you're requesting.
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {integer=} params.resultsAbove The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
-     * @param {boolean=} params.returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
-     * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listWindow(
       params: Params$Resource$Scores$Listwindow,
@@ -5171,7 +5219,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
@@ -5179,9 +5227,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.scores.submit
-     * @desc Submits a score to the specified leaderboard.
+     * Submits a score to the specified leaderboard.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5232,17 +5280,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.scores.submit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
-     * @param {string=} params.scoreTag Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     submit(
       params: Params$Resource$Scores$Submit,
@@ -5317,7 +5360,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerScoreResponse>(parameters);
@@ -5325,9 +5368,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.scores.submitMultiple
-     * @desc Submits multiple scores to leaderboards.
+     * Submits multiple scores to leaderboards.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5377,15 +5420,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.scores.submitMultiple
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().PlayerScoreSubmissionList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
@@ -5466,7 +5506,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerScoreListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerScoreListResponse>(parameters);
@@ -5603,9 +5643,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.snapshots.get
-     * @desc Retrieves the metadata for a given snapshot ID.
+     * Retrieves the metadata for a given snapshot ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5660,15 +5700,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.snapshots.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Snapshots$Get,
@@ -5741,7 +5778,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -5749,9 +5786,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.snapshots.list
-     * @desc Retrieves a list of snapshots created by your application for the player corresponding to the player ID.
+     * Retrieves a list of snapshots created by your application for the player corresponding to the player ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5802,17 +5839,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Snapshots$List,
@@ -5890,7 +5922,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$SnapshotListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SnapshotListResponse>(parameters);
@@ -5927,6 +5959,172 @@ export namespace games_v1 {
     playerId?: string;
   }
 
+  export class Resource$Snapshotsextended {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Resolves any potential conflicts according to the resolution policy specified in the request and returns the snapshot head after the resolution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/games',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.snapshotsExtended.resolveSnapshotHead({
+     *     // Required. Name of the snapshot.
+     *     snapshotName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resolutionPolicy": "my_resolutionPolicy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "snapshot": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resolveSnapshotHead(
+      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resolveSnapshotHead(
+      params?: Params$Resource$Snapshotsextended$Resolvesnapshothead,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResolveSnapshotHeadResponse>;
+    resolveSnapshotHead(
+      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resolveSnapshotHead(
+      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>,
+      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+    ): void;
+    resolveSnapshotHead(
+      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
+      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+    ): void;
+    resolveSnapshotHead(
+      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+    ): void;
+    resolveSnapshotHead(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotsextended$Resolvesnapshothead
+        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResolveSnapshotHeadResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotsextended$Resolvesnapshothead;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotsextended$Resolvesnapshothead;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1/snapshotsExtended/{snapshotName}:resolveHead'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['snapshotName'],
+        pathParams: ['snapshotName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResolveSnapshotHeadResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResolveSnapshotHeadResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Snapshotsextended$Resolvesnapshothead
+    extends StandardParameters {
+    /**
+     * Required. Name of the snapshot.
+     */
+    snapshotName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResolveSnapshotHeadRequest;
+  }
+
   export class Resource$Stats {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5934,9 +6132,9 @@ export namespace games_v1 {
     }
 
     /**
-     * games.stats.get
-     * @desc Returns engagement and spend statistics in this application for the currently authenticated user.
+     * Returns engagement and spend statistics in this application for the currently authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/games.googleapis.com
@@ -5983,13 +6181,12 @@ export namespace games_v1 {
      *   throw e;
      * });
      *
-     * @alias games.stats.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Stats$Get,
@@ -6059,7 +6256,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$StatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StatsResponse>(parameters);

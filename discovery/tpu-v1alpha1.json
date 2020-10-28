@@ -189,7 +189,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/acceleratorTypes/[^/]+$",
                       "required": true,
@@ -235,7 +235,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent resource name.",
+                      "description": "Required. The parent resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -269,7 +269,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent resource name.",
+                      "description": "Required. The parent resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -297,7 +297,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -322,7 +322,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -358,7 +358,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent resource name.",
+                      "description": "Required. The parent resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -591,7 +591,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tensorflowVersions/[^/]+$",
                       "required": true,
@@ -637,7 +637,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent resource name.",
+                      "description": "Required. The parent resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20200909",
+  "revision": "20201014",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -849,7 +849,7 @@
       "id": "Node",
       "properties": {
         "acceleratorType": {
-          "description": "The type of hardware accelerators associated with this node. Required.",
+          "description": "Required. The type of hardware accelerators associated with this node.",
           "type": "string"
         },
         "cidrBlock": {
@@ -859,6 +859,7 @@
         "createTime": {
           "description": "Output only. The time when the node was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -887,6 +888,7 @@
         },
         "healthDescription": {
           "description": "Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy.",
+          "readOnly": true,
           "type": "string"
         },
         "ipAddress": {
@@ -901,7 +903,8 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The immutable name of the TPU",
+          "description": "Output only. Immutable. The name of the TPU",
+          "readOnly": true,
           "type": "string"
         },
         "network": {
@@ -913,6 +916,7 @@
           "items": {
             "$ref": "NetworkEndpoint"
           },
+          "readOnly": true,
           "type": "array"
         },
         "port": {
@@ -920,10 +924,12 @@
           "type": "string"
         },
         "schedulingConfig": {
-          "$ref": "SchedulingConfig"
+          "$ref": "SchedulingConfig",
+          "description": "The scheduling options for this node."
         },
         "serviceAccount": {
           "description": "Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -962,6 +968,7 @@
             "TPU node has been hidden.",
             "TPU node is currently unhiding."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "symptoms": {
@@ -973,7 +980,7 @@
           "type": "array"
         },
         "tensorflowVersion": {
-          "description": "The version of Tensorflow running in the Node. Required.",
+          "description": "Required. The version of Tensorflow running in the Node.",
           "type": "string"
         },
         "useServiceNetworking": {

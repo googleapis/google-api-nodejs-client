@@ -104,14 +104,10 @@ export namespace dataflow_v1b3 {
    * Manages Google Cloud Dataflow projects on Google Cloud Platform.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const dataflow = google.dataflow('v1b3');
-   *
-   * @namespace dataflow
-   * @type {Function}
-   * @version v1b3
-   * @variation v1b3
-   * @param {object=} options Options for Dataflow
+   * ```
    */
   export class Dataflow {
     context: APIRequestContext;
@@ -161,7 +157,7 @@ export namespace dataflow_v1b3 {
      */
     position?: Schema$Position;
     /**
-     * Total amount of parallelism in the input of this task that remains, (i.e. can be delegated to this task and any new tasks via dynamic splitting). Always at least 1 for non-finished work items and 0 for finished. &quot;Amount of parallelism&quot; refers to how many non-empty parts of the input can be read in parallel. This does not necessarily equal number of records. An input that can be read in parallel down to the individual records is called &quot;perfectly splittable&quot;. An example of non-perfectly parallelizable input is a block-compressed file format where a block of records has to be read as a whole, but different blocks can be read in parallel. Examples: * If we are processing record #30 (starting at 1) out of 50 in a perfectly splittable 50-record input, this value should be 21 (20 remaining + 1 current). * If we are reading through block 3 in a block-compressed file consisting of 5 blocks, this value should be 3 (since blocks 4 and 5 can be processed in parallel by new tasks via dynamic splitting and the current task remains processing block 3). * If we are reading through the last block in a block-compressed file, or reading or processing the last record in a perfectly splittable input, this value should be 1, because apart from the current task, no additional remainder can be split off.
+     * Total amount of parallelism in the input of this task that remains, (i.e. can be delegated to this task and any new tasks via dynamic splitting). Always at least 1 for non-finished work items and 0 for finished. "Amount of parallelism" refers to how many non-empty parts of the input can be read in parallel. This does not necessarily equal number of records. An input that can be read in parallel down to the individual records is called "perfectly splittable". An example of non-perfectly parallelizable input is a block-compressed file format where a block of records has to be read as a whole, but different blocks can be read in parallel. Examples: * If we are processing record #30 (starting at 1) out of 50 in a perfectly splittable 50-record input, this value should be 21 (20 remaining + 1 current). * If we are reading through block 3 in a block-compressed file consisting of 5 blocks, this value should be 3 (since blocks 4 and 5 can be processed in parallel by new tasks via dynamic splitting and the current task remains processing block 3). * If we are reading through the last block in a block-compressed file, or reading or processing the last record in a perfectly splittable input, this value should be 1, because apart from the current task, no additional remainder can be split off.
      */
     remainingParallelism?: Schema$ReportedParallelism;
   }
@@ -369,6 +365,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ContainerSpec {
     /**
+     * Default runtime environment for the job.
+     */
+    defaultEnvironment?: Schema$FlexTemplateRuntimeEnvironment;
+    /**
      * Name of the docker container image. E.g., gcr.io/project/some-image
      */
     image?: string | null;
@@ -415,7 +415,7 @@ export namespace dataflow_v1b3 {
      */
     executionStepName?: string | null;
     /**
-     * Index of an input collection that&#39;s being read from/written to as a side input. The index identifies a step&#39;s side inputs starting by 1 (e.g. the first side input has input_index 1, the third has input_index 3). Side inputs are identified by a pair of (original_step_name, input_index). This field helps uniquely identify them.
+     * Index of an input collection that's being read from/written to as a side input. The index identifies a step's side inputs starting by 1 (e.g. the first side input has input_index 1, the third has input_index 3). Side inputs are identified by a pair of (original_step_name, input_index). This field helps uniquely identify them.
      */
     inputIndex?: number | null;
     /**
@@ -431,11 +431,11 @@ export namespace dataflow_v1b3 {
      */
     originalRequestingStepName?: string | null;
     /**
-     * System generated name of the original step in the user&#39;s graph, before optimization.
+     * System generated name of the original step in the user's graph, before optimization.
      */
     originalStepName?: string | null;
     /**
-     * A string containing a more specific namespace of the counter&#39;s origin.
+     * A string containing a more specific namespace of the counter's origin.
      */
     originNamespace?: string | null;
     /**
@@ -513,7 +513,7 @@ export namespace dataflow_v1b3 {
      */
     nameAndKind?: Schema$NameAndKind;
     /**
-     * The service-generated short identifier for this counter. The short_id -&gt; (name, metadata) mapping is constant for the lifetime of a job.
+     * The service-generated short identifier for this counter. The short_id -\> (name, metadata) mapping is constant for the lifetime of a job.
      */
     shortId?: string | null;
     /**
@@ -590,11 +590,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$DataDiskAssignment {
     /**
-     * Mounted data disks. The order is important a data disk&#39;s 0-based index in this list defines which persistent directory the disk is mounted to, for example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; }, { &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
+     * Mounted data disks. The order is important a data disk's 0-based index in this list defines which persistent directory the disk is mounted to, for example the list of { "myproject-1014-104817-4c2-harness-0-disk-0" \}, { "myproject-1014-104817-4c2-harness-0-disk-1" \}.
      */
     dataDisks?: string[] | null;
     /**
-     * VM instance name the data disks mounted to, for example &quot;myproject-1014-104817-4c2-harness-0&quot;.
+     * VM instance name the data disks mounted to, for example "myproject-1014-104817-4c2-harness-0".
      */
     vmInstance?: string | null;
   }
@@ -633,7 +633,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Disk {
     /**
-     * Disk storage type, as defined by Google Compute Engine. This must be a disk type appropriate to the project and zone in which the workers will run. If unknown or unspecified, the service will attempt to choose a reasonable default. For example, the standard persistent disk type is a resource name typically ending in &quot;pd-standard&quot;. If SSD persistent disks are available, the resource name typically ends with &quot;pd-ssd&quot;. The actual valid values are defined the Google Compute Engine API, not by the Cloud Dataflow API; consult the Google Compute Engine documentation for more information about determining the set of available disk types for a particular project and zone. Google Compute Engine Disk types are local to a particular project in a particular zone, and so the resource name will typically look something like this: compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
+     * Disk storage type, as defined by Google Compute Engine. This must be a disk type appropriate to the project and zone in which the workers will run. If unknown or unspecified, the service will attempt to choose a reasonable default. For example, the standard persistent disk type is a resource name typically ending in "pd-standard". If SSD persistent disks are available, the resource name typically ends with "pd-ssd". The actual valid values are defined the Google Compute Engine API, not by the Cloud Dataflow API; consult the Google Compute Engine documentation for more information about determining the set of available disk types for a particular project and zone. Google Compute Engine Disk types are local to a particular project in a particular zone, and so the resource name will typically look something like this: compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
      */
     diskType?: string | null;
     /**
@@ -719,7 +719,7 @@ export namespace dataflow_v1b3 {
      */
     min?: Schema$SplitInt64;
     /**
-     * Use an int64 since we&#39;d prefer the added precision. If overflow is a common problem we can detect it and use an additional int64 or a double.
+     * Use an int64 since we'd prefer the added precision. If overflow is a common problem we can detect it and use an additional int64 or a double.
      */
     sum?: Schema$SplitInt64;
     /**
@@ -728,7 +728,7 @@ export namespace dataflow_v1b3 {
     sumOfSquares?: number | null;
   }
   /**
-   * When a task splits using WorkItemStatus.dynamic_source_split, this message describes the two parts of the split relative to the description of the current task&#39;s input.
+   * When a task splits using WorkItemStatus.dynamic_source_split, this message describes the two parts of the split relative to the description of the current task's input.
    */
   export interface Schema$DynamicSourceSplit {
     /**
@@ -741,7 +741,7 @@ export namespace dataflow_v1b3 {
     residual?: Schema$DerivedSource;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -749,11 +749,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Environment {
     /**
-     * The type of cluster manager API to use. If unknown or unspecified, the service will attempt to choose a reasonable default. This should be in the form of the API service name, e.g. &quot;compute.googleapis.com&quot;.
+     * The type of cluster manager API to use. If unknown or unspecified, the service will attempt to choose a reasonable default. This should be in the form of the API service name, e.g. "compute.googleapis.com".
      */
     clusterManagerApiService?: string | null;
     /**
-     * The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset}
+     * The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset\}
      */
     dataset?: string | null;
     /**
@@ -781,7 +781,7 @@ export namespace dataflow_v1b3 {
      */
     serviceKmsKeyName?: string | null;
     /**
-     * The prefix of the resources the system should use for temporary storage. The system will append the suffix &quot;/temp-{JOBNAME} to this resource prefix, where {JOBNAME} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the system should use for temporary storage. The system will append the suffix "/temp-{JOBNAME\} to this resource prefix, where {JOBNAME\} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempStoragePrefix?: string | null;
     /**
@@ -793,15 +793,15 @@ export namespace dataflow_v1b3 {
      */
     version?: {[key: string]: any} | null;
     /**
-     * The worker pools. At least one &quot;harness&quot; worker pool must be specified in order for the job to have workers.
+     * The worker pools. At least one "harness" worker pool must be specified in order for the job to have workers.
      */
     workerPools?: Schema$WorkerPool[];
     /**
-     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
      */
     workerRegion?: string | null;
     /**
-     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity.
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity.
      */
     workerZone?: string | null;
   }
@@ -854,6 +854,10 @@ export namespace dataflow_v1b3 {
      * Output sources for this stage.
      */
     outputSource?: Schema$StageSource[];
+    /**
+     * Other stages that must complete before this stage can run.
+     */
+    prerequisiteStage?: string[] | null;
   }
   /**
    * Indicates which [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) failed to respond to a request for data.
@@ -891,7 +895,7 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[] | null;
     /**
-     * Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of &quot;key&quot;: value pairs. Example: { &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1kg&quot;, &quot;count&quot;: &quot;3&quot; }.
+     * Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
      */
     additionalUserLabels?: {[key: string]: string} | null;
     /**
@@ -915,7 +919,7 @@ export namespace dataflow_v1b3 {
      */
     maxWorkers?: number | null;
     /**
-     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network &quot;default&quot;.
+     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network "default".
      */
     network?: string | null;
     /**
@@ -927,7 +931,7 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string | null;
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form &quot;https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK&quot; or &quot;regions/REGION/subnetworks/SUBNETWORK&quot;. If the subnetwork is located in a Shared VPC network, you must use the complete URL.
+     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK" or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in a Shared VPC network, you must use the complete URL.
      */
     subnetwork?: string | null;
     /**
@@ -935,11 +939,11 @@ export namespace dataflow_v1b3 {
      */
     tempLocation?: string | null;
     /**
-     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
      */
     workerRegion?: string | null;
     /**
-     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
      */
     workerZone?: string | null;
     /**
@@ -1017,7 +1021,7 @@ export namespace dataflow_v1b3 {
     templateType?: string | null;
   }
   /**
-   * Histogram of value counts for a distribution. Buckets have an inclusive lower bound and exclusive upper bound and use &quot;1,2,5 bucketing&quot;: The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
+   * Histogram of value counts for a distribution. Buckets have an inclusive lower bound and exclusive upper bound and use "1,2,5 bucketing": The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
    */
   export interface Schema$Histogram {
     /**
@@ -1055,7 +1059,7 @@ export namespace dataflow_v1b3 {
      */
     outputNum?: number | null;
     /**
-     * The index (origin zero) of the parallel instruction that produces the output to be consumed by this input. This index is relative to the list of instructions in this input&#39;s instruction&#39;s containing MapTask.
+     * The index (origin zero) of the parallel instruction that produces the output to be consumed by this input. This index is relative to the list of instructions in this input's instruction's containing MapTask.
      */
     producerInstructionIndex?: number | null;
   }
@@ -1128,11 +1132,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Job {
     /**
-     * The client&#39;s unique identifier of the job, re-used across retried attempts. If this field is set, the service will ensure its uniqueness. The request to create a job will fail if the service has knowledge of a previously submitted job with the same client&#39;s ID and job name. The caller may use this field to ensure idempotence of job creation across retried attempts to create a job. By default, the field is empty and, in that case, the service ignores it.
+     * The client's unique identifier of the job, re-used across retried attempts. If this field is set, the service will ensure its uniqueness. The request to create a job will fail if the service has knowledge of a previously submitted job with the same client's ID and job name. The caller may use this field to ensure idempotence of job creation across retried attempts to create a job. By default, the field is empty and, in that case, the service ignores it.
      */
     clientRequestId?: string | null;
     /**
-     * If this is specified, the job&#39;s initial state is populated from the given snapshot.
+     * If this is specified, the job's initial state is populated from the given snapshot.
      */
     createdFromSnapshotId?: string | null;
     /**
@@ -1164,7 +1168,7 @@ export namespace dataflow_v1b3 {
      */
     jobMetadata?: Schema$JobMetadata;
     /**
-     * User-defined labels for this job. The labels map can contain no more than 64 entries. Entries of the labels map are UTF8 strings that comply with the following restrictions: * Keys must conform to regexp: \p{Ll}\p{Lo}{0,62} * Values must conform to regexp: [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
+     * User-defined labels for this job. The labels map can contain no more than 64 entries. Entries of the labels map are UTF8 strings that comply with the following restrictions: * Keys must conform to regexp: \p{Ll\}\p{Lo\}{0,62\} * Values must conform to regexp: [\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\} * Both keys and values are additionally constrained to be <= 128 bytes in size.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1172,7 +1176,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
-     * The user-specified Cloud Dataflow job name. Only one Job with a given name may exist in a project at any given time. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * The user-specified Cloud Dataflow job name. Only one Job with a given name may exist in a project at any given time. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1192,7 +1196,7 @@ export namespace dataflow_v1b3 {
      */
     replaceJobId?: string | null;
     /**
-     * The job&#39;s requested state. `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting requested_state. `UpdateJob` may also be used to directly set a job&#39;s requested state to `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the job if it has not already reached a terminal state.
+     * The job's requested state. `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting requested_state. `UpdateJob` may also be used to directly set a job's requested state to `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the job if it has not already reached a terminal state.
      */
     requestedState?: string | null;
     /**
@@ -1212,7 +1216,7 @@ export namespace dataflow_v1b3 {
      */
     stepsLocation?: string | null;
     /**
-     * A set of files the system should be aware of that are used for temporary storage. These temporary files will be removed on job completion. No duplicates are allowed. No file patterns are supported. The supported files are: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}
+     * A set of files the system should be aware of that are used for temporary storage. These temporary files will be removed on job completion. No duplicates are allowed. No file patterns are supported. The supported files are: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempFiles?: string[] | null;
     /**
@@ -1238,7 +1242,7 @@ export namespace dataflow_v1b3 {
     stages?: Schema$StageSummary[];
   }
   /**
-   * Additional information about how a Cloud Dataflow job will be executed that isn&#39;t contained in the submitted job.
+   * Additional information about how a Cloud Dataflow job will be executed that isn't contained in the submitted job.
    */
   export interface Schema$JobExecutionInfo {
     /**
@@ -1327,7 +1331,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$KeyRangeDataDiskAssignment {
     /**
-     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example "myproject-1014-104817-4c2-harness-0-disk-1".
      */
     dataDisk?: string | null;
     /**
@@ -1344,7 +1348,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$KeyRangeLocation {
     /**
-     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example "myproject-1014-104817-4c2-harness-0-disk-1".
      */
     dataDisk?: string | null;
     /**
@@ -1389,7 +1393,7 @@ export namespace dataflow_v1b3 {
      */
     launchOptions?: {[key: string]: string} | null;
     /**
-     * The parameters for FlexTemplate. Ex. {&quot;num_workers&quot;:&quot;5&quot;}
+     * The parameters for FlexTemplate. Ex. {"num_workers":"5"\}
      */
     parameters?: {[key: string]: string} | null;
   }
@@ -1458,7 +1462,7 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string | null;
     /**
-     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem&#39;s job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      */
     location?: string | null;
     /**
@@ -1513,7 +1517,7 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string | null;
   }
   /**
-   * Response to a request to list Cloud Dataflow jobs in a project. This might be a partial response, depending on the page size in the ListJobsRequest. However, if the project does not have any jobs, an instance of ListJobsResponse is not returned and the requests&#39;s response body is empty {}.
+   * Response to a request to list Cloud Dataflow jobs in a project. This might be a partial response, depending on the page size in the ListJobsRequest. However, if the project does not have any jobs, an instance of ListJobsResponse is not returned and the requests's response body is empty {\}.
    */
   export interface Schema$ListJobsResponse {
     /**
@@ -1552,7 +1556,7 @@ export namespace dataflow_v1b3 {
     templateVersions?: Schema$TemplateVersion[];
   }
   /**
-   * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask&#39;s WorkItem. Each instruction must appear in the list before any instructions which depends on its output.
+   * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask's WorkItem. Each instruction must appear in the list before any instructions which depends on its output.
    */
   export interface Schema$MapTask {
     /**
@@ -1611,7 +1615,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MetricStructuredName {
     /**
-     * Zero or more labeled fields which identify the part of the job this metric is associated with, such as the name of a step or collection. For example, built-in counters associated with steps will have context[&#39;step&#39;] = . Counters associated with PCollections in the SDK will have context[&#39;pcollection&#39;] = .
+     * Zero or more labeled fields which identify the part of the job this metric is associated with, such as the name of a step or collection. For example, built-in counters associated with steps will have context['step'] = . Counters associated with PCollections in the SDK will have context['pcollection'] = .
      */
     context?: {[key: string]: string} | null;
     /**
@@ -1619,7 +1623,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string | null;
     /**
-     * Origin (namespace) of metric name. May be blank for user-define metrics; will be &quot;dataflow&quot; for metrics defined by the Dataflow service or SDK.
+     * Origin (namespace) of metric name. May be blank for user-define metrics; will be "dataflow" for metrics defined by the Dataflow service or SDK.
      */
     origin?: string | null;
   }
@@ -1644,15 +1648,15 @@ export namespace dataflow_v1b3 {
      */
     internal?: any | null;
     /**
-     * Metric aggregation kind. The possible metric aggregation kinds are &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;Mean&quot;, &quot;Set&quot;, &quot;And&quot;, &quot;Or&quot;, and &quot;Distribution&quot;. The specified aggregation kind is case-insensitive. If omitted, this is not an aggregated value but instead a single metric sample value.
+     * Metric aggregation kind. The possible metric aggregation kinds are "Sum", "Max", "Min", "Mean", "Set", "And", "Or", and "Distribution". The specified aggregation kind is case-insensitive. If omitted, this is not an aggregated value but instead a single metric sample value.
      */
     kind?: string | null;
     /**
-     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation kind. This holds the count of the aggregated values and is used in combination with mean_sum above to obtain the actual mean aggregate value. The only possible value type is Long.
+     * Worker-computed aggregate value for the "Mean" aggregation kind. This holds the count of the aggregated values and is used in combination with mean_sum above to obtain the actual mean aggregate value. The only possible value type is Long.
      */
     meanCount?: any | null;
     /**
-     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation kind. This holds the sum of the aggregated values and is used in combination with mean_count below to obtain the actual mean aggregate value. The only possible value types are Long and Double.
+     * Worker-computed aggregate value for the "Mean" aggregation kind. This holds the sum of the aggregated values and is used in combination with mean_count below to obtain the actual mean aggregate value. The only possible value types are Long and Double.
      */
     meanSum?: any | null;
     /**
@@ -1660,11 +1664,11 @@ export namespace dataflow_v1b3 {
      */
     name?: Schema$MetricStructuredName;
     /**
-     * Worker-computed aggregate value for aggregation kinds &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;And&quot;, and &quot;Or&quot;. The possible value types are Long, Double, and Boolean.
+     * Worker-computed aggregate value for aggregation kinds "Sum", "Max", "Min", "And", and "Or". The possible value types are Long, Double, and Boolean.
      */
     scalar?: any | null;
     /**
-     * Worker-computed aggregate value for the &quot;Set&quot; aggregation kind. The only possible value type is a list of Values whose type can be Long, Double, or String, according to the metric&#39;s type. All Values in the list must be of the same type.
+     * Worker-computed aggregate value for the "Set" aggregation kind. The only possible value type is a list of Values whose type can be Long, Double, or String, according to the metric's type. All Values in the list must be of the same type.
      */
     set?: any | null;
     /**
@@ -1725,7 +1729,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MountedDataDisk {
     /**
-     * The name of the data disk. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example "myproject-1014-104817-4c2-harness-0-disk-1".
      */
     dataDisk?: string | null;
   }
@@ -1752,11 +1756,11 @@ export namespace dataflow_v1b3 {
     name?: string | null;
   }
   /**
-   * The packages that must be installed in order for a worker to run the steps of the Cloud Dataflow job that will be assigned to its worker pool. This is the mechanism by which the Cloud Dataflow SDK causes code to be loaded onto the workers. For example, the Cloud Dataflow Java SDK might use this to install jars containing the user&#39;s code and all of the various dependencies (libraries, data files, etc.) required in order for that code to run.
+   * The packages that must be installed in order for a worker to run the steps of the Cloud Dataflow job that will be assigned to its worker pool. This is the mechanism by which the Cloud Dataflow SDK causes code to be loaded onto the workers. For example, the Cloud Dataflow Java SDK might use this to install jars containing the user's code and all of the various dependencies (libraries, data files, etc.) required in order for that code to run.
    */
   export interface Schema$Package {
     /**
-     * The resource to read the package from. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket} bucket.storage.googleapis.com/
+     * The resource to read the package from. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\} bucket.storage.googleapis.com/
      */
     location?: string | null;
     /**
@@ -1999,7 +2003,7 @@ export namespace dataflow_v1b3 {
      */
     idLabel?: string | null;
     /**
-     * A pubsub subscription, in the form of &quot;pubsub.googleapis.com/subscriptions//&quot;
+     * A pubsub subscription, in the form of "pubsub.googleapis.com/subscriptions//"
      */
     subscription?: string | null;
     /**
@@ -2007,7 +2011,7 @@ export namespace dataflow_v1b3 {
      */
     timestampLabel?: string | null;
     /**
-     * A pubsub topic, in the form of &quot;pubsub.googleapis.com/topics//&quot;
+     * A pubsub topic, in the form of "pubsub.googleapis.com/topics//"
      */
     topic?: string | null;
     /**
@@ -2055,11 +2059,11 @@ export namespace dataflow_v1b3 {
     source?: Schema$Source;
   }
   /**
-   * Represents the level of parallelism in a WorkItem&#39;s input, reported by the worker.
+   * Represents the level of parallelism in a WorkItem's input, reported by the worker.
    */
   export interface Schema$ReportedParallelism {
     /**
-     * Specifies whether the parallelism is infinite. If true, &quot;value&quot; is ignored. Infinite parallelism means the service will assume that the work item can always be split into more non-empty work items by dynamic splitting. This is a work-around for lack of support for infinity by the current JSON-based Java RPC stack.
+     * Specifies whether the parallelism is infinite. If true, "value" is ignored. Infinite parallelism means the service will assume that the work item can always be split into more non-empty work items by dynamic splitting. This is a work-around for lack of support for infinity by the current JSON-based Java RPC stack.
      */
     isInfinite?: boolean | null;
     /**
@@ -2076,7 +2080,7 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string | null;
     /**
-     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem&#39;s job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      */
     location?: string | null;
     /**
@@ -2135,11 +2139,11 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[] | null;
     /**
-     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of &quot;key&quot;: value pairs. Example: { &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1kg&quot;, &quot;count&quot;: &quot;3&quot; }.
+     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
      */
     additionalUserLabels?: {[key: string]: string} | null;
     /**
-     * Whether to bypass the safety checks for the job&#39;s temporary directory. Use with caution.
+     * Whether to bypass the safety checks for the job's temporary directory. Use with caution.
      */
     bypassTempDirValidation?: boolean | null;
     /**
@@ -2163,7 +2167,7 @@ export namespace dataflow_v1b3 {
      */
     maxWorkers?: number | null;
     /**
-     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network &quot;default&quot;.
+     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network "default".
      */
     network?: string | null;
     /**
@@ -2175,7 +2179,7 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string | null;
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form &quot;https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK&quot; or &quot;regions/REGION/subnetworks/SUBNETWORK&quot;. If the subnetwork is located in a Shared VPC network, you must use the complete URL.
+     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK" or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in a Shared VPC network, you must use the complete URL.
      */
     subnetwork?: string | null;
     /**
@@ -2183,11 +2187,11 @@ export namespace dataflow_v1b3 {
      */
     tempLocation?: string | null;
     /**
-     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
      */
     workerRegion?: string | null;
     /**
-     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
      */
     workerZone?: string | null;
     /**
@@ -2458,11 +2462,11 @@ export namespace dataflow_v1b3 {
      */
     codec?: {[key: string]: any} | null;
     /**
-     * Setting this value to true hints to the framework that the source doesn&#39;t need splitting, and using SourceSplitRequest on it would yield SOURCE_SPLIT_OUTCOME_USE_CURRENT. E.g. a file splitter may set this to true when splitting a single file into a set of byte ranges of appropriate size, and set this to false when splitting a filepattern into individual files. However, for efficiency, a file splitter may decide to produce file subranges directly from the filepattern to avoid a splitting round-trip. See SourceSplitRequest for an overview of the splitting process. This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don&#39;t have this field populated.
+     * Setting this value to true hints to the framework that the source doesn't need splitting, and using SourceSplitRequest on it would yield SOURCE_SPLIT_OUTCOME_USE_CURRENT. E.g. a file splitter may set this to true when splitting a single file into a set of byte ranges of appropriate size, and set this to false when splitting a filepattern into individual files. However, for efficiency, a file splitter may decide to produce file subranges directly from the filepattern to avoid a splitting round-trip. See SourceSplitRequest for an overview of the splitting process. This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don't have this field populated.
      */
     doesNotNeedSplitting?: boolean | null;
     /**
-     * Optionally, metadata for this source can be supplied right away, avoiding a SourceGetMetadataOperation roundtrip (see SourceOperationRequest). This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don&#39;t have this field populated.
+     * Optionally, metadata for this source can be supplied right away, avoiding a SourceGetMetadataOperation roundtrip (see SourceOperationRequest). This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don't have this field populated.
      */
     metadata?: Schema$SourceMetadata;
     /**
@@ -2582,7 +2586,7 @@ export namespace dataflow_v1b3 {
     desiredShardSizeBytes?: string | null;
   }
   /**
-   * Represents the operation to split a high-level Source specification into bundles (parts for parallel processing). At a high level, splitting of a source into bundles happens as follows: SourceSplitRequest is applied to the source. If it returns SOURCE_SPLIT_OUTCOME_USE_CURRENT, no further splitting happens and the source is used &quot;as is&quot;. Otherwise, splitting is applied recursively to each produced DerivedSource. As an optimization, for any Source, if its does_not_need_splitting is true, the framework assumes that splitting this source would return SOURCE_SPLIT_OUTCOME_USE_CURRENT, and doesn&#39;t initiate a SourceSplitRequest. This applies both to the initial source being split and to bundles produced from it.
+   * Represents the operation to split a high-level Source specification into bundles (parts for parallel processing). At a high level, splitting of a source into bundles happens as follows: SourceSplitRequest is applied to the source. If it returns SOURCE_SPLIT_OUTCOME_USE_CURRENT, no further splitting happens and the source is used "as is". Otherwise, splitting is applied recursively to each produced DerivedSource. As an optimization, for any Source, if its does_not_need_splitting is true, the framework assumes that splitting this source would return SOURCE_SPLIT_OUTCOME_USE_CURRENT, and doesn't initiate a SourceSplitRequest. This applies both to the initial source being split and to bundles produced from it.
    */
   export interface Schema$SourceSplitRequest {
     /**
@@ -2603,7 +2607,7 @@ export namespace dataflow_v1b3 {
      */
     bundles?: Schema$DerivedSource[];
     /**
-     * Indicates whether splitting happened and produced a list of bundles. If this is USE_CURRENT_SOURCE_AS_IS, the current source should be processed &quot;as is&quot; without splitting. &quot;bundles&quot; is ignored in this case. If this is SPLITTING_HAPPENED, then &quot;bundles&quot; contains a list of bundles into which the source was split.
+     * Indicates whether splitting happened and produced a list of bundles. If this is USE_CURRENT_SOURCE_AS_IS, the current source should be processed "as is" without splitting. "bundles" is ignored in this case. If this is SPLITTING_HAPPENED, then "bundles" contains a list of bundles into which the source was split.
      */
     outcome?: string | null;
     /**
@@ -2646,11 +2650,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$SplitInt64 {
     /**
-     * The high order bits, including the sign: n &gt;&gt; 32.
+     * The high order bits, including the sign: n \>\> 32.
      */
     highBits?: number | null;
     /**
-     * The low order bits: n &amp; 0xffffffff.
+     * The low order bits: n & 0xffffffff.
      */
     lowBits?: number | null;
   }
@@ -2748,7 +2752,7 @@ export namespace dataflow_v1b3 {
     message?: string | null;
   }
   /**
-   * Defines a particular step within a Cloud Dataflow job. A job consists of multiple steps, each of which performs some specific operation as part of the overall job. Data is typically passed from one step to another as part of the job. Here&#39;s an example of a sequence of steps which together implement a Map-Reduce job: * Read a collection of data from some source, parsing the collection&#39;s elements. * Validate the elements. * Apply a user-defined function to map each element to some value and extract an element-specific key value. * Group elements with the same key into a single element with that key, transforming a multiply-keyed collection into a uniquely-keyed collection. * Write the elements out to some data sink. Note that the Cloud Dataflow service may be used to run many different types of jobs, not just Map-Reduce.
+   * Defines a particular step within a Cloud Dataflow job. A job consists of multiple steps, each of which performs some specific operation as part of the overall job. Data is typically passed from one step to another as part of the job. Here's an example of a sequence of steps which together implement a Map-Reduce job: * Read a collection of data from some source, parsing the collection's elements. * Validate the elements. * Apply a user-defined function to map each element to some value and extract an element-specific key value. * Group elements with the same key into a single element with that key, transforming a multiply-keyed collection into a uniquely-keyed collection. * Write the elements out to some data sink. Note that the Cloud Dataflow service may be used to run many different types of jobs, not just Map-Reduce.
    */
   export interface Schema$Step {
     /**
@@ -2972,7 +2976,7 @@ export namespace dataflow_v1b3 {
      */
     baseTaskDir?: string | null;
     /**
-     * The base URL for the taskrunner to use when accessing Google Cloud APIs. When workers access Google Cloud APIs, they logically do so via relative URLs. If this field is specified, it supplies the base URL to use for resolving these relative URLs. The normative algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource Locators&quot;. If not specified, the default value is &quot;http://www.googleapis.com/&quot;
+     * The base URL for the taskrunner to use when accessing Google Cloud APIs. When workers access Google Cloud APIs, they logically do so via relative URLs. If this field is specified, it supplies the base URL to use for resolving these relative URLs. The normative algorithm used is defined by RFC 1808, "Relative Uniform Resource Locators". If not specified, the default value is "http://www.googleapis.com/"
      */
     baseUrl?: string | null;
     /**
@@ -2984,7 +2988,7 @@ export namespace dataflow_v1b3 {
      */
     continueOnException?: boolean | null;
     /**
-     * The API version of endpoint, e.g. &quot;v1b3&quot;
+     * The API version of endpoint, e.g. "v1b3"
      */
     dataflowApiVersion?: string | null;
     /**
@@ -3004,7 +3008,7 @@ export namespace dataflow_v1b3 {
      */
     logToSerialconsole?: boolean | null;
     /**
-     * Indicates where to put logs. If this is not specified, the logs will not be uploaded. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}
+     * Indicates where to put logs. If this is not specified, the logs will not be uploaded. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     logUploadLocation?: string | null;
     /**
@@ -3020,15 +3024,15 @@ export namespace dataflow_v1b3 {
      */
     streamingWorkerMainClass?: string | null;
     /**
-     * The UNIX group ID on the worker VM to use for tasks launched by taskrunner; e.g. &quot;wheel&quot;.
+     * The UNIX group ID on the worker VM to use for tasks launched by taskrunner; e.g. "wheel".
      */
     taskGroup?: string | null;
     /**
-     * The UNIX user ID on the worker VM to use for tasks launched by taskrunner; e.g. &quot;root&quot;.
+     * The UNIX user ID on the worker VM to use for tasks launched by taskrunner; e.g. "root".
      */
     taskUser?: string | null;
     /**
-     * The prefix of the resources the taskrunner should use for temporary storage. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the taskrunner should use for temporary storage. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempStoragePrefix?: string | null;
     /**
@@ -3217,7 +3221,7 @@ export namespace dataflow_v1b3 {
     reportInterval?: string | null;
   }
   /**
-   * A report of an event in a worker&#39;s lifecycle. The proto contains one event, because the worker is expected to asynchronously send each message immediately after the event. Due to this asynchrony, messages may arrive out of order (or missing), and it is up to the consumer to interpret. The timestamp of the event is in the enclosing WorkerMessage proto.
+   * A report of an event in a worker's lifecycle. The proto contains one event, because the worker is expected to asynchronously send each message immediately after the event. Due to this asynchrony, messages may arrive out of order (or missing), and it is up to the consumer to interpret. The timestamp of the event is in the enclosing WorkerMessage proto.
    */
   export interface Schema$WorkerLifecycleEvent {
     /**
@@ -3229,7 +3233,7 @@ export namespace dataflow_v1b3 {
      */
     event?: string | null;
     /**
-     * Other stats that can accompany an event. E.g. { &quot;downloaded_bytes&quot; : &quot;123456&quot; }
+     * Other stats that can accompany an event. E.g. { "downloaded_bytes" : "123456" \}
      */
     metadata?: {[key: string]: string} | null;
   }
@@ -3238,7 +3242,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessage {
     /**
-     * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { &quot;JOB_ID&quot;: &quot;2015-04-22&quot;, &quot;WORKER_ID&quot;: &quot;wordcount-vm-2015…&quot; &quot;CONTAINER_TYPE&quot;: &quot;worker&quot;, &quot;CONTAINER_ID&quot;: &quot;ac1234def&quot;} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
+     * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { "JOB_ID": "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker", "CONTAINER_ID": "ac1234def"\} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -3271,11 +3275,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessageCode {
     /**
-     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. &quot;HARNESS_STARTED&quot; might be used to indicate the worker harness has started. 2. &quot;GCS_DOWNLOAD_ERROR&quot; might be used to indicate an error downloading a GCS file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
+     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. "HARNESS_STARTED" might be used to indicate the worker harness has started. 2. "GCS_DOWNLOAD_ERROR" might be used to indicate an error downloading a GCS file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
      */
     code?: string | null;
     /**
-     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a &quot;HARNESS_STARTED&quot; message parameters might provide the name of the worker and additional data like timing information. 2. For a &quot;GCS_DOWNLOAD_ERROR&quot; parameters might contain fields listing the GCS objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn&#39;t typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
+     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a "HARNESS_STARTED" message parameters might provide the name of the worker and additional data like timing information. 2. For a "GCS_DOWNLOAD_ERROR" parameters might contain fields listing the GCS objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -3284,15 +3288,15 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessageResponse {
     /**
-     * The service&#39;s response to a worker&#39;s health report.
+     * The service's response to a worker's health report.
      */
     workerHealthReportResponse?: Schema$WorkerHealthReportResponse;
     /**
-     * Service&#39;s response to reporting worker metrics (currently empty).
+     * Service's response to reporting worker metrics (currently empty).
      */
     workerMetricsResponse?: Schema$ResourceUtilizationReportResponse;
     /**
-     * Service&#39;s response to shutdown notice (currently empty).
+     * Service's response to shutdown notice (currently empty).
      */
     workerShutdownNoticeResponse?: Schema$WorkerShutdownNoticeResponse;
   }
@@ -3333,7 +3337,7 @@ export namespace dataflow_v1b3 {
      */
     kind?: string | null;
     /**
-     * Machine type (e.g. &quot;n1-standard-1&quot;). If empty or unspecified, the service will attempt to choose a reasonable default.
+     * Machine type (e.g. "n1-standard-1"). If empty or unspecified, the service will attempt to choose a reasonable default.
      */
     machineType?: string | null;
     /**
@@ -3341,7 +3345,7 @@ export namespace dataflow_v1b3 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network &quot;default&quot;.
+     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network "default".
      */
     network?: string | null;
     /**
@@ -3369,7 +3373,7 @@ export namespace dataflow_v1b3 {
      */
     sdkHarnessContainerImages?: Schema$SdkHarnessContainerImage[];
     /**
-     * Subnetwork to which VMs will be assigned, if desired. Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
+     * Subnetwork to which VMs will be assigned, if desired. Expected to be of the form "regions/REGION/subnetworks/SUBNETWORK".
      */
     subnetwork?: string | null;
     /**
@@ -3377,7 +3381,7 @@ export namespace dataflow_v1b3 {
      */
     taskrunnerSettings?: Schema$TaskRunnerSettings;
     /**
-     * Sets the policy for determining when to turndown worker pool. Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and `TEARDOWN_NEVER`. `TEARDOWN_ALWAYS` means workers are always torn down regardless of whether the job succeeds. `TEARDOWN_ON_SUCCESS` means workers are torn down if the job succeeds. `TEARDOWN_NEVER` means the workers are never torn down. If the workers are not torn down by the service, they will continue to run and use Google Compute Engine VM resources in the user&#39;s project until they are explicitly terminated by the user. Because of this, Google recommends using the `TEARDOWN_ALWAYS` policy except for small, manually supervised test jobs. If unknown or unspecified, the service will attempt to choose a reasonable default.
+     * Sets the policy for determining when to turndown worker pool. Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and `TEARDOWN_NEVER`. `TEARDOWN_ALWAYS` means workers are always torn down regardless of whether the job succeeds. `TEARDOWN_ON_SUCCESS` means workers are torn down if the job succeeds. `TEARDOWN_NEVER` means the workers are never torn down. If the workers are not torn down by the service, they will continue to run and use Google Compute Engine VM resources in the user's project until they are explicitly terminated by the user. Because of this, Google recommends using the `TEARDOWN_ALWAYS` policy except for small, manually supervised test jobs. If unknown or unspecified, the service will attempt to choose a reasonable default.
      */
     teardownPolicy?: string | null;
     /**
@@ -3394,7 +3398,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerSettings {
     /**
-     * The base URL for accessing Google Cloud APIs. When workers access Google Cloud APIs, they logically do so via relative URLs. If this field is specified, it supplies the base URL to use for resolving these relative URLs. The normative algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource Locators&quot;. If not specified, the default value is &quot;http://www.googleapis.com/&quot;
+     * The base URL for accessing Google Cloud APIs. When workers access Google Cloud APIs, they logically do so via relative URLs. If this field is specified, it supplies the base URL to use for resolving these relative URLs. The normative algorithm used is defined by RFC 1808, "Relative Uniform Resource Locators". If not specified, the default value is "http://www.googleapis.com/"
      */
     baseUrl?: string | null;
     /**
@@ -3402,15 +3406,15 @@ export namespace dataflow_v1b3 {
      */
     reportingEnabled?: boolean | null;
     /**
-     * The Cloud Dataflow service path relative to the root URL, for example, &quot;dataflow/v1b3/projects&quot;.
+     * The Cloud Dataflow service path relative to the root URL, for example, "dataflow/v1b3/projects".
      */
     servicePath?: string | null;
     /**
-     * The Shuffle service path relative to the root URL, for example, &quot;shuffle/v1beta1&quot;.
+     * The Shuffle service path relative to the root URL, for example, "shuffle/v1beta1".
      */
     shuffleServicePath?: string | null;
     /**
-     * The prefix of the resources the system should use for temporary storage. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the system should use for temporary storage. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempStoragePrefix?: string | null;
     /**
@@ -3423,7 +3427,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerShutdownNotice {
     /**
-     * The reason for the worker shutdown. Current possible values are: &quot;UNKNOWN&quot;: shutdown reason is unknown. &quot;PREEMPTION&quot;: shutdown reason is preemption. Other possible reasons may be added in the future.
+     * The reason for the worker shutdown. Current possible values are: "UNKNOWN": shutdown reason is unknown. "PREEMPTION": shutdown reason is preemption. Other possible reasons may be added in the future.
      */
     reason?: string | null;
   }
@@ -3530,7 +3534,7 @@ export namespace dataflow_v1b3 {
     taskId?: string | null;
   }
   /**
-   * The Dataflow service&#39;s idea of the current state of a WorkItem being processed by a worker.
+   * The Dataflow service's idea of the current state of a WorkItem being processed by a worker.
    */
   export interface Schema$WorkItemServiceState {
     /**
@@ -3575,7 +3579,7 @@ export namespace dataflow_v1b3 {
     suggestedStopPosition?: Schema$Position;
   }
   /**
-   * Conveys a worker&#39;s progress through the work described by a WorkItem.
+   * Conveys a worker's progress through the work described by a WorkItem.
    */
   export interface Schema$WorkItemStatus {
     /**
@@ -3603,11 +3607,11 @@ export namespace dataflow_v1b3 {
      */
     progress?: Schema$ApproximateProgress;
     /**
-     * The worker&#39;s progress through this WorkItem.
+     * The worker's progress through this WorkItem.
      */
     reportedProgress?: Schema$ApproximateReportedProgress;
     /**
-     * The report index. When a WorkItem is leased, the lease will contain an initial report index. When a WorkItem&#39;s status is reported to the system, the report should be sent with that report index, and the response will contain the index the worker should use for the next report. Reports received with unexpected index values will be rejected by the service. In order to preserve idempotency, the worker should not alter the contents of a report, even if the worker must submit the same report multiple times before getting back a response. The worker should not submit a subsequent report until the response for the previous report had been received from the service.
+     * The report index. When a WorkItem is leased, the lease will contain an initial report index. When a WorkItem's status is reported to the system, the report should be sent with that report index, and the response will contain the index the worker should use for the next report. Reports received with unexpected index values will be rejected by the service. In order to preserve idempotency, the worker should not alter the contents of a report, even if the worker must submit the same report multiple times before getting back a response. The worker should not submit a subsequent report until the response for the previous report had been received from the service.
      */
     reportIndex?: string | null;
     /**
@@ -3623,7 +3627,7 @@ export namespace dataflow_v1b3 {
      */
     sourceOperationResponse?: Schema$SourceOperationResponse;
     /**
-     * A worker may split an active map task in two parts, &quot;primary&quot; and &quot;residual&quot;, continuing to process the primary part and returning the residual part into the pool of available work. This event is called a &quot;dynamic split&quot; and is critical to the dynamic work rebalancing feature. The two obtained sub-tasks are called &quot;parts&quot; of the split. The parts, if concatenated, must represent the same input as would be read by the current task if the split did not happen. The exact way in which the original task is decomposed into the two parts is specified either as a position demarcating them (stop_position), or explicitly as two DerivedSources, if this task consumes a user-defined source type (dynamic_source_split). The &quot;current&quot; task is adjusted as a result of the split: after a task with range [A, B) sends a stop_position update at C, its range is considered to be [A, C), e.g.: * Progress should be interpreted relative to the new range, e.g. &quot;75% completed&quot; means &quot;75% of [A, C) completed&quot; * The worker should interpret proposed_stop_position relative to the new range, e.g. &quot;split at 68%&quot; should be interpreted as &quot;split at 68% of [A, C)&quot;. * If the worker chooses to split again using stop_position, only stop_positions in [A, C) will be accepted. * Etc. dynamic_source_split has similar semantics: e.g., if a task with source S splits using dynamic_source_split into {P, R} (where P and R must be together equivalent to S), then subsequent progress and proposed_stop_position should be interpreted relative to P, and in a potential subsequent dynamic_source_split into {P&#39;, R&#39;}, P&#39; and R&#39; must be together equivalent to P, etc.
+     * A worker may split an active map task in two parts, "primary" and "residual", continuing to process the primary part and returning the residual part into the pool of available work. This event is called a "dynamic split" and is critical to the dynamic work rebalancing feature. The two obtained sub-tasks are called "parts" of the split. The parts, if concatenated, must represent the same input as would be read by the current task if the split did not happen. The exact way in which the original task is decomposed into the two parts is specified either as a position demarcating them (stop_position), or explicitly as two DerivedSources, if this task consumes a user-defined source type (dynamic_source_split). The "current" task is adjusted as a result of the split: after a task with range [A, B) sends a stop_position update at C, its range is considered to be [A, C), e.g.: * Progress should be interpreted relative to the new range, e.g. "75% completed" means "75% of [A, C) completed" * The worker should interpret proposed_stop_position relative to the new range, e.g. "split at 68%" should be interpreted as "split at 68% of [A, C)". * If the worker chooses to split again using stop_position, only stop_positions in [A, C) will be accepted. * Etc. dynamic_source_split has similar semantics: e.g., if a task with source S splits using dynamic_source_split into {P, R\} (where P and R must be together equivalent to S), then subsequent progress and proposed_stop_position should be interpreted relative to P, and in a potential subsequent dynamic_source_split into {P', R'\}, P' and R' must be together equivalent to P, etc.
      */
     stopPosition?: Schema$Position;
     /**
@@ -3672,9 +3676,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.deleteSnapshots
-     * @desc Deletes a snapshot.
+     * Deletes a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -3721,16 +3725,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.deleteSnapshots
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string=} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteSnapshots(
       params: Params$Resource$Projects$Deletesnapshots,
@@ -3811,7 +3811,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$DeleteSnapshotResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
@@ -3819,9 +3819,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.workerMessages
-     * @desc Send a worker_message to the service.
+     * Send a worker_message to the service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -3875,15 +3875,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.workerMessages
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
@@ -3963,7 +3960,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -4010,9 +4007,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.commit
-     * @desc Creates a new TemplateVersion (Important: not new Template) entry in the spanner table. Requires project_id and display_name (template).
+     * Creates a new TemplateVersion (Important: not new Template) entry in the spanner table. Requires project_id and display_name (template).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4039,7 +4036,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.commit({
-     *     // The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     // The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *
      *     // Request body metadata
@@ -4071,15 +4068,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.commit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
-     * @param {().CommitTemplateVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     commit(
       params: Params$Resource$Projects$Catalogtemplates$Commit,
@@ -4153,7 +4147,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -4161,9 +4155,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.delete
-     * @desc Deletes an existing Template. Do nothing if Template does not exist.
+     * Deletes an existing Template. Do nothing if Template does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4190,7 +4184,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.delete({
-     *     // name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     // name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *   });
      *   console.log(res.data);
@@ -4204,14 +4198,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Catalogtemplates$Delete,
@@ -4282,7 +4274,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4290,9 +4282,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.get
-     * @desc Get TemplateVersion using project_id and display_name with an optional version_id field. Get latest (has tag "latest") TemplateVersion if version_id not set.
+     * Get TemplateVersion using project_id and display_name with an optional version_id field. Get latest (has tag "latest") TemplateVersion if version_id not set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4319,7 +4311,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.get({
-     *     // Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1}/catalogTemplates/{tid1} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     // Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1\}/catalogTemplates/{tid1\} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *   });
      *   console.log(res.data);
@@ -4343,14 +4335,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1}/catalogTemplates/{tid1} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Catalogtemplates$Get,
@@ -4421,7 +4411,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -4429,9 +4419,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.label
-     * @desc Updates the label of the TemplateVersion. Label can be duplicated in Template, so either add or remove the label in the TemplateVersion.
+     * Updates the label of the TemplateVersion. Label can be duplicated in Template, so either add or remove the label in the TemplateVersion.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4458,7 +4448,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.label({
-     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *
      *     // Request body metadata
@@ -4484,15 +4474,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.label
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
-     * @param {().ModifyTemplateVersionLabelRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     label(
       params: Params$Resource$Projects$Catalogtemplates$Label,
@@ -4573,7 +4560,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
@@ -4583,9 +4570,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.tag
-     * @desc Updates the tag of the TemplateVersion, and tag is unique in Template. If tag exists in another TemplateVersion in the Template, updates the tag to this TemplateVersion will remove it from the old TemplateVersion and add it to this TemplateVersion. If request is remove_only (remove_only = true), remove the tag from this TemplateVersion.
+     * Updates the tag of the TemplateVersion, and tag is unique in Template. If tag exists in another TemplateVersion in the Template, updates the tag to this TemplateVersion will remove it from the old TemplateVersion and add it to this TemplateVersion. If request is remove_only (remove_only = true), remove the tag from this TemplateVersion.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4612,7 +4599,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.tag({
-     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *
      *     // Request body metadata
@@ -4637,15 +4624,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.tag
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
-     * @param {().ModifyTemplateVersionTagRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     tag(
       params: Params$Resource$Projects$Catalogtemplates$Tag,
@@ -4723,7 +4707,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
@@ -4736,7 +4720,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Commit
     extends StandardParameters {
     /**
-     * The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     * The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      */
     name?: string;
 
@@ -4748,21 +4732,21 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Delete
     extends StandardParameters {
     /**
-     * name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     * name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Catalogtemplates$Get
     extends StandardParameters {
     /**
-     * Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1}/catalogTemplates/{tid1} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1\}/catalogTemplates/{tid1\} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Catalogtemplates$Label
     extends StandardParameters {
     /**
-     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      */
     name?: string;
 
@@ -4774,7 +4758,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Tag
     extends StandardParameters {
     /**
-     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
      */
     name?: string;
 
@@ -4791,9 +4775,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.catalogTemplates.templateVersions.create
-     * @desc Creates a new Template with TemplateVersion. Requires project_id(projects) and template display_name(catalogTemplates). The template display_name is set by the user.
+     * Creates a new Template with TemplateVersion. Requires project_id(projects) and template display_name(catalogTemplates). The template display_name is set by the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -4820,7 +4804,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.templateVersions.create({
-     *     // The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     // The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      *     parent: 'projects/my-project/catalogTemplates/my-catalogTemplate',
      *
      *     // Request body metadata
@@ -4852,15 +4836,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.catalogTemplates.templateVersions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
-     * @param {().CreateTemplateVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
@@ -4934,7 +4915,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$TemplateVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TemplateVersion>(parameters);
@@ -4945,7 +4926,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Templateversions$Create
     extends StandardParameters {
     /**
-     * The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1}
+     * The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
      */
     parent?: string;
 
@@ -4968,9 +4949,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.aggregated
-     * @desc List the jobs of a project across all regions.
+     * List the jobs of a project across all regions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5027,19 +5008,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.aggregated
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The kind of filter to use.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     * @param {string} params.projectId The project which owns the jobs.
-     * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     aggregated(
       params: Params$Resource$Projects$Jobs$Aggregated,
@@ -5112,7 +5086,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -5120,9 +5094,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.create
-     * @desc Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5227,18 +5201,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
-     * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Jobs$Create,
@@ -5312,7 +5280,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -5320,9 +5288,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5396,17 +5364,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job ID.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.view The level of information requested in response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Jobs$Get,
@@ -5480,7 +5443,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -5488,9 +5451,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.getMetrics
-     * @desc Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5542,17 +5505,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.getMetrics
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to get metrics for.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string} params.projectId A project id.
-     * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetrics(
       params: Params$Resource$Projects$Jobs$Getmetrics,
@@ -5625,7 +5583,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
@@ -5633,9 +5591,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.list
-     * @desc List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5692,19 +5650,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The kind of filter to use.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     * @param {string} params.projectId The project which owns the jobs.
-     * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Jobs$List,
@@ -5778,7 +5729,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -5786,9 +5737,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.snapshot
-     * @desc Snapshot the state of a streaming job.
+     * Snapshot the state of a streaming job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -5854,16 +5805,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.snapshot
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to be snapshotted.
-     * @param {string} params.projectId The project which owns the job to be snapshotted.
-     * @param {().SnapshotJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     snapshot(
       params: Params$Resource$Projects$Jobs$Snapshot,
@@ -5936,7 +5883,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -5944,9 +5891,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -6049,17 +5996,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job ID.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Jobs$Update,
@@ -6133,7 +6075,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -6301,9 +6243,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.debug.getConfig
-     * @desc Get encoded debug configuration for component. Not cacheable.
+     * Get encoded debug configuration for component. Not cacheable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -6360,16 +6302,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.debug.getConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job id.
-     * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
@@ -6450,7 +6388,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
@@ -6458,9 +6396,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.debug.sendCapture
-     * @desc Send encoded debug capture data for component.
+     * Send encoded debug capture data for component.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -6516,16 +6454,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.debug.sendCapture
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job id.
-     * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
@@ -6606,7 +6540,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
@@ -6654,9 +6588,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.messages.list
-     * @desc Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -6691,7 +6625,7 @@ export namespace dataflow_v1b3 {
      *     jobId: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      *     location: 'placeholder-value',
-     *     // Filter to only get messages with importance >= level
+     *     // Filter to only get messages with importance \>= level
      *     minimumImportance: 'placeholder-value',
      *     // If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      *     pageSize: 'placeholder-value',
@@ -6699,7 +6633,7 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // A project id.
      *     projectId: 'placeholder-value',
-     *     // If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+     *     // If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
      *     startTime: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6717,21 +6651,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.messages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-     * @param {string} params.jobId The job to get messages about.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-     * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     * @param {string} params.projectId A project id.
-     * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
@@ -6809,7 +6734,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
@@ -6832,7 +6757,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
-     * Filter to only get messages with importance >= level
+     * Filter to only get messages with importance \>= level
      */
     minimumImportance?: string;
     /**
@@ -6848,7 +6773,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+     * If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
      */
     startTime?: string;
   }
@@ -6860,9 +6785,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.workItems.lease
-     * @desc Leases a dataflow WorkItem to run.
+     * Leases a dataflow WorkItem to run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -6924,16 +6849,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.workItems.lease
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-     * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
@@ -7012,7 +6933,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
@@ -7020,9 +6941,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.workItems.reportStatus
-     * @desc Reports the status of dataflow WorkItems leased by a worker.
+     * Reports the status of dataflow WorkItems leased by a worker.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -7082,16 +7003,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.jobs.workItems.reportStatus
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job which the WorkItem is part of.
-     * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reportStatus(
       params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
@@ -7172,7 +7089,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -7234,9 +7151,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.workerMessages
-     * @desc Send a worker_message to the service.
+     * Send a worker_message to the service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -7292,16 +7209,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.workerMessages
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
-     * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
@@ -7382,7 +7295,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -7414,9 +7327,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.flexTemplates.launch
-     * @desc Launch a job with a FlexTemplate.
+     * Launch a job with a FlexTemplate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -7472,16 +7385,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.flexTemplates.launch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().LaunchFlexTemplateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     launch(
       params: Params$Resource$Projects$Locations$Flextemplates$Launch,
@@ -7562,7 +7471,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchFlexTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchFlexTemplateResponse>(parameters);
@@ -7610,9 +7519,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.create
-     * @desc Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -7717,18 +7626,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
-     * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Jobs$Create,
@@ -7801,7 +7704,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -7809,9 +7712,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -7885,17 +7788,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job ID.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.view The level of information requested in response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Jobs$Get,
@@ -7969,7 +7867,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -7977,9 +7875,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.getExecutionDetails
-     * @desc Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
+     * Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -8033,18 +7931,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.getExecutionDetails
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to get execution details for.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {integer=} params.pageSize If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     * @param {string} params.projectId A project id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Getexecutiondetails,
@@ -8123,7 +8015,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobExecutionDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobExecutionDetails>(parameters);
@@ -8131,9 +8023,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.getMetrics
-     * @desc Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -8185,17 +8077,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.getMetrics
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to get metrics for.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string} params.projectId A project id.
-     * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetrics(
       params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
@@ -8269,7 +8156,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
@@ -8277,9 +8164,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.list
-     * @desc List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -8336,19 +8223,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The kind of filter to use.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     * @param {string} params.projectId The project which owns the jobs.
-     * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Jobs$List,
@@ -8421,7 +8301,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -8429,9 +8309,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.snapshot
-     * @desc Snapshot the state of a streaming job.
+     * Snapshot the state of a streaming job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -8499,17 +8379,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.snapshot
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to be snapshotted.
-     * @param {string} params.location The location that contains this job.
-     * @param {string} params.projectId The project which owns the job to be snapshotted.
-     * @param {().SnapshotJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     snapshot(
       params: Params$Resource$Projects$Locations$Jobs$Snapshot,
@@ -8583,7 +8458,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -8591,9 +8466,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -8696,17 +8571,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job ID.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Locations$Jobs$Update,
@@ -8780,7 +8650,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -8948,9 +8818,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.debug.getConfig
-     * @desc Get encoded debug configuration for component. Not cacheable.
+     * Get encoded debug configuration for component. Not cacheable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9009,17 +8879,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.debug.getConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job id.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
@@ -9100,7 +8965,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
@@ -9108,9 +8973,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.debug.sendCapture
-     * @desc Send encoded debug capture data for component.
+     * Send encoded debug capture data for component.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9168,17 +9033,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.debug.sendCapture
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job id.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
@@ -9259,7 +9119,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
@@ -9315,9 +9175,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.messages.list
-     * @desc Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9352,7 +9212,7 @@ export namespace dataflow_v1b3 {
      *     jobId: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      *     location: 'placeholder-value',
-     *     // Filter to only get messages with importance >= level
+     *     // Filter to only get messages with importance \>= level
      *     minimumImportance: 'placeholder-value',
      *     // If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      *     pageSize: 'placeholder-value',
@@ -9360,7 +9220,7 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // A project id.
      *     projectId: 'placeholder-value',
-     *     // If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+     *     // If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
      *     startTime: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9378,21 +9238,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.messages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-     * @param {string} params.jobId The job to get messages about.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-     * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     * @param {string} params.projectId A project id.
-     * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
@@ -9471,7 +9322,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
@@ -9494,7 +9345,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
-     * Filter to only get messages with importance >= level
+     * Filter to only get messages with importance \>= level
      */
     minimumImportance?: string;
     /**
@@ -9510,7 +9361,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+     * If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
      */
     startTime?: string;
   }
@@ -9522,9 +9373,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.snapshots.list
-     * @desc Lists snapshots.
+     * Lists snapshots.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9573,16 +9424,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId If specified, list snapshots created from this job.
-     * @param {string} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
@@ -9661,7 +9508,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -9692,9 +9539,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.stages.getExecutionDetails
-     * @desc Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
+     * Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9756,21 +9603,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.stages.getExecutionDetails
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.endTime Upper time bound of work items to include, by start time.
-     * @param {string} params.jobId The job to get execution details for.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     * @param {integer=} params.pageSize If specified, determines the maximum number of work items to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     * @param {string} params.projectId A project id.
-     * @param {string} params.stageId The stage for which to fetch information.
-     * @param {string=} params.startTime Lower time bound of work items to include, by start time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
@@ -9851,7 +9689,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$StageExecutionDetails>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StageExecutionDetails>(parameters);
@@ -9902,9 +9740,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.workItems.lease
-     * @desc Leases a dataflow WorkItem to run.
+     * Leases a dataflow WorkItem to run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -9968,17 +9806,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.workItems.lease
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
-     * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
@@ -10057,7 +9890,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
@@ -10065,9 +9898,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.workItems.reportStatus
-     * @desc Reports the status of dataflow WorkItems leased by a worker.
+     * Reports the status of dataflow WorkItems leased by a worker.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -10129,17 +9962,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.jobs.workItems.reportStatus
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job which the WorkItem is part of.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
-     * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reportStatus(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
@@ -10220,7 +10048,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -10278,9 +10106,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.snapshots.delete
-     * @desc Deletes a snapshot.
+     * Deletes a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -10327,16 +10155,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.snapshots.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Snapshots$Delete,
@@ -10415,7 +10239,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$DeleteSnapshotResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
@@ -10423,9 +10247,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.snapshots.get
-     * @desc Gets information about a snapshot.
+     * Gets information about a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -10482,16 +10306,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.snapshots.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Snapshots$Get,
@@ -10565,7 +10385,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -10573,9 +10393,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.snapshots.list
-     * @desc Lists snapshots.
+     * Lists snapshots.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -10624,16 +10444,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.jobId If specified, list snapshots created from this job.
-     * @param {string} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Snapshots$List,
@@ -10712,7 +10528,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -10773,9 +10589,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.sql.validate
-     * @desc Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.
+     * Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -10823,16 +10639,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.sql.validate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.query The sql query to validate.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     validate(
       params: Params$Resource$Projects$Locations$Sql$Validate,
@@ -10906,7 +10718,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ValidateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ValidateResponse>(parameters);
@@ -10937,9 +10749,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.templates.create
-     * @desc Creates a Cloud Dataflow job from a template.
+     * Creates a Cloud Dataflow job from a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11021,16 +10833,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.templates.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Templates$Create,
@@ -11104,7 +10912,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -11112,9 +10920,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.templates.get
-     * @desc Get the template associated with a template.
+     * Get the template associated with a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11168,17 +10976,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.templates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Templates$Get,
@@ -11255,7 +11058,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
@@ -11263,9 +11066,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.templates.launch
-     * @desc Launch a template.
+     * Launch a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11332,20 +11135,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.locations.templates.launch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
-     * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
-     * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
@@ -11424,7 +11219,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
@@ -11507,9 +11302,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.snapshots.get
-     * @desc Gets information about a snapshot.
+     * Gets information about a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11566,16 +11361,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.snapshots.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Snapshots$Get,
@@ -11648,7 +11439,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -11656,9 +11447,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.snapshots.list
-     * @desc Lists snapshots.
+     * Lists snapshots.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11707,16 +11498,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.jobId If specified, list snapshots created from this job.
-     * @param {string=} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Snapshots$List,
@@ -11795,7 +11582,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -11841,9 +11628,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.templates.create
-     * @desc Creates a Cloud Dataflow job from a template.
+     * Creates a Cloud Dataflow job from a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -11923,15 +11710,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.templates.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Templates$Create,
@@ -12005,7 +11789,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -12013,9 +11797,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.templates.get
-     * @desc Get the template associated with a template.
+     * Get the template associated with a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -12069,17 +11853,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.templates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Templates$Get,
@@ -12156,7 +11935,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
@@ -12164,9 +11943,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.templates.launch
-     * @desc Launch a template.
+     * Launch a template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -12233,20 +12012,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.templates.launch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
-     * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
-     * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     launch(
       params: Params$Resource$Projects$Templates$Launch,
@@ -12324,7 +12095,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
@@ -12403,9 +12174,9 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.templateVersions.list
-     * @desc List TemplateVersions using project_id and an optional display_name field. List all the TemplateVersions in the Template if display set. List all the TemplateVersions in the Project if display_name not set.
+     * List TemplateVersions using project_id and an optional display_name field. List all the TemplateVersions in the Template if display set. List all the TemplateVersions in the Project if display_name not set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
@@ -12436,7 +12207,7 @@ export namespace dataflow_v1b3 {
      *     pageSize: 'placeholder-value',
      *     // The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1} List by project_id(pid1). Format: projects/{pid1}
+     *     // parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\} List by project_id(pid1). Format: projects/{pid1\}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -12453,16 +12224,12 @@ export namespace dataflow_v1b3 {
      *   throw e;
      * });
      *
-     * @alias dataflow.projects.templateVersions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of TemplateVersions to return per page.
-     * @param {string=} params.pageToken The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
-     * @param {string} params.parent parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1} List by project_id(pid1). Format: projects/{pid1}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Templateversions$List,
@@ -12543,7 +12310,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ListTemplateVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTemplateVersionsResponse>(
@@ -12564,7 +12331,7 @@ export namespace dataflow_v1b3 {
      */
     pageToken?: string;
     /**
-     * parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1}/catalogTemplates/{tid1} List by project_id(pid1). Format: projects/{pid1}
+     * parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\} List by project_id(pid1). Format: projects/{pid1\}
      */
     parent?: string;
   }

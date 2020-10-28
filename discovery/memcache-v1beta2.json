@@ -528,7 +528,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201006",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -651,7 +651,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule"
           },
-          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule.",
+          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.",
           "type": "object"
         },
         "maintenanceSettings": {

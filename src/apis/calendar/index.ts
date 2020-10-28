@@ -31,3 +31,14 @@ export function calendar<T = calendar_v3.Calendar>(
 
 const auth = new AuthPlus();
 export {auth};
+export {calendar_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

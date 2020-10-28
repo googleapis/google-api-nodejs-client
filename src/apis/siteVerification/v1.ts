@@ -88,14 +88,10 @@ export namespace siteVerification_v1 {
    * Verifies ownership of websites or domains with Google.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const siteVerification = google.siteVerification('v1');
-   *
-   * @namespace siteVerification
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Siteverification
+   * ```
    */
   export class Siteverification {
     context: APIRequestContext;
@@ -117,7 +113,7 @@ export namespace siteVerification_v1 {
      */
     site?: {identifier?: string; type?: string} | null;
     /**
-     * The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
+     * The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used.
      */
     verificationMethod?: string | null;
   }
@@ -139,7 +135,7 @@ export namespace siteVerification_v1 {
   }
   export interface Schema$SiteVerificationWebResourceResource {
     /**
-     * The string used to identify this site. This value should be used in the &quot;id&quot; portion of the REST URL for the Get, Update, and Delete operations.
+     * The string used to identify this site. This value should be used in the "id" portion of the REST URL for the Get, Update, and Delete operations.
      */
     id?: string | null;
     /**
@@ -159,9 +155,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.delete
-     * @desc Relinquish ownership of a website or domain.
+     * Relinquish ownership of a website or domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -196,14 +192,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The id of a verified site or domain.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Webresource$Delete,
@@ -275,7 +269,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -283,9 +277,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.get
-     * @desc Get the most current data for a website or domain.
+     * Get the most current data for a website or domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -327,14 +321,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The id of a verified site or domain.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Webresource$Get,
@@ -414,7 +406,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -424,9 +416,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.getToken
-     * @desc Get a verification token for placing on a website or domain.
+     * Get a verification token for placing on a website or domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -476,14 +468,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.getToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SiteVerificationWebResourceGettokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getToken(
       params: Params$Resource$Webresource$Gettoken,
@@ -578,7 +568,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -588,9 +578,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.insert
-     * @desc Attempt verification of a website or domain.
+     * Attempt verification of a website or domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -645,15 +635,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.verificationMethod The method to use for verifying a site or domain.
-     * @param {().SiteVerificationWebResourceResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Webresource$Insert,
@@ -734,7 +721,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -744,9 +731,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.list
-     * @desc Get the list of your verified websites and domains.
+     * Get the list of your verified websites and domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -783,13 +770,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Webresource$List,
@@ -875,7 +861,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -885,9 +871,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.patch
-     * @desc Modify the list of owners for your website or domain. This method supports patch semantics.
+     * Modify the list of owners for your website or domain. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -939,15 +925,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The id of a verified site or domain.
-     * @param {().SiteVerificationWebResourceResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Webresource$Patch,
@@ -1028,7 +1011,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -1038,9 +1021,9 @@ export namespace siteVerification_v1 {
     }
 
     /**
-     * siteVerification.webResource.update
-     * @desc Modify the list of owners for your website or domain.
+     * Modify the list of owners for your website or domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/siteVerification.googleapis.com
@@ -1092,15 +1075,12 @@ export namespace siteVerification_v1 {
      *   throw e;
      * });
      *
-     * @alias siteVerification.webResource.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The id of a verified site or domain.
-     * @param {().SiteVerificationWebResourceResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Webresource$Update,
@@ -1181,7 +1161,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(

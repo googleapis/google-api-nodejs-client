@@ -33,3 +33,14 @@ export function verifiedaccess<T = verifiedaccess_v1.Verifiedaccess>(
 
 const auth = new AuthPlus();
 export {auth};
+export {verifiedaccess_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

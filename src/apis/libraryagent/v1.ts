@@ -104,14 +104,10 @@ export namespace libraryagent_v1 {
    * A simple Google Example Library API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const libraryagent = google.libraryagent('v1');
-   *
-   * @namespace libraryagent
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Libraryagent
+   * ```
    */
   export class Libraryagent {
     context: APIRequestContext;
@@ -136,7 +132,7 @@ export namespace libraryagent_v1 {
      */
     author?: string | null;
     /**
-     * The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book.
+     * The resource name of the book. Book names have the form `shelves/{shelf_id\}/books/{book_id\}`. The name is ignored when creating a book.
      */
     name?: string | null;
     /**
@@ -179,7 +175,7 @@ export namespace libraryagent_v1 {
    */
   export interface Schema$GoogleExampleLibraryagentV1Shelf {
     /**
-     * Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf.
+     * Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id\}`. The name is ignored when creating a shelf.
      */
     name?: string | null;
     /**
@@ -197,9 +193,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.get
-     * @desc Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
+     * Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -240,14 +236,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the shelf to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Shelves$Get,
@@ -324,7 +318,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
@@ -334,9 +328,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.list
-     * @desc Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
+     * Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -379,15 +373,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListShelvesResponse.next_page_token returned from the previous call to `ListShelves` method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Shelves$List,
@@ -478,7 +469,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -512,9 +503,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.books.borrow
-     * @desc Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
+     * Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -557,14 +548,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.books.borrow
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the book to borrow.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     borrow(
       params: Params$Resource$Shelves$Books$Borrow,
@@ -642,7 +631,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -652,9 +641,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.books.get
-     * @desc Gets a book. Returns NOT_FOUND if the book does not exist.
+     * Gets a book. Returns NOT_FOUND if the book does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -697,14 +686,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.books.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the book to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Shelves$Books$Get,
@@ -782,7 +769,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -792,9 +779,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.books.list
-     * @desc Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
+     * Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -839,16 +826,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.books.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.
-     * @param {string} params.parent Required. The name of the shelf whose books we'd like to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Shelves$Books$List,
@@ -943,7 +926,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -953,9 +936,9 @@ export namespace libraryagent_v1 {
     }
 
     /**
-     * libraryagent.shelves.books.return
-     * @desc Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
+     * Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
@@ -998,14 +981,12 @@ export namespace libraryagent_v1 {
      *   throw e;
      * });
      *
-     * @alias libraryagent.shelves.books.return
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the book to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     return(
       params: Params$Resource$Shelves$Books$Return,
@@ -1083,7 +1064,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(

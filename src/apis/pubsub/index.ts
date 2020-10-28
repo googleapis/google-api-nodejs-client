@@ -49,3 +49,16 @@ export function pubsub<
 
 const auth = new AuthPlus();
 export {auth};
+export {pubsub_v1};
+export {pubsub_v1beta1a};
+export {pubsub_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

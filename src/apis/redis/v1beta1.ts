@@ -104,14 +104,10 @@ export namespace redis_v1beta1 {
    * Creates and manages Redis instances on the Google Cloud Platform.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const redis = google.redis('v1beta1');
-   *
-   * @namespace redis
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Redis
+   * ```
    */
   export class Redis {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace redis_v1beta1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -145,7 +141,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$FailoverInstanceRequest {
     /**
-     * Optional. Available data protection modes that the user can choose. If it&#39;s unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
+     * Optional. Available data protection modes that the user can choose. If it's unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      */
     dataProtectionMode?: string | null;
   }
@@ -154,7 +150,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$GcsDestination {
     /**
-     * Required. Data destination URI (e.g. &#39;gs://my_bucket/my_object&#39;). Existing files will be overwritten.
+     * Required. Data destination URI (e.g. 'gs://my_bucket/my_object'). Existing files will be overwritten.
      */
     uri?: string | null;
   }
@@ -163,7 +159,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$GcsSource {
     /**
-     * Required. Source data URI. (e.g. &#39;gs://my_bucket/my_object&#39;).
+     * Required. Source data URI. (e.g. 'gs://my_bucket/my_object').
      */
     uri?: string | null;
   }
@@ -242,7 +238,7 @@ export namespace redis_v1beta1 {
      */
     alternativeLocationId?: string | null;
     /**
-     * Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If set to &quot;true&quot; AUTH is enabled on the instance. Default value is &quot;false&quot; meaning AUTH is disabled.
+     * Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If set to "true" AUTH is enabled on the instance. Default value is "false" meaning AUTH is disabled.
      */
     authEnabled?: boolean | null;
     /**
@@ -282,11 +278,11 @@ export namespace redis_v1beta1 {
      */
     memorySizeGb?: number | null;
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
      */
     name?: string | null;
     /**
-     * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is &quot;serviceAccount:&quot;. The value may change over time for a given instance so should be checked before each import/export operation.
+     * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is "serviceAccount:". The value may change over time for a given instance so should be checked before each import/export operation.
      */
     persistenceIamIdentity?: string | null;
     /**
@@ -332,7 +328,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * A list of Redis instances in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is &quot;-&quot;, all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder Redis entry is included in the response with the `name` field set to a value of the form `projects/{project_id}/locations/{location_id}/instances/`- and the `status` field set to ERROR and `status_message` field set to &quot;location not available for ListInstances&quot;.
+     * A list of Redis instances in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is "-", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder Redis entry is included in the response with the `name` field set to a value of the form `projects/{project_id\}/locations/{location_id\}/instances/`- and the `status` field set to ERROR and `status_message` field set to "location not available for ListInstances".
      */
     instances?: Schema$Instance[];
     /**
@@ -375,15 +371,15 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource ID for the region. For example: &quot;us-east1&quot;.
+     * Resource ID for the region. For example: "us-east1".
      */
     locationId?: string | null;
     /**
@@ -391,7 +387,7 @@ export namespace redis_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Full resource name for the region. For example: &quot;projects/example-project/locations/us-east1&quot;.
+     * Full resource name for the region. For example: "projects/example-project/locations/us-east1".
      */
     name?: string | null;
   }
@@ -408,11 +404,11 @@ export namespace redis_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * { `createTime`: The time the operation was created. `endTime`: The time the operation finished running. `target`: Server-defined resource path for the target of the operation. `verb`: Name of the verb executed by the operation. `statusDetail`: Human-readable status of the operation, if any. `cancelRequested`: Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`. `apiVersion`: API version used to start the operation. }
+     * { `createTime`: The time the operation was created. `endTime`: The time the operation finished running. `target`: Server-defined resource path for the target of the operation. `verb`: Name of the verb executed by the operation. `statusDetail`: Human-readable status of the operation, if any. `cancelRequested`: Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`. `apiVersion`: API version used to start the operation. \}
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -478,9 +474,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -524,14 +520,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -602,7 +596,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -610,9 +604,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -659,17 +653,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -748,7 +737,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -790,9 +779,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.create
-     * @desc Creates a Redis instance based on the specified tier and memory size. By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc). The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Creates a Redis instance based on the specified tier and memory size. By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc). The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -818,7 +807,7 @@ export namespace redis_v1beta1 {
      *   const res = await redis.projects.locations.instances.create({
      *     // Required. The logical name of the Redis instance in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
      *     instanceId: 'placeholder-value',
-     *     // Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
+     *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -865,16 +854,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Required. The logical name of the Redis instance in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
-     * @param {string} params.parent Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
@@ -948,7 +933,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -956,9 +941,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.delete
-     * @desc Deletes a specific Redis instance. Instance stops serving and data is deleted.
+     * Deletes a specific Redis instance. Instance stops serving and data is deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -982,7 +967,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.delete({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1002,14 +987,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
@@ -1080,7 +1063,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1088,9 +1071,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.export
-     * @desc Export Redis instance data into a Redis RDB format file in Cloud Storage. Redis will continue serving during this operation. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Export Redis instance data into a Redis RDB format file in Cloud Storage. Redis will continue serving during this operation. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1114,7 +1097,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.export({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -1142,15 +1125,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.export
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {().ExportInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     export(
       params: Params$Resource$Projects$Locations$Instances$Export,
@@ -1224,7 +1204,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1232,9 +1212,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.failover
-     * @desc Initiates a failover of the primary node to current replica node for a specific STANDARD tier Cloud Memorystore for Redis instance.
+     * Initiates a failover of the primary node to current replica node for a specific STANDARD tier Cloud Memorystore for Redis instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1258,7 +1238,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.failover({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -1286,15 +1266,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.failover
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {().FailoverInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     failover(
       params: Params$Resource$Projects$Locations$Instances$Failover,
@@ -1368,7 +1345,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1376,9 +1353,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.get
-     * @desc Gets the details of a specific Redis instance.
+     * Gets the details of a specific Redis instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1402,7 +1379,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.get({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1437,14 +1414,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
@@ -1515,7 +1490,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Instance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
@@ -1523,9 +1498,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.getAuthString
-     * @desc Gets the AUTH string for a Redis instance. If AUTH is not enabled for the instance the response will be empty. This information is not included in the details returned to GetInstance.
+     * Gets the AUTH string for a Redis instance. If AUTH is not enabled for the instance the response will be empty. This information is not included in the details returned to GetInstance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1549,7 +1524,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.getAuthString({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1565,14 +1540,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.getAuthString
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAuthString(
       params: Params$Resource$Projects$Locations$Instances$Getauthstring,
@@ -1651,7 +1624,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$InstanceAuthString>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstanceAuthString>(parameters);
@@ -1659,9 +1632,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.import
-     * @desc Import a Redis RDB snapshot file from Cloud Storage into a Redis instance. Redis may stop serving during this operation. Instance state will be IMPORTING for entire operation. When complete, the instance will contain only data from the imported file. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Import a Redis RDB snapshot file from Cloud Storage into a Redis instance. Redis may stop serving during this operation. Instance state will be IMPORTING for entire operation. When complete, the instance will contain only data from the imported file. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1685,7 +1658,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.import({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -1713,15 +1686,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {().ImportInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Projects$Locations$Instances$Import,
@@ -1795,7 +1765,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1803,9 +1773,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.list
-     * @desc Lists all Redis instances owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
+     * Lists all Redis instances owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id\}/locations/{location_id\}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1833,7 +1803,7 @@ export namespace redis_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous ListInstances request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
+     *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1851,16 +1821,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous ListInstances request, if any.
-     * @param {string} params.parent Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
@@ -1939,7 +1905,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
@@ -1947,9 +1913,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.patch
-     * @desc Updates the metadata and configuration of a specific Redis instance. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Updates the metadata and configuration of a specific Redis instance. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -1973,7 +1939,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.patch({
-     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
+     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig`
      *     updateMask: 'placeholder-value',
@@ -2022,16 +1988,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig`
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
@@ -2102,7 +2064,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2110,9 +2072,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.instances.upgrade
-     * @desc Upgrades Redis instance to the newer Redis version specified in the request.
+     * Upgrades Redis instance to the newer Redis version specified in the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -2136,7 +2098,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.instances.upgrade({
-     *     // Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -2164,15 +2126,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.instances.upgrade
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
-     * @param {().UpgradeInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upgrade(
       params: Params$Resource$Projects$Locations$Instances$Upgrade,
@@ -2246,7 +2205,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2261,7 +2220,7 @@ export namespace redis_v1beta1 {
      */
     instanceId?: string;
     /**
-     * Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
+     * Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
      */
     parent?: string;
 
@@ -2273,14 +2232,14 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Export
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
 
@@ -2292,7 +2251,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Failover
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
 
@@ -2304,21 +2263,21 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Getauthstring
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Import
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
 
@@ -2338,14 +2297,14 @@ export namespace redis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.
+     * Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
      */
     name?: string;
     /**
@@ -2361,7 +2320,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Upgrade
     extends StandardParameters {
     /**
-     * Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
      */
     name?: string;
 
@@ -2378,9 +2337,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -2418,14 +2377,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -2499,7 +2456,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2507,9 +2464,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -2547,14 +2504,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -2625,7 +2580,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2633,9 +2588,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -2679,14 +2634,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -2757,7 +2710,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2765,9 +2718,9 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * redis.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/redis.googleapis.com
@@ -2814,17 +2767,12 @@ export namespace redis_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias redis.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -2903,7 +2851,7 @@ export namespace redis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);

@@ -3,7 +3,7 @@
   "baseUrl": "https://poly.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Poly Service",
-  "description": "The Poly API provides read access to assets hosted on <a href=\"https://poly.google.com\">poly.google.com</a> to all, and upload access to <a href=\"https://poly.google.com\">poly.google.com</a> for whitelisted accounts.\n",
+  "description": "The Poly API provides read access to assets hosted on poly.google.com to all, and upload access to poly.google.com for whitelisted accounts. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/poly/",
   "fullyEncodeReservedExpansion": true,
@@ -99,7 +99,7 @@
     "assets": {
       "methods": {
         "get": {
-          "description": "Returns detailed information about an asset given its name.\nPRIVATE assets are returned only if\n the currently authenticated user (via OAuth token) is the author of the\n asset.",
+          "description": "Returns detailed information about an asset given its name. PRIVATE assets are returned only if the currently authenticated user (via OAuth token) is the author of the asset.",
           "flatPath": "v1/assets/{assetsId}",
           "httpMethod": "GET",
           "id": "poly.assets.get",
@@ -121,14 +121,14 @@
           }
         },
         "list": {
-          "description": "Lists all public, remixable assets. These are assets with an access level\nof PUBLIC and published under the\nCC-By license.",
+          "description": "Lists all public, remixable assets. These are assets with an access level of PUBLIC and published under the CC-By license.",
           "flatPath": "v1/assets",
           "httpMethod": "GET",
           "id": "poly.assets.list",
           "parameterOrder": [],
           "parameters": {
             "category": {
-              "description": "Filter assets based on the specified category. Supported values are:\n`animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`,\n`scenes`, `technology`, and `transport`.",
+              "description": "Filter assets based on the specified category. Supported values are: `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and `transport`.",
               "location": "query",
               "type": "string"
             },
@@ -138,39 +138,45 @@
               "type": "boolean"
             },
             "format": {
-              "description": "Return only assets with the matching format. Acceptable values are:\n`BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.",
+              "description": "Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.",
               "location": "query",
               "type": "string"
             },
             "keywords": {
-              "description": "One or more search terms to be matched against all text that Poly has\nindexed for assets, which includes display_name,\ndescription, and tags. Multiple keywords should be\nseparated by spaces.",
+              "description": "One or more search terms to be matched against all text that Poly has indexed for assets, which includes display_name, description, and tags. Multiple keywords should be separated by spaces.",
               "location": "query",
               "type": "string"
             },
             "maxComplexity": {
-              "description": "Returns assets that are of the specified complexity or less. Defaults to\nCOMPLEX. For example, a request for\nMEDIUM assets also includes\nSIMPLE assets.",
+              "description": "Returns assets that are of the specified complexity or less. Defaults to COMPLEX. For example, a request for MEDIUM assets also includes SIMPLE assets.",
               "enum": [
                 "COMPLEXITY_UNSPECIFIED",
                 "COMPLEX",
                 "MEDIUM",
                 "SIMPLE"
               ],
+              "enumDescriptions": [
+                "No complexity specified. This is equivalent to omitting the filter.",
+                "Highly-complex.",
+                "Averagely-complex.",
+                "Simple."
+              ],
               "location": "query",
               "type": "string"
             },
             "orderBy": {
-              "description": "Specifies an ordering for assets. Acceptable values are:\n`BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets\nbased on a combination of popularity and other features.",
+              "description": "Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.",
               "location": "query",
               "type": "string"
             },
             "pageSize": {
-              "description": "The maximum number of assets to be returned. This value must be between `1`\nand `100`. Defaults to `20`.",
+              "description": "The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Specifies a continuation token from a previous search whose results were\nsplit into multiple pages. To get the next page, submit the same request\nspecifying the value from\nnext_page_token.",
+              "description": "Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.",
               "location": "query",
               "type": "string"
             }
@@ -187,7 +193,7 @@
         "assets": {
           "methods": {
             "list": {
-              "description": "Lists assets authored by the given user. Only the value 'me', representing\nthe currently-authenticated user, is supported. May include assets with an\naccess level of PRIVATE or\nUNLISTED and assets which are\nAll Rights Reserved for the\ncurrently-authenticated user.",
+              "description": "Lists assets authored by the given user. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of PRIVATE or UNLISTED and assets which are All Rights Reserved for the currently-authenticated user.",
               "flatPath": "v1/users/{usersId}/assets",
               "httpMethod": "GET",
               "id": "poly.users.assets.list",
@@ -196,39 +202,44 @@
               ],
               "parameters": {
                 "format": {
-                  "description": "Return only assets with the matching format. Acceptable values are:\n`BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.",
+                  "description": "Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "A valid user id. Currently, only the special value 'me', representing the\ncurrently-authenticated user is supported. To use 'me', you must pass\nan OAuth token with the request.",
+                  "description": "A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.",
                   "location": "path",
                   "pattern": "^users/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Specifies an ordering for assets. Acceptable values are:\n`BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets\nbased on a combination of popularity and other features.",
+                  "description": "Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of assets to be returned. This value must be between `1`\nand `100`. Defaults to `20`.",
+                  "description": "The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Specifies a continuation token from a previous search whose results were\nsplit into multiple pages. To get the next page, submit the same request\nspecifying the value from\nnext_page_token.",
+                  "description": "Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.",
                   "location": "query",
                   "type": "string"
                 },
                 "visibility": {
-                  "description": "The visibility of the assets to be returned.\nDefaults to\nVISIBILITY_UNSPECIFIED\nwhich returns all assets.",
+                  "description": "The visibility of the assets to be returned. Defaults to VISIBILITY_UNSPECIFIED which returns all assets.",
                   "enum": [
                     "VISIBILITY_UNSPECIFIED",
                     "PUBLISHED",
                     "PRIVATE"
+                  ],
+                  "enumDescriptions": [
+                    "No visibility specified. Returns all assets.",
+                    "Returns only published assets.",
+                    "Returns only private assets."
                   ],
                   "location": "query",
                   "type": "string"
@@ -244,7 +255,7 @@
         "likedassets": {
           "methods": {
             "list": {
-              "description": "Lists assets that the user has liked. Only the value 'me', representing\nthe currently-authenticated user, is supported. May include assets with an\naccess level of UNLISTED.",
+              "description": "Lists assets that the user has liked. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of UNLISTED.",
               "flatPath": "v1/users/{usersId}/likedassets",
               "httpMethod": "GET",
               "id": "poly.users.likedassets.list",
@@ -253,30 +264,30 @@
               ],
               "parameters": {
                 "format": {
-                  "description": "Return only assets with the matching format. Acceptable values are:\n`BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.",
+                  "description": "Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "A valid user id. Currently, only the special value 'me', representing the\ncurrently-authenticated user is supported. To use 'me', you must pass\nan OAuth token with the request.",
+                  "description": "A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.",
                   "location": "path",
                   "pattern": "^users/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Specifies an ordering for assets. Acceptable values are:\n`BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which\nranks assets based on how recently they were liked.",
+                  "description": "Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which ranks assets based on how recently they were liked.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of assets to be returned. This value must be between `1`\nand `100`. Defaults to `20`.",
+                  "description": "The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Specifies a continuation token from a previous search whose results were\nsplit into multiple pages. To get the next page, submit the same request\nspecifying the value from\nnext_page_token.",
+                  "description": "Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.",
                   "location": "query",
                   "type": "string"
                 }
@@ -291,19 +302,19 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20201006",
   "rootUrl": "https://poly.googleapis.com/",
   "schemas": {
     "Asset": {
-      "description": "Represents and describes an asset in the Poly library. An asset is a 3D model\nor scene created using [Tilt Brush](//www.tiltbrush.com),\n[Blocks](//vr.google.com/blocks/), or any 3D program that produces a file\nthat can be upload to Poly.",
+      "description": "Represents and describes an asset in the Poly library. An asset is a 3D model or scene created using [Tilt Brush](//www.tiltbrush.com), [Blocks](//vr.google.com/blocks/), or any 3D program that produces a file that can be upload to Poly.",
       "id": "Asset",
       "properties": {
         "authorName": {
-          "description": "The author's publicly visible name. Use this name when giving credit to the\nauthor. For more information, see [Licensing](/poly/discover/licensing).",
+          "description": "The author's publicly visible name. Use this name when giving credit to the author. For more information, see [Licensing](/poly/discover/licensing).",
           "type": "string"
         },
         "createTime": {
-          "description": "For published assets, the time when the asset was published.\nFor unpublished assets, the time when the asset was created.",
+          "description": "For published assets, the time when the asset was published. For unpublished assets, the time when the asset was created.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -316,7 +327,7 @@
           "type": "string"
         },
         "formats": {
-          "description": "A list of Formats where each\nformat describes one representation of the asset.",
+          "description": "A list of Formats where each format describes one representation of the asset.",
           "items": {
             "$ref": "Format"
           },
@@ -327,7 +338,7 @@
           "type": "boolean"
         },
         "license": {
-          "description": "The license under which the author has made the asset available\nfor use, if any.",
+          "description": "The license under which the author has made the asset available for use, if any.",
           "enum": [
             "UNKNOWN",
             "CREATIVE_COMMONS_BY",
@@ -336,21 +347,21 @@
           "enumDescriptions": [
             "Unknown license value.",
             "Creative Commons CC-BY 3.0. https://creativecommons.org/licenses/by/3.0/",
-            "Unlicensed: All Rights Reserved by the author. Unlicensed assets are\n**not** returned by List Assets."
+            "Unlicensed: All Rights Reserved by the author. Unlicensed assets are **not** returned by List Assets."
           ],
           "type": "string"
         },
         "metadata": {
-          "description": "Application-defined opaque metadata for this asset. This field is only\nreturned when querying for the signed-in user's own assets, not for public\nassets. This string is limited to 1K chars. It is up to the creator of\nthe asset to define the format for this string (for example, JSON).",
+          "description": "Application-defined opaque metadata for this asset. This field is only returned when querying for the signed-in user's own assets, not for public assets. This string is limited to 1K chars. It is up to the creator of the asset to define the format for this string (for example, JSON).",
           "type": "string"
         },
         "name": {
-          "description": "The unique identifier for the asset in the form:\n`assets/{ASSET_ID}`.",
+          "description": "The unique identifier for the asset in the form: `assets/{ASSET_ID}`.",
           "type": "string"
         },
         "presentationParams": {
           "$ref": "PresentationParams",
-          "description": "Hints for displaying the asset. Note that these parameters are not\nimmutable; the author of an asset may change them post-publication."
+          "description": "Hints for displaying the asset. Note that these parameters are not immutable; the author of an asset may change them post-publication."
         },
         "remixInfo": {
           "$ref": "RemixInfo",
@@ -361,7 +372,7 @@
           "description": "The thumbnail image for the asset."
         },
         "updateTime": {
-          "description": "The time when the asset was last modified. For published assets, whose\ncontents are immutable, the update time changes only when metadata\nproperties, such as visibility, are updated.",
+          "description": "The time when the asset was last modified. For published assets, whose contents are immutable, the update time changes only when metadata properties, such as visibility, are updated.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -375,9 +386,9 @@
           ],
           "enumDescriptions": [
             "Unknown (and invalid) visibility.",
-            "Access to the asset and its underlying files and resources is restricted to\nthe author.\n**Authentication:** You must supply an OAuth token that corresponds to the\nauthor's account.",
-            "Access to the asset and its underlying files and resources is available to\nanyone with the asset's name. Unlisted assets are **not**\nreturned by List Assets.",
-            "Access to the asset and its underlying files and resources is available\nto anyone."
+            "Access to the asset and its underlying files and resources is restricted to the author. **Authentication:** You must supply an OAuth token that corresponds to the author's account.",
+            "Access to the asset and its underlying files and resources is available to anyone with the asset's name. Unlisted assets are **not** returned by List Assets.",
+            "Access to the asset and its underlying files and resources is available to anyone."
           ],
           "type": "string"
         }
@@ -404,15 +415,15 @@
           ],
           "enumDescriptions": [
             "Unknown error code.",
-            "The asset import did not include any file that we can import (i.e. an OBJ\nfile).",
+            "The asset import did not include any file that we can import (i.e. an OBJ file).",
             "When generating the preview for the import, no geometry was found.",
-            "A problem was encountered while parsing the OBJ file. The converter makes\na 'best effort' attempt to continue when encountering such issues. In\nsome cases the resulting preview model may still be acceptable. The\ndetails can be found in the parse error message.",
+            "A problem was encountered while parsing the OBJ file. The converter makes a 'best effort' attempt to continue when encountering such issues. In some cases the resulting preview model may still be acceptable. The details can be found in the parse error message.",
             "The importer was not able to import the model before the expiration time.",
             "The importer encountered a problem reading an image file.",
-            "Multiple files were encountered in addition to a ZIP archive. When\nuploading an archive only one file is permitted.",
-            "Default materials are used in the model. This means that one or more\nfaces is using default materials either because no usemtl statement was\nspecified or because the requested material was not found due to a\nmissing material file or bad material name. This does not cover the case\nof missing textures.",
-            "The importer encountered a fatal error and was unable to import the\nmodel.",
-            "The import includes a file of an unsupported element type. The file path\nis specified."
+            "Multiple files were encountered in addition to a ZIP archive. When uploading an archive only one file is permitted.",
+            "Default materials are used in the model. This means that one or more faces is using default materials either because no usemtl statement was specified or because the requested material was not found due to a missing material file or bad material name. This does not cover the case of missing textures.",
+            "The importer encountered a fatal error and was unable to import the model.",
+            "The import includes a file of an unsupported element type. The file path is specified."
           ],
           "type": "string"
         },
@@ -432,15 +443,15 @@
       "type": "object"
     },
     "File": {
-      "description": "Represents a file in Poly, which can be a root,\nresource, or thumbnail file.",
+      "description": "Represents a file in Poly, which can be a root, resource, or thumbnail file.",
       "id": "File",
       "properties": {
         "contentType": {
-          "description": "The MIME content-type, such as `image/png`.\nFor more information, see\n[MIME\ntypes](//developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).",
+          "description": "The MIME content-type, such as `image/png`. For more information, see [MIME types](//developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).",
           "type": "string"
         },
         "relativePath": {
-          "description": "The path of the resource file relative to the\nroot file. For root or thumbnail files,\nthis is just the filename.",
+          "description": "The path of the resource file relative to the root file. For root or thumbnail files, this is just the filename.",
           "type": "string"
         },
         "url": {
@@ -451,7 +462,7 @@
       "type": "object"
     },
     "Format": {
-      "description": "The same asset can be represented in different formats, for example,\na [WaveFront .obj](//en.wikipedia.org/wiki/Wavefront_.obj_file) file with its\ncorresponding .mtl file or a [Khronos glTF](//www.khronos.org/gltf) file\nwith its corresponding .glb binary data. A format refers to a specific\nrepresentation of an asset and contains all information needed to\nretrieve and describe this representation.",
+      "description": "The same asset can be represented in different formats, for example, a [WaveFront .obj](//en.wikipedia.org/wiki/Wavefront_.obj_file) file with its corresponding .mtl file or a [Khronos glTF](//www.khronos.org/gltf) file with its corresponding .glb binary data. A format refers to a specific representation of an asset and contains all information needed to retrieve and describe this representation.",
       "id": "Format",
       "properties": {
         "formatComplexity": {
@@ -459,11 +470,11 @@
           "description": "Complexity stats about this representation of the asset."
         },
         "formatType": {
-          "description": "A short string that identifies the format type of this representation.\nPossible values are: `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.",
+          "description": "A short string that identifies the format type of this representation. Possible values are: `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.",
           "type": "string"
         },
         "resources": {
-          "description": "A list of dependencies of the root element. May include, but is not\nlimited to, materials, textures, and shader programs.",
+          "description": "A list of dependencies of the root element. May include, but is not limited to, materials, textures, and shader programs.",
           "items": {
             "$ref": "File"
           },
@@ -471,7 +482,7 @@
         },
         "root": {
           "$ref": "File",
-          "description": "The root of the file hierarchy. This will always be populated.\nFor some format_types - such as `TILT`, which are\nself-contained - this is all of the data.\n\nOther types - such as `OBJ` - often reference other data elements.\nThese are contained in the resources field."
+          "description": "The root of the file hierarchy. This will always be populated. For some format_types - such as `TILT`, which are self-contained - this is all of the data. Other types - such as `OBJ` - often reference other data elements. These are contained in the resources field."
         }
       },
       "type": "object"
@@ -481,7 +492,7 @@
       "id": "FormatComplexity",
       "properties": {
         "lodHint": {
-          "description": "A non-negative integer that represents the level of detail (LOD) of this\nformat relative to other formats of the same asset with the same\nformat_type.\nThis hint allows you to sort formats from the most-detailed (0) to\nleast-detailed (integers greater than 0).",
+          "description": "A non-negative integer that represents the level of detail (LOD) of this format relative to other formats of the same asset with the same format_type. This hint allows you to sort formats from the most-detailed (0) to least-detailed (integers greater than 0).",
           "format": "int32",
           "type": "integer"
         },
@@ -532,7 +543,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The continuation token for retrieving the next page. If empty,\nindicates that there are no more pages. To get the next page, submit the\nsame request specifying this value as the\npage_token.",
+          "description": "The continuation token for retrieving the next page. If empty, indicates that there are no more pages. To get the next page, submit the same request specifying this value as the page_token.",
           "type": "string"
         },
         "totalSize": {
@@ -555,7 +566,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The continuation token for retrieving the next page. If empty,\nindicates that there are no more pages. To get the next page, submit the\nsame request specifying this value as the\npage_token.",
+          "description": "The continuation token for retrieving the next page. If empty, indicates that there are no more pages. To get the next page, submit the same request specifying this value as the page_token.",
           "type": "string"
         },
         "totalSize": {
@@ -571,7 +582,7 @@
       "id": "ListUserAssetsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "The continuation token for retrieving the next page. If empty,\nindicates that there are no more pages. To get the next page, submit the\nsame request specifying this value as the\npage_token.",
+          "description": "The continuation token for retrieving the next page. If empty, indicates that there are no more pages. To get the next page, submit the same request specifying this value as the page_token.",
           "type": "string"
         },
         "totalSize": {
@@ -625,7 +636,7 @@
           ],
           "enumDescriptions": [
             "Unknown error code.",
-            "Vertex references are specified in an inconsistent style for a face (e.g.\nsome vertices specify texture vertices but some don't).",
+            "Vertex references are specified in an inconsistent style for a face (e.g. some vertices specify texture vertices but some don't).",
             "The command is invalid.",
             "A invalid number was specified.",
             "An invalid vertex reference was specified.",
@@ -634,16 +645,16 @@
             "The vertex specified too few dimensions for its usage.",
             "The face specified too few vertices.",
             "The vertex specified too many dimensions for its usage.",
-            "This command is a valid OBJ command but is not supported. This error is\nonly generated for the first instance of such a command.",
+            "This command is a valid OBJ command but is not supported. This error is only generated for the first instance of such a command.",
             "This line ended with unparsed token characters.",
             "The specified vertex was not found.",
             "The specified number was too large or small for its usage.",
             "The specified parameter value was not recognized.",
             "The specified texture option is not valid.",
-            "The maximum number of problems to report was reached. Parsing continues,\nbut further problems will be ignored.",
+            "The maximum number of problems to report was reached. Parsing continues, but further problems will be ignored.",
             "An expected file name was not specified.",
             "The specified file was not found in the import.",
-            "The specified material was not found in any material definition in the\nimport.",
+            "The specified material was not found in any material definition in the import.",
             "Material parameters were specified before the first material definition.",
             "The smoothing group is not valid.",
             "Vertex colors were specified for only some vertices of a face.",
@@ -663,7 +674,7 @@
           "type": "string"
         },
         "line": {
-          "description": "The text of the line. Note that this may be truncated if the line was very\nlong. This may not include the error if it occurs after line truncation.",
+          "description": "The text of the line. Note that this may be truncated if the line was very long. This may not include the error if it occurs after line truncation.",
           "type": "string"
         },
         "lineNumber": {
@@ -680,15 +691,15 @@
       "type": "object"
     },
     "PresentationParams": {
-      "description": "Hints for displaying the asset, based on information available when the asset\nwas uploaded.",
+      "description": "Hints for displaying the asset, based on information available when the asset was uploaded.",
       "id": "PresentationParams",
       "properties": {
         "backgroundColor": {
-          "description": "A background color which could be used for displaying the 3D asset in a\n'thumbnail' or 'palette' style view. Authors have the option to set this\nbackground color when publishing or editing their asset.\n\nThis is represented as a six-digit hexademical triplet specifying the\nRGB components of the background color, e.g. #FF0000 for Red.",
+          "description": "A background color which could be used for displaying the 3D asset in a 'thumbnail' or 'palette' style view. Authors have the option to set this background color when publishing or editing their asset. This is represented as a six-digit hexademical triplet specifying the RGB components of the background color, e.g. #FF0000 for Red.",
           "type": "string"
         },
         "colorSpace": {
-          "description": "The materials' diffuse/albedo color. This does not apply to vertex colors\nor texture maps.",
+          "description": "The materials' diffuse/albedo color. This does not apply to vertex colors or texture maps.",
           "enum": [
             "UNKNOWN",
             "LINEAR",
@@ -703,13 +714,13 @@
         },
         "orientingRotation": {
           "$ref": "Quaternion",
-          "description": "A rotation that should be applied to the object root to make it upright.\nMore precisely, this quaternion transforms from \"object space\" (the space\nin which the object is defined) to \"presentation space\", a coordinate\nsystem where +Y is up, +X is right, -Z is forward. For example, if\nthe object is the Eiffel Tower, in its local coordinate system the\nobject might be laid out such that the base of the tower is on the\nYZ plane and the tip of the tower is towards positive X. In this case\nthis quaternion would specify a rotation (of 90 degrees about the Z\naxis) such that in the presentation space the base of the tower is\naligned with the XZ plane, and the tip of the tower lies towards +Y.\n\nThis rotation is unrelated to the object's pose in the web preview,\nwhich is just a camera position setting and is *not* reflected in this\nrotation.\n\nPlease note: this is applicable only to the gLTF."
+          "description": "A rotation that should be applied to the object root to make it upright. More precisely, this quaternion transforms from \"object space\" (the space in which the object is defined) to \"presentation space\", a coordinate system where +Y is up, +X is right, -Z is forward. For example, if the object is the Eiffel Tower, in its local coordinate system the object might be laid out such that the base of the tower is on the YZ plane and the tip of the tower is towards positive X. In this case this quaternion would specify a rotation (of 90 degrees about the Z axis) such that in the presentation space the base of the tower is aligned with the XZ plane, and the tip of the tower lies towards +Y. This rotation is unrelated to the object's pose in the web preview, which is just a camera position setting and is *not* reflected in this rotation. Please note: this is applicable only to the gLTF."
         }
       },
       "type": "object"
     },
     "Quaternion": {
-      "description": "A [Quaternion](//en.wikipedia.org/wiki/Quaternion). Please note: if in the\nresponse you see \"w: 1\" and nothing else this is the default value of\n[0, 0, 0, 1] where x,y, and z are 0.",
+      "description": "A [Quaternion](//en.wikipedia.org/wiki/Quaternion). Please note: if in the response you see \"w: 1\" and nothing else this is the default value of [0, 0, 0, 1] where x,y, and z are 0.",
       "id": "Quaternion",
       "properties": {
         "w": {
@@ -736,11 +747,11 @@
       "type": "object"
     },
     "RemixInfo": {
-      "description": "Info about the sources of this asset (i.e. assets that were remixed to\ncreate this asset).",
+      "description": "Info about the sources of this asset (i.e. assets that were remixed to create this asset).",
       "id": "RemixInfo",
       "properties": {
         "sourceAsset": {
-          "description": "Resource ids for the sources of this remix, of the form:\n`assets/{ASSET_ID}`",
+          "description": "Resource ids for the sources of this remix, of the form: `assets/{ASSET_ID}`",
           "items": {
             "type": "string"
           },
@@ -750,11 +761,11 @@
       "type": "object"
     },
     "StartAssetImportResponse": {
-      "description": "A response message from a request to\nstartImport. This is returned in the response\nfield of the Operation.",
+      "description": "A response message from a request to startImport. This is returned in the response field of the Operation.",
       "id": "StartAssetImportResponse",
       "properties": {
         "assetId": {
-          "description": "The id of newly created asset. If this is empty when the operation is\ncomplete it means the import failed. Please refer to the\nassetImportMessages field to understand what went wrong.",
+          "description": "The id of newly created asset. If this is empty when the operation is complete it means the import failed. Please refer to the assetImportMessages field to understand what went wrong.",
           "type": "string"
         },
         "assetImportId": {
@@ -762,7 +773,7 @@
           "type": "string"
         },
         "assetImportMessages": {
-          "description": "The message from the asset import. This will contain any warnings\n(or - in the case of failure - errors) that occurred during import.",
+          "description": "The message from the asset import. This will contain any warnings (or - in the case of failure - errors) that occurred during import.",
           "items": {
             "$ref": "AssetImportMessage"
           },

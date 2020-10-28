@@ -47,3 +47,15 @@ export function gameservices<
 
 const auth = new AuthPlus();
 export {auth};
+export {gameservices_v1};
+export {gameservices_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

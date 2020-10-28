@@ -47,3 +47,15 @@ export function texttospeech<
 
 const auth = new AuthPlus();
 export {auth};
+export {texttospeech_v1};
+export {texttospeech_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -31,3 +31,14 @@ export function gmail<T = gmail_v1.Gmail>(
 
 const auth = new AuthPlus();
 export {auth};
+export {gmail_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

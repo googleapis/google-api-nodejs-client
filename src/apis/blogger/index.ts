@@ -35,3 +35,15 @@ export function blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(
 
 const auth = new AuthPlus();
 export {auth};
+export {blogger_v2};
+export {blogger_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

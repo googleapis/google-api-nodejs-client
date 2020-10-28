@@ -45,3 +45,16 @@ export function dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(
 
 const auth = new AuthPlus();
 export {auth};
+export {dns_v1};
+export {dns_v1beta2};
+export {dns_v2beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';
